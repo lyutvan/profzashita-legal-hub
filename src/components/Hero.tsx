@@ -1,6 +1,8 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import { MessageCircle, Phone } from "lucide-react";
+import { Phone } from "lucide-react";
+import WhatsAppIcon from "./icons/WhatsAppIcon";
+import TelegramIcon from "./icons/TelegramIcon";
 
 const Hero = () => {
   return (
@@ -36,18 +38,51 @@ const Hero = () => {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-            <Button size="lg" variant="secondary" asChild className="w-full sm:w-auto text-base px-8 shadow-gold">
-              <Link to="/contacts">
-                <Phone className="mr-2 h-5 w-5" />
+            <Button 
+              size="lg" 
+              variant="secondary" 
+              asChild 
+              className="w-full sm:w-auto text-base px-8 min-h-[44px] shadow-[0_4px_14px_0_hsl(var(--accent)/0.3)] hover:shadow-[0_6px_20px_0_hsl(var(--accent)/0.4)] transition-all"
+            >
+              <Link to="/contacts" aria-label="Получить бесплатную консультацию">
+                <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
                 Бесплатная консультация
               </Link>
             </Button>
-            <Button size="lg" variant="outline" asChild className="w-full sm:w-auto text-base px-8 border-primary-foreground/20 hover:bg-primary-foreground/10 hover:border-accent">
-              <a href="https://wa.me/79999999999" target="_blank" rel="noopener noreferrer">
-                <MessageCircle className="mr-2 h-5 w-5" />
-                Написать в WhatsApp
-              </a>
-            </Button>
+            <div className="flex gap-3 w-full sm:w-auto">
+              <Button 
+                size="lg" 
+                variant="outline" 
+                asChild 
+                className="flex-1 sm:flex-initial text-base px-6 min-h-[44px] border-primary-foreground/30 hover:bg-primary-foreground/10 hover:border-accent transition-all"
+              >
+                <a 
+                  href="https://wa.me/79168597654" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Написать в WhatsApp"
+                >
+                  <WhatsAppIcon className="mr-2" size={20} />
+                  WhatsApp
+                </a>
+              </Button>
+              <Button 
+                size="lg" 
+                variant="outline" 
+                asChild 
+                className="flex-1 sm:flex-initial text-base px-6 min-h-[44px] border-primary-foreground/30 hover:bg-primary-foreground/10 hover:border-accent transition-all"
+              >
+                <a 
+                  href="https://t.me/profzashita" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Написать в Telegram"
+                >
+                  <TelegramIcon className="mr-2" size={20} />
+                  Telegram
+                </a>
+              </Button>
+            </div>
           </div>
 
           {/* Trust Indicators */}

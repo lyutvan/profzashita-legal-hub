@@ -2,8 +2,10 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import ContactForm from "@/components/ContactForm";
 import { Card, CardContent } from "@/components/ui/card";
-import { Phone, Mail, MapPin, Clock, MessageCircle, Send } from "lucide-react";
+import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
+import TelegramIcon from "@/components/icons/TelegramIcon";
 
 const Contacts = () => {
   return (
@@ -115,15 +117,35 @@ const Contacts = () => {
                 <div>
                   <h3 className="font-semibold mb-4">Написать в мессенджере</h3>
                   <div className="flex gap-3">
-                    <Button variant="outline" asChild className="flex-1">
-                      <a href="https://wa.me/79999999999" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                        <MessageCircle className="h-4 w-4" />
+                    <Button 
+                      variant="outline" 
+                      asChild 
+                      className="flex-1 min-h-[44px] border-accent/30 hover:bg-accent/10 hover:border-accent transition-all"
+                    >
+                      <a 
+                        href="https://wa.me/79168597654" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex items-center justify-center gap-2"
+                        aria-label="Написать в WhatsApp"
+                      >
+                        <WhatsAppIcon size={20} />
                         WhatsApp
                       </a>
                     </Button>
-                    <Button variant="outline" asChild className="flex-1">
-                      <a href="https://t.me/profzashita" target="_blank" rel="noopener noreferrer" className="flex items-center justify-center gap-2">
-                        <Send className="h-4 w-4" />
+                    <Button 
+                      variant="outline" 
+                      asChild 
+                      className="flex-1 min-h-[44px] border-accent/30 hover:bg-accent/10 hover:border-accent transition-all"
+                    >
+                      <a 
+                        href="https://t.me/profzashita" 
+                        target="_blank" 
+                        rel="noopener noreferrer" 
+                        className="flex items-center justify-center gap-2"
+                        aria-label="Написать в Telegram"
+                      >
+                        <TelegramIcon size={20} />
                         Telegram
                       </a>
                     </Button>

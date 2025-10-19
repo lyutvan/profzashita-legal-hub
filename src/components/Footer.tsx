@@ -1,6 +1,9 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Logo from "./Logo";
+import WhatsAppIcon from "./icons/WhatsAppIcon";
+import TelegramIcon from "./icons/TelegramIcon";
+import { Button } from "./ui/button";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
@@ -74,6 +77,42 @@ const Footer = () => {
                 </div>
               </li>
             </ul>
+            <div className="mt-4 flex gap-2">
+              <Button 
+                size="sm" 
+                variant="outline" 
+                asChild 
+                className="flex-1 min-h-[44px] border-accent/30 hover:bg-accent/10 hover:border-accent transition-all"
+              >
+                <a 
+                  href="https://wa.me/79168597654" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Написать в WhatsApp"
+                  className="flex items-center justify-center gap-2"
+                >
+                  <WhatsAppIcon size={18} />
+                  <span className="sr-only">WhatsApp</span>
+                </a>
+              </Button>
+              <Button 
+                size="sm" 
+                variant="outline" 
+                asChild 
+                className="flex-1 min-h-[44px] border-accent/30 hover:bg-accent/10 hover:border-accent transition-all"
+              >
+                <a 
+                  href="https://t.me/profzashita" 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  aria-label="Написать в Telegram"
+                  className="flex items-center justify-center gap-2"
+                >
+                  <TelegramIcon size={18} />
+                  <span className="sr-only">Telegram</span>
+                </a>
+              </Button>
+            </div>
           </div>
 
           {/* Legal */}
