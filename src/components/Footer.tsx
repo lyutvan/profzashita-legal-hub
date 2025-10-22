@@ -17,8 +17,11 @@ const Footer = () => {
             <div className="mb-4">
               <Logo className="h-10 w-auto [&_svg]:brightness-0 [&_svg]:invert [&_path]:fill-current [&_path]:stroke-current [&_.text-accent]:text-accent" />
             </div>
-            <p className="text-sm text-primary-foreground/80 leading-relaxed">
+            <p className="text-sm text-primary-foreground/80 leading-relaxed mb-4">
               Опыт. Ответственность. Результат.
+            </p>
+            <p className="text-xs text-primary-foreground/60">
+              Коллегия адвокатов с многолетним опытом работы в различных областях права.
             </p>
           </div>
 
@@ -117,9 +120,21 @@ const Footer = () => {
 
           {/* Legal */}
           <div>
-            <h3 className="font-playfair text-lg font-semibold mb-4">Реквизиты</h3>
-            <div className="text-sm text-primary-foreground/80 space-y-1">
-              <p>Коллегия адвокатов «Профзащита»</p>
+            <h3 className="font-playfair text-lg font-semibold mb-4">Документы</h3>
+            <ul className="space-y-2">
+              <li>
+                <Link to="/privacy" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                  Политика конфиденциальности
+                </Link>
+              </li>
+              <li>
+                <Link to="/disclaimer" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                  Отказ от ответственности
+                </Link>
+              </li>
+            </ul>
+            <div className="text-xs text-primary-foreground/60 space-y-1 mt-4">
+              <p>КА «Профзащита»</p>
               <p>ИНН: 7700000000</p>
               <p>ОГРН: 1000000000000</p>
             </div>

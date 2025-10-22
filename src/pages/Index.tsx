@@ -4,6 +4,9 @@ import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import PracticeCard from "@/components/PracticeCard";
 import ContactForm from "@/components/ContactForm";
+import Testimonials from "@/components/Testimonials";
+import { OrganizationSchema, ReviewSchema } from "@/components/JsonLd";
+import { testimonials } from "@/data/testimonials";
 import { practices } from "@/data/practices";
 import { Shield, Target, Award, Users, CheckCircle, Phone } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -13,6 +16,15 @@ import { Button } from "@/components/ui/button";
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <OrganizationSchema />
+      <ReviewSchema
+        reviews={testimonials.map((t) => ({
+          author: t.name,
+          rating: t.rating,
+          reviewBody: t.quote,
+          datePublished: "2024-12-01",
+        }))}
+      />
       <Header />
       
       <main className="flex-1">
@@ -129,58 +141,7 @@ const Index = () => {
         </section>
 
         {/* Testimonials Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
-                Отзывы <span className="text-accent">клиентов</span>
-              </h2>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
-              {[
-                {
-                  name: "Анна С.",
-                  text: "Выражаю огромную благодарность адвокатам коллегии за помощь в семейном споре. Профессионально, оперативно и с отличным результатом.",
-                  case: "Раздел имущества",
-                },
-                {
-                  name: "Михаил К.",
-                  text: "Обратился по уголовному делу. Команда работала слаженно, все этапы были понятны. Добились прекращения дела. Рекомендую!",
-                  case: "Уголовная защита",
-                },
-                {
-                  name: "ООО «Строй-Инвест»",
-                  text: "Сотрудничаем с коллегией по корпоративным спорам. Высокий уровень экспертизы, всегда на связи. Надёжный партнёр.",
-                  case: "Арбитраж",
-                },
-              ].map((testimonial, index) => (
-                <Card key={index} className="border-border hover:shadow-elegant transition-all">
-                  <CardContent className="pt-6">
-                    <div className="mb-4">
-                      <div className="flex items-center gap-1 text-accent mb-2">
-                        {[...Array(5)].map((_, i) => (
-                          <span key={i}>★</span>
-                        ))}
-                      </div>
-                      <p className="text-sm text-muted-foreground italic mb-4">"{testimonial.text}"</p>
-                    </div>
-                    <div>
-                      <p className="font-semibold text-sm">{testimonial.name}</p>
-                      <p className="text-xs text-muted-foreground">{testimonial.case}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-
-            <div className="text-center mt-12">
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/cases">Все кейсы →</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
+        <Testimonials />
 
         {/* FAQ Section */}
         <section className="py-20 bg-muted/30">

@@ -1,0 +1,55 @@
+{
+  "header": {
+    "nav": {
+      "home": "Home",
+      "practices": "Practices",
+      "about": "About",
+      "cases": "Cases",
+      "contacts": "Contacts"
+    },
+    "cta": {
+      "phone": "+7 999 999 99 99",
+      "consultation": "Consultation"
+    }
+  },
+  "footer": {
+    "slogan": "Experience. Responsibility. Results.",
+    "navigation": "Navigation",
+    "contacts": "Contacts",
+    "requisites": "Details",
+    "company": "Profzashchita Law Firm",
+    "inn": "TIN: 7700000000",
+    "ogrn": "PSRN: 1000000000000",
+    "copyright": "Profzashchita. All rights reserved.",
+    "disclaimer": "Information on the website is not a public offer"
+  },
+  "hero": {
+    "title": "Premium Legal Services for Complex Cases",
+    "subtitle": "No Upfront Payment • Personalized Strategy • Confidential",
+    "cta": {
+      "consultation": "Free Consultation",
+      "whatsapp": "Write on WhatsApp"
+    },
+    "features": {
+      "urgent": {
+        "title": "Immediate Response",
+        "description": "We can arrive within 2 hours if needed, start working immediately"
+      },
+      "analysis": {
+        "title": "Risk Assessment",
+        "description": "Honest evaluation of prospects, forecast of timelines and costs"
+      },
+      "strategy": {
+        "title": "Action Plan",
+        "description": "Step-by-step defense strategy tailored to your specific situation"
+      }
+    }
+  },
+  "common": {
+    "city": "Moscow",
+    "email": "profzashchita@internet.ru",
+    "loading": "Loading...",
+    "submit": "Submit",
+    "close": "Close"
+  }
+}
