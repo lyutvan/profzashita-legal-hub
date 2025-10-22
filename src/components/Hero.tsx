@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
-import { Phone } from "lucide-react";
+import { Phone, Zap, Scale, FileText } from "lucide-react";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 import TelegramIcon from "./icons/TelegramIcon";
 
@@ -18,26 +18,24 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent border border-accent/30 mb-6">
-            <span className="text-sm font-medium">Коллегия адвокатов</span>
+            <span className="text-sm font-medium">Коллегия адвокатов Профзащита</span>
           </div>
 
           {/* Main Heading */}
+          {/* A/B: "Юридическая помощь премиум-класса в сложных делах" */}
           <h1 className="font-playfair text-4xl md:text-5xl lg:text-6xl font-bold leading-tight mb-6">
-            Профессиональная защита <br className="hidden md:inline" />
-            <span className="text-accent">ваших прав и интересов</span>
+            Юридическая помощь премиум-уровня <br className="hidden md:inline" />
+            <span className="text-accent">для сложных ситуаций</span>
           </h1>
 
-          {/* Subtitle */}
-          <p className="text-lg md:text-xl text-primary-foreground/80 mb-4 leading-relaxed">
-            Опыт. Ответственность. Результат.
-          </p>
-
-          <p className="text-base md:text-lg text-primary-foreground/70 mb-10 max-w-2xl mx-auto">
-            Команда опытных адвокатов для защиты ваших интересов в суде и досудебном урегулировании споров
+          {/* Subtitle - Key Benefits */}
+          {/* A/B: "Работаем по результату • Индивидуальная стратегия • Полная конфиденциальность" */}
+          <p className="text-lg md:text-xl text-primary-foreground/90 mb-8 leading-relaxed font-medium">
+            Без предоплаты • Персональная стратегия • Конфиденциально
           </p>
 
           {/* CTA Buttons */}
-          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
+          <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-12">
             <Button 
               size="lg" 
               variant="secondary" 
@@ -49,55 +47,49 @@ const Hero = () => {
                 Бесплатная консультация
               </Link>
             </Button>
-            <div className="flex gap-3 w-full sm:w-auto">
-              <Button 
-                size="lg" 
-                variant="outline" 
-                asChild 
-                className="flex-1 sm:flex-initial text-base px-6 min-h-[44px] border-primary-foreground/30 hover:bg-primary-foreground/10 hover:border-accent transition-all"
+            <Button 
+              size="lg" 
+              variant="outline" 
+              asChild 
+              className="w-full sm:w-auto text-base px-6 min-h-[44px] border-primary-foreground/30 hover:bg-primary-foreground/10 hover:border-accent transition-all"
+            >
+              <a 
+                href="https://wa.me/79168597654" 
+                target="_blank" 
+                rel="noopener noreferrer"
+                aria-label="Написать в WhatsApp"
               >
-                <a 
-                  href="https://wa.me/79168597654" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  aria-label="Написать в WhatsApp"
-                >
-                  <WhatsAppIcon className="mr-2" size={20} />
-                  WhatsApp
-                </a>
-              </Button>
-              <Button 
-                size="lg" 
-                variant="outline" 
-                asChild 
-                className="flex-1 sm:flex-initial text-base px-6 min-h-[44px] border-primary-foreground/30 hover:bg-primary-foreground/10 hover:border-accent transition-all"
-              >
-                <a 
-                  href="https://t.me/profzashita" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  aria-label="Написать в Telegram"
-                >
-                  <TelegramIcon className="mr-2" size={20} />
-                  Telegram
-                </a>
-              </Button>
-            </div>
+                <WhatsAppIcon className="mr-2" size={20} />
+                Написать в WhatsApp
+              </a>
+            </Button>
           </div>
 
-          {/* Trust Indicators */}
-          <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-16 pt-16 border-t border-primary-foreground/20">
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-accent mb-2">15+</div>
-              <div className="text-sm text-primary-foreground/70">лет опыта</div>
+          {/* Three Key Results */}
+          {/* A/B bullets: "Берём дело в работу немедленно", "Прозрачный анализ перспектив", "Пошаговый план защиты" */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-4xl mx-auto mt-12">
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-primary-foreground/5 border border-primary-foreground/10 hover:border-accent/50 transition-colors">
+              <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center mb-4">
+                <Zap className="w-6 h-6 text-accent" aria-hidden="true" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2 text-primary-foreground">Срочно подключаемся к делу</h3>
+              <p className="text-sm text-primary-foreground/70">Начинаем работу в день обращения</p>
             </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-accent mb-2">500+</div>
-              <div className="text-sm text-primary-foreground/70">выигранных дел</div>
+
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-primary-foreground/5 border border-primary-foreground/10 hover:border-accent/50 transition-colors">
+              <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center mb-4">
+                <Scale className="w-6 h-6 text-accent" aria-hidden="true" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2 text-primary-foreground">Рассчитываем шансы и риски</h3>
+              <p className="text-sm text-primary-foreground/70">Честная оценка перспектив дела</p>
             </div>
-            <div className="text-center">
-              <div className="text-3xl md:text-4xl font-bold text-accent mb-2">98%</div>
-              <div className="text-sm text-primary-foreground/70">положительных решений</div>
+
+            <div className="flex flex-col items-center text-center p-6 rounded-lg bg-primary-foreground/5 border border-primary-foreground/10 hover:border-accent/50 transition-colors">
+              <div className="w-12 h-12 rounded-full bg-accent/20 flex items-center justify-center mb-4">
+                <FileText className="w-6 h-6 text-accent" aria-hidden="true" />
+              </div>
+              <h3 className="font-semibold text-lg mb-2 text-primary-foreground">Готовим план действий</h3>
+              <p className="text-sm text-primary-foreground/70">Пошаговая стратегия защиты интересов</p>
             </div>
           </div>
         </div>
