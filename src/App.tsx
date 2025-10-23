@@ -2,13 +2,13 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
-import Practices from "./pages/Practices";
-import PracticeDetail from "./pages/PracticeDetail";
-import About from "./pages/About";
-import Cases from "./pages/Cases";
-import Contacts from "./pages/Contacts";
+import Uslugi from "./pages/Uslugi";
+import OKollegii from "./pages/OKollegii";
+import Keisy from "./pages/Keisy";
+import Komanda from "./pages/Komanda";
+import Kontakty from "./pages/Kontakty";
 import Privacy from "./pages/Privacy";
 import Disclaimer from "./pages/Disclaimer";
 import NotFound from "./pages/NotFound";
@@ -23,13 +23,20 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/practices" element={<Practices />} />
-          <Route path="/practices/:slug" element={<PracticeDetail />} />
-          <Route path="/about" element={<About />} />
-          <Route path="/cases" element={<Cases />} />
-          <Route path="/contacts" element={<Contacts />} />
+          <Route path="/uslugi" element={<Uslugi />} />
+          <Route path="/o-kollegii" element={<OKollegii />} />
+          <Route path="/keisy" element={<Keisy />} />
+          <Route path="/komanda" element={<Komanda />} />
+          <Route path="/kontakty" element={<Kontakty />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
+          
+          {/* Redirects from old URLs */}
+          <Route path="/about" element={<Navigate to="/o-kollegii" replace />} />
+          <Route path="/cases" element={<Navigate to="/keisy" replace />} />
+          <Route path="/contacts" element={<Navigate to="/kontakty" replace />} />
+          <Route path="/practices" element={<Navigate to="/uslugi" replace />} />
+          
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
         </Routes>

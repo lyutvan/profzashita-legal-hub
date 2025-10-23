@@ -13,11 +13,11 @@ const Footer = () => {
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About */}
-          <div>
-            <div className="mb-4">
-              <Logo className="h-10 w-auto [&_svg]:brightness-0 [&_svg]:invert [&_path]:fill-current [&_path]:stroke-current [&_.text-accent]:text-accent" />
-            </div>
-            <p className="text-sm text-primary-foreground/80 leading-relaxed mb-4">
+          <div className="space-y-4">
+            <Link to="/" className="inline-block">
+              <Logo className="h-8" />
+            </Link>
+            <p className="text-sm text-primary-foreground/80 leading-relaxed">
               Опыт. Ответственность. Результат.
             </p>
             <p className="text-xs text-primary-foreground/60">
@@ -35,22 +35,27 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/practices" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
-                  Практики
+                <Link to="/uslugi" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                  Услуги
                 </Link>
               </li>
               <li>
-                <Link to="/about" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
-                  О нас
+                <Link to="/o-kollegii" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                  О коллегии
                 </Link>
               </li>
               <li>
-                <Link to="/cases" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                <Link to="/keisy" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
                   Кейсы
                 </Link>
               </li>
               <li>
-                <Link to="/contacts" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                <Link to="/komanda" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                  Команда
+                </Link>
+              </li>
+              <li>
+                <Link to="/kontakty" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
                   Контакты
                 </Link>
               </li>
