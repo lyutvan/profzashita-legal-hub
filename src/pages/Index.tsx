@@ -3,11 +3,11 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Hero from "@/components/Hero";
 import PracticeCard from "@/components/PracticeCard";
-import ContactForm from "@/components/ContactForm";
+import LeadForm from "@/components/LeadForm";
 import Testimonials from "@/components/Testimonials";
 import { OrganizationSchema, ReviewSchema } from "@/components/JsonLd";
 import { testimonials } from "@/data/testimonials";
-import { practices } from "@/data/practices";
+import { serviceCategories } from "@/data/services";
 import { Shield, Target, Award, Users, CheckCircle, Phone } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
@@ -92,22 +92,41 @@ const Index = () => {
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
-                Наши <span className="text-accent">практики</span>
+                Наши <span className="text-accent">услуги</span>
               </h2>
               <p className="text-lg text-muted-foreground">
                 Комплексная юридическая помощь в различных областях права
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-12">
-              {practices.slice(0, 6).map((practice) => (
-                <PracticeCard key={practice.id} {...practice} />
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
+              {serviceCategories.map((category) => (
+                <Card key={category.id} className="border-border hover:shadow-elegant transition-all">
+                  <CardContent className="pt-6">
+                    <h3 className="font-playfair text-2xl font-bold mb-4">
+                      {category.title}
+                    </h3>
+                    <ul className="space-y-2">
+                      {category.items.slice(0, 4).map((service) => (
+                        <li key={service.id}>
+                          <Link
+                            to={`/uslugi/${category.slug}/${service.slug}`}
+                            className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                          >
+                            <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                            {service.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
               ))}
             </div>
 
             <div className="text-center">
               <Button variant="outline" size="lg" asChild>
-                <Link to="/practices">Все направления →</Link>
+                <Link to="/uslugi">Все услуги →</Link>
               </Button>
             </div>
           </div>
@@ -240,7 +259,7 @@ const Index = () => {
 
                 <Card className="border-border shadow-elegant">
                   <CardContent className="pt-6">
-                    <ContactForm />
+                    <LeadForm />
                   </CardContent>
                 </Card>
               </div>

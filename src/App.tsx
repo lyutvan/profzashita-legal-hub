@@ -5,6 +5,7 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Uslugi from "./pages/Uslugi";
+import ServiceDetail from "./pages/ServiceDetail";
 import OKollegii from "./pages/OKollegii";
 import Keisy from "./pages/Keisy";
 import Komanda from "./pages/Komanda";
@@ -12,6 +13,7 @@ import Kontakty from "./pages/Kontakty";
 import Privacy from "./pages/Privacy";
 import Disclaimer from "./pages/Disclaimer";
 import NotFound from "./pages/NotFound";
+import QuickQuestion from "./components/QuickQuestion";
 
 const queryClient = new QueryClient();
 
@@ -20,10 +22,12 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
+      <QuickQuestion />
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/uslugi" element={<Uslugi />} />
+          <Route path="/uslugi/:categorySlug/:serviceSlug" element={<ServiceDetail />} />
           <Route path="/o-kollegii" element={<OKollegii />} />
           <Route path="/keisy" element={<Keisy />} />
           <Route path="/komanda" element={<Komanda />} />
@@ -36,6 +40,7 @@ const App = () => (
           <Route path="/cases" element={<Navigate to="/keisy" replace />} />
           <Route path="/contacts" element={<Navigate to="/kontakty" replace />} />
           <Route path="/practices" element={<Navigate to="/uslugi" replace />} />
+          <Route path="/practices/:slug" element={<Navigate to="/uslugi" replace />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
