@@ -242,18 +242,6 @@ const Index = () => {
                         +7 999 999 99 99
                       </a>
                     </div>
-                    <div className="flex gap-3">
-                      <Button variant="outline" asChild className="flex-1">
-                        <a href="https://wa.me/79999999999" target="_blank" rel="noopener noreferrer">
-                          WhatsApp
-                        </a>
-                      </Button>
-                      <Button variant="outline" asChild className="flex-1">
-                        <a href="https://t.me/profzashita" target="_blank" rel="noopener noreferrer">
-                          Telegram
-                        </a>
-                      </Button>
-                    </div>
                   </div>
                 </div>
 

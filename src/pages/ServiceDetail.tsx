@@ -177,8 +177,8 @@ const ServiceDetail = () => {
                       <Link to="/kontakty">Получить консультацию</Link>
                     </Button>
                     <Button size="lg" variant="outline" className="border-primary-foreground/20 hover:bg-primary-foreground/10" asChild>
-                      <a href="https://wa.me/79168597654" target="_blank" rel="noopener noreferrer">
-                        Написать в WhatsApp
+                      <a href="tel:+79999999999">
+                        Позвонить
                       </a>
                     </Button>
                   </div>

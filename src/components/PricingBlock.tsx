@@ -2,6 +2,7 @@ import { Check } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { PricingPackage } from "@/data/services";
+import { Link } from "react-router-dom";
 
 interface PricingBlockProps {
   packages: PricingPackage[];
@@ -39,18 +40,11 @@ const PricingBlock = ({ packages }: PricingBlockProps) => {
                   </li>
                 ))}
               </ul>
-              <div className="pt-4 space-y-2">
-                <Button className="w-full" variant={index === 1 ? "default" : "outline"}>
-                  Получить смету
-                </Button>
-                <Button className="w-full" variant="ghost" size="sm" asChild>
-                  <a 
-                    href="https://wa.me/79168597654" 
-                    target="_blank" 
-                    rel="noopener noreferrer"
-                  >
-                    Написать в WhatsApp
-                  </a>
+              <div className="pt-4">
+                <Button className="w-full" variant={index === 1 ? "default" : "outline"} asChild>
+                  <Link to="/kontakty">
+                    Получить смету
+                  </Link>
                 </Button>
               </div>
             </CardContent>

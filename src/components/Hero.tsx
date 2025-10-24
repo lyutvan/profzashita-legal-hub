@@ -1,8 +1,6 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Phone, Zap, Scale, FileText } from "lucide-react";
-import WhatsAppIcon from "./icons/WhatsAppIcon";
-import TelegramIcon from "./icons/TelegramIcon";
 
 const Hero = () => {
   return (
@@ -42,7 +40,7 @@ const Hero = () => {
               asChild 
               className="w-full sm:w-auto text-base px-8 min-h-[44px] shadow-[0_4px_14px_0_hsl(var(--accent)/0.3)] hover:shadow-[0_6px_20px_0_hsl(var(--accent)/0.4)] transition-all"
             >
-              <Link to="/contacts" aria-label="Получить бесплатную консультацию">
+              <Link to="/kontakty" aria-label="Получить бесплатную консультацию">
                 <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
                 Бесплатная консультация
               </Link>
@@ -51,16 +49,14 @@ const Hero = () => {
               size="lg" 
               variant="outline" 
               asChild 
-              className="w-full sm:w-auto text-base px-6 min-h-[44px] border-primary-foreground/30 hover:bg-primary-foreground/10 hover:border-accent transition-all"
+              className="w-full sm:w-auto text-base px-6 min-h-[44px] border-primary-foreground/30 hover:bg-primary-foreground/10 transition-all"
             >
               <a 
-                href="https://wa.me/79168597654" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                aria-label="Написать в WhatsApp"
+                href="tel:+79999999999"
+                aria-label="Позвонить"
               >
-                <WhatsAppIcon className="mr-2" size={20} />
-                Написать в WhatsApp
+                <Phone className="mr-2 h-5 w-5" />
+                Позвонить
               </a>
             </Button>
           </div>
