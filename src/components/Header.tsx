@@ -1,14 +1,11 @@
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, Phone, ChevronDown } from "lucide-react";
+import { Menu, X, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import Logo from "./Logo";
 import { Button } from "./ui/button";
-import WhatsAppIcon from "./icons/WhatsAppIcon";
-import TelegramIcon from "./icons/TelegramIcon";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [isServicesOpen, setIsServicesOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
 
@@ -24,7 +21,7 @@ const Header = () => {
     { name: "Главная", path: "/" },
     { name: "Услуги", path: "/uslugi" },
     { name: "Кейсы", path: "/keisy" },
-    { name: "Команда", path: "/komanda" },
+    { name: "Вопросы и ответы", path: "/faq" },
     { name: "О коллегии", path: "/o-kollegii" },
     { name: "Контакты", path: "/kontakty" },
   ];
@@ -32,11 +29,11 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className={`sticky top-0 z-50 bg-background/95 backdrop-blur-sm border-b border-border shadow-sm transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
+    <header className={`sticky top-0 z-50 bg-[#0A1F44] backdrop-blur-sm border-b border-border/20 shadow-sm transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
       <div className="container mx-auto px-4">
         <div className={`flex items-center justify-between transition-all duration-300 ${isScrolled ? 'h-16' : 'h-20'}`}>
           <Link to="/" className="flex-shrink-0">
-            <Logo shrink={isScrolled} />
+            <Logo shrink={isScrolled} variant="header" />
           </Link>
 
           {/* Desktop Navigation */}
@@ -45,8 +42,8 @@ const Header = () => {
               <Link
                 key={item.path}
                 to={item.path}
-                className={`font-inter text-sm font-medium transition-colors hover:text-accent ${
-                  isActive(item.path) ? "text-accent" : "text-foreground"
+                className={`font-inter text-sm font-medium transition-colors hover:text-[#C9A227] ${
+                  isActive(item.path) ? "text-[#C9A227]" : "text-white"
                 }`}
               >
                 {item.name}
@@ -55,30 +52,14 @@ const Header = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-3">
-            <a href="tel:+79999999999" className="flex items-center gap-2 text-sm font-medium text-foreground hover:text-accent transition-colors">
-              <Phone className="h-4 w-4" />
-              +7 999 999 99 99
-            </a>
-            <a
-              href="https://wa.me/79168597654"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:text-accent transition-colors"
-              aria-label="WhatsApp"
-            >
-              <WhatsAppIcon size={20} />
-            </a>
-            <a
-              href="https://t.me/profzashita"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-foreground hover:text-accent transition-colors"
-              aria-label="Telegram"
-            >
-              <TelegramIcon size={20} />
-            </a>
-            <Button variant="default" size="sm" asChild>
+          <div className="hidden lg:flex items-center gap-4">
+            <Button variant="outline" size="sm" className="border-white/20 text-white hover:bg-white/10" asChild>
+              <a href="tel:+79999999999" className="flex items-center gap-2">
+                <Phone className="h-4 w-4" />
+                Позвонить
+              </a>
+            </Button>
+            <Button variant="default" size="sm" className="bg-[#C9A227] hover:bg-[#B08E1F] text-white" asChild>
               <Link to="/kontakty">Консультация</Link>
             </Button>
           </div>
@@ -111,30 +92,12 @@ const Header = () => {
               ))}
 
               <div className="flex flex-col gap-3 pt-4 border-t border-border">
-                <a href="tel:+79999999999" className="flex items-center gap-2 text-sm font-medium text-foreground">
-                  <Phone className="h-4 w-4" />
-                  +7 999 999 99 99
-                </a>
-                <div className="flex gap-2">
-                  <a
-                    href="https://wa.me/79168597654"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-foreground hover:text-accent transition-colors"
-                    aria-label="WhatsApp"
-                  >
-                    <WhatsAppIcon size={24} />
+                <Button variant="outline" size="sm" asChild>
+                  <a href="tel:+79999999999" className="flex items-center gap-2">
+                    <Phone className="h-4 w-4" />
+                    Позвонить
                   </a>
-                  <a
-                    href="https://t.me/profzashita"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-foreground hover:text-accent transition-colors"
-                    aria-label="Telegram"
-                  >
-                    <TelegramIcon size={24} />
-                  </a>
-                </div>
+                </Button>
                 <Button variant="default" size="sm" asChild>
                   <Link to="/kontakty" onClick={() => setIsMenuOpen(false)}>
                     Консультация

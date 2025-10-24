@@ -1,23 +1,31 @@
-import shieldIcon from "@/assets/shield-icon.png";
+import logo from "@/assets/logo.svg";
 
-const Logo = ({ className = "h-12 w-auto", shrink = false }: { className?: string; shrink?: boolean }) => {
+const Logo = ({ 
+  className = "h-10 w-auto", 
+  shrink = false,
+  variant = "header" 
+}: { 
+  className?: string; 
+  shrink?: boolean;
+  variant?: "header" | "footer";
+}) => {
+  const colorClass = variant === "header" 
+    ? (shrink ? "text-white" : "text-[#C9A227]")
+    : "text-white";
+  
+  const heightClass = shrink 
+    ? "h-7 md:h-8" 
+    : variant === "header" 
+      ? "h-8 md:h-10" 
+      : "h-7";
+  
   return (
-    <div className={`flex items-center gap-3 transition-all duration-300 ${className}`}>
-      <img 
-        src={shieldIcon} 
-        alt="Профзащита — Коллегия адвокатов"
-        className={`transition-all duration-300 ${shrink ? 'h-8' : 'h-10 md:h-12'} w-auto`}
-      />
-      
-      <div className="flex flex-col">
-        <span className={`font-playfair font-bold text-accent leading-none transition-all duration-300 ${shrink ? 'text-base md:text-lg' : 'text-lg md:text-xl'}`}>
-          Профзащита
-        </span>
-        <span className={`text-muted-foreground uppercase tracking-wider leading-none mt-1 transition-all duration-300 ${shrink ? 'text-[8px]' : 'text-[10px]'}`}>
-          Коллегия адвокатов
-        </span>
-      </div>
-    </div>
+    <img 
+      src={logo} 
+      alt="Профзащита — Коллегия адвокатов"
+      className={`transition-all duration-300 ${heightClass} w-auto ${colorClass} ${className}`}
+      aria-label="Профзащита — Коллегия адвокатов"
+    />
   );
 };
 

@@ -8,7 +8,7 @@ import Uslugi from "./pages/Uslugi";
 import ServiceDetail from "./pages/ServiceDetail";
 import OKollegii from "./pages/OKollegii";
 import Keisy from "./pages/Keisy";
-import Komanda from "./pages/Komanda";
+import FAQ from "./pages/FAQ";
 import Kontakty from "./pages/Kontakty";
 import Privacy from "./pages/Privacy";
 import Disclaimer from "./pages/Disclaimer";
@@ -30,7 +30,7 @@ const App = () => (
           <Route path="/uslugi/:categorySlug/:serviceSlug" element={<ServiceDetail />} />
           <Route path="/o-kollegii" element={<OKollegii />} />
           <Route path="/keisy" element={<Keisy />} />
-          <Route path="/komanda" element={<Komanda />} />
+          <Route path="/faq" element={<FAQ />} />
           <Route path="/kontakty" element={<Kontakty />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
@@ -41,6 +41,7 @@ const App = () => (
           <Route path="/contacts" element={<Navigate to="/kontakty" replace />} />
           <Route path="/practices" element={<Navigate to="/uslugi" replace />} />
           <Route path="/practices/:slug" element={<Navigate to="/uslugi" replace />} />
+          <Route path="/komanda" element={<Navigate to="/o-kollegii" replace />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

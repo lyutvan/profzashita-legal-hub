@@ -1,9 +1,6 @@
 import { useState } from "react";
-import { MessageSquare, X } from "lucide-react";
-import { Button } from "./ui/button";
+import { MessageSquare } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./ui/dialog";
-import WhatsAppIcon from "./icons/WhatsAppIcon";
-import TelegramIcon from "./icons/TelegramIcon";
 import LeadForm from "./LeadForm";
 
 const QuickQuestion = () => {
@@ -33,51 +30,7 @@ const QuickQuestion = () => {
             </DialogDescription>
           </DialogHeader>
 
-          <div className="space-y-4">
-            <div className="flex gap-2">
-              <Button 
-                variant="outline" 
-                className="flex-1" 
-                asChild
-              >
-                <a 
-                  href="https://wa.me/79168597654" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2"
-                >
-                  <WhatsAppIcon size={20} />
-                  WhatsApp
-                </a>
-              </Button>
-              <Button 
-                variant="outline" 
-                className="flex-1"
-                asChild
-              >
-                <a 
-                  href="https://t.me/profzashita" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2"
-                >
-                  <TelegramIcon size={20} />
-                  Telegram
-                </a>
-              </Button>
-            </div>
-
-            <div className="relative">
-              <div className="absolute inset-0 flex items-center">
-                <span className="w-full border-t border-border" />
-              </div>
-              <div className="relative flex justify-center text-xs uppercase">
-                <span className="bg-background px-2 text-muted-foreground">или заполните форму</span>
-              </div>
-            </div>
-
-            <LeadForm variant="compact" />
-          </div>
+          <LeadForm variant="compact" />
         </DialogContent>
       </Dialog>
     </>

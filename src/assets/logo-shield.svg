@@ -1,0 +1,6 @@
+<svg width="36" height="42" viewBox="0 0 36 42" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shield only for favicon -->
+  <path d="M18 0L6 5V21C6 32.05 13.42 42.09 24 45C34.58 42.09 42 32.05 42 21V5L30 0L18 3.75L6 0Z" fill="currentColor" opacity="0.15"/>
+  <path d="M30 0L18 3.75L6 0L-6 5V21C-6 32.05 1.42 42.09 12 45C22.58 42.09 30 32.05 30 21V5L30 0Z" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/>
+  <path d="M18 10V32M9 21L18 30L27 21" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"/>
+</svg>

@@ -1,26 +1,23 @@
 import { Link } from "react-router-dom";
 import { Phone, Mail, MapPin } from "lucide-react";
 import Logo from "./Logo";
-import WhatsAppIcon from "./icons/WhatsAppIcon";
-import TelegramIcon from "./icons/TelegramIcon";
-import { Button } from "./ui/button";
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
 
   return (
-    <footer className="bg-primary text-primary-foreground">
+    <footer className="bg-[#0A1F44] text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* About */}
           <div className="space-y-4">
             <Link to="/" className="inline-block">
-              <Logo className="h-8" />
+              <Logo className="h-8" variant="footer" />
             </Link>
-            <p className="text-sm text-primary-foreground/80 leading-relaxed">
+            <p className="text-sm text-white/80 leading-relaxed">
               Опыт. Ответственность. Результат.
             </p>
-            <p className="text-xs text-primary-foreground/60">
+            <p className="text-xs text-white/60">
               Коллегия адвокатов с многолетним опытом работы в различных областях права.
             </p>
           </div>
@@ -30,32 +27,32 @@ const Footer = () => {
             <h3 className="font-playfair text-lg font-semibold mb-4">Навигация</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                <Link to="/" className="text-sm text-white/80 hover:text-[#C9A227] transition-colors">
                   Главная
                 </Link>
               </li>
               <li>
-                <Link to="/uslugi" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                <Link to="/uslugi" className="text-sm text-white/80 hover:text-[#C9A227] transition-colors">
                   Услуги
                 </Link>
               </li>
               <li>
-                <Link to="/o-kollegii" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                <Link to="/o-kollegii" className="text-sm text-white/80 hover:text-[#C9A227] transition-colors">
                   О коллегии
                 </Link>
               </li>
               <li>
-                <Link to="/keisy" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                <Link to="/keisy" className="text-sm text-white/80 hover:text-[#C9A227] transition-colors">
                   Кейсы
                 </Link>
               </li>
               <li>
-                <Link to="/komanda" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
-                  Команда
+                <Link to="/faq" className="text-sm text-white/80 hover:text-[#C9A227] transition-colors">
+                  Вопросы и ответы
                 </Link>
               </li>
               <li>
-                <Link to="/kontakty" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                <Link to="/kontakty" className="text-sm text-white/80 hover:text-[#C9A227] transition-colors">
                   Контакты
                 </Link>
               </li>
@@ -67,60 +64,24 @@ const Footer = () => {
             <h3 className="font-playfair text-lg font-semibold mb-4">Контакты</h3>
             <ul className="space-y-3">
               <li>
-                <a href="tel:+79999999999" className="flex items-start gap-2 text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                <a href="tel:+79999999999" className="flex items-start gap-2 text-sm text-white/80 hover:text-[#C9A227] transition-colors">
                   <Phone className="h-4 w-4 mt-0.5 flex-shrink-0" />
                   +7 999 999 99 99
                 </a>
               </li>
               <li>
-                <a href="mailto:pf@gmail.com" className="flex items-start gap-2 text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                <a href="mailto:profzashchita@internet.ru" className="flex items-start gap-2 text-sm text-white/80 hover:text-[#C9A227] transition-colors">
                   <Mail className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                  pf@gmail.com
+                  profzashchita@internet.ru
                 </a>
               </li>
               <li>
-                <div className="flex items-start gap-2 text-sm text-primary-foreground/80">
+                <div className="flex items-start gap-2 text-sm text-white/80">
                   <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
                   Москва
                 </div>
               </li>
             </ul>
-            <div className="mt-4 flex gap-2">
-              <Button 
-                size="sm" 
-                variant="outline" 
-                asChild 
-                className="flex-1 min-h-[44px] border-accent/30 hover:bg-accent/10 hover:border-accent transition-all"
-              >
-                <a 
-                  href="https://wa.me/79168597654" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  aria-label="Написать в WhatsApp"
-                  className="flex items-center justify-center gap-2"
-                >
-                  <WhatsAppIcon size={18} />
-                  <span className="sr-only">WhatsApp</span>
-                </a>
-              </Button>
-              <Button 
-                size="sm" 
-                variant="outline" 
-                asChild 
-                className="flex-1 min-h-[44px] border-accent/30 hover:bg-accent/10 hover:border-accent transition-all"
-              >
-                <a 
-                  href="https://t.me/profzashita" 
-                  target="_blank" 
-                  rel="noopener noreferrer"
-                  aria-label="Написать в Telegram"
-                  className="flex items-center justify-center gap-2"
-                >
-                  <TelegramIcon size={18} />
-                  <span className="sr-only">Telegram</span>
-                </a>
-              </Button>
-            </div>
           </div>
 
           {/* Legal */}
@@ -128,17 +89,17 @@ const Footer = () => {
             <h3 className="font-playfair text-lg font-semibold mb-4">Документы</h3>
             <ul className="space-y-2">
               <li>
-                <Link to="/privacy" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                <Link to="/privacy" className="text-sm text-white/80 hover:text-[#C9A227] transition-colors">
                   Политика конфиденциальности
                 </Link>
               </li>
               <li>
-                <Link to="/disclaimer" className="text-sm text-primary-foreground/80 hover:text-accent transition-colors">
+                <Link to="/disclaimer" className="text-sm text-white/80 hover:text-[#C9A227] transition-colors">
                   Отказ от ответственности
                 </Link>
               </li>
             </ul>
-            <div className="text-xs text-primary-foreground/60 space-y-1 mt-4">
+            <div className="text-xs text-white/60 space-y-1 mt-4">
               <p>КА «Профзащита»</p>
               <p>ИНН: 7700000000</p>
               <p>ОГРН: 1000000000000</p>
@@ -146,11 +107,11 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="border-t border-primary-foreground/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
-          <p className="text-sm text-primary-foreground/60">
+        <div className="border-t border-white/20 mt-8 pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
+          <p className="text-sm text-white/60">
             © {currentYear} Профзащита. Все права защищены.
           </p>
-          <p className="text-xs text-primary-foreground/60">
+          <p className="text-xs text-white/60">
             Информация на сайте не является публичной офертой
           </p>
         </div>
