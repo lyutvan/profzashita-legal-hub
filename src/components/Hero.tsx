@@ -5,10 +5,11 @@ import { Phone, Zap, Scale, FileText } from "lucide-react";
 const Hero = () => {
   return (
     <section className="relative bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground overflow-hidden">
-      {/* Background Pattern */}
-      <div className="absolute inset-0 opacity-5">
+      {/* Legal Background Pattern */}
+      <div className="absolute inset-0 opacity-[0.03]">
         <div className="absolute inset-0" style={{
-          backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+          backgroundImage: 'url("data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff"%3E%3C!-- Scales of Justice --%3E%3Cpath d="M20 30h-8l4-8z M28 30h-8l4-8z M24 22v16 M20 38h8"/%3E%3C!-- Gavel --%3E%3Cpath d="M52 15l8 8-4 4-8-8z M56 23l-3 3-6-6 3-3z"/%3E%3C!-- Shield --%3E%3Cpath d="M40 50l-6 3v-10c0-5 3-9 6-10 3 1 6 5 6 10v10z"/%3E%3C!-- Columns --%3E%3Crect x="60" y="55" width="3" height="12"/%3E%3Crect x="66" y="53" width="3" height="14"/%3E%3Crect x="72" y="55" width="3" height="12"/%3E%3Crect x="59" y="67" width="17" height="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
+          backgroundSize: '80px 80px'
         }} />
       </div>
 

@@ -10,7 +10,7 @@ const Logo = ({
   variant?: "header" | "footer";
 }) => {
   const colorClass = variant === "header" 
-    ? (shrink ? "text-white" : "text-[#C9A227]")
+    ? (shrink ? "text-white" : "text-accent")
     : "text-white";
   
   const heightClass = shrink 
@@ -22,9 +22,9 @@ const Logo = ({
   return (
     <img 
       src={logo} 
-      alt="Профзащита — Коллегия адвокатов"
+      alt="Профзащита"
       className={`transition-all duration-300 ${heightClass} w-auto ${colorClass} ${className}`}
-      aria-label="Профзащита — Коллегия адвокатов"
+      aria-label="Профзащита"
     />
   );
 };

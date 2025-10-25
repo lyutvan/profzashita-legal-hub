@@ -1,12 +1,19 @@
-<svg width="180" height="48" viewBox="0 0 180 48" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Shield Icon -->
-  <path d="M12 4L4 8V18C4 26.84 9.61 35.1 18 38C26.39 35.1 32 26.84 32 18V8L24 4L18 6.5L12 4Z" fill="currentColor" opacity="0.2"/>
-  <path d="M24 4L18 6.5L12 4L4 8V18C4 26.84 9.61 35.1 18 38C26.39 35.1 32 26.84 32 18V8L24 4Z" stroke="currentColor" stroke-width="1.5" stroke-linejoin="round"/>
-  <path d="M18 12V26M12 18L18 24L24 18" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"/>
+<svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+  <!-- Shield with columns icon -->
+  <g>
+    <!-- Shield outline -->
+    <path d="M20 8L12 11V23C12 30.18 16.14 36.82 22 39C27.86 36.82 32 30.18 32 23V11L24 8L20 9.5L16 8L12 11Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+    
+    <!-- Three columns inside shield -->
+    <rect x="16" y="16" width="2.5" height="12" fill="currentColor"/>
+    <rect x="20.75" y="14" width="2.5" height="14" fill="currentColor"/>
+    <rect x="25.5" y="16" width="2.5" height="12" fill="currentColor"/>
+    
+    <!-- Column bases -->
+    <rect x="15" y="28" width="14" height="1.5" fill="currentColor"/>
+    <rect x="15" y="14" width="14" height="1" fill="currentColor" opacity="0.6"/>
+  </g>
   
   <!-- Text: Профзащита -->
-  <text x="42" y="22" font-family="Playfair Display, serif" font-size="14" font-weight="700" fill="currentColor">Профзащита</text>
-  
-  <!-- Text: КОЛЛЕГИЯ АДВОКАТОВ -->
-  <text x="42" y="34" font-family="system-ui, sans-serif" font-size="7" font-weight="400" fill="currentColor" opacity="0.7" letter-spacing="1.5">КОЛЛЕГИЯ АДВОКАТОВ</text>
+  <text x="46" y="32" font-family="Playfair Display, serif" font-size="20" font-weight="700" fill="currentColor" letter-spacing="0.5">Профзащита</text>
 </svg>
