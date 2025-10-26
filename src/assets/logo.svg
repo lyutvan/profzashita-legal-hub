@@ -1,4 +1,4 @@
-<svg width="320" height="80" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="280" height="80" viewBox="0 0 280 80" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Shield with columns icon -->
   <g>
     <!-- Shield outline -->
@@ -17,8 +17,5 @@
   </g>
   
   <!-- Text: Профзащита -->
-  <text x="80" y="48" font-family="'Times New Roman', serif" font-size="32" font-weight="400" fill="currentColor" letter-spacing="1">Профзащита</text>
-  
-  <!-- Text: КОЛЛЕГИЯ АДВОКАТОВ -->
-  <text x="80" y="68" font-family="'Times New Roman', serif" font-size="14" font-weight="300" fill="currentColor" letter-spacing="4" opacity="0.9">КОЛЛЕГИЯ АДВОКАТОВ</text>
+  <text x="80" y="50" font-family="'Times New Roman', serif" font-size="32" font-weight="400" fill="currentColor" letter-spacing="1">Профзащита</text>
 </svg>
