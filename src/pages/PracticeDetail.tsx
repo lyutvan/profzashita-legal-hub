@@ -64,7 +64,7 @@ const PracticeDetail = () => {
 
         {/* Content Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-18">
             <img 
               src={legalBg2} 
               alt="" 

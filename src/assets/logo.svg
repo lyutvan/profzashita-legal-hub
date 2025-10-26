@@ -1,21 +1,24 @@
-<svg width="280" height="80" viewBox="0 0 280 80" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="360" height="80" viewBox="0 0 360 80" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Shield with columns icon -->
   <g>
     <!-- Shield outline -->
-    <path d="M30 15L20 20V40C20 52 28 62.5 40 66C52 62.5 60 52 60 40V20L40 15L30 17L20 15L20 20Z" 
-          stroke="currentColor" stroke-width="2.5" fill="none"/>
+    <path d="M40 10 L25 15 L25 40 C25 48 28 55 35 60 C42 55 45 48 45 40 L45 15 Z" 
+          stroke="currentColor" stroke-width="2" fill="none"/>
     
-    <!-- Three columns inside shield -->
-    <rect x="28" y="30" width="5" height="22" fill="currentColor"/>
-    <rect x="37.5" y="26" width="5" height="26" fill="currentColor"/>
-    <rect x="47" y="30" width="5" height="22" fill="currentColor"/>
+    <!-- Three vertical columns inside shield -->
+    <rect x="28" y="32" width="3" height="18" fill="currentColor"/>
+    <rect x="33.5" y="28" width="3" height="22" fill="currentColor"/>
+    <rect x="39" y="32" width="3" height="18" fill="currentColor"/>
     
     <!-- Column top bar -->
-    <rect x="26" y="26" width="28" height="2" fill="currentColor" opacity="0.8"/>
+    <rect x="27" y="27" width="16" height="2" fill="currentColor"/>
     <!-- Column base -->
-    <rect x="26" y="52" width="28" height="3" fill="currentColor"/>
+    <rect x="27" y="50" width="16" height="2.5" fill="currentColor"/>
   </g>
   
   <!-- Text: Профзащита -->
-  <text x="80" y="50" font-family="'Times New Roman', serif" font-size="32" font-weight="400" fill="currentColor" letter-spacing="1">Профзащита</text>
+  <text x="70" y="48" font-family="'Times New Roman', serif" font-size="36" font-weight="400" fill="currentColor" letter-spacing="2">Профзащита</text>
+  
+  <!-- Text: КОЛЛЕГИЯ АДВОКАТОВ -->
+  <text x="70" y="68" font-family="'Times New Roman', serif" font-size="13" font-weight="300" fill="currentColor" letter-spacing="3" opacity="0.9">КОЛЛЕГИЯ АДВОКАТОВ</text>
 </svg>

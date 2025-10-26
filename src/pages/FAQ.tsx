@@ -108,7 +108,7 @@ const FAQ = () => {
         {/* Hero */}
         <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground py-16 overflow-hidden">
           {/* Professional Legal Background Photo */}
-          <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 opacity-20">
             <img 
               src={legalBg1} 
               alt="" 

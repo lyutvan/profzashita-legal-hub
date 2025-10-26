@@ -35,7 +35,7 @@ const Index = () => {
 
         {/* About Section */}
         <section className="relative py-20 bg-muted/30 overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-15">
             <img 
               src={legalBg1} 
               alt="" 
@@ -99,7 +99,7 @@ const Index = () => {
 
         {/* Practices Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-18">
             <img 
               src={legalBg2} 
               alt="" 
@@ -151,7 +151,7 @@ const Index = () => {
 
         {/* Advantages Section */}
         <section className="relative py-20 bg-muted/30 overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-12">
             <img 
               src={legalBg3} 
               alt="" 
@@ -188,7 +188,7 @@ const Index = () => {
 
         {/* FAQ Section */}
         <section className="relative py-20 bg-muted/30 overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-15">
             <img 
               src={legalBg1} 
               alt="" 
@@ -255,7 +255,7 @@ const Index = () => {
 
         {/* Contact Form Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-18">
             <img 
               src={legalBg2} 
               alt="" 

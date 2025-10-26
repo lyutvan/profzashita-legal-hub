@@ -24,7 +24,7 @@ interface ReviewSchemaProps {
 }
 
 export const OrganizationSchema = ({
-  name = "Коллегия адвокатов Профзащита",
+  name = "Коллегия адвокатов города Москвы \"ПРОФЗАЩИТА\"",
   url = "https://profzashchita.ru",
   logo = "https://profzashchita.ru/logo.svg",
   phone = "+7 999 999 99 99",
@@ -67,7 +67,7 @@ export const ReviewSchema = ({ reviews }: ReviewSchemaProps) => {
   const schema = {
     "@context": "https://schema.org",
     "@type": "Organization",
-    name: "Коллегия адвокатов Профзащита",
+    name: "Коллегия адвокатов города Москвы \"ПРОФЗАЩИТА\"",
     aggregateRating: {
       "@type": "AggregateRating",
       ratingValue: "5",

@@ -7,7 +7,7 @@ const Hero = () => {
   return (
     <section className="relative bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground overflow-hidden">
       {/* Professional Legal Background Photo */}
-      <div className="absolute inset-0 opacity-10">
+      <div className="absolute inset-0 opacity-20">
         <img 
           src={legalBg1} 
           alt="" 
@@ -19,7 +19,7 @@ const Hero = () => {
         <div className="max-w-4xl mx-auto text-center">
           {/* Badge */}
           <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-accent/20 text-accent border border-accent/30 mb-6">
-            <span className="text-sm font-medium">Коллегия адвокатов Профзащита</span>
+            <span className="text-sm font-medium">Коллегия адвокатов города Москвы "ПРОФЗАЩИТА"</span>
           </div>
 
           {/* Main Heading */}

@@ -53,7 +53,7 @@ const ServiceDetail = () => {
         {/* Hero */}
         <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground py-12 overflow-hidden">
           {/* Professional Legal Background Photo */}
-          <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 opacity-20">
             <img 
               src={legalBg3} 
               alt="" 

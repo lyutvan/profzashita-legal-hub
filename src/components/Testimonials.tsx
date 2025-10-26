@@ -6,7 +6,7 @@ import legalBg3 from "@/assets/legal-bg-3.jpg";
 const Testimonials = () => {
   return (
     <section className="relative py-20 bg-muted/30 overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-12">
         <img 
           src={legalBg3} 
           alt="" 

@@ -22,9 +22,9 @@ const Logo = ({
   return (
     <img 
       src={logo} 
-      alt="Профзащита"
+      alt="Профзащита — Коллегия адвокатов"
       className={`transition-all duration-300 ${heightClass} w-auto ${colorClass} ${className}`}
-      aria-label="Профзащита"
+      aria-label="Профзащита — Коллегия адвокатов"
     />
   );
 };

@@ -17,7 +17,7 @@ const Contacts = () => {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground py-20 overflow-hidden">
           {/* Professional Legal Background Photo */}
-          <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 opacity-20">
             <img 
               src={legalBg3} 
               alt="" 
@@ -39,7 +39,7 @@ const Contacts = () => {
 
         {/* Contact Info & Form Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-15">
             <img 
               src={legalBg1} 
               alt="" 
@@ -152,7 +152,7 @@ const Contacts = () => {
 
         {/* Map Section */}
         <section className="relative py-20 bg-muted/30 overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-18">
             <img 
               src={legalBg2} 
               alt="" 
@@ -180,7 +180,7 @@ const Contacts = () => {
 
         {/* Legal Info Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
+          <div className="absolute inset-0 opacity-12">
             <img 
               src={legalBg3} 
               alt="" 

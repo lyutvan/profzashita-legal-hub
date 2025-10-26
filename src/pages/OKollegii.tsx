@@ -13,7 +13,7 @@ const About = () => {
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground py-20 overflow-hidden">
           {/* Professional Legal Background Photo */}
-          <div className="absolute inset-0 opacity-10">
+          <div className="absolute inset-0 opacity-20">
             <img 
               src={legalBg2} 
               alt="" 

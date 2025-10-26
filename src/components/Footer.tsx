@@ -8,7 +8,7 @@ const Footer = () => {
 
   return (
     <footer className="relative bg-[#0A1F44] text-white overflow-hidden">
-      <div className="absolute inset-0 opacity-5">
+      <div className="absolute inset-0 opacity-15">
         <img 
           src={legalBg3} 
           alt="" 
