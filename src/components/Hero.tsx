@@ -1,16 +1,18 @@
 import { Link } from "react-router-dom";
 import { Button } from "./ui/button";
 import { Phone, Zap, Scale, FileText } from "lucide-react";
+import legalBg1 from "@/assets/legal-bg-1.jpg";
 
 const Hero = () => {
   return (
     <section className="relative bg-gradient-to-br from-primary via-primary to-primary/90 text-primary-foreground overflow-hidden">
-      {/* Legal Background Pattern */}
-      <div className="absolute inset-0 opacity-[0.03]">
-        <div className="absolute inset-0" style={{
-          backgroundImage: 'url("data:image/svg+xml,%3Csvg width="80" height="80" viewBox="0 0 80 80" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff"%3E%3C!-- Scales of Justice --%3E%3Cpath d="M20 30h-8l4-8z M28 30h-8l4-8z M24 22v16 M20 38h8"/%3E%3C!-- Gavel --%3E%3Cpath d="M52 15l8 8-4 4-8-8z M56 23l-3 3-6-6 3-3z"/%3E%3C!-- Shield --%3E%3Cpath d="M40 50l-6 3v-10c0-5 3-9 6-10 3 1 6 5 6 10v10z"/%3E%3C!-- Columns --%3E%3Crect x="60" y="55" width="3" height="12"/%3E%3Crect x="66" y="53" width="3" height="14"/%3E%3Crect x="72" y="55" width="3" height="12"/%3E%3Crect x="59" y="67" width="17" height="2"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-          backgroundSize: '80px 80px'
-        }} />
+      {/* Professional Legal Background Photo */}
+      <div className="absolute inset-0 opacity-10">
+        <img 
+          src={legalBg1} 
+          alt="" 
+          className="w-full h-full object-cover"
+        />
       </div>
 
       <div className="container mx-auto px-4 py-20 md:py-32 relative z-10">
@@ -45,20 +47,6 @@ const Hero = () => {
                 <Phone className="mr-2 h-5 w-5" aria-hidden="true" />
                 Бесплатная консультация
               </Link>
-            </Button>
-            <Button 
-              size="lg" 
-              variant="outline" 
-              asChild 
-              className="w-full sm:w-auto text-base px-6 min-h-[44px] border-primary-foreground/30 hover:bg-primary-foreground/10 transition-all"
-            >
-              <a 
-                href="tel:+79999999999"
-                aria-label="Позвонить"
-              >
-                <Phone className="mr-2 h-5 w-5" />
-                Позвонить
-              </a>
             </Button>
           </div>
 

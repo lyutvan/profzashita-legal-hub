@@ -10,21 +10,21 @@ const Logo = ({
   variant?: "header" | "footer";
 }) => {
   const colorClass = variant === "header" 
-    ? (shrink ? "text-white" : "text-accent")
+    ? (shrink ? "text-white" : "text-[#C9A227]")
     : "text-white";
   
   const heightClass = shrink 
-    ? "h-7 md:h-8" 
+    ? "h-10 md:h-12" 
     : variant === "header" 
-      ? "h-8 md:h-10" 
-      : "h-7";
+      ? "h-12 md:h-16" 
+      : "h-10";
   
   return (
     <img 
       src={logo} 
-      alt="Профзащита"
+      alt="Профзащита — Коллегия адвокатов"
       className={`transition-all duration-300 ${heightClass} w-auto ${colorClass} ${className}`}
-      aria-label="Профзащита"
+      aria-label="Профзащита — Коллегия адвокатов"
     />
   );
 };

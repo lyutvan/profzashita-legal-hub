@@ -1,19 +1,24 @@
-<svg width="200" height="50" viewBox="0 0 200 50" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg width="320" height="80" viewBox="0 0 320 80" fill="none" xmlns="http://www.w3.org/2000/svg">
   <!-- Shield with columns icon -->
   <g>
     <!-- Shield outline -->
-    <path d="M20 8L12 11V23C12 30.18 16.14 36.82 22 39C27.86 36.82 32 30.18 32 23V11L24 8L20 9.5L16 8L12 11Z" stroke="currentColor" stroke-width="1.5" fill="none"/>
+    <path d="M30 15L20 20V40C20 52 28 62.5 40 66C52 62.5 60 52 60 40V20L40 15L30 17L20 15L20 20Z" 
+          stroke="currentColor" stroke-width="2.5" fill="none"/>
     
     <!-- Three columns inside shield -->
-    <rect x="16" y="16" width="2.5" height="12" fill="currentColor"/>
-    <rect x="20.75" y="14" width="2.5" height="14" fill="currentColor"/>
-    <rect x="25.5" y="16" width="2.5" height="12" fill="currentColor"/>
+    <rect x="28" y="30" width="5" height="22" fill="currentColor"/>
+    <rect x="37.5" y="26" width="5" height="26" fill="currentColor"/>
+    <rect x="47" y="30" width="5" height="22" fill="currentColor"/>
     
-    <!-- Column bases -->
-    <rect x="15" y="28" width="14" height="1.5" fill="currentColor"/>
-    <rect x="15" y="14" width="14" height="1" fill="currentColor" opacity="0.6"/>
+    <!-- Column top bar -->
+    <rect x="26" y="26" width="28" height="2" fill="currentColor" opacity="0.8"/>
+    <!-- Column base -->
+    <rect x="26" y="52" width="28" height="3" fill="currentColor"/>
   </g>
   
   <!-- Text: Профзащита -->
-  <text x="46" y="32" font-family="Playfair Display, serif" font-size="20" font-weight="700" fill="currentColor" letter-spacing="0.5">Профзащита</text>
+  <text x="80" y="48" font-family="'Times New Roman', serif" font-size="32" font-weight="400" fill="currentColor" letter-spacing="1">Профзащита</text>
+  
+  <!-- Text: КОЛЛЕГИЯ АДВОКАТОВ -->
+  <text x="80" y="68" font-family="'Times New Roman', serif" font-size="14" font-weight="300" fill="currentColor" letter-spacing="4" opacity="0.9">КОЛЛЕГИЯ АДВОКАТОВ</text>
 </svg>

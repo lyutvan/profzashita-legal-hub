@@ -53,12 +53,6 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-4">
-            <Button variant="outline" size="sm" className="border-white/20 text-white hover:bg-white/10" asChild>
-              <a href="tel:+79999999999" className="flex items-center gap-2">
-                <Phone className="h-4 w-4" />
-                Позвонить
-              </a>
-            </Button>
             <Button variant="default" size="sm" className="bg-[#C9A227] hover:bg-[#B08E1F] text-white" asChild>
               <Link to="/kontakty">Консультация</Link>
             </Button>
@@ -92,12 +86,6 @@ const Header = () => {
               ))}
 
               <div className="flex flex-col gap-3 pt-4 border-t border-border">
-                <Button variant="outline" size="sm" asChild>
-                  <a href="tel:+79999999999" className="flex items-center gap-2">
-                    <Phone className="h-4 w-4" />
-                    Позвонить
-                  </a>
-                </Button>
                 <Button variant="default" size="sm" asChild>
                   <Link to="/kontakty" onClick={() => setIsMenuOpen(false)}>
                     Консультация
