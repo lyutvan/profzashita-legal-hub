@@ -1,14 +1,22 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
+import legalBg2 from "@/assets/legal-bg-2.jpg";
 
 const Disclaimer = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="flex-1 py-20">
-        <div className="container mx-auto px-4">
+      <main className="relative flex-1 py-20 overflow-hidden">
+        <div className="absolute inset-0 opacity-5">
+          <img 
+            src={legalBg2} 
+            alt="" 
+            className="w-full h-full object-cover"
+          />
+        </div>
+        <div className="container mx-auto px-4 relative z-10">
           <div className="max-w-4xl mx-auto">
             <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-8 text-center">
               Отказ от <span className="text-accent">ответственности</span>
