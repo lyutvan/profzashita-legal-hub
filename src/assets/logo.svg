@@ -1,23 +1,23 @@
 <svg width="80" height="96" viewBox="0 0 80 96" fill="none" xmlns="http://www.w3.org/2000/svg">
-  <!-- Shield outline with proper proportions from source -->
-  <path d="M40 8 C40 8, 15 15, 15 15 L15 42 C15 58 22 72 40 84 C58 72 65 58 65 42 L65 15 C65 15, 40 8, 40 8 Z" 
+  <!-- Shield outline with rounded top and pointed bottom -->
+  <path d="M40 6 C35 6, 20 10, 15 12 C12 13, 10 15, 10 18 L10 45 C10 55 13 65 20 73 C27 81 33 86 40 90 C47 86 53 81 60 73 C67 65 70 55 70 45 L70 18 C70 15, 68 13, 65 12 C60 10, 45 6, 40 6 Z" 
         stroke="#C9A227" 
-        stroke-width="3.5" 
+        stroke-width="3" 
         fill="none"
         stroke-linejoin="round"
         stroke-linecap="round"/>
   
-  <!-- Three columns inside shield -->
+  <!-- Three columns inside shield with wider proportions -->
   <!-- Left column -->
-  <rect x="26" y="46" width="6" height="24" fill="#C9A227" rx="0.5"/>
+  <rect x="24" y="48" width="8" height="26" fill="#C9A227" rx="0.5"/>
   <!-- Center column (taller) -->
-  <rect x="37" y="36" width="6" height="34" fill="#C9A227" rx="0.5"/>
+  <rect x="36" y="36" width="8" height="38" fill="#C9A227" rx="0.5"/>
   <!-- Right column -->
-  <rect x="48" y="46" width="6" height="24" fill="#C9A227" rx="0.5"/>
+  <rect x="48" y="48" width="8" height="26" fill="#C9A227" rx="0.5"/>
   
-  <!-- Top bar (architrave) -->
-  <rect x="24" y="34" width="32" height="4" fill="#C9A227" rx="1"/>
+  <!-- Top bar (architrave) - wider and more prominent -->
+  <rect x="22" y="33" width="36" height="5" fill="#C9A227" rx="1"/>
   
-  <!-- Base (stylobate) -->
-  <rect x="23" y="70" width="34" height="5" fill="#C9A227" rx="1"/>
+  <!-- Base (stylobate) - wider -->
+  <rect x="21" y="74" width="38" height="6" fill="#C9A227" rx="1"/>
 </svg>

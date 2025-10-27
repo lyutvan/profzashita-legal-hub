@@ -27,17 +27,17 @@ const Logo = ({
         xmlns="http://www.w3.org/2000/svg"
         aria-hidden="true"
       >
-        <path d="M40 8 C40 8, 15 15, 15 15 L15 42 C15 58 22 72 40 84 C58 72 65 58 65 42 L65 15 C65 15, 40 8, 40 8 Z" 
+        <path d="M40 6 C35 6, 20 10, 15 12 C12 13, 10 15, 10 18 L10 45 C10 55 13 65 20 73 C27 81 33 86 40 90 C47 86 53 81 60 73 C67 65 70 55 70 45 L70 18 C70 15, 68 13, 65 12 C60 10, 45 6, 40 6 Z" 
               stroke="currentColor" 
-              strokeWidth="3.5" 
+              strokeWidth="3" 
               fill="none"
               strokeLinejoin="round"
               strokeLinecap="round"/>
-        <rect x="26" y="46" width="6" height="24" fill="currentColor" rx="0.5"/>
-        <rect x="37" y="36" width="6" height="34" fill="currentColor" rx="0.5"/>
-        <rect x="48" y="46" width="6" height="24" fill="currentColor" rx="0.5"/>
-        <rect x="24" y="34" width="32" height="4" fill="currentColor" rx="1"/>
-        <rect x="23" y="70" width="34" height="5" fill="currentColor" rx="1"/>
+        <rect x="24" y="48" width="8" height="26" fill="currentColor" rx="0.5"/>
+        <rect x="36" y="36" width="8" height="38" fill="currentColor" rx="0.5"/>
+        <rect x="48" y="48" width="8" height="26" fill="currentColor" rx="0.5"/>
+        <rect x="22" y="33" width="36" height="5" fill="currentColor" rx="1"/>
+        <rect x="21" y="74" width="38" height="6" fill="currentColor" rx="1"/>
       </svg>
       
       {/* Logo text */}

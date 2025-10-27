@@ -42,14 +42,9 @@ const Index = () => {
             <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
               Без предоплаты • Индивидуальная стратегия • Конфиденциально
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+            <div className="flex justify-center">
               <Button size="lg" variant="default" className="bg-accent hover:bg-accent/90 text-primary text-lg px-8" asChild>
                 <Link to="/kontakty">Бесплатная консультация</Link>
-              </Button>
-              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 text-lg px-8" asChild>
-                <a href="https://wa.me/79168597654" target="_blank" rel="noopener noreferrer">
-                  WhatsApp
-                </a>
               </Button>
             </div>
           </div>
