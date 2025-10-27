@@ -10,9 +10,9 @@ const Logo = ({
   variant?: "header" | "footer";
 }) => {
   const heightClass = shrink 
-    ? "h-[30px] md:h-[38px]" 
+    ? "h-[38px] md:h-[48px]" 
     : variant === "header" 
-      ? "h-[30px] md:h-[38px]" 
+      ? "h-[38px] md:h-[48px]" 
       : "h-10";
   
   return (
