@@ -2,6 +2,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Users, Target, TrendingUp } from "lucide-react";
+import libraryImg from "@/assets/legal/library-vertical.jpg";
 
 const About = () => {
   return (
@@ -23,36 +24,50 @@ const About = () => {
           </div>
         </section>
 
-        {/* Mission Section */}
+        {/* Mission Section with Library Image */}
         <section className="py-20">
           <div className="container mx-auto px-4">
-            <div className="max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-16">
-                <Card className="border-border">
-                  <CardContent className="pt-6">
-                    <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                      <Target className="h-6 w-6 text-accent" />
-                    </div>
-                    <h3 className="font-playfair text-xl font-bold mb-3">Наша миссия</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Обеспечить каждому клиенту профессиональную юридическую защиту, 
-                      основанную на глубоких знаниях законодательства и многолетнем опыте.
-                    </p>
-                  </CardContent>
-                </Card>
+            <div className="max-w-6xl mx-auto">
+              {/* Library image + Mission side by side */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 items-center">
+                {/* Library image */}
+                <div className="rounded-lg overflow-hidden shadow-elegant">
+                  <img 
+                    src={libraryImg} 
+                    alt="Библиотека юридических книг" 
+                    className="w-full h-auto object-cover"
+                    loading="lazy"
+                  />
+                </div>
 
-                <Card className="border-border">
-                  <CardContent className="pt-6">
-                    <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
-                      <TrendingUp className="h-6 w-6 text-accent" />
-                    </div>
-                    <h3 className="font-playfair text-xl font-bold mb-3">Наши ценности</h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Профессионализм, честность, конфиденциальность и неизменная ответственность 
-                      перед каждым клиентом — основа нашей работы.
-                    </p>
-                  </CardContent>
-                </Card>
+                {/* Mission cards */}
+                <div className="space-y-6">
+                  <Card className="border-border">
+                    <CardContent className="pt-6">
+                      <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                        <Target className="h-6 w-6 text-accent" />
+                      </div>
+                      <h3 className="font-playfair text-xl font-bold mb-3">Наша миссия</h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Обеспечить каждому клиенту профессиональную юридическую защиту, 
+                        основанную на глубоких знаниях законодательства и многолетнем опыте.
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-border">
+                    <CardContent className="pt-6">
+                      <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                        <TrendingUp className="h-6 w-6 text-accent" />
+                      </div>
+                      <h3 className="font-playfair text-xl font-bold mb-3">Наши ценности</h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Профессионализм, честность, конфиденциальность и неизменная ответственность 
+                        перед каждым клиентом — основа нашей работы.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
 
               <div className="prose prose-lg max-w-none">

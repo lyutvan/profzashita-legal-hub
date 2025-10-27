@@ -1,7 +1,11 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import LegalBackground from "@/components/LegalBackground";
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
+import columnsImg from "@/assets/legal/court-columns.jpg";
+import scalesIcon from "@/assets/legal/justice-scales-vertical.jpg";
+import gavelIcon from "@/assets/legal/gavel-horizontal.jpg";
 
 const Cases = () => {
   const cases = [
@@ -87,20 +91,22 @@ const Cases = () => {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground py-20 overflow-hidden">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center">
-              <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6">
-                Наши <span className="text-accent">кейсы</span>
-              </h1>
-              <p className="text-lg text-primary-foreground/80 leading-relaxed">
-                Реальные дела, реальные результаты. Примеры успешного решения 
-                сложных юридических вопросов для наших клиентов.
-              </p>
-            </div>
+        {/* Hero with columns background - 65% overlay */}
+        <LegalBackground
+          imageSrc={columnsImg}
+          imageAlt="Классические колонны здания правосудия"
+          overlayOpacity={0.65}
+        >
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-white">
+              Наши <span className="text-accent">кейсы</span>
+            </h1>
+            <p className="text-lg text-white/90 leading-relaxed">
+              Реальные дела, реальные результаты. Примеры успешного решения 
+              сложных юридических вопросов для наших клиентов.
+            </p>
           </div>
-        </section>
+        </LegalBackground>
 
         {/* Cases Section */}
         <section className="py-20">
@@ -109,13 +115,21 @@ const Cases = () => {
               {cases.map((caseItem, index) => (
                 <Card key={index} className="border-border hover:shadow-elegant transition-all">
                   <CardContent className="pt-6">
-                    <div className="mb-4">
-                      <Badge variant="secondary" className="mb-3">
-                        {caseItem.category}
-                      </Badge>
-                      <h3 className="font-playfair text-xl md:text-2xl font-bold mb-4">
-                        {caseItem.title}
-                      </h3>
+                    <div className="mb-4 flex items-start gap-4">
+                      {/* Small icon photo 80px */}
+                      <img 
+                        src={index % 2 === 0 ? scalesIcon : gavelIcon} 
+                        alt="" 
+                        className="w-20 h-20 object-cover rounded-lg flex-shrink-0"
+                      />
+                      <div className="flex-1">
+                        <Badge variant="secondary" className="mb-3">
+                          {caseItem.category}
+                        </Badge>
+                        <h3 className="font-playfair text-xl md:text-2xl font-bold mb-2">
+                          {caseItem.title}
+                        </h3>
+                      </div>
                     </div>
 
                     <div className="space-y-4">

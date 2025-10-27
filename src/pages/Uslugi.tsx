@@ -1,11 +1,15 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import LegalFigure from "@/components/LegalFigure";
 import { Helmet } from "react-helmet";
 import { serviceCategories } from "@/data/services";
 import { Link } from "react-router-dom";
 import { ArrowRight } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
+import scalesVerticalImg from "@/assets/legal/justice-scales-vertical.jpg";
+import columnsVerticalImg from "@/assets/legal/columns-vertical.jpg";
+import constitutionImg from "@/assets/legal/constitution-pages.jpg";
 
 const Uslugi = () => {
   return (
@@ -18,9 +22,13 @@ const Uslugi = () => {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground py-16 overflow-hidden">
-          <div className="container mx-auto px-4">
+        {/* Hero Section with Constitution texture */}
+        <section className="relative py-16 overflow-hidden">
+          <div className="absolute inset-0 opacity-5">
+            <img src={constitutionImg} alt="" className="w-full h-full object-cover" />
+          </div>
+          <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary/90" />
+          <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs items={[{ label: "Услуги" }]} />
             <div className="max-w-3xl mt-6">
               <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-4">
@@ -40,8 +48,25 @@ const Uslugi = () => {
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Services Content */}
               <div className="lg:col-span-2 space-y-16">
-                {serviceCategories.map((category) => (
+                {serviceCategories.map((category, idx) => (
                   <div key={category.id} id={category.slug}>
+                    {/* Add Legal Figures alternating sides */}
+                    {idx === 0 && (
+                      <LegalFigure
+                        imageSrc={scalesVerticalImg}
+                        imageAlt="Весы правосудия Фемиды"
+                        caption="Символ справедливости и правосудия"
+                        position="right"
+                      />
+                    )}
+                    {idx === 1 && (
+                      <LegalFigure
+                        imageSrc={columnsVerticalImg}
+                        imageAlt="Мраморные колонны здания правосудия"
+                        caption="Классическая архитектура правосудия"
+                        position="left"
+                      />
+                    )}
                     {/* Category Title */}
                     <div className="mb-8">
                       <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-3">

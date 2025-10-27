@@ -1,8 +1,7 @@
 import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import Hero from "@/components/Hero";
-import PracticeCard from "@/components/PracticeCard";
+import LegalBackground from "@/components/LegalBackground";
 import LeadForm from "@/components/LeadForm";
 import Testimonials from "@/components/Testimonials";
 import { OrganizationSchema, ReviewSchema } from "@/components/JsonLd";
@@ -12,6 +11,7 @@ import { Shield, Target, Award, Users, CheckCircle, Phone } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import courtColumnsImg from "@/assets/legal/court-columns.jpg";
 
 const Index = () => {
   return (
@@ -28,10 +28,37 @@ const Index = () => {
       <Header />
       
       <main className="flex-1">
-        <Hero />
+        {/* Hero with Legal Background */}
+        <LegalBackground
+          imageSrc={courtColumnsImg}
+          imageAlt="Классический зал суда с мраморными колоннами"
+          overlayOpacity={0.6}
+          className="min-h-[600px] md:min-h-[700px]"
+        >
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="font-playfair text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+              Премиум-юридические услуги для сложных дел
+            </h1>
+            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+              Без предоплаты • Индивидуальная стратегия • Конфиденциально
+            </p>
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <Button size="lg" variant="default" className="bg-accent hover:bg-accent/90 text-primary text-lg px-8" asChild>
+                <Link to="/kontakty">Бесплатная консультация</Link>
+              </Button>
+              <Button size="lg" variant="outline" className="text-white border-white hover:bg-white/10 text-lg px-8" asChild>
+                <a href="https://wa.me/79168597654" target="_blank" rel="noopener noreferrer">
+                  WhatsApp
+                </a>
+              </Button>
+            </div>
+          </div>
+        </LegalBackground>
 
         {/* About Section */}
         <section className="relative py-20 bg-muted/30 overflow-hidden">
+          {/* Texture strip */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
@@ -89,6 +116,8 @@ const Index = () => {
 
         {/* Practices Section */}
         <section className="relative py-20 overflow-hidden">
+          {/* Texture strip */}
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
           <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
