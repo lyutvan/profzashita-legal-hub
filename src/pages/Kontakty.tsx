@@ -46,8 +46,8 @@ const Contacts = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-2">Телефон</h3>
-                        <a href="tel:+79999999999" className="text-lg text-accent hover:underline">
-                          +7 999 999 99 99
+                        <a href="tel:+79168597654" className="text-lg text-accent hover:underline">
+                          +7 (916) 859‑76‑54
                         </a>
                         <p className="text-sm text-muted-foreground mt-1">
                           Звоните в любое время
@@ -85,8 +85,8 @@ const Contacts = () => {
                       <div>
                         <h3 className="font-semibold mb-2">Адрес</h3>
                         <p className="text-muted-foreground">
-                          г. Москва, ул. Примерная, д. 1<br />
-                          БЦ «Деловой», офис 100
+                          г. Москва, ул. Дегунинский проспект 1к2,<br />
+                          офис 303
                         </p>
                       </div>
                     </div>
@@ -139,16 +139,16 @@ const Contacts = () => {
               <h2 className="font-playfair text-2xl md:text-3xl font-bold mb-8 text-center">
                 Как нас найти
               </h2>
-              <div className="aspect-video bg-muted rounded-lg border border-border flex items-center justify-center">
-                <div className="text-center text-muted-foreground">
-                  <MapPin className="h-12 w-12 mx-auto mb-4 text-accent" />
-                  <p className="text-lg font-medium mb-2">Карта офиса</p>
-                  <p className="text-sm">г. Москва, ул. Примерная, д. 1</p>
-                </div>
+              <div className="aspect-video rounded-lg border border-border overflow-hidden">
+                <iframe 
+                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A1e8c7b8f5e8f7b8f5e8f7b8f5e8f7b8f&amp;source=constructor" 
+                  width="100%" 
+                  height="100%" 
+                  frameBorder="0"
+                  title="Карта офиса Профзащита"
+                  className="w-full h-full"
+                ></iframe>
               </div>
-              <p className="text-center text-sm text-muted-foreground mt-6">
-                * В производственной версии здесь будет встроена интерактивная карта Google Maps или Яндекс.Карты
-              </p>
             </div>
           </div>
         </section>
@@ -163,10 +163,10 @@ const Contacts = () => {
               <Card className="border-border">
                 <CardContent className="pt-6">
                   <div className="space-y-3 text-sm text-muted-foreground">
-                    <p><span className="font-semibold text-foreground">Полное наименование:</span> Коллегия адвокатов «Профзащита» г. Москвы</p>
+                    <p><span className="font-semibold text-foreground">Полное наименование:</span> Коллегия адвокатов города Москвы «ПРОФЗАЩИТА»</p>
                     <p><span className="font-semibold text-foreground">ИНН:</span> 7700000000</p>
                     <p><span className="font-semibold text-foreground">ОГРН:</span> 1000000000000</p>
-                    <p><span className="font-semibold text-foreground">Адрес:</span> 101000, г. Москва, ул. Примерная, д. 1, офис 100</p>
+                    <p><span className="font-semibold text-foreground">Адрес:</span> 125633, г. Москва, ул. Дегунинский проспект 1к2, офис 303</p>
                     <p><span className="font-semibold text-foreground">Регистрация:</span> Адвокатская палата города Москвы</p>
                     <p><span className="font-semibold text-foreground">Регистрационный номер:</span> 77/00000</p>
                   </div>
