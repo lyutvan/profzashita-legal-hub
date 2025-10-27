@@ -12,9 +12,6 @@ import { Shield, Target, Award, Users, CheckCircle, Phone } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import legalBg1 from "@/assets/legal-bg-1.jpg";
-import legalBg2 from "@/assets/legal-bg-2.jpg";
-import legalBg3 from "@/assets/legal-bg-3.jpg";
 
 const Index = () => {
   return (
@@ -35,14 +32,7 @@ const Index = () => {
 
         {/* About Section */}
         <section className="relative py-20 bg-muted/30 overflow-hidden">
-          <div className="absolute inset-0 opacity-15">
-            <img 
-              src={legalBg1} 
-              alt="" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
                 О коллегии адвокатов <span className="text-accent">Профзащита</span>
@@ -99,14 +89,7 @@ const Index = () => {
 
         {/* Practices Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 opacity-18">
-            <img 
-              src={legalBg2} 
-              alt="" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
                 Наши <span className="text-accent">услуги</span>
@@ -151,14 +134,7 @@ const Index = () => {
 
         {/* Advantages Section */}
         <section className="relative py-20 bg-muted/30 overflow-hidden">
-          <div className="absolute inset-0 opacity-12">
-            <img 
-              src={legalBg3} 
-              alt="" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
                 Почему выбирают <span className="text-accent">нас</span>
@@ -188,14 +164,7 @@ const Index = () => {
 
         {/* FAQ Section */}
         <section className="relative py-20 bg-muted/30 overflow-hidden">
-          <div className="absolute inset-0 opacity-15">
-            <img 
-              src={legalBg1} 
-              alt="" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-16">
                 <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
@@ -255,14 +224,7 @@ const Index = () => {
 
         {/* Contact Form Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 opacity-18">
-            <img 
-              src={legalBg2} 
-              alt="" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>

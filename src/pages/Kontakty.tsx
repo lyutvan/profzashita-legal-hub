@@ -4,9 +4,6 @@ import ContactForm from "@/components/ContactForm";
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import legalBg1 from "@/assets/legal-bg-1.jpg";
-import legalBg2 from "@/assets/legal-bg-2.jpg";
-import legalBg3 from "@/assets/legal-bg-3.jpg";
 
 const Contacts = () => {
   return (
@@ -16,15 +13,7 @@ const Contacts = () => {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground py-20 overflow-hidden">
-          {/* Professional Legal Background Photo */}
-          <div className="absolute inset-0 opacity-20">
-            <img 
-              src={legalBg3} 
-              alt="" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6">
                 <span className="text-accent">Контакты</span>
@@ -39,14 +28,7 @@ const Contacts = () => {
 
         {/* Contact Info & Form Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 opacity-15">
-            <img 
-              src={legalBg1} 
-              alt="" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
               {/* Contact Information */}
               <div className="space-y-6">
@@ -152,14 +134,7 @@ const Contacts = () => {
 
         {/* Map Section */}
         <section className="relative py-20 bg-muted/30 overflow-hidden">
-          <div className="absolute inset-0 opacity-18">
-            <img 
-              src={legalBg2} 
-              alt="" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="max-w-5xl mx-auto">
               <h2 className="font-playfair text-2xl md:text-3xl font-bold mb-8 text-center">
                 Как нас найти
@@ -180,14 +155,7 @@ const Contacts = () => {
 
         {/* Legal Info Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 opacity-12">
-            <img 
-              src={legalBg3} 
-              alt="" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto">
               <h2 className="font-playfair text-2xl md:text-3xl font-bold mb-8 text-center">
                 Реквизиты

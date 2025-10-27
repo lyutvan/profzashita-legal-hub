@@ -9,7 +9,6 @@ import { serviceCategories, ServiceItem } from "@/data/services";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle2, Clock, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import legalBg3 from "@/assets/legal-bg-3.jpg";
 
 const ServiceDetail = () => {
   const { categorySlug, serviceSlug } = useParams();
@@ -52,15 +51,7 @@ const ServiceDetail = () => {
       <main className="flex-1">
         {/* Hero */}
         <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground py-12 overflow-hidden">
-          {/* Professional Legal Background Photo */}
-          <div className="absolute inset-0 opacity-20">
-            <img 
-              src={legalBg3} 
-              alt="" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <Breadcrumbs 
               items={[
                 { label: "Услуги", path: "/uslugi" },

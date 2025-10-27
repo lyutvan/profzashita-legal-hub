@@ -2,7 +2,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Users, Target, TrendingUp } from "lucide-react";
-import legalBg2 from "@/assets/legal-bg-2.jpg";
 
 const About = () => {
   return (
@@ -12,15 +11,7 @@ const About = () => {
       <main className="flex-1">
         {/* Hero Section */}
         <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground py-20 overflow-hidden">
-          {/* Professional Legal Background Photo */}
-          <div className="absolute inset-0 opacity-20">
-            <img 
-              src={legalBg2} 
-              alt="" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6">
                 О <span className="text-accent">коллегии</span>

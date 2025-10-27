@@ -6,7 +6,6 @@ import { practices } from "@/data/practices";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, ArrowLeft } from "lucide-react";
-import legalBg2 from "@/assets/legal-bg-2.jpg";
 
 const PracticeDetail = () => {
   const { slug } = useParams();
@@ -64,14 +63,7 @@ const PracticeDetail = () => {
 
         {/* Content Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="absolute inset-0 opacity-18">
-            <img 
-              src={legalBg2} 
-              alt="" 
-              className="w-full h-full object-cover"
-            />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
               {/* Main Content */}
               <div className="lg:col-span-2 space-y-8">

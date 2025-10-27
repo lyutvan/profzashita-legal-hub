@@ -1,7 +1,6 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import legalBg1 from "@/assets/legal-bg-1.jpg";
 
 const Privacy = () => {
   return (
@@ -9,14 +8,7 @@ const Privacy = () => {
       <Header />
       
       <main className="relative flex-1 py-20 overflow-hidden">
-        <div className="absolute inset-0 opacity-15">
-          <img 
-            src={legalBg1} 
-            alt="" 
-            className="w-full h-full object-cover"
-          />
-        </div>
-        <div className="container mx-auto px-4 relative z-10">
+        <div className="container mx-auto px-4">
           <div className="max-w-4xl mx-auto">
             <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-8 text-center">
               Политика <span className="text-accent">конфиденциальности</span>
