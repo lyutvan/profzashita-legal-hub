@@ -46,11 +46,7 @@ const Header = () => {
 
   return (
     <header 
-      className={`sticky top-0 z-[1000] transition-all duration-200 ${
-        isScrolled 
-          ? 'bg-white shadow-md' 
-          : 'bg-[#0A1F44] shadow-sm'
-      }`}
+      className="sticky top-0 z-[1000] transition-all duration-200 bg-[#0C1926] shadow-sm"
       style={{ borderBottom: '1px solid rgba(0,0,0,0.1)' }}
     >
       <div className="container mx-auto px-4">
@@ -71,12 +67,8 @@ const Header = () => {
                 to={item.path}
                 className={`font-inter text-sm font-medium transition-colors duration-150 py-2 min-h-[44px] flex items-center relative ${
                   isActive(item.path) 
-                    ? isScrolled
-                      ? "text-[#C9A227] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#C9A227]"
-                      : "text-[#C9A227] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#C9A227]"
-                    : isScrolled
-                      ? "text-[#0A1F44] hover:text-[#C9A227]"
-                      : "text-white hover:text-[#C9A227]"
+                    ? "text-[#B29760] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#B29760]"
+                    : "text-[#FFFFFF] hover:text-[#B29760]"
                 }`}
               >
                 {item.name}
@@ -103,11 +95,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className={`lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center transition-all duration-150 rounded hover:bg-black/5 focus:outline focus:outline-2 focus:outline-offset-2 ${
-              isScrolled 
-                ? 'text-[#0A1F44] focus:outline-[#0A1F44]' 
-                : 'text-white focus:outline-white'
-            }`}
+            className="lg:hidden p-2.5 min-w-[44px] min-h-[44px] flex items-center justify-center transition-all duration-150 rounded hover:bg-white/10 focus:outline focus:outline-2 focus:outline-offset-2 text-white focus:outline-white"
             aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={isMenuOpen}
           >
@@ -122,7 +110,7 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav 
-            className="lg:hidden py-6 bg-white border-t border-gray-200"
+            className="lg:hidden py-6 bg-[#0C1926] border-t border-white/10"
             role="navigation"
             aria-label="Мобильное меню"
           >
@@ -134,15 +122,15 @@ const Header = () => {
                   onClick={() => setIsMenuOpen(false)}
                   className={`font-inter text-base font-medium transition-colors duration-150 py-3 px-2 min-h-[44px] flex items-center rounded ${
                     isActive(item.path) 
-                      ? "text-[#C9A227] bg-[#C9A227]/5" 
-                      : "text-[#0A1F44] hover:bg-gray-50"
+                      ? "text-[#B29760] bg-[#B29760]/10" 
+                      : "text-[#FFFFFF] hover:text-[#B29760] hover:bg-white/5"
                   }`}
                 >
                   {item.name}
                 </Link>
               ))}
 
-              <div className="flex flex-col gap-3 pt-6 mt-4 border-t border-gray-200">
+              <div className="flex flex-col gap-3 pt-6 mt-4 border-t border-white/10">
                 <Button 
                   variant="default" 
                   size="sm" 

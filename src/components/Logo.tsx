@@ -24,11 +24,7 @@ const Logo = ({
       />
       
       <span 
-        className={`font-serif text-lg md:text-xl font-semibold tracking-wide transition-all duration-300 ${
-          variant === "header" 
-            ? (shrink ? "text-[#0A1F44]" : "text-[#C9A227]")
-            : "text-white"
-        } ${className}`}
+        className={`font-serif text-lg md:text-xl font-semibold tracking-wide transition-all duration-300 text-white ${className}`}
       >
         Профзащита
       </span>
