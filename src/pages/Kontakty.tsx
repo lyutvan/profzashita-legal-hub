@@ -65,8 +65,8 @@ const Contacts = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-2">Email</h3>
-                        <a href="mailto:pf@gmail.com" className="text-lg text-accent hover:underline">
-                          pf@gmail.com
+                        <a href="mailto:profzashchita@internet.ru" className="text-lg text-accent hover:underline">
+                          profzashchita@internet.ru
                         </a>
                         <p className="text-sm text-muted-foreground mt-1">
                           Ответим в течение часа
