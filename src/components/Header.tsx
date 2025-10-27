@@ -56,35 +56,37 @@ const Header = () => {
         <div className={`flex items-center justify-between transition-all duration-200 ${isScrolled ? 'h-16' : 'h-20'}`}>
           <Link 
             to="/" 
-            className="flex items-center gap-3 flex-shrink-0"
+            className="flex items-center gap-2.5 flex-shrink-0"
             aria-label="Профзащита — Коллегия адвокатов"
           >
-            {/* Inline SVG Shield Logo */}
+            {/* Shield Logo Icon */}
             <svg 
               className={`transition-all duration-200 ${
                 isScrolled 
-                  ? 'h-8 md:h-9 text-[#0A1F44]' 
-                  : 'h-9 md:h-10 text-[#C9A227]'
+                  ? 'h-[30px] md:h-[38px] text-[#0A1F44]' 
+                  : 'h-[30px] md:h-[38px] text-[#C9A227]'
               }`}
-              viewBox="0 0 40 50" 
+              viewBox="0 0 80 96" 
               fill="none" 
               xmlns="http://www.w3.org/2000/svg"
               aria-hidden="true"
             >
-              <path d="M20 8L12 11V23C12 30.18 16.14 36.82 22 39C27.86 36.82 32 30.18 32 23V11L24 8L20 9.5L16 8L12 11Z" 
+              <path d="M40 8 C40 8, 15 15, 15 15 L15 42 C15 58 22 72 40 84 C58 72 65 58 65 42 L65 15 C65 15, 40 8, 40 8 Z" 
                     stroke="currentColor" 
-                    strokeWidth="2" 
-                    fill="none"/>
-              <rect x="16" y="16" width="3" height="14" fill="currentColor"/>
-              <rect x="20.5" y="13" width="3" height="17" fill="currentColor"/>
-              <rect x="25" y="16" width="3" height="14" fill="currentColor"/>
-              <rect x="15" y="30" width="14" height="2" fill="currentColor"/>
-              <rect x="15" y="13" width="14" height="1.5" fill="currentColor" opacity="0.6"/>
+                    strokeWidth="3.5" 
+                    fill="none"
+                    strokeLinejoin="round"
+                    strokeLinecap="round"/>
+              <rect x="26" y="46" width="6" height="24" fill="currentColor" rx="0.5"/>
+              <rect x="37" y="36" width="6" height="34" fill="currentColor" rx="0.5"/>
+              <rect x="48" y="46" width="6" height="24" fill="currentColor" rx="0.5"/>
+              <rect x="24" y="34" width="32" height="4" fill="currentColor" rx="1"/>
+              <rect x="23" y="70" width="34" height="5" fill="currentColor" rx="1"/>
             </svg>
             
             {/* Logo Text */}
             <span 
-              className={`font-serif text-xl md:text-2xl font-semibold tracking-wide transition-all duration-200 ${
+              className={`font-serif text-lg md:text-xl font-semibold tracking-wide transition-all duration-200 ${
                 isScrolled 
                   ? 'text-[#0A1F44]' 
                   : 'text-[#C9A227]'
