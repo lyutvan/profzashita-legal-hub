@@ -1,37 +1,49 @@
 <!doctype html>
-<html lang="en">
+<html lang="ru">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/favicon-180.png" />
-    <link rel="icon" type="image/png" sizes="512x512" href="/icon-512.png" />
-    <link rel="manifest" href="/site.webmanifest" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta name="theme-color" content="#0A1F44" />
-    <title>Профзащита — Коллегия адвокатов | Юридические услуги в Москве</title>
-    <meta name="description" content="Юридическая коллегия Профзащита. Опыт. Ответственность. Результат. Защита прав в уголовном, гражданском, арбитражном праве. Бесплатная консультация: +7 999 999 99 99" />
-    <meta name="keywords" content="адвокат, юрист, юридические услуги, защита прав, коллегия адвокатов, москва, консультация" />
-    <link rel="canonical" href="https://profzashita.ru" />
 
-    <!-- Open Graph / Facebook -->
+    <!-- FAVICONS -->
+    <link rel="icon" href="/favicon.ico" sizes="any">
+    <!-- (SVG не используем, чтобы не было конфликтов с .ico) -->
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <!-- Для совместимости можно добавить PNG варианты, если они есть -->
+    <!-- <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32.png"> -->
+    <!-- <link rel="icon" type="image/png" sizes="48x48" href="/favicon-48.png"> -->
+
+    <!-- Бренд-цвет адресной строки/системы -->
+    <meta name="theme-color" content="#0C1B27" />
+
+    <!-- SEO -->
+    <title>Профзащита — Коллегия адвокатов | Юридические услуги в Москве</title>
+    <meta name="description" content="Юридическая коллегия Профзащита. Опыт. Ответственность. Результат. Защита прав в уголовном, гражданском и арбитражном праве. Бесплатная консультация." />
+    <meta name="keywords" content="адвокат, юрист, юридические услуги, защита прав, коллегия адвокатов, Москва, консультация" />
+    <link rel="canonical" href="https://profzashita.ru/" />
+
+    <!-- Open Graph -->
     <meta property="og:type" content="website" />
     <meta property="og:title" content="Профзащита — Коллегия адвокатов" />
     <meta property="og:description" content="Профессиональная защита прав. Опыт. Ответственность. Результат. Бесплатная консультация." />
     <meta property="og:site_name" content="Профзащита" />
+    <!-- при желании можно добавить превью-картинку: -->
+    <!-- <meta property="og:image" content="/og-image.jpg" /> -->
 
     <!-- Twitter -->
     <meta name="twitter:card" content="summary_large_image" />
     <meta name="twitter:title" content="Профзащита — Коллегия адвокатов" />
     <meta name="twitter:description" content="Профессиональная защита прав. Бесплатная консультация." />
+    <!-- <meta name="twitter:image" content="/og-image.jpg" /> -->
 
-    <!-- Fonts -->
+    <!-- Fonts (опционально, если используете Playfair/Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
   </head>
-
   <body>
     <div id="root"></div>
+    <!-- Vite / React entry -->
     <script type="module" src="/src/main.tsx"></script>
   </body>
 </html>
