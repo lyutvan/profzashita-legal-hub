@@ -31,10 +31,10 @@ const Uslugi = () => {
           <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs items={[{ label: "Услуги" }]} />
             <div className="max-w-3xl mt-6">
-              <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-4">
+              <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-4 text-white">
                 Все услуги
               </h1>
-              <p className="text-lg text-primary-foreground/80">
+              <p className="text-lg text-white/90">
                 Комплексная юридическая помощь для физических и юридических лиц. 
                 Выберите направление для получения профессиональной консультации.
               </p>
@@ -55,7 +55,6 @@ const Uslugi = () => {
                       <LegalFigure
                         imageSrc={scalesVerticalImg}
                         imageAlt="Весы правосудия Фемиды"
-                        caption="Символ справедливости и правосудия"
                         position="right"
                       />
                     )}
@@ -63,7 +62,6 @@ const Uslugi = () => {
                       <LegalFigure
                         imageSrc={columnsVerticalImg}
                         imageAlt="Мраморные колонны здания правосудия"
-                        caption="Классическая архитектура правосудия"
                         position="left"
                       />
                     )}

@@ -113,11 +113,11 @@ const FAQ = () => {
             <div className="max-w-3xl mt-6">
               <div className="flex items-center gap-3 mb-4">
                 <HelpCircle className="h-10 w-10 text-accent" />
-                <h1 className="font-playfair text-4xl md:text-5xl font-bold">
+                <h1 className="font-playfair text-4xl md:text-5xl font-bold text-white">
                   Вопросы и ответы
                 </h1>
               </div>
-              <p className="text-lg text-primary-foreground/80">
+              <p className="text-lg text-white/90">
                 Здесь собраны ответы на самые частые вопросы о работе нашей коллегии
               </p>
             </div>
