@@ -14,7 +14,7 @@ npm install
 npm run dev
 
 # Сборка для production
-npm build
+npm build 
 ```
 
 ## 📝 Как редактировать контент
