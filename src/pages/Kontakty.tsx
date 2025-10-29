@@ -143,7 +143,7 @@ const Contacts = () => {
               </h2>
               <div className="aspect-video rounded-lg border border-border overflow-hidden">
                 <iframe 
-                  src="https://yandex.ru/map-widget/v1/?um=constructor%3A1e8c7b8f5e8f7b8f5e8f7b8f5e8f7b8f&amp;source=constructor" 
+                  src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=244880896695" 
                   width="100%" 
                   height="100%" 
                   frameBorder="0"
