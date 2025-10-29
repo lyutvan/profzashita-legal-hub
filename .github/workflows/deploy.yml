@@ -31,6 +31,11 @@ jobs:
 
       - name: Build
         run: npm run build
+        
+      # гарантируем, что статические файлы и CNAME окажутся в dist
+      - run: mkdir -p dist
+      - run: cp -r public/* dist/ || true
+      - run: cp CNAME dist/CNAME || true
 
       # ВАЖНО: SPA-fallback, чтобы на прямых URL не был белый экран
       - name: SPA fallback (copy 404)
