@@ -36,7 +36,12 @@ const Index = () => {
           className="min-h-[600px] md:min-h-[700px]"
         >
           <div className="max-w-4xl mx-auto text-center">
-            <h1 className="font-playfair text-4xl md:text-6xl font-bold text-white mb-6 leading-tight">
+            <div className="inline-block border-2 border-white/30 rounded-lg px-6 py-3 mb-8">
+              <p className="text-white text-base md:text-lg font-medium">
+                Коллегия адвокатов города Москвы "ПРОФЗАЩИТА"
+              </p>
+            </div>
+            <h1 className="font-playfair text-4xl md:text-6xl font-bold text-white mb-6 leading-tight mt-4">
               Премиум-юридические услуги для сложных дел
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
