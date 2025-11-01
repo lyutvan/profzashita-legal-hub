@@ -1,5 +1,5 @@
 User-agent: *
 Allow: /
 
-Host: www.prof-zashita.ru
+Host: prof-zashita.ru
 Sitemap: https://prof-zashita.ru/sitemap.xml
