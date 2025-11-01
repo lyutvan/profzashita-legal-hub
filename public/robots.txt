@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 
 Host: www.prof-zashita.ru
-Sitemap: https://www.prof-zashita.ru/sitemap.xml
+Sitemap: https://prof-zashita.ru/sitemap.xml
