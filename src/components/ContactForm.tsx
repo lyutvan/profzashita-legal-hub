@@ -27,6 +27,7 @@ const ContactForm = () => {
         form_id: "contact-form",
         form_title: "Контактная форма",
       });
+      window.location.href = "/thanks";
     } catch (error) {
       console.error("Form submission error:", error);
       toast.error("Ошибка отправки. Попробуйте еще раз.");

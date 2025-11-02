@@ -113,6 +113,7 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
         form_id: variant === "compact" ? "quick-question-form" : "lead-form",
         form_title: variant === "compact" ? "Быстрый вопрос юристу" : "Получить консультацию",
       });
+      window.location.href = "/thanks";
     } catch (error) {
       console.error("Form submission error:", error);
       toast({
@@ -120,6 +121,7 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
         description: "Пожалуйста, попробуйте позже или свяжитесь с нами по телефону",
         variant: "destructive",
       });
+    } finally {
       setIsSubmitting(false);
     }
   };

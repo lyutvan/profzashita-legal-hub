@@ -1,63 +1,60 @@
-interface WebhookData {
-  name?: string;
-  phone?: string;
+// src/lib/webhook.ts
+type Payload = {
+  name: string;
+  phone: string;
   email?: string;
   message?: string;
-  topic?: string;
+  topic?: string;          // caseType
   consent?: boolean;
-  form_id: string;
-  form_title: string;
-  type: string;
-  page_url: string;
-  referrer: string;
-  utm_source?: string;
-  utm_medium?: string;
-  utm_campaign?: string;
-  utm_term?: string;
-  utm_content?: string;
+  form_id?: string;
+  form_title?: string;
+};
+
+const WEBHOOK_URL =
+  "https://script.google.com/macros/s/AKfycbzuoSTYanVrktsQmk0mIx153EdW5dvhhrbyKDO7jBpiMVXr-TPXHz6Ic43ZGC1m3790/exec";
+
+function getParam(name: string): string {
+  try {
+    return new URL(window.location.href).searchParams.get(name) || "";
+  } catch {
+    return "";
+  }
 }
 
-const WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbzuoSTYanVrktsQmk0mIx153EdW5dvhhrbyKDO7jBpiMVXr-TPXHz6Ic43ZGC1m3790/exec";
+export async function submitToWebhook(data: Payload) {
+  if (!WEBHOOK_URL) throw new Error("WEBHOOK_URL is not configured");
 
-export const getUTMParams = () => {
-  const urlParams = new URLSearchParams(window.location.search);
-  return {
-    utm_source: urlParams.get('utm_source') || undefined,
-    utm_medium: urlParams.get('utm_medium') || undefined,
-    utm_campaign: urlParams.get('utm_campaign') || undefined,
-    utm_term: urlParams.get('utm_term') || undefined,
-    utm_content: urlParams.get('utm_content') || undefined,
-  };
-};
-
-export const submitToWebhook = async (data: {
-  name?: string;
-  phone?: string;
-  email?: string;
-  message?: string;
-  topic?: string;
-  consent?: boolean;
-  form_id: string;
-  form_title: string;
-}): Promise<void> => {
-  const webhookData: WebhookData = {
-    ...data,
+  const meta = {
+    page_url: typeof window !== "undefined" ? window.location.href : "",
+    referrer: typeof document !== "undefined" ? document.referrer : "",
+    utm_source:  getParam("utm_source"),
+    utm_medium:  getParam("utm_medium"),
+    utm_campaign:getParam("utm_campaign"),
+    utm_term:    getParam("utm_term"),
+    utm_content: getParam("utm_content"),
     type: "form",
-    page_url: window.location.href,
-    referrer: document.referrer,
-    ...getUTMParams(),
   };
 
-  const response = await fetch(WEBHOOK_URL, {
-    method: 'POST',
-    mode: 'no-cors',
-    headers: {
-      'Content-Type': 'application/json',
-    },
-    body: JSON.stringify(webhookData),
+  const normalized = {
+    ...data,
+    consent: data.consent ? "yes" : "no",
+    topic: data.topic || "",
+    ...meta,
+  };
+
+  const body = new URLSearchParams();
+  Object.entries(normalized).forEach(([k, v]) => {
+    if (v !== undefined && v !== null) body.append(k, String(v));
   });
 
-  // With no-cors, we can't read the response, but we assume success
-  // Redirect to thanks page
-  window.location.href = '/thanks';
-};
+  const res = await fetch(WEBHOOK_URL, {
+    method: "POST",
+    headers: { "Content-Type": "application/x-www-form-urlencoded" },
+    body,
+  });
+
+  if (!res.ok) {
+    const text = await res.text().catch(() => "");
+    throw new Error(`Webhook error: ${res.status} ${text}`);
+  }
+}
