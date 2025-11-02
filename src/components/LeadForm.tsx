@@ -15,6 +15,16 @@ interface LeadFormProps {
 }
 
 const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
+  const CASE_RU: Record<string, string> = {
+    criminal: "Уголовное право",
+    civil: "Гражданские дела",
+    arbitration: "Арбитраж и споры с бизнесом",
+    family: "Семейное право",
+    consumer: "Защита прав потребителей",
+    representation: "Представительство в суде",
+    consultation: "Консультация",
+  };
+
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -102,12 +112,14 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
 
     setIsSubmitting(true);
 
+    const topicRu = CASE_RU[formData.caseType] ?? formData.caseType;
+
     try {
       await submitToWebhook({
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
-        topic: formData.caseType,
+        topic: topicRu,
         message: formData.message,
       });
       window.location.href = "/thanks";
