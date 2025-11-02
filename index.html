@@ -76,33 +76,6 @@
   }
   </script>
   </head>
-  <script>
-(function () {
-  function getParam(n){try{return new URL(location.href).searchParams.get(n)||''}catch(e){return ''}}
-  function ensureHidden(form, name, value){
-    var el=form.querySelector('input[name="'+name+'"]');
-    if(!el){el=document.createElement('input');el.type='hidden';el.name=name;form.appendChild(el)}
-    el.value=value;
-  }
-  function prepare(form){
-    ensureHidden(form,'page_url',location.href);
-    ensureHidden(form,'referrer',document.referrer||'');
-    ensureHidden(form,'utm_source',  getParam('utm_source'));
-    ensureHidden(form,'utm_medium',  getParam('utm_medium'));
-    ensureHidden(form,'utm_campaign',getParam('utm_campaign'));
-    ensureHidden(form,'utm_term',    getParam('utm_term'));
-    ensureHidden(form,'utm_content', getParam('utm_content'));
-    ensureHidden(form,'type','form');
-    var id=form.getAttribute('id')||form.dataset && form.dataset.id || '';
-    ensureHidden(form,'form_id', id);
-    var t=form.querySelector('h1,h2,h3,.title,[data-title]');
-    ensureHidden(form,'form_title', t ? (t.textContent||'').trim() : (form.getAttribute('aria-label')||''));
-  }
-  document.addEventListener('DOMContentLoaded', function () {
-    document.querySelectorAll('form').forEach(prepare);
-  });
-})();
-</script>
   <body>
     <div id="root"></div>
     <!-- Vite / React entry -->

@@ -23,9 +23,6 @@ const ContactForm = () => {
         phone: formData.phone,
         email: formData.email,
         message: formData.message,
-        consent: true,
-        form_id: "contact-form",
-        form_title: "Контактная форма",
       });
       window.location.href = "/thanks";
     } catch (error) {

@@ -107,11 +107,8 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
-        message: formData.message,
         topic: formData.caseType,
-        consent: true,
-        form_id: variant === "compact" ? "quick-question-form" : "lead-form",
-        form_title: variant === "compact" ? "Быстрый вопрос юристу" : "Получить консультацию",
+        message: formData.message,
       });
       window.location.href = "/thanks";
     } catch (error) {
