@@ -12,6 +12,7 @@ import FAQ from "./pages/FAQ";
 import Kontakty from "./pages/Kontakty";
 import Privacy from "./pages/Privacy";
 import Disclaimer from "./pages/Disclaimer";
+import Thanks from "./pages/Thanks";
 import NotFound from "./pages/NotFound";
 import QuickQuestion from "./components/QuickQuestion";
 
@@ -34,6 +35,7 @@ const App = () => (
           <Route path="/kontakty" element={<Kontakty />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/thanks" element={<Thanks />} />
           
           {/* Redirects from old URLs */}
           <Route path="/about" element={<Navigate to="/o-kollegii" replace />} />

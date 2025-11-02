@@ -4,6 +4,7 @@ import { Input } from "./ui/input";
 import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { toast } from "sonner";
+import { submitToWebhook } from "@/lib/webhook";
 
 const ContactForm = () => {
   const [formData, setFormData] = useState({
@@ -13,12 +14,23 @@ const ContactForm = () => {
     message: "",
   });
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // Here you would typically send the form data to your backend
-    console.log("Form submitted:", formData);
-    toast.success("Заявка отправлена! Мы свяжемся с вами в ближайшее время.");
-    setFormData({ name: "", phone: "", email: "", message: "" });
+    
+    try {
+      await submitToWebhook({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        message: formData.message,
+        consent: true,
+        form_id: "contact-form",
+        form_title: "Контактная форма",
+      });
+    } catch (error) {
+      console.error("Form submission error:", error);
+      toast.error("Ошибка отправки. Попробуйте еще раз.");
+    }
   };
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {

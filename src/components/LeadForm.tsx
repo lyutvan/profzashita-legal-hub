@@ -7,6 +7,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@
 import { toast } from "@/hooks/use-toast";
 import InputMask from "react-input-mask";
 import { Loader2 } from "lucide-react";
+import { submitToWebhook } from "@/lib/webhook";
 
 interface LeadFormProps {
   practiceType?: string;
@@ -102,36 +103,16 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
     setIsSubmitting(true);
 
     try {
-      // TODO: Replace with actual API call when Lovable Cloud is enabled
-      // await fetch('/api/submit-lead', {
-      //   method: 'POST',
-      //   headers: { 'Content-Type': 'application/json' },
-      //   body: JSON.stringify(formData),
-      // });
-
-      // Simulate API call
-      await new Promise((resolve) => setTimeout(resolve, 1000));
-
-      console.log("Lead form submitted:", {
-        ...formData,
-        timestamp: new Date().toISOString(),
+      await submitToWebhook({
+        name: formData.name,
+        phone: formData.phone,
+        email: formData.email,
+        message: formData.message,
+        topic: formData.caseType,
+        consent: true,
+        form_id: variant === "compact" ? "quick-question-form" : "lead-form",
+        form_title: variant === "compact" ? "Быстрый вопрос юристу" : "Получить консультацию",
       });
-
-      toast({
-        title: "Спасибо за обращение!",
-        description: "Мы свяжемся с вами в течение 15 минут",
-        duration: 5000,
-      });
-
-      // Reset form
-      setFormData({
-        name: "",
-        phone: "",
-        email: "",
-        caseType: practiceType || "",
-        message: "",
-      });
-      setSubmitTime(Date.now());
     } catch (error) {
       console.error("Form submission error:", error);
       toast({
@@ -139,7 +120,6 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
         description: "Пожалуйста, попробуйте позже или свяжитесь с нами по телефону",
         variant: "destructive",
       });
-    } finally {
       setIsSubmitting(false);
     }
   };
