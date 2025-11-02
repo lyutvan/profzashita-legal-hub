@@ -7,7 +7,7 @@ type Payload = {
 };
 
 const WEBHOOK_URL =
-  "https://script.google.com/macros/s/AKfycbzuoSTYanVrktsQmk0mIx153EdW5dvhhrbyKDO7jBpiMVXr-TPXHz6Ic43ZGC1m3790/exec";
+  "https://script.google.com/macros/s/AKfycbx73yDEXWFJb3DFbjtyMvNAHdArh-Ree-7Ek4o5n1ljpaiNXPi9ZAc1Rd88GldcFjrN/exec";
 
 export async function submitToWebhook(data: Payload) {
   const body = new URLSearchParams();
@@ -28,25 +28,26 @@ export async function submitToWebhook(data: Payload) {
     const txt = await res.text().catch(() => "");
     throw new Error(`Webhook status: ${res.status} ${txt}`);
   } catch (e) {
-    // fallback: hidden form submit (works without CORS)
-    try {
-      const form = document.createElement("form");
+    // Fallback: hidden form submit (works without CORS)
+    const g: any = (globalThis as any);
+    const doc = g && g.document;
+    if (doc) {
+      const form = doc.createElement("form");
       form.action = WEBHOOK_URL;
       form.method = "POST";
       form.style.display = "none";
-      for (const [k, v] of body.entries()) {
-        const input = document.createElement("input");
+      for (const [k, v] of (body as any).entries()) {
+        const input = doc.createElement("input");
         input.type = "hidden";
         input.name = k;
         input.value = v;
         form.appendChild(input);
       }
-      document.body.appendChild(form);
+      doc.body.appendChild(form);
       form.submit();
       await new Promise(r => setTimeout(r, 200));
       return;
-    } catch {
-      throw e;
     }
+    throw e;
   }
 }
