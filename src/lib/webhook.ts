@@ -7,7 +7,7 @@ type Payload = {
 };
 
 const WEBHOOK_URL =
-  "https://script.google.com/macros/s/AKfycbyko0JJ3hagi3K4Q1pmPwYW8GsKK1_MZrjd5a5TRjqbeCoNYxs8HqxWOZgU9Gu_WCa0Sg/exec";
+  "https://script.google.com/macros/s/AKfycbzj56HWgKtfCfDf5i0CINNJTqCUTQbTYEoLyIk8PxGzNfPqNjf0y0XnarKiwi_MRZofIw/exec";
 
 export async function submitToWebhook(data: Payload) {
   const body = new URLSearchParams();
