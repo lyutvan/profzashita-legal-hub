@@ -186,17 +186,51 @@ const Index = () => {
                     Корпоративное обслуживание бизнеса
                   </p>
                   <ul className="space-y-2">
-                    {serviceCategories.find(cat => cat.id === "businesses")?.items.slice(0, 5).map((service) => (
-                      <li key={service.id}>
-                        <Link
-                          to={`/uslugi/yurlitsa/${service.slug}`}
-                          className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                        >
-                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                          {service.title}
-                        </Link>
-                      </li>
-                    ))}
+                    <li>
+                      <Link
+                        to="/services/biz/arbitrazh/"
+                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                      >
+                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                        Арбитражные споры
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/services/biz/dogovory/"
+                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                      >
+                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                        Договорная работа и претензии
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/services/biz/nalogi/"
+                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                      >
+                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                        Налоговые споры и проверки
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/services/biz/vzyskanie/"
+                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                      >
+                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                        Взыскание дебиторской задолженности
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/services/biz/bankrotstvo/"
+                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                      >
+                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                        Банкротство и субсидиарная ответственность
+                      </Link>
+                    </li>
                   </ul>
                 </CardContent>
               </Card>

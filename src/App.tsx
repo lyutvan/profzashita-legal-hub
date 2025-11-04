@@ -20,6 +20,11 @@ import Disclaimer from "./pages/Disclaimer";
 import Thanks from "./pages/Thanks";
 import NotFound from "./pages/NotFound";
 import QuickQuestion from "./components/QuickQuestion";
+import ArbitrazhPage from "./pages/services/biz/ArbitrazhPage";
+import DogovoryPage from "./pages/services/biz/DogovoryPage";
+import NalogiPage from "./pages/services/biz/NalogiPage";
+import VzyskaniePage from "./pages/services/biz/VzyskaniePage";
+import BankrotstvoPage from "./pages/services/biz/BankrotstvoPage";
 
 const queryClient = new QueryClient();
 
@@ -46,6 +51,13 @@ const App = () => (
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/thanks" element={<Thanks />} />
+          
+          {/* Business services */}
+          <Route path="/services/biz/arbitrazh/" element={<ArbitrazhPage />} />
+          <Route path="/services/biz/dogovory/" element={<DogovoryPage />} />
+          <Route path="/services/biz/nalogi/" element={<NalogiPage />} />
+          <Route path="/services/biz/vzyskanie/" element={<VzyskaniePage />} />
+          <Route path="/services/biz/bankrotstvo/" element={<BankrotstvoPage />} />
           
           {/* Redirects from old URLs */}
           <Route path="/about" element={<Navigate to="/o-kollegii" replace />} />
