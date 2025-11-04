@@ -3,6 +3,7 @@ import { Menu, X, ChevronDown } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import Logo from "./Logo";
+import WhatsAppIcon from "./icons/WhatsAppIcon";
 import { serviceClusters } from "@/data/services-clusters";
 import {
   NavigationMenu,
@@ -13,6 +14,7 @@ import {
   NavigationMenuTrigger,
 } from "@/components/ui/navigation-menu";
 import { cn } from "@/lib/utils";
+import { SITE } from "@/config/site";
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -81,50 +83,16 @@ const Header = () => {
               Главная
             </Link>
 
-            {/* Services Dropdown */}
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="bg-transparent hover:bg-transparent focus:bg-transparent data-[state=open]:bg-transparent h-auto py-2 px-0 font-inter text-sm font-medium text-[#FFFFFF] hover:text-[#B29760]">
-                    Услуги
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="w-[600px] p-4 bg-[#0C1926] border border-white/10">
-                      <div className="grid grid-cols-3 gap-4">
-                        {serviceClusters.map((cluster) => (
-                          <div key={cluster.id}>
-                            <Link
-                              to={`/uslugi#${cluster.slug}`}
-                              className="block mb-3 font-semibold text-[#C9A227] hover:text-[#B08E1F] transition-colors"
-                            >
-                              {cluster.title}
-                            </Link>
-                            <ul className="space-y-2">
-                              {cluster.situations.slice(0, 5).map((situation) => (
-                                <li key={situation.id}>
-                                  <Link
-                                    to={`/uslugi/${cluster.slug}/${situation.slug}`}
-                                    className="text-xs text-white/70 hover:text-[#C9A227] transition-colors block py-1"
-                                  >
-                                    {situation.title}
-                                  </Link>
-                                </li>
-                              ))}
-                            </ul>
-                          </div>
-                        ))}
-                      </div>
-                      <Link
-                        to="/uslugi"
-                        className="block mt-4 pt-4 border-t border-white/10 text-sm text-[#C9A227] hover:text-[#B08E1F] transition-colors font-medium text-center"
-                      >
-                        Все услуги →
-                      </Link>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+            <Link
+              to="/uslugi"
+              className={`font-inter text-sm font-medium transition-colors duration-150 py-2 min-h-[44px] flex items-center relative ${
+                isActive("/uslugi") 
+                  ? "text-[#B29760] after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-[#B29760]"
+                  : "text-[#FFFFFF] hover:text-[#B29760]"
+              }`}
+            >
+              Услуги
+            </Link>
 
             {navigation.map((item) => (
               <Link
@@ -154,6 +122,17 @@ const Header = () => {
               asChild
             >
               <Link to="/kontakty">Консультация</Link>
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="border-[#B29760] text-[#B29760] hover:bg-[#B29760] hover:text-white gap-2"
+              asChild
+            >
+              <a href={`https://wa.me/${SITE.phoneRaw.replace('+', '')}`} target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon size={16} />
+                WhatsApp
+              </a>
             </Button>
           </div>
 
@@ -192,41 +171,17 @@ const Header = () => {
                 Главная
               </Link>
 
-              {/* Mobile Services Dropdown */}
-              <div className="border-t border-white/10 pt-2 mt-2">
-                <div className="px-2 py-2 text-sm font-semibold text-[#C9A227]">Услуги</div>
-                {serviceClusters.map((cluster) => (
-                  <div key={cluster.id} className="ml-4 mb-4">
-                    <Link
-                      to={`/uslugi#${cluster.slug}`}
-                      onClick={() => setIsMenuOpen(false)}
-                      className="block py-2 font-medium text-sm text-white/90 hover:text-[#C9A227]"
-                    >
-                      {cluster.title}
-                    </Link>
-                    <ul className="ml-4 space-y-1">
-                      {cluster.situations.slice(0, 3).map((situation) => (
-                        <li key={situation.id}>
-                          <Link
-                            to={`/uslugi/${cluster.slug}/${situation.slug}`}
-                            onClick={() => setIsMenuOpen(false)}
-                            className="block py-1 text-xs text-white/60 hover:text-[#C9A227]"
-                          >
-                            {situation.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                ))}
-                <Link
-                  to="/uslugi"
-                  onClick={() => setIsMenuOpen(false)}
-                  className="block px-2 py-2 text-sm text-[#C9A227] hover:text-[#B08E1F] font-medium"
-                >
-                  Все услуги →
-                </Link>
-              </div>
+              <Link
+                to="/uslugi"
+                onClick={() => setIsMenuOpen(false)}
+                className={`font-inter text-base font-medium transition-colors duration-150 py-3 px-2 min-h-[44px] flex items-center rounded ${
+                  isActive("/uslugi") 
+                    ? "text-[#B29760] bg-[#B29760]/10" 
+                    : "text-[#FFFFFF] hover:text-[#B29760] hover:bg-white/5"
+                }`}
+              >
+                Услуги
+              </Link>
 
               {navigation.map((item) => (
                 <Link
@@ -253,6 +208,17 @@ const Header = () => {
                   <Link to="/kontakty" onClick={() => setIsMenuOpen(false)}>
                     Консультация
                   </Link>
+                </Button>
+                <Button 
+                  variant="outline" 
+                  size="sm" 
+                  className="border-[#B29760] text-[#B29760] hover:bg-[#B29760] hover:text-white w-full min-h-[44px] gap-2"
+                  asChild
+                >
+                  <a href={`https://wa.me/${SITE.phoneRaw.replace('+', '')}`} target="_blank" rel="noopener noreferrer">
+                    <WhatsAppIcon size={16} />
+                    WhatsApp
+                  </a>
                 </Button>
               </div>
             </div>

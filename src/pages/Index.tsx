@@ -153,28 +153,53 @@ const Index = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
-              {serviceCategories.map((category) => (
-                <Card key={category.id} className="border-border hover:shadow-elegant transition-all">
-                  <CardContent className="pt-6">
-                    <h3 className="font-playfair text-2xl font-bold mb-4">
-                      {category.title}
-                    </h3>
-                    <ul className="space-y-2">
-                      {category.items.slice(0, 4).map((service) => (
-                        <li key={service.id}>
-                          <Link
-                            to={`/uslugi/${category.slug}/${service.slug}`}
-                            className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                          >
-                            <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                            {service.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
-              ))}
+              <Card className="border-border hover:shadow-elegant transition-all">
+                <CardContent className="pt-6">
+                  <h3 className="font-playfair text-2xl font-bold mb-2 text-accent">
+                    Физическим лицам
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Защита прав граждан в различных сферах
+                  </p>
+                  <ul className="space-y-2">
+                    {serviceCategories.find(cat => cat.id === "individuals")?.items.slice(0, 5).map((service) => (
+                      <li key={service.id}>
+                        <Link
+                          to={`/uslugi/fizlitsa/${service.slug}`}
+                          className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                        >
+                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                          {service.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+              
+              <Card className="border-border hover:shadow-elegant transition-all">
+                <CardContent className="pt-6">
+                  <h3 className="font-playfair text-2xl font-bold mb-2 text-accent">
+                    Юридическим лицам
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Корпоративное обслуживание бизнеса
+                  </p>
+                  <ul className="space-y-2">
+                    {serviceCategories.find(cat => cat.id === "businesses")?.items.slice(0, 5).map((service) => (
+                      <li key={service.id}>
+                        <Link
+                          to={`/uslugi/yurlitsa/${service.slug}`}
+                          className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                        >
+                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                          {service.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
             </div>
 
             <div className="text-center">

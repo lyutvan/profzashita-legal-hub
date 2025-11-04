@@ -81,9 +81,9 @@ const Footer = () => {
                 </a>
               </li>
               <li>
-                <div className="flex items-start gap-2 text-sm text-white/80">
+                      <div className="flex items-start gap-2 text-sm text-white/80">
                   <MapPin className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                  Москва, ул. Дегунинский проспект 1к2, офис 303
+                  Москва, ул. Дегунинская 1к2, офис 303
                 </div>
               </li>
             </ul>

@@ -54,7 +54,7 @@ export const authors: Record<string, ArticleAuthor> = {
     name: "Лютиков Иван Иванович",
     role: "Адвокат, председатель коллегии",
     regNumber: "Рег. № АП 77/12345",
-    avatar: "/images/authors/lyutikov.jpg",
+    avatar: "/src/assets/team/lyutikov.jpg",
     bio: "Опыт работы более 20 лет. Специализация: уголовное право, арбитраж. Участник более 500 судебных процессов.",
     specialization: "Уголовное право, защита в особо сложных делах",
     sameAs: ["https://advpalata-mo.ru/lawyer/lyutikov"]
@@ -63,7 +63,7 @@ export const authors: Record<string, ArticleAuthor> = {
     name: "Сотников Дмитрий Валерьевич",
     role: "Адвокат",
     regNumber: "Рег. № АП 77/23456",
-    avatar: "/images/authors/sotnikov.jpg",
+    avatar: "/src/assets/team/sotnikov.jpg",
     bio: "Опыт работы 10 лет. Специализация: трудовое право, защита прав работников, процессуальные действия.",
     specialization: "Трудовое право, процессуальные действия",
     sameAs: []
@@ -71,7 +71,7 @@ export const authors: Record<string, ArticleAuthor> = {
   ryzhenko: {
     name: "Рыженко Дмитрий Петрович",
     role: "Юрист",
-    avatar: "/images/authors/ryzhenko.jpg",
+    avatar: "/src/assets/team/ryzhenko.jpg",
     bio: "Опыт работы 8 лет. Специализация: гражданское право, договорное право, консультирование.",
     specialization: "Гражданское право, договорное право"
   }

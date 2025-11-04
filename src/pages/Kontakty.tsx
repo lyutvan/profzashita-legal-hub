@@ -112,8 +112,7 @@ const Contacts = () => {
                       <div>
                         <h3 className="font-semibold mb-2">Адрес</h3>
                         <p className="text-muted-foreground">
-                          г. Москва, ул. Дегунинский проспект 1к2,<br />
-                          офис 303
+                          Москва, ул. Дегунинская 1к2, офис 303
                         </p>
                       </div>
                     </div>
@@ -129,8 +128,7 @@ const Contacts = () => {
                       <div>
                         <h3 className="font-semibold mb-2">Режим работы</h3>
                         <p className="text-muted-foreground">
-                          Пн-Пт: 9:00 - 19:00<br />
-                          Сб: 10:00 - 16:00<br />
+                          Пн-Сб: 10:00 - 19:00<br />
                           Вс: по предварительной записи
                         </p>
                       </div>
@@ -191,7 +189,7 @@ const Contacts = () => {
                 <CardContent className="pt-6">
                   <div className="space-y-3 text-sm text-muted-foreground">
                     <p><span className="font-semibold text-foreground">Полное наименование:</span> Коллегия адвокатов города Москвы «ПРОФЗАЩИТА»</p>
-                    <p><span className="font-semibold text-foreground">Адрес:</span> 125633, г. Москва, ул. Дегунинский проспект 1к2, офис 303</p>
+                    <p><span className="font-semibold text-foreground">Адрес:</span> 127486, Москва, ул. Дегунинская 1к2, офис 303</p>
                     <p><span className="font-semibold text-foreground">Регистрация:</span> Адвокатская палата города Москвы</p>
                   </div>
                 </CardContent>

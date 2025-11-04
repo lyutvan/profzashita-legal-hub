@@ -16,12 +16,12 @@ const Cases = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Успешные кейсы — Профзащита</title>
+        <title>Наши кейсы — Профзащита</title>
         <meta name="description" content="Реальные дела и результаты коллегии адвокатов Профзащита. Примеры успешного решения уголовных, гражданских, арбитражных и семейных споров." />
         <link rel="canonical" href={`${SITE.url}keisy/`} />
         
         {/* OpenGraph */}
-        <meta property="og:title" content="Успешные кейсы — Коллегия адвокатов Профзащита" />
+        <meta property="og:title" content="Наши кейсы — Коллегия адвокатов Профзащита" />
         <meta property="og:description" content="Реальные дела, реальные результаты. Примеры успешного решения сложных юридических споров." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${SITE.url}keisy/`} />
@@ -33,7 +33,7 @@ const Cases = () => {
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="Успешные кейсы — Профзащита" />
+        <meta name="twitter:title" content="Наши кейсы — Профзащита" />
         <meta name="twitter:description" content="Реальные дела, реальные результаты." />
         <meta name="twitter:image" content={SITE.ogImage} />
       </Helmet>
@@ -68,7 +68,7 @@ const Cases = () => {
         >
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-white">
-              Успешные <span className="text-accent">кейсы</span>
+              Наши <span className="text-accent">кейсы</span>
             </h1>
             <p className="text-lg md:text-xl text-white/90 leading-relaxed">
               Реальные дела, реальные результаты. Примеры успешного решения 

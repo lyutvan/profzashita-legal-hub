@@ -1,17 +1,18 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import LegalFigure from "@/components/LegalFigure";
 import { Helmet } from "react-helmet";
 import { serviceCategories } from "@/data/services";
 import { Link } from "react-router-dom";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Phone } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
-import scalesVerticalImg from "@/assets/legal/justice-scales-vertical.jpg";
-import columnsVerticalImg from "@/assets/legal/columns-vertical.jpg";
-import constitutionImg from "@/assets/legal/constitution-pages.jpg";
+import { Card, CardContent } from "@/components/ui/card";
+import { SITE } from "@/config/site";
 
 const Uslugi = () => {
+  const individualsCategory = serviceCategories.find(cat => cat.id === "individuals");
+  const businessesCategory = serviceCategories.find(cat => cat.id === "businesses");
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -22,11 +23,8 @@ const Uslugi = () => {
       <Header />
       
       <main className="flex-1">
-        {/* Hero Section with Constitution texture */}
+        {/* Hero Section */}
         <section className="relative py-16 overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
-            <img src={constitutionImg} alt="" className="w-full h-full object-cover" />
-          </div>
           <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary/90" />
           <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs items={[{ label: "Услуги" }]} />
@@ -42,60 +40,44 @@ const Uslugi = () => {
           </div>
         </section>
 
-        {/* Services List */}
+        {/* Services Section */}
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Services Content */}
               <div className="lg:col-span-2 space-y-16">
-                {serviceCategories.map((category, idx) => (
-                  <div key={category.id} id={category.slug}>
-                    {/* Add Legal Figures alternating sides */}
-                    {idx === 0 && (
-                      <LegalFigure
-                        imageSrc={scalesVerticalImg}
-                        imageAlt="Весы правосудия Фемиды"
-                        position="right"
-                      />
-                    )}
-                    {idx === 1 && (
-                      <LegalFigure
-                        imageSrc={columnsVerticalImg}
-                        imageAlt="Мраморные колонны здания правосудия"
-                        position="left"
-                      />
-                    )}
-                    {/* Category Title */}
+                {/* Физическим лицам */}
+                {individualsCategory && (
+                  <div id={individualsCategory.slug}>
                     <div className="mb-8">
-                      <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-3">
-                        {category.title}
+                      <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-3 text-accent">
+                        {individualsCategory.title}
                       </h2>
-                      <div className="h-1 w-24 bg-accent rounded-full" />
+                      <p className="text-muted-foreground">
+                        Защита прав и интересов граждан в различных областях права
+                      </p>
+                      <div className="h-1 w-24 bg-accent rounded-full mt-4" />
                     </div>
 
-                    {/* Services Grid */}
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
-                      {category.items.map((service) => (
+                      {individualsCategory.items.map((service) => (
                         <div key={service.id} className="space-y-3">
-                          {/* Service Title with Link */}
                           <Link
-                            to={`/uslugi/${category.slug}/${service.slug}`}
+                            to={`/uslugi/${individualsCategory.slug}/${service.slug}`}
                             className="group block"
                           >
                             <h3 className="text-lg font-bold text-foreground group-hover:text-accent transition-colors flex items-start gap-2">
                               <span className="text-accent flex-shrink-0">•</span>
-                              <span className="uppercase">{service.title}</span>
+                              <span>{service.title}</span>
                             </h3>
                           </Link>
 
-                          {/* Short Description */}
                           <p className="text-sm text-muted-foreground leading-relaxed pl-6">
                             {service.shortDescription}
                           </p>
 
-                          {/* Link to Details */}
                           <Link
-                            to={`/uslugi/${category.slug}/${service.slug}`}
+                            to={`/uslugi/${individualsCategory.slug}/${service.slug}`}
                             className="inline-flex items-center gap-2 text-sm text-accent hover:gap-3 transition-all font-medium pl-6"
                           >
                             Подробнее
@@ -105,7 +87,50 @@ const Uslugi = () => {
                       ))}
                     </div>
                   </div>
-                ))}
+                )}
+
+                {/* Юридическим лицам */}
+                {businessesCategory && (
+                  <div id={businessesCategory.slug}>
+                    <div className="mb-8">
+                      <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-3 text-accent">
+                        {businessesCategory.title}
+                      </h2>
+                      <p className="text-muted-foreground">
+                        Корпоративное обслуживание и защита бизнеса
+                      </p>
+                      <div className="h-1 w-24 bg-accent rounded-full mt-4" />
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6">
+                      {businessesCategory.items.map((service) => (
+                        <div key={service.id} className="space-y-3">
+                          <Link
+                            to={`/uslugi/${businessesCategory.slug}/${service.slug}`}
+                            className="group block"
+                          >
+                            <h3 className="text-lg font-bold text-foreground group-hover:text-accent transition-colors flex items-start gap-2">
+                              <span className="text-accent flex-shrink-0">•</span>
+                              <span>{service.title}</span>
+                            </h3>
+                          </Link>
+
+                          <p className="text-sm text-muted-foreground leading-relaxed pl-6">
+                            {service.shortDescription}
+                          </p>
+
+                          <Link
+                            to={`/uslugi/${businessesCategory.slug}/${service.slug}`}
+                            className="inline-flex items-center gap-2 text-sm text-accent hover:gap-3 transition-all font-medium pl-6"
+                          >
+                            Подробнее
+                            <ArrowRight className="h-4 w-4" />
+                          </Link>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                )}
 
                 {/* How We Work Section */}
                 <div className="bg-muted/30 rounded-lg p-8 mt-16">
@@ -150,15 +175,22 @@ const Uslugi = () => {
                 <div className="bg-card border border-border rounded-lg p-6">
                   <h3 className="font-semibold text-lg mb-4">Быстрая навигация</h3>
                   <nav className="space-y-3">
-                    {serviceCategories.map((category) => (
+                    {individualsCategory && (
                       <a
-                        key={category.id}
-                        href={`#${category.slug}`}
+                        href={`#${individualsCategory.slug}`}
                         className="block text-sm text-muted-foreground hover:text-accent transition-colors"
                       >
-                        → {category.title}
+                        → {individualsCategory.title}
                       </a>
-                    ))}
+                    )}
+                    {businessesCategory && (
+                      <a
+                        href={`#${businessesCategory.slug}`}
+                        className="block text-sm text-muted-foreground hover:text-accent transition-colors"
+                      >
+                        → {businessesCategory.title}
+                      </a>
+                    )}
                   </nav>
                 </div>
 
@@ -174,19 +206,20 @@ const Uslugi = () => {
                   <div className="space-y-3 text-sm">
                     <p>
                       <strong>Телефон:</strong><br />
-                      <a href="tel:+79168597654" className="text-accent hover:underline">
-                        +7 (916) 859-76-54
+                      <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline flex items-center gap-2">
+                        <Phone className="h-4 w-4" />
+                        {SITE.phone}
                       </a>
                     </p>
                     <p>
                       <strong>Email:</strong><br />
-                      <a href="mailto:profzashchita@internet.ru" className="text-accent hover:underline">
-                        profzashchita@internet.ru
+                      <a href={`mailto:${SITE.email}`} className="text-accent hover:underline">
+                        {SITE.email}
                       </a>
                     </p>
                     <p>
                       <strong>Адрес:</strong><br />
-                      Москва
+                      {SITE.address.city}, {SITE.address.street}
                     </p>
                   </div>
                 </div>
