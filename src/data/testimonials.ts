@@ -7,6 +7,7 @@ export interface Testimonial {
   city: string;
   quote: string;
   rating: number;
+  datePublished: string; // ISO format: YYYY-MM-DD
 }
 
 export const testimonials: Testimonial[] = [
@@ -19,6 +20,7 @@ export const testimonials: Testimonial[] = [
     city: "Москва",
     quote: "Команда работала чётко и структурированно. Каждый шаг был прозрачен, риски просчитаны заранее. Результат превзошёл ожидания.",
     rating: 5,
+    datePublished: "2024-09-15",
   },
   {
     id: "2",
@@ -29,6 +31,7 @@ export const testimonials: Testimonial[] = [
     city: "Москва",
     quote: "Впечатлила методичность подхода: детальный анализ договоров, чёткая стратегия, убедительная позиция в суде. Рекомендую для бизнес-споров.",
     rating: 5,
+    datePublished: "2024-08-22",
   },
   {
     id: "3",
@@ -39,6 +42,7 @@ export const testimonials: Testimonial[] = [
     city: "Москва",
     quote: "Деликатный подход к сложной семейной ситуации. Конфликт урегулирован без эмоциональных потерь, имущество разделено справедливо.",
     rating: 5,
+    datePublished: "2024-07-10",
   },
   {
     id: "4",
@@ -49,6 +53,7 @@ export const testimonials: Testimonial[] = [
     city: "Москва",
     quote: "Юристы грамотно собрали доказательную базу, процедура заняла минимум времени. Результат — полное восстановление прав и репутации.",
     rating: 5,
+    datePublished: "2024-10-05",
   },
   {
     id: "5",
@@ -59,6 +64,7 @@ export const testimonials: Testimonial[] = [
     city: "Москва",
     quote: "Налоговый спор требовал глубокой экспертизы. Адвокаты выстроили безупречную защиту, каждый аргумент — обоснован законом и практикой.",
     rating: 5,
+    datePublished: "2024-06-18",
   },
   {
     id: "6",
@@ -69,5 +75,6 @@ export const testimonials: Testimonial[] = [
     city: "Москва",
     quote: "Профессионально выстроенная позиция по сложному делу о репутации. Все этапы — от претензии до решения суда — под контролем.",
     rating: 5,
+    datePublished: "2024-11-02",
   },
 ];

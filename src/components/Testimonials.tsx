@@ -35,7 +35,16 @@ const Testimonials = () => {
                   <p className="text-xs text-foreground/80 leading-relaxed">
                     {testimonial.result}
                   </p>
-                  <p className="text-xs text-muted-foreground mt-2">{testimonial.city}</p>
+                  <div className="flex items-center justify-between mt-2">
+                    <p className="text-xs text-muted-foreground">{testimonial.city}</p>
+                    <p className="text-xs text-muted-foreground">
+                      {new Date(testimonial.datePublished).toLocaleDateString('ru-RU', { 
+                        year: 'numeric', 
+                        month: 'long', 
+                        day: 'numeric' 
+                      })}
+                    </p>
+                  </div>
                 </div>
               </CardContent>
             </Card>

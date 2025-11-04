@@ -181,4 +181,47 @@ export const FAQPageSchema = ({ items, url }: { items: FAQItem[]; url: string })
   return <JsonLd data={schema} />;
 };
 
-export default { JsonLd, OrganizationSchema, WebSiteSchema, BreadcrumbSchema, LegalServiceSchema, PersonSchema, FAQPageSchema };
+// Review schema (for individual reviews and aggregate rating)
+interface ReviewItem {
+  author: string;
+  rating: number;
+  reviewBody: string;
+  datePublished: string;
+}
+
+export const ReviewsSchema = ({ reviews }: { reviews: ReviewItem[] }) => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "@id": `${SITE.url}#organization`,
+    "name": SITE.name,
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "5",
+      "bestRating": "5",
+      "worstRating": "1",
+      "ratingCount": reviews.length.toString(),
+      "reviewCount": reviews.length.toString()
+    },
+    "review": reviews.map(review => ({
+      "@type": "Review",
+      "author": {
+        "@type": "Person",
+        "name": review.author
+      },
+      "reviewRating": {
+        "@type": "Rating",
+        "ratingValue": review.rating.toString(),
+        "bestRating": "5",
+        "worstRating": "1"
+      },
+      "reviewBody": review.reviewBody,
+      "datePublished": review.datePublished,
+      "inLanguage": "ru-RU"
+    }))
+  };
+
+  return <JsonLd data={schema} />;
+};
+
+export default { JsonLd, OrganizationSchema, WebSiteSchema, BreadcrumbSchema, LegalServiceSchema, PersonSchema, FAQPageSchema, ReviewsSchema };
