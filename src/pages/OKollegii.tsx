@@ -4,6 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Award, Users, Target, TrendingUp } from "lucide-react";
 import libraryImg from "@/assets/legal/library-vertical.jpg";
 import sotnikovImg from "@/assets/team/sotnikov.jpg";
+import lyutikovImg from "@/assets/team/lyutikov.jpg";
 
 const About = () => {
   return (
@@ -130,10 +131,11 @@ const About = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
               {[
                 {
-                  name: "Иванов Иван Иванович",
-                  position: "Управляющий партнёр",
-                  experience: "Стаж 18 лет",
+                  name: "Лютиков Иван Иванович",
+                  position: "Председатель коллегии адвокатов",
+                  experience: "Стаж 20 лет",
                   specialization: "Уголовное право, арбитраж",
+                  image: lyutikovImg,
                 },
                 {
                   name: "Петрова Мария Сергеевна",
