@@ -162,17 +162,51 @@ const Index = () => {
                     Защита прав граждан в различных сферах
                   </p>
                   <ul className="space-y-2">
-                    {serviceCategories.find(cat => cat.id === "individuals")?.items.slice(0, 5).map((service) => (
-                      <li key={service.id}>
-                        <Link
-                          to={`/uslugi/fizlitsa/${service.slug}`}
-                          className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                        >
-                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                          {service.title}
-                        </Link>
-                      </li>
-                    ))}
+                    <li>
+                      <Link
+                        to="/uslugi"
+                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                      >
+                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                        Уголовные дела
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/uslugi"
+                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                      >
+                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                        Гражданские дела
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/uslugi"
+                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                      >
+                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                        Семейные споры
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/uslugi"
+                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                      >
+                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                        Жилищные дела
+                      </Link>
+                    </li>
+                    <li>
+                      <Link
+                        to="/uslugi"
+                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                      >
+                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                        Наследство
+                      </Link>
+                    </li>
                   </ul>
                 </CardContent>
               </Card>
@@ -188,7 +222,7 @@ const Index = () => {
                   <ul className="space-y-2">
                     <li>
                       <Link
-                        to="/services/biz/arbitrazh/"
+                        to="/uslugi"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -197,7 +231,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        to="/services/biz/dogovory/"
+                        to="/uslugi"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -206,7 +240,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        to="/services/biz/nalogi/"
+                        to="/uslugi"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -215,7 +249,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        to="/services/biz/vzyskanie/"
+                        to="/uslugi"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -224,7 +258,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        to="/services/biz/bankrotstvo/"
+                        to="/uslugi"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
