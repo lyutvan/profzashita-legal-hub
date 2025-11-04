@@ -129,7 +129,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
               {[
                 {
                   name: "Лютиков Иван Иванович",
@@ -139,23 +139,11 @@ const About = () => {
                   image: lyutikovImg,
                 },
                 {
-                  name: "Петрова Мария Сергеевна",
-                  position: "Партнёр",
-                  experience: "Стаж 15 лет",
-                  specialization: "Гражданское право, семейные споры",
-                },
-                {
                   name: "Рыженко Дмитрий Петрович",
                   position: "Юрист",
                   experience: "Стаж 8 лет",
                   specialization: "Гражданское право, договорное право",
                   image: ryzhenkoImg,
-                },
-                {
-                  name: "Сидоров Алексей Петрович",
-                  position: "Старший адвокат",
-                  experience: "Стаж 12 лет",
-                  specialization: "Корпоративное право, споры с бизнесом",
                 },
                 {
                   name: "Сотников Дмитрий Валерьевич",
@@ -167,20 +155,14 @@ const About = () => {
               ].map((member, index) => (
                 <Card key={index} className="border-border hover:shadow-elegant transition-all">
                   <CardContent className="pt-6 text-center">
-                    {member.image ? (
-                      <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-accent/20">
-                        <img 
-                          src={member.image} 
-                          alt={member.name} 
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                    ) : (
-                      <div className="w-24 h-24 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                        <Users className="h-12 w-12 text-accent" />
-                      </div>
-                    )}
+                    <div className="w-48 h-48 rounded-lg overflow-hidden mx-auto mb-4 border-2 border-accent/20">
+                      <img 
+                        src={member.image} 
+                        alt={member.name} 
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
                     <h3 className="font-playfair text-xl font-semibold mb-2">{member.name}</h3>
                     <p className="text-accent font-medium mb-1">{member.position}</p>
                     <p className="text-sm text-muted-foreground mb-2">{member.experience}</p>
