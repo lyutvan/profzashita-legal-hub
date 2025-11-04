@@ -45,6 +45,7 @@ const Header = () => {
 
   const navigation = [
     { name: "Кейсы", path: "/keisy" },
+    { name: "Знания", path: "/knowledge" },
     { name: "Вопросы и ответы", path: "/faq" },
     { name: "О коллегии", path: "/o-kollegii" },
     { name: "Контакты", path: "/kontakty" },

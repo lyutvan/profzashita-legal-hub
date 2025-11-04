@@ -213,6 +213,74 @@ export const ArticleSchema = ({ headline, description, datePublished, author, ur
   return <JsonLd data={schema} />;
 };
 
+// BlogPosting schema (for blog articles)
+interface BlogPostingSchemaProps {
+  headline: string;
+  description: string;
+  datePublished: string;
+  dateModified: string;
+  authorName: string;
+  authorJobTitle: string;
+  url: string;
+  image?: string;
+  keywords?: string[];
+  articleSection?: string;
+}
+
+export const BlogPostingSchema = ({ 
+  headline, 
+  description, 
+  datePublished, 
+  dateModified,
+  authorName,
+  authorJobTitle,
+  url, 
+  image, 
+  keywords,
+  articleSection
+}: BlogPostingSchemaProps) => {
+  const schema: any = {
+    "@context": "https://schema.org",
+    "@type": "BlogPosting",
+    "@id": `${url}#post`,
+    "headline": headline,
+    "description": description,
+    "image": image || SITE.ogImage,
+    "inLanguage": "ru-RU",
+    "datePublished": datePublished,
+    "dateModified": dateModified,
+    "author": {
+      "@type": "Person",
+      "name": authorName,
+      "jobTitle": authorJobTitle,
+      "memberOf": { "@id": `${SITE.url}#organization` }
+    },
+    "publisher": {
+      "@type": "Organization",
+      "@id": `${SITE.url}#organization`,
+      "name": SITE.name,
+      "logo": {
+        "@type": "ImageObject",
+        "url": SITE.logo
+      }
+    },
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": url
+    }
+  };
+
+  if (articleSection) {
+    schema.articleSection = articleSection;
+  }
+
+  if (keywords && keywords.length > 0) {
+    schema.keywords = keywords.join(", ");
+  }
+
+  return <JsonLd data={schema} />;
+};
+
 // FAQPage schema
 interface FAQItem {
   question: string;
@@ -280,4 +348,4 @@ export const ReviewsSchema = ({ reviews }: { reviews: ReviewItem[] }) => {
   return <JsonLd data={schema} />;
 };
 
-export default { JsonLd, OrganizationSchema, WebSiteSchema, BreadcrumbSchema, LegalServiceSchema, PersonSchema, ArticleSchema, FAQPageSchema, ReviewsSchema };
+export default { JsonLd, OrganizationSchema, WebSiteSchema, BreadcrumbSchema, LegalServiceSchema, PersonSchema, ArticleSchema, BlogPostingSchema, FAQPageSchema, ReviewsSchema };
