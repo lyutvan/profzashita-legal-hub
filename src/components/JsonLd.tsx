@@ -157,6 +157,62 @@ export const PersonSchema = ({ name, jobTitle, image, url, credential }: PersonS
   return <JsonLd data={schema} />;
 };
 
+// Article schema (for case studies and blog posts)
+interface ArticleSchemaProps {
+  headline: string;
+  description: string;
+  datePublished: string;
+  author: string;
+  url: string;
+  image?: string;
+  articleBody?: string;
+}
+
+export const ArticleSchema = ({ headline, description, datePublished, author, url, image, articleBody }: ArticleSchemaProps) => {
+  const schema: any = {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "@id": `${url}#article`,
+    "headline": headline,
+    "description": description,
+    "datePublished": datePublished,
+    "dateModified": datePublished,
+    "author": {
+      "@type": "Organization",
+      "@id": `${SITE.url}#organization`,
+      "name": author
+    },
+    "publisher": {
+      "@type": "Organization",
+      "@id": `${SITE.url}#organization`,
+      "name": SITE.name,
+      "logo": {
+        "@type": "ImageObject",
+        "url": SITE.logo
+      }
+    },
+    "url": url,
+    "inLanguage": "ru-RU",
+    "mainEntityOfPage": {
+      "@type": "WebPage",
+      "@id": url
+    }
+  };
+
+  if (image) {
+    schema.image = {
+      "@type": "ImageObject",
+      "url": image
+    };
+  }
+
+  if (articleBody) {
+    schema.articleBody = articleBody;
+  }
+
+  return <JsonLd data={schema} />;
+};
+
 // FAQPage schema
 interface FAQItem {
   question: string;
@@ -224,4 +280,4 @@ export const ReviewsSchema = ({ reviews }: { reviews: ReviewItem[] }) => {
   return <JsonLd data={schema} />;
 };
 
-export default { JsonLd, OrganizationSchema, WebSiteSchema, BreadcrumbSchema, LegalServiceSchema, PersonSchema, FAQPageSchema, ReviewsSchema };
+export default { JsonLd, OrganizationSchema, WebSiteSchema, BreadcrumbSchema, LegalServiceSchema, PersonSchema, ArticleSchema, FAQPageSchema, ReviewsSchema };
