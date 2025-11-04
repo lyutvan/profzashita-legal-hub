@@ -67,13 +67,6 @@ const ArticleDetail = () => {
               <h1 className="font-playfair text-3xl md:text-5xl font-bold mb-6 leading-tight">{article.title}</h1>
               
               <div className="flex flex-wrap items-center gap-4 text-sm text-muted-foreground mb-8 pb-6 border-b border-border">
-                <div className="flex items-center gap-2">
-                  <img src={article.author.avatar} alt={article.author.name} className="w-10 h-10 rounded-full" onError={(e) => { e.currentTarget.src = '/images/authors/default.jpg'; }} />
-                  <div>
-                    <p className="font-medium text-foreground">{article.author.name}</p>
-                    <p className="text-xs">{article.author.role}</p>
-                  </div>
-                </div>
                 <div className="flex items-center gap-1">
                   <Calendar className="h-4 w-4" />
                   {new Date(article.datePublished).toLocaleDateString('ru-RU', { year: 'numeric', month: 'long', day: 'numeric' })}
@@ -132,9 +125,6 @@ const ArticleDetail = () => {
                     </Button>
                   </div>
 
-                  <div className="mt-12">
-                    <AuthorBio author={article.author} />
-                  </div>
                 </div>
 
                 <aside className="lg:col-span-1">
