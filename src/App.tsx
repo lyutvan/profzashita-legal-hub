@@ -5,7 +5,9 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import Index from "./pages/Index";
 import Uslugi from "./pages/Uslugi";
+import UslugiNew from "./pages/UslugiNew";
 import ServiceDetail from "./pages/ServiceDetail";
+import ClusterServiceRouter from "./pages/ClusterServiceRouter";
 import OKollegii from "./pages/OKollegii";
 import Keisy from "./pages/Keisy";
 import FAQ from "./pages/FAQ";
@@ -27,8 +29,10 @@ const App = () => (
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Index />} />
-          <Route path="/uslugi" element={<Uslugi />} />
-          <Route path="/uslugi/:categorySlug/:serviceSlug" element={<ServiceDetail />} />
+          <Route path="/uslugi-old" element={<Uslugi />} />
+          <Route path="/uslugi" element={<UslugiNew />} />
+          <Route path="/uslugi/:clusterSlug/:situationSlug" element={<ClusterServiceRouter />} />
+          <Route path="/uslugi/:categorySlug/:serviceSlug/old" element={<ServiceDetail />} />
           <Route path="/o-kollegii" element={<OKollegii />} />
           <Route path="/keisy" element={<Keisy />} />
           <Route path="/faq" element={<FAQ />} />
