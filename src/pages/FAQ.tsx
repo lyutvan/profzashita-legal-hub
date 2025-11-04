@@ -5,6 +5,8 @@ import { Helmet } from "react-helmet";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { HelpCircle } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
+import { FAQPageSchema, BreadcrumbSchema } from "@/components/JsonLd";
+import { SITE } from "@/config/site";
 
 const faqCategories = [
   {
@@ -94,12 +96,23 @@ const faqCategories = [
 ];
 
 const FAQ = () => {
+  const faqItems = faqCategories.flatMap(category => 
+    category.questions.map(q => ({ question: q.q, answer: q.a }))
+  );
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>Часто задаваемые вопросы — Профзащита</title>
         <meta name="description" content="Ответы на популярные вопросы о работе коллегии адвокатов Профзащита: консультации, стоимость, процесс работы, гарантии." />
       </Helmet>
+      
+      <BreadcrumbSchema items={[
+        { name: "Главная", url: SITE.url },
+        { name: "Вопросы и ответы", url: `${SITE.url}faq/` }
+      ]} />
+      
+      <FAQPageSchema items={faqItems} url={`${SITE.url}faq/`} />
       
       <Header />
       

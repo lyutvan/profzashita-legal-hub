@@ -4,8 +4,7 @@ import Footer from "@/components/Footer";
 import LegalBackground from "@/components/LegalBackground";
 import LeadForm from "@/components/LeadForm";
 import Testimonials from "@/components/Testimonials";
-import { OrganizationSchema, ReviewSchema } from "@/components/JsonLd";
-import { testimonials } from "@/data/testimonials";
+import { OrganizationSchema, WebSiteSchema } from "@/components/JsonLd";
 import { serviceCategories } from "@/data/services";
 import { Shield, Target, Award, Users, CheckCircle, Phone } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -17,14 +16,7 @@ const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <OrganizationSchema />
-      <ReviewSchema
-        reviews={testimonials.map((t) => ({
-          author: t.name,
-          rating: t.rating,
-          reviewBody: t.quote,
-          datePublished: "2024-12-01",
-        }))}
-      />
+      <WebSiteSchema />
       <Header />
       
       <main className="flex-1">

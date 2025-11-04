@@ -6,10 +6,60 @@ import libraryImg from "@/assets/legal/library-vertical.jpg";
 import sotnikovImg from "@/assets/team/sotnikov.jpg";
 import lyutikovImg from "@/assets/team/lyutikov.jpg";
 import ryzhenkoImg from "@/assets/team/ryzhenko.jpg";
+import { PersonSchema, BreadcrumbSchema } from "@/components/JsonLd";
+import { SITE } from "@/config/site";
+import { Helmet } from "react-helmet";
+
+const teamMembers = [
+  {
+    name: "Лютиков Иван Иванович",
+    position: "Председатель коллегии адвокатов",
+    experience: "Стаж 20 лет",
+    specialization: "Уголовное право, арбитраж",
+    image: lyutikovImg,
+    slug: "lyutikov"
+  },
+  {
+    name: "Рыженко Дмитрий Петрович",
+    position: "Юрист",
+    experience: "Стаж 8 лет",
+    specialization: "Гражданское право, договорное право",
+    image: ryzhenkoImg,
+    slug: "ryzhenko"
+  },
+  {
+    name: "Сотников Дмитрий Валерьевич",
+    position: "Адвокат",
+    experience: "Стаж 10 лет",
+    specialization: "Трудовое право, защита прав работников",
+    image: sotnikovImg,
+    slug: "sotnikov"
+  }
+];
 
 const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>О коллегии — Профзащита</title>
+        <meta name="description" content="Команда опытных адвокатов Профзащита: 15+ лет опыта, 500+ выигранных дел, 98% довольных клиентов. Профессиональная юридическая помощь в Москве." />
+      </Helmet>
+
+      <BreadcrumbSchema items={[
+        { name: "Главная", url: SITE.url },
+        { name: "О коллегии", url: `${SITE.url}o-kollegii/` }
+      ]} />
+
+      {teamMembers.map(member => (
+        <PersonSchema 
+          key={member.slug}
+          name={member.name}
+          jobTitle={member.position}
+          image={`${SITE.url}${member.image.split('/').pop()}`}
+          url={`${SITE.url}o-kollegii/#${member.slug}`}
+        />
+      ))}
+
       <Header />
       
       <main className="flex-1">
@@ -130,30 +180,8 @@ const About = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {[
-                {
-                  name: "Лютиков Иван Иванович",
-                  position: "Председатель коллегии адвокатов",
-                  experience: "Стаж 20 лет",
-                  specialization: "Уголовное право, арбитраж",
-                  image: lyutikovImg,
-                },
-                {
-                  name: "Рыженко Дмитрий Петрович",
-                  position: "Юрист",
-                  experience: "Стаж 8 лет",
-                  specialization: "Гражданское право, договорное право",
-                  image: ryzhenkoImg,
-                },
-                {
-                  name: "Сотников Дмитрий Валерьевич",
-                  position: "Адвокат",
-                  experience: "Стаж 10 лет",
-                  specialization: "Трудовое право, защита прав работников",
-                  image: sotnikovImg,
-                },
-              ].map((member, index) => (
-                <Card key={index} className="border-border hover:shadow-elegant transition-all">
+              {teamMembers.map((member, index) => (
+                <Card key={index} id={member.slug} className="border-border hover:shadow-elegant transition-all">
                   <CardContent className="pt-6 text-center">
                     <div className="w-48 h-48 rounded-lg overflow-hidden mx-auto mb-4 border-2 border-accent/20">
                       <img 

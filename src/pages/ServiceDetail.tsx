@@ -9,6 +9,8 @@ import { serviceCategories, ServiceItem } from "@/data/services";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle2, Clock, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { LegalServiceSchema, BreadcrumbSchema } from "@/components/JsonLd";
+import { SITE } from "@/config/site";
 
 const ServiceDetail = () => {
   const { categorySlug, serviceSlug } = useParams();
@@ -21,30 +23,26 @@ const ServiceDetail = () => {
     return <Navigate to="/uslugi" replace />;
   }
 
+  const currentUrl = `${SITE.url}uslugi/${categorySlug}/${serviceSlug}/`;
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>{service.title} — Профзащита</title>
         <meta name="description" content={service.shortDescription} />
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Service",
-            "name": service.title,
-            "description": service.shortDescription,
-            "provider": {
-              "@type": "LegalService",
-              "name": "Профзащита",
-              "areaServed": "Москва"
-            },
-            "areaServed": {
-              "@type": "City",
-              "name": "Москва"
-            },
-            "priceRange": "RUB"
-          })}
-        </script>
       </Helmet>
+
+      <BreadcrumbSchema items={[
+        { name: "Главная", url: SITE.url },
+        { name: "Услуги", url: `${SITE.url}uslugi/` },
+        { name: category.title, url: `${SITE.url}uslugi/${categorySlug}/` },
+        { name: service.title, url: currentUrl }
+      ]} />
+
+      <LegalServiceSchema 
+        serviceType={service.title}
+        url={currentUrl}
+      />
 
       <Header />
 

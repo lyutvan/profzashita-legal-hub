@@ -20,6 +20,8 @@ import {
   Shield
 } from "lucide-react";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
+import { LegalServiceSchema, BreadcrumbSchema, FAQPageSchema } from "@/components/JsonLd";
+import { SITE } from "@/config/site";
 
 interface ClusterServicePageProps {
   situation: ServiceSituation;
@@ -34,73 +36,46 @@ const ClusterServicePage = ({
   clusterSlug,
   allSituations 
 }: ClusterServicePageProps) => {
+  const currentUrl = `${SITE.url}uslugi/${clusterSlug}/${situation.slug}/`;
+  
   return (
     <div className="min-h-screen flex flex-col bg-background">
       <Helmet>
         <title>{situation.metaTitle}</title>
         <meta name="description" content={situation.metaDescription} />
-        <link rel="canonical" href={`https://prof-zashita.ru/uslugi/${clusterSlug}/${situation.slug}`} />
+        <link rel="canonical" href={currentUrl} />
         
         {/* OpenGraph */}
         <meta property="og:title" content={situation.metaTitle} />
         <meta property="og:description" content={situation.metaDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`https://prof-zashita.ru/uslugi/${clusterSlug}/${situation.slug}`} />
+        <meta property="og:url" content={currentUrl} />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={situation.metaTitle} />
         <meta name="twitter:description" content={situation.metaDescription} />
-
-        {/* JSON-LD Schema */}
-        <script type="application/ld+json">
-          {JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "LegalService",
-            "name": situation.title,
-            "description": situation.subtitle,
-            "provider": {
-              "@type": "LegalService",
-              "name": "КА «Профзащита»",
-              "address": {
-                "@type": "PostalAddress",
-                "streetAddress": "Дегунинский проспект 1к2, офис 303",
-                "addressLocality": "Москва",
-                "postalCode": "125633",
-                "addressCountry": "RU"
-              },
-              "telephone": "+7 (916) 859-76-54"
-            },
-            "areaServed": {
-              "@type": "City",
-              "name": "Москва"
-            },
-            "offers": {
-              "@type": "Offer",
-              "price": situation.priceFrom.toString(),
-              "priceCurrency": "RUB"
-            }
-          })}
-        </script>
-
-        {/* FAQ Schema */}
-        {situation.faqs.length > 0 && (
-          <script type="application/ld+json">
-            {JSON.stringify({
-              "@context": "https://schema.org",
-              "@type": "FAQPage",
-              "mainEntity": situation.faqs.map(faq => ({
-                "@type": "Question",
-                "name": faq.question,
-                "acceptedAnswer": {
-                  "@type": "Answer",
-                  "text": faq.answer
-                }
-              }))
-            })}
-          </script>
-        )}
       </Helmet>
+
+      <BreadcrumbSchema items={[
+        { name: "Главная", url: SITE.url },
+        { name: "Услуги", url: `${SITE.url}uslugi/` },
+        { name: clusterTitle, url: `${SITE.url}uslugi/#${clusterSlug}` },
+        { name: situation.title, url: currentUrl }
+      ]} />
+
+      <LegalServiceSchema 
+        serviceType={situation.title}
+        url={currentUrl}
+        priceFrom={situation.priceFrom?.toString()}
+      />
+
+      {situation.faqs.length > 0 && (
+        <FAQPageSchema 
+          items={situation.faqs.map(faq => ({ question: faq.question, answer: faq.answer }))}
+          url={currentUrl}
+        />
+      )}
 
       <Header />
 

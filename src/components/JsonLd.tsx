@@ -1,99 +1,184 @@
 import { Helmet } from "react-helmet";
+import { SITE } from "@/config/site";
 
-interface OrganizationSchemaProps {
-  name?: string;
-  url?: string;
-  logo?: string;
-  phone?: string;
-  email?: string;
-  address?: {
-    streetAddress: string;
-    addressLocality: string;
-    postalCode: string;
-    addressCountry: string;
-  };
+interface JsonLdProps {
+  data: object;
 }
 
-interface ReviewSchemaProps {
-  reviews: Array<{
-    author: string;
-    rating: number;
-    reviewBody: string;
-    datePublished: string;
-  }>;
-}
+export const JsonLd = ({ data }: JsonLdProps) => {
+  return (
+    <Helmet>
+      <script type="application/ld+json">{JSON.stringify(data)}</script>
+    </Helmet>
+  );
+};
 
-export const OrganizationSchema = ({
-  name = "Коллегия адвокатов города Москвы \"ПРОФЗАЩИТА\"",
-  url = "https://profzashchita.ru",
-  logo = "https://profzashchita.ru/logo.svg",
-  phone = "+7 (916) 859-76-54",
-  email = "profzashchita@internet.ru",
-  address = {
-    streetAddress: "ул. Примерная, д. 1",
-    addressLocality: "Москва",
-    postalCode: "101000",
-    addressCountry: "RU",
-  },
-}: OrganizationSchemaProps) => {
+// Organization + LocalBusiness + LegalService schema
+export const OrganizationSchema = () => {
   const schema = {
+    "@context": "https://schema.org",
+    "@type": ["LegalService", "LocalBusiness", "Organization"],
+    "@id": `${SITE.url}#organization`,
+    "inLanguage": "ru-RU",
+    "name": SITE.name,
+    "legalName": SITE.legalName,
+    "url": SITE.url,
+    "logo": SITE.logo,
+    "image": SITE.ogImage,
+    "telephone": SITE.phone,
+    "email": SITE.email,
+    "address": {
+      "@type": "PostalAddress",
+      "addressCountry": SITE.address.country,
+      "addressLocality": SITE.address.city,
+      "streetAddress": SITE.address.street,
+      "postalCode": SITE.address.postal
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": SITE.geo.lat,
+      "longitude": SITE.geo.lng
+    },
+    "openingHoursSpecification": [{
+      "@type": "OpeningHoursSpecification",
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "opens": SITE.hours.opens,
+      "closes": SITE.hours.closes
+    }],
+    "areaServed": SITE.areaServed,
+    "sameAs": SITE.sameAs
+  };
+
+  return <JsonLd data={schema} />;
+};
+
+// WebSite schema
+export const WebSiteSchema = () => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "@id": `${SITE.url}#website`,
+    "url": SITE.url,
+    "name": "Профзащита",
+    "inLanguage": "ru-RU",
+    "publisher": { "@id": `${SITE.url}#organization` }
+  };
+
+  return <JsonLd data={schema} />;
+};
+
+// BreadcrumbList schema
+interface BreadcrumbItem {
+  name: string;
+  url: string;
+}
+
+export const BreadcrumbSchema = ({ items }: { items: BreadcrumbItem[] }) => {
+  const schema = {
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "item": item.url
+    }))
+  };
+
+  return <JsonLd data={schema} />;
+};
+
+// LegalService schema for service pages
+interface LegalServiceSchemaProps {
+  serviceType: string;
+  url: string;
+  priceFrom?: string;
+}
+
+export const LegalServiceSchema = ({ serviceType, url, priceFrom }: LegalServiceSchemaProps) => {
+  const schema: any = {
     "@context": "https://schema.org",
     "@type": "LegalService",
-    name,
-    url,
-    logo,
-    telephone: phone,
-    email,
-    address: {
-      "@type": "PostalAddress",
-      ...address,
-    },
-    openingHours: "Mo-Fr 09:00-19:00, Sa 10:00-16:00",
-    priceRange: "₽₽₽",
-    areaServed: {
-      "@type": "Country",
-      name: "Russia",
-    },
+    "@id": `${url}#service`,
+    "serviceType": serviceType,
+    "provider": { "@id": `${SITE.url}#organization` },
+    "url": url,
+    "inLanguage": "ru-RU",
+    "areaServed": SITE.areaServed
   };
 
-  return (
-    <Helmet>
-      <script type="application/ld+json">{JSON.stringify(schema)}</script>
-    </Helmet>
-  );
+  if (priceFrom) {
+    schema.offers = {
+      "@type": "Offer",
+      "priceCurrency": "RUB",
+      "priceSpecification": {
+        "@type": "PriceSpecification",
+        "minPrice": priceFrom
+      },
+      "availability": "https://schema.org/InStock"
+    };
+  }
+
+  return <JsonLd data={schema} />;
 };
 
-export const ReviewSchema = ({ reviews }: ReviewSchemaProps) => {
+// Person/Attorney schema
+interface PersonSchemaProps {
+  name: string;
+  jobTitle: string;
+  image?: string;
+  url: string;
+  credential?: string;
+}
+
+export const PersonSchema = ({ name, jobTitle, image, url, credential }: PersonSchemaProps) => {
+  const schema: any = {
+    "@context": "https://schema.org",
+    "@type": ["Person", "Attorney"],
+    "@id": `${url}#person`,
+    "name": name,
+    "jobTitle": jobTitle,
+    "memberOf": { "@id": `${SITE.url}#organization` },
+    "url": url,
+    "inLanguage": "ru-RU"
+  };
+
+  if (image) {
+    schema.image = image;
+  }
+
+  if (credential) {
+    schema.hasCredential = [{
+      "@type": "EducationalOccupationalCredential",
+      "name": credential
+    }];
+  }
+
+  return <JsonLd data={schema} />;
+};
+
+// FAQPage schema
+interface FAQItem {
+  question: string;
+  answer: string;
+}
+
+export const FAQPageSchema = ({ items, url }: { items: FAQItem[]; url: string }) => {
   const schema = {
     "@context": "https://schema.org",
-    "@type": "Organization",
-    name: "Коллегия адвокатов города Москвы \"ПРОФЗАЩИТА\"",
-    aggregateRating: {
-      "@type": "AggregateRating",
-      ratingValue: "5",
-      reviewCount: reviews.length.toString(),
-    },
-    review: reviews.map((review) => ({
-      "@type": "Review",
-      author: {
-        "@type": "Person",
-        name: review.author,
-      },
-      reviewRating: {
-        "@type": "Rating",
-        ratingValue: review.rating.toString(),
-        bestRating: "5",
-      },
-      reviewBody: review.reviewBody,
-      datePublished: review.datePublished,
-    })),
+    "@type": "FAQPage",
+    "@id": `${url}#page`,
+    "mainEntity": items.map(item => ({
+      "@type": "Question",
+      "name": item.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": item.answer
+      }
+    }))
   };
 
-  return (
-    <Helmet>
-      <script type="application/ld+json">{JSON.stringify(schema)}</script>
-    </Helmet>
-  );
+  return <JsonLd data={schema} />;
 };
 
-export default { OrganizationSchema, ReviewSchema };
+export default { JsonLd, OrganizationSchema, WebSiteSchema, BreadcrumbSchema, LegalServiceSchema, PersonSchema, FAQPageSchema };
