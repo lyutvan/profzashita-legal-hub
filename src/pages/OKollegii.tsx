@@ -3,6 +3,7 @@ import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Users, Target, TrendingUp } from "lucide-react";
 import libraryImg from "@/assets/legal/library-vertical.jpg";
+import sotnikovImg from "@/assets/team/sotnikov.jpg";
 
 const About = () => {
   return (
@@ -126,7 +127,7 @@ const About = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-5xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 max-w-6xl mx-auto">
               {[
                 {
                   name: "Иванов Иван Иванович",
@@ -146,12 +147,30 @@ const About = () => {
                   experience: "Стаж 12 лет",
                   specialization: "Корпоративное право, споры с бизнесом",
                 },
+                {
+                  name: "Сотников Дмитрий Валерьевич",
+                  position: "Адвокат",
+                  experience: "Стаж 10 лет",
+                  specialization: "Трудовое право, защита прав работников",
+                  image: sotnikovImg,
+                },
               ].map((member, index) => (
                 <Card key={index} className="border-border hover:shadow-elegant transition-all">
                   <CardContent className="pt-6 text-center">
-                    <div className="w-24 h-24 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                      <Users className="h-12 w-12 text-accent" />
-                    </div>
+                    {member.image ? (
+                      <div className="w-24 h-24 rounded-full overflow-hidden mx-auto mb-4 border-2 border-accent/20">
+                        <img 
+                          src={member.image} 
+                          alt={member.name} 
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
+                      </div>
+                    ) : (
+                      <div className="w-24 h-24 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
+                        <Users className="h-12 w-12 text-accent" />
+                      </div>
+                    )}
                     <h3 className="font-playfair text-xl font-semibold mb-2">{member.name}</h3>
                     <p className="text-accent font-medium mb-1">{member.position}</p>
                     <p className="text-sm text-muted-foreground mb-2">{member.experience}</p>
