@@ -174,8 +174,8 @@ const Uslugi = () => {
                   <div className="space-y-3 text-sm">
                     <p>
                       <strong>Телефон:</strong><br />
-                      <a href="tel:+79999999999" className="text-accent hover:underline">
-                        +7 999 999 99 99
+                      <a href="tel:+79168597654" className="text-accent hover:underline">
+                        +7 (916) 859-76-54
                       </a>
                     </p>
                     <p>

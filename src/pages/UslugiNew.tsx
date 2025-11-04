@@ -49,7 +49,7 @@ const UslugiNew = () => {
                   </Link>
                 </Button>
                 <Button size="lg" variant="outline" className="border-white/20 bg-white/10 hover:bg-white/20 text-white" asChild>
-                  <a href="tel:+79999999999">
+                  <a href="tel:+79168597654">
                     <Phone className="mr-2 h-5 w-5" />
                     Позвонить сейчас
                   </a>
@@ -289,9 +289,9 @@ const UslugiNew = () => {
                       className="border-white/20 bg-white/10 hover:bg-white/20 text-white"
                       asChild
                     >
-                      <a href="tel:+79999999999">
+                      <a href="tel:+79168597654">
                         <Phone className="mr-2 h-5 w-5" />
-                        +7 (999) 999-99-99
+                        +7 (916) 859-76-54
                       </a>
                     </Button>
                   </div>

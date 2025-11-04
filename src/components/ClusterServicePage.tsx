@@ -69,7 +69,7 @@ const ClusterServicePage = ({
                 "postalCode": "125633",
                 "addressCountry": "RU"
               },
-              "telephone": "+7 (999) 999-99-99"
+              "telephone": "+7 (916) 859-76-54"
             },
             "areaServed": {
               "@type": "City",
@@ -377,9 +377,9 @@ const ClusterServicePage = ({
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center">
                       <Button size="lg" className="bg-[#C9A227] hover:bg-[#B08E1F]" asChild>
-                        <a href="tel:+79999999999">
+                        <a href="tel:+79168597654">
                           <Phone className="mr-2 h-5 w-5" />
-                          +7 (999) 999-99-99
+                          +7 (916) 859-76-54
                         </a>
                       </Button>
                       <Button size="lg" variant="outline" asChild>
@@ -415,14 +415,14 @@ const ClusterServicePage = ({
                       Работаем 24/7, выезд в течение 2 часов
                     </p>
                     <a 
-                      href="tel:+79999999999"
+                      href="tel:+79168597654"
                       className="block text-2xl font-bold text-[#C9A227] hover:text-[#B08E1F] transition-colors mb-4"
                     >
-                      +7 (999) 999-99-99
+                      +7 (916) 859-76-54
                     </a>
                     <div className="flex gap-2">
                       <Button className="flex-1 bg-[#C9A227] hover:bg-[#B08E1F]" asChild>
-                        <a href="tel:+79999999999">
+                        <a href="tel:+79168597654">
                           <Phone className="mr-2 h-4 w-4" />
                           Позвонить
                         </a>
@@ -492,7 +492,7 @@ const ClusterServicePage = ({
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border p-4 shadow-lg">
         <div className="flex gap-2">
           <Button className="flex-1 bg-[#C9A227] hover:bg-[#B08E1F]" asChild>
-            <a href="tel:+79999999999">
+            <a href="tel:+79168597654">
               <Phone className="mr-2 h-4 w-4" />
               Позвонить
             </a>

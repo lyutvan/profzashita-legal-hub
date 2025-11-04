@@ -27,7 +27,7 @@ export const OrganizationSchema = ({
   name = "Коллегия адвокатов города Москвы \"ПРОФЗАЩИТА\"",
   url = "https://profzashchita.ru",
   logo = "https://profzashchita.ru/logo.svg",
-  phone = "+7 999 999 99 99",
+  phone = "+7 (916) 859-76-54",
   email = "profzashchita@internet.ru",
   address = {
     streetAddress: "ул. Примерная, д. 1",
