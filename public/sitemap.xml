@@ -68,6 +68,16 @@
   <url><loc>https://prof-zashita.ru/uslugi/grazhdanskie/potrebitelskie-spory</loc><priority>0.7</priority></url>
   <url><loc>https://prof-zashita.ru/uslugi/grazhdanskie/strakhovye-spory</loc><priority>0.8</priority></url>
 
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/uk-119</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/uk-137</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/uk-171</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/uk-112</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/uk-113</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/uk-114</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/uk-115</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/amnesty</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/parole</loc><priority>0.8</priority></url>
+
   <!-- Арбитраж и бизнес -->
   <url><loc>https://prof-zashita.ru/uslugi/arbitrazh/bankrotstvo</loc><priority>0.9</priority></url>
   <url><loc>https://prof-zashita.ru/uslugi/arbitrazh/nalogovye-spory</loc><priority>0.8</priority></url>
