@@ -166,11 +166,8 @@ const Contacts = () => {
                 <CardContent className="pt-6">
                   <div className="space-y-3 text-sm text-muted-foreground">
                     <p><span className="font-semibold text-foreground">Полное наименование:</span> Коллегия адвокатов города Москвы «ПРОФЗАЩИТА»</p>
-                    <p><span className="font-semibold text-foreground">ИНН:</span> 7700000000</p>
-                    <p><span className="font-semibold text-foreground">ОГРН:</span> 1000000000000</p>
                     <p><span className="font-semibold text-foreground">Адрес:</span> 125633, г. Москва, ул. Дегунинский проспект 1к2, офис 303</p>
                     <p><span className="font-semibold text-foreground">Регистрация:</span> Адвокатская палата города Москвы</p>
-                    <p><span className="font-semibold text-foreground">Регистрационный номер:</span> 77/00000</p>
                   </div>
                 </CardContent>
               </Card>
