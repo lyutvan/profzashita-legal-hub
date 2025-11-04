@@ -1,7 +1,7 @@
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "./ui/card";
 import { Badge } from "./ui/badge";
-import { Calendar, Clock, User } from "lucide-react";
+import { Calendar, Clock } from "lucide-react";
 import { Article } from "@/data/articles";
 
 interface ArticleCardProps {
@@ -42,10 +42,6 @@ const ArticleCard = ({ article }: ArticleCardProps) => {
           
           {/* Meta Info */}
           <div className="flex flex-wrap items-center gap-4 text-xs text-muted-foreground pt-4 border-t border-border">
-            <div className="flex items-center gap-1">
-              <User className="h-3 w-3" />
-              <span>{article.author.name.split(' ')[0]} {article.author.name.split(' ')[1][0]}.</span>
-            </div>
             <div className="flex items-center gap-1">
               <Calendar className="h-3 w-3" />
               <span>
