@@ -17,6 +17,7 @@ export interface ServiceSituation {
   metaDescription: string;
   h1: string;
   subtitle: string;
+  ogImage?: string; // Open Graph image for social sharing
   risks: string[];
   checklist: string[];
   strategy: string[];

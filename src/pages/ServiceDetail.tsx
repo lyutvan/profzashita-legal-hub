@@ -24,12 +24,31 @@ const ServiceDetail = () => {
   }
 
   const currentUrl = `${SITE.url}uslugi/${categorySlug}/${serviceSlug}/`;
+  const ogImage = `${SITE.url}og-cover.jpg`; // Default OG image
 
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
         <title>{service.title} — Профзащита</title>
         <meta name="description" content={service.shortDescription} />
+        <link rel="canonical" href={currentUrl} />
+        
+        {/* OpenGraph */}
+        <meta property="og:title" content={`${service.title} — Профзащита`} />
+        <meta property="og:description" content={service.shortDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={currentUrl} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="Профзащита" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={`${service.title} — Профзащита`} />
+        <meta name="twitter:description" content={service.shortDescription} />
+        <meta name="twitter:image" content={ogImage} />
       </Helmet>
 
       <BreadcrumbSchema items={[

@@ -4,10 +4,35 @@ import ContactForm from "@/components/ContactForm";
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Helmet } from "react-helmet";
+import { SITE } from "@/config/site";
 
 const Contacts = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Контакты — Профзащита</title>
+        <meta name="description" content="Контакты коллегии адвокатов Профзащита: телефон, email, адрес офиса в Москве. Бесплатная консультация по телефону." />
+        <link rel="canonical" href={`${SITE.url}kontakty/`} />
+        
+        {/* OpenGraph */}
+        <meta property="og:title" content="Контакты — Коллегия адвокатов Профзащита" />
+        <meta property="og:description" content="Свяжитесь с нами: +7 (916) 859-76-54. Офис в Москве. Бесплатная консультация." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${SITE.url}kontakty/`} />
+        <meta property="og:image" content={SITE.ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="Профзащита" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Контакты — Профзащита" />
+        <meta name="twitter:description" content="Свяжитесь с нами: +7 (916) 859-76-54. Бесплатная консультация." />
+        <meta name="twitter:image" content={SITE.ogImage} />
+      </Helmet>
+      
       <Header />
       
       <main className="flex-1">

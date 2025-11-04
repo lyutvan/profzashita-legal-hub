@@ -43,6 +43,24 @@ const About = () => {
       <Helmet>
         <title>О коллегии — Профзащита</title>
         <meta name="description" content="Команда опытных адвокатов Профзащита: 15+ лет опыта, 500+ выигранных дел, 98% довольных клиентов. Профессиональная юридическая помощь в Москве." />
+        <link rel="canonical" href={`${SITE.url}o-kollegii/`} />
+        
+        {/* OpenGraph */}
+        <meta property="og:title" content="О коллегии адвокатов Профзащита" />
+        <meta property="og:description" content="15+ лет опыта, 500+ выигранных дел, 98% довольных клиентов. Команда профессиональных адвокатов в Москве." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${SITE.url}o-kollegii/`} />
+        <meta property="og:image" content={SITE.ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="Профзащита" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="О коллегии — Профзащита" />
+        <meta name="twitter:description" content="15+ лет опыта, 500+ выигранных дел. Команда профессиональных адвокатов." />
+        <meta name="twitter:image" content={SITE.ogImage} />
       </Helmet>
 
       <BreadcrumbSchema items={[

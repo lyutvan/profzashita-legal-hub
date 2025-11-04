@@ -37,6 +37,8 @@ const ClusterServicePage = ({
   allSituations 
 }: ClusterServicePageProps) => {
   const currentUrl = `${SITE.url}uslugi/${clusterSlug}/${situation.slug}/`;
+  const ogImage = situation.ogImage || `${SITE.url}og-cover.jpg`;
+  const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${SITE.url}${ogImage.replace(/^\//, '')}`;
   
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -50,11 +52,17 @@ const ClusterServicePage = ({
         <meta property="og:description" content={situation.metaDescription} />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={currentUrl} />
+        <meta property="og:image" content={ogImageAbsolute} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="Профзащита" />
         
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content={situation.metaTitle} />
         <meta name="twitter:description" content={situation.metaDescription} />
+        <meta name="twitter:image" content={ogImageAbsolute} />
       </Helmet>
 
       <BreadcrumbSchema items={[

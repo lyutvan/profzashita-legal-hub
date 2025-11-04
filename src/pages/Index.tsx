@@ -12,10 +12,35 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import courtColumnsImg from "@/assets/legal/court-columns.jpg";
+import { Helmet } from "react-helmet";
+import { SITE } from "@/config/site";
 
 const Index = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Коллегия адвокатов Профзащита — юридическая помощь в Москве</title>
+        <meta name="description" content="Профессиональная юридическая помощь в Москве. Уголовные, гражданские, корпоративные дела. Более 500 выигранных дел. Бесплатная консультация." />
+        <link rel="canonical" href={SITE.url} />
+        
+        {/* OpenGraph */}
+        <meta property="og:title" content="Коллегия адвокатов Профзащита — премиум-юридические услуги" />
+        <meta property="og:description" content="15+ лет опыта, 500+ выигранных дел, 98% довольных клиентов. Профессиональная защита в уголовных, гражданских и корпоративных делах." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={SITE.url} />
+        <meta property="og:image" content={SITE.ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="Профзащита" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Коллегия адвокатов Профзащита" />
+        <meta name="twitter:description" content="Профессиональная юридическая помощь в Москве. 15+ лет опыта, 500+ выигранных дел." />
+        <meta name="twitter:image" content={SITE.ogImage} />
+      </Helmet>
+      
       <OrganizationSchema />
       <WebSiteSchema />
       <ReviewsSchema reviews={testimonials.map(t => ({

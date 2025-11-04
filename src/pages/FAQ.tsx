@@ -105,6 +105,24 @@ const FAQ = () => {
       <Helmet>
         <title>Часто задаваемые вопросы — Профзащита</title>
         <meta name="description" content="Ответы на популярные вопросы о работе коллегии адвокатов Профзащита: консультации, стоимость, процесс работы, гарантии." />
+        <link rel="canonical" href={`${SITE.url}faq/`} />
+        
+        {/* OpenGraph */}
+        <meta property="og:title" content="Часто задаваемые вопросы — Профзащита" />
+        <meta property="og:description" content="Ответы на популярные вопросы о работе коллегии адвокатов: консультации, стоимость, гарантии, процесс работы." />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${SITE.url}faq/`} />
+        <meta property="og:image" content={SITE.ogImage} />
+        <meta property="og:image:width" content="1200" />
+        <meta property="og:image:height" content="630" />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="Профзащита" />
+        
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="FAQ — Профзащита" />
+        <meta name="twitter:description" content="Ответы на популярные вопросы о работе коллегии адвокатов." />
+        <meta name="twitter:image" content={SITE.ogImage} />
       </Helmet>
       
       <BreadcrumbSchema items={[
