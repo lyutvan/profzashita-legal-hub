@@ -44,7 +44,6 @@ const Header = () => {
   }, [location.pathname]);
 
   const navigation = [
-    { name: "Главная", path: "/" },
     { name: "Кейсы", path: "/keisy" },
     { name: "Вопросы и ответы", path: "/faq" },
     { name: "О коллегии", path: "/o-kollegii" },

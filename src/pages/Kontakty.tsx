@@ -49,7 +49,7 @@ const Contacts = () => {
                       <div>
                         <h3 className="font-semibold mb-2">Телефон</h3>
                         <a href="tel:+79168597654" className="text-lg text-accent hover:underline">
-                          +7 (916) 859‑76‑54
+                          +7 (916) 859-76-54
                         </a>
                         <p className="text-sm text-muted-foreground mt-1">
                           Звоните в любое время
