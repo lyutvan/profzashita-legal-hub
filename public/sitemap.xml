@@ -42,6 +42,18 @@
     <changefreq>yearly</changefreq>
   </url>
 
+  <!-- Audience Pages -->
+  <url>
+    <loc>https://prof-zashita.ru/services/phys</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/services/biz</loc>
+    <priority>0.9</priority>
+    <changefreq>weekly</changefreq>
+  </url>
+
   <!-- Уголовные дела -->
   <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/zaderzhanie</loc><priority>0.8</priority></url>
   <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/obysk</loc><priority>0.8</priority></url>

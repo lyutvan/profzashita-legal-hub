@@ -5,14 +5,8 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { serviceClusters } from "@/data/services-clusters";
-import { Scale, Briefcase, Building, Shield, Clock, Users, Award, CheckCircle2, TrendingUp, Phone } from "lucide-react";
-
-const iconMap: Record<string, any> = {
-  scale: Scale,
-  briefcase: Briefcase,
-  building: Building
-};
+import { getTopServices, audienceConfig } from "@/data/services-audiences";
+import { Shield, Clock, Users, Award, CheckCircle2, TrendingUp, Phone, UserCircle, Building2 } from "lucide-react";
 
 const UslugiNew = () => {
   return (
@@ -95,62 +89,108 @@ const UslugiNew = () => {
           </div>
         </section>
 
-        {/* Services Clusters */}
+        {/* Services Audiences */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             <div className="text-center mb-12">
               <h2 className="font-montserrat text-3xl md:text-4xl font-bold mb-4">Наши услуги</h2>
               <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-                Специализируемся на трёх основных направлениях юридической практики
+                Предоставляем полный спектр юридических услуг для физических и юридических лиц
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mb-12">
-              {serviceClusters.map((cluster) => {
-                const Icon = iconMap[cluster.icon];
-                return (
-                  <Card 
-                    key={cluster.id} 
-                    className="hover:shadow-xl transition-all duration-300 border-2 hover:border-[#C9A227]/30 group" 
-                    id={cluster.slug}
-                  >
-                    <CardHeader className="pb-4">
-                      <div className="mb-4 inline-flex p-4 rounded-lg bg-[#C9A227]/10 group-hover:bg-[#C9A227]/20 transition-colors">
-                        <Icon className="h-12 w-12 text-[#C9A227]" />
-                      </div>
-                      <CardTitle className="font-montserrat text-2xl mb-3">{cluster.title}</CardTitle>
-                      <p className="text-muted-foreground leading-relaxed">{cluster.description}</p>
-                    </CardHeader>
-                    <CardContent>
-                      <div className="mb-4 text-sm text-muted-foreground">
-                        <span className="font-semibold text-foreground">{cluster.situations.length}</span> специализаций
-                      </div>
-                      <ul className="space-y-2 mb-6">
-                        {cluster.situations.slice(0, 5).map((situation) => (
-                          <li key={situation.id} className="flex items-start gap-2">
-                            <CheckCircle2 className="h-4 w-4 text-[#C9A227] flex-shrink-0 mt-0.5" />
-                            <Link
-                              to={`/uslugi/${cluster.slug}/${situation.slug}`}
-                              className="text-sm text-muted-foreground hover:text-[#C9A227] transition-colors"
-                            >
-                              {situation.title}
-                            </Link>
-                          </li>
-                        ))}
-                      </ul>
-                      <Button 
-                        variant="outline" 
-                        className="w-full border-[#C9A227]/30 hover:bg-[#C9A227]/10 hover:border-[#C9A227]"
-                        asChild
-                      >
-                        <Link to={`/uslugi#${cluster.slug}`}>
-                          Все услуги раздела ({cluster.situations.length})
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+              {/* Физическим лицам */}
+              <Card 
+                className="hover:shadow-xl transition-all duration-300 border-2 hover:border-[#C9A227]/30 group"
+              >
+                <CardHeader className="pb-4">
+                  <div className="mb-4 inline-flex p-4 rounded-lg bg-[#C9A227]/10 group-hover:bg-[#C9A227]/20 transition-colors">
+                    <UserCircle className="h-12 w-12 text-[#C9A227]" />
+                  </div>
+                  <CardTitle className="font-montserrat text-2xl mb-3">
+                    {audienceConfig.phys.title}
+                  </CardTitle>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {audienceConfig.phys.subtitle}
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="mb-4 text-sm text-muted-foreground">
+                    <span className="font-semibold text-foreground">
+                      {getTopServices('phys', 100).length}
+                    </span> специализаций
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    {getTopServices('phys', 5).map((service) => (
+                      <li key={service.slug} className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#C9A227] flex-shrink-0 mt-0.5" />
+                        <Link
+                          to={service.path}
+                          className="text-sm text-muted-foreground hover:text-[#C9A227] transition-colors"
+                        >
+                          {service.title}
                         </Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                );
-              })}
+                      </li>
+                    ))}
+                  </ul>
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-[#C9A227]/30 hover:bg-[#C9A227]/10 hover:border-[#C9A227]"
+                    asChild
+                  >
+                    <Link to="/services/phys">
+                      Все услуги раздела ({getTopServices('phys', 100).length})
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Юридическим лицам */}
+              <Card 
+                className="hover:shadow-xl transition-all duration-300 border-2 hover:border-[#C9A227]/30 group"
+              >
+                <CardHeader className="pb-4">
+                  <div className="mb-4 inline-flex p-4 rounded-lg bg-[#C9A227]/10 group-hover:bg-[#C9A227]/20 transition-colors">
+                    <Building2 className="h-12 w-12 text-[#C9A227]" />
+                  </div>
+                  <CardTitle className="font-montserrat text-2xl mb-3">
+                    {audienceConfig.biz.title}
+                  </CardTitle>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {audienceConfig.biz.subtitle}
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="mb-4 text-sm text-muted-foreground">
+                    <span className="font-semibold text-foreground">
+                      {getTopServices('biz', 100).length}
+                    </span> специализаций
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    {getTopServices('biz', 5).map((service) => (
+                      <li key={service.slug} className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#C9A227] flex-shrink-0 mt-0.5" />
+                        <Link
+                          to={service.path}
+                          className="text-sm text-muted-foreground hover:text-[#C9A227] transition-colors"
+                        >
+                          {service.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-[#C9A227]/30 hover:bg-[#C9A227]/10 hover:border-[#C9A227]"
+                    asChild
+                  >
+                    <Link to="/services/biz">
+                      Все услуги раздела ({getTopServices('biz', 100).length})
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>

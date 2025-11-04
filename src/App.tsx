@@ -25,6 +25,8 @@ import DogovoryPage from "./pages/services/biz/DogovoryPage";
 import NalogiPage from "./pages/services/biz/NalogiPage";
 import VzyskaniePage from "./pages/services/biz/VzyskaniePage";
 import BankrotstvoPage from "./pages/services/biz/BankrotstvoPage";
+import PhysPage from "./pages/services/PhysPage";
+import BizPage from "./pages/services/BizPage";
 
 const queryClient = new QueryClient();
 
@@ -52,7 +54,11 @@ const App = () => (
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/thanks" element={<Thanks />} />
           
-          {/* Business services */}
+          {/* Audience pages */}
+          <Route path="/services/phys" element={<PhysPage />} />
+          <Route path="/services/biz" element={<BizPage />} />
+          
+          {/* Business services (legacy - redirects later) */}
           <Route path="/services/biz/arbitrazh/" element={<ArbitrazhPage />} />
           <Route path="/services/biz/dogovory/" element={<DogovoryPage />} />
           <Route path="/services/biz/nalogi/" element={<NalogiPage />} />
@@ -60,6 +66,9 @@ const App = () => (
           <Route path="/services/biz/bankrotstvo/" element={<BankrotstvoPage />} />
           
           {/* Redirects from old URLs */}
+          <Route path="/services/ugolovnye" element={<Navigate to="/services/phys" replace />} />
+          <Route path="/services/grazhdanskie" element={<Navigate to="/services/phys" replace />} />
+          <Route path="/services/arbitrazh" element={<Navigate to="/services/biz" replace />} />
           <Route path="/about" element={<Navigate to="/o-kollegii" replace />} />
           <Route path="/cases" element={<Navigate to="/keisy" replace />} />
           <Route path="/contacts" element={<Navigate to="/kontakty" replace />} />
