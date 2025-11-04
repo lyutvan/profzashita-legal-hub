@@ -43,68 +43,35 @@
   </url>
 
   <!-- Уголовные дела -->
-  <url>
-    <loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/zaderzhanie</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/obysk</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/dopros</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/228-uk-rf</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/159-uk-rf</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/zaderzhanie</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/obysk</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/dopros</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/228-uk-rf</loc><priority>0.9</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/159-uk-rf</loc><priority>0.9</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/160-uk-rf</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/158-uk-rf</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/161-uk-rf</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/162-uk-rf</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/105-uk-rf</loc><priority>0.9</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/111-uk-rf</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/163-uk-rf</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/264-uk-rf</loc><priority>0.8</priority></url>
 
   <!-- Гражданские споры -->
-  <url>
-    <loc>https://prof-zashita.ru/uslugi/grazhdanskie/rastorzhenie-braka</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://prof-zashita.ru/uslugi/grazhdanskie/alimenty</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://prof-zashita.ru/uslugi/grazhdanskie/razdel-imushchestva</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://prof-zashita.ru/uslugi/grazhdanskie/nasledstvo</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
+  <url><loc>https://prof-zashita.ru/uslugi/grazhdanskie/rastorzhenie-braka</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/grazhdanskie/alimenty</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/grazhdanskie/razdel-imushchestva</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/grazhdanskie/nasledstvo</loc><priority>0.9</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/grazhdanskie/zashchita-chesti-dostoinstva</loc><priority>0.7</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/grazhdanskie/kuplya-prodazha-nedvizhimosti</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/grazhdanskie/vyselenie</loc><priority>0.7</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/grazhdanskie/potrebitelskie-spory</loc><priority>0.7</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/grazhdanskie/strakhovye-spory</loc><priority>0.8</priority></url>
 
   <!-- Арбитраж и бизнес -->
-  <url>
-    <loc>https://prof-zashita.ru/uslugi/arbitrazh/bankrotstvo</loc>
-    <priority>0.9</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://prof-zashita.ru/uslugi/arbitrazh/nalogovye-spory</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
-  <url>
-    <loc>https://prof-zashita.ru/uslugi/arbitrazh/korporativnye-konflikty</loc>
-    <priority>0.8</priority>
-    <changefreq>monthly</changefreq>
-  </url>
+  <url><loc>https://prof-zashita.ru/uslugi/arbitrazh/bankrotstvo</loc><priority>0.9</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/arbitrazh/nalogovye-spory</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/arbitrazh/korporativnye-konflikty</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/arbitrazh/dogovornye-spory</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/uslugi/arbitrazh/vzyskanie-zadolzhennosti</loc><priority>0.8</priority></url>
 </urlset>
