@@ -5,6 +5,7 @@ import { Award, Users, Target, TrendingUp } from "lucide-react";
 import libraryImg from "@/assets/legal/library-vertical.jpg";
 import sotnikovImg from "@/assets/team/sotnikov.jpg";
 import lyutikovImg from "@/assets/team/lyutikov.jpg";
+import ryzhenkoImg from "@/assets/team/ryzhenko.jpg";
 
 const About = () => {
   return (
@@ -142,6 +143,13 @@ const About = () => {
                   position: "Партнёр",
                   experience: "Стаж 15 лет",
                   specialization: "Гражданское право, семейные споры",
+                },
+                {
+                  name: "Рыженко Дмитрий Петрович",
+                  position: "Юрист",
+                  experience: "Стаж 8 лет",
+                  specialization: "Гражданское право, договорное право",
+                  image: ryzhenkoImg,
                 },
                 {
                   name: "Сидоров Алексей Петрович",
