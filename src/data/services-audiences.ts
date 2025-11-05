@@ -12,100 +12,60 @@ export interface AudienceService {
 export const audienceServices: AudienceService[] = [
   // ========== ФИЗИЧЕСКИМ ЛИЦАМ ==========
   {
-    title: 'Задержание',
-    slug: 'zaderzhanie',
-    path: '/uslugi/ugolovnoye-delo/zaderzhanie',
+    title: 'Развод и раздел имущества',
+    slug: 'razvod-razdel-imushchestva',
+    path: '/services/phys/razvod-razdel-imushchestva',
     audience: 'phys',
     priority: 1,
-    category: 'Уголовные дела'
-  },
-  {
-    title: 'Обыск',
-    slug: 'obysk',
-    path: '/uslugi/ugolovnoye-delo/obysk',
-    audience: 'phys',
-    priority: 2,
-    category: 'Уголовные дела'
-  },
-  {
-    title: 'Допрос',
-    slug: 'dopros',
-    path: '/uslugi/ugolovnoye-delo/dopros',
-    audience: 'phys',
-    priority: 3,
-    category: 'Уголовные дела'
-  },
-  {
-    title: '228 УК РФ (Наркотики)',
-    slug: '228-uk-rf',
-    path: '/uslugi/ugolovnoye-delo/228-uk-rf',
-    audience: 'phys',
-    priority: 4,
-    category: 'Уголовные дела'
-  },
-  {
-    title: '159 УК РФ (Мошенничество)',
-    slug: '159-uk-rf',
-    path: '/uslugi/ugolovnoye-delo/159-uk-rf',
-    audience: 'phys',
-    priority: 5,
-    category: 'Уголовные дела'
-  },
-  {
-    title: 'Развод и раздел имущества',
-    slug: 'razvod',
-    path: '/uslugi/grazhdanskie-spory/razvod',
-    audience: 'phys',
-    priority: 6,
     category: 'Семейные споры'
   },
   {
     title: 'Алименты',
     slug: 'alimenty',
-    path: '/uslugi/grazhdanskie-spory/alimenty',
+    path: '/services/phys/alimenty',
     audience: 'phys',
-    priority: 7,
+    priority: 2,
     category: 'Семейные споры'
   },
   {
     title: 'Жилищные споры',
     slug: 'zhilishchnye-spory',
-    path: '/uslugi/grazhdanskie-spory/zhilishchnye-spory',
+    path: '/services/phys/zhilishchnye-spory',
     audience: 'phys',
-    priority: 8,
+    priority: 3,
     category: 'Гражданские дела'
   },
   {
     title: 'Наследство',
     slug: 'nasledstvo',
-    path: '/uslugi/grazhdanskie-spory/nasledstvo',
+    path: '/services/phys/nasledstvo',
     audience: 'phys',
-    priority: 9,
+    priority: 4,
+    category: 'Гражданские дела'
+  },
+  {
+    title: 'Защита прав потребителей',
+    slug: 'zashchita-prav-potrebitelya',
+    path: '/services/phys/zashchita-prav-potrebitelya',
+    audience: 'phys',
+    priority: 5,
+    category: 'Гражданские дела'
+  },
+  {
+    title: 'ДТП и страховые споры',
+    slug: 'dtp-strahovye-spory',
+    path: '/services/phys/dtp-strahovye-spory',
+    audience: 'phys',
+    priority: 6,
     category: 'Гражданские дела'
   },
   {
     title: 'Трудовые споры',
     slug: 'trudovye-spory',
-    path: '/uslugi/grazhdanskie-spory/trudovye-spory',
+    path: '/services/phys/trudovye-spory',
     audience: 'phys',
-    priority: 10,
+    priority: 7,
     category: 'Трудовые дела'
-  },
-  {
-    title: 'Защита прав потребителей',
-    slug: 'potrebiteli',
-    path: '/uslugi/grazhdanskie-spory/potrebiteli',
-    audience: 'phys',
-    priority: 11,
-    category: 'Гражданские дела'
-  },
-  {
-    title: 'ДТП и страховые споры',
-    slug: 'dtp',
-    path: '/uslugi/grazhdanskie-spory/dtp',
-    audience: 'phys',
-    priority: 12,
-    category: 'Гражданские дела'
   },
 
   // ========== ЮРИДИЧЕСКИМ ЛИЦАМ ==========

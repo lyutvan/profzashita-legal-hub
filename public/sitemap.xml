@@ -53,6 +53,15 @@
     <priority>0.9</priority>
     <changefreq>weekly</changefreq>
   </url>
+  
+  <!-- Physical Persons Services -->
+  <url><loc>https://prof-zashita.ru/services/phys/razvod-razdel-imushchestva</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/services/phys/alimenty</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/services/phys/zhilishchnye-spory</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/services/phys/nasledstvo</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/services/phys/zashchita-prav-potrebitelya</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/services/phys/dtp-strahovye-spory</loc><priority>0.8</priority></url>
+  <url><loc>https://prof-zashita.ru/services/phys/trudovye-spory</loc><priority>0.8</priority></url>
 
   <!-- Уголовные дела -->
   <url><loc>https://prof-zashita.ru/uslugi/ugolovnoye-delo/zaderzhanie</loc><priority>0.8</priority></url>

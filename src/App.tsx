@@ -25,6 +25,13 @@ import VzyskaniePage from "./pages/services/biz/VzyskaniePage";
 import BankrotstvoPage from "./pages/services/biz/BankrotstvoPage";
 import PhysPage from "./pages/services/PhysPage";
 import BizPage from "./pages/services/BizPage";
+import RazvodPage from "./pages/services/phys/RazvodPage";
+import AlimentyPage from "./pages/services/phys/AlimentyPage";
+import ZhilishchnyeSporyPage from "./pages/services/phys/ZhilishchnyeSporyPage";
+import NasledstvoPage from "./pages/services/phys/NasledstvoPage";
+import PotrebiteliPage from "./pages/services/phys/PotrebiteliPage";
+import DtpPage from "./pages/services/phys/DtpPage";
+import TrudovyeSporyPage from "./pages/services/phys/TrudovyeSporyPage";
 
 const queryClient = new QueryClient();
 
@@ -53,6 +60,15 @@ const App = () => (
           {/* Audience pages */}
           <Route path="/services/phys" element={<PhysPage />} />
           <Route path="/services/biz" element={<BizPage />} />
+          
+          {/* Physical persons services */}
+          <Route path="/services/phys/razvod-razdel-imushchestva" element={<RazvodPage />} />
+          <Route path="/services/phys/alimenty" element={<AlimentyPage />} />
+          <Route path="/services/phys/zhilishchnye-spory" element={<ZhilishchnyeSporyPage />} />
+          <Route path="/services/phys/nasledstvo" element={<NasledstvoPage />} />
+          <Route path="/services/phys/zashchita-prav-potrebitelya" element={<PotrebiteliPage />} />
+          <Route path="/services/phys/dtp-strahovye-spory" element={<DtpPage />} />
+          <Route path="/services/phys/trudovye-spory" element={<TrudovyeSporyPage />} />
           
           {/* Business services (legacy - redirects later) */}
           <Route path="/services/biz/arbitrazh/" element={<ArbitrazhPage />} />
