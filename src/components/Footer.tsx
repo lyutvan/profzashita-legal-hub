@@ -47,11 +47,6 @@ const Footer = () => {
                 </Link>
               </li>
               <li>
-                <Link to="/knowledge" className="text-sm text-white/80 hover:text-[#B29760] transition-colors">
-                  Знания
-                </Link>
-              </li>
-              <li>
                 <Link to="/faq" className="text-sm text-white/80 hover:text-[#B29760] transition-colors">
                   Вопросы и ответы
                 </Link>

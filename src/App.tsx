@@ -78,6 +78,9 @@ const App = () => (
           <Route path="/services/biz/bankrotstvo/" element={<BankrotstvoPage />} />
           
           {/* Redirects from old URLs */}
+          <Route path="/knowledge/*" element={<Navigate to="/uslugi" replace />} />
+          <Route path="/blog/*" element={<Navigate to="/uslugi" replace />} />
+          <Route path="/articles/*" element={<Navigate to="/uslugi" replace />} />
           <Route path="/services/ugolovnye" element={<Navigate to="/services/phys" replace />} />
           <Route path="/services/grazhdanskie" element={<Navigate to="/services/phys" replace />} />
           <Route path="/services/arbitrazh" element={<Navigate to="/services/biz" replace />} />
