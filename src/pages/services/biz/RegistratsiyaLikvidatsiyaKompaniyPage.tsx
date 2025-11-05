@@ -5,12 +5,8 @@ const RegistratsiyaLikvidatsiyaKompaniyPage = () => {
     <ServiceTemplate
       title="Регистрация и ликвидация компаний"
       metaDescription="Регистрация ООО и АО, смена учредителей и директоров, реорганизация, ликвидация. Юридическое сопровождение под ключ. Опыт 15+ лет."
-      canonicalUrl="https://profzashita.com/services/biz/registratsiya-likvidatsiya-kompaniy"
-      breadcrumbItems={[
-        { label: "Услуги", path: "/uslugi" },
-        { label: "Юридическим лицам", path: "/services/biz" },
-        { label: "Регистрация и ликвидация компаний" }
-      ]}
+      canonical="https://profzashita.com/services/biz/registratsiya-likvidatsiya-kompaniy"
+      breadcrumbLabel="Регистрация и ликвидация компаний"
       h1="Регистрация и ликвидация компаний"
       leadParagraph="Комплексное юридическое сопровождение регистрации, реорганизации и ликвидации компаний. Регистрация ООО и АО, смена учредителей и руководства, добровольная ликвидация и альтернативные способы закрытия бизнеса."
       whenToContact={[
@@ -27,7 +23,7 @@ const RegistratsiyaLikvidatsiyaKompaniyPage = () => {
         "Осуществляем добровольную ликвидацию с подачей всех документов",
         "Предлагаем альтернативные законные способы закрытия бизнеса"
       ]}
-      processSteps={[
+      steps={[
         {
           number: 1,
           title: "Первичная консультация",
@@ -74,9 +70,9 @@ const RegistratsiyaLikvidatsiyaKompaniyPage = () => {
         }
       ]}
       relatedLinks={[
-        { label: "Корпоративные споры", path: "/services/biz/korporativnye-spory" },
-        { label: "Договорная работа", path: "/services/biz/dogovornaya-rabota-pretensii" },
-        { label: "Банкротство", path: "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" }
+        { title: "Корпоративные споры", url: "/services/biz/korporativnye-spory" },
+        { title: "Договорная работа", url: "/services/biz/dogovornaya-rabota-pretensii" },
+        { title: "Банкротство", url: "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" }
       ]}
     />
   );

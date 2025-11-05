@@ -5,12 +5,8 @@ const EkonomicheskiePrestupleniyaPage = () => {
     <ServiceTemplate
       title="Экономические преступления"
       metaDescription="Защита бизнеса по уголовным делам: мошенничество, налоговые преступления, незаконное предпринимательство. Опыт 15+ лет."
-      canonicalUrl="https://profzashita.com/services/biz/ekonomicheskie-prestupleniya"
-      breadcrumbItems={[
-        { label: "Услуги", path: "/uslugi" },
-        { label: "Юридическим лицам", path: "/services/biz" },
-        { label: "Экономические преступления" }
-      ]}
+      canonical="https://profzashita.com/services/biz/ekonomicheskie-prestupleniya"
+      breadcrumbLabel="Экономические преступления"
       h1="Экономические преступления"
       leadParagraph="Защита интересов бизнеса и его руководителей по уголовным делам экономической направленности. Мошенничество, налоговые преступления, незаконное предпринимательство, присвоение и растрата."
       whenToContact={[
@@ -27,7 +23,7 @@ const EkonomicheskiePrestupleniyaPage = () => {
         "Защищаем в суде по уголовным делам всех инстанций",
         "Добиваемся прекращения дела, оправдания или минимального наказания"
       ]}
-      processSteps={[
+      steps={[
         {
           number: 1,
           title: "Экстренная консультация",
@@ -74,9 +70,9 @@ const EkonomicheskiePrestupleniyaPage = () => {
         }
       ]}
       relatedLinks={[
-        { label: "Налоговые споры", path: "/services/biz/nalogovye-spory-proverki" },
-        { label: "Корпоративные споры", path: "/services/biz/korporativnye-spory" },
-        { label: "Банкротство", path: "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" }
+        { title: "Налоговые споры", url: "/services/biz/nalogovye-spory-proverki" },
+        { title: "Корпоративные споры", url: "/services/biz/korporativnye-spory" },
+        { title: "Банкротство", url: "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" }
       ]}
     />
   );

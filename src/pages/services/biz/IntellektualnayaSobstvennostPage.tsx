@@ -5,12 +5,8 @@ const IntellektualnayaSobstvennostPage = () => {
     <ServiceTemplate
       title="Интеллектуальная собственность"
       metaDescription="Защита интеллектуальной собственности: товарные знаки, патенты, авторские права. Регистрация, лицензирование, споры. Опыт 15+ лет."
-      canonicalUrl="https://profzashita.com/services/biz/intellektualnaya-sobstvennost"
-      breadcrumbItems={[
-        { label: "Услуги", path: "/uslugi" },
-        { label: "Юридическим лицам", path: "/services/biz" },
-        { label: "Интеллектуальная собственность" }
-      ]}
+      canonical="https://profzashita.com/services/biz/intellektualnaya-sobstvennost"
+      breadcrumbLabel="Интеллектуальная собственность"
       h1="Интеллектуальная собственность"
       leadParagraph="Комплексная защита интеллектуальной собственности бизнеса. Регистрация товарных знаков, патентов, программ для ЭВМ. Лицензирование, защита от нарушений, судебные споры."
       whenToContact={[
@@ -27,7 +23,7 @@ const IntellektualnayaSobstvennostPage = () => {
         "Защищаем от нарушений: требуем прекратить использование, взыскиваем компенсацию",
         "Представляем интересы в Роспатенте и судах по спорам об интеллектуальной собственности"
       ]}
-      processSteps={[
+      steps={[
         {
           number: 1,
           title: "Первичная консультация",
@@ -74,9 +70,9 @@ const IntellektualnayaSobstvennostPage = () => {
         }
       ]}
       relatedLinks={[
-        { label: "Договорная работа", path: "/services/biz/dogovornaya-rabota-pretensii" },
-        { label: "Арбитражные споры", path: "/services/biz/arbitrazhnye-spory" },
-        { label: "Корпоративные споры", path: "/services/biz/korporativnye-spory" }
+        { title: "Договорная работа", url: "/services/biz/dogovornaya-rabota-pretensii" },
+        { title: "Арбитражные споры", url: "/services/biz/arbitrazhnye-spory" },
+        { title: "Корпоративные споры", url: "/services/biz/korporativnye-spory" }
       ]}
     />
   );

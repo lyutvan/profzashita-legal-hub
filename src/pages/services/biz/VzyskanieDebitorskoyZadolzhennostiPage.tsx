@@ -5,12 +5,8 @@ const VzyskanieDebitorskoyZadolzhennostiPage = () => {
     <ServiceTemplate
       title="Взыскание дебиторской задолженности"
       metaDescription="Эффективное взыскание долгов с контрагентов. Претензионная работа, судебное взыскание, исполнительное производство. Опыт 15+ лет."
-      canonicalUrl="https://profzashita.com/services/biz/vzyskanie-debitorskoy-zadolzhennosti"
-      breadcrumbItems={[
-        { label: "Услуги", path: "/uslugi" },
-        { label: "Юридическим лицам", path: "/services/biz" },
-        { label: "Взыскание дебиторской задолженности" }
-      ]}
+      canonical="https://profzashita.com/services/biz/vzyskanie-debitorskoy-zadolzhennosti"
+      breadcrumbLabel="Взыскание дебиторской задолженности"
       h1="Взыскание дебиторской задолженности"
       leadParagraph="Комплексная работа по взысканию дебиторской задолженности: от претензионной работы до исполнительного производства. Максимально эффективное возвращение долгов с минимальными потерями для бизнеса."
       whenToContact={[
@@ -27,7 +23,7 @@ const VzyskanieDebitorskoyZadolzhennostiPage = () => {
         "Применяем обеспечительные меры для сохранения активов должника",
         "Сопровождаем исполнительное производство до полного возврата средств"
       ]}
-      processSteps={[
+      steps={[
         {
           number: 1,
           title: "Первичная консультация",
@@ -74,9 +70,9 @@ const VzyskanieDebitorskoyZadolzhennostiPage = () => {
         }
       ]}
       relatedLinks={[
-        { label: "Арбитражные споры", path: "/services/biz/arbitrazhnye-spory" },
-        { label: "Договорная работа и претензии", path: "/services/biz/dogovornaya-rabota-pretensii" },
-        { label: "Банкротство", path: "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" }
+        { title: "Арбитражные споры", url: "/services/biz/arbitrazhnye-spory" },
+        { title: "Договорная работа и претензии", url: "/services/biz/dogovornaya-rabota-pretensii" },
+        { title: "Банкротство", url: "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" }
       ]}
     />
   );

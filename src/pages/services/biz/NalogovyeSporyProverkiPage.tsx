@@ -5,12 +5,8 @@ const NalogovyeSporyProverkiPage = () => {
     <ServiceTemplate
       title="Налоговые споры и проверки"
       metaDescription="Защита бизнеса в налоговых спорах. Сопровождение проверок ФНС, обжалование решений, досудебное урегулирование. Опыт 15+ лет."
-      canonicalUrl="https://profzashita.com/services/biz/nalogovye-spory-proverki"
-      breadcrumbItems={[
-        { label: "Услуги", path: "/uslugi" },
-        { label: "Юридическим лицам", path: "/services/biz" },
-        { label: "Налоговые споры и проверки" }
-      ]}
+      canonical="https://profzashita.com/services/biz/nalogovye-spory-proverki"
+      breadcrumbLabel="Налоговые споры и проверки"
       h1="Налоговые споры и проверки"
       leadParagraph="Профессиональная защита интересов компании в налоговых спорах. Сопровождение выездных и камеральных проверок, обжалование решений налоговых органов в досудебном и судебном порядке."
       whenToContact={[
@@ -27,7 +23,7 @@ const NalogovyeSporyProverkiPage = () => {
         "Ведём налоговые споры в арбитражных судах всех инстанций",
         "Разрабатываем стратегию налоговой безопасности бизнеса"
       ]}
-      processSteps={[
+      steps={[
         {
           number: 1,
           title: "Первичная консультация",
@@ -74,9 +70,9 @@ const NalogovyeSporyProverkiPage = () => {
         }
       ]}
       relatedLinks={[
-        { label: "Арбитражные споры", path: "/services/biz/arbitrazhnye-spory" },
-        { label: "Банкротство", path: "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" },
-        { label: "Экономические преступления", path: "/services/biz/ekonomicheskie-prestupleniya" }
+        { title: "Арбитражные споры", url: "/services/biz/arbitrazhnye-spory" },
+        { title: "Банкротство", url: "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" },
+        { title: "Экономические преступления", url: "/services/biz/ekonomicheskie-prestupleniya" }
       ]}
     />
   );

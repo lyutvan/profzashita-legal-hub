@@ -5,12 +5,8 @@ const ZashchitaOtRejderskikhZakhvatovPage = () => {
     <ServiceTemplate
       title="Защита от рейдерских захватов"
       metaDescription="Защита бизнеса от рейдерских захватов. Быстрое реагирование, обеспечительные меры, восстановление контроля. Опыт 15+ лет."
-      canonicalUrl="https://profzashita.com/services/biz/zashchita-ot-rejderskikh-zakhvatov"
-      breadcrumbItems={[
-        { label: "Услуги", path: "/uslugi" },
-        { label: "Юридическим лицам", path: "/services/biz" },
-        { label: "Защита от рейдерских захватов" }
-      ]}
+      canonical="https://profzashita.com/services/biz/zashchita-ot-rejderskikh-zakhvatov"
+      breadcrumbLabel="Защита от рейдерских захватов"
       h1="Защита от рейдерских захватов"
       leadParagraph="Комплексная защита бизнеса от недружественного поглощения и рейдерских захватов. Быстрое реагирование, обеспечительные меры, восстановление контроля над компанией и активами."
       whenToContact={[
@@ -27,7 +23,7 @@ const ZashchitaOtRejderskikhZakhvatovPage = () => {
         "Восстанавливаем законного руководителя и участников",
         "Организуем защиту от силового давления и административного ресурса"
       ]}
-      processSteps={[
+      steps={[
         {
           number: 1,
           title: "Экстренная консультация",
@@ -74,9 +70,9 @@ const ZashchitaOtRejderskikhZakhvatovPage = () => {
         }
       ]}
       relatedLinks={[
-        { label: "Корпоративные споры", path: "/services/biz/korporativnye-spory" },
-        { label: "Арбитражные споры", path: "/services/biz/arbitrazhnye-spory" },
-        { label: "Банкротство", path: "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" }
+        { title: "Корпоративные споры", url: "/services/biz/korporativnye-spory" },
+        { title: "Арбитражные споры", url: "/services/biz/arbitrazhnye-spory" },
+        { title: "Банкротство", url: "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" }
       ]}
     />
   );

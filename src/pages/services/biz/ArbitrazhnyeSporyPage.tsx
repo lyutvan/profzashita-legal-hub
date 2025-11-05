@@ -5,12 +5,8 @@ const ArbitrazhnyeSporyPage = () => {
     <ServiceTemplate
       title="Арбитражные споры"
       metaDescription="Профессиональное представительство в арбитражных судах. Ведение споров по договорам, взысканию долгов, неустойкам. Опыт 15+ лет."
-      canonicalUrl="https://profzashita.com/services/biz/arbitrazhnye-spory"
-      breadcrumbItems={[
-        { label: "Услуги", path: "/uslugi" },
-        { label: "Юридическим лицам", path: "/services/biz" },
-        { label: "Арбитражные споры" }
-      ]}
+      canonical="https://profzashita.com/services/biz/arbitrazhnye-spory"
+      breadcrumbLabel="Арбитражные споры"
       h1="Арбитражные споры"
       leadParagraph="Профессиональное представительство интересов вашей компании в арбитражных судах всех инстанций. Защищаем права бизнеса в договорных, корпоративных и иных коммерческих спорах."
       whenToContact={[
@@ -27,7 +23,7 @@ const ArbitrazhnyeSporyPage = () => {
         "Применяем обеспечительные меры для защиты активов",
         "Сопровождаем исполнительное производство"
       ]}
-      processSteps={[
+      steps={[
         {
           number: 1,
           title: "Первичная консультация",

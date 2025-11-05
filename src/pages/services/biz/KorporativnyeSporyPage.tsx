@@ -5,12 +5,8 @@ const KorporativnyeSporyPage = () => {
     <ServiceTemplate
       title="Корпоративные споры"
       metaDescription="Защита прав участников бизнеса. Споры о долях и акциях, оспаривание решений, корпоративные конфликты. Опыт 15+ лет."
-      canonicalUrl="https://profzashita.com/services/biz/korporativnye-spory"
-      breadcrumbItems={[
-        { label: "Услуги", path: "/uslugi" },
-        { label: "Юридическим лицам", path: "/services/biz" },
-        { label: "Корпоративные споры" }
-      ]}
+      canonical="https://profzashita.com/services/biz/korporativnye-spory"
+      breadcrumbLabel="Корпоративные споры"
       h1="Корпоративные споры"
       leadParagraph="Защита прав участников бизнеса в корпоративных конфликтах. Споры о долях и акциях, оспаривание решений органов управления, взыскание убытков с директора, защита миноритарных акционеров."
       whenToContact={[
@@ -27,7 +23,7 @@ const KorporativnyeSporyPage = () => {
         "Взыскиваем убытки с директоров и контролирующих лиц",
         "Сопровождаем процедуры исключения участников и смены руководства"
       ]}
-      processSteps={[
+      steps={[
         {
           number: 1,
           title: "Первичная консультация",
@@ -74,9 +70,9 @@ const KorporativnyeSporyPage = () => {
         }
       ]}
       relatedLinks={[
-        { label: "Договорная работа и претензии", path: "/services/biz/dogovornaya-rabota-pretensii" },
-        { label: "Банкротство", path: "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" },
-        { label: "Защита от рейдерских захватов", path: "/services/biz/zashchita-ot-rejderskikh-zakhvatov" }
+        { title: "Договорная работа и претензии", url: "/services/biz/dogovornaya-rabota-pretensii" },
+        { title: "Банкротство", url: "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" },
+        { title: "Защита от рейдерских захватов", url: "/services/biz/zashchita-ot-rejderskikh-zakhvatov" }
       ]}
     />
   );

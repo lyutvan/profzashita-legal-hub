@@ -5,12 +5,8 @@ const BankrotstvoSubsidiarnajaOtvetstvennostPage = () => {
     <ServiceTemplate
       title="Банкротство и субсидиарная ответственность"
       metaDescription="Сопровождение банкротства юридических лиц. Защита от субсидиарной ответственности контролирующих лиц. Оспаривание сделок. Опыт 15+ лет."
-      canonicalUrl="https://profzashita.com/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost"
-      breadcrumbItems={[
-        { label: "Услуги", path: "/uslugi" },
-        { label: "Юридическим лицам", path: "/services/biz" },
-        { label: "Банкротство и субсидиарная ответственность" }
-      ]}
+      canonical="https://profzashita.com/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost"
+      breadcrumbLabel="Банкротство и субсидиарная ответственность"
       h1="Банкротство и субсидиарная ответственность"
       leadParagraph="Профессиональное сопровождение процедур банкротства юридических лиц. Защита контролирующих лиц от привлечения к субсидиарной ответственности. Оспаривание сделок должника и защита интересов кредиторов."
       whenToContact={[
@@ -27,7 +23,7 @@ const BankrotstvoSubsidiarnajaOtvetstvennostPage = () => {
         "Проводим процедуры наблюдения, внешнего управления, конкурсного производства",
         "Готовим мировые соглашения и альтернативные способы урегулирования"
       ]}
-      processSteps={[
+      steps={[
         {
           number: 1,
           title: "Первичная консультация",
@@ -74,9 +70,9 @@ const BankrotstvoSubsidiarnajaOtvetstvennostPage = () => {
         }
       ]}
       relatedLinks={[
-        { label: "Арбитражные споры", path: "/services/biz/arbitrazhnye-spory" },
-        { label: "Налоговые споры", path: "/services/biz/nalogovye-spory-proverki" },
-        { label: "Взыскание дебиторской задолженности", path: "/services/biz/vzyskanie-debitorskoy-zadolzhennosti" }
+        { title: "Арбитражные споры", url: "/services/biz/arbitrazhnye-spory" },
+        { title: "Налоговые споры", url: "/services/biz/nalogovye-spory-proverki" },
+        { title: "Взыскание дебиторской задолженности", url: "/services/biz/vzyskanie-debitorskoy-zadolzhennosti" }
       ]}
     />
   );

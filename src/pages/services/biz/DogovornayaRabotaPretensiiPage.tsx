@@ -5,12 +5,8 @@ const DogovornayaRabotaPretensiiPage = () => {
     <ServiceTemplate
       title="Договорная работа и претензии"
       metaDescription="Разработка и экспертиза договоров, претензионная работа. Защита интересов бизнеса на досудебной стадии. Опыт 15+ лет."
-      canonicalUrl="https://profzashita.com/services/biz/dogovornaya-rabota-pretensii"
-      breadcrumbItems={[
-        { label: "Услуги", path: "/uslugi" },
-        { label: "Юридическим лицам", path: "/services/biz" },
-        { label: "Договорная работа и претензии" }
-      ]}
+      canonical="https://profzashita.com/services/biz/dogovornaya-rabota-pretensii"
+      breadcrumbLabel="Договорная работа и претензии"
       h1="Договорная работа и претензии"
       leadParagraph="Комплексная договорная работа: разработка, экспертиза и сопровождение исполнения договоров. Эффективная претензионная работа для защиты интересов вашего бизнеса на досудебной стадии."
       whenToContact={[
@@ -27,7 +23,7 @@ const DogovornayaRabotaPretensiiPage = () => {
         "Готовим и направляем претензии контрагентам",
         "Организуем медиацию и досудебное урегулирование споров"
       ]}
-      processSteps={[
+      steps={[
         {
           number: 1,
           title: "Первичная консультация",
@@ -74,9 +70,9 @@ const DogovornayaRabotaPretensiiPage = () => {
         }
       ]}
       relatedLinks={[
-        { label: "Корпоративные споры", path: "/services/biz/korporativnye-spory" },
-        { label: "Взыскание дебиторской задолженности", path: "/services/biz/vzyskanie-debitorskoy-zadolzhennosti" },
-        { label: "Арбитражные споры", path: "/services/biz/arbitrazhnye-spory" }
+        { title: "Корпоративные споры", url: "/services/biz/korporativnye-spory" },
+        { title: "Взыскание дебиторской задолженности", url: "/services/biz/vzyskanie-debitorskoy-zadolzhennosti" },
+        { title: "Арбитражные споры", url: "/services/biz/arbitrazhnye-spory" }
       ]}
     />
   );
