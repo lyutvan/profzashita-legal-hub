@@ -20,7 +20,6 @@ import {
   Shield
 } from "lucide-react";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
-import RecommendedReading from "./RecommendedReading";
 import { LegalServiceSchema, BreadcrumbSchema, FAQPageSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 
@@ -494,12 +493,6 @@ const ClusterServicePage = ({
           </Button>
         </div>
       </div>
-
-      {/* Recommended Reading Widget */}
-      <RecommendedReading 
-        category="Уголовные дела"
-        title="Полезные материалы по теме"
-      />
 
       <Footer />
     </div>

@@ -11,8 +11,6 @@ import ServiceDetail from "./pages/ServiceDetail";
 import ClusterServiceRouter from "./pages/ClusterServiceRouter";
 import OKollegii from "./pages/OKollegii";
 import Keisy from "./pages/Keisy";
-import Knowledge from "./pages/Knowledge";
-import ArticleDetail from "./pages/ArticleDetail";
 import FAQ from "./pages/FAQ";
 import Kontakty from "./pages/Kontakty";
 import Privacy from "./pages/Privacy";
@@ -46,8 +44,6 @@ const App = () => (
           <Route path="/uslugi/:categorySlug/:serviceSlug/old" element={<ServiceDetail />} />
           <Route path="/o-kollegii" element={<OKollegii />} />
           <Route path="/keisy" element={<Keisy />} />
-          <Route path="/knowledge" element={<Knowledge />} />
-          <Route path="/knowledge/:slug" element={<ArticleDetail />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/kontakty" element={<Kontakty />} />
           <Route path="/privacy" element={<Privacy />} />

@@ -9,7 +9,6 @@ import { serviceCategories, ServiceItem } from "@/data/services";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle2, Clock, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import RecommendedReading from "@/components/RecommendedReading";
 import { LegalServiceSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 
@@ -240,9 +239,6 @@ const ServiceDetail = () => {
           </div>
         </section>
       </main>
-
-      {/* Recommended Reading */}
-      <RecommendedReading category={category.title} limit={3} />
 
       <Footer />
     </div>
