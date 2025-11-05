@@ -18,11 +18,16 @@ import Disclaimer from "./pages/Disclaimer";
 import Thanks from "./pages/Thanks";
 import NotFound from "./pages/NotFound";
 import QuickQuestion from "./components/QuickQuestion";
-import ArbitrazhPage from "./pages/services/biz/ArbitrazhPage";
-import DogovoryPage from "./pages/services/biz/DogovoryPage";
-import NalogiPage from "./pages/services/biz/NalogiPage";
-import VzyskaniePage from "./pages/services/biz/VzyskaniePage";
-import BankrotstvoPage from "./pages/services/biz/BankrotstvoPage";
+import ArbitrazhnyeSporyPage from "./pages/services/biz/ArbitrazhnyeSporyPage";
+import DogovornayaRabotaPretensiiPage from "./pages/services/biz/DogovornayaRabotaPretensiiPage";
+import NalogovyeSporyProverkiPage from "./pages/services/biz/NalogovyeSporyProverkiPage";
+import VzyskanieDebitorskoyZadolzhennostiPage from "./pages/services/biz/VzyskanieDebitorskoyZadolzhennostiPage";
+import BankrotstvoSubsidiarnajaOtvetstvennostPage from "./pages/services/biz/BankrotstvoSubsidiarnajaOtvetstvennostPage";
+import KorporativnyeSporyPage from "./pages/services/biz/KorporativnyeSporyPage";
+import ZashchitaOtRejderskikhZakhvatovPage from "./pages/services/biz/ZashchitaOtRejderskikhZakhvatovPage";
+import RegistratsiyaLikvidatsiyaKompaniyPage from "./pages/services/biz/RegistratsiyaLikvidatsiyaKompaniyPage";
+import IntellektualnayaSobstvennostPage from "./pages/services/biz/IntellektualnayaSobstvennostPage";
+import EkonomicheskiePrestupleniyaPage from "./pages/services/biz/EkonomicheskiePrestupleniyaPage";
 import PhysPage from "./pages/services/PhysPage";
 import BizPage from "./pages/services/BizPage";
 import RazvodPage from "./pages/services/phys/RazvodPage";
@@ -70,12 +75,17 @@ const App = () => (
           <Route path="/services/phys/dtp-strahovye-spory" element={<DtpPage />} />
           <Route path="/services/phys/trudovye-spory" element={<TrudovyeSporyPage />} />
           
-          {/* Business services (legacy - redirects later) */}
-          <Route path="/services/biz/arbitrazh/" element={<ArbitrazhPage />} />
-          <Route path="/services/biz/dogovory/" element={<DogovoryPage />} />
-          <Route path="/services/biz/nalogi/" element={<NalogiPage />} />
-          <Route path="/services/biz/vzyskanie/" element={<VzyskaniePage />} />
-          <Route path="/services/biz/bankrotstvo/" element={<BankrotstvoPage />} />
+          {/* Business services */}
+          <Route path="/services/biz/arbitrazhnye-spory" element={<ArbitrazhnyeSporyPage />} />
+          <Route path="/services/biz/dogovornaya-rabota-pretensii" element={<DogovornayaRabotaPretensiiPage />} />
+          <Route path="/services/biz/nalogovye-spory-proverki" element={<NalogovyeSporyProverkiPage />} />
+          <Route path="/services/biz/vzyskanie-debitorskoy-zadolzhennosti" element={<VzyskanieDebitorskoyZadolzhennostiPage />} />
+          <Route path="/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" element={<BankrotstvoSubsidiarnajaOtvetstvennostPage />} />
+          <Route path="/services/biz/korporativnye-spory" element={<KorporativnyeSporyPage />} />
+          <Route path="/services/biz/zashchita-ot-rejderskikh-zakhvatov" element={<ZashchitaOtRejderskikhZakhvatovPage />} />
+          <Route path="/services/biz/registratsiya-likvidatsiya-kompaniy" element={<RegistratsiyaLikvidatsiyaKompaniyPage />} />
+          <Route path="/services/biz/intellektualnaya-sobstvennost" element={<IntellektualnayaSobstvennostPage />} />
+          <Route path="/services/biz/ekonomicheskie-prestupleniya" element={<EkonomicheskiePrestupleniyaPage />} />
           
           {/* Redirects from old URLs */}
           <Route path="/knowledge/*" element={<Navigate to="/uslugi" replace />} />
@@ -84,6 +94,11 @@ const App = () => (
           <Route path="/services/ugolovnye" element={<Navigate to="/services/phys" replace />} />
           <Route path="/services/grazhdanskie" element={<Navigate to="/services/phys" replace />} />
           <Route path="/services/arbitrazh" element={<Navigate to="/services/biz" replace />} />
+          <Route path="/services/biz/arbitrazh/*" element={<Navigate to="/services/biz/arbitrazhnye-spory" replace />} />
+          <Route path="/services/biz/dogovory/*" element={<Navigate to="/services/biz/dogovornaya-rabota-pretensii" replace />} />
+          <Route path="/services/biz/nalogi/*" element={<Navigate to="/services/biz/nalogovye-spory-proverki" replace />} />
+          <Route path="/services/biz/vzyskanie/*" element={<Navigate to="/services/biz/vzyskanie-debitorskoy-zadolzhennosti" replace />} />
+          <Route path="/services/biz/bankrotstvo/*" element={<Navigate to="/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" replace />} />
           <Route path="/about" element={<Navigate to="/o-kollegii" replace />} />
           <Route path="/cases" element={<Navigate to="/keisy" replace />} />
           <Route path="/contacts" element={<Navigate to="/kontakty" replace />} />

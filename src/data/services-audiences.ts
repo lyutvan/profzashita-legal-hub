@@ -71,83 +71,83 @@ export const audienceServices: AudienceService[] = [
   // ========== ЮРИДИЧЕСКИМ ЛИЦАМ ==========
   {
     title: 'Арбитражные споры',
-    slug: 'arbitrazh',
-    path: '/uslugi/arbitrazh-biznes/arbitrazh',
+    slug: 'arbitrazhnye-spory',
+    path: '/services/biz/arbitrazhnye-spory',
     audience: 'biz',
     priority: 1,
     category: 'Судебная защита'
   },
   {
     title: 'Договорная работа и претензии',
-    slug: 'dogovory',
-    path: '/uslugi/arbitrazh-biznes/dogovory',
+    slug: 'dogovornaya-rabota-pretensii',
+    path: '/services/biz/dogovornaya-rabota-pretensii',
     audience: 'biz',
     priority: 2,
     category: 'Договорная работа'
   },
   {
     title: 'Налоговые споры и проверки',
-    slug: 'nalogi',
-    path: '/uslugi/arbitrazh-biznes/nalogi',
+    slug: 'nalogovye-spory-proverki',
+    path: '/services/biz/nalogovye-spory-proverki',
     audience: 'biz',
     priority: 3,
     category: 'Налоговое право'
   },
   {
     title: 'Взыскание дебиторской задолженности',
-    slug: 'vzyskanie',
-    path: '/uslugi/arbitrazh-biznes/vzyskanie',
+    slug: 'vzyskanie-debitorskoy-zadolzhennosti',
+    path: '/services/biz/vzyskanie-debitorskoy-zadolzhennosti',
     audience: 'biz',
     priority: 4,
     category: 'Взыскание долгов'
   },
   {
     title: 'Банкротство и субсидиарная ответственность',
-    slug: 'bankrotstvo',
-    path: '/uslugi/arbitrazh-biznes/bankrotstvo',
+    slug: 'bankrotstvo-subsidiarnaya-otvetstvennost',
+    path: '/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost',
     audience: 'biz',
     priority: 5,
     category: 'Банкротство'
   },
   {
     title: 'Корпоративные споры',
-    slug: 'korporativnye',
-    path: '/uslugi/arbitrazh-biznes/korporativnye',
+    slug: 'korporativnye-spory',
+    path: '/services/biz/korporativnye-spory',
     audience: 'biz',
     priority: 6,
     category: 'Корпоративное право'
   },
   {
     title: 'Защита от рейдерских захватов',
-    slug: 'rejderstvo',
-    path: '/uslugi/arbitrazh-biznes/rejderstvo',
+    slug: 'zashchita-ot-rejderskikh-zakhvatov',
+    path: '/services/biz/zashchita-ot-rejderskikh-zakhvatov',
     audience: 'biz',
     priority: 7,
     category: 'Корпоративное право'
   },
   {
-    title: 'Интеллектуальная собственность',
-    slug: 'intellektualnaya',
-    path: '/uslugi/arbitrazh-biznes/intellektualnaya',
+    title: 'Регистрация и ликвидация компаний',
+    slug: 'registratsiya-likvidatsiya-kompaniy',
+    path: '/services/biz/registratsiya-likvidatsiya-kompaniy',
     audience: 'biz',
     priority: 8,
+    category: 'Корпоративное право'
+  },
+  {
+    title: 'Интеллектуальная собственность',
+    slug: 'intellektualnaya-sobstvennost',
+    path: '/services/biz/intellektualnaya-sobstvennost',
+    audience: 'biz',
+    priority: 9,
     category: 'Интеллектуальная собственность'
   },
   {
     title: 'Экономические преступления',
-    slug: 'ekonomicheskie',
-    path: '/uslugi/arbitrazh-biznes/ekonomicheskie',
-    audience: 'biz',
-    priority: 9,
-    category: 'Уголовная защита бизнеса'
-  },
-  {
-    title: 'Регистрация и ликвидация компаний',
-    slug: 'registraciya',
-    path: '/uslugi/arbitrazh-biznes/registraciya',
+    slug: 'ekonomicheskie-prestupleniya',
+    path: '/services/biz/ekonomicheskie-prestupleniya',
     audience: 'biz',
     priority: 10,
-    category: 'Корпоративное право'
+    category: 'Уголовная защита бизнеса'
   }
 ];
 
