@@ -14,7 +14,7 @@ const teamMembers = [
   {
     name: "Лютиков Иван Иванович",
     position: "Председатель коллегии адвокатов",
-    experience: "Стаж 20 лет",
+    experience: "Стаж 26 лет",
     specialization: "Уголовное право, арбитраж",
     image: lyutikovImg,
     slug: "lyutikov"
@@ -30,7 +30,7 @@ const teamMembers = [
   {
     name: "Сотников Дмитрий Валерьевич",
     position: "Адвокат",
-    experience: "Стаж 10 лет",
+    experience: "Стаж 15 лет",
     specialization: "Трудовое право, защита прав работников",
     image: sotnikovImg,
     slug: "sotnikov"
