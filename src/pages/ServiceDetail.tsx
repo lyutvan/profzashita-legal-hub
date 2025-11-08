@@ -3,6 +3,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PricingBlock from "@/components/PricingBlock";
+import PriceBlock from "@/components/PriceBlock";
 import LeadForm from "@/components/LeadForm";
 import { Helmet } from "react-helmet";
 import { serviceCategories, ServiceItem } from "@/data/services";
@@ -25,6 +26,11 @@ const ServiceDetail = () => {
 
   const currentUrl = `${SITE.url}uslugi/${categorySlug}/${serviceSlug}/`;
   const ogImage = `${SITE.url}og-cover.jpg`; // Default OG image
+  
+  // Calculate minimum price from pricing packages
+  const minPrice = service.pricing.length > 0 
+    ? Math.min(...service.pricing.map(p => p.priceFrom))
+    : undefined;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -61,6 +67,7 @@ const ServiceDetail = () => {
       <LegalServiceSchema 
         serviceType={service.title}
         url={currentUrl}
+        priceFrom={minPrice?.toString()}
       />
 
       <Header />
@@ -153,6 +160,12 @@ const ServiceDetail = () => {
                   </h3>
                   <p className="text-muted-foreground leading-relaxed">{service.timing}</p>
                 </div>
+
+                {/* Price Summary */}
+                <PriceBlock 
+                  priceFrom={minPrice} 
+                  priceNote="Точная стоимость зависит от сложности дела и выбранного пакета услуг" 
+                />
 
                 {/* Pricing */}
                 <div>

@@ -3,12 +3,14 @@ import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import PriceBlock from "@/components/PriceBlock";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { CheckCircle2, FileText, Clock, Phone } from "lucide-react";
 import { LegalServiceSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
+import { getPriceBySlug } from "@/data/pricing";
 
 interface ServiceStep {
   number: number;
@@ -47,6 +49,10 @@ interface ServiceTemplateProps {
     title: string;
     url: string;
   }>;
+  
+  // Price (optional - will be fetched from pricing.ts if not provided)
+  priceFrom?: number;
+  priceNote?: string;
 }
 
 const ServiceTemplate = ({
@@ -64,8 +70,15 @@ const ServiceTemplate = ({
   documentsAndTimingTitle = "Документы и сроки",
   documentsAndTiming,
   faqs,
-  relatedLinks
+  relatedLinks,
+  priceFrom: providedPriceFrom,
+  priceNote: providedPriceNote
 }: ServiceTemplateProps) => {
+  // Get price from pricing.ts if not provided directly
+  const pricingData = getPriceBySlug(canonical);
+  const priceFrom = providedPriceFrom ?? pricingData?.priceFrom;
+  const priceNote = providedPriceNote ?? pricingData?.priceNote;
+  
   const breadcrumbItems = [
     { name: "Главная", url: SITE.url },
     { name: "Услуги", url: `${SITE.url}/uslugi` },
@@ -85,6 +98,7 @@ const ServiceTemplate = ({
       <LegalServiceSchema 
         serviceType={h1}
         url={canonical}
+        priceFrom={priceFrom?.toString()}
       />
 
       <Header />
@@ -186,6 +200,9 @@ const ServiceTemplate = ({
                     </CardContent>
                   </Card>
                 </div>
+
+                {/* Price */}
+                <PriceBlock priceFrom={priceFrom} priceNote={priceNote} />
 
                 {/* FAQ */}
                 <div>

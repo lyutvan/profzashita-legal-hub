@@ -4,6 +4,7 @@ import Header from "./Header";
 import Footer from "./Footer";
 import Breadcrumbs from "./Breadcrumbs";
 import LeadForm from "./LeadForm";
+import PriceBlock from "./PriceBlock";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
@@ -227,6 +228,12 @@ const ClusterServicePage = ({
                   ))}
                 </div>
               </section>
+
+              {/* 3.5 Цена */}
+              <PriceBlock 
+                priceFrom={situation.priceFrom} 
+                priceNote={situation.pricingNote}
+              />
 
               {/* 4. Сроки / этапы / цена */}
               <section>
