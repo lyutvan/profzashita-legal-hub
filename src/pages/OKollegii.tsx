@@ -1,41 +1,12 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Award, Users, Target, TrendingUp } from "lucide-react";
+import { Award, Target, TrendingUp } from "lucide-react";
 import libraryImg from "@/assets/legal/library-vertical.jpg";
-import sotnikovImg from "@/assets/team/sotnikov.jpg";
-import lyutikovImg from "@/assets/team/lyutikov.jpg";
-import ryzhenkoImg from "@/assets/team/ryzhenko.jpg";
 import { PersonSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import { Helmet } from "react-helmet";
-
-const teamMembers = [
-  {
-    name: "Лютиков Иван Иванович",
-    position: "Председатель коллегии адвокатов",
-    experience: "Стаж 26 лет",
-    specialization: "Уголовное право, арбитраж",
-    image: lyutikovImg,
-    slug: "lyutikov"
-  },
-  {
-    name: "Рыженко Дмитрий Петрович",
-    position: "Юрист",
-    experience: "Стаж 8 лет",
-    specialization: "Гражданское право, договорное право",
-    image: ryzhenkoImg,
-    slug: "ryzhenko"
-  },
-  {
-    name: "Сотников Дмитрий Валерьевич",
-    position: "Адвокат",
-    experience: "Стаж 15 лет",
-    specialization: "Трудовое право, защита прав работников",
-    image: sotnikovImg,
-    slug: "sotnikov"
-  }
-];
+import { teamMembers } from "@/data/team";
 
 const About = () => {
   return (

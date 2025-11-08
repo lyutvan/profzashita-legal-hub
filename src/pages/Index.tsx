@@ -6,6 +6,7 @@ import LeadForm from "@/components/LeadForm";
 import Testimonials from "@/components/Testimonials";
 import { OrganizationSchema, WebSiteSchema, ReviewsSchema } from "@/components/JsonLd";
 import { testimonials } from "@/data/testimonials";
+import { teamMembers } from "@/data/team";
 import { serviceCategories } from "@/data/services";
 import { Shield, Target, Award, Users, CheckCircle, Phone } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -300,6 +301,41 @@ const Index = () => {
                   <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
                   <p className="text-base leading-relaxed">{advantage}</p>
                 </div>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Team Section */}
+        <section className="py-20">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mx-auto text-center mb-16">
+              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
+                Наша <span className="text-accent">команда</span>
+              </h2>
+              <p className="text-lg text-muted-foreground">
+                Профессионалы с многолетним опытом в различных областях права
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+              {teamMembers.map((member, index) => (
+                <Card key={index} className="border-border hover:shadow-elegant transition-all">
+                  <CardContent className="pt-6 text-center">
+                    <div className="w-48 h-48 rounded-lg overflow-hidden mx-auto mb-4 border-2 border-accent/20">
+                      <img 
+                        src={member.image} 
+                        alt={member.name} 
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <h3 className="font-playfair text-xl font-semibold mb-2">{member.name}</h3>
+                    <p className="text-accent font-medium mb-1">{member.position}</p>
+                    <p className="text-sm text-muted-foreground mb-2">{member.experience}</p>
+                    <p className="text-sm text-muted-foreground">{member.specialization}</p>
+                  </CardContent>
+                </Card>
               ))}
             </div>
           </div>
