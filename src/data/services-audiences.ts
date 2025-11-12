@@ -67,6 +67,14 @@ export const audienceServices: AudienceService[] = [
     priority: 7,
     category: 'Трудовые дела'
   },
+  {
+    title: 'Уголовные дела',
+    slug: 'ugolovnye',
+    path: '/services/phys/ugolovnye',
+    audience: 'phys',
+    priority: 8,
+    category: 'Уголовная защита'
+  },
 
   // ========== ЮРИДИЧЕСКИМ ЛИЦАМ ==========
   {

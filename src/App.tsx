@@ -37,6 +37,7 @@ import NasledstvoPage from "./pages/services/phys/NasledstvoPage";
 import PotrebiteliPage from "./pages/services/phys/PotrebiteliPage";
 import DtpPage from "./pages/services/phys/DtpPage";
 import TrudovyeSporyPage from "./pages/services/phys/TrudovyeSporyPage";
+import UgolovnyePage from "./pages/services/phys/UgolovnyePage";
 
 const queryClient = new QueryClient();
 
@@ -74,6 +75,7 @@ const App = () => (
           <Route path="/services/phys/zashchita-prav-potrebitelya" element={<PotrebiteliPage />} />
           <Route path="/services/phys/dtp-strahovye-spory" element={<DtpPage />} />
           <Route path="/services/phys/trudovye-spory" element={<TrudovyeSporyPage />} />
+          <Route path="/services/phys/ugolovnye" element={<UgolovnyePage />} />
           
           {/* Business services */}
           <Route path="/services/biz/arbitrazhnye-spory" element={<ArbitrazhnyeSporyPage />} />

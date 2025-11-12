@@ -135,6 +135,13 @@ export const servicePricing: ServicePrice[] = [
     slug: '/services/phys/zhilishchnye-spory',
     priceFrom: 20000,
     priceNote: 'Точная стоимость определяется после анализа ситуации'
+  },
+  
+  // Уголовные дела
+  {
+    slug: '/services/phys/ugolovnye',
+    priceFrom: 150000,
+    priceNote: 'Точная стоимость зависит от тяжести преступления и стадии процесса'
   }
 ];
 
