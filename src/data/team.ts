@@ -14,7 +14,7 @@ export const teamMembers = [
   {
     name: "Рыженко Дмитрий Петрович",
     position: "Юрист",
-    experience: "Стаж 8 лет",
+    experience: "Стаж 23 года",
     specialization: "Гражданское право, договорное право",
     image: ryzhenkoImg,
     slug: "ryzhenko"
