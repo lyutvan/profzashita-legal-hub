@@ -67,14 +67,14 @@ const Index = () => {
               </p>
             </div>
             <h1 className="font-playfair text-4xl md:text-6xl font-bold text-white mb-6 leading-tight mt-4">
-              Премиум-юридические услуги для сложных дел
+              Юридическая помощь по делам любой сложности
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
               Без предоплаты • Индивидуальная стратегия • Конфиденциально
             </p>
             <div className="flex justify-center">
-              <Button size="lg" variant="default" className="bg-accent hover:bg-accent/90 text-primary text-lg px-8" asChild>
-                <Link to="/kontakty">Бесплатная консультация</Link>
+              <Button size="lg" variant="destructive" className="text-lg px-8" asChild>
+                <Link to="/kontakty">Дежурный адвокат</Link>
               </Button>
             </div>
           </div>
