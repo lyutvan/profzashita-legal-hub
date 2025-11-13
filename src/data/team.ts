@@ -23,7 +23,7 @@ export const teamMembers = [
     name: "Сотников Дмитрий Валерьевич",
     position: "Адвокат",
     experience: "Стаж 15 лет",
-    specialization: "Трудовое право, защита прав работников",
+    specialization: "Медиация, защита по уголовным делам с финансовой направленностью, гражданские дела имущественного характера",
     image: sotnikovImg,
     slug: "sotnikov"
   }

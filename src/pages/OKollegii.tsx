@@ -2,7 +2,8 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Award, Target, TrendingUp } from "lucide-react";
-import libraryImg from "@/assets/legal/library-vertical.jpg";
+import office1Img from "@/assets/office-1.jpg";
+import office2Img from "@/assets/office-2.jpg";
 import { PersonSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import { Helmet } from "react-helmet";
@@ -70,16 +71,26 @@ const About = () => {
         <section className="py-20">
           <div className="container mx-auto px-4">
             <div className="max-w-6xl mx-auto">
-              {/* Library image + Mission side by side */}
+              {/* Office images + Mission side by side */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 items-center">
-                {/* Library image */}
-                <div className="rounded-lg overflow-hidden shadow-elegant">
-                  <img 
-                    src={libraryImg} 
-                    alt="Библиотека юридических книг" 
-                    className="w-full h-[400px] md:h-[450px] object-cover"
-                    loading="lazy"
-                  />
+                {/* Office images */}
+                <div className="space-y-6">
+                  <div className="rounded-lg overflow-hidden shadow-elegant">
+                    <img 
+                      src={office1Img} 
+                      alt="Офис коллегии адвокатов Профзащита" 
+                      className="w-full h-[300px] object-cover"
+                      loading="lazy"
+                    />
+                  </div>
+                  <div className="rounded-lg overflow-hidden shadow-elegant">
+                    <img 
+                      src={office2Img} 
+                      alt="Кабинет адвоката в коллегии Профзащита" 
+                      className="w-full h-[300px] object-cover"
+                      loading="lazy"
+                    />
+                  </div>
                 </div>
 
                 {/* Mission cards */}
