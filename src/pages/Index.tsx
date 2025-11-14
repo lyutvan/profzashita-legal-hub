@@ -77,13 +77,9 @@ const Index = () => {
                 <Link to="/kontakty">Дежурный адвокат</Link>
               </Button>
             </div>
-          </div>
-        </LegalBackground>
 
-        {/* Services Quick Access */}
-        <section className="py-16 bg-background">
-          <div className="container mx-auto px-4">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+            {/* Services Quick Access */}
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-16">
               {/* Уголовные дела */}
               <Card className="border-2 border-white/20 bg-background/50 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
                 <CardContent className="p-6">
@@ -130,7 +126,7 @@ const Index = () => {
               </Card>
             </div>
           </div>
-        </section>
+        </LegalBackground>
 
         {/* About Section */}
         <section className="relative py-20 bg-muted/30 overflow-hidden">
