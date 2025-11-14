@@ -81,13 +81,13 @@ const Index = () => {
             {/* Services Quick Access */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto mt-16">
               {/* Уголовные дела */}
-              <Card className="border-2 border-white/20 bg-background/50 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
+              <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
                 <CardContent className="p-6">
-                  <h3 className="font-playfair text-2xl font-bold mb-3 text-foreground">Уголовные дела</h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  <h3 className="font-playfair text-2xl font-bold mb-3 text-white">Уголовные дела</h3>
+                  <p className="text-white/80 mb-6 leading-relaxed">
                     Профессиональные юридические услуги для защиты ваших интересов
                   </p>
-                  <Button variant="outline" asChild className="w-full">
+                  <Button variant="outline" asChild className="w-full border-white/40 text-white hover:bg-white/10">
                     <Link to="/services/phys/ugolovnye">
                       Подробнее →
                     </Link>
@@ -96,13 +96,13 @@ const Index = () => {
               </Card>
 
               {/* Для бизнеса */}
-              <Card className="border-2 border-white/20 bg-background/50 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
+              <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
                 <CardContent className="p-6">
-                  <h3 className="font-playfair text-2xl font-bold mb-3 text-foreground">Для бизнеса</h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  <h3 className="font-playfair text-2xl font-bold mb-3 text-white">Для бизнеса</h3>
+                  <p className="text-white/80 mb-6 leading-relaxed">
                     Комплексное юридическое сопровождение компаний и предпринимателей
                   </p>
-                  <Button variant="outline" asChild className="w-full">
+                  <Button variant="outline" asChild className="w-full border-white/40 text-white hover:bg-white/10">
                     <Link to="/services/biz">
                       Подробнее →
                     </Link>
@@ -111,13 +111,13 @@ const Index = () => {
               </Card>
 
               {/* Для граждан */}
-              <Card className="border-2 border-white/20 bg-background/50 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
+              <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
                 <CardContent className="p-6">
-                  <h3 className="font-playfair text-2xl font-bold mb-3 text-foreground">Для граждан</h3>
-                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                  <h3 className="font-playfair text-2xl font-bold mb-3 text-white">Для граждан</h3>
+                  <p className="text-white/80 mb-6 leading-relaxed">
                     Защита прав и интересов физических лиц в гражданских делах
                   </p>
-                  <Button variant="outline" asChild className="w-full">
+                  <Button variant="outline" asChild className="w-full border-white/40 text-white hover:bg-white/10">
                     <Link to="/services/phys">
                       Подробнее →
                     </Link>
