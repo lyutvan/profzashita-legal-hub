@@ -80,6 +80,58 @@ const Index = () => {
           </div>
         </LegalBackground>
 
+        {/* Services Quick Access */}
+        <section className="py-16 bg-background">
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-6xl mx-auto">
+              {/* Уголовные дела */}
+              <Card className="border-2 border-white/20 bg-background/50 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
+                <CardContent className="p-6">
+                  <h3 className="font-playfair text-2xl font-bold mb-3 text-foreground">Уголовные дела</h3>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    Профессиональные юридические услуги для защиты ваших интересов
+                  </p>
+                  <Button variant="outline" asChild className="w-full">
+                    <Link to="/services/phys/ugolovnye">
+                      Подробнее →
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Для бизнеса */}
+              <Card className="border-2 border-white/20 bg-background/50 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
+                <CardContent className="p-6">
+                  <h3 className="font-playfair text-2xl font-bold mb-3 text-foreground">Для бизнеса</h3>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    Комплексное юридическое сопровождение компаний и предпринимателей
+                  </p>
+                  <Button variant="outline" asChild className="w-full">
+                    <Link to="/services/biz">
+                      Подробнее →
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Для граждан */}
+              <Card className="border-2 border-white/20 bg-background/50 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
+                <CardContent className="p-6">
+                  <h3 className="font-playfair text-2xl font-bold mb-3 text-foreground">Для граждан</h3>
+                  <p className="text-muted-foreground mb-6 leading-relaxed">
+                    Защита прав и интересов физических лиц в гражданских делах
+                  </p>
+                  <Button variant="outline" asChild className="w-full">
+                    <Link to="/services/phys">
+                      Подробнее →
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
         {/* About Section */}
         <section className="relative py-20 bg-muted/30 overflow-hidden">
           {/* Texture strip */}
