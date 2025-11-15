@@ -38,6 +38,7 @@ import PotrebiteliPage from "./pages/services/phys/PotrebiteliPage";
 import DtpPage from "./pages/services/phys/DtpPage";
 import TrudovyeSporyPage from "./pages/services/phys/TrudovyeSporyPage";
 import UgolovnyePage from "./pages/services/phys/UgolovnyePage";
+import Novosti from "./pages/Novosti";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,7 @@ const App = () => (
           <Route path="/o-kollegii" element={<OKollegii />} />
           <Route path="/keisy" element={<Keisy />} />
           <Route path="/faq" element={<FAQ />} />
+          <Route path="/novosti" element={<Novosti />} />
           <Route path="/kontakty" element={<Kontakty />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
