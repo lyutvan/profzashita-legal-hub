@@ -1,6 +1,7 @@
 import sotnikovImg from "@/assets/team/sotnikov.jpg";
 import lyutikovImg from "@/assets/team/lyutikov.jpg";
 import ryzhenkoImg from "@/assets/team/ryzhenko.jpg";
+import vaskovskyImg from "@/assets/team/vaskovsky.jpg";
 
 export const teamMembers = [
   {
@@ -26,5 +27,13 @@ export const teamMembers = [
     specialization: "Медиация, защита по уголовным делам с финансовой направленностью, гражданские дела имущественного характера",
     image: sotnikovImg,
     slug: "sotnikov"
+  },
+  {
+    name: "Васьковский Михаил Михайлович",
+    position: "Адвокат",
+    experience: "Стаж 15 лет",
+    specialization: "Семейное право, административное право, страховое право",
+    image: vaskovskyImg,
+    slug: "vaskovsky"
   }
 ];
