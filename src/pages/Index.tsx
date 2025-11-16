@@ -215,7 +215,7 @@ const Index = () => {
                   <ul className="space-y-2">
                     <li>
                       <Link
-                        to="/uslugi"
+                        to="/services/phys#Уголовная защита"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -224,7 +224,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        to="/uslugi"
+                        to="/services/phys#Гражданские дела"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -233,7 +233,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        to="/uslugi"
+                        to="/services/phys#Семейные споры"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -242,7 +242,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        to="/uslugi"
+                        to="/services/phys#Гражданские дела"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -251,7 +251,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        to="/uslugi"
+                        to="/services/phys#Гражданские дела"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -275,7 +275,7 @@ const Index = () => {
                   <ul className="space-y-2">
                     <li>
                       <Link
-                        to="/uslugi"
+                        to="/services/biz#Судебная защита"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -284,7 +284,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        to="/uslugi"
+                        to="/services/biz#Договорная работа"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -293,7 +293,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        to="/uslugi"
+                        to="/services/biz#Налоговое право"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -302,7 +302,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        to="/uslugi"
+                        to="/services/biz#Взыскание долгов"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
@@ -311,7 +311,7 @@ const Index = () => {
                     </li>
                     <li>
                       <Link
-                        to="/uslugi"
+                        to="/services/biz#Банкротство"
                         className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
