@@ -20,7 +20,7 @@ export const audienceServices: AudienceService[] = [
     category: 'Уголовная защита'
   },
   {
-    title: 'Развод и раздел имущества',
+    title: 'Расторжение брака и раздел имущества',
     slug: 'razvod-razdel-imushchestva',
     path: '/services/phys/razvod-razdel-imushchestva',
     audience: 'phys',
