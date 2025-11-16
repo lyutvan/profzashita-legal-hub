@@ -12,11 +12,19 @@ export interface AudienceService {
 export const audienceServices: AudienceService[] = [
   // ========== ФИЗИЧЕСКИМ ЛИЦАМ ==========
   {
+    title: 'Уголовные дела',
+    slug: 'ugolovnye',
+    path: '/services/phys/ugolovnye',
+    audience: 'phys',
+    priority: 0,
+    category: 'Уголовная защита'
+  },
+  {
     title: 'Развод и раздел имущества',
     slug: 'razvod-razdel-imushchestva',
     path: '/services/phys/razvod-razdel-imushchestva',
     audience: 'phys',
-    priority: 1,
+    priority: 2,
     category: 'Семейные споры'
   },
   {
@@ -24,7 +32,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'alimenty',
     path: '/services/phys/alimenty',
     audience: 'phys',
-    priority: 2,
+    priority: 3,
     category: 'Семейные споры'
   },
   {
@@ -32,7 +40,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'zhilishchnye-spory',
     path: '/services/phys/zhilishchnye-spory',
     audience: 'phys',
-    priority: 3,
+    priority: 4,
     category: 'Гражданские дела'
   },
   {
@@ -40,7 +48,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'nasledstvo',
     path: '/services/phys/nasledstvo',
     audience: 'phys',
-    priority: 4,
+    priority: 5,
     category: 'Гражданские дела'
   },
   {
@@ -48,7 +56,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'zashchita-prav-potrebitelya',
     path: '/services/phys/zashchita-prav-potrebitelya',
     audience: 'phys',
-    priority: 5,
+    priority: 6,
     category: 'Гражданские дела'
   },
   {
@@ -56,7 +64,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'dtp-strahovye-spory',
     path: '/services/phys/dtp-strahovye-spory',
     audience: 'phys',
-    priority: 6,
+    priority: 7,
     category: 'Гражданские дела'
   },
   {
@@ -64,16 +72,8 @@ export const audienceServices: AudienceService[] = [
     slug: 'trudovye-spory',
     path: '/services/phys/trudovye-spory',
     audience: 'phys',
-    priority: 7,
-    category: 'Трудовые дела'
-  },
-  {
-    title: 'Уголовные дела',
-    slug: 'ugolovnye',
-    path: '/services/phys/ugolovnye',
-    audience: 'phys',
     priority: 8,
-    category: 'Уголовная защита'
+    category: 'Трудовые дела'
   },
 
   // ========== ЮРИДИЧЕСКИМ ЛИЦАМ ==========
