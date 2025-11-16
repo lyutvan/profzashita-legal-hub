@@ -204,11 +204,9 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
               <Card className="border-border hover:shadow-elegant transition-all group">
                 <CardContent className="pt-6">
-                  <Link to="/services/phys" className="block">
-                    <h3 className="font-playfair text-2xl font-bold mb-2 text-accent group-hover:underline">
-                      Физическим лицам
-                    </h3>
-                  </Link>
+                  <h3 className="font-playfair text-2xl font-bold mb-2 text-accent">
+                    Физическим лицам
+                  </h3>
                   <p className="text-sm text-muted-foreground mb-4">
                     Защита прав граждан в различных сферах
                   </p>
@@ -264,11 +262,9 @@ const Index = () => {
               
               <Card className="border-border hover:shadow-elegant transition-all group">
                 <CardContent className="pt-6">
-                  <Link to="/services/biz" className="block">
-                    <h3 className="font-playfair text-2xl font-bold mb-2 text-accent group-hover:underline">
-                      Юридическим лицам
-                    </h3>
-                  </Link>
+                  <h3 className="font-playfair text-2xl font-bold mb-2 text-accent">
+                    Юридическим лицам
+                  </h3>
                   <p className="text-sm text-muted-foreground mb-4">
                     Корпоративное обслуживание бизнеса
                   </p>
