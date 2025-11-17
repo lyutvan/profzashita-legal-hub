@@ -99,7 +99,7 @@ export const audienceServices: AudienceService[] = [
     path: '/services/biz/arbitrazhnye-spory',
     audience: 'biz',
     priority: 1,
-    category: 'Судебная защита'
+    category: 'Судебное представительство'
   },
   {
     title: 'Договорная работа и претензии',
@@ -123,7 +123,7 @@ export const audienceServices: AudienceService[] = [
     path: '/services/biz/vzyskanie-debitorskoy-zadolzhennosti',
     audience: 'biz',
     priority: 4,
-    category: 'Взыскание долгов'
+    category: 'Исполнительное производство'
   },
   {
     title: 'Банкротство и субсидиарная ответственность',
