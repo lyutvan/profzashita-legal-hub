@@ -36,11 +36,19 @@ export const audienceServices: AudienceService[] = [
     category: 'Семейные споры'
   },
   {
+    title: 'Место жительства и порядок общения с ребенком',
+    slug: 'mesto-zhitelstva-poryadok-obshcheniya',
+    path: '/services/phys/mesto-zhitelstva-poryadok-obshcheniya',
+    audience: 'phys',
+    priority: 4,
+    category: 'Семейные споры'
+  },
+  {
     title: 'Жилищные споры',
     slug: 'zhilishchnye-spory',
     path: '/services/phys/zhilishchnye-spory',
     audience: 'phys',
-    priority: 4,
+    priority: 5,
     category: 'Гражданские дела'
   },
   {
@@ -48,7 +56,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'nasledstvo',
     path: '/services/phys/nasledstvo',
     audience: 'phys',
-    priority: 5,
+    priority: 6,
     category: 'Гражданские дела'
   },
   {
@@ -56,15 +64,15 @@ export const audienceServices: AudienceService[] = [
     slug: 'zashchita-prav-potrebitelya',
     path: '/services/phys/zashchita-prav-potrebitelya',
     audience: 'phys',
-    priority: 6,
+    priority: 7,
     category: 'Гражданские дела'
   },
   {
-    title: 'ДТП и страховые споры',
+    title: 'Помощь при ДТП',
     slug: 'dtp-strahovye-spory',
     path: '/services/phys/dtp-strahovye-spory',
     audience: 'phys',
-    priority: 7,
+    priority: 8,
     category: 'Гражданские дела'
   },
   {
@@ -72,8 +80,16 @@ export const audienceServices: AudienceService[] = [
     slug: 'trudovye-spory',
     path: '/services/phys/trudovye-spory',
     audience: 'phys',
-    priority: 8,
-    category: 'Трудовые дела'
+    priority: 9,
+    category: 'Гражданские дела'
+  },
+  {
+    title: 'Банкротство физ лиц',
+    slug: 'bankrotstvo-fiz-lits',
+    path: '/services/phys/bankrotstvo-fiz-lits',
+    audience: 'phys',
+    priority: 10,
+    category: 'Гражданские дела'
   },
 
   // ========== ЮРИДИЧЕСКИМ ЛИЦАМ ==========
