@@ -38,6 +38,8 @@ import PotrebiteliPage from "./pages/services/phys/PotrebiteliPage";
 import DtpPage from "./pages/services/phys/DtpPage";
 import TrudovyeSporyPage from "./pages/services/phys/TrudovyeSporyPage";
 import UgolovnyePage from "./pages/services/phys/UgolovnyePage";
+import MestoZhitelstvaPoryadokObshcheniyaPage from "./pages/services/phys/MestoZhitelstvaPoryadokObshcheniyaPage";
+import BankrotstvoFizLitsPage from "./pages/services/phys/BankrotstvoFizLitsPage";
 import Novosti from "./pages/Novosti";
 
 const queryClient = new QueryClient();
@@ -78,6 +80,8 @@ const App = () => (
           <Route path="/services/phys/dtp-strahovye-spory" element={<DtpPage />} />
           <Route path="/services/phys/trudovye-spory" element={<TrudovyeSporyPage />} />
           <Route path="/services/phys/ugolovnye" element={<UgolovnyePage />} />
+          <Route path="/services/phys/mesto-zhitelstva-poryadok-obshcheniya" element={<MestoZhitelstvaPoryadokObshcheniyaPage />} />
+          <Route path="/services/phys/bankrotstvo-fiz-lits" element={<BankrotstvoFizLitsPage />} />
           
           {/* Business services */}
           <Route path="/services/biz/arbitrazhnye-spory" element={<ArbitrazhnyeSporyPage />} />

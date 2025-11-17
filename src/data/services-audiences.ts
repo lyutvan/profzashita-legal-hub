@@ -84,7 +84,7 @@ export const audienceServices: AudienceService[] = [
     category: 'Гражданские дела'
   },
   {
-    title: 'Банкротство физ лиц',
+    title: 'Банкротство физических лиц',
     slug: 'bankrotstvo-fiz-lits',
     path: '/services/phys/bankrotstvo-fiz-lits',
     audience: 'phys',
