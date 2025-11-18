@@ -81,13 +81,15 @@ const Index = () => {
             {/* Services Quick Access */}
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto mt-12">
               {/* Уголовные дела */}
-              <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
-                <CardContent className="p-4">
-                  <h3 className="font-playfair text-xl font-bold mb-2 text-white">Уголовные дела</h3>
-                  <p className="text-white/80 mb-4 leading-relaxed text-sm">
-                    Профессиональные юридические услуги для защиты ваших интересов
-                  </p>
-                  <Button variant="destructive" asChild className="w-full">
+              <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant flex flex-col h-full">
+                <CardContent className="p-4 flex flex-col flex-1">
+                  <div className="flex-1">
+                    <h3 className="font-playfair text-xl font-bold mb-2 text-white">Уголовные дела</h3>
+                    <p className="text-white/80 mb-4 leading-relaxed text-sm">
+                      Профессиональные юридические услуги для защиты ваших интересов
+                    </p>
+                  </div>
+                  <Button asChild className="w-full bg-[#C9A227] hover:bg-[#B08E1F] text-white">
                     <Link to="/services/phys/ugolovnye">
                       Подробнее →
                     </Link>
@@ -96,13 +98,15 @@ const Index = () => {
               </Card>
 
               {/* Для бизнеса */}
-              <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
-                <CardContent className="p-4">
-                  <h3 className="font-playfair text-xl font-bold mb-2 text-white">Для бизнеса</h3>
-                  <p className="text-white/80 mb-4 leading-relaxed text-sm">
-                    Комплексное юридическое сопровождение компаний и предпринимателей
-                  </p>
-                  <Button variant="destructive" asChild className="w-full">
+              <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant flex flex-col h-full">
+                <CardContent className="p-4 flex flex-col flex-1">
+                  <div className="flex-1">
+                    <h3 className="font-playfair text-xl font-bold mb-2 text-white">Для бизнеса</h3>
+                    <p className="text-white/80 mb-4 leading-relaxed text-sm">
+                      Комплексное юридическое сопровождение компаний и предпринимателей
+                    </p>
+                  </div>
+                  <Button asChild className="w-full bg-[#C9A227] hover:bg-[#B08E1F] text-white">
                     <Link to="/services/biz">
                       Подробнее →
                     </Link>
@@ -111,13 +115,15 @@ const Index = () => {
               </Card>
 
               {/* Для граждан */}
-              <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant">
-                <CardContent className="p-4">
-                  <h3 className="font-playfair text-xl font-bold mb-2 text-white">Для граждан</h3>
-                  <p className="text-white/80 mb-4 leading-relaxed text-sm">
-                    Защита прав и интересов физических лиц в гражданских делах
-                  </p>
-                  <Button variant="destructive" asChild className="w-full">
+              <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant flex flex-col h-full">
+                <CardContent className="p-4 flex flex-col flex-1">
+                  <div className="flex-1">
+                    <h3 className="font-playfair text-xl font-bold mb-2 text-white">Для граждан</h3>
+                    <p className="text-white/80 mb-4 leading-relaxed text-sm">
+                      Защита прав и интересов физических лиц в гражданских делах
+                    </p>
+                  </div>
+                  <Button asChild className="w-full bg-[#C9A227] hover:bg-[#B08E1F] text-white">
                     <Link to="/services/phys">
                       Подробнее →
                     </Link>
