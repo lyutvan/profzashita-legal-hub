@@ -12,12 +12,20 @@ export interface AudienceService {
 export const audienceServices: AudienceService[] = [
   // ========== ФИЗИЧЕСКИМ ЛИЦАМ ==========
   {
-    title: 'Уголовные дела',
-    slug: 'ugolovnye',
-    path: '/services/phys/ugolovnye',
+    title: 'Мошенничество',
+    slug: 'moshennichestvo',
+    path: '/services/phys/moshennichestvo',
     audience: 'phys',
     priority: 0,
-    category: 'Уголовная защита'
+    category: 'Уголовные дела'
+  },
+  {
+    title: 'Наркотики',
+    slug: 'narkotiki',
+    path: '/services/phys/narkotiki',
+    audience: 'phys',
+    priority: 1,
+    category: 'Уголовные дела'
   },
   {
     title: 'Расторжение брака и раздел имущества',
