@@ -37,7 +37,8 @@ import NasledstvoPage from "./pages/services/phys/NasledstvoPage";
 import PotrebiteliPage from "./pages/services/phys/PotrebiteliPage";
 import DtpPage from "./pages/services/phys/DtpPage";
 import TrudovyeSporyPage from "./pages/services/phys/TrudovyeSporyPage";
-import UgolovnyePage from "./pages/services/phys/UgolovnyePage";
+import MoshennichestvoPage from "./pages/services/phys/MoshennichestvoPage";
+import NarkotikiPage from "./pages/services/phys/NarkotikiPage";
 import MestoZhitelstvaPoryadokObshcheniyaPage from "./pages/services/phys/MestoZhitelstvaPoryadokObshcheniyaPage";
 import BankrotstvoFizLitsPage from "./pages/services/phys/BankrotstvoFizLitsPage";
 import Novosti from "./pages/Novosti";
@@ -79,7 +80,8 @@ const App = () => (
           <Route path="/services/phys/zashchita-prav-potrebitelya" element={<PotrebiteliPage />} />
           <Route path="/services/phys/dtp-strahovye-spory" element={<DtpPage />} />
           <Route path="/services/phys/trudovye-spory" element={<TrudovyeSporyPage />} />
-          <Route path="/services/phys/ugolovnye" element={<UgolovnyePage />} />
+          <Route path="/services/phys/moshennichestvo" element={<MoshennichestvoPage />} />
+          <Route path="/services/phys/narkotiki" element={<NarkotikiPage />} />
           <Route path="/services/phys/mesto-zhitelstva-poryadok-obshcheniya" element={<MestoZhitelstvaPoryadokObshcheniyaPage />} />
           <Route path="/services/phys/bankrotstvo-fiz-lits" element={<BankrotstvoFizLitsPage />} />
           
@@ -100,6 +102,7 @@ const App = () => (
           <Route path="/blog/*" element={<Navigate to="/uslugi" replace />} />
           <Route path="/articles/*" element={<Navigate to="/uslugi" replace />} />
           <Route path="/services/ugolovnye" element={<Navigate to="/services/phys" replace />} />
+          <Route path="/services/phys/ugolovnye" element={<Navigate to="/services/phys" replace />} />
           <Route path="/services/grazhdanskie" element={<Navigate to="/services/phys" replace />} />
           <Route path="/services/arbitrazh" element={<Navigate to="/services/biz" replace />} />
           <Route path="/services/biz/arbitrazh/*" element={<Navigate to="/services/biz/arbitrazhnye-spory" replace />} />
