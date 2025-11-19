@@ -175,6 +175,44 @@ const Cases = () => {
                           {caseItem.result}
                         </p>
                       </div>
+
+                      {/* Documents Section */}
+                      {caseItem.documents && caseItem.documents.length > 0 && (
+                        <div className="mt-6 pt-6 border-t border-border">
+                          <h3 className="font-semibold text-accent mb-4 flex items-center gap-2">
+                            <Gavel className="h-5 w-5" />
+                            Документы по делу
+                          </h3>
+                          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-4">
+                            {caseItem.documents.map((doc, docIndex) => (
+                              <a
+                                key={docIndex}
+                                href={doc}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group relative aspect-[3/4] overflow-hidden rounded-lg border border-border hover:border-accent transition-all hover:shadow-md"
+                              >
+                                <img
+                                  src={doc}
+                                  alt={`Документ ${docIndex + 1} по делу: ${caseItem.title}`}
+                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                                  loading="lazy"
+                                />
+                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
+                                  <div className="absolute bottom-0 left-0 right-0 p-3">
+                                    <p className="text-white text-xs font-medium">
+                                      Просмотреть документ
+                                    </p>
+                                  </div>
+                                </div>
+                              </a>
+                            ))}
+                          </div>
+                          <p className="text-xs text-muted-foreground mt-3 italic">
+                            * Персональные данные на документах скрыты в соответствии с законодательством о защите персональных данных
+                          </p>
+                        </div>
+                      )}
                     </div>
                   </CardContent>
                 </Card>
