@@ -180,9 +180,7 @@ export const cases: Case[] = [
     image: "/cases/semejnyj-brachnyj-dogovor-1.jpg",
     documents: [
       "/cases/semejnyj-brachnyj-dogovor-1.jpg",
-      "/cases/semejnyj-brachnyj-dogovor-2.jpg",
-      "/cases/semejnyj-brachnyj-dogovor-3.jpg",
-      "/cases/semejnyj-brachnyj-dogovor-4.jpg"
+      "/cases/semejnyj-brachnyj-dogovor-2.jpg"
     ]
   }
 ];
