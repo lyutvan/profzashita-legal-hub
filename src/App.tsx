@@ -42,6 +42,7 @@ import NarkotikiPage from "./pages/services/phys/NarkotikiPage";
 import MestoZhitelstvaPoryadokObshcheniyaPage from "./pages/services/phys/MestoZhitelstvaPoryadokObshcheniyaPage";
 import BankrotstvoFizLitsPage from "./pages/services/phys/BankrotstvoFizLitsPage";
 import Novosti from "./pages/Novosti";
+import NewsDetail from "./pages/NewsDetail";
 
 const queryClient = new QueryClient();
 
@@ -63,6 +64,7 @@ const App = () => (
           <Route path="/keisy" element={<Keisy />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/novosti" element={<Novosti />} />
+          <Route path="/novosti/:id" element={<NewsDetail />} />
           <Route path="/kontakty" element={<Kontakty />} />
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />

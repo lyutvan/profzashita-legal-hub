@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { Helmet } from "react-helmet";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "@/components/ui/card";
@@ -143,10 +144,12 @@ const Novosti = () => {
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <Button variant="ghost" className="w-full justify-between group/btn">
-                        Читать далее
-                        <ChevronRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                      </Button>
+                      <Link to={`/novosti/${item.id}`}>
+                        <Button variant="ghost" className="w-full justify-between group/btn">
+                          Читать далее
+                          <ChevronRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                        </Button>
+                      </Link>
                     </CardContent>
                   </Card>
                 ))}
