@@ -8,8 +8,6 @@ import { Button } from "@/components/ui/button";
 import { Calendar, ArrowLeft, Clock, MapPin, Users } from "lucide-react";
 import { SITE } from "@/config/site";
 import legalHelpChildrenDay from "@/assets/news/legal-help-children-day.jpg";
-import familyConsultation from "@/assets/news/family-consultation.jpg";
-import officeReception from "@/assets/news/office-reception.jpg";
 
 const NewsDetail = () => {
   const { id } = useParams();
@@ -126,6 +124,11 @@ const NewsDetail = () => {
                         субъектах Российской Федерации ежегодно 20 ноября проводится Всероссийский 
                         день правовой помощи детям.
                       </p>
+                      <p className="text-muted-foreground leading-relaxed mb-6">
+                        20 ноября 2025 года адвокатская коллегия Профзащита приняла участие в этой важной 
+                        общероссийской акции. В течение всего дня, с 10:00 до 17:00, в офисе коллегии 
+                        велся прием граждан, нуждающихся в бесплатной юридической помощи.
+                      </p>
                       
                       <div className="grid md:grid-cols-2 gap-6 my-8">
                         <div className="flex items-start gap-3">
@@ -148,7 +151,7 @@ const NewsDetail = () => {
                           <MapPin className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                           <div>
                             <h3 className="font-semibold text-foreground mb-1">Место проведения</h3>
-                            <p className="text-muted-foreground">Офис адвокатского образования</p>
+                            <p className="text-muted-foreground">Офис адвокатской коллегии Профзащита</p>
                             <p className="text-sm text-muted-foreground mt-1">г. Москва</p>
                           </div>
                         </div>
@@ -156,27 +159,31 @@ const NewsDetail = () => {
                         <div className="flex items-start gap-3">
                           <Users className="h-6 w-6 text-primary mt-1 flex-shrink-0" />
                           <div>
-                            <h3 className="font-semibold text-foreground mb-1">Участие</h3>
-                            <p className="text-muted-foreground">Бесплатно</p>
+                            <h3 className="font-semibold text-foreground mb-1">Формат</h3>
+                            <p className="text-muted-foreground">Бесплатная помощь</p>
                           </div>
                         </div>
                       </div>
                     </div>
 
                     <div className="bg-primary/5 rounded-lg p-8 mb-8 border border-primary/20">
-                      <h2 className="text-2xl font-bold mb-6 text-foreground">Кому будет оказана помощь</h2>
+                      <h2 className="text-2xl font-bold mb-6 text-foreground">Кому была оказана помощь</h2>
+                      <p className="text-muted-foreground leading-relaxed mb-6">
+                        В рамках мероприятия бесплатная квалифицированная юридическая помощь оказывалась 
+                        следующим категориям граждан:
+                      </p>
                       <ul className="space-y-4">
                         <li className="flex items-start gap-3">
                           <div className="bg-primary rounded-full p-1 mt-1">
                             <div className="w-2 h-2 bg-primary-foreground rounded-full" />
                           </div>
-                          <span className="text-muted-foreground">Детям-сиротам и детям, оставшимся без попечения родителей</span>
+                          <span className="text-muted-foreground">Детям-сиротам и детям, оставшимся без попечения родителей, а также лицам из их числа</span>
                         </li>
                         <li className="flex items-start gap-3">
                           <div className="bg-primary rounded-full p-1 mt-1">
                             <div className="w-2 h-2 bg-primary-foreground rounded-full" />
                           </div>
-                          <span className="text-muted-foreground">Приемным семьям и опекунам</span>
+                          <span className="text-muted-foreground">Приемным семьям, опекунам и попечителям несовершеннолетних</span>
                         </li>
                         <li className="flex items-start gap-3">
                           <div className="bg-primary rounded-full p-1 mt-1">
@@ -184,31 +191,26 @@ const NewsDetail = () => {
                           </div>
                           <span className="text-muted-foreground">Детям-инвалидам и их родителям (законным представителям)</span>
                         </li>
+                        <li className="flex items-start gap-3">
+                          <div className="bg-primary rounded-full p-1 mt-1">
+                            <div className="w-2 h-2 bg-primary-foreground rounded-full" />
+                          </div>
+                          <span className="text-muted-foreground">Семьям с детьми, находящимся в трудной жизненной ситуации</span>
+                        </li>
                       </ul>
                     </div>
 
-                    <div className="grid md:grid-cols-2 gap-6 mb-8">
-                      <img 
-                        src={familyConsultation}
-                        alt="Консультация приемной семьи"
-                        className="w-full rounded-lg shadow-md object-cover aspect-square"
-                      />
-                      <img 
-                        src={officeReception}
-                        alt="Офис приема"
-                        className="w-full rounded-lg shadow-md object-cover aspect-square"
-                      />
-                    </div>
-
-                    <div className="bg-card rounded-lg p-8 border">
-                      <h2 className="text-2xl font-bold mb-6 text-foreground">Виды юридической помощи</h2>
+                    <div className="bg-card rounded-lg p-8 mb-8 border">
+                      <h2 className="text-2xl font-bold mb-6 text-foreground">Виды оказанной юридической помощи</h2>
                       <div className="space-y-4">
                         <div className="flex items-start gap-3 p-4 bg-background rounded-lg">
                           <div className="text-primary text-2xl font-bold">01</div>
                           <div>
                             <h3 className="font-semibold text-foreground mb-2">Устные консультации</h3>
                             <p className="text-muted-foreground">
-                              Получите разъяснения по правовым вопросам, касающимся прав и интересов детей
+                              Адвокаты коллегии давали разъяснения по правовым вопросам, касающимся прав и интересов детей, 
+                              включая вопросы семейного, жилищного, наследственного права, а также вопросы получения 
+                              государственной поддержки и социальных выплат.
                             </p>
                           </div>
                         </div>
@@ -218,7 +220,8 @@ const NewsDetail = () => {
                           <div>
                             <h3 className="font-semibold text-foreground mb-2">Письменные консультации</h3>
                             <p className="text-muted-foreground">
-                              Подробные письменные заключения по сложным юридическим ситуациям
+                              По наиболее сложным юридическим ситуациям были подготовлены подробные письменные заключения 
+                              с анализом правовой ситуации и рекомендациями по дальнейшим действиям.
                             </p>
                           </div>
                         </div>
@@ -228,28 +231,26 @@ const NewsDetail = () => {
                           <div>
                             <h3 className="font-semibold text-foreground mb-2">Составление документов</h3>
                             <p className="text-muted-foreground">
-                              Помощь в подготовке заявлений, жалоб и других документов правового характера
+                              Оказана помощь в подготовке заявлений, жалоб, исковых заявлений и других документов 
+                              правового характера для защиты прав и законных интересов несовершеннолетних.
                             </p>
                           </div>
                         </div>
                       </div>
                     </div>
 
-                    <div className="mt-12 p-8 bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg border border-primary/20">
-                      <h2 className="text-2xl font-bold mb-4 text-foreground">Предварительная запись не требуется</h2>
-                      <p className="text-muted-foreground mb-6">
-                        Вы можете прийти в любое удобное время в часы работы. Наши специалисты будут рады помочь вам.
+                    <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg p-8 border border-primary/20">
+                      <h2 className="text-2xl font-bold mb-4 text-foreground">Итоги мероприятия</h2>
+                      <p className="text-muted-foreground leading-relaxed mb-4">
+                        Мероприятие прошло успешно. За день приема было проконсультировано значительное количество 
+                        граждан, многие получили не только юридические консультации, но и практическую помощь в 
+                        составлении необходимых документов.
                       </p>
-                      <div className="flex flex-wrap gap-4">
-                        <Button size="lg" className="gap-2">
-                          <MapPin className="h-5 w-5" />
-                          Посмотреть на карте
-                        </Button>
-                        <Button size="lg" variant="outline" className="gap-2">
-                          <Calendar className="h-5 w-5" />
-                          Добавить в календарь
-                        </Button>
-                      </div>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Адвокатская коллегия Профзащита планирует и в дальнейшем принимать активное участие в 
+                        социально значимых проектах по оказанию бесплатной юридической помощи незащищенным 
+                        категориям граждан.
+                      </p>
                     </div>
                   </div>
                 ) : (
