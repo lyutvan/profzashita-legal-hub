@@ -7,7 +7,6 @@ import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Calendar, ArrowLeft, Clock, MapPin, Users } from "lucide-react";
 import { SITE } from "@/config/site";
-import legalHelpChildrenDay from "@/assets/news/legal-help-children-day.jpg";
 
 const NewsDetail = () => {
   const { id } = useParams();
@@ -42,8 +41,6 @@ const NewsDetail = () => {
     }
   };
 
-  // Special content for children's day event
-  const isChildrenDay = newsItem.id === 'children-day-2025';
 
   return (
     <>
@@ -94,26 +91,12 @@ const NewsDetail = () => {
             </div>
           </section>
 
-          {/* Main Image */}
-          {newsItem.image && (
-            <section className="py-8">
-              <div className="container mx-auto px-4">
-                <div className="max-w-4xl mx-auto">
-                  <img 
-                    src={isChildrenDay ? legalHelpChildrenDay : newsItem.image}
-                    alt={newsItem.title}
-                    className="w-full rounded-lg shadow-lg object-cover aspect-video"
-                  />
-                </div>
-              </div>
-            </section>
-          )}
 
           {/* Content Section */}
           <section className="py-12">
             <div className="container mx-auto px-4">
               <div className="max-w-4xl mx-auto">
-                {isChildrenDay ? (
+                {newsItem.id === 'children-day-2025' ? (
                   <div className="prose prose-lg max-w-none">
                     <div className="bg-card rounded-lg p-8 mb-8 border">
                       <h2 className="text-2xl font-bold mb-6 text-foreground">О мероприятии</h2>
