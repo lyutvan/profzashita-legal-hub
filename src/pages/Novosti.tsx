@@ -118,15 +118,6 @@ const Novosti = () => {
                     key={item.id} 
                     className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden"
                   >
-                    {item.image && (
-                      <div className="aspect-video overflow-hidden bg-muted">
-                        <img 
-                          src={item.image} 
-                          alt={item.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                        />
-                      </div>
-                    )}
                     <CardHeader>
                       <div className="flex items-center gap-2 mb-2">
                         <Badge className={getCategoryColor(item.category)}>
