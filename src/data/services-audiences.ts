@@ -7,6 +7,7 @@ export interface AudienceService {
   audience: 'phys' | 'biz';
   priority: number; // Для сортировки топ-5
   category?: string; // Для группировки на категорийных страницах
+  description?: string; // Описание услуги
 }
 
 export const audienceServices: AudienceService[] = [
@@ -17,7 +18,8 @@ export const audienceServices: AudienceService[] = [
     path: '/services/phys/chapter-16',
     audience: 'phys',
     priority: 1,
-    category: 'Уголовные дела'
+    category: 'Уголовные дела',
+    description: 'Защита по статьям 109 (причинение смерти по неосторожности), 110 (доведение до самоубийства), 111 (тяжкий вред здоровью), 112 (средний вред здоровью), 115 (легкий вред здоровью), 116 (побои), 119 (угроза убийством)'
   },
   {
     title: 'Расторжение брака и раздел имущества',
