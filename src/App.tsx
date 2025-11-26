@@ -30,6 +30,7 @@ import IntellektualnayaSobstvennostPage from "./pages/services/biz/Intellektualn
 import EkonomicheskiePrestupleniyaPage from "./pages/services/biz/EkonomicheskiePrestupleniyaPage";
 import PhysPage from "./pages/services/PhysPage";
 import BizPage from "./pages/services/BizPage";
+import Chapter16Page from "./pages/services/phys/Chapter16Page";
 import RazvodPage from "./pages/services/phys/RazvodPage";
 import AlimentyPage from "./pages/services/phys/AlimentyPage";
 import ZhilishchnyeSporyPage from "./pages/services/phys/ZhilishchnyeSporyPage";
@@ -78,6 +79,9 @@ const App = () => (
           {/* Audience pages */}
           <Route path="/services/phys" element={<PhysPage />} />
           <Route path="/services/biz" element={<BizPage />} />
+          
+          {/* Criminal law - Chapter 16 */}
+          <Route path="/services/phys/chapter-16" element={<Chapter16Page />} />
           
           {/* Physical persons services */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<RazvodPage />} />
