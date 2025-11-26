@@ -12,27 +12,67 @@ export interface AudienceService {
 export const audienceServices: AudienceService[] = [
   // ========== ФИЗИЧЕСКИМ ЛИЦАМ ==========
   {
-    title: 'Мошенничество',
-    slug: 'moshennichestvo',
-    path: '/services/phys/moshennichestvo',
+    title: 'Статья 109 УК РФ — Причинение смерти по неосторожности',
+    slug: 'statya-109',
+    path: '/services/phys/statya-109',
     audience: 'phys',
     priority: 1,
-    category: 'Уголовные дела'
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)'
   },
   {
-    title: 'Наркотики',
-    slug: 'narkotiki',
-    path: '/services/phys/narkotiki',
+    title: 'Статья 110 УК РФ — Доведение до самоубийства',
+    slug: 'statya-110',
+    path: '/services/phys/statya-110',
     audience: 'phys',
     priority: 2,
-    category: 'Уголовные дела'
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)'
+  },
+  {
+    title: 'Статья 111 УК РФ — Умышленное причинение тяжкого вреда здоровью',
+    slug: 'statya-111',
+    path: '/services/phys/statya-111',
+    audience: 'phys',
+    priority: 3,
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)'
+  },
+  {
+    title: 'Статья 112 УК РФ — Умышленное причинение средней тяжести вреда здоровью',
+    slug: 'statya-112',
+    path: '/services/phys/statya-112',
+    audience: 'phys',
+    priority: 4,
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)'
+  },
+  {
+    title: 'Статья 115 УК РФ — Умышленное причинение легкого вреда здоровью',
+    slug: 'statya-115',
+    path: '/services/phys/statya-115',
+    audience: 'phys',
+    priority: 5,
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)'
+  },
+  {
+    title: 'Статья 116 УК РФ — Побои',
+    slug: 'statya-116',
+    path: '/services/phys/statya-116',
+    audience: 'phys',
+    priority: 6,
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)'
+  },
+  {
+    title: 'Статья 119 УК РФ — Угроза убийством',
+    slug: 'statya-119',
+    path: '/services/phys/statya-119',
+    audience: 'phys',
+    priority: 7,
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)'
   },
   {
     title: 'Расторжение брака и раздел имущества',
     slug: 'razvod-razdel-imushchestva',
     path: '/services/phys/razvod-razdel-imushchestva',
     audience: 'phys',
-    priority: 2,
+    priority: 8,
     category: 'Семейные споры'
   },
   {
@@ -40,7 +80,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'alimenty',
     path: '/services/phys/alimenty',
     audience: 'phys',
-    priority: 3,
+    priority: 9,
     category: 'Семейные споры'
   },
   {
@@ -48,7 +88,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'mesto-zhitelstva-poryadok-obshcheniya',
     path: '/services/phys/mesto-zhitelstva-poryadok-obshcheniya',
     audience: 'phys',
-    priority: 4,
+    priority: 10,
     category: 'Семейные споры'
   },
   {
@@ -56,7 +96,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'zhilishchnye-spory',
     path: '/services/phys/zhilishchnye-spory',
     audience: 'phys',
-    priority: 5,
+    priority: 11,
     category: 'Гражданские дела'
   },
   {
@@ -64,7 +104,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'nasledstvo',
     path: '/services/phys/nasledstvo',
     audience: 'phys',
-    priority: 6,
+    priority: 12,
     category: 'Гражданские дела'
   },
   {
@@ -72,7 +112,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'zashchita-prav-potrebitelya',
     path: '/services/phys/zashchita-prav-potrebitelya',
     audience: 'phys',
-    priority: 7,
+    priority: 13,
     category: 'Гражданские дела'
   },
   {
@@ -80,7 +120,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'dtp-strahovye-spory',
     path: '/services/phys/dtp-strahovye-spory',
     audience: 'phys',
-    priority: 8,
+    priority: 14,
     category: 'Гражданские дела'
   },
   {
@@ -88,7 +128,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'trudovye-spory',
     path: '/services/phys/trudovye-spory',
     audience: 'phys',
-    priority: 9,
+    priority: 15,
     category: 'Гражданские дела'
   },
   {
@@ -96,7 +136,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'bankrotstvo-fiz-lits',
     path: '/services/phys/bankrotstvo-fiz-lits',
     audience: 'phys',
-    priority: 10,
+    priority: 16,
     category: 'Гражданские дела'
   },
 
