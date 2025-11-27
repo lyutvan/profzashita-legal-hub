@@ -90,7 +90,7 @@ const Index = () => {
                     </p>
                   </div>
                   <Button asChild className="w-full bg-[#C9A227] hover:bg-[#B08E1F] text-white">
-                    <Link to="/services/phys/ugolovnye">
+                    <Link to="/services/criminal">
                       Подробнее →
                     </Link>
                   </Button>
