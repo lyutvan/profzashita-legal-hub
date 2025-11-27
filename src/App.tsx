@@ -30,7 +30,7 @@ import IntellektualnayaSobstvennostPage from "./pages/services/biz/Intellektualn
 import EkonomicheskiePrestupleniyaPage from "./pages/services/biz/EkonomicheskiePrestupleniyaPage";
 import PhysPage from "./pages/services/PhysPage";
 import BizPage from "./pages/services/BizPage";
-import Chapter16Page from "./pages/services/phys/Chapter16Page";
+import CriminalPage from "./pages/services/CriminalPage";
 import RazvodPage from "./pages/services/phys/RazvodPage";
 import AlimentyPage from "./pages/services/phys/AlimentyPage";
 import ZhilishchnyeSporyPage from "./pages/services/phys/ZhilishchnyeSporyPage";
@@ -79,9 +79,26 @@ const App = () => (
           {/* Audience pages */}
           <Route path="/services/phys" element={<PhysPage />} />
           <Route path="/services/biz" element={<BizPage />} />
+          <Route path="/services/criminal" element={<CriminalPage />} />
           
-          {/* Criminal law - Chapter 16 */}
-          <Route path="/services/phys/chapter-16" element={<Chapter16Page />} />
+          {/* Criminal law services */}
+          <Route path="/services/criminal/statya-109" element={<Statya109Page />} />
+          <Route path="/services/criminal/statya-110" element={<Statya110Page />} />
+          <Route path="/services/criminal/statya-111" element={<Statya111Page />} />
+          <Route path="/services/criminal/statya-112" element={<Statya112Page />} />
+          <Route path="/services/criminal/statya-115" element={<Statya115Page />} />
+          <Route path="/services/criminal/statya-116" element={<Statya116Page />} />
+          <Route path="/services/criminal/statya-119" element={<Statya119Page />} />
+          
+          {/* Old criminal routes - redirect */}
+          <Route path="/services/phys/chapter-16" element={<Navigate to="/services/criminal" replace />} />
+          <Route path="/services/phys/statya-109" element={<Navigate to="/services/criminal/statya-109" replace />} />
+          <Route path="/services/phys/statya-110" element={<Navigate to="/services/criminal/statya-110" replace />} />
+          <Route path="/services/phys/statya-111" element={<Navigate to="/services/criminal/statya-111" replace />} />
+          <Route path="/services/phys/statya-112" element={<Navigate to="/services/criminal/statya-112" replace />} />
+          <Route path="/services/phys/statya-115" element={<Navigate to="/services/criminal/statya-115" replace />} />
+          <Route path="/services/phys/statya-116" element={<Navigate to="/services/criminal/statya-116" replace />} />
+          <Route path="/services/phys/statya-119" element={<Navigate to="/services/criminal/statya-119" replace />} />
           
           {/* Physical persons services */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<RazvodPage />} />
@@ -91,13 +108,6 @@ const App = () => (
           <Route path="/services/phys/zashchita-prav-potrebitelya" element={<PotrebiteliPage />} />
           <Route path="/services/phys/dtp-strahovye-spory" element={<DtpPage />} />
           <Route path="/services/phys/trudovye-spory" element={<TrudovyeSporyPage />} />
-          <Route path="/services/phys/statya-109" element={<Statya109Page />} />
-          <Route path="/services/phys/statya-110" element={<Statya110Page />} />
-          <Route path="/services/phys/statya-111" element={<Statya111Page />} />
-          <Route path="/services/phys/statya-112" element={<Statya112Page />} />
-          <Route path="/services/phys/statya-115" element={<Statya115Page />} />
-          <Route path="/services/phys/statya-116" element={<Statya116Page />} />
-          <Route path="/services/phys/statya-119" element={<Statya119Page />} />
           <Route path="/services/phys/mesto-zhitelstva-poryadok-obshcheniya" element={<MestoZhitelstvaPoryadokObshcheniyaPage />} />
           <Route path="/services/phys/bankrotstvo-fiz-lits" element={<BankrotstvoFizLitsPage />} />
           
