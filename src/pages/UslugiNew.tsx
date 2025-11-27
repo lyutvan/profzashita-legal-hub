@@ -6,7 +6,7 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getTopServices, audienceConfig } from "@/data/services-audiences";
-import { Shield, Clock, Users, Award, CheckCircle2, TrendingUp, Phone, UserCircle, Building2 } from "lucide-react";
+import { Shield, Clock, Users, Award, CheckCircle2, TrendingUp, Phone, UserCircle, Building2, Scale } from "lucide-react";
 
 const UslugiNew = () => {
   return (
@@ -99,7 +99,7 @@ const UslugiNew = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {/* Физическим лицам */}
               <Card 
                 className="hover:shadow-xl transition-all duration-300 border-2 hover:border-[#C9A227]/30 group"
@@ -187,6 +187,52 @@ const UslugiNew = () => {
                   >
                     <Link to="/services/biz">
                       Все услуги раздела ({getTopServices('biz', 100).length})
+                    </Link>
+                  </Button>
+                </CardContent>
+              </Card>
+
+              {/* Уголовные дела */}
+              <Card 
+                className="hover:shadow-xl transition-all duration-300 border-2 hover:border-[#C9A227]/30 group"
+              >
+                <CardHeader className="pb-4">
+                  <div className="mb-4 inline-flex p-4 rounded-lg bg-[#C9A227]/10 group-hover:bg-[#C9A227]/20 transition-colors">
+                    <Scale className="h-12 w-12 text-[#C9A227]" />
+                  </div>
+                  <CardTitle className="font-montserrat text-2xl mb-3">
+                    {audienceConfig.criminal.title}
+                  </CardTitle>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {audienceConfig.criminal.subtitle}
+                  </p>
+                </CardHeader>
+                <CardContent>
+                  <div className="mb-4 text-sm text-muted-foreground">
+                    <span className="font-semibold text-foreground">
+                      {getTopServices('criminal', 100).length}
+                    </span> специализаций
+                  </div>
+                  <ul className="space-y-2 mb-6">
+                    {getTopServices('criminal', 5).map((service) => (
+                      <li key={service.slug} className="flex items-start gap-2">
+                        <CheckCircle2 className="h-4 w-4 text-[#C9A227] flex-shrink-0 mt-0.5" />
+                        <Link
+                          to={service.path}
+                          className="text-sm text-muted-foreground hover:text-[#C9A227] transition-colors"
+                        >
+                          {service.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                  <Button 
+                    variant="outline" 
+                    className="w-full border-[#C9A227]/30 hover:bg-[#C9A227]/10 hover:border-[#C9A227]"
+                    asChild
+                  >
+                    <Link to="/services/criminal">
+                      Все услуги раздела ({getTopServices('criminal', 100).length})
                     </Link>
                   </Button>
                 </CardContent>
