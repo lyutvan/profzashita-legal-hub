@@ -45,6 +45,14 @@ import Statya112Page from "./pages/services/phys/Statya112Page";
 import Statya115Page from "./pages/services/phys/Statya115Page";
 import Statya116Page from "./pages/services/phys/Statya116Page";
 import Statya119Page from "./pages/services/phys/Statya119Page";
+import Statya126Page from "./pages/services/criminal/Statya126Page";
+import Statya127Page from "./pages/services/criminal/Statya127Page";
+import Statya1281Page from "./pages/services/criminal/Statya1281Page";
+import Statya131Page from "./pages/services/criminal/Statya131Page";
+import Statya132Page from "./pages/services/criminal/Statya132Page";
+import Statya135Page from "./pages/services/criminal/Statya135Page";
+import Statya158Page from "./pages/services/criminal/Statya158Page";
+import Statya159Page from "./pages/services/criminal/Statya159Page";
 import MestoZhitelstvaPoryadokObshcheniyaPage from "./pages/services/phys/MestoZhitelstvaPoryadokObshcheniyaPage";
 import BankrotstvoFizLitsPage from "./pages/services/phys/BankrotstvoFizLitsPage";
 import Novosti from "./pages/Novosti";
@@ -89,6 +97,14 @@ const App = () => (
           <Route path="/services/criminal/statya-115" element={<Statya115Page />} />
           <Route path="/services/criminal/statya-116" element={<Statya116Page />} />
           <Route path="/services/criminal/statya-119" element={<Statya119Page />} />
+          <Route path="/services/criminal/statya-126" element={<Statya126Page />} />
+          <Route path="/services/criminal/statya-127" element={<Statya127Page />} />
+          <Route path="/services/criminal/statya-128-1" element={<Statya1281Page />} />
+          <Route path="/services/criminal/statya-131" element={<Statya131Page />} />
+          <Route path="/services/criminal/statya-132" element={<Statya132Page />} />
+          <Route path="/services/criminal/statya-135" element={<Statya135Page />} />
+          <Route path="/services/criminal/statya-158" element={<Statya158Page />} />
+          <Route path="/services/criminal/statya-159" element={<Statya159Page />} />
           
           {/* Old criminal routes - redirect */}
           <Route path="/services/phys/chapter-16" element={<Navigate to="/services/criminal" replace />} />
