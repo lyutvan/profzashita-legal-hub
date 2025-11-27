@@ -4,23 +4,79 @@ export interface AudienceService {
   title: string;
   slug: string;
   path: string;
-  audience: 'phys' | 'biz';
+  audience: 'phys' | 'biz' | 'criminal';
   priority: number; // Для сортировки топ-5
   category?: string; // Для группировки на категорийных страницах
   description?: string; // Описание услуги
 }
 
 export const audienceServices: AudienceService[] = [
-  // ========== ФИЗИЧЕСКИМ ЛИЦАМ ==========
+  // ========== УГОЛОВНЫЕ ДЕЛА ==========
   {
-    title: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
-    slug: 'chapter-16',
-    path: '/services/phys/chapter-16',
-    audience: 'phys',
+    title: 'Причинение смерти по неосторожности (ст. 109 УК РФ)',
+    slug: 'statya-109',
+    path: '/services/criminal/statya-109',
+    audience: 'criminal',
     priority: 1,
-    category: 'Уголовные дела',
-    description: 'Защита по статьям 109 (причинение смерти по неосторожности), 110 (доведение до самоубийства), 111 (тяжкий вред здоровью), 112 (средний вред здоровью), 115 (легкий вред здоровью), 116 (побои), 119 (угроза убийством)'
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
+    description: 'Защита по статье 109 УК РФ — причинение смерти по неосторожности'
   },
+  {
+    title: 'Доведение до самоубийства (ст. 110 УК РФ)',
+    slug: 'statya-110',
+    path: '/services/criminal/statya-110',
+    audience: 'criminal',
+    priority: 2,
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
+    description: 'Защита по статье 110 УК РФ — доведение до самоубийства'
+  },
+  {
+    title: 'Умышленное причинение тяжкого вреда здоровью (ст. 111 УК РФ)',
+    slug: 'statya-111',
+    path: '/services/criminal/statya-111',
+    audience: 'criminal',
+    priority: 3,
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
+    description: 'Защита по статье 111 УК РФ — умышленное причинение тяжкого вреда здоровью'
+  },
+  {
+    title: 'Умышленное причинение средней тяжести вреда здоровью (ст. 112 УК РФ)',
+    slug: 'statya-112',
+    path: '/services/criminal/statya-112',
+    audience: 'criminal',
+    priority: 4,
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
+    description: 'Защита по статье 112 УК РФ — умышленное причинение средней тяжести вреда здоровью'
+  },
+  {
+    title: 'Умышленное причинение легкого вреда здоровью (ст. 115 УК РФ)',
+    slug: 'statya-115',
+    path: '/services/criminal/statya-115',
+    audience: 'criminal',
+    priority: 5,
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
+    description: 'Защита по статье 115 УК РФ — умышленное причинение легкого вреда здоровью'
+  },
+  {
+    title: 'Побои (ст. 116 УК РФ)',
+    slug: 'statya-116',
+    path: '/services/criminal/statya-116',
+    audience: 'criminal',
+    priority: 6,
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
+    description: 'Защита по статье 116 УК РФ — побои'
+  },
+  {
+    title: 'Угроза убийством или причинением тяжкого вреда здоровью (ст. 119 УК РФ)',
+    slug: 'statya-119',
+    path: '/services/criminal/statya-119',
+    audience: 'criminal',
+    priority: 7,
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
+    description: 'Защита по статье 119 УК РФ — угроза убийством или причинением тяжкого вреда здоровью'
+  },
+
+  // ========== ФИЗИЧЕСКИМ ЛИЦАМ ==========
   {
     title: 'Расторжение брака и раздел имущества',
     slug: 'razvod-razdel-imushchestva',
@@ -178,17 +234,17 @@ export const audienceServices: AudienceService[] = [
 ];
 
 // Функции для работы с данными
-export const getServicesByAudience = (audience: 'phys' | 'biz') => {
+export const getServicesByAudience = (audience: 'phys' | 'biz' | 'criminal') => {
   return audienceServices
     .filter(s => s.audience === audience)
     .sort((a, b) => a.priority - b.priority);
 };
 
-export const getTopServices = (audience: 'phys' | 'biz', limit: number = 5) => {
+export const getTopServices = (audience: 'phys' | 'biz' | 'criminal', limit: number = 5) => {
   return getServicesByAudience(audience).slice(0, limit);
 };
 
-export const getServicesByCategory = (audience: 'phys' | 'biz') => {
+export const getServicesByCategory = (audience: 'phys' | 'biz' | 'criminal') => {
   const services = getServicesByAudience(audience);
   const grouped: Record<string, AudienceService[]> = {};
   
@@ -211,5 +267,10 @@ export const audienceConfig = {
     title: 'Юридическим лицам',
     subtitle: 'Корпоративное обслуживание бизнеса',
     description: 'Правовое сопровождение бизнеса и защита интересов в судах'
+  },
+  criminal: {
+    title: 'Уголовные дела',
+    subtitle: 'Защита по уголовным статьям',
+    description: 'Профессиональная защита в уголовном процессе по различным составам преступлений'
   }
 };
