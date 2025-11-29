@@ -60,6 +60,12 @@ import Statya163Page from "./pages/services/criminal/Statya163Page";
 import Statya167Page from "./pages/services/criminal/Statya167Page";
 import Statya171Page from "./pages/services/criminal/Statya171Page";
 import Statya172Page from "./pages/services/criminal/Statya172Page";
+import Statya174Page from "./pages/services/criminal/Statya174Page";
+import Statya175Page from "./pages/services/criminal/Statya175Page";
+import Statya205Page from "./pages/services/criminal/Statya205Page";
+import Statya2051Page from "./pages/services/criminal/Statya2051Page";
+import Statya2052Page from "./pages/services/criminal/Statya2052Page";
+import Statya2054Page from "./pages/services/criminal/Statya2054Page";
 import MestoZhitelstvaPoryadokObshcheniyaPage from "./pages/services/phys/MestoZhitelstvaPoryadokObshcheniyaPage";
 import BankrotstvoFizLitsPage from "./pages/services/phys/BankrotstvoFizLitsPage";
 import Novosti from "./pages/Novosti";
@@ -119,6 +125,12 @@ const App = () => (
           <Route path="/services/criminal/statya-167" element={<Statya167Page />} />
           <Route path="/services/criminal/statya-171" element={<Statya171Page />} />
           <Route path="/services/criminal/statya-172" element={<Statya172Page />} />
+          <Route path="/services/criminal/statya-174" element={<Statya174Page />} />
+          <Route path="/services/criminal/statya-175" element={<Statya175Page />} />
+          <Route path="/services/criminal/statya-205" element={<Statya205Page />} />
+          <Route path="/services/criminal/statya-205-1" element={<Statya2051Page />} />
+          <Route path="/services/criminal/statya-205-2" element={<Statya2052Page />} />
+          <Route path="/services/criminal/statya-205-4" element={<Statya2054Page />} />
           
           {/* Old criminal routes - redirect */}
           <Route path="/services/phys/chapter-16" element={<Navigate to="/services/criminal" replace />} />
