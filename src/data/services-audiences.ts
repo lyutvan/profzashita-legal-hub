@@ -13,11 +13,20 @@ export interface AudienceService {
 export const audienceServices: AudienceService[] = [
   // ========== УГОЛОВНЫЕ ДЕЛА ==========
   {
+    title: 'Убийство (ст. 105 УК РФ)',
+    slug: 'statya-105',
+    path: '/services/criminal/statya-105',
+    audience: 'criminal',
+    priority: 1,
+    category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
+    description: 'Защита по статье 105 УК РФ — убийство'
+  },
+  {
     title: 'Причинение смерти по неосторожности (ст. 109 УК РФ)',
     slug: 'statya-109',
     path: '/services/criminal/statya-109',
     audience: 'criminal',
-    priority: 1,
+    priority: 2,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
     description: 'Защита по статье 109 УК РФ — причинение смерти по неосторожности'
   },
@@ -26,7 +35,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'statya-110',
     path: '/services/criminal/statya-110',
     audience: 'criminal',
-    priority: 2,
+    priority: 3,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
     description: 'Защита по статье 110 УК РФ — доведение до самоубийства'
   },
@@ -35,7 +44,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'statya-111',
     path: '/services/criminal/statya-111',
     audience: 'criminal',
-    priority: 3,
+    priority: 4,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
     description: 'Защита по статье 111 УК РФ — умышленное причинение тяжкого вреда здоровью'
   },
@@ -44,7 +53,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'statya-112',
     path: '/services/criminal/statya-112',
     audience: 'criminal',
-    priority: 4,
+    priority: 5,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
     description: 'Защита по статье 112 УК РФ — умышленное причинение средней тяжести вреда здоровью'
   },
@@ -53,7 +62,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'statya-115',
     path: '/services/criminal/statya-115',
     audience: 'criminal',
-    priority: 5,
+    priority: 6,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
     description: 'Защита по статье 115 УК РФ — умышленное причинение легкого вреда здоровью'
   },
@@ -62,7 +71,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'statya-116',
     path: '/services/criminal/statya-116',
     audience: 'criminal',
-    priority: 6,
+    priority: 7,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
     description: 'Защита по статье 116 УК РФ — побои'
   },
@@ -71,7 +80,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'statya-119',
     path: '/services/criminal/statya-119',
     audience: 'criminal',
-    priority: 7,
+    priority: 8,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
     description: 'Защита по статье 119 УК РФ — угроза убийством или причинением тяжкого вреда здоровью'
   },
@@ -82,7 +91,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'statya-126',
     path: '/services/criminal/statya-126',
     audience: 'criminal',
-    priority: 8,
+    priority: 9,
     category: 'Преступления против свободы, чести и достоинства (Глава 17 УК РФ)',
     description: 'Защита по статье 126 УК РФ — похищение человека'
   },
@@ -91,7 +100,7 @@ export const audienceServices: AudienceService[] = [
     slug: 'statya-127',
     path: '/services/criminal/statya-127',
     audience: 'criminal',
-    priority: 9,
+    priority: 10,
     category: 'Преступления против свободы, чести и достоинства (Глава 17 УК РФ)',
     description: 'Защита по статье 127 УК РФ — незаконное лишение свободы'
   },

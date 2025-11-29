@@ -38,6 +38,7 @@ import NasledstvoPage from "./pages/services/phys/NasledstvoPage";
 import PotrebiteliPage from "./pages/services/phys/PotrebiteliPage";
 import DtpPage from "./pages/services/phys/DtpPage";
 import TrudovyeSporyPage from "./pages/services/phys/TrudovyeSporyPage";
+import Statya105Page from "./pages/services/criminal/Statya105Page";
 import Statya109Page from "./pages/services/phys/Statya109Page";
 import Statya110Page from "./pages/services/phys/Statya110Page";
 import Statya111Page from "./pages/services/phys/Statya111Page";
@@ -119,6 +120,7 @@ const App = () => (
           <Route path="/services/criminal" element={<CriminalPage />} />
           
           {/* Criminal law services */}
+          <Route path="/services/criminal/statya-105" element={<Statya105Page />} />
           <Route path="/services/criminal/statya-109" element={<Statya109Page />} />
           <Route path="/services/criminal/statya-110" element={<Statya110Page />} />
           <Route path="/services/criminal/statya-111" element={<Statya111Page />} />
