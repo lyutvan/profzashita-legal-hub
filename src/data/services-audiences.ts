@@ -153,6 +153,71 @@ export const audienceServices: AudienceService[] = [
     category: 'Преступления против собственности (Глава 21 УК РФ)',
     description: 'Защита по статье 159 УК РФ — мошенничество'
   },
+  {
+    title: 'Присвоение или растрата (ст. 160 УК РФ)',
+    slug: 'statya-160',
+    path: '/services/criminal/statya-160',
+    audience: 'criminal',
+    priority: 16,
+    category: 'Преступления против собственности (Глава 21 УК РФ)',
+    description: 'Защита по статье 160 УК РФ — присвоение или растрата'
+  },
+  {
+    title: 'Грабеж (ст. 161 УК РФ)',
+    slug: 'statya-161',
+    path: '/services/criminal/statya-161',
+    audience: 'criminal',
+    priority: 17,
+    category: 'Преступления против собственности (Глава 21 УК РФ)',
+    description: 'Защита по статье 161 УК РФ — грабеж'
+  },
+  {
+    title: 'Разбой (ст. 162 УК РФ)',
+    slug: 'statya-162',
+    path: '/services/criminal/statya-162',
+    audience: 'criminal',
+    priority: 18,
+    category: 'Преступления против собственности (Глава 21 УК РФ)',
+    description: 'Защита по статье 162 УК РФ — разбой'
+  },
+  {
+    title: 'Вымогательство (ст. 163 УК РФ)',
+    slug: 'statya-163',
+    path: '/services/criminal/statya-163',
+    audience: 'criminal',
+    priority: 19,
+    category: 'Преступления против собственности (Глава 21 УК РФ)',
+    description: 'Защита по статье 163 УК РФ — вымогательство'
+  },
+  {
+    title: 'Умышленное уничтожение или повреждение имущества (ст. 167 УК РФ)',
+    slug: 'statya-167',
+    path: '/services/criminal/statya-167',
+    audience: 'criminal',
+    priority: 20,
+    category: 'Преступления против собственности (Глава 21 УК РФ)',
+    description: 'Защита по статье 167 УК РФ — умышленное уничтожение или повреждение имущества'
+  },
+  
+  // Глава 22 - Преступления в сфере экономической деятельности
+  {
+    title: 'Незаконное предпринимательство (ст. 171 УК РФ)',
+    slug: 'statya-171',
+    path: '/services/criminal/statya-171',
+    audience: 'criminal',
+    priority: 21,
+    category: 'Преступления в сфере экономической деятельности (Глава 22 УК РФ)',
+    description: 'Защита по статье 171 УК РФ — незаконное предпринимательство'
+  },
+  {
+    title: 'Незаконная банковская деятельность (ст. 172 УК РФ)',
+    slug: 'statya-172',
+    path: '/services/criminal/statya-172',
+    audience: 'criminal',
+    priority: 22,
+    category: 'Преступления в сфере экономической деятельности (Глава 22 УК РФ)',
+    description: 'Защита по статье 172 УК РФ — незаконная банковская деятельность'
+  },
 
   // ========== ФИЗИЧЕСКИМ ЛИЦАМ ==========
   {

@@ -53,6 +53,13 @@ import Statya132Page from "./pages/services/criminal/Statya132Page";
 import Statya135Page from "./pages/services/criminal/Statya135Page";
 import Statya158Page from "./pages/services/criminal/Statya158Page";
 import Statya159Page from "./pages/services/criminal/Statya159Page";
+import Statya160Page from "./pages/services/criminal/Statya160Page";
+import Statya161Page from "./pages/services/criminal/Statya161Page";
+import Statya162Page from "./pages/services/criminal/Statya162Page";
+import Statya163Page from "./pages/services/criminal/Statya163Page";
+import Statya167Page from "./pages/services/criminal/Statya167Page";
+import Statya171Page from "./pages/services/criminal/Statya171Page";
+import Statya172Page from "./pages/services/criminal/Statya172Page";
 import MestoZhitelstvaPoryadokObshcheniyaPage from "./pages/services/phys/MestoZhitelstvaPoryadokObshcheniyaPage";
 import BankrotstvoFizLitsPage from "./pages/services/phys/BankrotstvoFizLitsPage";
 import Novosti from "./pages/Novosti";
@@ -105,6 +112,13 @@ const App = () => (
           <Route path="/services/criminal/statya-135" element={<Statya135Page />} />
           <Route path="/services/criminal/statya-158" element={<Statya158Page />} />
           <Route path="/services/criminal/statya-159" element={<Statya159Page />} />
+          <Route path="/services/criminal/statya-160" element={<Statya160Page />} />
+          <Route path="/services/criminal/statya-161" element={<Statya161Page />} />
+          <Route path="/services/criminal/statya-162" element={<Statya162Page />} />
+          <Route path="/services/criminal/statya-163" element={<Statya163Page />} />
+          <Route path="/services/criminal/statya-167" element={<Statya167Page />} />
+          <Route path="/services/criminal/statya-171" element={<Statya171Page />} />
+          <Route path="/services/criminal/statya-172" element={<Statya172Page />} />
           
           {/* Old criminal routes - redirect */}
           <Route path="/services/phys/chapter-16" element={<Navigate to="/services/criminal" replace />} />
