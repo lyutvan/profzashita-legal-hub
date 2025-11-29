@@ -66,6 +66,13 @@ import Statya205Page from "./pages/services/criminal/Statya205Page";
 import Statya2051Page from "./pages/services/criminal/Statya2051Page";
 import Statya2052Page from "./pages/services/criminal/Statya2052Page";
 import Statya2054Page from "./pages/services/criminal/Statya2054Page";
+import Statya212Page from "./pages/services/criminal/Statya212Page";
+import Statya213Page from "./pages/services/criminal/Statya213Page";
+import Statya222Page from "./pages/services/criminal/Statya222Page";
+import Statya223Page from "./pages/services/criminal/Statya223Page";
+import Statya228Page from "./pages/services/criminal/Statya228Page";
+import Statya2281Page from "./pages/services/criminal/Statya2281Page";
+import Statya234Page from "./pages/services/criminal/Statya234Page";
 import MestoZhitelstvaPoryadokObshcheniyaPage from "./pages/services/phys/MestoZhitelstvaPoryadokObshcheniyaPage";
 import BankrotstvoFizLitsPage from "./pages/services/phys/BankrotstvoFizLitsPage";
 import Novosti from "./pages/Novosti";
@@ -131,6 +138,13 @@ const App = () => (
           <Route path="/services/criminal/statya-205-1" element={<Statya2051Page />} />
           <Route path="/services/criminal/statya-205-2" element={<Statya2052Page />} />
           <Route path="/services/criminal/statya-205-4" element={<Statya2054Page />} />
+          <Route path="/services/criminal/statya-212" element={<Statya212Page />} />
+          <Route path="/services/criminal/statya-213" element={<Statya213Page />} />
+          <Route path="/services/criminal/statya-222" element={<Statya222Page />} />
+          <Route path="/services/criminal/statya-223" element={<Statya223Page />} />
+          <Route path="/services/criminal/statya-228" element={<Statya228Page />} />
+          <Route path="/services/criminal/statya-228-1" element={<Statya2281Page />} />
+          <Route path="/services/criminal/statya-234" element={<Statya234Page />} />
           
           {/* Old criminal routes - redirect */}
           <Route path="/services/phys/chapter-16" element={<Navigate to="/services/criminal" replace />} />
