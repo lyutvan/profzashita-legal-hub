@@ -100,7 +100,7 @@ const Footer = () => {
               </li>
             </ul>
             <div className="mt-4 space-y-1">
-              <p className="text-xs text-white/60">ИНН: 7743380930</p>
+              <p className="text-xs text-white/60">ИНН: 7743478583</p>
               <p className="text-xs text-white/60">ОГРН: 1257700439303</p>
             </div>
           </div>
