@@ -99,6 +99,10 @@ const Footer = () => {
                 </Link>
               </li>
             </ul>
+            <div className="mt-4 space-y-1">
+              <p className="text-xs text-white/60">ИНН: 7743380930</p>
+              <p className="text-xs text-white/60">ОГРН: 1197700010678</p>
+            </div>
           </div>
         </div>
 
