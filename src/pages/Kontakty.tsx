@@ -190,6 +190,8 @@ const Contacts = () => {
                   <div className="space-y-3 text-sm text-muted-foreground">
                     <p><span className="font-semibold text-foreground">Полное наименование:</span> Коллегия адвокатов города Москвы «ПРОФЗАЩИТА»</p>
                     <p><span className="font-semibold text-foreground">Адрес:</span> 127486, Москва, ул. Дегунинская 1к2, офис 303</p>
+                    <p><span className="font-semibold text-foreground">ИНН:</span> 7743478583</p>
+                    <p><span className="font-semibold text-foreground">ОГРН:</span> 1257700439303</p>
                     <p><span className="font-semibold text-foreground">Регистрация:</span> Адвокатская палата города Москвы</p>
                   </div>
                 </CardContent>
