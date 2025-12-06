@@ -131,8 +131,8 @@ export const cases: Case[] = [
     datePublished: "2024-04-19",
     author: "Коллегия адвокатов Профзащита",
     documents: [
-      "/cases/ugolovnoe-prekrashhenie-wildberries-1.jpg",
-      "/cases/ugolovnoe-prekrashhenie-wildberries-2.jpg",
+      "/cases/ugolovnoe-prekrashhenie-wildberries-1.jpeg",
+      "/cases/ugolovnoe-prekrashhenie-wildberries-2.jpeg",
     ]
   }
 ];
