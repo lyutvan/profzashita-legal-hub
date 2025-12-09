@@ -17,8 +17,10 @@ export async function submitToWebhook(data: Payload) {
   if (data.topic)   body.append("topic",   data.topic);
   if (data.message) body.append("message", data.message);
 
+  // Google Apps Script requires no-cors mode for cross-origin requests
   await fetch(WEBHOOK_URL, {
     method: "POST",
+    mode: "no-cors",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body,
     keepalive: true
