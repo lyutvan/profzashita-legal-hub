@@ -13,6 +13,12 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import courtColumnsImg from "@/assets/legal/court-columns.jpg";
+import gavelScalesBookImg from "@/assets/legal/gavel-scales-book.jpg";
+import lawyerConsultationImg from "@/assets/legal/lawyer-consultation.jpg";
+import themisStatueImg from "@/assets/legal/themis-statue.jpg";
+import courtBuildingImg from "@/assets/legal/court-building.jpg";
+import lawyerWritingImg from "@/assets/legal/lawyer-writing.jpg";
+import themisDeskImg from "@/assets/legal/themis-desk.jpg";
 import { Helmet } from "react-helmet";
 import { SITE } from "@/config/site";
 
@@ -135,10 +141,20 @@ const Index = () => {
         </LegalBackground>
 
         {/* About Section */}
-        <section className="relative py-20 bg-muted/30 overflow-hidden">
+        <section className="relative py-20 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img 
+              src={courtBuildingImg} 
+              alt="" 
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-background/85" />
+          </div>
           {/* Texture strip */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-          <div className="container mx-auto px-4">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent z-10" />
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
                 О коллегии адвокатов <span className="text-accent">Профзащита</span>
@@ -195,9 +211,19 @@ const Index = () => {
 
         {/* Practices Section */}
         <section className="relative py-20 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img 
+              src={gavelScalesBookImg} 
+              alt="" 
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-background/90" />
+          </div>
           {/* Texture strip */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent" />
-          <div className="container mx-auto px-4">
+          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent z-10" />
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
                 Наши <span className="text-accent">услуги</span>
@@ -334,8 +360,18 @@ const Index = () => {
         </section>
 
         {/* Advantages Section */}
-        <section className="relative py-20 bg-muted/30 overflow-hidden">
-          <div className="container mx-auto px-4">
+        <section className="relative py-20 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img 
+              src={lawyerWritingImg} 
+              alt="" 
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-background/85" />
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
                 Почему выбирают <span className="text-accent">нас</span>
@@ -361,8 +397,18 @@ const Index = () => {
         </section>
 
         {/* Team Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
+        <section className="relative py-20 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img 
+              src={lawyerConsultationImg} 
+              alt="" 
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-background/90" />
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
               <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
                 Наша <span className="text-accent">команда</span>
@@ -399,8 +445,18 @@ const Index = () => {
         <Testimonials />
 
         {/* FAQ Section */}
-        <section className="relative py-20 bg-muted/30 overflow-hidden">
-          <div className="container mx-auto px-4">
+        <section className="relative py-20 overflow-hidden">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img 
+              src={themisDeskImg} 
+              alt="" 
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-background/85" />
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-16">
                 <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
@@ -460,7 +516,17 @@ const Index = () => {
 
         {/* Contact Form Section */}
         <section className="relative py-20 overflow-hidden">
-          <div className="container mx-auto px-4">
+          {/* Background Image */}
+          <div className="absolute inset-0">
+            <img 
+              src={themisStatueImg} 
+              alt="" 
+              className="w-full h-full object-cover"
+              loading="lazy"
+            />
+            <div className="absolute inset-0 bg-background/90" />
+          </div>
+          <div className="container mx-auto px-4 relative z-10">
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
