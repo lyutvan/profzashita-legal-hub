@@ -66,7 +66,7 @@ const CriminalPage = () => {
               <h1 className="font-montserrat text-4xl md:text-5xl font-bold mb-4">
                 {audienceConfig.criminal.title}
               </h1>
-              <p className="text-xl text-white/80 mb-6">
+              <p className="text-lg text-white/80 mb-6 whitespace-pre-line leading-relaxed">
                 {audienceConfig.criminal.description}
               </p>
               <div className="flex items-center gap-2 text-white/70">
