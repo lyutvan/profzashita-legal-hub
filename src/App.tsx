@@ -33,6 +33,8 @@ import BizPage from "./pages/services/BizPage";
 import CriminalPage from "./pages/services/CriminalPage";
 import RazvodPage from "./pages/services/phys/RazvodPage";
 import AlimentyPage from "./pages/services/phys/AlimentyPage";
+import VyseleniePage from "./pages/services/phys/VyseleniePage";
+import SnyatieSRegistraciiPage from "./pages/services/phys/SnyatieSRegistraciiPage";
 import ZhilishchnyeSporyPage from "./pages/services/phys/ZhilishchnyeSporyPage";
 import NasledstvoPage from "./pages/services/phys/NasledstvoPage";
 import PotrebiteliPage from "./pages/services/phys/PotrebiteliPage";
@@ -180,7 +182,9 @@ const App = () => (
           <Route path="/services/phys/razvod" element={<RazvodPage />} />
           <Route path="/services/phys/alimenty" element={<AlimentyPage />} />
           <Route path="/services/phys/mesto-zhitelstva-rebenka" element={<MestoZhitelstvaRebonkaPage />} />
-          <Route path="/services/phys/zhilishchnye-spory" element={<ZhilishchnyeSporyPage />} />
+          <Route path="/services/phys/vyselenie" element={<VyseleniePage />} />
+          <Route path="/services/phys/snyatie-s-registracionnogo-ucheta" element={<SnyatieSRegistraciiPage />} />
+          <Route path="/services/phys/zhilishchnye-spory" element={<Navigate to="/services/phys/vyselenie" replace />} />
           <Route path="/services/phys/nasledstvo" element={<NasledstvoPage />} />
           <Route path="/services/phys/zashchita-prav-potrebitelya" element={<PotrebiteliPage />} />
           <Route path="/services/phys/dtp-strahovye-spory" element={<DtpPage />} />
