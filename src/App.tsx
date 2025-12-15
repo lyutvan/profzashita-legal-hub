@@ -83,7 +83,7 @@ import Statya318Page from "./pages/services/criminal/Statya318Page";
 import Statya3221Page from "./pages/services/criminal/Statya3221Page";
 import Statya327Page from "./pages/services/criminal/Statya327Page";
 import Statya330Page from "./pages/services/criminal/Statya330Page";
-import MestoZhitelstvaPoryadokObshcheniyaPage from "./pages/services/phys/MestoZhitelstvaPoryadokObshcheniyaPage";
+import MestoZhitelstvaRebonkaPage from "./pages/services/phys/MestoZhitelstvaRebonkaPage";
 import BankrotstvoFizLitsPage from "./pages/services/phys/BankrotstvoFizLitsPage";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
@@ -177,15 +177,19 @@ const App = () => (
           <Route path="/services/phys/statya-119" element={<Navigate to="/services/criminal/statya-119" replace />} />
           
           {/* Physical persons services */}
-          <Route path="/services/phys/razvod-razdel-imushchestva" element={<RazvodPage />} />
+          <Route path="/services/phys/razvod" element={<RazvodPage />} />
           <Route path="/services/phys/alimenty" element={<AlimentyPage />} />
+          <Route path="/services/phys/mesto-zhitelstva-rebenka" element={<MestoZhitelstvaRebonkaPage />} />
           <Route path="/services/phys/zhilishchnye-spory" element={<ZhilishchnyeSporyPage />} />
           <Route path="/services/phys/nasledstvo" element={<NasledstvoPage />} />
           <Route path="/services/phys/zashchita-prav-potrebitelya" element={<PotrebiteliPage />} />
           <Route path="/services/phys/dtp-strahovye-spory" element={<DtpPage />} />
           <Route path="/services/phys/trudovye-spory" element={<TrudovyeSporyPage />} />
-          <Route path="/services/phys/mesto-zhitelstva-poryadok-obshcheniya" element={<MestoZhitelstvaPoryadokObshcheniyaPage />} />
           <Route path="/services/phys/bankrotstvo-fiz-lits" element={<BankrotstvoFizLitsPage />} />
+          
+          {/* Redirects from old family services URLs */}
+          <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
+          <Route path="/services/phys/mesto-zhitelstva-poryadok-obshcheniya" element={<Navigate to="/services/phys/mesto-zhitelstva-rebenka" replace />} />
           
           {/* Business services */}
           <Route path="/services/biz/arbitrazhnye-spory" element={<ArbitrazhnyeSporyPage />} />

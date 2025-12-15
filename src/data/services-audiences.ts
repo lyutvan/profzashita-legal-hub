@@ -436,15 +436,15 @@ export const audienceServices: AudienceService[] = [
 
   // ========== ФИЗИЧЕСКИМ ЛИЦАМ ==========
   {
-    title: 'Расторжение брака и раздел имущества',
-    slug: 'razvod-razdel-imushchestva',
-    path: '/services/phys/razvod-razdel-imushchestva',
+    title: 'Расторжение брака (развод)',
+    slug: 'razvod',
+    path: '/services/phys/razvod',
     audience: 'phys',
     priority: 2,
     category: 'Семейные споры'
   },
   {
-    title: 'Алименты',
+    title: 'Взыскание алиментов, изменение размера алиментов, задолженность по алиментам',
     slug: 'alimenty',
     path: '/services/phys/alimenty',
     audience: 'phys',
@@ -452,9 +452,9 @@ export const audienceServices: AudienceService[] = [
     category: 'Семейные споры'
   },
   {
-    title: 'Место жительства и порядок общения с ребенком',
-    slug: 'mesto-zhitelstva-poryadok-obshcheniya',
-    path: '/services/phys/mesto-zhitelstva-poryadok-obshcheniya',
+    title: 'Определение места жительства ребёнка',
+    slug: 'mesto-zhitelstva-rebenka',
+    path: '/services/phys/mesto-zhitelstva-rebenka',
     audience: 'phys',
     priority: 4,
     category: 'Семейные споры'
