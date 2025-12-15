@@ -476,6 +476,30 @@ export const audienceServices: AudienceService[] = [
     category: 'Жилищные споры'
   },
   {
+    title: 'Залив квартиры: взыскание ущерба',
+    slug: 'zaliv-kvartiry',
+    path: '/services/phys/zaliv-kvartiry',
+    audience: 'phys',
+    priority: 7,
+    category: 'Ущерб имуществу'
+  },
+  {
+    title: 'Взыскание убытков и расходов',
+    slug: 'vzyskanie-ubytkov',
+    path: '/services/phys/vzyskanie-ubytkov',
+    audience: 'phys',
+    priority: 8,
+    category: 'Ущерб имуществу'
+  },
+  {
+    title: 'Возмещение ущерба от действий третьих лиц',
+    slug: 'vozmeshchenie-ushcherba',
+    path: '/services/phys/vozmeshchenie-ushcherba',
+    audience: 'phys',
+    priority: 9,
+    category: 'Ущерб имуществу'
+  },
+  {
     title: 'Наследство',
     slug: 'nasledstvo',
     path: '/services/phys/nasledstvo',
