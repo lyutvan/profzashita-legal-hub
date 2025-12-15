@@ -436,7 +436,7 @@ export const audienceServices: AudienceService[] = [
 
   // ========== ФИЗИЧЕСКИМ ЛИЦАМ ==========
   {
-    title: 'Расторжение брака (развод)',
+    title: 'Расторжение брака',
     slug: 'razvod',
     path: '/services/phys/razvod',
     audience: 'phys',
