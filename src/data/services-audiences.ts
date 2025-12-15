@@ -460,12 +460,20 @@ export const audienceServices: AudienceService[] = [
     category: 'Семейные споры'
   },
   {
-    title: 'Жилищные споры',
-    slug: 'zhilishchnye-spory',
-    path: '/services/phys/zhilishchnye-spory',
+    title: 'Выселение',
+    slug: 'vyselenie',
+    path: '/services/phys/vyselenie',
     audience: 'phys',
     priority: 5,
-    category: 'Гражданские дела'
+    category: 'Жилищные споры'
+  },
+  {
+    title: 'Снятие с регистрационного учёта',
+    slug: 'snyatie-s-registracionnogo-ucheta',
+    path: '/services/phys/snyatie-s-registracionnogo-ucheta',
+    audience: 'phys',
+    priority: 6,
+    category: 'Жилищные споры'
   },
   {
     title: 'Наследство',
