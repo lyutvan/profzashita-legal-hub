@@ -40,6 +40,9 @@ import ZalivKvartiryPage from "./pages/services/phys/ZalivKvartiryPage";
 import VzyskanieUbytkovPage from "./pages/services/phys/VzyskanieUbytkovPage";
 import VozmeshchenieUshcherbaPage from "./pages/services/phys/VozmeshchenieUshcherbaPage";
 import NasledstvoPage from "./pages/services/phys/NasledstvoPage";
+import VstupleniyeVNasledstvoPage from "./pages/services/phys/VstupleniyeVNasledstvoPage";
+import FakticheskoePrinyatiyePage from "./pages/services/phys/FakticheskoePrinyatiyePage";
+import VosstanovleniyeSrokaPage from "./pages/services/phys/VosstanovleniyeSrokaPage";
 import PotrebiteliPage from "./pages/services/phys/PotrebiteliPage";
 import DtpPage from "./pages/services/phys/DtpPage";
 import TrudovyeSporyPage from "./pages/services/phys/TrudovyeSporyPage";
@@ -191,7 +194,10 @@ const App = () => (
           <Route path="/services/phys/zaliv-kvartiry" element={<ZalivKvartiryPage />} />
           <Route path="/services/phys/vzyskanie-ubytkov" element={<VzyskanieUbytkovPage />} />
           <Route path="/services/phys/vozmeshchenie-ushcherba" element={<VozmeshchenieUshcherbaPage />} />
-          <Route path="/services/phys/nasledstvo" element={<NasledstvoPage />} />
+          <Route path="/services/phys/vstuplenie-v-nasledstvo" element={<VstupleniyeVNasledstvoPage />} />
+          <Route path="/services/phys/fakticheskoe-prinyatie-nasledstva" element={<FakticheskoePrinyatiyePage />} />
+          <Route path="/services/phys/vosstanovlenie-sroka-nasledstva" element={<VosstanovleniyeSrokaPage />} />
+          <Route path="/services/phys/nasledstvo" element={<Navigate to="/services/phys/vstuplenie-v-nasledstvo" replace />} />
           <Route path="/services/phys/zashchita-prav-potrebitelya" element={<PotrebiteliPage />} />
           <Route path="/services/phys/dtp-strahovye-spory" element={<DtpPage />} />
           <Route path="/services/phys/trudovye-spory" element={<TrudovyeSporyPage />} />

@@ -500,12 +500,28 @@ export const audienceServices: AudienceService[] = [
     category: 'Ущерб имуществу'
   },
   {
-    title: 'Наследство',
-    slug: 'nasledstvo',
-    path: '/services/phys/nasledstvo',
+    title: 'Вступление в наследство, оформление наследственных прав',
+    slug: 'vstuplenie-v-nasledstvo',
+    path: '/services/phys/vstuplenie-v-nasledstvo',
     audience: 'phys',
-    priority: 6,
-    category: 'Гражданские дела'
+    priority: 10,
+    category: 'Наследственные дела'
+  },
+  {
+    title: 'Фактическое принятие наследства',
+    slug: 'fakticheskoe-prinyatie-nasledstva',
+    path: '/services/phys/fakticheskoe-prinyatie-nasledstva',
+    audience: 'phys',
+    priority: 11,
+    category: 'Наследственные дела'
+  },
+  {
+    title: 'Восстановление срока принятия наследства',
+    slug: 'vosstanovlenie-sroka-nasledstva',
+    path: '/services/phys/vosstanovlenie-sroka-nasledstva',
+    audience: 'phys',
+    priority: 12,
+    category: 'Наследственные дела'
   },
   {
     title: 'Защита прав потребителей',
