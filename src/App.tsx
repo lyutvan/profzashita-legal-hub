@@ -43,9 +43,6 @@ import NasledstvoPage from "./pages/services/phys/NasledstvoPage";
 import VstupleniyeVNasledstvoPage from "./pages/services/phys/VstupleniyeVNasledstvoPage";
 import FakticheskoePrinyatiyePage from "./pages/services/phys/FakticheskoePrinyatiyePage";
 import VosstanovleniyeSrokaPage from "./pages/services/phys/VosstanovleniyeSrokaPage";
-import PotrebiteliPage from "./pages/services/phys/PotrebiteliPage";
-import DtpPage from "./pages/services/phys/DtpPage";
-import TrudovyeSporyPage from "./pages/services/phys/TrudovyeSporyPage";
 import Statya105Page from "./pages/services/criminal/Statya105Page";
 import Statya109Page from "./pages/services/phys/Statya109Page";
 import Statya110Page from "./pages/services/phys/Statya110Page";
@@ -93,7 +90,17 @@ import Statya327Page from "./pages/services/criminal/Statya327Page";
 import Statya330Page from "./pages/services/criminal/Statya330Page";
 import MestoZhitelstvaRebonkaPage from "./pages/services/phys/MestoZhitelstvaRebonkaPage";
 import PoryadokObscheniyaRebenkaPage from "./pages/services/phys/PoryadokObscheniyaRebenkaPage";
-import BankrotstvoFizLitsPage from "./pages/services/phys/BankrotstvoFizLitsPage";
+import LishenieRoditelskihPravPage from "./pages/services/phys/LishenieRoditelskihPravPage";
+import OtcovstvoMaterinstvoPage from "./pages/services/phys/OtcovstvoMaterinstvoPage";
+import RazdelImushchestvaSuprugovPage from "./pages/services/phys/RazdelImushchestvaSuprugovPage";
+import BrachnyjDogovorPage from "./pages/services/phys/BrachnyjDogovorPage";
+import UstraneniePrepyatstviyVoVseleniiPage from "./pages/services/phys/UstraneniePrepyatstviyVoVseleniiPage";
+import PoryadokPolzovaniyaZhilymPomeshcheniemPage from "./pages/services/phys/PoryadokPolzovaniyaZhilymPomeshcheniemPage";
+import ZadolzhennostZhkuPereraschetPage from "./pages/services/phys/ZadolzhennostZhkuPereraschetPage";
+import SporySUkTszhPage from "./pages/services/phys/SporySUkTszhPage";
+import OsparivaniePrivatizaciiPage from "./pages/services/phys/OsparivaniePrivatizaciiPage";
+import SporySocnajemPage from "./pages/services/phys/SporySocnajemPage";
+import UstraneniePrepyatstviyVPolzovaniiZhilymPomeshcheniemPage from "./pages/services/phys/UstraneniePrepyatstviyVPolzovaniiZhilymPomeshcheniemPage";
 import VzyskaniePoRaspiskamPage from "./pages/services/phys/VzyskaniePoRaspiskamPage";
 import VzyskaniePoDogovoramPage from "./pages/services/phys/VzyskaniePoDogovoramPage";
 import RastorzhenieDogovoraUslugPage from "./pages/services/phys/RastorzhenieDogovoraUslugPage";
@@ -193,8 +200,19 @@ const App = () => (
           <Route path="/services/phys/alimenty" element={<AlimentyPage />} />
           <Route path="/services/phys/mesto-zhitelstva-rebenka" element={<MestoZhitelstvaRebonkaPage />} />
           <Route path="/services/phys/poryadok-obshcheniya-s-rebenkom" element={<PoryadokObscheniyaRebenkaPage />} />
+          <Route path="/services/phys/lishenie-roditelskih-prav" element={<LishenieRoditelskihPravPage />} />
+          <Route path="/services/phys/otcovstvo-materinstvo" element={<OtcovstvoMaterinstvoPage />} />
+          <Route path="/services/phys/razdel-imushchestva-suprugov" element={<RazdelImushchestvaSuprugovPage />} />
+          <Route path="/services/phys/brachnyj-dogovor" element={<BrachnyjDogovorPage />} />
+          <Route path="/services/phys/ustranenie-prepyatstviy-vo-vselenii" element={<UstraneniePrepyatstviyVoVseleniiPage />} />
           <Route path="/services/phys/vyselenie" element={<VyseleniePage />} />
           <Route path="/services/phys/snyatie-s-registracionnogo-ucheta" element={<SnyatieSRegistraciiPage />} />
+          <Route path="/services/phys/poryadok-polzovaniya-zhilym-pomeshcheniem" element={<PoryadokPolzovaniyaZhilymPomeshcheniemPage />} />
+          <Route path="/services/phys/zadolzhennost-zhku-pereraschet" element={<ZadolzhennostZhkuPereraschetPage />} />
+          <Route path="/services/phys/spory-s-uk-tszh" element={<SporySUkTszhPage />} />
+          <Route path="/services/phys/osparivanie-privatizacii" element={<OsparivaniePrivatizaciiPage />} />
+          <Route path="/services/phys/spory-socnajem" element={<SporySocnajemPage />} />
+          <Route path="/services/phys/ustranenie-prepyatstviy-v-polzovanii-zhilym-pomeshcheniem" element={<UstraneniePrepyatstviyVPolzovaniiZhilymPomeshcheniemPage />} />
           <Route path="/services/phys/zhilishchnye-spory" element={<Navigate to="/services/phys/vyselenie" replace />} />
           <Route path="/services/phys/zaliv-kvartiry" element={<ZalivKvartiryPage />} />
           <Route path="/services/phys/vzyskanie-ubytkov" element={<VzyskanieUbytkovPage />} />
@@ -203,10 +221,6 @@ const App = () => (
           <Route path="/services/phys/fakticheskoe-prinyatie-nasledstva" element={<FakticheskoePrinyatiyePage />} />
           <Route path="/services/phys/vosstanovlenie-sroka-nasledstva" element={<VosstanovleniyeSrokaPage />} />
           <Route path="/services/phys/nasledstvo" element={<Navigate to="/services/phys/vstuplenie-v-nasledstvo" replace />} />
-          <Route path="/services/phys/zashchita-prav-potrebitelya" element={<PotrebiteliPage />} />
-          <Route path="/services/phys/dtp-strahovye-spory" element={<DtpPage />} />
-          <Route path="/services/phys/trudovye-spory" element={<TrudovyeSporyPage />} />
-          <Route path="/services/phys/bankrotstvo-fiz-lits" element={<BankrotstvoFizLitsPage />} />
           <Route path="/services/phys/vzyskanie-po-raspiskam" element={<VzyskaniePoRaspiskamPage />} />
           <Route path="/services/phys/vzyskanie-po-dogovoram" element={<VzyskaniePoDogovoramPage />} />
           <Route path="/services/phys/rastorzhenie-dogovora-uslug" element={<RastorzhenieDogovoraUslugPage />} />

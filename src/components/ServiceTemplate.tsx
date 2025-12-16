@@ -35,6 +35,7 @@ interface ServiceTemplateProps {
   // Content
   h1: string;
   leadParagraph: string;
+  introParagraphs?: string[];
   whenToContactTitle?: string;
   whenToContact: string[];
   whatWeDoTitle?: string;
@@ -68,6 +69,7 @@ const ServiceTemplate = ({
   breadcrumbLabel,
   h1,
   leadParagraph,
+  introParagraphs,
   whenToContactTitle = "Когда обращаться",
   whenToContact,
   whatWeDoTitle = "Что мы делаем",
@@ -126,9 +128,12 @@ const ServiceTemplate = ({
               <h1 className="font-montserrat text-3xl md:text-5xl font-bold mb-6 leading-tight">
                 {h1}
               </h1>
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed">
-                {leadParagraph}
-              </p>
+              <div className="space-y-5 text-lg md:text-xl text-white/90 leading-relaxed">
+                <p>{leadParagraph}</p>
+                {introParagraphs?.map((paragraph, index) => (
+                  <p key={index}>{paragraph}</p>
+                ))}
+              </div>
             </div>
           </div>
         </section>
