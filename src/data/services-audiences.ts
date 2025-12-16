@@ -530,6 +530,60 @@ export const audienceServices: AudienceService[] = [
     category: 'Жилищные споры'
   },
   {
+    title: 'Определение порядка пользования жилым помещением (квартира/комната)',
+    slug: 'poryadok-polzovaniya-zhilym-pomeshcheniem',
+    path: '/services/phys/poryadok-polzovaniya-zhilym-pomeshcheniem',
+    audience: 'phys',
+    priority: 6.1,
+    category: 'Жилищные споры',
+    description: 'Определение порядка пользования квартирой или комнатой: закрепление правил проживания и долей пользования, судебное представительство.'
+  },
+  {
+    title: 'Взыскание задолженности по ЖКУ, перерасчёт начислений',
+    slug: 'zadolzhennost-zhku-pereraschet',
+    path: '/services/phys/zadolzhennost-zhku-pereraschet',
+    audience: 'phys',
+    priority: 6.2,
+    category: 'Жилищные споры',
+    description: 'Взыскание/оспаривание задолженности по коммунальным платежам, перерасчёт начислений, подготовка претензий и исков.'
+  },
+  {
+    title: 'Споры с управляющей компанией (УК/ТСЖ)',
+    slug: 'spory-s-uk-tszh',
+    path: '/services/phys/spory-s-uk-tszh',
+    audience: 'phys',
+    priority: 6.3,
+    category: 'Жилищные споры',
+    description: 'Споры с УК/ТСЖ: качество услуг, начисления, заливы, акты, претензии и представительство в суде.'
+  },
+  {
+    title: 'Оспаривание приватизации',
+    slug: 'osparivanie-privatizacii',
+    path: '/services/phys/osparivanie-privatizacii',
+    audience: 'phys',
+    priority: 6.4,
+    category: 'Жилищные споры',
+    description: 'Оспаривание приватизации: анализ документов, подготовка исков, защита прав проживающих и собственников.'
+  },
+  {
+    title: 'Споры по договору социального найма (соцнайм)',
+    slug: 'spory-socnajem',
+    path: '/services/phys/spory-socnajem',
+    audience: 'phys',
+    priority: 6.5,
+    category: 'Жилищные споры',
+    description: 'Споры по соцнайму: признание прав пользования, изменения условий, выселение/вселение, сопровождение в суде.'
+  },
+  {
+    title: 'Устранение препятствий в пользовании жилым помещением',
+    slug: 'ustranenie-prepyatstviy-v-polzovanii-zhilym-pomeshcheniem',
+    path: '/services/phys/ustranenie-prepyatstviy-v-polzovanii-zhilym-pomeshcheniem',
+    audience: 'phys',
+    priority: 6.6,
+    category: 'Жилищные споры',
+    description: 'Устранение препятствий в пользовании жильём: доступ в квартиру, смена замков, определение порядка пользования и защита прав.'
+  },
+  {
     title: 'Залив квартиры: взыскание ущерба',
     slug: 'zaliv-kvartiry',
     path: '/services/phys/zaliv-kvartiry',
