@@ -460,6 +460,15 @@ export const audienceServices: AudienceService[] = [
     category: 'Семейные споры'
   },
   {
+    title: 'Определение порядка общения с ребёнком / участие в воспитании',
+    slug: 'poryadok-obshcheniya-s-rebenkom',
+    path: '/services/phys/poryadok-obshcheniya-s-rebenkom',
+    audience: 'phys',
+    priority: 4.5,
+    category: 'Семейные споры',
+    description: 'Определение порядка общения и участия в воспитании ребёнка: подготовка документов и представительство в суде.'
+  },
+  {
     title: 'Выселение',
     slug: 'vyselenie',
     path: '/services/phys/vyselenie',
