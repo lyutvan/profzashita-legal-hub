@@ -469,6 +469,51 @@ export const audienceServices: AudienceService[] = [
     description: 'Определение порядка общения и участия в воспитании ребёнка: подготовка документов и представительство в суде.'
   },
   {
+    title: 'Ограничение и лишение родительских прав',
+    slug: 'lishenie-roditelskih-prav',
+    path: '/services/phys/lishenie-roditelskih-prav',
+    audience: 'phys',
+    priority: 4.6,
+    category: 'Семейные споры',
+    description: 'Подготовка и ведение дел об ограничении или лишении родительских прав, защита интересов ребёнка и родителя.'
+  },
+  {
+    title: 'Установление и оспаривание отцовства / материнства',
+    slug: 'otcovstvo-materinstvo',
+    path: '/services/phys/otcovstvo-materinstvo',
+    audience: 'phys',
+    priority: 4.7,
+    category: 'Семейные споры',
+    description: 'Сопровождение дел об установлении или оспаривании отцовства/материнства, экспертизы и представительство в суде.'
+  },
+  {
+    title: 'Раздел совместно нажитого имущества супругов',
+    slug: 'razdel-imushchestva-suprugov',
+    path: '/services/phys/razdel-imushchestva-suprugov',
+    audience: 'phys',
+    priority: 4.8,
+    category: 'Семейные споры',
+    description: 'Раздел имущества супругов: переговоры, соглашения, судебное представительство и защита долей.'
+  },
+  {
+    title: 'Брачный договор: составление, изменение, оспаривание',
+    slug: 'brachnyj-dogovor',
+    path: '/services/phys/brachnyj-dogovor',
+    audience: 'phys',
+    priority: 4.9,
+    category: 'Семейные споры',
+    description: 'Подготовка брачного договора, внесение изменений и оспаривание условий в суде.'
+  },
+  {
+    title: 'Устранение препятствий во вселении',
+    slug: 'ustranenie-prepyatstviy-vo-vselenii',
+    path: '/services/phys/ustranenie-prepyatstviy-vo-vselenii',
+    audience: 'phys',
+    priority: 5.0,
+    category: 'Семейные споры',
+    description: 'Защита права проживания: устранение препятствий во вселении и пользовании жилым помещением в рамках семейного конфликта.'
+  },
+  {
     title: 'Выселение',
     slug: 'vyselenie',
     path: '/services/phys/vyselenie',
