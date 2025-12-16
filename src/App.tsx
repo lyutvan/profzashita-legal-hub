@@ -43,6 +43,9 @@ import NasledstvoPage from "./pages/services/phys/NasledstvoPage";
 import VstupleniyeVNasledstvoPage from "./pages/services/phys/VstupleniyeVNasledstvoPage";
 import FakticheskoePrinyatiyePage from "./pages/services/phys/FakticheskoePrinyatiyePage";
 import VosstanovleniyeSrokaPage from "./pages/services/phys/VosstanovleniyeSrokaPage";
+import RazdelNasledstvennogoImushchestvaPage from "./pages/services/phys/RazdelNasledstvennogoImushchestvaPage";
+import NedostoynyyNaslednikPage from "./pages/services/phys/NedostoynyyNaslednikPage";
+import PravoSobstvennostiVPoryadkeNasledovaniyaPage from "./pages/services/phys/PravoSobstvennostiVPoryadkeNasledovaniyaPage";
 import Statya105Page from "./pages/services/criminal/Statya105Page";
 import Statya109Page from "./pages/services/phys/Statya109Page";
 import Statya110Page from "./pages/services/phys/Statya110Page";
@@ -220,6 +223,9 @@ const App = () => (
           <Route path="/services/phys/vstuplenie-v-nasledstvo" element={<VstupleniyeVNasledstvoPage />} />
           <Route path="/services/phys/fakticheskoe-prinyatie-nasledstva" element={<FakticheskoePrinyatiyePage />} />
           <Route path="/services/phys/vosstanovlenie-sroka-nasledstva" element={<VosstanovleniyeSrokaPage />} />
+          <Route path="/services/phys/razdel-nasledstvennogo-imushchestva" element={<RazdelNasledstvennogoImushchestvaPage />} />
+          <Route path="/services/phys/nedostoynyy-naslednik" element={<NedostoynyyNaslednikPage />} />
+          <Route path="/services/phys/pravo-sobstvennosti-v-poryadke-nasledovaniya" element={<PravoSobstvennostiVPoryadkeNasledovaniyaPage />} />
           <Route path="/services/phys/nasledstvo" element={<Navigate to="/services/phys/vstuplenie-v-nasledstvo" replace />} />
           <Route path="/services/phys/vzyskanie-po-raspiskam" element={<VzyskaniePoRaspiskamPage />} />
           <Route path="/services/phys/vzyskanie-po-dogovoram" element={<VzyskaniePoDogovoramPage />} />
