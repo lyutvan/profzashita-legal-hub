@@ -555,6 +555,32 @@ export const audienceServices: AudienceService[] = [
     priority: 10,
     category: 'Гражданские дела'
   },
+  
+  // Взыскание долгов и договорные споры
+  {
+    title: 'Взыскание денежных средств по распискам',
+    slug: 'vzyskanie-po-raspiskam',
+    path: '/services/phys/vzyskanie-po-raspiskam',
+    audience: 'phys',
+    priority: 11,
+    category: 'Взыскание долгов и договорные споры'
+  },
+  {
+    title: 'Взыскание задолженности по договорам (поставка, подряд, услуги, аренда, займ)',
+    slug: 'vzyskanie-po-dogovoram',
+    path: '/services/phys/vzyskanie-po-dogovoram',
+    audience: 'phys',
+    priority: 12,
+    category: 'Взыскание долгов и договорные споры'
+  },
+  {
+    title: 'Расторжение договора оказания услуг',
+    slug: 'rastorzhenie-dogovora-uslug',
+    path: '/services/phys/rastorzhenie-dogovora-uslug',
+    audience: 'phys',
+    priority: 13,
+    category: 'Взыскание долгов и договорные споры'
+  },
 
   // ========== ЮРИДИЧЕСКИМ ЛИЦАМ ==========
   {

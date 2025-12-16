@@ -93,6 +93,9 @@ import Statya327Page from "./pages/services/criminal/Statya327Page";
 import Statya330Page from "./pages/services/criminal/Statya330Page";
 import MestoZhitelstvaRebonkaPage from "./pages/services/phys/MestoZhitelstvaRebonkaPage";
 import BankrotstvoFizLitsPage from "./pages/services/phys/BankrotstvoFizLitsPage";
+import VzyskaniePoRaspiskamPage from "./pages/services/phys/VzyskaniePoRaspiskamPage";
+import VzyskaniePoDogovoramPage from "./pages/services/phys/VzyskaniePoDogovoramPage";
+import RastorzhenieDogovoraUslugPage from "./pages/services/phys/RastorzhenieDogovoraUslugPage";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 
@@ -202,6 +205,9 @@ const App = () => (
           <Route path="/services/phys/dtp-strahovye-spory" element={<DtpPage />} />
           <Route path="/services/phys/trudovye-spory" element={<TrudovyeSporyPage />} />
           <Route path="/services/phys/bankrotstvo-fiz-lits" element={<BankrotstvoFizLitsPage />} />
+          <Route path="/services/phys/vzyskanie-po-raspiskam" element={<VzyskaniePoRaspiskamPage />} />
+          <Route path="/services/phys/vzyskanie-po-dogovoram" element={<VzyskaniePoDogovoramPage />} />
+          <Route path="/services/phys/rastorzhenie-dogovora-uslug" element={<RastorzhenieDogovoraUslugPage />} />
           
           {/* Redirects from old family services URLs */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
