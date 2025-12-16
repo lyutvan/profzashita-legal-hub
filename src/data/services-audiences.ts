@@ -632,38 +632,33 @@ export const audienceServices: AudienceService[] = [
     category: 'Наследственные дела'
   },
   {
-    title: 'Защита прав потребителей',
-    slug: 'zashchita-prav-potrebitelya',
-    path: '/services/phys/zashchita-prav-potrebitelya',
+    title: 'Раздел наследственного имущества',
+    slug: 'razdel-nasledstvennogo-imushchestva',
+    path: '/services/phys/razdel-nasledstvennogo-imushchestva',
     audience: 'phys',
-    priority: 7,
-    category: 'Гражданские дела'
+    priority: 12.1,
+    category: 'Наследственные дела',
+    description: 'Раздел наследственного имущества между наследниками: подготовка соглашения, судебное представительство и защита долей.'
   },
   {
-    title: 'Помощь при ДТП',
-    slug: 'dtp-strahovye-spory',
-    path: '/services/phys/dtp-strahovye-spory',
+    title: 'Признание недостойным наследником',
+    slug: 'nedostoynyy-naslednik',
+    path: '/services/phys/nedostoynyy-naslednik',
     audience: 'phys',
-    priority: 8,
-    category: 'Гражданские дела'
+    priority: 12.2,
+    category: 'Наследственные дела',
+    description: 'Сопровождение дел о признании наследника недостойным: сбор доказательств, подготовка иска и представительство в суде.'
   },
   {
-    title: 'Трудовые споры',
-    slug: 'trudovye-spory',
-    path: '/services/phys/trudovye-spory',
+    title: 'Признание права собственности в порядке наследования',
+    slug: 'pravo-sobstvennosti-v-poryadke-nasledovaniya',
+    path: '/services/phys/pravo-sobstvennosti-v-poryadke-nasledovaniya',
     audience: 'phys',
-    priority: 9,
-    category: 'Гражданские дела'
+    priority: 12.3,
+    category: 'Наследственные дела',
+    description: 'Признание права собственности на наследственное имущество через суд при отсутствии документов или споре между наследниками.'
   },
-  {
-    title: 'Банкротство физических лиц',
-    slug: 'bankrotstvo-fiz-lits',
-    path: '/services/phys/bankrotstvo-fiz-lits',
-    audience: 'phys',
-    priority: 10,
-    category: 'Гражданские дела'
-  },
-  
+ 
   // Взыскание долгов и договорные споры
   {
     title: 'Взыскание денежных средств по распискам',
