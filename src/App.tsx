@@ -92,6 +92,7 @@ import Statya3221Page from "./pages/services/criminal/Statya3221Page";
 import Statya327Page from "./pages/services/criminal/Statya327Page";
 import Statya330Page from "./pages/services/criminal/Statya330Page";
 import MestoZhitelstvaRebonkaPage from "./pages/services/phys/MestoZhitelstvaRebonkaPage";
+import PoryadokObscheniyaRebenkaPage from "./pages/services/phys/PoryadokObscheniyaRebenkaPage";
 import BankrotstvoFizLitsPage from "./pages/services/phys/BankrotstvoFizLitsPage";
 import VzyskaniePoRaspiskamPage from "./pages/services/phys/VzyskaniePoRaspiskamPage";
 import VzyskaniePoDogovoramPage from "./pages/services/phys/VzyskaniePoDogovoramPage";
@@ -191,6 +192,7 @@ const App = () => (
           <Route path="/services/phys/razvod" element={<RazvodPage />} />
           <Route path="/services/phys/alimenty" element={<AlimentyPage />} />
           <Route path="/services/phys/mesto-zhitelstva-rebenka" element={<MestoZhitelstvaRebonkaPage />} />
+          <Route path="/services/phys/poryadok-obshcheniya-s-rebenkom" element={<PoryadokObscheniyaRebenkaPage />} />
           <Route path="/services/phys/vyselenie" element={<VyseleniePage />} />
           <Route path="/services/phys/snyatie-s-registracionnogo-ucheta" element={<SnyatieSRegistraciiPage />} />
           <Route path="/services/phys/zhilishchnye-spory" element={<Navigate to="/services/phys/vyselenie" replace />} />

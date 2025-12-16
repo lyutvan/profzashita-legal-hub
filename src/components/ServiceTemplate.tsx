@@ -40,9 +40,15 @@ interface ServiceTemplateProps {
   whatWeDoTitle?: string;
   whatWeDo: string[];
   steps: ServiceStep[];
+  stepsTitle?: string;
   documentsAndTimingTitle?: string;
   documentsAndTiming: string;
+  documentsList?: string[];
   faqs: FAQ[];
+  ctaBlock?: {
+    title: string;
+    description: string;
+  };
   
   // Related links
   relatedLinks?: Array<{
@@ -67,12 +73,15 @@ const ServiceTemplate = ({
   whatWeDoTitle = "Что мы делаем",
   whatWeDo,
   steps,
+  stepsTitle = "Порядок работы",
   documentsAndTimingTitle = "Документы и сроки",
   documentsAndTiming,
+  documentsList,
   faqs,
   relatedLinks,
   priceFrom: providedPriceFrom,
-  priceNote: providedPriceNote
+  priceNote: providedPriceNote,
+  ctaBlock
 }: ServiceTemplateProps) => {
   // Get price from pricing.ts if not provided directly
   const pricingData = getPriceBySlug(canonical);
@@ -163,7 +172,7 @@ const ServiceTemplate = ({
                 {/* Process Steps */}
                 <div>
                   <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
-                    Порядок работы
+                    {stepsTitle}
                   </h2>
                   <div className="space-y-4">
                     {steps.map((step) => (
@@ -191,15 +200,45 @@ const ServiceTemplate = ({
                   </h2>
                   <Card>
                     <CardContent className="pt-6">
-                      <div className="flex items-start gap-4">
-                        <FileText className="h-6 w-6 text-[#C9A227] flex-shrink-0" />
-                        <p className="text-muted-foreground leading-relaxed">
-                          {documentsAndTiming}
-                        </p>
+                      <div className="flex flex-col gap-4">
+                        <div className="flex items-start gap-4">
+                          <FileText className="h-6 w-6 text-[#C9A227] flex-shrink-0" />
+                          <div className="text-muted-foreground leading-relaxed space-y-4">
+                            {documentsList && documentsList.length > 0 && (
+                              <ul className="space-y-2">
+                                {documentsList.map((item, index) => (
+                                  <li key={index} className="flex items-start gap-2">
+                                    <CheckCircle2 className="h-4 w-4 text-[#C9A227] mt-1" />
+                                    <span>{item}</span>
+                                  </li>
+                                ))}
+                              </ul>
+                            )}
+                            {documentsAndTiming && (
+                              <p>{documentsAndTiming}</p>
+                            )}
+                          </div>
+                        </div>
                       </div>
                     </CardContent>
                   </Card>
                 </div>
+
+                {/* Custom CTA */}
+                {ctaBlock && (
+                  <div>
+                    <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
+                      {ctaBlock.title}
+                    </h2>
+                    <Card className="bg-gradient-to-br from-[#0B1F3A] to-[#0C1926] text-white border-0">
+                      <CardContent className="pt-6 pb-6">
+                        <p className="text-white/80 leading-relaxed">
+                          {ctaBlock.description}
+                        </p>
+                      </CardContent>
+                    </Card>
+                  </div>
+                )}
 
                 {/* Price */}
                 <PriceBlock priceFrom={priceFrom} priceNote={priceNote} />
