@@ -7,6 +7,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/com
 import { Button } from "@/components/ui/button";
 import { getServicesByCategory, audienceConfig } from "@/data/services-audiences";
 import { CheckCircle2, ArrowRight } from "lucide-react";
+import prisonBarsImage from "@/assets/legal/prison-bars.jpg";
 import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
 
 const CriminalPage = () => {
@@ -54,8 +55,17 @@ const CriminalPage = () => {
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#0B1F3A] to-[#0C1926] text-white py-16 md:py-20">
-          <div className="container mx-auto px-4">
+        <section 
+          className="relative text-white py-16 md:py-20"
+          style={{
+            backgroundImage: `url(${prisonBarsImage})`,
+            backgroundSize: 'cover',
+            backgroundPosition: 'center'
+          }}
+        >
+          {/* Dark overlay */}
+          <div className="absolute inset-0 bg-black/75" />
+          <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs 
               items={[
                 { label: "Услуги", path: "/uslugi" },
