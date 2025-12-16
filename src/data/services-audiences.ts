@@ -684,6 +684,60 @@ export const audienceServices: AudienceService[] = [
     priority: 13,
     category: 'Взыскание долгов и договорные споры'
   },
+  {
+    title: 'Признание договора недействительным (купля-продажа, мена и др.)',
+    slug: 'priznanie-dogovora-nedeystvitelnym',
+    path: '/services/phys/priznanie-dogovora-nedeystvitelnym',
+    audience: 'phys',
+    priority: 13.1,
+    category: 'Взыскание долгов и договорные споры',
+    description: 'Оспаривание сделок и признание договоров недействительными: анализ оснований, подготовка иска и защита интересов в суде.'
+  },
+  {
+    title: 'Признание договора незаключённым (купля-продажа / услуги)',
+    slug: 'priznanie-dogovora-nezaklyuchennym',
+    path: '/services/phys/priznanie-dogovora-nezaklyuchennym',
+    audience: 'phys',
+    priority: 13.2,
+    category: 'Взыскание долгов и договорные споры',
+    description: 'Признание договора незаключённым: отсутствие согласованных условий, доказательства и судебное сопровождение.'
+  },
+  {
+    title: 'Отказ от исполнения договора (услуги / купля-продажа)',
+    slug: 'otkaz-ot-ispolneniya-dogovora',
+    path: '/services/phys/otkaz-ot-ispolneniya-dogovora',
+    audience: 'phys',
+    priority: 13.3,
+    category: 'Взыскание долгов и договорные споры',
+    description: 'Подготовка правомерного отказа от договора, претензии, возврат денежных средств и защита прав в суде.'
+  },
+  {
+    title: 'Неосновательное обогащение',
+    slug: 'neosnovatelnoe-obogashchenie',
+    path: '/services/phys/neosnovatelnoe-obogashchenie',
+    audience: 'phys',
+    priority: 13.4,
+    category: 'Взыскание долгов и договорные споры',
+    description: 'Взыскание неосновательного обогащения: расчёт суммы, подготовка претензии/иска и представительство в суде.'
+  },
+  {
+    title: 'Взыскание арендных платежей',
+    slug: 'vzyskanie-arendnyh-platezhey',
+    path: '/services/phys/vzyskanie-arendnyh-platezhey',
+    audience: 'phys',
+    priority: 13.5,
+    category: 'Взыскание долгов и договорные споры',
+    description: 'Взыскание задолженности по аренде: претензионная работа, расчёт долга и судебное взыскание.'
+  },
+  {
+    title: 'Оспаривание штрафов, пеней, неустоек (снижение, проверка расчётов)',
+    slug: 'osparivanie-neustoyki-shtrafov-peney',
+    path: '/services/phys/osparivanie-neustoyki-shtrafov-peney',
+    audience: 'phys',
+    priority: 13.6,
+    category: 'Взыскание долгов и договорные споры',
+    description: 'Проверка расчётов и снижение неустойки/штрафов/пеней, подготовка возражений и представительство в суде.'
+  },
 
   // ========== ЮРИДИЧЕСКИМ ЛИЦАМ ==========
   {
