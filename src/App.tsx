@@ -126,6 +126,11 @@ import VzyskanieStrahovogoVozmeshcheniyaKaskoPage from "./pages/services/phys/Vz
 import VzyskanieUshcherbaSVinovnikaDtpPage from "./pages/services/phys/VzyskanieUshcherbaSVinovnikaDtpPage";
 import SporyOtkazStrahovshchikaZanizhenieVyplatyPage from "./pages/services/phys/SporyOtkazStrahovshchikaZanizhenieVyplatyPage";
 import KompensaciyaVredaZdorovyuUtrachennyyZarabotokPage from "./pages/services/phys/KompensaciyaVredaZdorovyuUtrachennyyZarabotokPage";
+import OsparivanieUvolneniyaVosstanovleniePage from "./pages/services/phys/OsparivanieUvolneniyaVosstanovleniePage";
+import ZarabotokZaVynuzhdennyyProgulPage from "./pages/services/phys/ZarabotokZaVynuzhdennyyProgulPage";
+import ZadolzhennostPoZarplateIKompensaciiPage from "./pages/services/phys/ZadolzhennostPoZarplateIKompensaciiPage";
+import OsparivanieDisciplinarnyhVzyskaniyPage from "./pages/services/phys/OsparivanieDisciplinarnyhVzyskaniyPage";
+import KompensaciiZaTravmyNaRabotePage from "./pages/services/phys/KompensaciiZaTravmyNaRabotePage";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 
@@ -268,6 +273,11 @@ const App = () => (
           <Route path="/services/phys/vzyskanie-ushcherba-s-vinovnika-dtp" element={<VzyskanieUshcherbaSVinovnikaDtpPage />} />
           <Route path="/services/phys/spory-otkaz-strahovshchika-zanizhenie-vyplaty" element={<SporyOtkazStrahovshchikaZanizhenieVyplatyPage />} />
           <Route path="/services/phys/kompensaciya-vreda-zdorovyu-utrachennyy-zarabotok" element={<KompensaciyaVredaZdorovyuUtrachennyyZarabotokPage />} />
+          <Route path="/services/phys/osparivanie-uvolneniya-vosstanovlenie" element={<OsparivanieUvolneniyaVosstanovleniePage />} />
+          <Route path="/services/phys/zarabotok-za-vynuzhdennyy-progul" element={<ZarabotokZaVynuzhdennyyProgulPage />} />
+          <Route path="/services/phys/zadolzhennost-po-zarplate-i-kompensacii" element={<ZadolzhennostPoZarplateIKompensaciiPage />} />
+          <Route path="/services/phys/osparivanie-disciplinarnyh-vzyskaniy" element={<OsparivanieDisciplinarnyhVzyskaniyPage />} />
+          <Route path="/services/phys/kompensacii-za-travmy-na-rabote" element={<KompensaciiZaTravmyNaRabotePage />} />
           
           {/* Redirects from old family services URLs */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
