@@ -140,6 +140,13 @@ import ObzhalovanieDeystviyPristavovPage from "./pages/services/phys/Obzhalovani
 import SnyatieArestovOgranicheniyOtmenaZapretovPage from "./pages/services/phys/SnyatieArestovOgranicheniyOtmenaZapretovPage";
 import OsparivanieNezakonnyhVzyskaniyUderzhaniyPage from "./pages/services/phys/OsparivanieNezakonnyhVzyskaniyUderzhaniyPage";
 import SoprovozhdenieIspolneniyaResheniyaSudaPage from "./pages/services/phys/SoprovozhdenieIspolneniyaResheniyaSudaPage";
+import OsparivanieMezhevaniyaPage from "./pages/services/phys/OsparivanieMezhevaniyaPage";
+import OpredelenieGranicZemelnogoUchastkaPage from "./pages/services/phys/OpredelenieGranicZemelnogoUchastkaPage";
+import PoryadokPolzovaniyaZemelnymUchastkomPage from "./pages/services/phys/PoryadokPolzovaniyaZemelnymUchastkomPage";
+import VydelDoliVNaturePage from "./pages/services/phys/VydelDoliVNaturePage";
+import PravoSobstvennostiNaZemelnyyUchastokPage from "./pages/services/phys/PravoSobstvennostiNaZemelnyyUchastokPage";
+import OsparivanieKadastrovoiStoimostiPage from "./pages/services/phys/OsparivanieKadastrovoiStoimostiPage";
+import SporySSosedyamiPoGranicamProezduPage from "./pages/services/phys/SporySSosedyamiPoGranicamProezduPage";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 
@@ -296,6 +303,13 @@ const App = () => (
           <Route path="/services/phys/snyatie-arestov-ogranicheniy-otmena-zapretov" element={<SnyatieArestovOgranicheniyOtmenaZapretovPage />} />
           <Route path="/services/phys/osparivanie-nezakonnyh-vzyskaniy-uderzhaniy" element={<OsparivanieNezakonnyhVzyskaniyUderzhaniyPage />} />
           <Route path="/services/phys/soprovozhdenie-ispolneniya-resheniya-suda" element={<SoprovozhdenieIspolneniyaResheniyaSudaPage />} />
+          <Route path="/services/phys/osparivanie-mezhevaniya" element={<OsparivanieMezhevaniyaPage />} />
+          <Route path="/services/phys/opredelenie-granic-zemelnogo-uchastka" element={<OpredelenieGranicZemelnogoUchastkaPage />} />
+          <Route path="/services/phys/poryadok-polzovaniya-zemelnym-uchastkom" element={<PoryadokPolzovaniyaZemelnymUchastkomPage />} />
+          <Route path="/services/phys/vydel-doli-v-nature" element={<VydelDoliVNaturePage />} />
+          <Route path="/services/phys/pravo-sobstvennosti-na-zemelnyy-uchastok" element={<PravoSobstvennostiNaZemelnyyUchastokPage />} />
+          <Route path="/services/phys/osparivanie-kadastrovoy-stoimosti" element={<OsparivanieKadastrovoiStoimostiPage />} />
+          <Route path="/services/phys/spory-s-sosedyami-po-granicam-proezdu" element={<SporySSosedyamiPoGranicamProezduPage />} />
           
           {/* Redirects from old family services URLs */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
