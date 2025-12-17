@@ -136,6 +136,10 @@ import OtsrochkaRassrochkaIspolneniyaResheniyaPage from "./pages/services/phys/O
 import OtmenaSudebnogoPrikazaVosstanovlenieSrokovPage from "./pages/services/phys/OtmenaSudebnogoPrikazaVosstanovlenieSrokovPage";
 import OsparivanieIspolnitelnoyNadpisiNotariusaPage from "./pages/services/phys/OsparivanieIspolnitelnoyNadpisiNotariusaPage";
 import SporySBankamiPoZadolzhennostiPage from "./pages/services/phys/SporySBankamiPoZadolzhennostiPage";
+import ObzhalovanieDeystviyPristavovPage from "./pages/services/phys/ObzhalovanieDeystviyPristavovPage";
+import SnyatieArestovOgranicheniyOtmenaZapretovPage from "./pages/services/phys/SnyatieArestovOgranicheniyOtmenaZapretovPage";
+import OsparivanieNezakonnyhVzyskaniyUderzhaniyPage from "./pages/services/phys/OsparivanieNezakonnyhVzyskaniyUderzhaniyPage";
+import SoprovozhdenieIspolneniyaResheniyaSudaPage from "./pages/services/phys/SoprovozhdenieIspolneniyaResheniyaSudaPage";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 
@@ -288,6 +292,10 @@ const App = () => (
           <Route path="/services/phys/otmena-sudebnogo-prikaza-vosstanovlenie-srokov" element={<OtmenaSudebnogoPrikazaVosstanovlenieSrokovPage />} />
           <Route path="/services/phys/osparivanie-ispolnitelnoy-nadpisi-notariusa" element={<OsparivanieIspolnitelnoyNadpisiNotariusaPage />} />
           <Route path="/services/phys/spory-s-bankami-po-zadolzhennosti" element={<SporySBankamiPoZadolzhennostiPage />} />
+          <Route path="/services/phys/obzhalovanie-deystviy-pristavov" element={<ObzhalovanieDeystviyPristavovPage />} />
+          <Route path="/services/phys/snyatie-arestov-ogranicheniy-otmena-zapretov" element={<SnyatieArestovOgranicheniyOtmenaZapretovPage />} />
+          <Route path="/services/phys/osparivanie-nezakonnyh-vzyskaniy-uderzhaniy" element={<OsparivanieNezakonnyhVzyskaniyUderzhaniyPage />} />
+          <Route path="/services/phys/soprovozhdenie-ispolneniya-resheniya-suda" element={<SoprovozhdenieIspolneniyaResheniyaSudaPage />} />
           
           {/* Redirects from old family services URLs */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
