@@ -804,6 +804,109 @@ export const audienceServices: AudienceService[] = [
     description: 'Взыскание убытков, компенсации морального вреда и штрафа по Закону о защите прав потребителей при наличии оснований, включая судебные расходы.'
   },
 
+  // ДТП, страхование, вред здоровью
+  {
+    title: 'Возмещение ущерба при ДТП',
+    slug: 'vozmeshchenie-ushcherba-dtp',
+    path: '/services/phys/vozmeshchenie-ushcherba-dtp',
+    audience: 'phys',
+    priority: 15.0,
+    category: 'ДТП, страхование, вред здоровью',
+    description: 'Взыскание ущерба при ДТП: оценка убытков, претензии, переговоры и судебное представительство.'
+  },
+  {
+    title: 'Взыскание страхового возмещения по ОСАГО',
+    slug: 'vzyskanie-strahovogo-vozmeshcheniya-osago',
+    path: '/services/phys/vzyskanie-strahovogo-vozmeshcheniya-osago',
+    audience: 'phys',
+    priority: 15.1,
+    category: 'ДТП, страхование, вред здоровью',
+    description: 'Взыскание страхового возмещения по ОСАГО: подготовка документов, оспаривание отказов и заниженных выплат.'
+  },
+  {
+    title: 'Взыскание страхового возмещения по КАСКО',
+    slug: 'vzyskanie-strahovogo-vozmeshcheniya-kasko',
+    path: '/services/phys/vzyskanie-strahovogo-vozmeshcheniya-kasko',
+    audience: 'phys',
+    priority: 15.2,
+    category: 'ДТП, страхование, вред здоровью',
+    description: 'Сопровождение споров по КАСКО: получение выплаты, оспаривание отказов страховщика и защита интересов в суде.'
+  },
+  {
+    title: 'Взыскание ущерба с виновника ДТП (по фактическим убыткам)',
+    slug: 'vzyskanie-ushcherba-s-vinovnika-dtp',
+    path: '/services/phys/vzyskanie-ushcherba-s-vinovnika-dtp',
+    audience: 'phys',
+    priority: 15.3,
+    category: 'ДТП, страхование, вред здоровью',
+    description: 'Взыскание ущерба с виновника ДТП сверх страховой выплаты: фактические убытки, экспертиза, суд и исполнительное производство.'
+  },
+  {
+    title: 'Споры при отказе страховщика / занижении выплаты',
+    slug: 'spory-otkaz-strahovshchika-zanizhenie-vyplaty',
+    path: '/services/phys/spory-otkaz-strahovshchika-zanizhenie-vyplaty',
+    audience: 'phys',
+    priority: 15.4,
+    category: 'ДТП, страхование, вред здоровью',
+    description: 'Оспаривание отказа страховщика и заниженных выплат: анализ оснований, контррасчёт, претензии и судебная защита.'
+  },
+  {
+    title: 'Компенсация вреда здоровью, включая утраченный заработок',
+    slug: 'kompensaciya-vreda-zdorovyu-utrachennyy-zarabotok',
+    path: '/services/phys/kompensaciya-vreda-zdorovyu-utrachennyy-zarabotok',
+    audience: 'phys',
+    priority: 15.5,
+    category: 'ДТП, страхование, вред здоровью',
+    description: 'Взыскание компенсации вреда здоровью после ДТП: расходы на лечение, реабилитацию, утраченный заработок, моральный вред.'
+  },
+
+  // Трудовые споры
+  {
+    title: 'Оспаривание увольнения, восстановление на работе',
+    slug: 'osparivanie-uvolneniya-vosstanovlenie',
+    path: '/services/phys/osparivanie-uvolneniya-vosstanovlenie',
+    audience: 'phys',
+    priority: 16.0,
+    category: 'Трудовые споры',
+    description: 'Оспаривание увольнения и восстановление на работе: анализ оснований, подготовка документов и представительство в суде.'
+  },
+  {
+    title: 'Взыскание заработка за время вынужденного прогула',
+    slug: 'zarabotok-za-vynuzhdennyy-progul',
+    path: '/services/phys/zarabotok-za-vynuzhdennyy-progul',
+    audience: 'phys',
+    priority: 16.1,
+    category: 'Трудовые споры',
+    description: 'Взыскание среднего заработка за время вынужденного прогула при незаконном увольнении или отстранении от работы.'
+  },
+  {
+    title: 'Взыскание задолженности по зарплате и компенсаций',
+    slug: 'zadolzhennost-po-zarplate-i-kompensacii',
+    path: '/services/phys/zadolzhennost-po-zarplate-i-kompensacii',
+    audience: 'phys',
+    priority: 16.2,
+    category: 'Трудовые споры',
+    description: 'Взыскание задолженности по заработной плате, компенсации за задержку выплат, отпускные и иные выплаты, предусмотренные законом.'
+  },
+  {
+    title: 'Оспаривание дисциплинарных взысканий',
+    slug: 'osparivanie-disciplinarnyh-vzyskaniy',
+    path: '/services/phys/osparivanie-disciplinarnyh-vzyskaniy',
+    audience: 'phys',
+    priority: 16.3,
+    category: 'Трудовые споры',
+    description: 'Оспаривание выговоров и иных дисциплинарных взысканий: проверка процедуры, подготовка возражений и защита в суде.'
+  },
+  {
+    title: 'Компенсации за травмы и увечья, полученные на работе',
+    slug: 'kompensacii-za-travmy-na-rabote',
+    path: '/services/phys/kompensacii-za-travmy-na-rabote',
+    audience: 'phys',
+    priority: 16.4,
+    category: 'Трудовые споры',
+    description: 'Взыскание компенсаций за производственные травмы и увечья: расходы на лечение, утраченный заработок, моральный вред, взаимодействие с работодателем и страховщиком.'
+  },
+
   // ========== ЮРИДИЧЕСКИМ ЛИЦАМ ==========
   {
     title: 'Арбитражные споры',
