@@ -907,6 +907,279 @@ export const audienceServices: AudienceService[] = [
     description: 'Взыскание компенсаций за производственные травмы и увечья: расходы на лечение, утраченный заработок, моральный вред, взаимодействие с работодателем и страховщиком.'
   },
 
+  // Банковские и кредитные споры
+  {
+    title: 'Оспаривание штрафов, пеней, неустоек',
+    slug: 'osparivanie-shtrafov-peney-neustoyek-kredit',
+    path: '/services/phys/osparivanie-shtrafov-peney-neustoyek-kredit',
+    audience: 'phys',
+    priority: 17.0,
+    category: 'Банковские и кредитные споры',
+    description: 'Проверка расчётов банка, подготовка возражений и снижение штрафов/пеней/неустоек по кредитным обязательствам.'
+  },
+  {
+    title: 'Отсрочка / рассрочка исполнения решения суда',
+    slug: 'otsrochka-rassrochka-ispolneniya-resheniya',
+    path: '/services/phys/otsrochka-rassrochka-ispolneniya-resheniya',
+    audience: 'phys',
+    priority: 17.1,
+    category: 'Банковские и кредитные споры',
+    description: 'Подготовка заявления об отсрочке/рассрочке исполнения решения суда: обоснование, документы, представительство в суде.'
+  },
+  {
+    title: 'Отмена судебных приказов, восстановление сроков обжалования',
+    slug: 'otmena-sudebnogo-prikaza-vosstanovlenie-srokov',
+    path: '/services/phys/otmena-sudebnogo-prikaza-vosstanovlenie-srokov',
+    audience: 'phys',
+    priority: 17.2,
+    category: 'Банковские и кредитные споры',
+    description: 'Отмена судебного приказа и восстановление сроков: подготовка возражений/заявлений и защита интересов должника.'
+  },
+  {
+    title: 'Оспаривание исполнительной надписи нотариуса',
+    slug: 'osparivanie-ispolnitelnoy-nadpisi-notariusa',
+    path: '/services/phys/osparivanie-ispolnitelnoy-nadpisi-notariusa',
+    audience: 'phys',
+    priority: 17.3,
+    category: 'Банковские и кредитные споры',
+    description: 'Оспаривание исполнительной надписи нотариуса: анализ оснований, обеспечительные меры и судебное сопровождение.'
+  },
+  {
+    title: 'Споры с банками по задолженности/условиям договора',
+    slug: 'spory-s-bankami-po-zadolzhennosti',
+    path: '/services/phys/spory-s-bankami-po-zadolzhennosti',
+    audience: 'phys',
+    priority: 17.4,
+    category: 'Банковские и кредитные споры',
+    description: 'Разбор условий кредитного договора, переговоры, претензии и судебная защита при спорах с банком по задолженности.'
+  },
+
+  // Исполнительное производство (приставы)
+  {
+    title: 'Обжалование действий/бездействия судебных приставов',
+    slug: 'obzhalovanie-deystviy-pristavov',
+    path: '/services/phys/obzhalovanie-deystviy-pristavov',
+    audience: 'phys',
+    priority: 18.0,
+    category: 'Исполнительное производство',
+    description: 'Обжалование действий/бездействия приставов: жалобы, заявления в суд и защита прав должника/взыскателя.'
+  },
+  {
+    title: 'Снятие арестов/ограничений, отмена запретов',
+    slug: 'snyatie-arestov-ogranicheniy-otmena-zapretov',
+    path: '/services/phys/snyatie-arestov-ogranicheniy-otmena-zapretov',
+    audience: 'phys',
+    priority: 18.1,
+    category: 'Исполнительное производство',
+    description: 'Снятие арестов и ограничений (счета/имущество), отмена запретов: подготовка документов и сопровождение.'
+  },
+  {
+    title: 'Оспаривание незаконных взысканий, корректировка удержаний',
+    slug: 'osparivanie-nezakonnyh-vzyskaniy-uderzhaniy',
+    path: '/services/phys/osparivanie-nezakonnyh-vzyskaniy-uderzhaniy',
+    audience: 'phys',
+    priority: 18.2,
+    category: 'Исполнительное производство',
+    description: 'Оспаривание незаконных списаний и удержаний, корректировка процента удержаний, защита прожиточного минимума.'
+  },
+  {
+    title: 'Сопровождение исполнения решения суда',
+    slug: 'soprovozhdenie-ispolneniya-resheniya-suda',
+    path: '/services/phys/soprovozhdenie-ispolneniya-resheniya-suda',
+    audience: 'phys',
+    priority: 18.3,
+    category: 'Исполнительное производство',
+    description: 'Полное сопровождение исполнительного производства: взаимодействие с приставами, контроль сроков и результатов взыскания.'
+  },
+
+  // Земельные споры
+  {
+    title: 'Оспаривание межевания',
+    slug: 'osparivanie-mezhevaniya',
+    path: '/services/phys/osparivanie-mezhevaniya',
+    audience: 'phys',
+    priority: 19.0,
+    category: 'Земельные споры',
+    description: 'Оспаривание результатов межевания: анализ документов, сбор доказательств и судебное сопровождение.'
+  },
+  {
+    title: 'Определение границ земельного участка',
+    slug: 'opredelenie-granic-zemelnogo-uchastka',
+    path: '/services/phys/opredelenie-granic-zemelnogo-uchastka',
+    audience: 'phys',
+    priority: 19.1,
+    category: 'Земельные споры',
+    description: 'Установление/определение границ участка: подготовка позиции, экспертизы и представительство в суде.'
+  },
+  {
+    title: 'Определение порядка пользования земельным участком',
+    slug: 'poryadok-polzovaniya-zemelnym-uchastkom',
+    path: '/services/phys/poryadok-polzovaniya-zemelnym-uchastkom',
+    audience: 'phys',
+    priority: 19.2,
+    category: 'Земельные споры',
+    description: 'Определение порядка пользования участком между сособственниками: соглашение или судебное решение.'
+  },
+  {
+    title: 'Выдел доли в натуре',
+    slug: 'vydel-doli-v-nature',
+    path: '/services/phys/vydel-doli-v-nature',
+    audience: 'phys',
+    priority: 19.3,
+    category: 'Земельные споры',
+    description: 'Выдел доли в натуре: подготовка документов, экспертизы, сопровождение переговоров и суда.'
+  },
+  {
+    title: 'Признание / оспаривание права собственности на земельный участок',
+    slug: 'pravo-sobstvennosti-na-zemelnyy-uchastok',
+    path: '/services/phys/pravo-sobstvennosti-na-zemelnyy-uchastok',
+    audience: 'phys',
+    priority: 19.4,
+    category: 'Земельные споры',
+    description: 'Признание или оспаривание права собственности на участок: подготовка исков и представительство в суде.'
+  },
+  {
+    title: 'Оспаривание кадастровой стоимости',
+    slug: 'osparivanie-kadastrovoy-stoimosti',
+    path: '/services/phys/osparivanie-kadastrovoy-stoimosti',
+    audience: 'phys',
+    priority: 19.5,
+    category: 'Земельные споры',
+    description: 'Оспаривание кадастровой стоимости: анализ отчётов, подготовка документов и сопровождение процедуры/суда.'
+  },
+  {
+    title: 'Споры с соседями по границам/проезду',
+    slug: 'spory-s-sosedyami-po-granicam-proezdu',
+    path: '/services/phys/spory-s-sosedyami-po-granicam-proezdu',
+    audience: 'phys',
+    priority: 19.6,
+    category: 'Земельные споры',
+    description: 'Споры с соседями по границам, сервитуту и проезду: фиксация нарушений, экспертизы, суд.'
+  },
+
+  // Административные споры
+  {
+    title: 'Оспаривание решений, действий/бездействия органов власти',
+    slug: 'osparivanie-deystviy-organov-vlasti',
+    path: '/services/phys/osparivanie-deystviy-organov-vlasti',
+    audience: 'phys',
+    priority: 20.0,
+    category: 'Административные споры',
+    description: 'Оспаривание решений и действий органов власти: жалобы, административные иски и судебное сопровождение.'
+  },
+  {
+    title: 'Оспаривание действий/решений налоговых органов',
+    slug: 'osparivanie-resheniy-nalogovyh-organov',
+    path: '/services/phys/osparivanie-resheniy-nalogovyh-organov',
+    audience: 'phys',
+    priority: 20.1,
+    category: 'Административные споры',
+    description: 'Оспаривание решений налоговых органов: подготовка жалоб/возражений и представительство в суде.'
+  },
+  {
+    title: 'Оспаривание бездействия должностных лиц',
+    slug: 'osparivanie-bezdeystviya-dolzhnostnyh-lic',
+    path: '/services/phys/osparivanie-bezdeystviya-dolzhnostnyh-lic',
+    audience: 'phys',
+    priority: 20.2,
+    category: 'Административные споры',
+    description: 'Оспаривание бездействия должностных лиц: фиксация нарушений, жалобы и административные иски.'
+  },
+  {
+    title: 'Оспаривание постановлений по делам об административных правонарушениях',
+    slug: 'osparivanie-postanovleniy-po-administrativnym',
+    path: '/services/phys/osparivanie-postanovleniy-po-administrativnym',
+    audience: 'phys',
+    priority: 20.3,
+    category: 'Административные споры',
+    description: 'Оспаривание постановлений по КоАП РФ (штрафы и др.): подготовка жалоб и судебная защита.'
+  },
+
+  // Банкротство
+  {
+    title: 'Включение в реестр требований кредиторов',
+    slug: 'vklyuchenie-v-reestr-trebovaniy-kreditorov',
+    path: '/services/phys/vklyuchenie-v-reestr-trebovaniy-kreditorov',
+    audience: 'phys',
+    priority: 21.0,
+    category: 'Банкротство',
+    description: 'Подготовка заявления о включении в реестр требований кредиторов, сбор доказательств и сопровождение в арбитражном суде.'
+  },
+  {
+    title: 'Заявления и возражения в рамках дела о банкротстве',
+    slug: 'zayavleniya-vozrazheniya-v-bankrotstve',
+    path: '/services/phys/zayavleniya-vozrazheniya-v-bankrotstve',
+    audience: 'phys',
+    priority: 21.1,
+    category: 'Банкротство',
+    description: 'Подготовка процессуальных заявлений и возражений в банкротном деле, участие в заседаниях и защита интересов.'
+  },
+
+  // Документы и судебное сопровождение
+  {
+    title: 'Досудебная претензия',
+    slug: 'dosudebnaya-pretenziya',
+    path: '/services/phys/dosudebnaya-pretenziya',
+    audience: 'phys',
+    priority: 22.0,
+    category: 'Документы и судебное сопровождение',
+    description: 'Подготовка досудебной претензии: формирование позиции, расчёт требований и направление контрагенту.'
+  },
+  {
+    title: 'Жалоба, заявление',
+    slug: 'zhaloba-zayavlenie',
+    path: '/services/phys/zhaloba-zayavlenie',
+    audience: 'phys',
+    priority: 22.1,
+    category: 'Документы и судебное сопровождение',
+    description: 'Подготовка жалоб и заявлений в органы и суды: правильная форма, доказательства и контроль подачи.'
+  },
+  {
+    title: 'Исковое заявление / административное исковое заявление',
+    slug: 'iskovoe-administrativnoe-iskovoe-zayavlenie',
+    path: '/services/phys/iskovoe-administrativnoe-iskovoe-zayavlenie',
+    audience: 'phys',
+    priority: 22.2,
+    category: 'Документы и судебное сопровождение',
+    description: 'Подготовка исковых и административных исковых заявлений: требования, приложения, расчёты и стратегия.'
+  },
+  {
+    title: 'Ходатайства, возражения, отзывы',
+    slug: 'hodataystva-vozrazheniya-otzyvy',
+    path: '/services/phys/hodataystva-vozrazheniya-otzyvy',
+    audience: 'phys',
+    priority: 22.3,
+    category: 'Документы и судебное сопровождение',
+    description: 'Подготовка ходатайств, возражений и отзывов: процессуальные документы для усиления позиции в деле.'
+  },
+  {
+    title: 'Апелляционная и кассационная жалоба',
+    slug: 'apellyacionnaya-kassacionnaya-zhaloba',
+    path: '/services/phys/apellyacionnaya-kassacionnaya-zhaloba',
+    audience: 'phys',
+    priority: 22.4,
+    category: 'Документы и судебное сопровождение',
+    description: 'Подготовка апелляционных и кассационных жалоб: анализ решения, основания, сроки и сопровождение.'
+  },
+  {
+    title: 'Жалоба в Верховный Суд РФ',
+    slug: 'zhaloba-v-verhovnyy-sud-rf',
+    path: '/services/phys/zhaloba-v-verhovnyy-sud-rf',
+    audience: 'phys',
+    priority: 22.5,
+    category: 'Документы и судебное сопровождение',
+    description: 'Подготовка жалобы в Верховный Суд РФ: формирование правовых доводов и комплект документов.'
+  },
+  {
+    title: 'Частная жалоба',
+    slug: 'chastnaya-zhaloba',
+    path: '/services/phys/chastnaya-zhaloba',
+    audience: 'phys',
+    priority: 22.6,
+    category: 'Документы и судебное сопровождение',
+    description: 'Подготовка частной жалобы на определения суда: основания, сроки, подача и сопровождение.'
+  },
+
   // ========== ЮРИДИЧЕСКИМ ЛИЦАМ ==========
   {
     title: 'Арбитражные споры',
