@@ -107,6 +107,12 @@ import UstraneniePrepyatstviyVPolzovaniiZhilymPomeshcheniemPage from "./pages/se
 import VzyskaniePoRaspiskamPage from "./pages/services/phys/VzyskaniePoRaspiskamPage";
 import VzyskaniePoDogovoramPage from "./pages/services/phys/VzyskaniePoDogovoramPage";
 import RastorzhenieDogovoraUslugPage from "./pages/services/phys/RastorzhenieDogovoraUslugPage";
+import PriznanieDogovoraNedeystvitelnymPage from "./pages/services/phys/PriznanieDogovoraNedeystvitelnymPage";
+import PriznanieDogovoraNezaklyuchennymPage from "./pages/services/phys/PriznanieDogovoraNezaklyuchennymPage";
+import OtkazOtIspolneniyaDogovoraPage from "./pages/services/phys/OtkazOtIspolneniyaDogovoraPage";
+import NeosnovatelnoeObogashcheniePage from "./pages/services/phys/NeosnovatelnoeObogashcheniePage";
+import VzyskanieArendnyhPlatezheyPage from "./pages/services/phys/VzyskanieArendnyhPlatezheyPage";
+import OsparivanieNeustoykiShtrafovPeneyPage from "./pages/services/phys/OsparivanieNeustoykiShtrafovPeneyPage";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 
@@ -230,6 +236,12 @@ const App = () => (
           <Route path="/services/phys/vzyskanie-po-raspiskam" element={<VzyskaniePoRaspiskamPage />} />
           <Route path="/services/phys/vzyskanie-po-dogovoram" element={<VzyskaniePoDogovoramPage />} />
           <Route path="/services/phys/rastorzhenie-dogovora-uslug" element={<RastorzhenieDogovoraUslugPage />} />
+          <Route path="/services/phys/priznanie-dogovora-nedeystvitelnym" element={<PriznanieDogovoraNedeystvitelnymPage />} />
+          <Route path="/services/phys/priznanie-dogovora-nezaklyuchennym" element={<PriznanieDogovoraNezaklyuchennymPage />} />
+          <Route path="/services/phys/otkaz-ot-ispolneniya-dogovora" element={<OtkazOtIspolneniyaDogovoraPage />} />
+          <Route path="/services/phys/neosnovatelnoe-obogashchenie" element={<NeosnovatelnoeObogashcheniePage />} />
+          <Route path="/services/phys/vzyskanie-arendnyh-platezhey" element={<VzyskanieArendnyhPlatezheyPage />} />
+          <Route path="/services/phys/osparivanie-neustoyki-shtrafov-peney" element={<OsparivanieNeustoykiShtrafovPeneyPage />} />
           
           {/* Redirects from old family services URLs */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />

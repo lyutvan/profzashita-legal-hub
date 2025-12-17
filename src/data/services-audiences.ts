@@ -658,6 +658,15 @@ export const audienceServices: AudienceService[] = [
     category: 'Наследственные дела',
     description: 'Признание права собственности на наследственное имущество через суд при отсутствии документов или споре между наследниками.'
   },
+  {
+    title: 'Оспаривание завещания',
+    slug: 'osparivanie-zaveshchaniya',
+    path: '/services/phys/osparivanie-zaveshchaniya',
+    audience: 'phys',
+    priority: 12.4,
+    category: 'Наследственные дела',
+    description: 'Оспаривание завещания: анализ оснований (недееспособность, заблуждение, давление), сбор доказательств, подготовка иска и представительство в суде.'
+  },
  
   // Взыскание долгов и договорные споры
   {
@@ -737,6 +746,62 @@ export const audienceServices: AudienceService[] = [
     priority: 13.6,
     category: 'Взыскание долгов и договорные споры',
     description: 'Проверка расчётов и снижение неустойки/штрафов/пеней, подготовка возражений и представительство в суде.'
+  },
+
+  // Защита прав потребителей
+  {
+    title: 'Возврат денежных средств за товар/услугу, отказ от договора',
+    slug: 'vozvrat-denezhnyh-sredstv-zozpp',
+    path: '/services/phys/vozvrat-denezhnyh-sredstv-zozpp',
+    audience: 'phys',
+    priority: 14.0,
+    category: 'Защита прав потребителей',
+    description: 'Подготовка претензии и сопровождение возврата денежных средств за товар или услугу, оформление отказа от договора и защита интересов в суде.'
+  },
+  {
+    title: 'Споры о некачественных товарах и услугах',
+    slug: 'spory-nekachestvennye-tovary-uslugi',
+    path: '/services/phys/spory-nekachestvennye-tovary-uslugi',
+    audience: 'phys',
+    priority: 14.1,
+    category: 'Защита прав потребителей',
+    description: 'Споры по качеству товаров и услуг: экспертиза, претензионная работа, взыскание стоимости, обмен/ремонт, судебное представительство.'
+  },
+  {
+    title: 'Неустойка за нарушение сроков изготовления / ремонта',
+    slug: 'neustoyka-sroki-izgotovleniya-remonta',
+    path: '/services/phys/neustoyka-sroki-izgotovleniya-remonta',
+    audience: 'phys',
+    priority: 14.2,
+    category: 'Защита прав потребителей',
+    description: 'Взыскание неустойки за нарушение сроков изготовления товара, выполнения гарантийного ремонта или иных сроков по договору и закону.'
+  },
+  {
+    title: 'Неустойка за нарушение сроков выполнения работ (ремонт, отделка)',
+    slug: 'neustoyka-sroki-vypolneniya-rabot',
+    path: '/services/phys/neustoyka-sroki-vypolneniya-rabot',
+    audience: 'phys',
+    priority: 14.3,
+    category: 'Защита прав потребителей',
+    description: 'Взыскание неустойки при просрочке выполнения работ (ремонт/отделка), подготовка претензий, расчётов и защита в суде.'
+  },
+  {
+    title: 'Споры о некачественном ремонте / некачественных работах',
+    slug: 'spory-nekachestvennyy-remont-raboty',
+    path: '/services/phys/spory-nekachestvennyy-remont-raboty',
+    audience: 'phys',
+    priority: 14.4,
+    category: 'Защита прав потребителей',
+    description: 'Споры по некачественному ремонту и работам: фиксация недостатков, экспертиза, требования об устранении, уменьшении цены или возврате денег.'
+  },
+  {
+    title: 'Взыскание убытков, компенсация морального вреда, штраф по ЗоЗПП',
+    slug: 'ubytki-moralnyy-vred-shtraf-zozpp',
+    path: '/services/phys/ubytki-moralnyy-vred-shtraf-zozpp',
+    audience: 'phys',
+    priority: 14.5,
+    category: 'Защита прав потребителей',
+    description: 'Взыскание убытков, компенсации морального вреда и штрафа по Закону о защите прав потребителей при наличии оснований, включая судебные расходы.'
   },
 
   // ========== ЮРИДИЧЕСКИМ ЛИЦАМ ==========
