@@ -120,6 +120,12 @@ import NeustoykaSrokiIzgotovleniyaRemontaPage from "./pages/services/phys/Neusto
 import NeustoykaSrokiVypolneniyaRabotPage from "./pages/services/phys/NeustoykaSrokiVypolneniyaRabotPage";
 import SporyNekachestvennyyRemontRabotyPage from "./pages/services/phys/SporyNekachestvennyyRemontRabotyPage";
 import UbytkiMoralnyyVredShtrafZozppPage from "./pages/services/phys/UbytkiMoralnyyVredShtrafZozppPage";
+import VozmeshchenieUshcherbaDtpPage from "./pages/services/phys/VozmeshchenieUshcherbaDtpPage";
+import VzyskanieStrahovogoVozmeshcheniyaOsagoPage from "./pages/services/phys/VzyskanieStrahovogoVozmeshcheniyaOsagoPage";
+import VzyskanieStrahovogoVozmeshcheniyaKaskoPage from "./pages/services/phys/VzyskanieStrahovogoVozmeshcheniyaKaskoPage";
+import VzyskanieUshcherbaSVinovnikaDtpPage from "./pages/services/phys/VzyskanieUshcherbaSVinovnikaDtpPage";
+import SporyOtkazStrahovshchikaZanizhenieVyplatyPage from "./pages/services/phys/SporyOtkazStrahovshchikaZanizhenieVyplatyPage";
+import KompensaciyaVredaZdorovyuUtrachennyyZarabotokPage from "./pages/services/phys/KompensaciyaVredaZdorovyuUtrachennyyZarabotokPage";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 
@@ -256,6 +262,12 @@ const App = () => (
           <Route path="/services/phys/neustoyka-sroki-vypolneniya-rabot" element={<NeustoykaSrokiVypolneniyaRabotPage />} />
           <Route path="/services/phys/spory-nekachestvennyy-remont-raboty" element={<SporyNekachestvennyyRemontRabotyPage />} />
           <Route path="/services/phys/ubytki-moralnyy-vred-shtraf-zozpp" element={<UbytkiMoralnyyVredShtrafZozppPage />} />
+          <Route path="/services/phys/vozmeshchenie-ushcherba-dtp" element={<VozmeshchenieUshcherbaDtpPage />} />
+          <Route path="/services/phys/vzyskanie-strahovogo-vozmeshcheniya-osago" element={<VzyskanieStrahovogoVozmeshcheniyaOsagoPage />} />
+          <Route path="/services/phys/vzyskanie-strahovogo-vozmeshcheniya-kasko" element={<VzyskanieStrahovogoVozmeshcheniyaKaskoPage />} />
+          <Route path="/services/phys/vzyskanie-ushcherba-s-vinovnika-dtp" element={<VzyskanieUshcherbaSVinovnikaDtpPage />} />
+          <Route path="/services/phys/spory-otkaz-strahovshchika-zanizhenie-vyplaty" element={<SporyOtkazStrahovshchikaZanizhenieVyplatyPage />} />
+          <Route path="/services/phys/kompensaciya-vreda-zdorovyu-utrachennyy-zarabotok" element={<KompensaciyaVredaZdorovyuUtrachennyyZarabotokPage />} />
           
           {/* Redirects from old family services URLs */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
