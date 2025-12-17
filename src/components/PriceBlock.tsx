@@ -43,7 +43,7 @@ const PriceBlock = ({ priceFrom, priceNote, className = "" }: PriceBlockProps) =
               ) : (
                 <>
                   <div className="text-3xl font-bold mb-2">
-                    По запросу
+                    По договоренности
                   </div>
                   <p className="text-sm text-muted-foreground">
                     Стоимость определяется индивидуально после анализа вашей ситуации
