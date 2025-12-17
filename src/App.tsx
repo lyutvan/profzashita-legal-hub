@@ -131,6 +131,11 @@ import ZarabotokZaVynuzhdennyyProgulPage from "./pages/services/phys/ZarabotokZa
 import ZadolzhennostPoZarplateIKompensaciiPage from "./pages/services/phys/ZadolzhennostPoZarplateIKompensaciiPage";
 import OsparivanieDisciplinarnyhVzyskaniyPage from "./pages/services/phys/OsparivanieDisciplinarnyhVzyskaniyPage";
 import KompensaciiZaTravmyNaRabotePage from "./pages/services/phys/KompensaciiZaTravmyNaRabotePage";
+import OsparivanieShtrafovPeneyNeustoyekKreditPage from "./pages/services/phys/OsparivanieShtrafovPeneyNeustoyekKreditPage";
+import OtsrochkaRassrochkaIspolneniyaResheniyaPage from "./pages/services/phys/OtsrochkaRassrochkaIspolneniyaResheniyaPage";
+import OtmenaSudebnogoPrikazaVosstanovlenieSrokovPage from "./pages/services/phys/OtmenaSudebnogoPrikazaVosstanovlenieSrokovPage";
+import OsparivanieIspolnitelnoyNadpisiNotariusaPage from "./pages/services/phys/OsparivanieIspolnitelnoyNadpisiNotariusaPage";
+import SporySBankamiPoZadolzhennostiPage from "./pages/services/phys/SporySBankamiPoZadolzhennostiPage";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 
@@ -278,6 +283,11 @@ const App = () => (
           <Route path="/services/phys/zadolzhennost-po-zarplate-i-kompensacii" element={<ZadolzhennostPoZarplateIKompensaciiPage />} />
           <Route path="/services/phys/osparivanie-disciplinarnyh-vzyskaniy" element={<OsparivanieDisciplinarnyhVzyskaniyPage />} />
           <Route path="/services/phys/kompensacii-za-travmy-na-rabote" element={<KompensaciiZaTravmyNaRabotePage />} />
+          <Route path="/services/phys/osparivanie-shtrafov-peney-neustoyek-kredit" element={<OsparivanieShtrafovPeneyNeustoyekKreditPage />} />
+          <Route path="/services/phys/otsrochka-rassrochka-ispolneniya-resheniya" element={<OtsrochkaRassrochkaIspolneniyaResheniyaPage />} />
+          <Route path="/services/phys/otmena-sudebnogo-prikaza-vosstanovlenie-srokov" element={<OtmenaSudebnogoPrikazaVosstanovlenieSrokovPage />} />
+          <Route path="/services/phys/osparivanie-ispolnitelnoy-nadpisi-notariusa" element={<OsparivanieIspolnitelnoyNadpisiNotariusaPage />} />
+          <Route path="/services/phys/spory-s-bankami-po-zadolzhennosti" element={<SporySBankamiPoZadolzhennostiPage />} />
           
           {/* Redirects from old family services URLs */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
