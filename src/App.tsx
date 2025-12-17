@@ -147,6 +147,10 @@ import VydelDoliVNaturePage from "./pages/services/phys/VydelDoliVNaturePage";
 import PravoSobstvennostiNaZemelnyyUchastokPage from "./pages/services/phys/PravoSobstvennostiNaZemelnyyUchastokPage";
 import OsparivanieKadastrovoiStoimostiPage from "./pages/services/phys/OsparivanieKadastrovoiStoimostiPage";
 import SporySSosedyamiPoGranicamProezduPage from "./pages/services/phys/SporySSosedyamiPoGranicamProezduPage";
+import OsparivanieDeystviyOrganovVlastiPage from "./pages/services/phys/OsparivanieDeystviyOrganovVlastiPage";
+import OsparivanieResheniyNalogovyhOrganovPage from "./pages/services/phys/OsparivanieResheniyNalogovyhOrganovPage";
+import OsparivanieBezdeystviyaDolzhnostnyhLicPage from "./pages/services/phys/OsparivanieBezdeystviyaDolzhnostnyhLicPage";
+import OsparivaniePostanovleniyPoAdministrativnymPage from "./pages/services/phys/OsparivaniePostanovleniyPoAdministrativnymPage";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 
@@ -310,6 +314,10 @@ const App = () => (
           <Route path="/services/phys/pravo-sobstvennosti-na-zemelnyy-uchastok" element={<PravoSobstvennostiNaZemelnyyUchastokPage />} />
           <Route path="/services/phys/osparivanie-kadastrovoy-stoimosti" element={<OsparivanieKadastrovoiStoimostiPage />} />
           <Route path="/services/phys/spory-s-sosedyami-po-granicam-proezdu" element={<SporySSosedyamiPoGranicamProezduPage />} />
+          <Route path="/services/phys/osparivanie-deystviy-organov-vlasti" element={<OsparivanieDeystviyOrganovVlastiPage />} />
+          <Route path="/services/phys/osparivanie-resheniy-nalogovyh-organov" element={<OsparivanieResheniyNalogovyhOrganovPage />} />
+          <Route path="/services/phys/osparivanie-bezdeystviya-dolzhnostnyh-lic" element={<OsparivanieBezdeystviyaDolzhnostnyhLicPage />} />
+          <Route path="/services/phys/osparivanie-postanovleniy-po-administrativnym" element={<OsparivaniePostanovleniyPoAdministrativnymPage />} />
           
           {/* Redirects from old family services URLs */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
