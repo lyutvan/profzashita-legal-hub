@@ -151,6 +151,13 @@ import OsparivanieDeystviyOrganovVlastiPage from "./pages/services/phys/Ospariva
 import OsparivanieResheniyNalogovyhOrganovPage from "./pages/services/phys/OsparivanieResheniyNalogovyhOrganovPage";
 import OsparivanieBezdeystviyaDolzhnostnyhLicPage from "./pages/services/phys/OsparivanieBezdeystviyaDolzhnostnyhLicPage";
 import OsparivaniePostanovleniyPoAdministrativnymPage from "./pages/services/phys/OsparivaniePostanovleniyPoAdministrativnymPage";
+import DosudebnayaPretensiyaPage from "./pages/services/phys/DosudebnayaPretensiyaPage";
+import ZhalobaZayavleniePage from "./pages/services/phys/ZhalobaZayavleniePage";
+import IskovoeAdministrativnoeIskovoeZayavleniePage from "./pages/services/phys/IskovoeAdministrativnoeIskovoeZayavleniePage";
+import HodataystvaVozrazheniyaOtzyvyPage from "./pages/services/phys/HodataystvaVozrazheniyaOtzyvyPage";
+import ApellyacionnayaKassacionnayaZhalobaPage from "./pages/services/phys/ApellyacionnayaKassacionnayaZhalobaPage";
+import ZhalobaVVerhovnyySudRfPage from "./pages/services/phys/ZhalobaVVerhovnyySudRfPage";
+import ChastnayaZhalobaPage from "./pages/services/phys/ChastnayaZhalobaPage";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 
@@ -318,6 +325,13 @@ const App = () => (
           <Route path="/services/phys/osparivanie-resheniy-nalogovyh-organov" element={<OsparivanieResheniyNalogovyhOrganovPage />} />
           <Route path="/services/phys/osparivanie-bezdeystviya-dolzhnostnyh-lic" element={<OsparivanieBezdeystviyaDolzhnostnyhLicPage />} />
           <Route path="/services/phys/osparivanie-postanovleniy-po-administrativnym" element={<OsparivaniePostanovleniyPoAdministrativnymPage />} />
+          <Route path="/services/phys/dosudebnaya-pretenziya" element={<DosudebnayaPretensiyaPage />} />
+          <Route path="/services/phys/zhaloba-zayavlenie" element={<ZhalobaZayavleniePage />} />
+          <Route path="/services/phys/iskovoe-administrativnoe-iskovoe-zayavlenie" element={<IskovoeAdministrativnoeIskovoeZayavleniePage />} />
+          <Route path="/services/phys/hodataystva-vozrazheniya-otzyvy" element={<HodataystvaVozrazheniyaOtzyvyPage />} />
+          <Route path="/services/phys/apellyacionnaya-kassacionnaya-zhaloba" element={<ApellyacionnayaKassacionnayaZhalobaPage />} />
+          <Route path="/services/phys/zhaloba-v-verhovnyy-sud-rf" element={<ZhalobaVVerhovnyySudRfPage />} />
+          <Route path="/services/phys/chastnaya-zhaloba" element={<ChastnayaZhalobaPage />} />
           
           {/* Redirects from old family services URLs */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
