@@ -113,6 +113,7 @@ import OtkazOtIspolneniyaDogovoraPage from "./pages/services/phys/OtkazOtIspolne
 import NeosnovatelnoeObogashcheniePage from "./pages/services/phys/NeosnovatelnoeObogashcheniePage";
 import VzyskanieArendnyhPlatezheyPage from "./pages/services/phys/VzyskanieArendnyhPlatezheyPage";
 import OsparivanieNeustoykiShtrafovPeneyPage from "./pages/services/phys/OsparivanieNeustoykiShtrafovPeneyPage";
+import OsparivanieZaveshchaniyaPage from "./pages/services/phys/OsparivanieZaveshchaniyaPage";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 
@@ -242,6 +243,7 @@ const App = () => (
           <Route path="/services/phys/neosnovatelnoe-obogashchenie" element={<NeosnovatelnoeObogashcheniePage />} />
           <Route path="/services/phys/vzyskanie-arendnyh-platezhey" element={<VzyskanieArendnyhPlatezheyPage />} />
           <Route path="/services/phys/osparivanie-neustoyki-shtrafov-peney" element={<OsparivanieNeustoykiShtrafovPeneyPage />} />
+          <Route path="/services/phys/osparivanie-zaveshchaniya" element={<OsparivanieZaveshchaniyaPage />} />
           
           {/* Redirects from old family services URLs */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
