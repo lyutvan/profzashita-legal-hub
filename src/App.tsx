@@ -158,6 +158,8 @@ import HodataystvaVozrazheniyaOtzyvyPage from "./pages/services/phys/Hodataystva
 import ApellyacionnayaKassacionnayaZhalobaPage from "./pages/services/phys/ApellyacionnayaKassacionnayaZhalobaPage";
 import ZhalobaVVerhovnyySudRfPage from "./pages/services/phys/ZhalobaVVerhovnyySudRfPage";
 import ChastnayaZhalobaPage from "./pages/services/phys/ChastnayaZhalobaPage";
+import VklyuchenieVReestrTrebovaniyKreditorovPage from "./pages/services/phys/VklyuchenieVReestrTrebovaniyKreditorovPage";
+import ZayavleniyaVozrazheniyaVBankrotstvePage from "./pages/services/phys/ZayavleniyaVozrazheniyaVBankrotstvePage";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 
@@ -332,6 +334,8 @@ const App = () => (
           <Route path="/services/phys/apellyacionnaya-kassacionnaya-zhaloba" element={<ApellyacionnayaKassacionnayaZhalobaPage />} />
           <Route path="/services/phys/zhaloba-v-verhovnyy-sud-rf" element={<ZhalobaVVerhovnyySudRfPage />} />
           <Route path="/services/phys/chastnaya-zhaloba" element={<ChastnayaZhalobaPage />} />
+          <Route path="/services/phys/vklyuchenie-v-reestr-trebovaniy-kreditorov" element={<VklyuchenieVReestrTrebovaniyKreditorovPage />} />
+          <Route path="/services/phys/zayavleniya-vozrazheniya-v-bankrotstve" element={<ZayavleniyaVozrazheniyaVBankrotstvePage />} />
           
           {/* Redirects from old family services URLs */}
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
