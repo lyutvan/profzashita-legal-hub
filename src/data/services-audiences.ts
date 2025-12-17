@@ -1274,6 +1274,10 @@ export const getTopServices = (audience: 'phys' | 'biz' | 'criminal', limit: num
   return getServicesByAudience(audience).slice(0, limit);
 };
 
+export const getServiceBySlug = (slug: string) => {
+  return audienceServices.find((service) => service.slug === slug);
+};
+
 export const getServicesByCategory = (audience: 'phys' | 'biz' | 'criminal') => {
   const services = getServicesByAudience(audience);
   const grouped: Record<string, AudienceService[]> = {};
