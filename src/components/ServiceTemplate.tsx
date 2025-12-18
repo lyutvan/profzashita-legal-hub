@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -99,6 +99,10 @@ const ServiceTemplate = ({
   ctaBlock,
   ctaButtons
 }: ServiceTemplateProps) => {
+  const location = useLocation();
+  const pathname = location.pathname.replace(/\/+$/, "") || "/";
+  const isRazvodServicePage = pathname === "/services/phys/razvod";
+
   // Get price from pricing.ts if not provided directly
   const pricingData = getPriceBySlug(canonical);
   const priceFrom = providedPriceFrom ?? pricingData?.priceFrom;
@@ -145,8 +149,23 @@ const ServiceTemplate = ({
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#0B1F3A] to-[#0C1926] text-white py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section
+          className={[
+            "relative text-white py-12 md:py-16",
+            isRazvodServicePage ? "bg-[#0B1F3A]" : "bg-gradient-to-br from-[#0B1F3A] to-[#0C1926]"
+          ].join(" ")}
+          style={
+            isRazvodServicePage
+              ? {
+                  backgroundImage: 'url("/images/services/razvod-hero.jpg")',
+                  backgroundSize: "cover",
+                  backgroundPosition: "center"
+                }
+              : undefined
+          }
+        >
+          {isRazvodServicePage && <div className="absolute inset-0 bg-black/55" />}
+          <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs items={[
               { label: "Услуги", path: "/uslugi" },
               { label: audienceCrumb.label, path: audienceCrumb.path },

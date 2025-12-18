@@ -102,6 +102,16 @@ const PhysPage = () => {
                       key={service.slug}
                       className="h-full flex flex-col hover:shadow-lg transition-all duration-300 border-2 hover:border-[#C9A227]/30"
                     >
+                      {service.slug === "razvod" && (
+                        <div className="p-4 pb-0">
+                          <img
+                            src="/images/services/razvod-hero.jpg"
+                            className="w-full h-[160px] object-cover rounded-2xl"
+                            alt="Расторжение брака (развод)"
+                            loading="lazy"
+                          />
+                        </div>
+                      )}
                       <CardHeader>
                         <CardTitle className="text-lg font-semibold">
                           {service.title}
