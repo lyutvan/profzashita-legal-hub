@@ -97,42 +97,61 @@ const PhysPage = () => {
                   {category}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {services.map((service) => (
-                    <Card 
-                      key={service.slug}
-                      className="h-full flex flex-col hover:shadow-lg transition-all duration-300 border-2 hover:border-[#C9A227]/30"
-                    >
-                      {service.slug === "razvod" && (
-                        <div className="p-4 pb-0">
-                          <img
-                            src="/images/services/razvod-hero.jpg"
-                            className="w-full h-[160px] object-cover rounded-2xl"
-                            alt="Расторжение брака (развод)"
-                            loading="lazy"
-                          />
-                        </div>
-                      )}
-                      <CardHeader>
-                        <CardTitle className="text-lg font-semibold">
-                          {service.title}
-                        </CardTitle>
-                      </CardHeader>
-                      <CardContent className="mt-auto">
-                        <Button 
-                          variant="ghost" 
-                          className="w-full justify-between p-0 h-auto hover:bg-transparent group"
-                          asChild
-                        >
-                          <Link to={service.path}>
-                            <span className="text-[#C9A227] group-hover:underline">
+                  {services.map((service) =>
+                    service.slug === "razvod" ? (
+                      <Card
+                        key={service.slug}
+                        className="group relative h-[260px] overflow-hidden border-2 hover:border-[#C9A227]/30 hover:shadow-lg transition-all duration-300"
+                      >
+                        <div
+                          className="absolute inset-0 bg-cover bg-center transition-transform duration-300 group-hover:scale-[1.03]"
+                          style={{ backgroundImage: 'url("/images/services/razvod-card.jpg")' }}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-black/10" />
+                        <Link
+                          to={service.path}
+                          aria-label="Расторжение брака — подробнее"
+                          className="absolute inset-0 z-20 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#C9A227] focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                        />
+                        <div className="relative z-10 flex h-full flex-col justify-between p-6">
+                          <CardTitle className="font-montserrat text-2xl font-bold text-white">
+                            Расторжение брака
+                          </CardTitle>
+                          <div className="flex items-center justify-between text-white">
+                            <span className="text-[#C9A227] font-medium group-hover:underline">
                               Подробнее
                             </span>
-                            <ArrowRight className="h-4 w-4 text-[#C9A227] group-hover:translate-x-1 transition-transform" />
-                          </Link>
-                        </Button>
-                      </CardContent>
-                    </Card>
-                  ))}
+                            <ArrowRight className="h-5 w-5 text-[#C9A227] group-hover:translate-x-1 transition-transform" />
+                          </div>
+                        </div>
+                      </Card>
+                    ) : (
+                      <Card
+                        key={service.slug}
+                        className="h-full flex flex-col hover:shadow-lg transition-all duration-300 border-2 hover:border-[#C9A227]/30"
+                      >
+                        <CardHeader>
+                          <CardTitle className="text-lg font-semibold">
+                            {service.title}
+                          </CardTitle>
+                        </CardHeader>
+                        <CardContent className="mt-auto">
+                          <Button
+                            variant="ghost"
+                            className="w-full justify-between p-0 h-auto hover:bg-transparent group"
+                            asChild
+                          >
+                            <Link to={service.path}>
+                              <span className="text-[#C9A227] group-hover:underline">
+                                Подробнее
+                              </span>
+                              <ArrowRight className="h-4 w-4 text-[#C9A227] group-hover:translate-x-1 transition-transform" />
+                            </Link>
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    ),
+                  )}
                 </div>
               </div>
             ))}
