@@ -6,7 +6,8 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getServicesByCategory, audienceConfig } from "@/data/services-audiences";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { CheckCircle2, ArrowRight, Phone } from "lucide-react";
+import { SITE } from "@/config/site";
 import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
 import businessHandshake from "@/assets/legal/business-handshake.jpg";
 
@@ -81,6 +82,28 @@ const BizPage = () => {
               <div className="flex items-center gap-2 text-white/70">
                 <CheckCircle2 className="h-5 w-5 text-[#C9A227]" />
                 <span>{totalServices} специализаций</span>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Not Found Service Box */}
+        <section className="py-6 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="border-2 border-dashed border-[#C9A227]/40 rounded-lg p-6 text-center bg-background">
+              <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+                <div className="flex items-center gap-3">
+                  <Phone className="h-5 w-5 text-[#C9A227]" />
+                  <span className="text-muted-foreground">
+                    Не нашли подходящую услугу? Позвоните нам:
+                  </span>
+                </div>
+                <a 
+                  href={`tel:${SITE.phoneRaw}`} 
+                  className="font-semibold text-lg text-[#C9A227] hover:underline"
+                >
+                  {SITE.phone}
+                </a>
               </div>
             </div>
           </div>
