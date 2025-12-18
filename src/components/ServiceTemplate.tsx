@@ -11,6 +11,7 @@ import { CheckCircle2, FileText, Clock, Phone } from "lucide-react";
 import { LegalServiceSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import { getPriceBySlug } from "@/data/pricing";
+import { getServiceCardImageForPath } from "@/lib/serviceCardImages";
 
 interface ServiceStep {
   number: number;
@@ -71,6 +72,8 @@ interface ServiceTemplateProps {
     secondaryHref?: string;
     secondaryNote?: string;
   };
+
+  heroImageSrc?: string;
 }
 
 const ServiceTemplate = ({
@@ -97,11 +100,15 @@ const ServiceTemplate = ({
   priceFrom: providedPriceFrom,
   priceNote: providedPriceNote,
   ctaBlock,
-  ctaButtons
+  ctaButtons,
+  heroImageSrc: providedHeroImageSrc
 }: ServiceTemplateProps) => {
   const location = useLocation();
   const pathname = location.pathname.replace(/\/+$/, "") || "/";
-  const isRazvodServicePage = pathname === "/services/phys/razvod";
+
+  const heroImageSrc =
+    providedHeroImageSrc ??
+    (pathname.startsWith("/services/phys/") ? getServiceCardImageForPath(pathname, "phys") : undefined);
 
   // Get price from pricing.ts if not provided directly
   const pricingData = getPriceBySlug(canonical);
@@ -152,19 +159,19 @@ const ServiceTemplate = ({
         <section
           className={[
             "relative text-white py-12 md:py-16",
-            isRazvodServicePage ? "bg-[#0B1F3A]" : "bg-gradient-to-br from-[#0B1F3A] to-[#0C1926]"
+            heroImageSrc ? "bg-[#0B1F3A]" : "bg-gradient-to-br from-[#0B1F3A] to-[#0C1926]"
           ].join(" ")}
           style={
-            isRazvodServicePage
+            heroImageSrc
               ? {
-                  backgroundImage: 'url("/images/services/razvod-hero.jpg")',
+                  backgroundImage: `url("${heroImageSrc}")`,
                   backgroundSize: "cover",
                   backgroundPosition: "center"
                 }
               : undefined
           }
         >
-          {isRazvodServicePage && <div className="absolute inset-0 bg-black/55" />}
+          {heroImageSrc && <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/40 to-black/10" />}
           <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs items={[
               { label: "Услуги", path: "/uslugi" },

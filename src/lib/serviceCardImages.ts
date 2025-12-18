@@ -12,6 +12,26 @@ function hashString(input: string) {
   return hash >>> 0;
 }
 
+export function getServiceCardImage(key: string, seed = "") {
+  const images = SERVICE_CARD_IMAGES;
+  const n = images.length;
+  if (n === 0) return "";
+  const index = hashString(`${seed}|${key}`) % n;
+  return images[index];
+}
+
+export function getServiceSlugFromPath(pathname: string) {
+  const normalized = pathname.replace(/\/+$/, "") || "/";
+  const parts = normalized.split("/").filter(Boolean);
+  return parts.at(-1) ?? "";
+}
+
+export function getServiceCardImageForPath(pathname: string, seed = "") {
+  const slug = getServiceSlugFromPath(pathname);
+  if (!slug) return "";
+  return getServiceCardImage(slug, seed);
+}
+
 export function createServiceCardImageAssigner(seed = "") {
   let used = new Set<number>();
   let prevIndex: number | null = null;
@@ -38,4 +58,3 @@ export function createServiceCardImageAssigner(seed = "") {
     return images[index];
   };
 }
-

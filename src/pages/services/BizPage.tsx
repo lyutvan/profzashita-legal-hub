@@ -11,7 +11,7 @@ import { getServicesByCategory, audienceConfig } from "@/data/services-audiences
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
 import businessHandshake from "@/assets/legal/business-handshake.jpg";
-import { createServiceCardImageAssigner } from "@/lib/serviceCardImages";
+import { getServiceCardImage } from "@/lib/serviceCardImages";
 
 const BizPage = () => {
   const servicesByCategory = getServicesByCategory('biz');
@@ -94,7 +94,7 @@ const BizPage = () => {
         <section className="py-16">
           <div className="container mx-auto px-4">
             {Object.entries(servicesByCategory).map(([category, services]) => {
-              const pickImage = createServiceCardImageAssigner(`biz:${category}`);
+              const seed = "biz";
 
               return (
               <div key={category} id={category} className="mb-12 scroll-mt-20">
@@ -107,7 +107,7 @@ const BizPage = () => {
                       key={service.slug}
                       title={service.title}
                       to={service.path}
-                      imageSrc={pickImage(service.slug)}
+                      imageSrc={getServiceCardImage(service.slug, seed)}
                     />
                   ))}
                 </div>
