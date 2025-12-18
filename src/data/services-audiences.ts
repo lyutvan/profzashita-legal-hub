@@ -1181,86 +1181,480 @@ export const audienceServices: AudienceService[] = [
   },
 
   // ========== ЮРИДИЧЕСКИМ ЛИЦАМ ==========
+
+  // 1) Абонентское юридическое сопровождение бизнеса ⭐
   {
-    title: 'Арбитражные споры',
-    slug: 'arbitrazhnye-spory',
-    path: '/services/biz/arbitrazhnye-spory',
+    title: 'Абонентка: юрист на аутсорсе (консультации + документы + переговоры)',
+    slug: 'abonentka-yurist-na-autsorse',
+    path: '/services/biz/abonentka-yurist-na-autsorse',
     audience: 'biz',
-    priority: 1,
-    category: 'Судебное представительство'
+    priority: 1.01,
+    category: 'Абонентское юридическое сопровождение бизнеса',
+    description: 'Абонентское сопровождение: консультации, документы и переговоры в рамках пакета.'
   },
   {
-    title: 'Договорная работа и претензии',
-    slug: 'dogovornaya-rabota-pretensii',
-    path: '/services/biz/dogovornaya-rabota-pretensii',
+    title: 'Договорная работа “потоком” (проверка/правки за 24–48 часов)',
+    slug: 'dogovornaya-rabota-potokom-24-48',
+    path: '/services/biz/dogovornaya-rabota-potokom-24-48',
     audience: 'biz',
-    priority: 2,
-    category: 'Договорная работа'
+    priority: 1.02,
+    category: 'Абонентское юридическое сопровождение бизнеса',
+    description: 'Экспертиза и правки договоров в потоке с понятными сроками и приоритетами.'
   },
   {
-    title: 'Налоговые споры и проверки',
-    slug: 'nalogovye-spory-proverki',
-    path: '/services/biz/nalogovye-spory-proverki',
+    title: 'Претензионная работа и урегулирование споров',
+    slug: 'pretenzionnaya-rabota-uregulirovanie-sporov',
+    path: '/services/biz/pretenzionnaya-rabota-uregulirovanie-sporov',
     audience: 'biz',
-    priority: 3,
-    category: 'Налоговое право'
+    priority: 1.03,
+    category: 'Абонентское юридическое сопровождение бизнеса',
+    description: 'Претензии, переговоры, фиксация позиции и досудебное урегулирование.'
   },
   {
-    title: 'Взыскание дебиторской задолженности',
-    slug: 'vzyskanie-debitorskoy-zadolzhennosti',
-    path: '/services/biz/vzyskanie-debitorskoy-zadolzhennosti',
+    title: 'Правовой аудит рисков и “юридическая безопасность” компании',
+    slug: 'pravovoy-audit-riskov-yurbezopasnost',
+    path: '/services/biz/pravovoy-audit-riskov-yurbezopasnost',
     audience: 'biz',
-    priority: 4,
-    category: 'Исполнительное производство'
+    priority: 1.04,
+    category: 'Абонентское юридическое сопровождение бизнеса',
+    description: 'Аудит рисков, рекомендации по процессам и документам, снижение юридических потерь.'
+  },
+
+  // 2) Взыскание дебиторской задолженности ⭐
+  {
+    title: 'Досудебное взыскание (претензии, переговоры, график оплат)',
+    slug: 'dosudebnoe-vzyskanie-pretenzii-peregovory-grafik',
+    path: '/services/biz/dosudebnoe-vzyskanie-pretenzii-peregovory-grafik',
+    audience: 'biz',
+    priority: 2.01,
+    category: 'Взыскание дебиторской задолженности',
+    description: 'Претензии, переговоры и согласование графика оплат для быстрого возврата долга.'
   },
   {
-    title: 'Банкротство и субсидиарная ответственность',
-    slug: 'bankrotstvo-subsidiarnaya-otvetstvennost',
-    path: '/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost',
+    title: 'Судебное взыскание долга “под ключ”',
+    slug: 'sudebnoe-vzyskanie-dolga-pod-klyuch',
+    path: '/services/biz/sudebnoe-vzyskanie-dolga-pod-klyuch',
     audience: 'biz',
-    priority: 5,
-    category: 'Банкротство'
+    priority: 2.02,
+    category: 'Взыскание дебиторской задолженности',
+    description: 'Подготовка иска, ведение дела, получение решения и исполнительных документов.'
   },
   {
-    title: 'Корпоративные споры',
-    slug: 'korporativnye-spory',
-    path: '/services/biz/korporativnye-spory',
+    title: 'Взыскание неустойки, процентов, убытков',
+    slug: 'vzyskanie-neustoyki-procentov-ubytkov',
+    path: '/services/biz/vzyskanie-neustoyki-procentov-ubytkov',
     audience: 'biz',
-    priority: 6,
-    category: 'Корпоративное право'
+    priority: 2.03,
+    category: 'Взыскание дебиторской задолженности',
+    description: 'Расчёт и взыскание дополнительных требований: неустойка, проценты, убытки.'
   },
   {
-    title: 'Защита от рейдерских захватов',
-    slug: 'zashchita-ot-rejderskikh-zakhvatov',
-    path: '/services/biz/zashchita-ot-rejderskikh-zakhvatov',
+    title: 'Обеспечительные меры (арест/запреты)',
+    slug: 'obespechitelnye-mery-arest-zaprety',
+    path: '/services/biz/obespechitelnye-mery-arest-zaprety',
     audience: 'biz',
-    priority: 7,
-    category: 'Корпоративное право'
+    priority: 2.04,
+    category: 'Взыскание дебиторской задолженности',
+    description: 'Заявления об обеспечительных мерах для защиты взыскания (аресты, запреты).' 
   },
   {
-    title: 'Регистрация и ликвидация компаний',
-    slug: 'registratsiya-likvidatsiya-kompaniy',
-    path: '/services/biz/registratsiya-likvidatsiya-kompaniy',
+    title: 'Исполнение решения: приставы/банки/активы',
+    slug: 'ispolnenie-resheniya-pristavy-banki-aktivy',
+    path: '/services/biz/ispolnenie-resheniya-pristavy-banki-aktivy',
     audience: 'biz',
-    priority: 8,
-    category: 'Корпоративное право'
+    priority: 2.05,
+    category: 'Взыскание дебиторской задолженности',
+    description: 'Сопровождение исполнительного производства и реальное взыскание через активы и банки.'
+  },
+
+  // 3) Арбитражные споры (B2B) ⭐
+  {
+    title: 'Споры по поставке, подряду, услугам, аренде',
+    slug: 'arbitrazh-spory-postavka-podryad-uslugi-arenda',
+    path: '/services/biz/arbitrazh-spory-postavka-podryad-uslugi-arenda',
+    audience: 'biz',
+    priority: 3.01,
+    category: 'Арбитражные споры (B2B)',
+    description: 'Ведение арбитражных споров по ключевым B2B-договорам.'
   },
   {
-    title: 'Интеллектуальная собственность',
-    slug: 'intellektualnaya-sobstvennost',
-    path: '/services/biz/intellektualnaya-sobstvennost',
+    title: 'Взыскание убытков / защита от убытков',
+    slug: 'vzyskanie-ubytkov-zashchita-ot-ubytkov',
+    path: '/services/biz/vzyskanie-ubytkov-zashchita-ot-ubytkov',
     audience: 'biz',
-    priority: 9,
-    category: 'Интеллектуальная собственность'
+    priority: 3.02,
+    category: 'Арбитражные споры (B2B)',
+    description: 'Подготовка правовой позиции по убыткам и сбор доказательственной базы.'
   },
   {
-    title: 'Экономические преступления',
-    slug: 'ekonomicheskie-prestupleniya',
-    path: '/services/biz/ekonomicheskie-prestupleniya',
+    title: 'Снижение неустойки, защита от завышенных требований',
+    slug: 'snizhenie-neustoyki-zashchita-ot-zavyshennyh-trebovaniy',
+    path: '/services/biz/snizhenie-neustoyki-zashchita-ot-zavyshennyh-trebovaniy',
     audience: 'biz',
-    priority: 10,
-    category: 'Уголовная защита бизнеса'
-  }
+    priority: 3.03,
+    category: 'Арбитражные споры (B2B)',
+    description: 'Снижение неустойки и возражения против необоснованных сумм требований.'
+  },
+  {
+    title: 'Апелляция/кассация/Верховный Суд РФ',
+    slug: 'apellyaciya-kassaciya-verhovnyy-sud-rf',
+    path: '/services/biz/apellyaciya-kassaciya-verhovnyy-sud-rf',
+    audience: 'biz',
+    priority: 3.04,
+    category: 'Арбитражные споры (B2B)',
+    description: 'Подготовка и подача жалоб, представительство в апелляции/кассации/ВС РФ.'
+  },
+
+  // 4) Налоговые споры и проверки ⭐
+  {
+    title: 'Сопровождение камеральных и выездных проверок',
+    slug: 'soprovozhdenie-kameralnyh-i-vyezdnyh-proverok',
+    path: '/services/biz/soprovozhdenie-kameralnyh-i-vyezdnyh-proverok',
+    audience: 'biz',
+    priority: 4.01,
+    category: 'Налоговые споры и проверки',
+    description: 'Сопровождение проверок: стратегия, документы, коммуникация с ИФНС.'
+  },
+  {
+    title: 'Обжалование решений ИФНС (УФНС/суд)',
+    slug: 'obzhalovanie-resheniy-ifns-ufns-sud',
+    path: '/services/biz/obzhalovanie-resheniy-ifns-ufns-sud',
+    audience: 'biz',
+    priority: 4.02,
+    category: 'Налоговые споры и проверки',
+    description: 'Жалобы в УФНС и защита в суде по результатам налоговых проверок.'
+  },
+  {
+    title: 'Споры по НДС (вычеты/возмещение/разрывы)',
+    slug: 'spory-po-nds-vychety-vozmeshchenie-razryvy',
+    path: '/services/biz/spory-po-nds-vychety-vozmeshchenie-razryvy',
+    audience: 'biz',
+    priority: 4.03,
+    category: 'Налоговые споры и проверки',
+    description: 'Сопровождение споров по НДС: вычеты, возмещение, разрывы и доказательства.'
+  },
+  {
+    title: 'Ответы на требования, сопровождение комиссий и вызовов',
+    slug: 'otvety-na-trebovaniya-komissii-vyzovy',
+    path: '/services/biz/otvety-na-trebovaniya-komissii-vyzovy',
+    audience: 'biz',
+    priority: 4.04,
+    category: 'Налоговые споры и проверки',
+    description: 'Подготовка ответов на требования и сопровождение комиссий/вызовов в ИФНС.'
+  },
+  {
+    title: 'Предпроверочный анализ (снижение риска доначислений)',
+    slug: 'predproverochnyy-analiz-snizhenie-riska-donachisleniy',
+    path: '/services/biz/predproverochnyy-analiz-snizhenie-riska-donachisleniy',
+    audience: 'biz',
+    priority: 4.05,
+    category: 'Налоговые споры и проверки',
+    description: 'Проверка рисков до проверки: корректировки и меры по снижению вероятности доначислений.'
+  },
+
+  // 5) Банкротство и субсидиарная ответственность ⭐
+  {
+    title: 'Защита должника (стратегия, минимизация рисков бизнеса)',
+    slug: 'bankrotstvo-zashchita-dolzhnika-minimizaciya-riskov',
+    path: '/services/biz/bankrotstvo-zashchita-dolzhnika-minimizaciya-riskov',
+    audience: 'biz',
+    priority: 5.01,
+    category: 'Банкротство и субсидиарная ответственность',
+    description: 'Стратегия защиты должника и снижение рисков бизнеса в банкротных процедурах.'
+  },
+  {
+    title: 'Представление кредитора (взыскание через банкротство)',
+    slug: 'bankrotstvo-predstavlenie-kreditora',
+    path: '/services/biz/bankrotstvo-predstavlenie-kreditora',
+    audience: 'biz',
+    priority: 5.02,
+    category: 'Банкротство и субсидиарная ответственность',
+    description: 'Защита интересов кредитора и взыскание задолженности через инструменты банкротства.'
+  },
+  {
+    title: 'Включение в реестр требований кредиторов',
+    slug: 'bankrotstvo-vklyuchenie-v-reestr',
+    path: '/services/biz/bankrotstvo-vklyuchenie-v-reestr',
+    audience: 'biz',
+    priority: 5.03,
+    category: 'Банкротство и субсидиарная ответственность',
+    description: 'Подготовка заявления о включении в реестр требований кредиторов и сопровождение.'
+  },
+  {
+    title: 'Оспаривание сделок и возврат активов',
+    slug: 'bankrotstvo-osparivanie-sdelok-vozvrat-aktivov',
+    path: '/services/biz/bankrotstvo-osparivanie-sdelok-vozvrat-aktivov',
+    audience: 'biz',
+    priority: 5.04,
+    category: 'Банкротство и субсидиарная ответственность',
+    description: 'Оспаривание сделок, поиск и возврат активов, обеспечительные меры.'
+  },
+  {
+    title: 'Субсидиарная ответственность: защита директора/учредителя',
+    slug: 'subsidiarnaya-otvetstvennost-zashchita-direktora-uchreditelya',
+    path: '/services/biz/subsidiarnaya-otvetstvennost-zashchita-direktora-uchreditelya',
+    audience: 'biz',
+    priority: 5.05,
+    category: 'Банкротство и субсидиарная ответственность',
+    description: 'Защита контролирующих лиц от субсидиарной ответственности и связанных рисков.'
+  },
+
+  // 6) Разблокировка счёта и 115-ФЗ (банковский комплаенс) ⭐
+  {
+    title: 'Разблокировка счёта по 115-ФЗ',
+    slug: 'razblokirovka-schyota-po-115-fz',
+    path: '/services/biz/razblokirovka-schyota-po-115-fz',
+    audience: 'biz',
+    priority: 6.01,
+    category: 'Разблокировка счёта и 115‑ФЗ',
+    description: 'Сопровождение по 115‑ФЗ: стратегия, коммуникация с банком, восстановление операций.'
+  },
+  {
+    title: 'Подготовка пакета документов и пояснений банку',
+    slug: 'paket-dokumentov-i-poyasneniy-banku-115-fz',
+    path: '/services/biz/paket-dokumentov-i-poyasneniy-banku-115-fz',
+    audience: 'biz',
+    priority: 6.02,
+    category: 'Разблокировка счёта и 115‑ФЗ',
+    description: 'Формирование пакета документов, пояснений и подтверждения экономического смысла операций.'
+  },
+  {
+    title: 'Восстановление ДБО и снятие ограничений по операциям',
+    slug: 'vosstanovlenie-dbo-i-snyatie-ogranicheniy',
+    path: '/services/biz/vosstanovlenie-dbo-i-snyatie-ogranicheniy',
+    audience: 'biz',
+    priority: 6.03,
+    category: 'Разблокировка счёта и 115‑ФЗ',
+    description: 'Восстановление дистанционного банковского обслуживания и снятие ограничений по операциям.'
+  },
+  {
+    title: 'Сопровождение повторных запросов и “проверок” банка',
+    slug: 'soprovozhdenie-povtornyh-zaprosov-proverok-banka',
+    path: '/services/biz/soprovozhdenie-povtornyh-zaprosov-proverok-banka',
+    audience: 'biz',
+    priority: 6.04,
+    category: 'Разблокировка счёта и 115‑ФЗ',
+    description: 'Сопровождение повторных запросов банка, выстраивание устойчивой комплаенс‑позиции.'
+  },
+
+  // 7) Договоры и сделки (как отдельный денежный поток) ⭐
+  {
+    title: 'Разработка/экспертиза договоров (поставка/подряд/услуги/аренда)',
+    slug: 'razrabotka-ekspertiza-dogovorov-postavka-podryad-uslugi-arenda',
+    path: '/services/biz/razrabotka-ekspertiza-dogovorov-postavka-podryad-uslugi-arenda',
+    audience: 'biz',
+    priority: 7.01,
+    category: 'Договоры и сделки',
+    description: 'Разработка и экспертиза договоров под бизнес‑модель и судебные риски.'
+  },
+  {
+    title: 'Протоколы разногласий, переговоры по условиям',
+    slug: 'protokoly-raznoglasiy-peregovory-po-usloviyam',
+    path: '/services/biz/protokoly-raznoglasiy-peregovory-po-usloviyam',
+    audience: 'biz',
+    priority: 7.02,
+    category: 'Договоры и сделки',
+    description: 'Подготовка протоколов разногласий и переговорное сопровождение сделок.'
+  },
+  {
+    title: 'Due diligence контрагентов (проверка рисков перед сделкой)',
+    slug: 'due-diligence-kontragentov-proverka-riskov',
+    path: '/services/biz/due-diligence-kontragentov-proverka-riskov',
+    audience: 'biz',
+    priority: 7.03,
+    category: 'Договоры и сделки',
+    description: 'Проверка контрагентов и рисков до заключения сделки, рекомендации по защите.'
+  },
+  {
+    title: 'NDA/NCA, коммерческая тайна, защита информации',
+    slug: 'nda-nca-kommercheskaya-tayna-zashchita-informacii',
+    path: '/services/biz/nda-nca-kommercheskaya-tayna-zashchita-informacii',
+    audience: 'biz',
+    priority: 7.04,
+    category: 'Договоры и сделки',
+    description: 'Документы по защите информации: NDA/NCA, режим коммерческой тайны, ответственность.'
+  },
+
+  // 8) Корпоративное право и конфликты собственников ⭐
+  {
+    title: 'Регистрация/изменения в ЕГРЮЛ (директор, участники, адрес)',
+    slug: 'egryul-izmeneniya-direktor-uchastniki-adres',
+    path: '/services/biz/egryul-izmeneniya-direktor-uchastniki-adres',
+    audience: 'biz',
+    priority: 8.01,
+    category: 'Корпоративное право и конфликты собственников',
+    description: 'Сопровождение изменений в ЕГРЮЛ: директор, участники, адрес, уставные данные.'
+  },
+  {
+    title: 'Сделки с долями, вход/выход участника',
+    slug: 'sdelki-s-dolyami-vhod-vyhod-uchastnika',
+    path: '/services/biz/sdelki-s-dolyami-vhod-vyhod-uchastnika',
+    audience: 'biz',
+    priority: 8.02,
+    category: 'Корпоративное право и конфликты собственников',
+    description: 'Подготовка документов и сопровождение сделок с долями, вход/выход участника.'
+  },
+  {
+    title: 'Корпоративные споры и защита активов',
+    slug: 'korporativnye-spory-i-zashchita-aktivov',
+    path: '/services/biz/korporativnye-spory-i-zashchita-aktivov',
+    audience: 'biz',
+    priority: 8.03,
+    category: 'Корпоративное право и конфликты собственников',
+    description: 'Стратегия и ведение корпоративных конфликтов, обеспечительные меры, защита активов.'
+  },
+  {
+    title: 'Протоколы, собрания, корпоративные документы',
+    slug: 'protokoly-sobraniya-korporativnye-dokumenty',
+    path: '/services/biz/protokoly-sobraniya-korporativnye-dokumenty',
+    audience: 'biz',
+    priority: 8.04,
+    category: 'Корпоративное право и конфликты собственников',
+    description: 'Подготовка протоколов, решений, регламентов и иных корпоративных документов.'
+  },
+  {
+    title: 'Защита от рейдерских сценариев',
+    slug: 'zashchita-ot-reyderskih-scenariev',
+    path: '/services/biz/zashchita-ot-reyderskih-scenariev',
+    audience: 'biz',
+    priority: 8.05,
+    category: 'Корпоративное право и конфликты собственников',
+    description: 'Превентивные меры и защита компании/активов при угрозе рейдерских действий.'
+  },
+
+  // 9) Интеллектуальная собственность и защита бренда ⭐
+  {
+    title: 'Регистрация товарного знака (Роспатент)',
+    slug: 'registraciya-tovarnogo-znaka-rospatent',
+    path: '/services/biz/registraciya-tovarnogo-znaka-rospatent',
+    audience: 'biz',
+    priority: 9.01,
+    category: 'Интеллектуальная собственность и защита бренда',
+    description: 'Сопровождение регистрации товарного знака: подбор классов, подача, переписка с Роспатентом.'
+  },
+  {
+    title: 'Защита бренда: претензии, суд, компенсации, запреты',
+    slug: 'zashchita-brenda-pretenzii-sud-kompensacii-zaprety',
+    path: '/services/biz/zashchita-brenda-pretenzii-sud-kompensacii-zaprety',
+    audience: 'biz',
+    priority: 9.02,
+    category: 'Интеллектуальная собственность и защита бренда',
+    description: 'Претензионная и судебная защита бренда: запреты, компенсации, пресечение нарушений.'
+  },
+  {
+    title: 'Лицензии/отчуждение прав, франчайзинг',
+    slug: 'licenzii-otchuzhdenie-prav-franchayzing',
+    path: '/services/biz/licenzii-otchuzhdenie-prav-franchayzing',
+    audience: 'biz',
+    priority: 9.03,
+    category: 'Интеллектуальная собственность и защита бренда',
+    description: 'Договоры по правам: лицензии, отчуждение, коммерческая концессия (франчайзинг).' 
+  },
+  {
+    title: 'Борьба с контрафактом и нарушения на маркетплейсах',
+    slug: 'borba-s-kontrafaktom-i-narusheniya-na-marketpleysah',
+    path: '/services/biz/borba-s-kontrafaktom-i-narusheniya-na-marketpleysah',
+    audience: 'biz',
+    priority: 9.04,
+    category: 'Интеллектуальная собственность и защита бренда',
+    description: 'Удаление нарушений, претензии, доказательства, суд и взаимодействие с площадками.'
+  },
+
+  // 10) Госзакупки и ФАС ⭐
+  {
+    title: 'Жалобы в ФАС (44-ФЗ/223-ФЗ)',
+    slug: 'zhaloby-v-fas-44-fz-223-fz',
+    path: '/services/biz/zhaloby-v-fas-44-fz-223-fz',
+    audience: 'biz',
+    priority: 10.01,
+    category: 'Госзакупки и ФАС',
+    description: 'Подготовка и подача жалоб в ФАС, сопровождение рассмотрения и доказательств.'
+  },
+  {
+    title: 'Защита от включения в РНП',
+    slug: 'zashchita-ot-vklyucheniya-v-rnp',
+    path: '/services/biz/zashchita-ot-vklyucheniya-v-rnp',
+    audience: 'biz',
+    priority: 10.02,
+    category: 'Госзакупки и ФАС',
+    description: 'Защита поставщика/подрядчика от включения в Реестр недобросовестных поставщиков.'
+  },
+  {
+    title: 'Споры по госконтрактам: неустойки, расторжения, штрафы',
+    slug: 'spory-po-goskontraktam-neustoyki-rastorzheniya-shtrafy',
+    path: '/services/biz/spory-po-goskontraktam-neustoyki-rastorzheniya-shtrafy',
+    audience: 'biz',
+    priority: 10.03,
+    category: 'Госзакупки и ФАС',
+    description: 'Сопровождение споров по исполнению госконтрактов и защита от санкций.'
+  },
+
+  // 11) Исполнительное производство и приставы ⭐
+  {
+    title: 'Исполнение решений суда “под ключ”',
+    slug: 'ispolnenie-resheniy-suda-pod-klyuch',
+    path: '/services/biz/ispolnenie-resheniy-suda-pod-klyuch',
+    audience: 'biz',
+    priority: 11.01,
+    category: 'Исполнительное производство и приставы',
+    description: 'Комплексное сопровождение исполнения решения суда: документы, контроль, результаты.'
+  },
+  {
+    title: 'Обжалование действий/бездействия приставов',
+    slug: 'obzhalovanie-deystviy-bezdeystviya-pristavov-biz',
+    path: '/services/biz/obzhalovanie-deystviy-bezdeystviya-pristavov-biz',
+    audience: 'biz',
+    priority: 11.02,
+    category: 'Исполнительное производство и приставы',
+    description: 'Жалобы и заявления в суд при нарушениях со стороны приставов.'
+  },
+  {
+    title: 'Снятие арестов и запретов',
+    slug: 'snyatie-arestov-i-zapretov-biz',
+    path: '/services/biz/snyatie-arestov-i-zapretov-biz',
+    audience: 'biz',
+    priority: 11.03,
+    category: 'Исполнительное производство и приставы',
+    description: 'Снятие арестов/ограничений, отмена запретов, восстановление оборота активов.'
+  },
+  {
+    title: 'Реальное взыскание через банки и имущество должника',
+    slug: 'realnoe-vzyskanie-cherez-banki-i-imushchestvo',
+    path: '/services/biz/realnoe-vzyskanie-cherez-banki-i-imushchestvo',
+    audience: 'biz',
+    priority: 11.04,
+    category: 'Исполнительное производство и приставы',
+    description: 'Поиск активов, обращения взыскания, работа с банками и имущественными мерами.'
+  },
+
+  // 12) Трудовое право для работодателя ⭐
+  {
+    title: 'Кадровые документы “под ключ” (локальные акты, шаблоны)',
+    slug: 'kadrovyye-dokumenty-pod-klyuch-lokalnye-akty-shablony',
+    path: '/services/biz/kadrovyye-dokumenty-pod-klyuch-lokalnye-akty-shablony',
+    audience: 'biz',
+    priority: 12.01,
+    category: 'Трудовое право для работодателя',
+    description: 'Комплект кадровых документов и локальных актов под процессы работодателя.'
+  },
+  {
+    title: 'Увольнение/дисциплинарка с минимизацией рисков',
+    slug: 'uvolnenie-disciplinarka-minimizaciya-riskov',
+    path: '/services/biz/uvolnenie-disciplinarka-minimizaciya-riskov',
+    audience: 'biz',
+    priority: 12.02,
+    category: 'Трудовое право для работодателя',
+    description: 'Сопровождение увольнений и дисциплинарных процедур с соблюдением требований ТК РФ.'
+  },
+  {
+    title: 'Споры с работниками, проверки ГИТ',
+    slug: 'spory-s-rabotnikami-proverki-git',
+    path: '/services/biz/spory-s-rabotnikami-proverki-git',
+    audience: 'biz',
+    priority: 12.03,
+    category: 'Трудовое право для работодателя',
+    description: 'Ведение трудовых споров, подготовка к проверкам и сопровождение взаимодействия с ГИТ.'
+  },
 ];
 
 // Функции для работы с данными
