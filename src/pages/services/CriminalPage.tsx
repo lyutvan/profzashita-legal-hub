@@ -4,12 +4,14 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ServiceCallBanner from "@/components/ServiceCallBanner";
+import ServiceBannerCard from "@/components/ServiceBannerCard";
 import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getServicesByCategory, audienceConfig } from "@/data/services-audiences";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import prisonBarsImage from "@/assets/legal/prison-bars.jpg";
 import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
+import { createServiceCardImageAssigner } from "@/lib/serviceCardImages";
 
 const CriminalPage = () => {
   const servicesByCategory = getServicesByCategory('criminal');
@@ -92,46 +94,27 @@ const CriminalPage = () => {
         {/* Services by Category */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            {Object.entries(servicesByCategory).map(([category, services]) => (
+            {Object.entries(servicesByCategory).map(([category, services]) => {
+              const pickImage = createServiceCardImageAssigner(`criminal:${category}`);
+
+              return (
               <div key={category} id={category} className="mb-12 scroll-mt-20">
                 <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
                   {category}
                 </h2>
                 <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                   {services.map((service) => (
-                    <Card 
+                    <ServiceBannerCard
                       key={service.slug}
-                      className="h-full flex flex-col hover:shadow-lg transition-all duration-300 border-2 hover:border-[#C9A227]/30"
-                    >
-                      <CardHeader>
-                        <CardTitle className="text-lg font-semibold">
-                          {service.title}
-                        </CardTitle>
-                        {service.description && (
-                          <CardDescription className="text-sm text-muted-foreground">
-                            {service.description}
-                          </CardDescription>
-                        )}
-                      </CardHeader>
-                      <CardContent className="mt-auto">
-                        <Button 
-                          variant="ghost" 
-                          className="w-full justify-between p-0 h-auto hover:bg-transparent group"
-                          asChild
-                        >
-                          <Link to={service.path}>
-                            <span className="text-[#C9A227] group-hover:underline">
-                              Подробнее
-                            </span>
-                            <ArrowRight className="h-4 w-4 text-[#C9A227] group-hover:translate-x-1 transition-transform" />
-                          </Link>
-                        </Button>
-                      </CardContent>
-                    </Card>
+                      title={service.title}
+                      to={service.path}
+                      imageSrc={pickImage(service.slug)}
+                    />
                   ))}
                 </div>
               </div>
-            ))}
+              );
+            })}
           </div>
         </section>
 
