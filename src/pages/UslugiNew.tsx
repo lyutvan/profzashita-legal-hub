@@ -102,7 +102,7 @@ const UslugiNew = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
               {/* Физическим лицам */}
               <Card 
-                className="hover:shadow-xl transition-all duration-300 border-2 hover:border-[#C9A227]/30 group"
+                className="h-full flex flex-col hover:shadow-xl transition-all duration-300 border-2 hover:border-[#C9A227]/30 group"
               >
                 <CardHeader className="pb-4">
                   <div className="mb-4 inline-flex p-4 rounded-lg bg-[#C9A227]/10 group-hover:bg-[#C9A227]/20 transition-colors">
@@ -115,7 +115,7 @@ const UslugiNew = () => {
                     {audienceConfig.phys.subtitle}
                   </p>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-1 flex flex-col">
                   <div className="mb-4 text-sm text-muted-foreground">
                     <span className="font-semibold text-foreground">
                       {getTopServices('phys', 100).length}
@@ -136,7 +136,7 @@ const UslugiNew = () => {
                   </ul>
                   <Button 
                     variant="outline" 
-                    className="w-full border-[#C9A227]/30 hover:bg-[#C9A227]/10 hover:border-[#C9A227]"
+                    className="mt-auto w-full border-[#C9A227]/30 hover:bg-[#C9A227]/10 hover:border-[#C9A227]"
                     asChild
                   >
                     <Link to="/services/phys">
@@ -148,7 +148,7 @@ const UslugiNew = () => {
 
               {/* Юридическим лицам */}
               <Card 
-                className="hover:shadow-xl transition-all duration-300 border-2 hover:border-[#C9A227]/30 group"
+                className="h-full flex flex-col hover:shadow-xl transition-all duration-300 border-2 hover:border-[#C9A227]/30 group"
               >
                 <CardHeader className="pb-4">
                   <div className="mb-4 inline-flex p-4 rounded-lg bg-[#C9A227]/10 group-hover:bg-[#C9A227]/20 transition-colors">
@@ -161,7 +161,7 @@ const UslugiNew = () => {
                     {audienceConfig.biz.subtitle}
                   </p>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-1 flex flex-col">
                   <div className="mb-4 text-sm text-muted-foreground">
                     <span className="font-semibold text-foreground">
                       {getTopServices('biz', 100).length}
@@ -182,7 +182,7 @@ const UslugiNew = () => {
                   </ul>
                   <Button 
                     variant="outline" 
-                    className="w-full border-[#C9A227]/30 hover:bg-[#C9A227]/10 hover:border-[#C9A227]"
+                    className="mt-auto w-full border-[#C9A227]/30 hover:bg-[#C9A227]/10 hover:border-[#C9A227]"
                     asChild
                   >
                     <Link to="/services/biz">
@@ -194,7 +194,7 @@ const UslugiNew = () => {
 
               {/* Уголовные дела */}
               <Card 
-                className="hover:shadow-xl transition-all duration-300 border-2 hover:border-[#C9A227]/30 group"
+                className="h-full flex flex-col hover:shadow-xl transition-all duration-300 border-2 hover:border-[#C9A227]/30 group"
               >
                 <CardHeader className="pb-4">
                   <div className="mb-4 inline-flex p-4 rounded-lg bg-[#C9A227]/10 group-hover:bg-[#C9A227]/20 transition-colors">
@@ -207,7 +207,7 @@ const UslugiNew = () => {
                     {audienceConfig.criminal.subtitle}
                   </p>
                 </CardHeader>
-                <CardContent>
+                <CardContent className="flex-1 flex flex-col">
                   <div className="mb-4 text-sm text-muted-foreground">
                     <span className="font-semibold text-foreground">
                       {getTopServices('criminal', 100).length}
@@ -228,7 +228,7 @@ const UslugiNew = () => {
                   </ul>
                   <Button 
                     variant="outline" 
-                    className="w-full border-[#C9A227]/30 hover:bg-[#C9A227]/10 hover:border-[#C9A227]"
+                    className="mt-auto w-full border-[#C9A227]/30 hover:bg-[#C9A227]/10 hover:border-[#C9A227]"
                     asChild
                   >
                     <Link to="/services/criminal">
