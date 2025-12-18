@@ -28,6 +28,9 @@ interface ServiceTemplateProps {
   title: string;
   metaDescription: string;
   canonical: string;
+
+  audience?: "phys" | "biz" | "criminal";
+  subtitle?: string;
   
   // Breadcrumbs
   breadcrumbLabel: string;
@@ -60,12 +63,22 @@ interface ServiceTemplateProps {
   // Price (optional - will be fetched from pricing.ts if not provided)
   priceFrom?: number;
   priceNote?: string;
+
+  ctaButtons?: {
+    primaryLabel?: string;
+    primaryTo?: string;
+    secondaryLabel?: string;
+    secondaryHref?: string;
+    secondaryNote?: string;
+  };
 }
 
 const ServiceTemplate = ({
   title,
   metaDescription,
   canonical,
+  audience = "phys",
+  subtitle,
   breadcrumbLabel,
   h1,
   leadParagraph,
@@ -83,17 +96,33 @@ const ServiceTemplate = ({
   relatedLinks,
   priceFrom: providedPriceFrom,
   priceNote: providedPriceNote,
-  ctaBlock
+  ctaBlock,
+  ctaButtons
 }: ServiceTemplateProps) => {
   // Get price from pricing.ts if not provided directly
   const pricingData = getPriceBySlug(canonical);
   const priceFrom = providedPriceFrom ?? pricingData?.priceFrom;
   const priceNote = providedPriceNote ?? pricingData?.priceNote;
+
+  const audienceCrumb =
+    audience === "biz"
+      ? { label: "Юридическим лицам", path: "/services/biz" }
+      : audience === "criminal"
+        ? { label: "Уголовные дела", path: "/services/criminal" }
+        : { label: "Физическим лицам", path: "/services/phys" };
+
+  const primaryCtaLabel = ctaButtons?.primaryLabel ?? "Получить консультацию";
+  const primaryCtaTo = ctaButtons?.primaryTo ?? "/kontakty";
+  const secondaryCtaLabel = ctaButtons?.secondaryLabel ?? SITE.phone;
+  const secondaryCtaHref = ctaButtons?.secondaryHref ?? `tel:${SITE.phoneRaw}`;
+  const secondaryCtaNote =
+    ctaButtons?.secondaryNote ??
+    (secondaryCtaLabel !== SITE.phone ? SITE.phone : undefined);
   
   const breadcrumbItems = [
     { name: "Главная", url: SITE.url },
-    { name: "Услуги", url: `${SITE.url}/uslugi` },
-    { name: "Физическим лицам", url: `${SITE.url}/services/phys` },
+    { name: "Услуги", url: new URL("/uslugi", SITE.url).toString() },
+    { name: audienceCrumb.label, url: new URL(audienceCrumb.path, SITE.url).toString() },
     { name: breadcrumbLabel, url: canonical }
   ];
 
@@ -120,11 +149,16 @@ const ServiceTemplate = ({
           <div className="container mx-auto px-4">
             <Breadcrumbs items={[
               { label: "Услуги", path: "/uslugi" },
-              { label: "Физическим лицам", path: "/services/phys" },
+              { label: audienceCrumb.label, path: audienceCrumb.path },
               { label: breadcrumbLabel }
             ]} />
             
             <div className="mt-8 max-w-4xl">
+              {subtitle && (
+                <div className="text-[#C9A227] text-sm md:text-base font-semibold tracking-wide uppercase mb-3">
+                  {subtitle}
+                </div>
+              )}
               <h1 className="font-montserrat text-3xl md:text-5xl font-bold mb-6 leading-tight">
                 {h1}
               </h1>
@@ -285,8 +319,8 @@ const ServiceTemplate = ({
                           className="w-full bg-[#C9A227] hover:bg-[#B08E1F] text-white"
                           asChild
                         >
-                          <Link to="/kontakty">
-                            Получить консультацию
+                          <Link to={primaryCtaTo}>
+                            {primaryCtaLabel}
                           </Link>
                         </Button>
                         <Button 
@@ -294,11 +328,16 @@ const ServiceTemplate = ({
                           className="w-full border-white/20 bg-white/10 hover:bg-white/20 text-white"
                           asChild
                         >
-                          <a href="tel:+79168597654">
+                          <a href={secondaryCtaHref}>
                             <Phone className="mr-2 h-4 w-4" />
-                            +7 (916) 859-76-54
+                            {secondaryCtaLabel}
                           </a>
                         </Button>
+                        {secondaryCtaNote && (
+                          <div className="text-white/70 text-xs text-center">
+                            {secondaryCtaNote}
+                          </div>
+                        )}
                       </div>
                       <p className="text-white/60 text-xs mt-4 text-center">
                         Работаем круглосуточно

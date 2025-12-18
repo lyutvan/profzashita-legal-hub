@@ -18,19 +18,11 @@ import Disclaimer from "./pages/Disclaimer";
 import Thanks from "./pages/Thanks";
 import NotFound from "./pages/NotFound";
 import QuickQuestion from "./components/QuickQuestion";
-import ArbitrazhnyeSporyPage from "./pages/services/biz/ArbitrazhnyeSporyPage";
-import DogovornayaRabotaPretensiiPage from "./pages/services/biz/DogovornayaRabotaPretensiiPage";
-import NalogovyeSporyProverkiPage from "./pages/services/biz/NalogovyeSporyProverkiPage";
-import VzyskanieDebitorskoyZadolzhennostiPage from "./pages/services/biz/VzyskanieDebitorskoyZadolzhennostiPage";
-import BankrotstvoSubsidiarnajaOtvetstvennostPage from "./pages/services/biz/BankrotstvoSubsidiarnajaOtvetstvennostPage";
-import KorporativnyeSporyPage from "./pages/services/biz/KorporativnyeSporyPage";
-import ZashchitaOtRejderskikhZakhvatovPage from "./pages/services/biz/ZashchitaOtRejderskikhZakhvatovPage";
-import RegistratsiyaLikvidatsiyaKompaniyPage from "./pages/services/biz/RegistratsiyaLikvidatsiyaKompaniyPage";
-import IntellektualnayaSobstvennostPage from "./pages/services/biz/IntellektualnayaSobstvennostPage";
-import EkonomicheskiePrestupleniyaPage from "./pages/services/biz/EkonomicheskiePrestupleniyaPage";
+import BizServicePage from "./pages/services/biz/BizServicePage";
 import PhysPage from "./pages/services/PhysPage";
 import BizPage from "./pages/services/BizPage";
 import CriminalPage from "./pages/services/CriminalPage";
+import { audienceServices } from "@/data/services-audiences";
 import RazvodPage from "./pages/services/phys/RazvodPage";
 import AlimentyPage from "./pages/services/phys/AlimentyPage";
 import VyseleniePage from "./pages/services/phys/VyseleniePage";
@@ -164,6 +156,21 @@ import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 
 const queryClient = new QueryClient();
+
+const bizServices = audienceServices.filter((service) => service.audience === "biz");
+const bizServicePaths = new Set(bizServices.map((service) => service.path));
+const legacyBizPaths = [
+  "/services/biz/arbitrazhnye-spory",
+  "/services/biz/dogovornaya-rabota-pretensii",
+  "/services/biz/nalogovye-spory-proverki",
+  "/services/biz/vzyskanie-debitorskoy-zadolzhennosti",
+  "/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost",
+  "/services/biz/korporativnye-spory",
+  "/services/biz/zashchita-ot-rejderskikh-zakhvatov",
+  "/services/biz/registratsiya-likvidatsiya-kompaniy",
+  "/services/biz/intellektualnaya-sobstvennost",
+  "/services/biz/ekonomicheskie-prestupleniya"
+].filter((path) => !bizServicePaths.has(path));
 
 const App = () => (
   <QueryClientProvider client={queryClient}>
@@ -341,17 +348,14 @@ const App = () => (
           <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
           <Route path="/services/phys/mesto-zhitelstva-poryadok-obshcheniya" element={<Navigate to="/services/phys/mesto-zhitelstva-rebenka" replace />} />
           
-          {/* Business services */}
-          <Route path="/services/biz/arbitrazhnye-spory" element={<ArbitrazhnyeSporyPage />} />
-          <Route path="/services/biz/dogovornaya-rabota-pretensii" element={<DogovornayaRabotaPretensiiPage />} />
-          <Route path="/services/biz/nalogovye-spory-proverki" element={<NalogovyeSporyProverkiPage />} />
-          <Route path="/services/biz/vzyskanie-debitorskoy-zadolzhennosti" element={<VzyskanieDebitorskoyZadolzhennostiPage />} />
-          <Route path="/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" element={<BankrotstvoSubsidiarnajaOtvetstvennostPage />} />
-          <Route path="/services/biz/korporativnye-spory" element={<KorporativnyeSporyPage />} />
-          <Route path="/services/biz/zashchita-ot-rejderskikh-zakhvatov" element={<ZashchitaOtRejderskikhZakhvatovPage />} />
-          <Route path="/services/biz/registratsiya-likvidatsiya-kompaniy" element={<RegistratsiyaLikvidatsiyaKompaniyPage />} />
-          <Route path="/services/biz/intellektualnaya-sobstvennost" element={<IntellektualnayaSobstvennostPage />} />
-          <Route path="/services/biz/ekonomicheskie-prestupleniya" element={<EkonomicheskiePrestupleniyaPage />} />
+          {/* Business services (B2B) */}
+          {bizServices.map((service) => (
+            <Route key={service.path} path={service.path} element={<BizServicePage />} />
+          ))}
+          <Route path="/services/biz/:slug" element={<BizServicePage />} />
+          {legacyBizPaths.map((path) => (
+            <Route key={path} path={path} element={<Navigate to="/services/biz" replace />} />
+          ))}
           
           {/* Redirects from old URLs */}
           <Route path="/services/phys/moshennichestvo" element={<Navigate to="/services/phys" replace />} />
@@ -363,11 +367,11 @@ const App = () => (
           <Route path="/services/phys/ugolovnye" element={<Navigate to="/services/phys" replace />} />
           <Route path="/services/grazhdanskie" element={<Navigate to="/services/phys" replace />} />
           <Route path="/services/arbitrazh" element={<Navigate to="/services/biz" replace />} />
-          <Route path="/services/biz/arbitrazh/*" element={<Navigate to="/services/biz/arbitrazhnye-spory" replace />} />
-          <Route path="/services/biz/dogovory/*" element={<Navigate to="/services/biz/dogovornaya-rabota-pretensii" replace />} />
-          <Route path="/services/biz/nalogi/*" element={<Navigate to="/services/biz/nalogovye-spory-proverki" replace />} />
-          <Route path="/services/biz/vzyskanie/*" element={<Navigate to="/services/biz/vzyskanie-debitorskoy-zadolzhennosti" replace />} />
-          <Route path="/services/biz/bankrotstvo/*" element={<Navigate to="/services/biz/bankrotstvo-subsidiarnaya-otvetstvennost" replace />} />
+          <Route path="/services/biz/arbitrazh/*" element={<Navigate to="/services/biz" replace />} />
+          <Route path="/services/biz/dogovory/*" element={<Navigate to="/services/biz" replace />} />
+          <Route path="/services/biz/nalogi/*" element={<Navigate to="/services/biz" replace />} />
+          <Route path="/services/biz/vzyskanie/*" element={<Navigate to="/services/biz" replace />} />
+          <Route path="/services/biz/bankrotstvo/*" element={<Navigate to="/services/biz" replace />} />
           <Route path="/about" element={<Navigate to="/o-kollegii" replace />} />
           <Route path="/cases" element={<Navigate to="/keisy" replace />} />
           <Route path="/contacts" element={<Navigate to="/kontakty" replace />} />
