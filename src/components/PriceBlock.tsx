@@ -4,14 +4,22 @@ import { DollarSign } from "lucide-react";
 interface PriceBlockProps {
   priceFrom?: number;
   priceNote?: string;
+  fallbackTitle?: string;
+  fallbackNote?: string;
   className?: string;
 }
 
 /**
  * Компонент для отображения блока "Цена" на странице услуги
- * Если цена не указана - показывается "по запросу"
+ * Если цена не указана - показывается fallback-значение
  */
-const PriceBlock = ({ priceFrom, priceNote, className = "" }: PriceBlockProps) => {
+const PriceBlock = ({
+  priceFrom,
+  priceNote,
+  fallbackTitle = "По запросу",
+  fallbackNote = "Стоимость определяется индивидуально после анализа вашей ситуации",
+  className = ""
+}: PriceBlockProps) => {
   const formatPrice = (price: number): string => {
     return price.toLocaleString('ru-RU');
   };
@@ -43,10 +51,10 @@ const PriceBlock = ({ priceFrom, priceNote, className = "" }: PriceBlockProps) =
               ) : (
                 <>
                   <div className="text-3xl font-bold mb-2">
-                    По договоренности
+                    {fallbackTitle}
                   </div>
                   <p className="text-sm text-muted-foreground">
-                    Стоимость определяется индивидуально после анализа вашей ситуации
+                    {fallbackNote}
                   </p>
                 </>
               )}

@@ -299,7 +299,11 @@ const ServiceTemplate = ({
                 )}
 
                 {/* Price */}
-                <PriceBlock priceFrom={priceFrom} priceNote={priceNote} />
+                <PriceBlock
+                  priceFrom={priceFrom}
+                  priceNote={priceNote}
+                  fallbackTitle={pathname.startsWith("/services/criminal") ? "По договоренности" : undefined}
+                />
 
                 {/* FAQ */}
                 <div>
