@@ -98,14 +98,14 @@ const BizPage = () => {
                   {services.map((service) => (
                     <Card 
                       key={service.slug}
-                      className="hover:shadow-lg transition-all duration-300 border-2 hover:border-[#C9A227]/30"
+                      className="h-full flex flex-col hover:shadow-lg transition-all duration-300 border-2 hover:border-[#C9A227]/30"
                     >
                       <CardHeader>
                         <CardTitle className="text-lg font-semibold">
                           {service.title}
                         </CardTitle>
                       </CardHeader>
-                      <CardContent>
+                      <CardContent className="mt-auto">
                         <Button 
                           variant="ghost" 
                           className="w-full justify-between p-0 h-auto hover:bg-transparent group"
