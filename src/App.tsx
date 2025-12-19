@@ -177,8 +177,8 @@ const App = () => (
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <QuickQuestion />
       <BrowserRouter>
+        <QuickQuestion />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
