@@ -319,7 +319,7 @@ const ServiceTemplate = ({
                 <PriceBlock
                   priceFrom={priceFrom}
                   priceNote={priceNote}
-                  fallbackTitle={resolvedAudience === "criminal" ? "По договоренности" : undefined}
+                  fallbackTitle="По договоренности"
                 />
 
                 {/* FAQ */}
