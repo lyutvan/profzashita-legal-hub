@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { submitToWebhook } from "@/lib/webhook";
-import { useLocation } from "react-router-dom";
+import { useInRouterContext, useLocation } from "react-router-dom";
 import PhoneInput from "@/components/PhoneInput";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 
@@ -16,7 +16,8 @@ interface LeadFormProps {
 }
 
 const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
-  const location = useLocation();
+  const inRouter = useInRouterContext();
+  const location = inRouter ? useLocation() : { pathname: "" };
   const CASE_RU: Record<string, string> = {
     criminal: "Уголовное право",
     civil: "Гражданские дела",

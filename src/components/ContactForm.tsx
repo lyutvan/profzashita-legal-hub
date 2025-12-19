@@ -5,12 +5,13 @@ import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { toast } from "sonner";
 import { submitToWebhook } from "@/lib/webhook";
-import { useLocation } from "react-router-dom";
+import { useInRouterContext, useLocation } from "react-router-dom";
 import PhoneInput from "@/components/PhoneInput";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 
 const ContactForm = () => {
-  const location = useLocation();
+  const inRouter = useInRouterContext();
+  const location = inRouter ? useLocation() : { pathname: "" };
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
