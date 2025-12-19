@@ -46,10 +46,6 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
 
-  const handleSelectChange = (value: string) => {
-    setFormData({ ...formData, caseType: value });
-  };
-
   const validateForm = (): boolean => {
     if (!formData.name.trim() || formData.name.length < 2) {
       toast({
@@ -74,15 +70,6 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
       toast({
         title: "Ошибка",
         description: "Пожалуйста, укажите корректный email",
-        variant: "destructive",
-      });
-      return false;
-    }
-
-    if (!practiceType && !isCompact && !formData.caseType) {
-      toast({
-        title: "Ошибка",
-        description: "Пожалуйста, выберите тип дела",
         variant: "destructive",
       });
       return false;
@@ -224,32 +211,6 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
           maxLength={255}
         />
       </div>
-
-      {!isCompact && (
-        <div className="space-y-2">
-          <Label htmlFor="caseType">
-            Тип дела <span className="text-destructive">*</span>
-          </Label>
-          <Select
-            value={formData.caseType}
-            onValueChange={handleSelectChange}
-            disabled={isSubmitting || !!practiceType}
-          >
-            <SelectTrigger id="caseType">
-              <SelectValue placeholder="Выберите направление" />
-            </SelectTrigger>
-            <SelectContent>
-              <SelectItem value="criminal">Уголовное право</SelectItem>
-              <SelectItem value="civil">Гражданские дела</SelectItem>
-              <SelectItem value="arbitration">Арбитраж и споры с бизнесом</SelectItem>
-              <SelectItem value="family">Семейное право</SelectItem>
-              <SelectItem value="consumer">Защита прав потребителей</SelectItem>
-              <SelectItem value="representation">Представление интересов в суде</SelectItem>
-              <SelectItem value="consultation">Консультация</SelectItem>
-            </SelectContent>
-          </Select>
-        </div>
-      )}
 
       {(variant === "default" || variant === "compact") && (
         <div className="space-y-2">
