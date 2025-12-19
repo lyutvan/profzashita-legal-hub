@@ -19,7 +19,7 @@ const ServiceBannerCard = ({ title, to, imageSrc }: ServiceBannerCardProps) => {
         className="absolute inset-0 h-full w-full object-cover transition-transform duration-300 group-hover:scale-[1.03]"
         loading="lazy"
       />
-      <div className="absolute inset-0 bg-gradient-to-t from-black/70 via-black/35 to-black/10" />
+      <div className="absolute inset-0 bg-[linear-gradient(to_top,rgba(0,0,0,0.65)_0%,rgba(0,0,0,0.25)_55%,rgba(0,0,0,0.10)_100%)]" />
 
       <Link
         to={to}
@@ -28,12 +28,14 @@ const ServiceBannerCard = ({ title, to, imageSrc }: ServiceBannerCardProps) => {
       />
 
       <div className="relative z-10 flex h-full flex-col justify-between p-6">
-        <div className="font-montserrat text-2xl font-bold text-white leading-snug">
+        <div className="font-montserrat text-2xl font-bold text-white leading-snug [text-shadow:0_2px_12px_rgba(0,0,0,0.6)]">
           {title}
         </div>
         <div className="flex items-center justify-between">
-          <span className="text-[#C9A227] font-medium group-hover:underline">Подробнее</span>
-          <ArrowRight className="h-5 w-5 text-[#C9A227] group-hover:translate-x-1 transition-transform" />
+          <span className="text-[#C9A227] font-medium group-hover:underline [text-shadow:0_1px_8px_rgba(0,0,0,0.5)]">
+            Подробнее
+          </span>
+          <ArrowRight className="h-5 w-5 text-[#C9A227] drop-shadow-[0_1px_8px_rgba(0,0,0,0.45)] group-hover:translate-x-1 transition-transform" />
         </div>
       </div>
     </Card>
@@ -41,4 +43,3 @@ const ServiceBannerCard = ({ title, to, imageSrc }: ServiceBannerCardProps) => {
 };
 
 export default ServiceBannerCard;
-
