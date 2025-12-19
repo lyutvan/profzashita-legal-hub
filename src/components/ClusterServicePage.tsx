@@ -37,6 +37,7 @@ const ClusterServicePage = ({
   clusterSlug,
   allSituations 
 }: ClusterServicePageProps) => {
+  const isCriminalCluster = clusterSlug === "ugolovnoye-delo";
   const currentUrl = `${SITE.url}uslugi/${clusterSlug}/${situation.slug}/`;
   const ogImage = situation.ogImage || `${SITE.url}og-cover.jpg`;
   const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${SITE.url}${ogImage.replace(/^\//, '')}`;
@@ -76,7 +77,7 @@ const ClusterServicePage = ({
       <LegalServiceSchema 
         serviceType={situation.title}
         url={currentUrl}
-        priceFrom={situation.priceFrom?.toString()}
+        priceFrom={isCriminalCluster ? undefined : situation.priceFrom?.toString()}
       />
 
       {situation.faqs.length > 0 && (
@@ -231,8 +232,8 @@ const ClusterServicePage = ({
 
               {/* 3.5 Цена */}
               <PriceBlock 
-                priceFrom={situation.priceFrom} 
-                priceNote={situation.pricingNote}
+                priceFrom={isCriminalCluster ? undefined : situation.priceFrom} 
+                priceNote={isCriminalCluster ? undefined : situation.pricingNote}
               />
 
               {/* 4. Сроки / этапы / цена */}
@@ -258,7 +259,11 @@ const ClusterServicePage = ({
                             </div>
                           </div>
                           <div className="flex items-center gap-2 px-4 py-2 bg-[#C9A227]/10 rounded-lg">
-                            <span className="font-bold text-lg">от {step.priceFrom.toLocaleString('ru-RU')} ₽</span>
+                            {isCriminalCluster ? (
+                              <span className="font-bold text-lg">По договоренности</span>
+                            ) : (
+                              <span className="font-bold text-lg">от {step.priceFrom.toLocaleString('ru-RU')} ₽</span>
+                            )}
                           </div>
                         </div>
                       </CardContent>
@@ -434,11 +439,13 @@ const ClusterServicePage = ({
                   <h3 className="font-semibold text-lg mb-4">Стоимость</h3>
                   <div className="flex items-baseline gap-2 mb-4">
                     <span className="text-3xl font-bold text-[#C9A227]">
-                      от {situation.priceFrom.toLocaleString('ru-RU')} ₽
+                      {isCriminalCluster ? "По договоренности" : `от ${situation.priceFrom.toLocaleString('ru-RU')} ₽`}
                     </span>
                   </div>
                   <p className="text-sm text-muted-foreground mb-4">
-                    Точная стоимость определяется после консультации
+                    {isCriminalCluster
+                      ? "Стоимость определяется индивидуально после анализа вашей ситуации"
+                      : "Точная стоимость определяется после консультации"}
                   </p>
                   <Button className="w-full bg-[#C9A227] hover:bg-[#B08E1F]" asChild>
                     <Link to="/kontakty">Узнать точную цену</Link>
