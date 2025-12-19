@@ -6,6 +6,8 @@ import { Label } from "./ui/label";
 import { toast } from "sonner";
 import { submitToWebhook } from "@/lib/webhook";
 import { useLocation } from "react-router-dom";
+import PhoneInput from "@/components/PhoneInput";
+import { isPhoneValid, normalizePhone } from "@/lib/phone";
 
 const ContactForm = () => {
   const location = useLocation();
@@ -26,6 +28,11 @@ const ContactForm = () => {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    const digits = normalizePhone(formData.phone);
+    if (!isPhoneValid(digits)) {
+      toast.error("Пожалуйста, укажите корректный номер телефона");
+      return;
+    }
     
     try {
       await submitToWebhook({
@@ -67,15 +74,10 @@ const ContactForm = () => {
 
       <div>
         <Label htmlFor="phone">Телефон *</Label>
-        <Input
-          id="phone"
-          name="phone"
-          type="tel"
+        <PhoneInput
           value={formData.phone}
-          onChange={handleChange}
+          onChange={(val) => setFormData((prev) => ({ ...prev, phone: val }))}
           required
-          placeholder="+7 (999) 999-99-99"
-          className="mt-1"
         />
       </div>
 

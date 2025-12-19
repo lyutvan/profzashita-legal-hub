@@ -3,12 +3,12 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
-import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from "@/components/ui/select";
 import { toast } from "@/hooks/use-toast";
-import InputMask from "react-input-mask";
 import { Loader2 } from "lucide-react";
 import { submitToWebhook } from "@/lib/webhook";
 import { useLocation } from "react-router-dom";
+import PhoneInput from "@/components/PhoneInput";
+import { isPhoneValid, normalizePhone } from "@/lib/phone";
 
 interface LeadFormProps {
   practiceType?: string;
@@ -39,6 +39,7 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitTime, setSubmitTime] = useState<number>(Date.now());
   const [submitted, setSubmitted] = useState(false);
+  const isCompact = variant === "compact";
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -58,8 +59,8 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
       return false;
     }
 
-    const phoneDigits = formData.phone.replace(/\D/g, "");
-    if (phoneDigits.length !== 11) {
+    const phoneDigits = normalizePhone(formData.phone);
+    if (!isPhoneValid(phoneDigits)) {
       toast({
         title: "Ошибка",
         description: "Пожалуйста, укажите корректный номер телефона",
@@ -77,7 +78,7 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
       return false;
     }
 
-    if (!formData.caseType) {
+    if (!practiceType && !isCompact && !formData.caseType) {
       toast({
         title: "Ошибка",
         description: "Пожалуйста, выберите тип дела",
@@ -201,24 +202,12 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
         <Label htmlFor="phone">
           Телефон <span className="text-destructive">*</span>
         </Label>
-        <InputMask
-          mask="+7 (999) 999-99-99"
+        <PhoneInput
           value={formData.phone}
-          onChange={handleChange}
+          onChange={(val) => handleChange({ target: { name: "phone", value: val } } as any)}
           disabled={isSubmitting}
-        >
-          {/* @ts-ignore - InputMask types issue */}
-          {(inputProps: any) => (
-            <Input
-              {...inputProps}
-              id="phone"
-              name="phone"
-              type="tel"
-              required
-              placeholder="+7 (999) 999-99-99"
-            />
-          )}
-        </InputMask>
+          required
+        />
       </div>
 
       <div className="space-y-2">
@@ -235,42 +224,45 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
         />
       </div>
 
-      <div className="space-y-2">
-        <Label htmlFor="caseType">
-          Тип дела <span className="text-destructive">*</span>
-        </Label>
-        <Select
-          value={formData.caseType}
-          onValueChange={handleSelectChange}
-          disabled={isSubmitting || !!practiceType}
-        >
-          <SelectTrigger id="caseType">
-            <SelectValue placeholder="Выберите направление" />
-          </SelectTrigger>
-          <SelectContent>
-            <SelectItem value="criminal">Уголовное право</SelectItem>
-            <SelectItem value="civil">Гражданские дела</SelectItem>
-            <SelectItem value="arbitration">Арбитраж и споры с бизнесом</SelectItem>
-            <SelectItem value="family">Семейное право</SelectItem>
-            <SelectItem value="consumer">Защита прав потребителей</SelectItem>
-            <SelectItem value="representation">Представление интересов в суде</SelectItem>
-            <SelectItem value="consultation">Консультация</SelectItem>
-          </SelectContent>
-        </Select>
-      </div>
-
-      {variant === "default" && (
+      {!isCompact && (
         <div className="space-y-2">
-          <Label htmlFor="message">Комментарий</Label>
+          <Label htmlFor="caseType">
+            Тип дела <span className="text-destructive">*</span>
+          </Label>
+          <Select
+            value={formData.caseType}
+            onValueChange={handleSelectChange}
+            disabled={isSubmitting || !!practiceType}
+          >
+            <SelectTrigger id="caseType">
+              <SelectValue placeholder="Выберите направление" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectItem value="criminal">Уголовное право</SelectItem>
+              <SelectItem value="civil">Гражданские дела</SelectItem>
+              <SelectItem value="arbitration">Арбитраж и споры с бизнесом</SelectItem>
+              <SelectItem value="family">Семейное право</SelectItem>
+              <SelectItem value="consumer">Защита прав потребителей</SelectItem>
+              <SelectItem value="representation">Представление интересов в суде</SelectItem>
+              <SelectItem value="consultation">Консультация</SelectItem>
+            </SelectContent>
+          </Select>
+        </div>
+      )}
+
+      {(variant === "default" || variant === "compact") && (
+        <div className="space-y-2">
+          <Label htmlFor="message">Опишите вашу ситуацию</Label>
           <Textarea
             id="message"
             name="message"
             value={formData.message}
             onChange={handleChange}
-            placeholder="Кратко опишите вашу ситуацию..."
+            placeholder="Опишите вашу ситуацию"
             disabled={isSubmitting}
-            rows={4}
+            rows={variant === "compact" ? 4 : 6}
             maxLength={1000}
+            required={variant === "compact"}
           />
         </div>
       )}
