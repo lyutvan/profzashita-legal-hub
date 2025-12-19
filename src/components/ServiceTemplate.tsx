@@ -74,13 +74,14 @@ interface ServiceTemplateProps {
   };
 
   heroImageSrc?: string;
+  heroAlt?: string;
 }
 
 const ServiceTemplate = ({
   title,
   metaDescription,
   canonical,
-  audience = "phys",
+  audience,
   subtitle,
   breadcrumbLabel,
   h1,
@@ -101,14 +102,23 @@ const ServiceTemplate = ({
   priceNote: providedPriceNote,
   ctaBlock,
   ctaButtons,
-  heroImageSrc: providedHeroImageSrc
+  heroImageSrc: providedHeroImageSrc,
+  heroAlt
 }: ServiceTemplateProps) => {
   const location = useLocation();
   const pathname = location.pathname.replace(/\/+$/, "") || "/";
 
+  const resolvedAudience: "phys" | "biz" | "criminal" =
+    audience ??
+    (pathname.startsWith("/services/criminal")
+      ? "criminal"
+      : pathname.startsWith("/services/biz")
+        ? "biz"
+        : "phys");
+
   const heroImageSrc =
     providedHeroImageSrc ??
-    (pathname.startsWith("/services/phys/") ? getServiceCardImageForPath(pathname, "phys") : undefined);
+    getServiceCardImageForPath(pathname, resolvedAudience);
 
   // Get price from pricing.ts if not provided directly
   const pricingData = getPriceBySlug(canonical);
@@ -116,9 +126,9 @@ const ServiceTemplate = ({
   const priceNote = providedPriceNote ?? pricingData?.priceNote;
 
   const audienceCrumb =
-    audience === "biz"
+    resolvedAudience === "biz"
       ? { label: "Юридическим лицам", path: "/services/biz" }
-      : audience === "criminal"
+      : resolvedAudience === "criminal"
         ? { label: "Уголовные дела", path: "/services/criminal" }
         : { label: "Физическим лицам", path: "/services/phys" };
 
@@ -171,7 +181,7 @@ const ServiceTemplate = ({
               : undefined
           }
         >
-          {heroImageSrc && <div className="absolute inset-0 bg-gradient-to-t from-black/65 via-black/40 to-black/10" />}
+          {heroImageSrc && <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-black/15" aria-hidden="true" />}
           <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs items={[
               { label: "Услуги", path: "/uslugi" },
@@ -309,7 +319,7 @@ const ServiceTemplate = ({
                 <PriceBlock
                   priceFrom={priceFrom}
                   priceNote={priceNote}
-                  fallbackTitle={pathname.startsWith("/services/criminal") ? "По договоренности" : undefined}
+                  fallbackTitle={resolvedAudience === "criminal" ? "По договоренности" : undefined}
                 />
 
                 {/* FAQ */}

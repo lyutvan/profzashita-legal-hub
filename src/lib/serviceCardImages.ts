@@ -3,6 +3,12 @@ export const SERVICE_CARD_IMAGES = Array.from({ length: 11 }, (_, index) => {
   return `/images/services/cards/card-${number}.jpg`;
 });
 
+const AUDIENCE_SEEDS: Record<string, string> = {
+  phys: "phys",
+  biz: "biz",
+  criminal: "criminal",
+};
+
 function hashString(input: string) {
   // Simple deterministic hash (djb2)
   let hash = 5381;
@@ -30,6 +36,12 @@ export function getServiceCardImageForPath(pathname: string, seed = "") {
   const slug = getServiceSlugFromPath(pathname);
   if (!slug) return "";
   return getServiceCardImage(slug, seed);
+}
+
+export function getServiceHeroImage(pathname: string, audience?: "phys" | "biz" | "criminal") {
+  const seed = audience ? AUDIENCE_SEEDS[audience] ?? "" : "";
+  const hero = getServiceCardImageForPath(pathname, seed);
+  return hero || SERVICE_CARD_IMAGES[0];
 }
 
 export function createServiceCardImageAssigner(seed = "") {
