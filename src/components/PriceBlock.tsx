@@ -16,7 +16,7 @@ interface PriceBlockProps {
 const PriceBlock = ({
   priceFrom,
   priceNote,
-  fallbackTitle = "По запросу",
+  fallbackTitle = "По договоренности",
   fallbackNote = "Стоимость определяется индивидуально после анализа вашей ситуации",
   className = ""
 }: PriceBlockProps) => {
