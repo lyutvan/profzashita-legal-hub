@@ -8,6 +8,7 @@ import { toast } from "@/hooks/use-toast";
 import InputMask from "react-input-mask";
 import { Loader2 } from "lucide-react";
 import { submitToWebhook } from "@/lib/webhook";
+import { useLocation } from "react-router-dom";
 
 interface LeadFormProps {
   practiceType?: string;
@@ -15,6 +16,7 @@ interface LeadFormProps {
 }
 
 const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
+  const location = useLocation();
   const CASE_RU: Record<string, string> = {
     criminal: "Уголовное право",
     civil: "Гражданские дела",
@@ -36,6 +38,7 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submitTime, setSubmitTime] = useState<number>(Date.now());
+  const [submitted, setSubmitted] = useState(false);
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -86,6 +89,22 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
     return true;
   };
 
+  const deriveTopic = () => {
+    if (practiceType) return practiceType;
+    if (formData.caseType) return CASE_RU[formData.caseType] ?? formData.caseType;
+    const path = location.pathname.replace(/\/+$/, "") || "/";
+    const parts = path.split("/").filter(Boolean);
+    const slug = parts.at(-1);
+    if (slug) {
+      const readable = decodeURIComponent(slug).replace(/[-_]/g, " ");
+      if (path.startsWith("/services/phys/")) return `Физические лица — ${readable}`;
+      if (path.startsWith("/services/biz/")) return `Юридическим лицам — ${readable}`;
+      if (path.startsWith("/services/criminal/")) return `Уголовные дела — ${readable}`;
+      return readable;
+    }
+    return "Консультация";
+  };
+
   const handleSubmit = async (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
@@ -112,7 +131,7 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
 
     setIsSubmitting(true);
 
-    const topicRu = CASE_RU[formData.caseType] ?? formData.caseType;
+    const topicRu = CASE_RU[formData.caseType] ?? deriveTopic();
 
     try {
       await submitToWebhook({
@@ -122,7 +141,19 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
         topic: topicRu,
         message: formData.message,
       });
-      window.location.href = "/thanks";
+      setSubmitted(true);
+      toast({
+        title: "Заявка отправлена",
+        description: "Мы свяжемся с вами в ближайшее время",
+      });
+      setFormData({
+        name: "",
+        phone: "",
+        email: "",
+        caseType: practiceType || "",
+        message: "",
+      });
+      setSubmitTime(Date.now());
     } catch (error) {
       console.error("Form submission error:", error);
       toast({

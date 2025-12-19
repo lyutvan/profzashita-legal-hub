@@ -5,14 +5,24 @@ import { Textarea } from "./ui/textarea";
 import { Label } from "./ui/label";
 import { toast } from "sonner";
 import { submitToWebhook } from "@/lib/webhook";
+import { useLocation } from "react-router-dom";
 
 const ContactForm = () => {
+  const location = useLocation();
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
     email: "",
     message: "",
   });
+
+  const deriveTopic = () => {
+    const path = location.pathname.replace(/\/+$/, "") || "/";
+    if (path.startsWith("/services/phys/")) return "Физические лица — консультация";
+    if (path.startsWith("/services/biz/")) return "Юридическим лицам — консультация";
+    if (path.startsWith("/services/criminal/")) return "Уголовные дела — консультация";
+    return "Общий запрос";
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -22,9 +32,11 @@ const ContactForm = () => {
         name: formData.name,
         phone: formData.phone,
         email: formData.email,
+        topic: deriveTopic(),
         message: formData.message,
       });
-      window.location.href = "/thanks";
+      toast.success("Заявка отправлена");
+      setFormData({ name: "", phone: "", email: "", message: "" });
     } catch (error) {
       console.error("Form submission error:", error);
       toast.error("Ошибка отправки. Попробуйте еще раз.");

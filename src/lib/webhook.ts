@@ -6,8 +6,7 @@ type Payload = {
   message?: string;
 };
 
-const WEBHOOK_URL =
-  "https://script.google.com/macros/s/AKfycbzj56HWgKtfCfDf5i0CINNJTqCUTQbTYEoLyIk8PxGzNfPqNjf0y0XnarKiwi_MRZofIw/exec";
+export const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzj56HWgKtfCfDf5i0CINNJTqCUTQbTYEoLyIk8PxGzNfPqNjf0y0XnarKiwi_MRZofIw/exec";
 
 export async function submitToWebhook(data: Payload) {
   const body = new URLSearchParams();
@@ -18,7 +17,7 @@ export async function submitToWebhook(data: Payload) {
   if (data.message) body.append("message", data.message);
 
   // Google Apps Script requires no-cors mode for cross-origin requests
-  await fetch(WEBHOOK_URL, {
+  await fetch(WEB_APP_URL, {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
