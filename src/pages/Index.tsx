@@ -76,7 +76,7 @@ const Index = () => {
               Юридическая помощь по делам любой сложности
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
-              Без предоплаты • Индивидуальная стратегия • Конфиденциально
+              Бесплатная консультация · Индивидуальная стратегия · Профессиональный подход
             </p>
             <div className="flex justify-center">
               <Button size="lg" variant="destructive" className="text-lg px-8" asChild>
