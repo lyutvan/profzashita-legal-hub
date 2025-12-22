@@ -9,6 +9,20 @@ import { SITE } from "@/config/site";
 import { Helmet } from "react-helmet";
 import { teamMembers } from "@/data/team";
 
+const formatExperience = (years?: number) => {
+  if (years === undefined) return "";
+  const mod10 = years % 10;
+  const mod100 = years % 100;
+  const word = mod100 >= 11 && mod100 <= 14
+    ? "лет"
+    : mod10 === 1
+      ? "год"
+      : mod10 >= 2 && mod10 <= 4
+        ? "года"
+        : "лет";
+  return `Стаж ${years} ${word}`;
+};
+
 const About = () => {
   return (
     <div className="min-h-screen flex flex-col">
@@ -40,15 +54,19 @@ const About = () => {
         { name: "О коллегии", url: `${SITE.url}o-kollegii/` }
       ]} />
 
-      {teamMembers.map(member => (
-        <PersonSchema 
-          key={member.slug}
-          name={member.name}
-          jobTitle={member.position}
-          image={`${SITE.url}${member.image.split('/').pop()}`}
-          url={`${SITE.url}o-kollegii/#${member.slug}`}
-        />
-      ))}
+      {teamMembers.map(member => {
+        const photoUrl = member.photo ? `${SITE.url}${member.photo.replace(/^\//, "")}` : undefined;
+
+        return (
+          <PersonSchema 
+            key={member.slug}
+            name={member.name}
+            jobTitle={member.role}
+            image={photoUrl}
+            url={`${SITE.url}team/${member.slug}`}
+          />
+        );
+      })}
 
       <Header />
       
@@ -180,21 +198,21 @@ const About = () => {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {teamMembers.map((member, index) => (
-                <Card key={index} id={member.slug} className="border-border hover:shadow-elegant transition-all">
+              {teamMembers.map((member) => (
+                <Card key={member.slug} id={member.slug} className="border-border hover:shadow-elegant transition-all">
                   <CardContent className="pt-6 text-center">
                     <div className="w-48 h-48 rounded-lg overflow-hidden mx-auto mb-4 border-2 border-accent/20">
                       <img 
-                        src={member.image} 
+                        src={member.photo} 
                         alt={member.name} 
                         className="w-full h-full object-cover"
                         loading="lazy"
                       />
                     </div>
                     <h3 className="font-playfair text-xl font-semibold mb-2">{member.name}</h3>
-                    <p className="text-accent font-medium mb-1">{member.position}</p>
-                    <p className="text-sm text-muted-foreground mb-2">{member.experience}</p>
-                    <p className="text-sm text-muted-foreground">{member.specialization}</p>
+                    <p className="text-accent font-medium mb-1">{member.role}</p>
+                    <p className="text-sm text-muted-foreground mb-2">{formatExperience(member.experienceYears)}</p>
+                    <p className="text-sm text-muted-foreground">{member.specializations.join(", ")}</p>
                   </CardContent>
                 </Card>
               ))}
