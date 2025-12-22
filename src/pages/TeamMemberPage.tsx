@@ -29,7 +29,7 @@ const TeamMemberPage = () => {
   const member = slug ? getTeamMemberBySlug(slug) : undefined;
 
   if (!member) {
-    return <Navigate to="/team" replace />;
+    return <Navigate to="/#team" replace />;
   }
 
   const experience = formatExperience(member.experienceYears);

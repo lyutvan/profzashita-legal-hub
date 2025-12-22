@@ -22,7 +22,6 @@ import BizServicePage from "./pages/services/biz/BizServicePage";
 import PhysPage from "./pages/services/PhysPage";
 import BizPage from "./pages/services/BizPage";
 import CriminalPage from "./pages/services/CriminalPage";
-import TeamPage from "./pages/TeamPage";
 import TeamMemberPage from "./pages/TeamMemberPage";
 import { audienceServices } from "@/data/services-audiences";
 import RazvodPage from "./pages/services/phys/RazvodPage";
@@ -197,10 +196,10 @@ const App = () => (
           <Route path="/privacy" element={<Privacy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/thanks" element={<Thanks />} />
-          <Route path="/team" element={<TeamPage />} />
+          <Route path="/team" element={<Navigate to="/#team" replace />} />
           <Route path="/team/:slug" element={<TeamMemberPage />} />
           <Route path="/lawyers/:slug" element={<TeamMemberPage />} />
-          <Route path="/lawyers" element={<Navigate to="/team" replace />} />
+          <Route path="/lawyers" element={<Navigate to="/#team" replace />} />
           
           {/* Audience pages */}
           <Route path="/services/phys" element={<PhysPage />} />
@@ -383,7 +382,7 @@ const App = () => (
           <Route path="/contacts" element={<Navigate to="/kontakty" replace />} />
           <Route path="/practices" element={<Navigate to="/uslugi" replace />} />
           <Route path="/practices/:slug" element={<Navigate to="/uslugi" replace />} />
-          <Route path="/komanda" element={<Navigate to="/team" replace />} />
+          <Route path="/komanda" element={<Navigate to="/#team" replace />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />

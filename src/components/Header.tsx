@@ -47,14 +47,19 @@ const Header = () => {
 
   const navigation = [
     { name: "Кейсы", path: "/keisy" },
-    { name: "Команда", path: "/team" },
+    { name: "Команда", path: "/#team" },
     { name: "Новости", path: "/novosti" },
     { name: "Вопросы и ответы", path: "/faq" },
     { name: "О коллегии", path: "/o-kollegii" },
     { name: "Контакты", path: "/kontakty" },
   ];
 
-  const isActive = (path: string) => location.pathname === path;
+  const isActive = (path: string) => {
+    if (path === "/#team") {
+      return location.pathname === "/" && location.hash === "#team";
+    }
+    return location.pathname === path;
+  };
 
   return (
     <header 
