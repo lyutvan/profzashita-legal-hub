@@ -142,15 +142,6 @@ const TeamMemberPage = () => {
                       </li>
                     ))}
                   </ul>
-                  {practice.length > 0 && (
-                    <div className="flex flex-wrap gap-2 mt-4">
-                      {practice.map((item) => (
-                        <span key={item} className="px-3 py-1 rounded-full bg-muted text-xs border border-border">
-                          {item}
-                        </span>
-                      ))}
-                    </div>
-                  )}
                 </CardContent>
               </Card>
 

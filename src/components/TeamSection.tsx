@@ -68,13 +68,13 @@ const TeamSection = ({
                   {member.experienceText && (
                     <p className="text-sm text-muted-foreground mb-3 text-center">{member.experienceText}</p>
                   )}
-                  <div className="flex flex-wrap gap-2 justify-center mb-4">
+                  <ul className="space-y-1 text-sm text-muted-foreground text-center mb-4">
                     {specs.map((spec) => (
-                      <span key={spec} className="px-3 py-1 text-xs rounded-full bg-muted text-foreground/80 border border-border">
-                        {spec}
-                      </span>
+                      <li key={spec} className="leading-relaxed">
+                        • {spec}
+                      </li>
                     ))}
-                  </div>
+                  </ul>
                   <div className="mt-auto flex justify-center">
                     <Button
                       asChild
