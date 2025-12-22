@@ -8,20 +8,7 @@ import { PersonSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import { Helmet } from "react-helmet";
 import { teamMembers } from "@/data/team";
-
-const formatExperience = (years?: number) => {
-  if (years === undefined) return "";
-  const mod10 = years % 10;
-  const mod100 = years % 100;
-  const word = mod100 >= 11 && mod100 <= 14
-    ? "лет"
-    : mod10 === 1
-      ? "год"
-      : mod10 >= 2 && mod10 <= 4
-        ? "года"
-        : "лет";
-  return `Стаж ${years} ${word}`;
-};
+import TeamSection from "@/components/TeamSection";
 
 const About = () => {
   return (
@@ -186,39 +173,10 @@ const About = () => {
         </section>
 
         {/* Team Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
-                Наша <span className="text-accent">команда</span>
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Профессионалы с многолетним опытом в различных областях права
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {teamMembers.map((member) => (
-                <Card key={member.slug} id={member.slug} className="border-border hover:shadow-elegant transition-all">
-                  <CardContent className="pt-6 text-center">
-                    <div className="w-48 h-48 rounded-lg overflow-hidden mx-auto mb-4 border-2 border-accent/20">
-                      <img 
-                        src={member.photo} 
-                        alt={member.name} 
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                    <h3 className="font-playfair text-xl font-semibold mb-2">{member.name}</h3>
-                    <p className="text-accent font-medium mb-1">{member.role}</p>
-                    <p className="text-sm text-muted-foreground mb-2">{formatExperience(member.experienceYears)}</p>
-                    <p className="text-sm text-muted-foreground">{member.specializations.join(", ")}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
+        <TeamSection 
+          title="Наша команда" 
+          subtitle="Профессионалы с многолетним опытом в различных областях права"
+        />
 
         {/* Achievements Section */}
         <section className="py-20 bg-muted/30">

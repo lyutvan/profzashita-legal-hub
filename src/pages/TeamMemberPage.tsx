@@ -10,20 +10,6 @@ import { getTeamMemberBySlug } from "@/data/team";
 import { SITE } from "@/config/site";
 import { Phone, Mail, MapPin, Briefcase, CheckCircle2, BookOpen, Languages } from "lucide-react";
 
-const formatExperience = (years?: number) => {
-  if (years === undefined) return "";
-  const mod10 = years % 10;
-  const mod100 = years % 100;
-  const word = mod100 >= 11 && mod100 <= 14
-    ? "лет"
-    : mod10 === 1
-      ? "год"
-      : mod10 >= 2 && mod10 <= 4
-        ? "года"
-        : "лет";
-  return `Стаж ${years} ${word}`;
-};
-
 const TeamMemberPage = () => {
   const { slug } = useParams();
   const member = slug ? getTeamMemberBySlug(slug) : undefined;
@@ -32,14 +18,18 @@ const TeamMemberPage = () => {
     return <Navigate to="/#team" replace />;
   }
 
-  const experience = formatExperience(member.experienceYears);
+  const experience = member.experienceText;
   const city = member.city ?? SITE.address.city;
   const phone = member.phone ?? SITE.phone;
   const email = member.email ?? SITE.email;
-  const description = member.description ?? `Проводит консультации и представляет интересы клиентов по направлениям: ${member.specializations.join(", ")}.`;
+  const about = member.about;
   const caseList = member.cases ?? [];
   const education = member.education ?? [];
   const languages = member.languages ?? [];
+  const competencies = member.competencies ?? [];
+  const practice = member.practice ?? [];
+  const publications = member.publications ?? [];
+  const specializationItems = Array.from(new Set([...(member.specializations || []), ...(practice || [])]));
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -61,7 +51,7 @@ const TeamMemberPage = () => {
             <Breadcrumbs 
               items={[
                 { label: "Главная", path: "/" },
-                { label: "Команда", path: "/team" },
+                { label: "Команда", path: "/#team" },
                 { label: member.name }
               ]}
             />
@@ -71,6 +61,9 @@ const TeamMemberPage = () => {
                 <p className="text-white/70 uppercase tracking-[0.08em] text-sm">Профиль адвоката</p>
                 <h1 className="font-playfair text-4xl md:text-5xl font-bold leading-tight">{member.name}</h1>
                 <p className="text-lg text-[#C9A227] font-semibold">{member.role}</p>
+                {experience && (
+                  <p className="text-white/80 text-base">{experience}</p>
+                )}
 
                 <div className="flex flex-wrap gap-3 text-sm text-white/90">
                   <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-white/10 border border-white/10">
@@ -142,13 +135,22 @@ const TeamMemberPage = () => {
                 </CardHeader>
                 <CardContent>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {member.specializations.map((spec) => (
+                    {specializationItems.map((spec) => (
                       <li key={spec} className="flex items-start gap-2 text-sm">
                         <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
                         <span>{spec}</span>
                       </li>
                     ))}
                   </ul>
+                  {practice.length > 0 && (
+                    <div className="flex flex-wrap gap-2 mt-4">
+                      {practice.map((item) => (
+                        <span key={item} className="px-3 py-1 rounded-full bg-muted text-xs border border-border">
+                          {item}
+                        </span>
+                      ))}
+                    </div>
+                  )}
                 </CardContent>
               </Card>
 
@@ -156,13 +158,36 @@ const TeamMemberPage = () => {
                 <CardHeader>
                   <CardTitle className="flex items-center gap-2 text-xl">
                     <BookOpen className="h-5 w-5 text-accent" />
-                    Чем поможем
+                    О адвокате
                   </CardTitle>
                 </CardHeader>
                 <CardContent className="space-y-3 text-muted-foreground leading-relaxed">
-                  {description.split("\n").map((paragraph, index) => (
+                  {about.split("\n").filter(Boolean).map((paragraph, index) => (
                     <p key={index}>{paragraph}</p>
                   ))}
+                </CardContent>
+              </Card>
+
+              <Card className="border-border">
+                <CardHeader>
+                  <CardTitle className="flex items-center gap-2 text-xl">
+                    <CheckCircle2 className="h-5 w-5 text-accent" />
+                    Чем поможем
+                  </CardTitle>
+                </CardHeader>
+                <CardContent>
+                  {competencies.length > 0 ? (
+                    <ul className="space-y-2 text-sm">
+                      {competencies.map((item, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  ) : (
+                    <p className="text-muted-foreground">Компетенции будут уточнены менеджером при консультации.</p>
+                  )}
                 </CardContent>
               </Card>
 
@@ -213,6 +238,33 @@ const TeamMemberPage = () => {
                   )}
                 </CardContent>
               </Card>
+
+              {publications.length > 0 && (
+                <Card className="border-border">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-xl">
+                      <BookOpen className="h-5 w-5 text-accent" />
+                      Публикации
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="space-y-2 text-sm">
+                      {publications.map((pub, idx) => (
+                        <li key={idx} className="flex items-start gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
+                          {pub.url ? (
+                            <a href={pub.url} className="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+                              {pub.title}
+                            </a>
+                          ) : (
+                            <span>{pub.title}</span>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              )}
             </div>
 
             <div className="space-y-6">

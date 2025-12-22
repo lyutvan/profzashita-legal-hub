@@ -6,7 +6,6 @@ import LeadForm from "@/components/LeadForm";
 import Testimonials from "@/components/Testimonials";
 import { OrganizationSchema, WebSiteSchema, ReviewsSchema } from "@/components/JsonLd";
 import { testimonials } from "@/data/testimonials";
-import { teamMembers } from "@/data/team";
 import { serviceCategories } from "@/data/services";
 import { Shield, Target, Award, Users, CheckCircle, Phone } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -21,20 +20,7 @@ import lawyerWritingImg from "@/assets/legal/lawyer-writing.jpg";
 import themisDeskImg from "@/assets/legal/themis-desk.jpg";
 import { Helmet } from "react-helmet";
 import { SITE } from "@/config/site";
-
-const formatExperience = (years?: number) => {
-  if (years === undefined) return "";
-  const mod10 = years % 10;
-  const mod100 = years % 100;
-  const word = mod100 >= 11 && mod100 <= 14
-    ? "лет"
-    : mod10 === 1
-      ? "год"
-      : mod10 >= 2 && mod10 <= 4
-        ? "года"
-        : "лет";
-  return `Стаж ${years} ${word}`;
-};
+import TeamSection from "@/components/TeamSection";
 
 const Index = () => {
   return (
@@ -411,68 +397,7 @@ const Index = () => {
         </section>
 
         {/* Team Section */}
-        <section id="team" className="relative py-20 overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img 
-              src={lawyerConsultationImg} 
-              alt="" 
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-background/90" />
-          </div>
-          <div className="container mx-auto px-4 relative z-10">
-            <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4">
-                Наша <span className="text-accent">команда</span>
-              </h2>
-              <p className="text-lg text-muted-foreground">
-                Партнёры и адвокаты, которые лично ведут дела клиентов: от срочных выездов до сложных процессов.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-              {teamMembers.map((member) => {
-                const specs = member.specializations.slice(0, 3);
-                return (
-                  <Card key={member.slug} className="border-border hover:shadow-elegant transition-all h-full flex flex-col">
-                    <CardContent className="pt-6 flex flex-col h-full">
-                      <div className="w-48 h-48 rounded-lg overflow-hidden mx-auto mb-4 border-2 border-accent/20">
-                        <img 
-                          src={member.photo} 
-                          alt={member.name} 
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <h3 className="font-playfair text-xl font-semibold mb-1 text-center">{member.name}</h3>
-                      <p className="text-accent font-medium mb-1 text-center">{member.role}</p>
-                      <p className="text-sm text-muted-foreground mb-3 text-center">{formatExperience(member.experienceYears)}</p>
-                      <div className="flex flex-wrap gap-2 justify-center mb-4">
-                        {specs.map((spec) => (
-                          <span key={spec} className="px-3 py-1 text-xs rounded-full bg-muted text-foreground/80 border border-border">
-                            {spec}
-                          </span>
-                        ))}
-                      </div>
-                      <div className="mt-auto flex justify-center">
-                        <Button 
-                          asChild 
-                          className="bg-[#C9A227] hover:bg-[#B08E1F] text-white min-w-[160px]"
-                        >
-                          <Link to={`/team/${member.slug}`}>
-                            Подробнее
-                          </Link>
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-          </div>
-        </section>
+        <TeamSection id="team" backgroundImage={lawyerConsultationImg} />
 
         {/* Testimonials Section */}
         <Testimonials />
