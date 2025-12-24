@@ -138,7 +138,7 @@ const FAQ = () => {
       <main className="flex-1">
         {/* Hero with light texture */}
         <PageHero 
-          backgroundImage={"/faq-hero.jpg"}
+          backgroundImage={"/images/faq-hero.jpg"}
           overlay="linear-gradient(180deg, rgba(7,16,31,0.78) 0%, rgba(7,16,31,0.64) 45%, rgba(7,16,31,0.48) 100%)"
         >
           <Breadcrumbs items={[{ label: "Вопросы и ответы" }]} />
