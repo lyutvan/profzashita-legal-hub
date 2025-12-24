@@ -6,7 +6,6 @@ import LeadForm from "@/components/LeadForm";
 import Testimonials from "@/components/Testimonials";
 import { OrganizationSchema, WebSiteSchema, ReviewsSchema } from "@/components/JsonLd";
 import { testimonials } from "@/data/testimonials";
-import { serviceCategories } from "@/data/services";
 import { Shield, Target, Award, Users, CheckCircle, Phone } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
@@ -21,8 +20,13 @@ import themisDeskImg from "@/assets/legal/themis-desk.jpg";
 import { Helmet } from "react-helmet";
 import { SITE } from "@/config/site";
 import TeamSection from "@/components/TeamSection";
+import { getTopCategories } from "@/data/services-audiences";
 
 const Index = () => {
+  const physCategories = getTopCategories('phys', 5);
+  const bizCategories = getTopCategories('biz', 6);
+  const criminalCategories = getTopCategories('criminal', 6);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -243,51 +247,17 @@ const Index = () => {
                     Защита прав граждан в различных сферах
                   </p>
                   <ul className="space-y-2">
-                    <li>
-                      <Link
-                        to="/services/phys#Уголовная защита"
-                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                      >
-                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        Уголовные дела
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/phys#Гражданские дела"
-                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                      >
-                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        Гражданские дела
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/phys#Семейные споры"
-                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                      >
-                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        Семейные споры
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/phys#Гражданские дела"
-                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                      >
-                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        Жилищные дела
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/phys#Гражданские дела"
-                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                      >
-                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        Наследство
-                      </Link>
-                    </li>
+                    {physCategories.map((category) => (
+                      <li key={category.slug}>
+                        <Link
+                          to={`/services/phys#${category.slug}`}
+                          className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                        >
+                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                          {category.title}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
@@ -301,54 +271,20 @@ const Index = () => {
                     Корпоративное обслуживание бизнеса
                   </p>
                   <ul className="space-y-2">
-                    <li>
-                      <Link
-                        to="/services/biz#Судебная защита"
-                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                      >
-                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        Арбитражные споры
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/biz#Договорная работа"
-                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                      >
-                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        Договорная работа и претензии
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/biz#Налоговое право"
-                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                      >
-                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        Налоговые споры и проверки
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/biz#Взыскание долгов"
-                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                      >
-                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        Взыскание дебиторской задолженности
-                      </Link>
-                    </li>
-                    <li>
-                      <Link
-                        to="/services/biz#Банкротство"
-                        className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                      >
-                        <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        Банкротство и субсидиарная ответственность
-                    </Link>
-                  </li>
-                </ul>
-              </CardContent>
-            </Card>
+                    {bizCategories.map((category) => (
+                      <li key={category.slug}>
+                        <Link
+                          to={`/services/biz#${category.slug}`}
+                          className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                        >
+                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                          {category.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
 
               <Card className="border-border hover:shadow-elegant transition-all group">
                 <CardContent className="pt-6">
@@ -359,21 +295,14 @@ const Index = () => {
                     Защита на всех стадиях процесса
                   </p>
                   <ul className="space-y-2">
-                    {[
-                      "Защита на следствии",
-                      "Суд первой инстанции",
-                      "Апелляция и кассация",
-                      "Экономические составы",
-                      "Наркотики (ст. 228)",
-                      "Должностные преступления"
-                    ].map((item) => (
-                      <li key={item}>
+                    {criminalCategories.map((category) => (
+                      <li key={category.slug}>
                         <Link
-                          to="/services/criminal"
+                          to={`/services/criminal#${category.slug}`}
                           className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                         >
                           <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                          {item}
+                          {category.title}
                         </Link>
                       </li>
                     ))}

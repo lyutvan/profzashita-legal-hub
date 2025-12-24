@@ -1,4 +1,5 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
+import { useEffect } from "react";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -7,15 +8,25 @@ import ServiceCallBanner from "@/components/ServiceCallBanner";
 import ServiceBannerCard from "@/components/ServiceBannerCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getServicesByCategory, audienceConfig } from "@/data/services-audiences";
+import { getCategoriesForAudience, audienceConfig } from "@/data/services-audiences";
 import { CheckCircle2, ArrowRight } from "lucide-react";
 import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 import { getServiceCardImage } from "@/lib/serviceCardImages";
 
 const PhysPage = () => {
-  const servicesByCategory = getServicesByCategory('phys');
-  const totalServices = Object.values(servicesByCategory).flat().length;
+  const categories = getCategoriesForAudience('phys');
+  const totalServices = categories.reduce((sum, category) => sum + category.services.length, 0);
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.hash) return;
+    const targetId = decodeURIComponent(location.hash.replace('#', ''));
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }, [location]);
 
   const breadcrumbSchema = {
     "@context": "https://schema.org",
@@ -98,25 +109,25 @@ const PhysPage = () => {
         {/* Services by Category */}
         <section className="py-16">
           <div className="container mx-auto px-4">
-            {Object.entries(servicesByCategory).map(([category, services]) => {
+            {categories.map(({ title, slug, services }) => {
               const seed = "phys";
 
               return (
-              <div key={category} id={category} className="mb-12 scroll-mt-20">
-                <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
-                  {category}
-                </h2>
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {services.map((service) => (
-                    <ServiceBannerCard
-                      key={service.slug}
-                      title={service.title}
-                      to={service.path}
-                      imageSrc={getServiceCardImage(service.slug, seed)}
-                    />
-                  ))}
+                <div key={slug} id={slug} className="mb-12 scroll-mt-20">
+                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
+                    {title}
+                  </h2>
+                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {services.map((service) => (
+                      <ServiceBannerCard
+                        key={service.slug}
+                        title={service.title}
+                        to={service.path}
+                        imageSrc={getServiceCardImage(service.slug, seed)}
+                      />
+                    ))}
+                  </div>
                 </div>
-              </div>
               );
             })}
           </div>

@@ -10,6 +10,13 @@ export interface AudienceService {
   description?: string; // Описание услуги
 }
 
+export interface ServiceCategory {
+  title: string;
+  slug: string;
+  services: AudienceService[];
+  priority: number;
+}
+
 export const audienceServices: AudienceService[] = [
   // ========== УГОЛОВНЫЕ ДЕЛА ==========
   {
@@ -1683,6 +1690,97 @@ export const getServicesByCategory = (audience: 'phys' | 'biz' | 'criminal') => 
   });
   
   return grouped;
+};
+
+// ===== Категории и slug-и =====
+const CATEGORY_SLUG_OVERRIDES: Record<string, string> = {
+  'семейные споры': 'semeynye-spory',
+  'жилищные споры': 'zhilishchnye-spory',
+  'ущерб имуществу': 'ushcherb-imushchestvu',
+  'наследственные дела': 'nasledstvennye-dela',
+  'взыскание долгов и договорные споры': 'vzyskanie-dolgov-i-dogovornye-spory',
+  'защита прав потребителей': 'zashchita-prav-potrebiteley',
+  'дтп, страхование, вред здоровью': 'dtp-strahovanie-vred-zdorovyu',
+  'трудовые споры': 'trudovye-spory',
+  'банковские и кредитные споры': 'bankovskie-i-kreditnye-spory',
+  'исполнительное производство': 'ispolnitelnoe-proizvodstvo',
+  'земельные споры': 'zemelnye-spory',
+  'административные споры': 'administrativnye-spory',
+  'банкротство': 'bankrotstvo',
+  'документы и судебное сопровождение': 'dokumenty-i-sudebnoe-soprovozhdenie',
+  'абонентское юридическое сопровождение бизнеса': 'abonentskoe-soprovozhdenie-biznesa',
+  'взыскание дебиторской задолженности': 'vzyskanie-debitorskoy-zadolzhennosti',
+  'арбитражные споры (b2b)': 'arbitrazhnye-spory-b2b',
+  'налоговые споры и проверки': 'nalogovye-spory-i-proverki',
+  'банкротство и субсидиарная ответственность': 'bankrotstvo-i-subsidiarnaya',
+  'разблокировка счёта и 115‑фз': 'razblokirovka-scheta-i-115-fz',
+  'договоры и сделки': 'dogovory-i-sdelki',
+  'корпоративное право и конфликты собственников': 'korporativnoe-pravo-i-konflikty',
+  'интеллектуальная собственность и защита бренда': 'intellektualnaya-sobstvennost-i-brend',
+  'госзакупки и фас': 'goszakupki-i-fas',
+  'исполнительное производство и приставы': 'ispolnitelnoe-proizvodstvo-i-pristavy',
+  'трудовое право для работодателя': 'trudovoe-pravo-dlya-rabotodatelya',
+  'преступления против жизни и здоровья (глава 16 ук рф)': 'glava-16-zhizn-i-zdorovye',
+  'преступления против свободы, чести и достоинства (глава 17 ук рф)': 'glava-17-svoboda-chest-dostoinstvo',
+  'преступления против половой неприкосновенности (глава 18 ук рф)': 'glava-18-polovaya-neprikosnovennost',
+  'преступления против собственности (глава 21 ук рф)': 'glava-21-sobstvennost',
+  'преступления в сфере экономической деятельности (глава 22 ук рф)': 'glava-22-ekonomicheskie',
+  'преступления против общественной безопасности (глава 24 ук рф)': 'glava-24-obshchestvennaya-bezopasnost',
+  'преступления против здоровья населения (глава 25 ук рф)': 'glava-25-zdorove-naseleniya',
+  'преступления против государственной власти (глава 30 ук рф)': 'glava-30-gosudarstvennaya-vlast',
+  'преступления против порядка управления (глава 32 ук рф)': 'glava-32-poryadok-upravleniya',
+};
+
+const translitMap: Record<string, string> = {
+  'а': 'a','б': 'b','в': 'v','г': 'g','д': 'd','е': 'e','ё': 'e','ж': 'zh','з': 'z','и': 'i','й': 'y','к': 'k','л': 'l','м': 'm','н': 'n','о': 'o','п': 'p','р': 'r','с': 's','т': 't','у': 'u','ф': 'f','х': 'h','ц': 'ts','ч': 'ch','ш': 'sh','щ': 'shch','ъ': '','ы': 'y','ь': '','э': 'e','ю': 'yu','я': 'ya'
+};
+
+const slugifyCategoryTitle = (value: string) => {
+  const key = value.trim().toLowerCase();
+  if (CATEGORY_SLUG_OVERRIDES[key]) return CATEGORY_SLUG_OVERRIDES[key];
+
+  const slug = key
+    .split('')
+    .map((char) => {
+      if (translitMap[char]) return translitMap[char];
+      if (/[a-z0-9]/.test(char)) return char;
+      if (char === ' ' || char === '_' || char === '-' || char === '–' || char === '—' || char === '‑') return '-';
+      return '-';
+    })
+    .join('')
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
+
+  return slug || 'category';
+};
+
+export const getCategoriesForAudience = (audience: 'phys' | 'biz' | 'criminal'): ServiceCategory[] => {
+  const services = getServicesByAudience(audience);
+  const grouped = new Map<string, ServiceCategory>();
+
+  services.forEach((service) => {
+    const title = service.category || 'Другое';
+    const normalizedKey = title.trim().toLowerCase();
+    const existing = grouped.get(normalizedKey);
+    if (existing) {
+      existing.services.push(service);
+      existing.priority = Math.min(existing.priority, service.priority);
+      return;
+    }
+
+    grouped.set(normalizedKey, {
+      title,
+      slug: slugifyCategoryTitle(title),
+      services: [service],
+      priority: service.priority,
+    });
+  });
+
+  return Array.from(grouped.values()).sort((a, b) => a.priority - b.priority);
+};
+
+export const getTopCategories = (audience: 'phys' | 'biz' | 'criminal', limit: number = 6) => {
+  return getCategoriesForAudience(audience).slice(0, limit);
 };
 
 export const audienceConfig = {
