@@ -182,7 +182,15 @@ const ServiceTemplate = ({
               : undefined
           }
         >
-          {heroImageSrc && <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-black/40 to-black/15" aria-hidden="true" />}
+          {heroImageSrc && (
+            <div 
+              className="absolute inset-0 pointer-events-none" 
+              aria-hidden="true"
+              style={{
+                background: "linear-gradient(180deg, rgba(5,12,28,0.9) 0%, rgba(11,31,58,0.7) 45%, rgba(11,31,58,0.28) 100%)"
+              }}
+            />
+          )}
           <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs items={[
               { label: "Услуги", path: "/uslugi" },

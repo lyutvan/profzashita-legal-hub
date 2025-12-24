@@ -67,7 +67,12 @@ const CriminalPage = () => {
           }}
         >
           {/* Dark overlay */}
-          <div className="absolute inset-0 bg-black/75" />
+          <div 
+            className="absolute inset-0 pointer-events-none" 
+            style={{
+              background: "linear-gradient(180deg, rgba(5,12,28,0.92) 0%, rgba(11,31,58,0.72) 48%, rgba(11,31,58,0.32) 100%)"
+            }}
+          />
           <div className="container mx-auto px-4 relative z-10">
             <Breadcrumbs 
               items={[
