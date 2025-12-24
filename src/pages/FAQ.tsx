@@ -7,6 +7,8 @@ import { HelpCircle } from "lucide-react";
 import LeadForm from "@/components/LeadForm";
 import { FAQPageSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
+import PageHero from "@/components/PageHero";
+import faqHero from "@/assets/faq/faq-hero.svg";
 
 const faqCategories = [
   {
@@ -136,24 +138,20 @@ const FAQ = () => {
       
       <main className="flex-1">
         {/* Hero with light texture */}
-        <section className="relative py-16 overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary/90" />
-          <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')]" />
-          <div className="container mx-auto px-4 relative z-10">
-            <Breadcrumbs items={[{ label: "Вопросы и ответы" }]} />
-            <div className="max-w-3xl mt-6">
-              <div className="flex items-center gap-3 mb-4">
-                <HelpCircle className="h-10 w-10 text-accent" />
-                <h1 className="font-playfair text-4xl md:text-5xl font-bold text-white">
-                  Вопросы и ответы
-                </h1>
-              </div>
-              <p className="text-lg text-white/90">
-                Здесь собраны ответы на самые частые вопросы о работе нашей коллегии
-              </p>
+        <PageHero backgroundImage={faqHero}>
+          <Breadcrumbs items={[{ label: "Вопросы и ответы" }]} />
+          <div className="max-w-3xl mt-6">
+            <div className="flex items-center gap-3 mb-4">
+              <HelpCircle className="h-10 w-10 text-accent" />
+              <h1 className="font-playfair text-4xl md:text-5xl font-bold text-white">
+                Вопросы и ответы
+              </h1>
             </div>
+            <p className="text-lg text-white/90">
+              Здесь собраны ответы на самые частые вопросы о работе нашей коллегии
+            </p>
           </div>
-        </section>
+        </PageHero>
 
         {/* FAQ Content */}
         <section className="py-16">
