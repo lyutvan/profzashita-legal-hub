@@ -233,7 +233,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 mb-12 max-w-4xl mx-auto">
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
               <Card className="border-border hover:shadow-elegant transition-all group">
                 <CardContent className="pt-6">
                   <h3 className="font-playfair text-2xl font-bold mb-2 text-accent">
@@ -344,8 +344,39 @@ const Index = () => {
                       >
                         <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
                         Банкротство и субсидиарная ответственность
-                      </Link>
-                    </li>
+                    </Link>
+                  </li>
+                </ul>
+              </CardContent>
+            </Card>
+
+              <Card className="border-border hover:shadow-elegant transition-all group">
+                <CardContent className="pt-6">
+                  <h3 className="font-playfair text-2xl font-bold mb-2 text-accent">
+                    Уголовные дела
+                  </h3>
+                  <p className="text-sm text-muted-foreground mb-4">
+                    Защита на всех стадиях процесса
+                  </p>
+                  <ul className="space-y-2">
+                    {[
+                      "Защита на следствии",
+                      "Суд первой инстанции",
+                      "Апелляция и кассация",
+                      "Экономические составы",
+                      "Наркотики (ст. 228)",
+                      "Должностные преступления"
+                    ].map((item) => (
+                      <li key={item}>
+                        <Link
+                          to="/services/criminal"
+                          className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                        >
+                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
+                          {item}
+                        </Link>
+                      </li>
+                    ))}
                   </ul>
                 </CardContent>
               </Card>
