@@ -85,12 +85,12 @@ const TeamMemberPage = () => {
                 </div>
               </div>
 
-              <div className="relative w-full max-w-[280px] md:max-w-[320px] aspect-square rounded-lg overflow-hidden shadow-elegant border-2 border-accent/25 bg-white/5 mx-auto md:mx-0">
+              <div className="relative w-full max-w-[320px] md:max-w-[420px] aspect-square md:aspect-[4/5] rounded-xl overflow-hidden shadow-elegant border-2 border-accent/25 bg-white/5 mx-auto md:mx-0">
                 {member.photo ? (
                   <img 
                     src={member.photo} 
                     alt={member.name} 
-                    className="w-full h-full object-cover"
+                    className="w-full h-full object-cover object-center"
                     loading="lazy"
                   />
                 ) : (
@@ -98,9 +98,6 @@ const TeamMemberPage = () => {
                     {member.name.charAt(0)}
                   </div>
                 )}
-                <div className="absolute bottom-3 left-3 bg-white/15 text-white text-sm px-3 py-1.5 rounded-full border border-white/20">
-                  Член коллегии «Профзащита»
-                </div>
               </div>
             </div>
           </div>
