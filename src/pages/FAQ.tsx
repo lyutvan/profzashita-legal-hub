@@ -139,7 +139,7 @@ const FAQ = () => {
         {/* Hero with light texture */}
         <PageHero 
           backgroundImage={"/images/faq-hero.jpg"}
-          overlay="linear-gradient(180deg, rgba(7,16,31,0.78) 0%, rgba(7,16,31,0.64) 45%, rgba(7,16,31,0.48) 100%)"
+          overlay="linear-gradient(180deg, rgba(7,16,31,0.65) 0%, rgba(7,16,31,0.55) 100%)"
         >
           <Breadcrumbs items={[{ label: "Вопросы и ответы" }]} />
           <div className="max-w-3xl mt-6">
