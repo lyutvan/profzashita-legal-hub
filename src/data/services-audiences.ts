@@ -1735,6 +1735,11 @@ const translitMap: Record<string, string> = {
   'а': 'a','б': 'b','в': 'v','г': 'g','д': 'd','е': 'e','ё': 'e','ж': 'zh','з': 'z','и': 'i','й': 'y','к': 'k','л': 'l','м': 'm','н': 'n','о': 'o','п': 'p','р': 'r','с': 's','т': 't','у': 'u','ф': 'f','х': 'h','ц': 'ts','ч': 'ch','ш': 'sh','щ': 'shch','ъ': '','ы': 'y','ь': '','э': 'e','ю': 'yu','я': 'ya'
 };
 
+const formatCategoryTitle = (value: string) => {
+  // Убираем упоминание главы УК РФ в скобках
+  return value.replace(/\s*\(Глава[^)]*\)/gi, '').trim();
+};
+
 const slugifyCategoryTitle = (value: string) => {
   const key = value.trim().toLowerCase();
   if (CATEGORY_SLUG_OVERRIDES[key]) return CATEGORY_SLUG_OVERRIDES[key];
@@ -1759,8 +1764,8 @@ export const getCategoriesForAudience = (audience: 'phys' | 'biz' | 'criminal'):
   const grouped = new Map<string, ServiceCategory>();
 
   services.forEach((service) => {
-    const title = service.category || 'Другое';
-    const normalizedKey = title.trim().toLowerCase();
+    const rawTitle = service.category || 'Другое';
+    const normalizedKey = rawTitle.trim().toLowerCase();
     const existing = grouped.get(normalizedKey);
     if (existing) {
       existing.services.push(service);
@@ -1769,8 +1774,8 @@ export const getCategoriesForAudience = (audience: 'phys' | 'biz' | 'criminal'):
     }
 
     grouped.set(normalizedKey, {
-      title,
-      slug: slugifyCategoryTitle(title),
+      title: formatCategoryTitle(rawTitle),
+      slug: slugifyCategoryTitle(rawTitle),
       services: [service],
       priority: service.priority,
     });
