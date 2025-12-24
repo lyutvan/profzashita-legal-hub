@@ -28,7 +28,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: "Лютиков Иван Иванович",
     slug: "lyutikov",
-    role: "Партнёр, председатель коллегии",
+    role: "Председатель коллегии",
     experienceText: "Стаж 26 лет",
     specializations: [
       "Уголовная защита в резонансных делах",
@@ -66,7 +66,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: "Рыженко Дмитрий Петрович",
     slug: "ryzhenko",
-    role: "Старший юрист",
+    role: "Юрист",
     experienceText: "Стаж 23 года",
     specializations: [
       "Гражданские и договорные споры",
