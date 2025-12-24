@@ -8,7 +8,6 @@ import LeadForm from "@/components/LeadForm";
 import { FAQPageSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import PageHero from "@/components/PageHero";
-import faqHero from "@/assets/faq/faq-hero.svg";
 
 const faqCategories = [
   {
@@ -138,7 +137,10 @@ const FAQ = () => {
       
       <main className="flex-1">
         {/* Hero with light texture */}
-        <PageHero backgroundImage={faqHero}>
+        <PageHero 
+          backgroundImage={"/faq-hero.jpg"}
+          overlay="linear-gradient(180deg, rgba(7,16,31,0.78) 0%, rgba(7,16,31,0.64) 45%, rgba(7,16,31,0.48) 100%)"
+        >
           <Breadcrumbs items={[{ label: "Вопросы и ответы" }]} />
           <div className="max-w-3xl mt-6">
             <div className="flex items-center gap-3 mb-4">
