@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import LeadForm from "@/components/LeadForm";
 import { getTeamMemberBySlug } from "@/data/team";
 import { SITE } from "@/config/site";
-import { Phone, Mail, MapPin, Briefcase, CheckCircle2, BookOpen, Languages } from "lucide-react";
+import { Phone, MapPin, Briefcase, CheckCircle2, BookOpen } from "lucide-react";
 
 const TeamMemberPage = () => {
   const { slug } = useParams();
@@ -25,7 +25,6 @@ const TeamMemberPage = () => {
   const about = member.about;
   const caseList = member.cases ?? [];
   const education = member.education ?? [];
-  const languages = member.languages ?? [];
   const competencies = member.competencies ?? [];
   const practice = member.practice ?? [];
   const publications = member.publications ?? [];
@@ -84,24 +83,9 @@ const TeamMemberPage = () => {
                     </span>
                   ))}
                 </div>
-
-                <div className="flex flex-wrap gap-3 pt-2">
-                  <Button asChild className="bg-[#C9A227] hover:bg-[#B08E1F] text-white">
-                    <a href={`tel:${phone.replace(/[^+\d]/g, "")}`}>
-                      <Phone className="mr-2 h-4 w-4" />
-                      Позвонить
-                    </a>
-                  </Button>
-                  <Button asChild variant="outline" className="border-white/30 text-white hover:bg-white/10">
-                    <a href={`mailto:${email}`}>
-                      <Mail className="mr-2 h-4 w-4" />
-                      Написать
-                    </a>
-                  </Button>
-                </div>
               </div>
 
-              <div className="relative h-64 md:h-72 rounded-2xl overflow-hidden shadow-elegant border border-white/10">
+              <div className="relative w-full max-w-[280px] md:max-w-[320px] aspect-square rounded-lg overflow-hidden shadow-elegant border-2 border-accent/25 bg-white/5 mx-auto md:mx-0">
                 {member.photo ? (
                   <img 
                     src={member.photo} 
@@ -114,8 +98,7 @@ const TeamMemberPage = () => {
                     {member.name.charAt(0)}
                   </div>
                 )}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/55 via-black/25 to-transparent" />
-                <div className="absolute bottom-4 left-4 bg-white/15 text-white text-sm px-3 py-1.5 rounded-full border border-white/20">
+                <div className="absolute bottom-3 left-3 bg-white/15 text-white text-sm px-3 py-1.5 rounded-full border border-white/20">
                   Член коллегии «Профзащита»
                 </div>
               </div>
@@ -283,21 +266,6 @@ const TeamMemberPage = () => {
                     <div className="space-y-1">
                       <p className="text-sm text-muted-foreground">Номер в реестре адвокатов</p>
                       <p className="font-medium">{member.reesterNumber}</p>
-                    </div>
-                  )}
-                  {languages.length > 0 && (
-                    <div className="space-y-2">
-                      <p className="text-sm text-muted-foreground flex items-center gap-2">
-                        <Languages className="h-4 w-4 text-accent" />
-                        Языки
-                      </p>
-                      <div className="flex flex-wrap gap-2">
-                        {languages.map((lang) => (
-                          <span key={lang} className="px-3 py-1 rounded-full bg-muted text-sm border border-border">
-                            {lang}
-                          </span>
-                        ))}
-                      </div>
                     </div>
                   )}
                   <div className="flex flex-col gap-3 pt-2">
