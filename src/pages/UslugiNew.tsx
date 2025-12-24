@@ -5,10 +5,14 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getTopServices, audienceConfig } from "@/data/services-audiences";
+import { getTopCategories, audienceConfig } from "@/data/services-audiences";
 import { Shield, Clock, Users, Award, CheckCircle2, TrendingUp, Phone, UserCircle, Building2, Scale } from "lucide-react";
 
 const UslugiNew = () => {
+  const physCategories = getTopCategories('phys', 8);
+  const bizCategories = getTopCategories('biz', 8);
+  const criminalCategories = getTopCategories('criminal', 8);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -118,18 +122,18 @@ const UslugiNew = () => {
                 <CardContent className="flex-1 flex flex-col">
                   <div className="mb-4 text-sm text-muted-foreground">
                     <span className="font-semibold text-foreground">
-                      {getTopServices('phys', 100).length}
+                      {physCategories.reduce((sum, cat) => sum + cat.services.length, 0)}
                     </span> специализаций
                   </div>
                   <ul className="space-y-2 mb-6">
-                    {getTopServices('phys', 5).map((service) => (
-                      <li key={service.slug} className="flex items-start gap-2">
+                    {physCategories.map((category) => (
+                      <li key={category.slug} className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#C9A227] flex-shrink-0 mt-0.5" />
                         <Link
-                          to={service.path}
+                          to={`/services/phys#${category.slug}`}
                           className="text-sm text-muted-foreground hover:text-[#C9A227] transition-colors"
                         >
-                          {service.title}
+                          {category.title}
                         </Link>
                       </li>
                     ))}
@@ -140,7 +144,7 @@ const UslugiNew = () => {
                     asChild
                   >
                     <Link to="/services/phys">
-                      Все услуги раздела ({getTopServices('phys', 100).length})
+                      Все услуги раздела ({physCategories.reduce((sum, cat) => sum + cat.services.length, 0)})
                     </Link>
                   </Button>
                 </CardContent>
@@ -164,18 +168,18 @@ const UslugiNew = () => {
                 <CardContent className="flex-1 flex flex-col">
                   <div className="mb-4 text-sm text-muted-foreground">
                     <span className="font-semibold text-foreground">
-                      {getTopServices('biz', 100).length}
+                      {bizCategories.reduce((sum, cat) => sum + cat.services.length, 0)}
                     </span> специализаций
                   </div>
                   <ul className="space-y-2 mb-6">
-                    {getTopServices('biz', 5).map((service) => (
-                      <li key={service.slug} className="flex items-start gap-2">
+                    {bizCategories.map((category) => (
+                      <li key={category.slug} className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#C9A227] flex-shrink-0 mt-0.5" />
                         <Link
-                          to={service.path}
+                          to={`/services/biz#${category.slug}`}
                           className="text-sm text-muted-foreground hover:text-[#C9A227] transition-colors"
                         >
-                          {service.title}
+                          {category.title}
                         </Link>
                       </li>
                     ))}
@@ -186,7 +190,7 @@ const UslugiNew = () => {
                     asChild
                   >
                     <Link to="/services/biz">
-                      Все услуги раздела ({getTopServices('biz', 100).length})
+                      Все услуги раздела ({bizCategories.reduce((sum, cat) => sum + cat.services.length, 0)})
                     </Link>
                   </Button>
                 </CardContent>
@@ -210,18 +214,18 @@ const UslugiNew = () => {
                 <CardContent className="flex-1 flex flex-col">
                   <div className="mb-4 text-sm text-muted-foreground">
                     <span className="font-semibold text-foreground">
-                      {getTopServices('criminal', 100).length}
+                      {criminalCategories.reduce((sum, cat) => sum + cat.services.length, 0)}
                     </span> специализаций
                   </div>
                   <ul className="space-y-2 mb-6">
-                    {getTopServices('criminal', 5).map((service) => (
-                      <li key={service.slug} className="flex items-start gap-2">
+                    {criminalCategories.map((category) => (
+                      <li key={category.slug} className="flex items-start gap-2">
                         <CheckCircle2 className="h-4 w-4 text-[#C9A227] flex-shrink-0 mt-0.5" />
                         <Link
-                          to={service.path}
+                          to={`/services/criminal#${category.slug}`}
                           className="text-sm text-muted-foreground hover:text-[#C9A227] transition-colors"
                         >
-                          {service.title}
+                          {category.title}
                         </Link>
                       </li>
                     ))}
@@ -232,7 +236,7 @@ const UslugiNew = () => {
                     asChild
                   >
                     <Link to="/services/criminal">
-                      Все услуги раздела ({getTopServices('criminal', 100).length})
+                      Все услуги раздела ({criminalCategories.reduce((sum, cat) => sum + cat.services.length, 0)})
                     </Link>
                   </Button>
                 </CardContent>
