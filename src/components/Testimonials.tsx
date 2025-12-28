@@ -1,5 +1,6 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { testimonials } from "@/data/testimonials";
+import { Button } from "@/components/ui/button";
 import { Star } from "lucide-react";
 
 const Testimonials = () => {
@@ -43,6 +44,18 @@ const Testimonials = () => {
               </CardContent>
             </Card>
           ))}
+        </div>
+
+        <div className="flex justify-center mb-16">
+          <Button asChild size="lg" className="px-6">
+            <a
+              href="https://yandex.ru/maps/org/244880896695/reviews/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Посмотреть все отзывы на Яндекс.Картах
+            </a>
+          </Button>
         </div>
 
         {/* Trust Badges */}
