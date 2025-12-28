@@ -20,12 +20,74 @@ import themisDeskImg from "@/assets/legal/themis-desk.jpg";
 import { Helmet } from "react-helmet";
 import { SITE } from "@/config/site";
 import TeamSection from "@/components/TeamSection";
-import { getTopCategories } from "@/data/services-audiences";
+import { getCategoriesForAudience } from "@/data/services-audiences";
 
 const Index = () => {
-  const physCategories = getTopCategories('phys', 5);
-  const bizCategories = getTopCategories('biz', 6);
-  const criminalCategories = getTopCategories('criminal', 6);
+  const buildCategoryLinks = (
+    audience: 'phys' | 'biz' | 'criminal',
+    items: { key: string; label?: string }[],
+    minCount: number
+  ) => {
+    const categories = getCategoriesForAudience(audience);
+    const byTitle = new Map(categories.map((cat) => [cat.title.toLowerCase(), cat]));
+    const used = new Set<string>();
+
+    const selected = items
+      .map((item) => {
+        const cat = byTitle.get(item.key.toLowerCase());
+        if (!cat || used.has(cat.slug)) return null;
+        used.add(cat.slug);
+        return { slug: cat.slug, title: item.label ?? cat.title };
+      })
+      .filter(Boolean) as { slug: string; title: string }[];
+
+    if (selected.length < minCount) {
+      categories.forEach((cat) => {
+        if (selected.length >= minCount) return;
+        if (used.has(cat.slug)) return;
+        used.add(cat.slug);
+        selected.push({ slug: cat.slug, title: cat.title });
+      });
+    }
+
+    return selected;
+  };
+
+  const physCategories = buildCategoryLinks('phys', [
+    { key: 'Семейные споры' },
+    { key: 'Жилищные споры' },
+    { key: 'Наследственные дела' },
+    { key: 'Защита прав потребителей' },
+    { key: 'ДТП, страхование, вред здоровью', label: 'ДТП и страховые споры / вред здоровью' },
+    { key: 'Трудовые споры' },
+    { key: 'Взыскание долгов и договорные споры' },
+    { key: 'Административные споры', label: 'Административные дела' },
+    { key: 'Банковские и кредитные споры' },
+  ], 9);
+
+  const bizCategories = buildCategoryLinks('biz', [
+    { key: 'Договоры и сделки', label: 'Договорная работа и претензии' },
+    { key: 'Арбитражные споры (B2B)', label: 'Арбитражные споры' },
+    { key: 'Взыскание дебиторской задолженности' },
+    { key: 'Налоговые споры и проверки' },
+    { key: 'Банкротство и субсидиарная ответственность' },
+    { key: 'Корпоративное право и конфликты собственников', label: 'Корпоративные споры / сделки' },
+    { key: 'Абонентское юридическое сопровождение бизнеса', label: 'Абонентское сопровождение бизнеса' },
+    { key: 'Исполнительное производство и приставы', label: 'Исполнительное производство' },
+    { key: 'Разблокировка счёта и 115‑ФЗ', label: '115-ФЗ / разблокировка счетов' },
+  ], 9);
+
+  const criminalCategories = buildCategoryLinks('criminal', [
+    { key: 'Преступления против жизни и здоровья' },
+    { key: 'Преступления против свободы, чести и достоинства' },
+    { key: 'Преступления против половой неприкосновенности' },
+    { key: 'Преступления против собственности' },
+    { key: 'Преступления в сфере экономической деятельности' },
+    { key: 'Преступления против государственной власти', label: 'Должностные/коррупционные' },
+    { key: 'Преступления против здоровья населения', label: 'Наркотики' },
+    { key: 'Преступления против общественной безопасности' },
+    { key: 'Преступления против порядка управления' },
+  ], 9);
 
   return (
     <div className="min-h-screen flex flex-col">
