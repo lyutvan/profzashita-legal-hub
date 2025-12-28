@@ -18,32 +18,26 @@ const Testimonials = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
           {testimonials.map((testimonial) => (
             <Card key={testimonial.id} className="border-border hover:shadow-elegant transition-all">
-              <CardContent className="pt-6">
-                <div className="flex items-center gap-1 text-accent mb-3">
-                  {[...Array(testimonial.rating)].map((_, i) => (
-                    <Star key={i} className="h-4 w-4 fill-current" />
-                  ))}
+              <CardContent className="pt-6 h-full flex flex-col">
+                <div className="flex items-start justify-between gap-3 mb-3">
+                  <div className="flex items-center gap-1 text-accent">
+                    {[...Array(testimonial.rating)].map((_, i) => (
+                      <Star key={i} className="h-4 w-4 fill-current" />
+                    ))}
+                  </div>
+                  <p className="text-xs text-muted-foreground text-right leading-tight">{testimonial.date}</p>
                 </div>
                 
                 <blockquote className="text-sm text-muted-foreground italic mb-4 leading-relaxed">
-                  "{testimonial.quote}"
+                  “{testimonial.text}”
                 </blockquote>
                 
-                <div className="border-t border-border pt-4">
-                  <p className="font-semibold text-sm mb-1">{testimonial.name}</p>
-                  <p className="text-xs text-muted-foreground mb-2">{testimonial.caseType}</p>
-                  <p className="text-xs text-foreground/80 leading-relaxed">
-                    {testimonial.result}
-                  </p>
-                  <div className="flex items-center justify-between mt-2">
-                    <p className="text-xs text-muted-foreground">{testimonial.city}</p>
-                    <p className="text-xs text-muted-foreground">
-                      {new Date(testimonial.datePublished).toLocaleDateString('ru-RU', { 
-                        year: 'numeric', 
-                        month: 'long', 
-                        day: 'numeric' 
-                      })}
-                    </p>
+                <div className="border-t border-border pt-4 mt-auto">
+                  <div className="flex items-center justify-between gap-3">
+                    <p className="font-semibold text-sm">{testimonial.name}</p>
+                    {testimonial.source && (
+                      <p className="text-[11px] text-muted-foreground whitespace-nowrap">{testimonial.source}</p>
+                    )}
                   </div>
                 </div>
               </CardContent>

@@ -57,8 +57,8 @@ const Index = () => {
       <ReviewsSchema reviews={testimonials.map(t => ({
         author: t.name,
         rating: t.rating,
-        reviewBody: t.quote,
-        datePublished: t.datePublished
+        reviewBody: t.text,
+        datePublished: t.date
       }))} />
       <Header />
       
