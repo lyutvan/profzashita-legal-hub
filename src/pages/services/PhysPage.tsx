@@ -9,7 +9,8 @@ import ServiceBannerCard from "@/components/ServiceBannerCard";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { getCategoriesForAudience, audienceConfig } from "@/data/services-audiences";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { getPhysCategoryPagePath } from "@/data/phys-service-content";
+import { CheckCircle2 } from "lucide-react";
 import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 import { getServiceCardImage } from "@/lib/serviceCardImages";
@@ -111,12 +112,20 @@ const PhysPage = () => {
           <div className="container mx-auto px-4">
             {categories.map(({ title, slug, services }) => {
               const seed = "phys";
+              const categoryPagePath = getPhysCategoryPagePath(title);
 
               return (
                 <div key={slug} id={slug} className="mb-12 scroll-mt-20">
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
-                    {title}
-                  </h2>
+                  <div className="flex flex-wrap items-center justify-between gap-3 mb-6">
+                    <h2 className="font-montserrat text-2xl md:text-3xl font-bold">
+                      {title}
+                    </h2>
+                    {categoryPagePath && (
+                      <Button variant="outline" size="sm" asChild>
+                        <Link to={categoryPagePath}>Страница категории</Link>
+                      </Button>
+                    )}
+                  </div>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {services.map((service) => (
                       <ServiceBannerCard
