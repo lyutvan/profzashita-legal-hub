@@ -6,18 +6,21 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ServiceCallBanner from "@/components/ServiceCallBanner";
 import ServiceBannerCard from "@/components/ServiceBannerCard";
-import { Card, CardContent, CardHeader, CardTitle, CardDescription } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getCategoriesForAudience, audienceConfig } from "@/data/services-audiences";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { getCategoriesForAudience, getServicesByAudience, audienceConfig } from "@/data/services-audiences";
+import { CheckCircle2 } from "lucide-react";
 import prisonBarsImage from "@/assets/legal/prison-bars.jpg";
 import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
 import { getServiceCardImage } from "@/lib/serviceCardImages";
+import { SITE } from "@/config/site";
 
 const CriminalPage = () => {
   const categories = getCategoriesForAudience('criminal');
   const totalServices = categories.reduce((sum, category) => sum + category.services.length, 0);
+  const allServices = getServicesByAudience("criminal").slice().sort((a, b) => a.title.localeCompare(b.title));
   const location = useLocation();
+  const canonical = new URL("/services/criminal", SITE.url).toString();
 
   useEffect(() => {
     if (!location.hash) return;
@@ -36,19 +39,19 @@ const CriminalPage = () => {
         "@type": "ListItem",
         "position": 1,
         "name": "Главная",
-        "item": "https://profzashita.com"
+        "item": SITE.url
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Услуги",
-        "item": "https://profzashita.com/uslugi"
+        "item": new URL("/uslugi", SITE.url).toString()
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": "Уголовные дела",
-        "item": "https://profzashita.com/services/criminal"
+        "item": canonical
       }
     ]
   };
@@ -56,11 +59,32 @@ const CriminalPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Уголовные дела — Профзащита</title>
-        <meta 
-          name="description" 
-          content="Защита по уголовным делам: статьи 109, 110, 111, 112, 115, 116, 119 УК РФ. Опыт 15+ лет в уголовном праве." 
+        <title>Уголовные дела в Москве — адвокаты Профзащита</title>
+        <meta
+          name="description"
+          content="Адвокаты по уголовным делам в Москве: защита на стадии проверки, следствия и суда. Срочное подключение, стратегия защиты, конфиденциальность."
         />
+        <link rel="canonical" href={canonical} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+
+        <meta property="og:title" content="Уголовные дела в Москве — адвокаты Профзащита" />
+        <meta
+          property="og:description"
+          content="Адвокаты по уголовным делам в Москве: защита на стадии проверки, следствия и суда. Срочное подключение, стратегия защиты, конфиденциальность."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={SITE.ogImage} />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="Профзащита" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Уголовные дела в Москве — адвокаты Профзащита" />
+        <meta
+          name="twitter:description"
+          content="Адвокаты по уголовным делам в Москве: защита на стадии проверки, следствия и суда. Срочное подключение, стратегия защиты, конфиденциальность."
+        />
+        <meta name="twitter:image" content={SITE.ogImage} />
       </Helmet>
 
       <JsonLdComponent data={breadcrumbSchema} />
@@ -108,6 +132,31 @@ const CriminalPage = () => {
         </section>
 
         {/* Services by Category */}
+        <section className="py-12 md:py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mb-8">
+              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+                Основные направления
+              </h2>
+              <p className="text-muted-foreground">
+                Выберите направление, чтобы перейти к конкретным статьям и услугам.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {categories.map((category) => (
+                <Link
+                  key={category.slug}
+                  to={`/services/criminal#${category.slug}`}
+                  className="text-sm text-[#0B1F3A] hover:text-[#C9A227] hover:underline"
+                >
+                  {category.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* Services by Category */}
         <section className="py-16">
           <div className="container mx-auto px-4">
             {categories.map(({ title, slug, services }) => {
@@ -115,9 +164,7 @@ const CriminalPage = () => {
 
               return (
                 <div key={slug} id={slug} className="mb-12 scroll-mt-20">
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
-                    {title}
-                  </h2>
+                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">{title}</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {services.map((service) => (
                       <ServiceBannerCard
@@ -131,6 +178,31 @@ const CriminalPage = () => {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        {/* All Services List */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mb-8">
+              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+                Все услуги по уголовным делам
+              </h2>
+              <p className="text-muted-foreground">
+                Полный перечень с прямыми ссылками на каждую страницу.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {allServices.map((service) => (
+                <Link
+                  key={service.path}
+                  to={service.path}
+                  className="text-sm text-[#0B1F3A] hover:text-[#C9A227] hover:underline"
+                >
+                  {service.title}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 

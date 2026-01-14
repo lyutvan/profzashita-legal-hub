@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
@@ -8,9 +9,12 @@ import { PersonSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import { Helmet } from "react-helmet";
 import { teamMembers } from "@/data/team";
+import { getServicesByAudience } from "@/data/services-audiences";
 import TeamSection from "@/components/TeamSection";
 
 const About = () => {
+  const topCriminalServices = getServicesByAudience("criminal").slice(0, 6);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -177,6 +181,31 @@ const About = () => {
           title="Наша команда" 
           subtitle="Профессионалы с многолетним опытом в различных областях права"
         />
+
+        {/* Criminal Services Links */}
+        <section className="py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mb-8">
+              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4">
+                Направления уголовной защиты
+              </h2>
+              <p className="text-muted-foreground">
+                Ключевые направления, по которым мы ведем уголовные дела.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {topCriminalServices.map((service) => (
+                <Link
+                  key={service.path}
+                  to={service.path}
+                  className="text-sm text-[#0B1F3A] hover:text-[#C9A227] hover:underline"
+                >
+                  {service.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
 
         {/* Achievements Section */}
         <section className="py-20 bg-muted/30">

@@ -5,13 +5,14 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getTopCategories, audienceConfig } from "@/data/services-audiences";
+import { getTopCategories, getServicesByAudience, audienceConfig } from "@/data/services-audiences";
 import { Shield, Clock, Users, Award, CheckCircle2, TrendingUp, Phone, UserCircle, Building2, Scale } from "lucide-react";
 
 const UslugiNew = () => {
   const physCategories = getTopCategories('phys', 8);
   const bizCategories = getTopCategories('biz', 8);
   const criminalCategories = getTopCategories('criminal', 8);
+  const topCriminalServices = getServicesByAudience('criminal').slice(0, 6);
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -230,6 +231,23 @@ const UslugiNew = () => {
                       </li>
                     ))}
                   </ul>
+                  <div className="border-t border-border pt-4 mb-6">
+                    <div className="text-xs uppercase text-muted-foreground mb-3">
+                      Популярные услуги
+                    </div>
+                    <ul className="space-y-2">
+                      {topCriminalServices.map((service) => (
+                        <li key={service.path}>
+                          <Link
+                            to={service.path}
+                            className="text-sm text-muted-foreground hover:text-[#C9A227] transition-colors"
+                          >
+                            {service.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                   <Button 
                     variant="outline" 
                     className="mt-auto w-full border-[#C9A227]/30 hover:bg-[#C9A227]/10 hover:border-[#C9A227]"

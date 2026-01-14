@@ -21,8 +21,8 @@ export const audienceServices: AudienceService[] = [
   // ========== УГОЛОВНЫЕ ДЕЛА ==========
   {
     title: 'Убийство (ст. 105 УК РФ)',
-    slug: 'statya-105',
-    path: '/services/criminal/statya-105',
+    slug: 'advokat-po-ubiystvo-105',
+    path: '/services/criminal/advokat-po-ubiystvo-105',
     audience: 'criminal',
     priority: 1,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
@@ -30,8 +30,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Причинение смерти по неосторожности (ст. 109 УК РФ)',
-    slug: 'statya-109',
-    path: '/services/criminal/statya-109',
+    slug: 'advokat-po-prichinenie-smerti-po-neostorozhnosti-109',
+    path: '/services/criminal/advokat-po-prichinenie-smerti-po-neostorozhnosti-109',
     audience: 'criminal',
     priority: 2,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
@@ -39,8 +39,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Доведение до самоубийства (ст. 110 УК РФ)',
-    slug: 'statya-110',
-    path: '/services/criminal/statya-110',
+    slug: 'advokat-po-dovedenie-do-samoubiystva-110',
+    path: '/services/criminal/advokat-po-dovedenie-do-samoubiystva-110',
     audience: 'criminal',
     priority: 3,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
@@ -48,8 +48,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Умышленное причинение тяжкого вреда здоровью (ст. 111 УК РФ)',
-    slug: 'statya-111',
-    path: '/services/criminal/statya-111',
+    slug: 'advokat-po-umyshlennoe-prichinenie-tyazhkogo-vreda-zdorovyu-111',
+    path: '/services/criminal/advokat-po-umyshlennoe-prichinenie-tyazhkogo-vreda-zdorovyu-111',
     audience: 'criminal',
     priority: 4,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
@@ -57,8 +57,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Умышленное причинение средней тяжести вреда здоровью (ст. 112 УК РФ)',
-    slug: 'statya-112',
-    path: '/services/criminal/statya-112',
+    slug: 'advokat-po-umyshlennoe-prichinenie-sredney-tyazhesti-vreda-zdorovyu-112',
+    path: '/services/criminal/advokat-po-umyshlennoe-prichinenie-sredney-tyazhesti-vreda-zdorovyu-112',
     audience: 'criminal',
     priority: 5,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
@@ -66,8 +66,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Умышленное причинение легкого вреда здоровью (ст. 115 УК РФ)',
-    slug: 'statya-115',
-    path: '/services/criminal/statya-115',
+    slug: 'advokat-po-umyshlennoe-prichinenie-legkogo-vreda-zdorovyu-115',
+    path: '/services/criminal/advokat-po-umyshlennoe-prichinenie-legkogo-vreda-zdorovyu-115',
     audience: 'criminal',
     priority: 6,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
@@ -75,8 +75,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Побои (ст. 116 УК РФ)',
-    slug: 'statya-116',
-    path: '/services/criminal/statya-116',
+    slug: 'advokat-po-poboi-116',
+    path: '/services/criminal/advokat-po-poboi-116',
     audience: 'criminal',
     priority: 7,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
@@ -84,8 +84,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Угроза убийством или причинением тяжкого вреда здоровью (ст. 119 УК РФ)',
-    slug: 'statya-119',
-    path: '/services/criminal/statya-119',
+    slug: 'advokat-po-ugroza-ubiystvom-ili-prichineniem-tyazhkogo-vreda-zdorovyu-119',
+    path: '/services/criminal/advokat-po-ugroza-ubiystvom-ili-prichineniem-tyazhkogo-vreda-zdorovyu-119',
     audience: 'criminal',
     priority: 8,
     category: 'Преступления против жизни и здоровья (Глава 16 УК РФ)',
@@ -95,8 +95,8 @@ export const audienceServices: AudienceService[] = [
   // Глава 17 - Преступления против свободы, чести и достоинства личности
   {
     title: 'Похищение человека (ст. 126 УК РФ)',
-    slug: 'statya-126',
-    path: '/services/criminal/statya-126',
+    slug: 'advokat-po-pohishchenie-cheloveka-126',
+    path: '/services/criminal/advokat-po-pohishchenie-cheloveka-126',
     audience: 'criminal',
     priority: 9,
     category: 'Преступления против свободы, чести и достоинства (Глава 17 УК РФ)',
@@ -104,8 +104,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Незаконное лишение свободы (ст. 127 УК РФ)',
-    slug: 'statya-127',
-    path: '/services/criminal/statya-127',
+    slug: 'advokat-po-nezakonnoe-lishenie-svobody-127',
+    path: '/services/criminal/advokat-po-nezakonnoe-lishenie-svobody-127',
     audience: 'criminal',
     priority: 10,
     category: 'Преступления против свободы, чести и достоинства (Глава 17 УК РФ)',
@@ -113,8 +113,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Клевета (ст. 128.1 УК РФ)',
-    slug: 'statya-128-1',
-    path: '/services/criminal/statya-128-1',
+    slug: 'advokat-po-kleveta-128-1',
+    path: '/services/criminal/advokat-po-kleveta-128-1',
     audience: 'criminal',
     priority: 10,
     category: 'Преступления против свободы, чести и достоинства (Глава 17 УК РФ)',
@@ -124,8 +124,8 @@ export const audienceServices: AudienceService[] = [
   // Глава 18 - Преступления против половой неприкосновенности и половой свободы личности
   {
     title: 'Изнасилование (ст. 131 УК РФ)',
-    slug: 'statya-131',
-    path: '/services/criminal/statya-131',
+    slug: 'advokat-po-iznasilovanie-131',
+    path: '/services/criminal/advokat-po-iznasilovanie-131',
     audience: 'criminal',
     priority: 11,
     category: 'Преступления против половой неприкосновенности (Глава 18 УК РФ)',
@@ -133,8 +133,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Насильственные действия сексуального характера (ст. 132 УК РФ)',
-    slug: 'statya-132',
-    path: '/services/criminal/statya-132',
+    slug: 'advokat-po-nasilstvennye-deystviya-seksualnogo-haraktera-132',
+    path: '/services/criminal/advokat-po-nasilstvennye-deystviya-seksualnogo-haraktera-132',
     audience: 'criminal',
     priority: 12,
     category: 'Преступления против половой неприкосновенности (Глава 18 УК РФ)',
@@ -142,8 +142,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Развратные действия (ст. 135 УК РФ)',
-    slug: 'statya-135',
-    path: '/services/criminal/statya-135',
+    slug: 'advokat-po-razvratnye-deystviya-135',
+    path: '/services/criminal/advokat-po-razvratnye-deystviya-135',
     audience: 'criminal',
     priority: 13,
     category: 'Преступления против половой неприкосновенности (Глава 18 УК РФ)',
@@ -153,8 +153,8 @@ export const audienceServices: AudienceService[] = [
   // Глава 21 - Преступления против собственности
   {
     title: 'Кража (ст. 158 УК РФ)',
-    slug: 'statya-158',
-    path: '/services/criminal/statya-158',
+    slug: 'advokat-po-krazha-158',
+    path: '/services/criminal/advokat-po-krazha-158',
     audience: 'criminal',
     priority: 14,
     category: 'Преступления против собственности (Глава 21 УК РФ)',
@@ -162,8 +162,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Мошенничество (ст. 159 УК РФ)',
-    slug: 'statya-159',
-    path: '/services/criminal/statya-159',
+    slug: 'advokat-po-moshennichestvo-159',
+    path: '/services/criminal/advokat-po-moshennichestvo-159',
     audience: 'criminal',
     priority: 15,
     category: 'Преступления против собственности (Глава 21 УК РФ)',
@@ -171,8 +171,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Присвоение или растрата (ст. 160 УК РФ)',
-    slug: 'statya-160',
-    path: '/services/criminal/statya-160',
+    slug: 'advokat-po-prisvoenie-ili-rastrata-160',
+    path: '/services/criminal/advokat-po-prisvoenie-ili-rastrata-160',
     audience: 'criminal',
     priority: 16,
     category: 'Преступления против собственности (Глава 21 УК РФ)',
@@ -180,8 +180,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Грабеж (ст. 161 УК РФ)',
-    slug: 'statya-161',
-    path: '/services/criminal/statya-161',
+    slug: 'advokat-po-grabezh-161',
+    path: '/services/criminal/advokat-po-grabezh-161',
     audience: 'criminal',
     priority: 17,
     category: 'Преступления против собственности (Глава 21 УК РФ)',
@@ -189,8 +189,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Разбой (ст. 162 УК РФ)',
-    slug: 'statya-162',
-    path: '/services/criminal/statya-162',
+    slug: 'advokat-po-razboy-162',
+    path: '/services/criminal/advokat-po-razboy-162',
     audience: 'criminal',
     priority: 18,
     category: 'Преступления против собственности (Глава 21 УК РФ)',
@@ -198,8 +198,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Вымогательство (ст. 163 УК РФ)',
-    slug: 'statya-163',
-    path: '/services/criminal/statya-163',
+    slug: 'advokat-po-vymogatelstvo-163',
+    path: '/services/criminal/advokat-po-vymogatelstvo-163',
     audience: 'criminal',
     priority: 19,
     category: 'Преступления против собственности (Глава 21 УК РФ)',
@@ -207,8 +207,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Умышленное уничтожение или повреждение имущества (ст. 167 УК РФ)',
-    slug: 'statya-167',
-    path: '/services/criminal/statya-167',
+    slug: 'advokat-po-umyshlennoe-unichtozhenie-ili-povrezhdenie-imushchestva-167',
+    path: '/services/criminal/advokat-po-umyshlennoe-unichtozhenie-ili-povrezhdenie-imushchestva-167',
     audience: 'criminal',
     priority: 20,
     category: 'Преступления против собственности (Глава 21 УК РФ)',
@@ -218,8 +218,8 @@ export const audienceServices: AudienceService[] = [
   // Глава 22 - Преступления в сфере экономической деятельности
   {
     title: 'Незаконное предпринимательство (ст. 171 УК РФ)',
-    slug: 'statya-171',
-    path: '/services/criminal/statya-171',
+    slug: 'advokat-po-nezakonnoe-predprinimatelstvo-171',
+    path: '/services/criminal/advokat-po-nezakonnoe-predprinimatelstvo-171',
     audience: 'criminal',
     priority: 21,
     category: 'Преступления в сфере экономической деятельности (Глава 22 УК РФ)',
@@ -227,8 +227,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Незаконная банковская деятельность (ст. 172 УК РФ)',
-    slug: 'statya-172',
-    path: '/services/criminal/statya-172',
+    slug: 'advokat-po-nezakonnaya-bankovskaya-deyatelnost-172',
+    path: '/services/criminal/advokat-po-nezakonnaya-bankovskaya-deyatelnost-172',
     audience: 'criminal',
     priority: 22,
     category: 'Преступления в сфере экономической деятельности (Глава 22 УК РФ)',
@@ -236,8 +236,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Легализация (отмывание) денежных средств (ст. 174 УК РФ)',
-    slug: 'statya-174',
-    path: '/services/criminal/statya-174',
+    slug: 'advokat-po-legalizatsiya-otmyvanie-denezhnyh-sredstv-174',
+    path: '/services/criminal/advokat-po-legalizatsiya-otmyvanie-denezhnyh-sredstv-174',
     audience: 'criminal',
     priority: 23,
     category: 'Преступления в сфере экономической деятельности (Глава 22 УК РФ)',
@@ -245,8 +245,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Приобретение или сбыт имущества, заведомо добытого преступным путем (ст. 175 УК РФ)',
-    slug: 'statya-175',
-    path: '/services/criminal/statya-175',
+    slug: 'advokat-po-priobretenie-ili-sbyt-imushchestva-zavedomo-dobytogo-prestupnym-putem-175',
+    path: '/services/criminal/advokat-po-priobretenie-ili-sbyt-imushchestva-zavedomo-dobytogo-prestupnym-putem-175',
     audience: 'criminal',
     priority: 24,
     category: 'Преступления в сфере экономической деятельности (Глава 22 УК РФ)',
@@ -256,8 +256,8 @@ export const audienceServices: AudienceService[] = [
   // Глава 24 - Преступления против общественной безопасности
   {
     title: 'Террористический акт (ст. 205 УК РФ)',
-    slug: 'statya-205',
-    path: '/services/criminal/statya-205',
+    slug: 'advokat-po-terroristicheskiy-akt-205',
+    path: '/services/criminal/advokat-po-terroristicheskiy-akt-205',
     audience: 'criminal',
     priority: 25,
     category: 'Преступления против общественной безопасности (Глава 24 УК РФ)',
@@ -265,8 +265,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Содействие террористической деятельности (ст. 205.1 УК РФ)',
-    slug: 'statya-205-1',
-    path: '/services/criminal/statya-205-1',
+    slug: 'advokat-po-sodeystvie-terroristicheskoy-deyatelnosti-205-1',
+    path: '/services/criminal/advokat-po-sodeystvie-terroristicheskoy-deyatelnosti-205-1',
     audience: 'criminal',
     priority: 26,
     category: 'Преступления против общественной безопасности (Глава 24 УК РФ)',
@@ -274,8 +274,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Публичные призывы к осуществлению террористической деятельности (ст. 205.2 УК РФ)',
-    slug: 'statya-205-2',
-    path: '/services/criminal/statya-205-2',
+    slug: 'advokat-po-publichnye-prizyvy-k-osushchestvleniyu-terroristicheskoy-deyatelnosti-205-2',
+    path: '/services/criminal/advokat-po-publichnye-prizyvy-k-osushchestvleniyu-terroristicheskoy-deyatelnosti-205-2',
     audience: 'criminal',
     priority: 27,
     category: 'Преступления против общественной безопасности (Глава 24 УК РФ)',
@@ -283,8 +283,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Организация террористического сообщества (ст. 205.4 УК РФ)',
-    slug: 'statya-205-4',
-    path: '/services/criminal/statya-205-4',
+    slug: 'advokat-po-organizatsiya-terroristicheskogo-soobshchestva-205-4',
+    path: '/services/criminal/advokat-po-organizatsiya-terroristicheskogo-soobshchestva-205-4',
     audience: 'criminal',
     priority: 28,
     category: 'Преступления против общественной безопасности (Глава 24 УК РФ)',
@@ -292,8 +292,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Массовые беспорядки (ст. 212 УК РФ)',
-    slug: 'statya-212',
-    path: '/services/criminal/statya-212',
+    slug: 'advokat-po-massovye-besporyadki-212',
+    path: '/services/criminal/advokat-po-massovye-besporyadki-212',
     audience: 'criminal',
     priority: 29,
     category: 'Преступления против общественной безопасности (Глава 24 УК РФ)',
@@ -301,8 +301,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Хулиганство (ст. 213 УК РФ)',
-    slug: 'statya-213',
-    path: '/services/criminal/statya-213',
+    slug: 'advokat-po-huliganstvo-213',
+    path: '/services/criminal/advokat-po-huliganstvo-213',
     audience: 'criminal',
     priority: 30,
     category: 'Преступления против общественной безопасности (Глава 24 УК РФ)',
@@ -310,8 +310,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Незаконный оборот оружия (ст. 222 УК РФ)',
-    slug: 'statya-222',
-    path: '/services/criminal/statya-222',
+    slug: 'advokat-po-nezakonnyy-oborot-oruzhiya-222',
+    path: '/services/criminal/advokat-po-nezakonnyy-oborot-oruzhiya-222',
     audience: 'criminal',
     priority: 31,
     category: 'Преступления против общественной безопасности (Глава 24 УК РФ)',
@@ -319,8 +319,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Незаконное изготовление оружия (ст. 223 УК РФ)',
-    slug: 'statya-223',
-    path: '/services/criminal/statya-223',
+    slug: 'advokat-po-nezakonnoe-izgotovlenie-oruzhiya-223',
+    path: '/services/criminal/advokat-po-nezakonnoe-izgotovlenie-oruzhiya-223',
     audience: 'criminal',
     priority: 32,
     category: 'Преступления против общественной безопасности (Глава 24 УК РФ)',
@@ -330,8 +330,8 @@ export const audienceServices: AudienceService[] = [
   // Глава 25 - Преступления против здоровья населения и общественной нравственности
   {
     title: 'Незаконный оборот наркотиков (ст. 228 УК РФ)',
-    slug: 'statya-228',
-    path: '/services/criminal/statya-228',
+    slug: 'advokat-po-nezakonnyy-oborot-narkotikov-228',
+    path: '/services/criminal/advokat-po-nezakonnyy-oborot-narkotikov-228',
     audience: 'criminal',
     priority: 33,
     category: 'Преступления против здоровья населения (Глава 25 УК РФ)',
@@ -339,8 +339,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Незаконные производство и сбыт наркотиков (ст. 228.1 УК РФ)',
-    slug: 'statya-228-1',
-    path: '/services/criminal/statya-228-1',
+    slug: 'advokat-po-nezakonnye-proizvodstvo-i-sbyt-narkotikov-228-1',
+    path: '/services/criminal/advokat-po-nezakonnye-proizvodstvo-i-sbyt-narkotikov-228-1',
     audience: 'criminal',
     priority: 34,
     category: 'Преступления против здоровья населения (Глава 25 УК РФ)',
@@ -348,8 +348,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Незаконный оборот сильнодействующих веществ (ст. 234 УК РФ)',
-    slug: 'statya-234',
-    path: '/services/criminal/statya-234',
+    slug: 'advokat-po-nezakonnyy-oborot-silnodeystvuyushchih-veshchestv-234',
+    path: '/services/criminal/advokat-po-nezakonnyy-oborot-silnodeystvuyushchih-veshchestv-234',
     audience: 'criminal',
     priority: 35,
     category: 'Преступления против здоровья населения (Глава 25 УК РФ)',
@@ -359,8 +359,8 @@ export const audienceServices: AudienceService[] = [
   // Глава 30 - Преступления против государственной власти, интересов государственной службы
   {
     title: 'Получение взятки (ст. 290 УК РФ)',
-    slug: 'statya-290',
-    path: '/services/criminal/statya-290',
+    slug: 'advokat-po-poluchenie-vzyatki-290',
+    path: '/services/criminal/advokat-po-poluchenie-vzyatki-290',
     audience: 'criminal',
     priority: 36,
     category: 'Преступления против государственной власти (Глава 30 УК РФ)',
@@ -368,8 +368,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Дача взятки (ст. 291 УК РФ)',
-    slug: 'statya-291',
-    path: '/services/criminal/statya-291',
+    slug: 'advokat-po-dacha-vzyatki-291',
+    path: '/services/criminal/advokat-po-dacha-vzyatki-291',
     audience: 'criminal',
     priority: 37,
     category: 'Преступления против государственной власти (Глава 30 УК РФ)',
@@ -377,8 +377,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Посредничество во взяточничестве (ст. 291.1 УК РФ)',
-    slug: 'statya-291-1',
-    path: '/services/criminal/statya-291-1',
+    slug: 'advokat-po-posrednichestvo-vo-vzyatochnichestve-291-1',
+    path: '/services/criminal/advokat-po-posrednichestvo-vo-vzyatochnichestve-291-1',
     audience: 'criminal',
     priority: 38,
     category: 'Преступления против государственной власти (Глава 30 УК РФ)',
@@ -386,8 +386,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Халатность (ст. 293 УК РФ)',
-    slug: 'statya-293',
-    path: '/services/criminal/statya-293',
+    slug: 'advokat-po-halatnost-293',
+    path: '/services/criminal/advokat-po-halatnost-293',
     audience: 'criminal',
     priority: 39,
     category: 'Преступления против государственной власти (Глава 30 УК РФ)',
@@ -397,8 +397,8 @@ export const audienceServices: AudienceService[] = [
   // Глава 32 - Преступления против порядка управления
   {
     title: 'Посягательство на жизнь сотрудника правоохранительного органа (ст. 317 УК РФ)',
-    slug: 'statya-317',
-    path: '/services/criminal/statya-317',
+    slug: 'advokat-po-posyagatelstvo-na-zhizn-sotrudnika-pravoohranitelnogo-organa-317',
+    path: '/services/criminal/advokat-po-posyagatelstvo-na-zhizn-sotrudnika-pravoohranitelnogo-organa-317',
     audience: 'criminal',
     priority: 40,
     category: 'Преступления против порядка управления (Глава 32 УК РФ)',
@@ -406,8 +406,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Применение насилия в отношении представителя власти (ст. 318 УК РФ)',
-    slug: 'statya-318',
-    path: '/services/criminal/statya-318',
+    slug: 'advokat-po-primenenie-nasiliya-v-otnoshenii-predstavitelya-vlasti-318',
+    path: '/services/criminal/advokat-po-primenenie-nasiliya-v-otnoshenii-predstavitelya-vlasti-318',
     audience: 'criminal',
     priority: 41,
     category: 'Преступления против порядка управления (Глава 32 УК РФ)',
@@ -415,8 +415,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Организация незаконной миграции (ст. 322.1 УК РФ)',
-    slug: 'statya-322-1',
-    path: '/services/criminal/statya-322-1',
+    slug: 'advokat-po-organizatsiya-nezakonnoy-migratsii-322-1',
+    path: '/services/criminal/advokat-po-organizatsiya-nezakonnoy-migratsii-322-1',
     audience: 'criminal',
     priority: 42,
     category: 'Преступления против порядка управления (Глава 32 УК РФ)',
@@ -424,8 +424,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Подделка документов (ст. 327 УК РФ)',
-    slug: 'statya-327',
-    path: '/services/criminal/statya-327',
+    slug: 'advokat-po-poddelka-dokumentov-327',
+    path: '/services/criminal/advokat-po-poddelka-dokumentov-327',
     audience: 'criminal',
     priority: 43,
     category: 'Преступления против порядка управления (Глава 32 УК РФ)',
@@ -433,8 +433,8 @@ export const audienceServices: AudienceService[] = [
   },
   {
     title: 'Самоуправство (ст. 330 УК РФ)',
-    slug: 'statya-330',
-    path: '/services/criminal/statya-330',
+    slug: 'advokat-po-samoupravstvo-330',
+    path: '/services/criminal/advokat-po-samoupravstvo-330',
     audience: 'criminal',
     priority: 44,
     category: 'Преступления против порядка управления (Глава 32 УК РФ)',
@@ -1720,15 +1720,15 @@ const CATEGORY_SLUG_OVERRIDES: Record<string, string> = {
   'госзакупки и фас': 'goszakupki-i-fas',
   'исполнительное производство и приставы': 'ispolnitelnoe-proizvodstvo-i-pristavy',
   'трудовое право для работодателя': 'trudovoe-pravo-dlya-rabotodatelya',
-  'преступления против жизни и здоровья (глава 16 ук рф)': 'glava-16-zhizn-i-zdorovye',
-  'преступления против свободы, чести и достоинства (глава 17 ук рф)': 'glava-17-svoboda-chest-dostoinstvo',
-  'преступления против половой неприкосновенности (глава 18 ук рф)': 'glava-18-polovaya-neprikosnovennost',
-  'преступления против собственности (глава 21 ук рф)': 'glava-21-sobstvennost',
-  'преступления в сфере экономической деятельности (глава 22 ук рф)': 'glava-22-ekonomicheskie',
-  'преступления против общественной безопасности (глава 24 ук рф)': 'glava-24-obshchestvennaya-bezopasnost',
-  'преступления против здоровья населения (глава 25 ук рф)': 'glava-25-zdorove-naseleniya',
-  'преступления против государственной власти (глава 30 ук рф)': 'glava-30-gosudarstvennaya-vlast',
-  'преступления против порядка управления (глава 32 ук рф)': 'glava-32-poryadok-upravleniya',
+  'преступления против жизни и здоровья (глава 16 ук рф)': 'zhizn-i-zdorovye',
+  'преступления против свободы, чести и достоинства (глава 17 ук рф)': 'svoboda-chest-dostoinstvo',
+  'преступления против половой неприкосновенности (глава 18 ук рф)': 'polovaya-neprikosnovennost',
+  'преступления против собственности (глава 21 ук рф)': 'sobstvennost',
+  'преступления в сфере экономической деятельности (глава 22 ук рф)': 'ekonomicheskie-prestupleniya',
+  'преступления против общественной безопасности (глава 24 ук рф)': 'obshchestvennaya-bezopasnost',
+  'преступления против здоровья населения (глава 25 ук рф)': 'zdorove-naseleniya',
+  'преступления против государственной власти (глава 30 ук рф)': 'gosudarstvennaya-vlast',
+  'преступления против порядка управления (глава 32 ук рф)': 'poryadok-upravleniya',
 };
 
 const translitMap: Record<string, string> = {
@@ -1804,10 +1804,7 @@ export const audienceConfig = {
   criminal: {
     title: 'Уголовные дела',
     subtitle: 'Защита по уголовным статьям',
-    description: `Оказываем квалифицированную помощь (защиту) в правоохранительных органах, судах всех инстанций и госучреждениях.
-Представляем защиту и юридическую помощь на стадии доследственной проверки, предварительного следствия и дознания, в судах: первой, апелляционной и кассационной судебной инстанции.
-Имеем большой опыт в расследовании дел общеуголовной и экономической направленности (ст.ст. 105, 111, 112, 158, 159, 160, 161, 162, 163, 166, 167, 171, 172, 173.1, 174, 175, 196, 197, 199, 205, 209, 210, 222, 223, 228, 228.1, 264, 264.1, 290, 291, 317, 318, 330, 338 УК РФ). Отлично знаем правоохранительную и судебную систему изнутри, в связи с чем основываясь на следственной и судебной практике находим оптимальные пути защиты своего доверителя.
-Профессиональный и индивидуальный подход к каждому делу, дорожим своей репутацией и работаем только на результат.
-Чем раньше Вы обратитесь к нам, тем больше шансов на положительный исход вашего дела. Без пафоса, мы профессионалы в уголовном праве и обязательно Вам поможем.`
+    description: `Оказываем квалифицированную защиту в правоохранительных органах и судах всех инстанций. Подключаемся на стадии проверки, следствия и суда, формируем стратегию защиты, участвуем в следственных действиях и готовим процессуальные документы.
+Работаем по договору и соблюдаем конфиденциальность. Объясняем риски и возможные сценарии, фиксируем план действий и контролируем сроки. Чем раньше вы обращаетесь, тем больше возможностей повлиять на позицию следствия и итоговое решение.`
   }
 };

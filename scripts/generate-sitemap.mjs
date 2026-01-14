@@ -14,10 +14,10 @@ const readFileSafe = (filePath) => {
   return fs.readFileSync(filePath, "utf8");
 };
 
-const extractPhysSection = (content) => {
-  const start = content.indexOf("ФИЗИЧЕСКИМ ЛИЦАМ");
+const extractSection = (content, startMarker, endMarker) => {
+  const start = content.indexOf(startMarker);
   if (start === -1) return "";
-  const end = content.indexOf("ЮРИДИЧЕСКИМ ЛИЦАМ", start);
+  const end = content.indexOf(endMarker, start);
   return content.slice(start, end === -1 ? content.length : end);
 };
 
@@ -60,7 +60,7 @@ const extractCategoryOverrides = (content) => {
 
 const collectPhysPaths = () => {
   const servicesData = readFileSafe(servicesDataPath);
-  const physSection = extractPhysSection(servicesData);
+  const physSection = extractSection(servicesData, "ФИЗИЧЕСКИМ ЛИЦАМ", "ЮРИДИЧЕСКИМ ЛИЦАМ");
   const pathMatches = [...physSection.matchAll(/path:\s*'([^']+)'/g)].map((m) => m[1]);
   const physPaths = unique(pathMatches.filter((p) => p.startsWith("/services/phys/")));
   const categoryMatches = [...physSection.matchAll(/category:\s*'([^']+)'/g)].map((m) => m[1]);
@@ -76,6 +76,17 @@ const collectPhysPaths = () => {
     physIndex: "/services/phys",
     physPaths,
     categoryPaths: unique(categoryPaths)
+  };
+};
+
+const collectCriminalPaths = () => {
+  const servicesData = readFileSafe(servicesDataPath);
+  const criminalSection = extractSection(servicesData, "УГОЛОВНЫЕ ДЕЛА", "ФИЗИЧЕСКИМ ЛИЦАМ");
+  const pathMatches = [...criminalSection.matchAll(/path:\s*'([^']+)'/g)].map((m) => m[1]);
+  const criminalPaths = unique(pathMatches.filter((p) => p.startsWith("/services/criminal/")));
+  return {
+    criminalIndex: "/services/criminal",
+    criminalPaths
   };
 };
 
@@ -96,12 +107,18 @@ const readExistingSitemap = () => {
 
 const buildSitemap = () => {
   const { physIndex, physPaths, categoryPaths } = collectPhysPaths();
+  const { criminalIndex, criminalPaths } = collectCriminalPaths();
   const existingItems = readExistingSitemap();
   const physBase = `${SITE_URL}${physIndex}`;
+  const criminalBase = `${SITE_URL}${criminalIndex}`;
 
-  const preserved = existingItems.filter((item) => !item.loc.startsWith(physBase));
+  const preserved = existingItems.filter(
+    (item) => !item.loc.startsWith(physBase) && !item.loc.startsWith(criminalBase)
+  );
   const physUrlSet = new Set([physIndex, ...categoryPaths, ...physPaths]);
   const physUrls = Array.from(physUrlSet).sort();
+  const criminalUrlSet = new Set([criminalIndex, ...criminalPaths]);
+  const criminalUrls = Array.from(criminalUrlSet).sort();
 
   const physItems = physUrls.map((pathItem) => {
     const loc = `${SITE_URL}${pathItem}`;
@@ -114,7 +131,17 @@ const buildSitemap = () => {
     };
   });
 
-  const items = [...preserved, ...physItems];
+  const criminalItems = criminalUrls.map((pathItem) => {
+    const loc = `${SITE_URL}${pathItem}`;
+    const isIndex = pathItem === criminalIndex;
+    return {
+      loc,
+      priority: isIndex ? "0.9" : "0.7",
+      changefreq: isIndex ? "weekly" : "monthly"
+    };
+  });
+
+  const items = [...preserved, ...physItems, ...criminalItems];
 
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
