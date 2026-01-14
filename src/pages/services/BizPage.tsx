@@ -6,18 +6,21 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ServiceCallBanner from "@/components/ServiceCallBanner";
 import ServiceBannerCard from "@/components/ServiceBannerCard";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getCategoriesForAudience, audienceConfig } from "@/data/services-audiences";
-import { CheckCircle2, ArrowRight } from "lucide-react";
+import { getCategoriesForAudience, getServicesByAudience, audienceConfig } from "@/data/services-audiences";
+import { CheckCircle2 } from "lucide-react";
 import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
 import businessHandshake from "@/assets/legal/business-handshake.jpg";
 import { getServiceCardImage } from "@/lib/serviceCardImages";
+import { SITE } from "@/config/site";
 
 const BizPage = () => {
   const categories = getCategoriesForAudience('biz');
   const totalServices = categories.reduce((sum, category) => sum + category.services.length, 0);
+  const allServices = getServicesByAudience("biz").slice().sort((a, b) => a.title.localeCompare(b.title));
   const location = useLocation();
+  const canonical = new URL("/services/biz", SITE.url).toString();
 
   useEffect(() => {
     if (!location.hash) return;
@@ -36,19 +39,19 @@ const BizPage = () => {
         "@type": "ListItem",
         "position": 1,
         "name": "Главная",
-        "item": "https://profzashita.com"
+        "item": SITE.url
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Услуги",
-        "item": "https://profzashita.com/uslugi"
+        "item": new URL("/uslugi", SITE.url).toString()
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": "Юридическим лицам",
-        "item": "https://profzashita.com/services/biz"
+        "item": canonical
       }
     ]
   };
@@ -56,11 +59,32 @@ const BizPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Услуги для юридических лиц — Профзащита</title>
-        <meta 
-          name="description" 
-          content="Правовое сопровождение бизнеса: арбитражные споры, налоговые споры, банкротство, договорная работа. Опыт 15+ лет." 
+        <title>Юридические услуги для бизнеса в Москве — Профзащита</title>
+        <meta
+          name="description"
+          content="Юридическое сопровождение бизнеса в Москве: договорная работа, арбитраж, взыскание, банкротство, налоги, комплаенс 115-ФЗ. Работаем по договору."
         />
+        <link rel="canonical" href={canonical} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+
+        <meta property="og:title" content="Юридические услуги для бизнеса в Москве — Профзащита" />
+        <meta
+          property="og:description"
+          content="Юридическое сопровождение бизнеса в Москве: договорная работа, арбитраж, взыскание, банкротство, налоги, комплаенс 115-ФЗ. Работаем по договору."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={SITE.ogImage} />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="Профзащита" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Юридические услуги для бизнеса в Москве — Профзащита" />
+        <meta
+          name="twitter:description"
+          content="Юридическое сопровождение бизнеса в Москве: договорная работа, арбитраж, взыскание, банкротство, налоги, комплаенс 115-ФЗ. Работаем по договору."
+        />
+        <meta name="twitter:image" content={SITE.ogImage} />
       </Helmet>
 
       <JsonLdComponent data={breadcrumbSchema} />
@@ -106,6 +130,31 @@ const BizPage = () => {
           </div>
         </section>
 
+        {/* Categories overview */}
+        <section className="py-12 md:py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mb-8">
+              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+                Основные направления
+              </h2>
+              <p className="text-muted-foreground">
+                Выберите категорию, чтобы перейти к конкретным услугам.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {categories.map((category) => (
+                <Link
+                  key={category.slug}
+                  to={`/services/biz#${category.slug}`}
+                  className="text-sm text-[#0B1F3A] hover:text-[#C9A227] hover:underline"
+                >
+                  {category.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
         {/* Services by Category */}
         <section className="py-16">
           <div className="container mx-auto px-4">
@@ -130,6 +179,31 @@ const BizPage = () => {
                 </div>
               );
             })}
+          </div>
+        </section>
+
+        {/* All Services List */}
+        <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mb-8">
+              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+                Все услуги для бизнеса
+              </h2>
+              <p className="text-muted-foreground">
+                Полный перечень услуг с прямыми ссылками на каждую страницу.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {allServices.map((service) => (
+                <Link
+                  key={service.path}
+                  to={service.path}
+                  className="text-sm text-[#0B1F3A] hover:text-[#C9A227] hover:underline"
+                >
+                  {service.title}
+                </Link>
+              ))}
+            </div>
           </div>
         </section>
 

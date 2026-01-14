@@ -90,6 +90,17 @@ const collectCriminalPaths = () => {
   };
 };
 
+const collectBizPaths = () => {
+  const servicesData = readFileSafe(servicesDataPath);
+  const bizSection = extractSection(servicesData, "ЮРИДИЧЕСКИМ ЛИЦАМ", "Функции для работы с данными");
+  const pathMatches = [...bizSection.matchAll(/path:\s*'([^']+)'/g)].map((m) => m[1]);
+  const bizPaths = unique(pathMatches.filter((p) => p.startsWith("/services/biz/")));
+  return {
+    bizIndex: "/services/biz",
+    bizPaths
+  };
+};
+
 const readExistingSitemap = () => {
   const xml = readFileSafe(sitemapPath);
   const items = [];
@@ -108,17 +119,24 @@ const readExistingSitemap = () => {
 const buildSitemap = () => {
   const { physIndex, physPaths, categoryPaths } = collectPhysPaths();
   const { criminalIndex, criminalPaths } = collectCriminalPaths();
+  const { bizIndex, bizPaths } = collectBizPaths();
   const existingItems = readExistingSitemap();
   const physBase = `${SITE_URL}${physIndex}`;
   const criminalBase = `${SITE_URL}${criminalIndex}`;
+  const bizBase = `${SITE_URL}${bizIndex}`;
 
   const preserved = existingItems.filter(
-    (item) => !item.loc.startsWith(physBase) && !item.loc.startsWith(criminalBase)
+    (item) =>
+      !item.loc.startsWith(physBase) &&
+      !item.loc.startsWith(criminalBase) &&
+      !item.loc.startsWith(bizBase)
   );
   const physUrlSet = new Set([physIndex, ...categoryPaths, ...physPaths]);
   const physUrls = Array.from(physUrlSet).sort();
   const criminalUrlSet = new Set([criminalIndex, ...criminalPaths]);
   const criminalUrls = Array.from(criminalUrlSet).sort();
+  const bizUrlSet = new Set([bizIndex, ...bizPaths]);
+  const bizUrls = Array.from(bizUrlSet).sort();
 
   const physItems = physUrls.map((pathItem) => {
     const loc = `${SITE_URL}${pathItem}`;
@@ -141,7 +159,17 @@ const buildSitemap = () => {
     };
   });
 
-  const items = [...preserved, ...physItems, ...criminalItems];
+  const bizItems = bizUrls.map((pathItem) => {
+    const loc = `${SITE_URL}${pathItem}`;
+    const isIndex = pathItem === bizIndex;
+    return {
+      loc,
+      priority: isIndex ? "0.9" : "0.7",
+      changefreq: isIndex ? "weekly" : "monthly"
+    };
+  });
+
+  const items = [...preserved, ...physItems, ...criminalItems, ...bizItems];
 
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',

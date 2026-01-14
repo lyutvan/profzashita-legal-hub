@@ -1,7 +1,7 @@
 import { SITE } from "@/config/site";
 import { audienceServices, getCategoriesForAudience } from "@/data/services-audiences";
 import { teamMembers } from "@/data/team";
-import { criminalReviews } from "@/data/criminal-reviews";
+import { sharedReviews } from "@/data/shared-reviews";
 
 export interface CriminalServiceEntry {
   title: string;
@@ -429,7 +429,7 @@ export const getCriminalServicePageData = (entry: CriminalServiceEntry): Crimina
     priceFormats: basePriceFormats,
     whyUs: baseWhyUs,
     team: getTeamByCategory(),
-    reviews: criminalReviews.map((review) => ({
+    reviews: sharedReviews.map((review) => ({
       name: review.name,
       date: review.date,
       text: review.text,

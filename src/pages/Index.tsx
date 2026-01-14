@@ -88,6 +88,7 @@ const Index = () => {
     { key: 'Преступления против общественной безопасности' },
     { key: 'Преступления против порядка управления' },
   ], 9);
+  const topBizServices = getServicesByAudience('biz').slice(0, 6);
   const topCriminalServices = getServicesByAudience('criminal').slice(0, 6);
 
   return (
@@ -346,6 +347,23 @@ const Index = () => {
                       </li>
                     ))}
                   </ul>
+                  <div className="border-t border-border mt-4 pt-4">
+                    <div className="text-xs uppercase text-muted-foreground mb-3">
+                      Популярные услуги
+                    </div>
+                    <ul className="space-y-2">
+                      {topBizServices.map((service) => (
+                        <li key={service.path}>
+                          <Link
+                            to={service.path}
+                            className="text-sm text-muted-foreground hover:text-accent transition-colors"
+                          >
+                            {service.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                 </CardContent>
               </Card>
 
