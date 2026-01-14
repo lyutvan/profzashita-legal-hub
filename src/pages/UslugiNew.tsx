@@ -14,6 +14,15 @@ const UslugiNew = () => {
   const criminalCategories = getTopCategories('criminal', 8);
   const topBizServices = getServicesByAudience('biz').slice(0, 6);
   const topCriminalServices = getServicesByAudience('criminal').slice(0, 6);
+  const topPhysServices = [
+    { title: "Развод и раздел имущества", path: "/services/phys/razvod-razdel-imushchestva" },
+    { title: "Алименты", path: "/services/phys/alimenty" },
+    { title: "Наследство", path: "/services/phys/nasledstvo" },
+    { title: "Жилищные споры / выписка / выселение", path: "/services/phys/zhilishchnye-spory" },
+    { title: "ДТП и страховые споры", path: "/services/phys/dtp-strahovye-spory" },
+    { title: "Защита прав потребителей", path: "/services/phys/zashchita-prav-potrebitelya" },
+    { title: "Взыскание долгов / расписка", path: "/services/phys/vzyskanie-po-raspiskam" }
+  ];
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -140,6 +149,23 @@ const UslugiNew = () => {
                       </li>
                     ))}
                   </ul>
+                  <div className="border-t border-border pt-4 mb-6">
+                    <div className="text-xs uppercase text-muted-foreground mb-3">
+                      Популярные услуги
+                    </div>
+                    <ul className="space-y-2">
+                      {topPhysServices.map((service) => (
+                        <li key={service.path}>
+                          <Link
+                            to={service.path}
+                            className="text-sm text-muted-foreground hover:text-[#C9A227] transition-colors"
+                          >
+                            {service.title}
+                          </Link>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
                   <Button 
                     variant="outline" 
                     className="mt-auto w-full border-[#C9A227]/30 hover:bg-[#C9A227]/10 hover:border-[#C9A227]"

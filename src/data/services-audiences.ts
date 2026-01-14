@@ -8,6 +8,7 @@ export interface AudienceService {
   priority: number; // Для сортировки топ-5
   category?: string; // Для группировки на категорийных страницах
   description?: string; // Описание услуги
+  heroServiceName?: string; // Название для hero/SEO
 }
 
 export interface ServiceCategory {
@@ -449,6 +450,16 @@ export const audienceServices: AudienceService[] = [
     audience: 'phys',
     priority: 2,
     category: 'Семейные споры'
+  },
+  {
+    title: 'Развод и раздел имущества',
+    slug: 'razvod-razdel-imushchestva',
+    path: '/services/phys/razvod-razdel-imushchestva',
+    audience: 'phys',
+    priority: 2.2,
+    category: 'Семейные споры',
+    description: 'Сопровождение развода и раздела имущества: стратегия, документы и защита интересов.',
+    heroServiceName: 'разводу и разделу имущества'
   },
   {
     title: 'Взыскание алиментов, изменение размера алиментов, задолженность по алиментам',

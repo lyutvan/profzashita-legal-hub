@@ -1056,7 +1056,8 @@ export const getPhysServiceEntryBySlug = (slug: string): PhysServiceEntry | unde
       slug: fromServices.slug,
       path: fromServices.path,
       category: fromServices.category ?? "Физические лица",
-      description: fromServices.description
+      description: fromServices.description,
+      heroServiceName: fromServices.heroServiceName
     };
   }
 

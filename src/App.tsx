@@ -96,7 +96,6 @@ const App = () => (
           <Route path="/services/phys/:slug" element={<PhysServiceDetailPage />} />
           
           {/* Redirects from old family services URLs */}
-          <Route path="/services/phys/razvod-razdel-imushchestva" element={<Navigate to="/services/phys/razvod" replace />} />
           <Route path="/services/phys/mesto-zhitelstva-poryadok-obshcheniya" element={<Navigate to="/services/phys/mesto-zhitelstva-rebenka" replace />} />
           
           {/* Business services (B2B) */}
