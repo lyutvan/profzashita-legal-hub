@@ -75,8 +75,10 @@ export interface PhysServicePageData {
   cases: PhysCaseItem[];
   team: PhysTeamCard[];
   reviews: Array<{ name: string; date: string; text: string; rating: number }>;
+  otherServices: Array<{ title: string; path: string }>;
   faqs: PhysFaqItem[];
   desiredResults: string[];
+  seoText: string[];
 }
 
 const CATEGORY_SLUG_OVERRIDES: Record<string, string> = {
@@ -926,6 +928,70 @@ const mergeFaqs = (base: PhysFaqItem[], extra?: PhysFaqItem[]) => {
   });
 };
 
+const clampMetaDescription = (text: string) => {
+  const min = 140;
+  const max = 160;
+  if (text.length > max) {
+    return `${text.slice(0, max - 1).replace(/[,\s.;-]+$/g, "")}.`;
+  }
+  if (text.length < min) {
+    const additions = [
+      " Работаем по договору и соблюдаем конфиденциальность.",
+      " Помогаем на досудебной и судебной стадиях."
+    ];
+    let updated = text;
+    for (const add of additions) {
+      if (updated.length >= min) break;
+      updated += add;
+    }
+    if (updated.length > max) {
+      return `${updated.slice(0, max - 1).replace(/[,\s.;-]+$/g, "")}.`;
+    }
+    return updated;
+  }
+  return text;
+};
+
+const buildMetaDescription = (serviceName: string) => {
+  const base = `Адвокат по ${serviceName} в Москве: оценка перспектив, план действий и сопровождение дела на всех стадиях.`;
+  return clampMetaDescription(base);
+};
+
+const formatList = (items: string[], count: number) => {
+  return items.slice(0, count).join(", ");
+};
+
+const buildSeoText = (entry: PhysServiceEntry, content: PhysCategoryContent) => {
+  const serviceName = entry.title;
+  const categoryName = entry.category;
+  const scenariosList = formatList(content.scenarios, 4);
+  const stepsList = formatList(content.planSteps.map((step) => step.title.toLowerCase()), 3);
+  const docList = formatList(content.documents, 4);
+  const mistakesList = formatList(content.mistakes, 4);
+  const priceList = formatList(content.priceFactors, 4);
+
+  const paragraphs = [
+    `Услуга «${serviceName}» — это практическая юридическая помощь для частных клиентов по направлению «${categoryName}». В Москве и области подобные споры развиваются быстро, поэтому важно не ждать, а зафиксировать позицию и вовремя собрать доказательства. Наша задача — объяснить перспективы, обозначить реальные риски и предложить план действий, который даст управляемый результат. Мы не обещаем невозможного, но выстраиваем понятную стратегию: что делать сейчас, какие документы нужны и какие шаги действительно влияют на исход.`,
+    `Работа начинается с диагностики: изучаем вводные данные, сроки и стадию дела. Затем формируем план: ${stepsList}. Это позволяет не терять время на хаотичные действия и сохранить процессуальные сроки. Для клиента важно понимать, на каком этапе можно решить вопрос переговорно, а когда уже необходим суд. Мы подробно объясняем, какие действия дадут эффект именно в вашем случае, и фиксируем ключевые решения письменно.`,
+    `На практике по услуге «${serviceName}» чаще всего встречаются ситуации: ${scenariosList}. В таких кейсах важна аккуратная фиксация обстоятельств и документов. Обычно требуются: ${docList}. Чем полнее пакет, тем сильнее позиция. Мы подскажем, чего не хватает, и поможем быстро собрать доказательства, чтобы суд или оппонент видел объективную картину.`,
+    `Если спор ещё не в суде, мы делаем акцент на досудебном урегулировании: претензия, переговоры, фиксация условий, сбор доказательств. Такой подход помогает уменьшить сроки и затраты, а иногда — закрыть спор без процесса. Но досудебный этап не означает «слабую» позицию: мы готовим аргументы так, чтобы в случае суда у вас уже была сильная доказательственная база.`,
+    `Когда дело уже в суде, стратегия становится более процессуальной: заявления, ходатайства, экспертизы, опрос свидетелей и анализ доказательств. Мы следим за сроками и формальными требованиями, потому что ошибка в процессуальном документе может стоить результата. При необходимости подключаем экспертов, помогаем оспаривать выводы, добиваемся корректной квалификации обстоятельств и, если нужно, готовим апелляцию и кассацию.`,
+    `Стоимость по услуге «${serviceName}» формируется индивидуально и зависит от факторов: ${priceList}. Обычно мы предлагаем формат разовой задачи или полное ведение дела с понятными этапами и отчетностью. Клиент заранее понимает, что входит в работу, какие расходы возможны дополнительно и какие этапы займут больше времени. Такой подход позволяет планировать бюджет и не сталкиваться с неожиданными тратами.`,
+    `Типовые ошибки клиентов — ${mistakesList}. Эти ошибки приводят к ухудшению позиции, потере времени и росту затрат. Поэтому мы заранее предупреждаем о рисках и предлагаем безопасную последовательность действий. Важно не соглашаться на сомнительные условия, не подписывать документы без анализа и не пропускать процессуальные сроки, даже если кажется, что спор «не такой серьёзный».`,
+    `Доверие формируется через результаты и прозрачность. Мы показываем похожие кейсы, объясняем логику действий и привязываем стратегию к вашей цели. За делом закрепляется профильный специалист, который отвечает за коммуникацию, подготовку документов и участие в процессе. При необходимости подключаем коллег с экспертизой в смежных вопросах, чтобы обеспечить полный контроль над ситуацией.`,
+    `На старте важно понять, какие цели реалистичны и какие последствия могут наступить при том или ином сценарии. Мы оцениваем вероятность исходов, риски встречных требований и перспективы взыскания, если речь идет о денежных требованиях. Такой анализ помогает выбрать правильную тактику: быстрое урегулирование, более жесткая позиция или системная подготовка к суду. В результате клиент видит, что является приоритетом, а что можно отложить.`,
+    `Для дел категории «${categoryName}» большое значение имеет правильная фиксация фактов: даты, суммы, участники, доказательства переговоров. Мы всегда просим сохранить переписку, уведомления, чеки, квитанции и официальные ответы организаций. Это становится основой доказательственной базы и повышает шансы на успешный исход. Если доказательства нужно получить через запросы, мы готовим их и контролируем сроки исполнения.`,
+    `Отдельный блок — работа с процессуальными сроками. Во многих случаях именно сроки определяют исход: пропущенный срок на подачу заявления, жалобы или возражения существенно снижает вероятность результата. Мы заранее выстраиваем календарь ключевых дат и фиксируем, какие документы готовим в приоритетном порядке. Это снижает риски и обеспечивает предсказуемость для клиента.`,
+    `Если спор предполагает экспертизу или оценку, мы заранее объясняем, какие расходы возможны, и помогает выбрать корректного специалиста. Важно, чтобы экспертиза отвечала на юридически значимые вопросы, иначе суд не примет ее как доказательство. Мы сопровождаем подготовку вопросов эксперту, контролируем сроки и анализируем заключение на предмет слабых мест.`,
+    `Практика показывает, что прозрачность и коммуникация снижает стресс для клиента. Поэтому мы фиксируем этапы, сроки и ожидаемые результаты по каждому шагу, а также объясняем, какие действия нужно выполнить со стороны клиента. Такой подход экономит время и позволяет вовремя принимать решения. Если необходима срочная реакция, мы сообщаем об этом заранее и предлагаем конкретные варианты действий.`,
+    `Сервис ориентирован на конкретный результат, но важно помнить о нюансах: иногда выгоднее завершить спор мировым соглашением, а иногда нужно довести дело до решения. Мы честно объясняем плюсы и минусы каждого варианта и не рекомендуем путь, который не соответствует вашим целям. В итоге у клиента остается реальная картина перспектив и четкое понимание, стоит ли идти дальше.`,
+    `Чтобы оценка была точной, мы просим кратко описать цели и ограничения: сроки, бюджет, готовность к переговорам и судебному процессу. Это помогает сразу определить оптимальную стратегию и отказаться от лишних действий. Такой подход особенно важен, когда дело связано с рисками встречных требований или сложной доказательственной базой, где каждое решение влияет на результат.`,
+    `Если вы рассматриваете услугу «${serviceName}», начните с краткого описания ситуации и отправьте документы на оценку. Мы свяжемся, уточним детали и предложим план действий. Работу ведём по договору, соблюдаем конфиденциальность и адвокатскую тайну. Это позволяет вам чувствовать контроль на каждом этапе и принимать решения с пониманием последствий.`
+  ];
+
+  return paragraphs;
+};
+
 const getCategoryContent = (category: string): PhysCategoryContent => {
   const override = CATEGORY_CONTENT[category] ?? {};
   return {
@@ -1025,6 +1091,18 @@ const normalizeHeroServiceName = (entry: PhysServiceEntry) => {
   return entry.heroServiceName ?? entry.title.toLowerCase();
 };
 
+const getOtherServices = (entry: PhysServiceEntry, limit: number = 8) => {
+  const sameCategory = physServicesList.filter(
+    (service) => service.category === entry.category && service.path !== entry.path
+  );
+  const others = physServicesList.filter(
+    (service) => service.category !== entry.category && service.path !== entry.path
+  );
+  return [...sameCategory, ...others]
+    .slice(0, limit)
+    .map((service) => ({ title: service.title, path: service.path }));
+};
+
 export const getPhysServicePageData = (entry: PhysServiceEntry): PhysServicePageData => {
   const categoryContent = getCategoryContent(entry.category);
   const heroServiceName = normalizeHeroServiceName(entry);
@@ -1051,9 +1129,7 @@ export const getPhysServicePageData = (entry: PhysServiceEntry): PhysServicePage
   breadcrumbSchema.push({ name: entry.title, url: canonical });
 
   const metaTitle = `Адвокат по ${heroServiceName} в Москве — Профзащита`;
-  const metaDescription =
-    entry.description ??
-    `Адвокат по ${heroServiceName} в Москве: оценка перспектив, план действий и сопровождение дела на всех этапах.`;
+  const metaDescription = buildMetaDescription(heroServiceName);
 
   const scenarios: PhysScenario[] = categoryContent.scenarios.map((title, index) => ({
     title,
@@ -1076,7 +1152,7 @@ export const getPhysServicePageData = (entry: PhysServiceEntry): PhysServicePage
     breadcrumbSchema,
     categoryLabel: entry.isCategory ? entry.title : entry.category,
     categoryPath,
-    heroTitle: `Адвокат по ${heroServiceName} в Москве`,
+    heroTitle: `Адвокат по ${heroServiceName}`,
     heroSubtitle: categoryContent.heroSubtitle,
     heroBenefits: categoryContent.benefits,
     scenarios,
@@ -1093,8 +1169,10 @@ export const getPhysServicePageData = (entry: PhysServiceEntry): PhysServicePage
     cases: categoryContent.cases,
     team: getTeamByCategory(entry.category),
     reviews,
+    otherServices: getOtherServices(entry),
     faqs: categoryContent.faqs,
-    desiredResults: categoryContent.desiredResults
+    desiredResults: categoryContent.desiredResults,
+    seoText: buildSeoText(entry, categoryContent)
   };
 };
 

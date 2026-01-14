@@ -10,6 +10,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { AlertTriangle, CheckCircle2, FileText, ArrowUpRight } from "lucide-react";
 import { BreadcrumbSchema, LegalServiceSchema, FAQPageSchema, ReviewsSchema } from "@/components/JsonLd";
+import { SITE } from "@/config/site";
 import { getServiceHeroImage } from "@/lib/serviceCardImages";
 import type { PhysServicePageData } from "@/data/phys-service-content";
 
@@ -20,6 +21,9 @@ interface PhysServiceTemplateProps {
 const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
   const [highlightStep, setHighlightStep] = useState<number | null>(null);
   const heroImage = getServiceHeroImage(data.entry.path, "phys");
+  const ogImage = heroImage.startsWith("http")
+    ? heroImage
+    : `${SITE.url}${heroImage.replace(/^\//, "")}`;
 
   const handleScenarioClick = (stepIndex?: number) => {
     setHighlightStep(stepIndex ?? 0);
@@ -35,6 +39,20 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         <title>{data.metaTitle}</title>
         <meta name="description" content={data.metaDescription} />
         <link rel="canonical" href={data.canonical} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+
+        <meta property="og:title" content={data.metaTitle} />
+        <meta property="og:description" content={data.metaDescription} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={data.canonical} />
+        <meta property="og:image" content={ogImage} />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="Профзащита" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content={data.metaTitle} />
+        <meta name="twitter:description" content={data.metaDescription} />
+        <meta name="twitter:image" content={ogImage} />
       </Helmet>
 
       <BreadcrumbSchema items={data.breadcrumbSchema} />
@@ -490,6 +508,58 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                   Смотреть все отзывы в Яндекс.Картах
                 </a>
               </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Internal Links */}
+        <section className="py-12 md:py-16">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mb-8">
+              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+                Другие услуги физлицам
+              </h2>
+              <p className="text-muted-foreground">
+                Посмотрите другие направления, если ваш запрос шире текущей услуги.
+              </p>
+            </div>
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+              {data.otherServices.map((service) => (
+                <Card key={service.path} className="h-full">
+                  <CardContent className="pt-6">
+                    <Link
+                      to={service.path}
+                      className="text-sm font-semibold text-[#0B1F3A] hover:text-[#C9A227]"
+                    >
+                      {service.title}
+                    </Link>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <div className="mt-6">
+              <Button asChild variant="outline">
+                <Link to="/services/phys">Все услуги физлицам</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* SEO Text */}
+        <section className="py-12 md:py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mb-8">
+              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+                Подробно об услуге
+              </h2>
+              <p className="text-muted-foreground">
+                Разъясняем нюансы, этапы и типовые ситуации по теме услуги.
+              </p>
+            </div>
+            <div className="space-y-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+              {data.seoText.map((paragraph, index) => (
+                <p key={index}>{paragraph}</p>
+              ))}
             </div>
           </div>
         </section>

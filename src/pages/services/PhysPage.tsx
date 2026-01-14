@@ -6,19 +6,22 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import ServiceCallBanner from "@/components/ServiceCallBanner";
 import ServiceBannerCard from "@/components/ServiceBannerCard";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getCategoriesForAudience, audienceConfig } from "@/data/services-audiences";
+import { getCategoriesForAudience, getServicesByAudience, audienceConfig } from "@/data/services-audiences";
 import { getPhysCategoryPagePath } from "@/data/phys-service-content";
 import { CheckCircle2 } from "lucide-react";
 import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 import { getServiceCardImage } from "@/lib/serviceCardImages";
+import { SITE } from "@/config/site";
 
 const PhysPage = () => {
   const categories = getCategoriesForAudience('phys');
   const totalServices = categories.reduce((sum, category) => sum + category.services.length, 0);
+  const allServices = getServicesByAudience("phys").slice().sort((a, b) => a.title.localeCompare(b.title));
   const location = useLocation();
+  const canonical = new URL("/services/phys", SITE.url).toString();
 
   useEffect(() => {
     if (!location.hash) return;
@@ -37,19 +40,19 @@ const PhysPage = () => {
         "@type": "ListItem",
         "position": 1,
         "name": "Главная",
-        "item": "https://profzashita.com"
+        "item": SITE.url
       },
       {
         "@type": "ListItem",
         "position": 2,
         "name": "Услуги",
-        "item": "https://profzashita.com/uslugi"
+        "item": new URL("/uslugi", SITE.url).toString()
       },
       {
         "@type": "ListItem",
         "position": 3,
         "name": "Физическим лицам",
-        "item": "https://profzashita.com/services/phys"
+        "item": canonical
       }
     ]
   };
@@ -57,11 +60,32 @@ const PhysPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>Услуги для физических лиц — Профзащита</title>
-        <meta 
-          name="description" 
-          content="Юридическая помощь физическим лицам: уголовные дела, гражданские споры, семейное право, трудовые споры. Опыт 15+ лет." 
+        <title>Услуги адвокатов для физических лиц в Москве — Профзащита</title>
+        <meta
+          name="description"
+          content="Услуги адвокатов для физических лиц в Москве: семейные, жилищные, наследственные споры, ДТП, защита прав потребителей, долги и банкротство. Оценим перспективы."
         />
+        <link rel="canonical" href={canonical} />
+        <meta name="robots" content="index, follow, max-image-preview:large" />
+
+        <meta property="og:title" content="Услуги адвокатов для физических лиц в Москве — Профзащита" />
+        <meta
+          property="og:description"
+          content="Услуги адвокатов для физических лиц в Москве: семейные, жилищные, наследственные споры, ДТП, защита прав потребителей, долги и банкротство. Оценим перспективы."
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={canonical} />
+        <meta property="og:image" content={SITE.ogImage} />
+        <meta property="og:locale" content="ru_RU" />
+        <meta property="og:site_name" content="Профзащита" />
+
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="Услуги адвокатов для физических лиц в Москве — Профзащита" />
+        <meta
+          name="twitter:description"
+          content="Услуги адвокатов для физических лиц в Москве: семейные, жилищные, наследственные споры, ДТП, защита прав потребителей, долги и банкротство. Оценим перспективы."
+        />
+        <meta name="twitter:image" content={SITE.ogImage} />
       </Helmet>
 
       <JsonLdComponent data={breadcrumbSchema} />
@@ -142,8 +166,33 @@ const PhysPage = () => {
           </div>
         </section>
 
-        {/* CTA Section */}
+        {/* All Services List */}
         <section className="py-16 bg-muted/30">
+          <div className="container mx-auto px-4">
+            <div className="max-w-3xl mb-8">
+              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+                Все услуги для физических лиц
+              </h2>
+              <p className="text-muted-foreground">
+                Полный перечень услуг с прямыми ссылками на каждую страницу.
+              </p>
+            </div>
+            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+              {allServices.map((service) => (
+                <Link
+                  key={service.path}
+                  to={service.path}
+                  className="text-sm text-[#0B1F3A] hover:text-[#C9A227] hover:underline"
+                >
+                  {service.title}
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* CTA Section */}
+        <section className="py-16">
           <div className="container mx-auto px-4">
             <Card className="bg-gradient-to-br from-[#0B1F3A] to-[#0C1926] text-white border-0">
               <CardContent className="pt-12 pb-12">
