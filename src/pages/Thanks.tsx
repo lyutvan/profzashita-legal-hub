@@ -21,11 +21,11 @@ const Thanks = () => {
       <main className="flex-1 flex items-center justify-center px-4 py-16">
         <Card className="max-w-md w-full p-8 text-center space-y-6">
           <div className="flex justify-center">
-            <CheckCircle className="h-16 w-16 text-green-500" />
+            <CheckCircle className="h-16 w-16 text-accent" />
           </div>
           
           <div className="space-y-2">
-            <h1 className="text-2xl font-playfair font-bold">
+            <h1 className="font-serif text-h2-mobile md:text-h2 font-bold">
               Спасибо за обращение!
             </h1>
             <p className="text-muted-foreground">
@@ -33,7 +33,7 @@ const Thanks = () => {
             </p>
           </div>
 
-          <div className="space-y-3 pt-4">
+          <div className="space-y-4 pt-4">
             <Button 
               onClick={() => navigate('/')} 
               className="w-full"

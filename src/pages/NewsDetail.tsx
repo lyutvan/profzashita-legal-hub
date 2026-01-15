@@ -57,9 +57,9 @@ const NewsDetail = () => {
         
         <main className="flex-1">
           {/* Hero Section */}
-          <section className="relative py-16 md:py-24 overflow-hidden">
+          <section className="relative section overflow-hidden">
             <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-background to-background" />
-            <div className="container mx-auto px-4 relative z-10">
+            <div className="container relative z-10">
               <Button 
                 variant="ghost" 
                 className="mb-6 gap-2"
@@ -80,11 +80,11 @@ const NewsDetail = () => {
                   </div>
                 </div>
                 
-                <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                <h1 className="text-h1-mobile md:text-h1 font-bold text-foreground mb-6">
                   {newsItem.title}
                 </h1>
                 
-                <p className="text-xl text-muted-foreground">
+                <p className="text-body-mobile md:text-body text-muted-foreground">
                   {newsItem.excerpt}
                 </p>
               </div>
@@ -93,13 +93,13 @@ const NewsDetail = () => {
 
 
           {/* Content Section */}
-          <section className="py-12">
-            <div className="container mx-auto px-4">
+          <section className="section">
+            <div className="container">
               <div className="max-w-4xl mx-auto">
                 {newsItem.id === 'children-day-2025' ? (
                   <div className="prose prose-lg max-w-none">
-                    <div className="bg-card rounded-lg p-8 mb-8 border">
-                      <h2 className="text-2xl font-bold mb-6 text-foreground">О мероприятии</h2>
+                    <div className="bg-card rounded-xl p-8 mb-8 border">
+                      <h2 className="text-h2-mobile md:text-h2 font-bold mb-6 text-foreground">О мероприятии</h2>
                       <p className="text-muted-foreground leading-relaxed mb-6">
                         В соответствии с решением Правительственной комиссии по вопросам реализации 
                         Федерального закона от 21.11.2011 № 324-ФЗ «О бесплатной юридической помощи 
@@ -135,7 +135,7 @@ const NewsDetail = () => {
                           <div>
                             <h3 className="font-semibold text-foreground mb-1">Место проведения</h3>
                             <p className="text-muted-foreground">Офис адвокатской коллегии Профзащита</p>
-                            <p className="text-sm text-muted-foreground mt-1">г. Москва</p>
+                            <p className="text-small text-muted-foreground mt-1">г. Москва</p>
                           </div>
                         </div>
                         
@@ -149,8 +149,8 @@ const NewsDetail = () => {
                       </div>
                     </div>
 
-                    <div className="bg-primary/5 rounded-lg p-8 mb-8 border border-primary/20">
-                      <h2 className="text-2xl font-bold mb-6 text-foreground">Кому была оказана помощь</h2>
+                    <div className="bg-primary/5 rounded-xl p-8 mb-8 border border-primary/20">
+                      <h2 className="text-h2-mobile md:text-h2 font-bold mb-6 text-foreground">Кому была оказана помощь</h2>
                       <p className="text-muted-foreground leading-relaxed mb-6">
                         В рамках мероприятия бесплатная квалифицированная юридическая помощь оказывалась 
                         следующим категориям граждан:
@@ -183,11 +183,11 @@ const NewsDetail = () => {
                       </ul>
                     </div>
 
-                    <div className="bg-card rounded-lg p-8 mb-8 border">
-                      <h2 className="text-2xl font-bold mb-6 text-foreground">Виды оказанной юридической помощи</h2>
+                    <div className="bg-card rounded-xl p-8 mb-8 border">
+                      <h2 className="text-h2-mobile md:text-h2 font-bold mb-6 text-foreground">Виды оказанной юридической помощи</h2>
                       <div className="space-y-4">
-                        <div className="flex items-start gap-3 p-4 bg-background rounded-lg">
-                          <div className="text-primary text-2xl font-bold">01</div>
+                        <div className="flex items-start gap-3 p-4 bg-background rounded-xl">
+                          <div className="text-primary text-h3-mobile md:text-h3 font-bold">01</div>
                           <div>
                             <h3 className="font-semibold text-foreground mb-2">Устные консультации</h3>
                             <p className="text-muted-foreground">
@@ -198,8 +198,8 @@ const NewsDetail = () => {
                           </div>
                         </div>
                         
-                        <div className="flex items-start gap-3 p-4 bg-background rounded-lg">
-                          <div className="text-primary text-2xl font-bold">02</div>
+                        <div className="flex items-start gap-3 p-4 bg-background rounded-xl">
+                          <div className="text-primary text-h3-mobile md:text-h3 font-bold">02</div>
                           <div>
                             <h3 className="font-semibold text-foreground mb-2">Письменные консультации</h3>
                             <p className="text-muted-foreground">
@@ -209,8 +209,8 @@ const NewsDetail = () => {
                           </div>
                         </div>
                         
-                        <div className="flex items-start gap-3 p-4 bg-background rounded-lg">
-                          <div className="text-primary text-2xl font-bold">03</div>
+                        <div className="flex items-start gap-3 p-4 bg-background rounded-xl">
+                          <div className="text-primary text-h3-mobile md:text-h3 font-bold">03</div>
                           <div>
                             <h3 className="font-semibold text-foreground mb-2">Составление документов</h3>
                             <p className="text-muted-foreground">
@@ -222,8 +222,8 @@ const NewsDetail = () => {
                       </div>
                     </div>
 
-                    <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-lg p-8 border border-primary/20">
-                      <h2 className="text-2xl font-bold mb-4 text-foreground">Итоги мероприятия</h2>
+                    <div className="bg-gradient-to-br from-primary/10 to-primary/5 rounded-xl p-8 border border-primary/20">
+                      <h2 className="text-h2-mobile md:text-h2 font-bold mb-4 text-foreground">Итоги мероприятия</h2>
                       <p className="text-muted-foreground leading-relaxed mb-4">
                         Мероприятие прошло успешно. За день приема было проконсультировано значительное количество 
                         граждан, многие получили не только юридические консультации, но и практическую помощь в 
@@ -248,10 +248,10 @@ const NewsDetail = () => {
           </section>
 
           {/* CTA Section */}
-          <section className="py-16 bg-muted/30">
-            <div className="container mx-auto px-4">
+          <section className="section bg-muted/30">
+            <div className="container">
               <div className="max-w-3xl mx-auto text-center">
-                <h2 className="text-3xl font-bold text-foreground mb-4">
+                <h2 className="text-h2-mobile md:text-h2 font-bold text-foreground mb-4">
                   Нужна юридическая помощь?
                 </h2>
                 <p className="text-muted-foreground mb-8">

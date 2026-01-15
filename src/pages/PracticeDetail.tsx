@@ -17,7 +17,7 @@ const PracticeDetail = () => {
         <Header />
         <main className="flex-1 flex items-center justify-center">
           <div className="text-center">
-            <h1 className="text-4xl font-bold mb-4">Практика не найдена</h1>
+            <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-4">Практика не найдена</h1>
             <Button asChild>
               <Link to="/practices">Вернуться к практикам</Link>
             </Button>
@@ -36,8 +36,8 @@ const PracticeDetail = () => {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="bg-gradient-to-br from-primary to-primary/90 text-primary-foreground py-16">
-          <div className="container mx-auto px-4">
+        <section className="bg-gradient-to-br from-primary to-primary/90 text-primary-foreground section">
+          <div className="container">
             <Button variant="ghost" asChild className="mb-6 text-primary-foreground hover:text-accent">
               <Link to="/practices">
                 <ArrowLeft className="mr-2 h-4 w-4" />
@@ -46,14 +46,14 @@ const PracticeDetail = () => {
             </Button>
             
             <div className="flex items-start gap-6">
-              <div className="w-16 h-16 rounded-lg bg-accent/20 flex items-center justify-center flex-shrink-0">
+              <div className="w-16 h-16 rounded-xl bg-accent/20 flex items-center justify-center flex-shrink-0">
                 <Icon className="h-8 w-8 text-accent" />
               </div>
               <div>
-                <h1 className="font-playfair text-3xl md:text-4xl font-bold mb-4">
+                <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-4">
                   {practice.title}
                 </h1>
-                <p className="text-lg text-primary-foreground/80 max-w-3xl">
+                <p className="text-body-mobile md:text-body text-primary-foreground/80 max-w-3xl">
                   {practice.description}
                 </p>
               </div>
@@ -62,25 +62,25 @@ const PracticeDetail = () => {
         </section>
 
         {/* Content Section */}
-        <section className="relative py-20 overflow-hidden">
-          <div className="container mx-auto px-4">
+        <section className="relative section overflow-hidden">
+          <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12 max-w-7xl mx-auto">
               {/* Main Content */}
               <div className="lg:col-span-2 space-y-8">
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold mb-4">О направлении</h2>
-                  <p className="text-lg text-muted-foreground leading-relaxed">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">О направлении</h2>
+                  <p className="text-body-mobile md:text-body text-muted-foreground leading-relaxed">
                     {practice.fullDescription}
                   </p>
                 </div>
 
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold mb-6">Наши услуги</h2>
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">Наши услуги</h2>
                   <div className="space-y-4">
                     {practice.services.map((service, index) => (
-                      <div key={index} className="flex items-start gap-3 p-4 bg-muted/30 rounded-lg border border-border">
+                      <div key={index} className="flex items-start gap-4 p-4 bg-muted/30 rounded-xl border border-border">
                         <CheckCircle className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                        <p className="text-base">{service}</p>
+                        <p className="text-body-mobile md:text-body">{service}</p>
                       </div>
                     ))}
                   </div>
@@ -88,8 +88,8 @@ const PracticeDetail = () => {
 
                 <Card className="bg-accent/5 border-accent/20">
                   <CardContent className="pt-6">
-                    <h3 className="font-playfair text-xl font-bold mb-4">Как мы работаем</h3>
-                    <ol className="space-y-3 list-decimal list-inside text-muted-foreground">
+                    <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-4">Как мы работаем</h3>
+                    <ol className="space-y-4 list-decimal list-inside text-muted-foreground">
                       <li>Бесплатная консультация и оценка перспектив дела</li>
                       <li>Анализ документов и разработка стратегии</li>
                       <li>Заключение договора и начало работы</li>
@@ -104,10 +104,10 @@ const PracticeDetail = () => {
               <div>
                 <Card className="sticky top-24 border-border shadow-elegant">
                   <CardContent className="pt-6">
-                    <h3 className="font-playfair text-xl font-bold mb-4 text-center">
+                    <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-4 text-center">
                       Получить консультацию
                     </h3>
-                    <p className="text-sm text-muted-foreground mb-6 text-center">
+                    <p className="text-small text-muted-foreground mb-6 text-center">
                       Заполните форму, и мы свяжемся с вами в течение 15 минут
                     </p>
                     <ContactForm />

@@ -18,25 +18,25 @@ const PricingBlock = ({ packages }: PricingBlockProps) => {
             className={`relative ${index === 1 ? 'border-accent shadow-lg' : ''}`}
           >
             {index === 1 && (
-              <div className="absolute -top-3 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground px-4 py-1 rounded-full text-xs font-medium">
+              <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-accent text-accent-foreground px-4 py-2 rounded-full text-small font-medium">
                 Популярный
               </div>
             )}
             <CardHeader>
-              <CardTitle className="text-xl">{pkg.name}</CardTitle>
+              <CardTitle className="font-serif">{pkg.name}</CardTitle>
               <CardDescription>{pkg.description}</CardDescription>
               <div className="pt-4">
-                <div className="text-3xl font-bold text-accent">
+                <div className="text-h2-mobile md:text-h2 font-bold text-accent">
                   от {pkg.priceFrom.toLocaleString('ru-RU')} ₽
                 </div>
               </div>
             </CardHeader>
             <CardContent className="space-y-4">
-              <ul className="space-y-3">
+              <ul className="space-y-4">
                 {pkg.features.map((feature, fIndex) => (
                   <li key={fIndex} className="flex items-start gap-2">
                     <Check className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                    <span className="text-sm">{feature}</span>
+                    <span className="text-small">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -52,7 +52,7 @@ const PricingBlock = ({ packages }: PricingBlockProps) => {
         ))}
       </div>
       
-      <div className="bg-muted/50 rounded-lg p-6 text-sm text-muted-foreground">
+      <div className="bg-muted/50 rounded-xl p-6 text-small text-muted-foreground">
         <p className="leading-relaxed">
           <strong>Обратите внимание:</strong> Окончательная стоимость зависит от сложности и объёма работы. 
           Мы рассчитаем точную смету после изучения документов и обсуждения деталей вашей ситуации. 

@@ -91,14 +91,14 @@ const ClusterServicePage = ({
 
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-[#0B1F3A] to-[#0C1926] text-white py-12 md:py-16 overflow-hidden">
+        <section className="relative bg-gradient-to-br from-primary to-primary/90 text-white section overflow-hidden">
           <div className="absolute inset-0 opacity-5">
             <div className="absolute inset-0" style={{
               backgroundImage: 'url("data:image/svg+xml,%3Csvg width=\\"60\\" height=\\"60\\" viewBox=\\"0 0 60 60\\" xmlns=\\"http://www.w3.org/2000/svg\\"%3E%3Cg fill=\\"none\\" fill-rule=\\"evenodd\\"%3E%3Cg fill=\\"%23ffffff\\" fill-opacity=\\"1\\"%3E%3Cpath d=\\"M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z\\"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
             }} />
           </div>
 
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container relative z-10">
             <Breadcrumbs 
               items={[
                 { label: "Услуги", path: "/uslugi" },
@@ -108,16 +108,16 @@ const ClusterServicePage = ({
             />
             
             <div className="max-w-4xl mt-8">
-              <div className="inline-flex items-center gap-2 px-4 py-2 bg-[#C9A227]/20 border border-[#C9A227]/30 rounded-full mb-6">
-                <Scale className="h-4 w-4 text-[#C9A227]" />
-                <span className="text-sm font-medium text-[#C9A227]">{clusterTitle}</span>
+              <div className="inline-flex items-center gap-2 px-4 py-2 bg-accent/20 border border-accent/30 rounded-full mb-6">
+                <Scale className="h-4 w-4 text-accent" />
+                <span className="text-small font-medium text-accent">{clusterTitle}</span>
               </div>
               
-              <h1 className="font-montserrat text-3xl md:text-5xl font-bold mb-4 leading-tight">
+              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-4 leading-tight">
                 {situation.h1}
               </h1>
               
-              <p className="text-lg md:text-xl text-white/80 mb-8 leading-relaxed">
+              <p className="text-body-mobile md:text-body text-white/80 mb-8 leading-relaxed">
                 {situation.subtitle}
               </p>
 
@@ -125,7 +125,7 @@ const ClusterServicePage = ({
               <div className="flex flex-wrap gap-4">
                 <Button 
                   size="lg" 
-                  className="bg-[#C9A227] hover:bg-[#B08E1F] text-white font-medium"
+                  className="bg-accent text-white hover:bg-accent/90 font-medium"
                   asChild
                 >
                   <Link to="/kontakty">
@@ -150,17 +150,18 @@ const ClusterServicePage = ({
           </div>
         </section>
 
-        <div className="container mx-auto px-4 py-12">
+        <section className="section">
+          <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
             <div className="lg:col-span-2 space-y-12">
               {/* 1. Что грозит (Risks) */}
               <section>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-destructive/10 rounded-lg">
+                  <div className="p-2 bg-destructive/10 rounded-xl">
                     <AlertTriangle className="h-6 w-6 text-destructive" />
                   </div>
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
                     Что грозит, если ничего не делать
                   </h2>
                 </div>
@@ -181,19 +182,19 @@ const ClusterServicePage = ({
               {/* 2. Что делать сейчас (Checklist) */}
               <section>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-[#C9A227]/10 rounded-lg">
-                    <CheckCircle2 className="h-6 w-6 text-[#C9A227]" />
+                  <div className="p-2 bg-accent/10 rounded-xl">
+                    <CheckCircle2 className="h-6 w-6 text-accent" />
                   </div>
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
                     Что делать сейчас: план действий
                   </h2>
                 </div>
-                <Card className="border-[#C9A227]/20 bg-[#C9A227]/5">
+                <Card className="border-accent/20 bg-accent/5">
                   <CardContent className="pt-6">
                     <ol className="space-y-4">
                       {situation.checklist.map((item, index) => (
                         <li key={index} className="flex items-start gap-4">
-                          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-[#C9A227] text-white flex items-center justify-center font-bold text-sm">
+                          <div className="flex-shrink-0 w-8 h-8 rounded-full bg-accent text-white flex items-center justify-center font-bold text-small">
                             {index + 1}
                           </div>
                           <span className="pt-1">{item}</span>
@@ -207,10 +208,10 @@ const ClusterServicePage = ({
               {/* 3. Наша стратегия */}
               <section>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-primary/10 rounded-lg">
+                  <div className="p-2 bg-primary/10 rounded-xl">
                     <TrendingUp className="h-6 w-6 text-primary" />
                   </div>
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
                     Наша стратегия работы
                   </h2>
                 </div>
@@ -219,7 +220,7 @@ const ClusterServicePage = ({
                     <Card key={index} className="hover:shadow-md transition-shadow">
                       <CardContent className="pt-6">
                         <div className="flex items-start gap-4">
-                          <div className="flex-shrink-0 w-10 h-10 rounded-lg bg-primary/10 flex items-center justify-center">
+                          <div className="flex-shrink-0 w-10 h-10 rounded-xl bg-primary/10 flex items-center justify-center">
                             <Shield className="h-5 w-5 text-primary" />
                           </div>
                           <p className="pt-2">{step}</p>
@@ -239,30 +240,30 @@ const ClusterServicePage = ({
               {/* 4. Сроки / этапы / цена */}
               <section>
                 <div className="flex items-center gap-3 mb-6">
-                  <div className="p-2 bg-primary/10 rounded-lg">
+                  <div className="p-2 bg-primary/10 rounded-xl">
                     <Clock className="h-6 w-6 text-primary" />
                   </div>
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
                     Сроки, этапы и стоимость
                   </h2>
                 </div>
                 <div className="space-y-4">
                   {situation.timeline.map((step, index) => (
-                    <Card key={index} className="border-l-4 border-l-[#C9A227]">
+                    <Card key={index} className="border-l-4 border-l-accent">
                       <CardContent className="pt-6">
                         <div className="flex items-start justify-between gap-4 flex-wrap">
                           <div className="flex-1 min-w-[200px]">
-                            <h3 className="font-semibold text-lg mb-2">{step.stage}</h3>
-                            <div className="flex items-center gap-2 text-sm text-muted-foreground">
+                            <h3 className="font-semibold text-body-mobile md:text-body mb-2">{step.stage}</h3>
+                            <div className="flex items-center gap-2 text-small text-muted-foreground">
                               <Clock className="h-4 w-4" />
                               <span>{step.duration}</span>
                             </div>
                           </div>
-                          <div className="flex items-center gap-2 px-4 py-2 bg-[#C9A227]/10 rounded-lg">
+                          <div className="flex items-center gap-2 px-4 py-2 bg-accent/10 rounded-xl">
                             {isCriminalCluster ? (
-                              <span className="font-bold text-lg">По договоренности</span>
+                              <span className="font-bold text-body-mobile md:text-body">По договоренности</span>
                             ) : (
-                              <span className="font-bold text-lg">от {step.priceFrom.toLocaleString('ru-RU')} ₽</span>
+                              <span className="font-bold text-body-mobile md:text-body">от {step.priceFrom.toLocaleString('ru-RU')} ₽</span>
                             )}
                           </div>
                         </div>
@@ -272,7 +273,7 @@ const ClusterServicePage = ({
                 </div>
                 <Card className="mt-4 bg-muted/50">
                   <CardContent className="pt-6">
-                    <p className="text-sm text-muted-foreground italic">
+                    <p className="text-small text-muted-foreground italic">
                       <FileText className="inline h-4 w-4 mr-2" />
                       {situation.pricingNote}
                     </p>
@@ -283,7 +284,7 @@ const ClusterServicePage = ({
               {/* 5. Кейсы */}
               {situation.cases.length > 0 && (
                 <section>
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
                     Примеры из практики
                   </h2>
                   <div className="space-y-6">
@@ -291,22 +292,22 @@ const ClusterServicePage = ({
                       <Card key={index} className="border-l-4 border-l-primary">
                         <CardContent className="pt-6 space-y-4">
                           <div>
-                            <h3 className="font-semibold text-sm uppercase text-muted-foreground mb-2">
+                            <h3 className="font-semibold text-small uppercase text-muted-foreground mb-2">
                               Ситуация
                             </h3>
-                            <p className="text-base">{caseItem.situation}</p>
+                            <p className="text-body-mobile md:text-body">{caseItem.situation}</p>
                           </div>
                           <div>
-                            <h3 className="font-semibold text-sm uppercase text-muted-foreground mb-2">
+                            <h3 className="font-semibold text-small uppercase text-muted-foreground mb-2">
                               Что сделали
                             </h3>
-                            <p className="text-base text-muted-foreground">{caseItem.actions}</p>
+                            <p className="text-body-mobile md:text-body text-muted-foreground">{caseItem.actions}</p>
                           </div>
                           <div className="pt-2 border-t">
-                            <h3 className="font-semibold text-sm uppercase text-[#C9A227] mb-2">
+                            <h3 className="font-semibold text-small uppercase text-accent mb-2">
                               Результат
                             </h3>
-                            <p className="text-base font-medium">{caseItem.result}</p>
+                            <p className="text-body-mobile md:text-body font-medium">{caseItem.result}</p>
                           </div>
                         </CardContent>
                       </Card>
@@ -318,7 +319,7 @@ const ClusterServicePage = ({
               {/* 6. FAQ */}
               {situation.faqs.length > 0 && (
                 <section>
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
                     Часто задаваемые вопросы
                   </h2>
                   <Accordion type="single" collapsible className="space-y-4">
@@ -326,9 +327,9 @@ const ClusterServicePage = ({
                       <AccordionItem 
                         key={index} 
                         value={`faq-${index}`}
-                        className="border border-border rounded-lg px-6 bg-card"
+                        className="border border-border rounded-xl px-6 bg-card"
                       >
-                        <AccordionTrigger className="hover:text-[#C9A227] hover:no-underline text-left font-medium">
+                        <AccordionTrigger className="hover:text-accent hover:no-underline text-left font-medium">
                           {faq.question}
                         </AccordionTrigger>
                         <AccordionContent className="text-muted-foreground pt-4 leading-relaxed">
@@ -345,10 +346,10 @@ const ClusterServicePage = ({
                 <Card className="bg-gradient-to-br from-primary to-primary/90 text-primary-foreground border-0">
                   <CardContent className="pt-8 pb-8">
                     <div className="text-center mb-8">
-                      <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-4">
+                      <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                         Получите план действий за 15 минут
                       </h2>
-                      <p className="text-primary-foreground/80 text-lg">
+                      <p className="text-primary-foreground/80 text-body-mobile md:text-body">
                         Оставьте заявку — мы перезвоним в течение 10 минут и составим индивидуальный план защиты
                       </p>
                     </div>
@@ -362,16 +363,16 @@ const ClusterServicePage = ({
               {/* 8. Повторный CTA */}
               <section className="text-center py-8">
                 <div className="inline-flex flex-col items-center gap-6 p-8 bg-muted/50 rounded-xl">
-                  <MessageCircle className="h-16 w-16 text-[#C9A227]" />
+                  <MessageCircle className="h-16 w-16 text-accent" />
                   <div>
-                    <h3 className="font-montserrat text-xl font-bold mb-2">
+                    <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">
                       Не знаете, с чего начать?
                     </h3>
                     <p className="text-muted-foreground mb-6">
                       Позвоните нам прямо сейчас или запишитесь на бесплатную консультацию
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center">
-                      <Button size="lg" className="bg-[#C9A227] hover:bg-[#B08E1F]" asChild>
+                      <Button size="lg" className="bg-accent hover:bg-accent/90" asChild>
                         <a href="tel:+79168597654">
                           <Phone className="mr-2 h-5 w-5" />
                           +7 (916) 859-76-54
@@ -389,7 +390,7 @@ const ClusterServicePage = ({
               <section>
                 <Card className="bg-muted/30 border-muted">
                   <CardContent className="pt-6">
-                    <p className="text-sm text-muted-foreground leading-relaxed">
+                    <p className="text-small text-muted-foreground leading-relaxed">
                       <strong>Правовая информация:</strong> Материал носит информационный характер и не является публичной офертой. 
                       Точная стоимость услуг определяется после анализа вашей ситуации. Результаты прошлых дел не гарантируют 
                       аналогичного исхода в вашем случае. Каждое дело индивидуально и зависит от множества факторов.
@@ -402,21 +403,21 @@ const ClusterServicePage = ({
             {/* Sidebar */}
             <aside className="lg:sticky lg:top-24 h-fit space-y-6">
               {/* Quick Contact Card */}
-              <Card className="border-[#C9A227]/30 bg-gradient-to-br from-[#C9A227]/5 to-transparent">
+              <Card className="border-accent/30 bg-gradient-to-br from-accent/5 to-transparent">
                 <CardContent className="pt-6 space-y-4">
                   <div className="text-center">
-                    <h3 className="font-semibold text-lg mb-2">Срочная консультация</h3>
-                    <p className="text-sm text-muted-foreground mb-4">
+                    <h3 className="font-semibold text-body-mobile md:text-body mb-2">Срочная консультация</h3>
+                    <p className="text-small text-muted-foreground mb-4">
                       Работаем 24/7, выезд в течение 2 часов
                     </p>
                     <a 
                       href="tel:+79168597654"
-                      className="block text-2xl font-bold text-[#C9A227] hover:text-[#B08E1F] transition-colors mb-4"
+                      className="block text-h3 font-bold text-accent hover:text-accent/90 transition-colors mb-4"
                     >
                       +7 (916) 859-76-54
                     </a>
                     <div className="flex gap-2">
-                      <Button className="flex-1 bg-[#C9A227] hover:bg-[#B08E1F]" asChild>
+                      <Button className="flex-1 bg-accent hover:bg-accent/90" asChild>
                         <a href="tel:+79168597654">
                           <Phone className="mr-2 h-4 w-4" />
                           Позвонить
@@ -436,18 +437,18 @@ const ClusterServicePage = ({
               {/* Price Card */}
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="font-semibold text-lg mb-4">Стоимость</h3>
+                  <h3 className="font-semibold text-body-mobile md:text-body mb-4">Стоимость</h3>
                   <div className="flex items-baseline gap-2 mb-4">
-                    <span className="text-3xl font-bold text-[#C9A227]">
+                    <span className="text-h3 font-bold text-accent">
                       {isCriminalCluster ? "По договоренности" : `от ${situation.priceFrom.toLocaleString('ru-RU')} ₽`}
                     </span>
                   </div>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <p className="text-small text-muted-foreground mb-4">
                     {isCriminalCluster
                       ? "Стоимость определяется индивидуально после анализа вашей ситуации"
                       : "Точная стоимость определяется после консультации"}
                   </p>
-                  <Button className="w-full bg-[#C9A227] hover:bg-[#B08E1F]" asChild>
+                  <Button className="w-full bg-accent hover:bg-accent/90" asChild>
                     <Link to="/kontakty">Узнать точную цену</Link>
                   </Button>
                 </CardContent>
@@ -456,7 +457,7 @@ const ClusterServicePage = ({
               {/* Other Services */}
               <Card>
                 <CardContent className="pt-6">
-                  <h3 className="font-semibold text-lg mb-4">Другие услуги раздела</h3>
+                  <h3 className="font-semibold text-body-mobile md:text-body mb-4">Другие услуги раздела</h3>
                   <ul className="space-y-3">
                     {allSituations
                       .filter(s => s.id !== situation.id)
@@ -465,7 +466,7 @@ const ClusterServicePage = ({
                         <li key={s.id}>
                           <Link
                             to={`/uslugi/${clusterSlug}/${s.slug}`}
-                            className="text-sm text-muted-foreground hover:text-[#C9A227] transition-colors block py-1"
+                            className="text-small text-muted-foreground hover:text-accent transition-colors block py-1"
                           >
                             → {s.title}
                           </Link>
@@ -474,7 +475,7 @@ const ClusterServicePage = ({
                   </ul>
                   <Link
                     to={`/uslugi#${clusterSlug}`}
-                    className="inline-block mt-4 text-sm text-[#C9A227] hover:underline font-medium"
+                    className="inline-block mt-4 text-small text-accent hover:underline font-medium"
                   >
                     Все услуги раздела →
                   </Link>
@@ -482,13 +483,14 @@ const ClusterServicePage = ({
               </Card>
             </aside>
           </div>
-        </div>
+          </div>
+        </section>
       </main>
 
       {/* Mobile Fixed CTA */}
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border p-4 shadow-lg">
         <div className="flex gap-2">
-          <Button className="flex-1 bg-[#C9A227] hover:bg-[#B08E1F]" asChild>
+          <Button className="flex-1 bg-accent hover:bg-accent/90" asChild>
             <a href="tel:+79168597654">
               <Phone className="mr-2 h-4 w-4" />
               Позвонить

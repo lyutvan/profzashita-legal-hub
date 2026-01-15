@@ -15,10 +15,9 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
     <nav 
       aria-label="Breadcrumb" 
       className="py-4 relative z-20"
-      style={{ textShadow: "0 2px 8px rgba(0,0,0,0.55)" }}
     >
-      <div className="inline-flex max-w-full rounded-xl bg-[rgba(7,16,31,0.55)] px-4 py-2 backdrop-blur-sm border border-white/10 shadow-[0_10px_30px_rgba(0,0,0,0.28)]">
-        <ol className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-white/85">
+      <div className="inline-flex max-w-full rounded-xl bg-primary/70 px-4 py-2 backdrop-blur-sm border border-white/10 shadow-lg shadow-black/20">
+        <ol className="flex flex-wrap items-center gap-2 text-small text-white/85 drop-shadow-sm">
           <li>
             <Link 
               to="/" 
@@ -31,7 +30,7 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
             const isLast = index === items.length - 1;
             return (
               <li key={index} className="flex items-center gap-2">
-                <ChevronRight className="h-4 w-4 text-white/60 drop-shadow-[0_2px_6px_rgba(0,0,0,0.5)]" />
+                <ChevronRight className="h-4 w-4 text-white/60 drop-shadow-sm" />
                 {item.path && !isLast ? (
                   <Link 
                     to={item.path} 
@@ -40,7 +39,7 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
                     {item.label}
                   </Link>
                 ) : (
-                  <span className="text-white font-semibold drop-shadow-[0_2px_8px_rgba(0,0,0,0.65)]">
+                  <span className="text-white font-semibold drop-shadow-sm">
                     {item.label}
                   </span>
                 )}

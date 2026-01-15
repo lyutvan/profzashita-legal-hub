@@ -29,7 +29,7 @@ const PageHero = ({
   return (
     <section
       className={cn(
-        "relative py-16 overflow-hidden",
+        "relative section overflow-hidden",
         !backgroundImage && "bg-gradient-to-br from-primary to-primary/90",
         className
       )}
@@ -42,7 +42,7 @@ const PageHero = ({
           aria-hidden="true"
         />
       )}
-      <div className="container mx-auto px-4 relative z-10 text-white">
+      <div className="container relative z-10 text-white">
         {children}
       </div>
     </section>

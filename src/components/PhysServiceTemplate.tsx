@@ -74,7 +74,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
       <main className="flex-1">
         {/* Section A: Hero */}
         <section
-          className="relative text-white py-12 md:py-16"
+          className="relative text-white section"
           style={{
             backgroundImage: `url("${heroImage}")`,
             backgroundSize: "cover",
@@ -88,22 +88,22 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
               background: "linear-gradient(180deg, rgba(5,12,28,0.92) 0%, rgba(11,31,58,0.75) 45%, rgba(11,31,58,0.35) 100%)"
             }}
           />
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container relative z-10">
             <Breadcrumbs items={data.breadcrumbs} />
             <div className="max-w-4xl mt-6">
-              <div className="text-[#C9A227] text-sm md:text-base font-semibold tracking-wide uppercase mb-3">
+              <div className="text-accent text-small font-semibold tracking-wide uppercase mb-3">
                 {data.categoryLabel}
               </div>
-              <h1 className="font-montserrat text-3xl md:text-5xl font-bold mb-6 leading-tight">
+              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 leading-tight">
                 {data.heroTitle}
               </h1>
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-6">
+              <p className="text-body-mobile md:text-body text-white/90 leading-relaxed mb-6">
                 {data.heroSubtitle}
               </p>
               <ul className="grid gap-3 md:grid-cols-2 mb-8">
                 {data.heroBenefits.map((benefit) => (
                   <li key={benefit} className="flex items-start gap-3 text-white/85">
-                    <CheckCircle2 className="h-5 w-5 text-[#C9A227] mt-0.5" />
+                    <CheckCircle2 className="h-5 w-5 text-accent mt-0.5" />
                     <span>{benefit}</span>
                   </li>
                 ))}
@@ -111,7 +111,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
               <div className="flex flex-wrap items-center gap-5">
                 <Button
                   size="lg"
-                  className="bg-[#C9A227] hover:bg-[#B08E1F] text-white"
+                  className="bg-accent hover:bg-accent/90 text-white"
                   asChild
                 >
                   <a href="#final-cta">Оценить перспективы</a>
@@ -123,7 +123,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                   Какие документы нужны?
                 </a>
               </div>
-              <p className="text-xs text-white/60 mt-6">
+              <p className="text-small text-white/60 mt-6">
                 Не обещаем результат, оцениваем перспективы после изучения документов
               </p>
             </div>
@@ -131,10 +131,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         </section>
 
         {/* Section B: Scenarios */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Это ваш случай?
               </h2>
               <p className="text-muted-foreground">
@@ -153,7 +153,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                     <CardContent className="pt-6">
                       <div className="flex items-start justify-between gap-4">
                         <p className="font-semibold">{scenario.title}</p>
-                        <ArrowUpRight className="h-4 w-4 text-[#C9A227]" />
+                        <ArrowUpRight className="h-4 w-4 text-accent" />
                       </div>
                     </CardContent>
                   </Card>
@@ -164,10 +164,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         </section>
 
         {/* Section C: Plan */}
-        <section id="plan" className="py-12 md:py-16 bg-muted/30 scroll-mt-24">
-          <div className="container mx-auto px-4">
+        <section id="plan" className="section bg-muted/30 scroll-mt-24">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Что сделаем и как
               </h2>
               <p className="text-muted-foreground">
@@ -180,16 +180,16 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 return (
                   <Card
                     key={`${step.title}-${index}`}
-                    className={`border-l-4 ${isActive ? "border-l-[#C9A227] bg-[#C9A227]/5" : "border-l-transparent"}`}
+                    className={`border-l-4 ${isActive ? "border-l-accent bg-accent/5" : "border-l-transparent"}`}
                   >
                     <CardContent className="pt-6">
                       <div className="flex gap-4">
-                        <div className={`flex-shrink-0 w-10 h-10 rounded-full ${isActive ? "bg-[#C9A227]" : "bg-[#C9A227]/10"} flex items-center justify-center`}>
-                          <span className={`font-bold ${isActive ? "text-white" : "text-[#C9A227]"}`}>{index + 1}</span>
+                        <div className={`flex-shrink-0 w-10 h-10 rounded-full ${isActive ? "bg-accent" : "bg-accent/10"} flex items-center justify-center`}>
+                          <span className={`font-bold ${isActive ? "text-white" : "text-accent"}`}>{index + 1}</span>
                         </div>
                         <div>
-                          <h3 className="font-semibold text-lg mb-2">{step.title}</h3>
-                          <p className="text-sm text-muted-foreground">{step.description}</p>
+                          <h3 className="font-semibold text-body-mobile md:text-body mb-2">{step.title}</h3>
+                          <p className="text-small text-muted-foreground">{step.description}</p>
                         </div>
                       </div>
                     </CardContent>
@@ -201,10 +201,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-3">Если дело уже в суде</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-small text-muted-foreground">
                     {data.planInCourt.map((item) => (
                       <li key={item} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#C9A227] mt-0.5" />
+                        <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -214,10 +214,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-3">Если суда ещё нет</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-small text-muted-foreground">
                     {data.planBeforeCourt.map((item) => (
                       <li key={item} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#C9A227] mt-0.5" />
+                        <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -229,10 +229,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         </section>
 
         {/* Section D: Timing and documents */}
-        <section id="documents" className="py-12 md:py-16 scroll-mt-24">
-          <div className="container mx-auto px-4">
+        <section id="documents" className="section scroll-mt-24">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Сроки и документы
               </h2>
               <p className="text-muted-foreground">
@@ -243,13 +243,13 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-3 mb-4">
-                    <FileText className="h-5 w-5 text-[#C9A227]" />
+                    <FileText className="h-5 w-5 text-accent" />
                     <h3 className="font-semibold">Сроки</h3>
                   </div>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-small text-muted-foreground">
                     {data.timingFactors.map((item) => (
                       <li key={item} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#C9A227] mt-0.5" />
+                        <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -259,13 +259,13 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-3 mb-4">
-                    <FileText className="h-5 w-5 text-[#C9A227]" />
+                    <FileText className="h-5 w-5 text-accent" />
                     <h3 className="font-semibold">Документы</h3>
                   </div>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-small text-muted-foreground">
                     {data.documents.map((item) => (
                       <li key={item} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#C9A227] mt-0.5" />
+                        <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -275,7 +275,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
             </div>
             <div className="mt-8">
               <Button
-                className="bg-[#C9A227] hover:bg-[#B08E1F] text-white"
+                className="bg-accent hover:bg-accent/90 text-white"
                 asChild
               >
                 <a href="#final-cta">Отправить документы на оценку</a>
@@ -285,10 +285,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         </section>
 
         {/* Section E: Pricing */}
-        <section className="py-12 md:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Стоимость
               </h2>
               <p className="text-muted-foreground">
@@ -299,10 +299,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-3">Что влияет на стоимость</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-small text-muted-foreground">
                     {data.priceFactors.map((item) => (
                       <li key={item} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#C9A227] mt-0.5" />
+                        <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -316,7 +316,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                     {data.priceFormats.map((format) => (
                       <div key={format.title}>
                         <div className="font-semibold">{format.title}</div>
-                        <p className="text-sm text-muted-foreground">{format.description}</p>
+                        <p className="text-small text-muted-foreground">{format.description}</p>
                       </div>
                     ))}
                   </div>
@@ -327,10 +327,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-3">Что не входит и оплачивается отдельно</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-small text-muted-foreground">
                     {data.priceExcludes.map((item) => (
                       <li key={item} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-[#C9A227] mt-0.5" />
+                        <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -342,10 +342,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         </section>
 
         {/* Section F: Risks */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Риски и частые ошибки клиентов
               </h2>
               <p className="text-muted-foreground">
@@ -356,7 +356,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-3">Типовые ошибки</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-small text-muted-foreground">
                     {data.mistakes.map((item) => (
                       <li key={item} className="flex items-start gap-2">
                         <AlertTriangle className="h-4 w-4 text-destructive mt-0.5" />
@@ -369,10 +369,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-3">Когда лучше не тянуть</h3>
-                  <ul className="space-y-2 text-sm text-muted-foreground">
+                  <ul className="space-y-2 text-small text-muted-foreground">
                     {data.urgent.map((item) => (
                       <li key={item} className="flex items-start gap-2">
-                        <AlertTriangle className="h-4 w-4 text-[#C9A227] mt-0.5" />
+                        <AlertTriangle className="h-4 w-4 text-accent mt-0.5" />
                         <span>{item}</span>
                       </li>
                     ))}
@@ -384,10 +384,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         </section>
 
         {/* Section G: Cases */}
-        <section className="py-12 md:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Кейсы и результаты
               </h2>
               <p className="text-muted-foreground">
@@ -399,16 +399,16 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 <Card key={`${item.situation}-${index}`}>
                   <CardContent className="pt-6 space-y-4">
                     <div>
-                      <div className="text-xs uppercase text-muted-foreground mb-1">Ситуация</div>
+                      <div className="text-small uppercase text-muted-foreground mb-1">Ситуация</div>
                       <p className="font-semibold">{item.situation}</p>
                     </div>
                     <div>
-                      <div className="text-xs uppercase text-muted-foreground mb-1">Что сделали</div>
-                      <p className="text-sm text-muted-foreground">{item.actions}</p>
+                      <div className="text-small uppercase text-muted-foreground mb-1">Что сделали</div>
+                      <p className="text-small text-muted-foreground">{item.actions}</p>
                     </div>
                     <div>
-                      <div className="text-xs uppercase text-muted-foreground mb-1">Итог</div>
-                      <p className="text-sm text-muted-foreground">{item.result}</p>
+                      <div className="text-small uppercase text-muted-foreground mb-1">Итог</div>
+                      <p className="text-small text-muted-foreground">{item.result}</p>
                     </div>
                   </CardContent>
                 </Card>
@@ -418,10 +418,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         </section>
 
         {/* Section H: Team */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Кто ведет дела
               </h2>
               <p className="text-muted-foreground">
@@ -444,24 +444,24 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                         </div>
                       )}
                       <div>
-                        <div className="font-semibold text-lg">{member.name}</div>
-                        <div className="text-sm text-accent">{member.role}</div>
+                        <div className="font-semibold text-body-mobile md:text-body">{member.name}</div>
+                        <div className="text-small text-accent">{member.role}</div>
                         {member.experience && (
-                          <div className="text-xs text-muted-foreground mt-1">{member.experience}</div>
+                          <div className="text-small text-muted-foreground mt-1">{member.experience}</div>
                         )}
                       </div>
                     </div>
-                    <ul className="space-y-2 text-sm text-muted-foreground mb-4">
+                    <ul className="space-y-2 text-small text-muted-foreground mb-4">
                       {member.bullets.map((item) => (
                         <li key={item} className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-[#C9A227] mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
                           <span>{item}</span>
                         </li>
                       ))}
                     </ul>
                     <Link
                       to={`/team/${member.slug}`}
-                      className="mt-auto text-sm text-[#C9A227] hover:underline"
+                      className="mt-auto text-small text-accent hover:underline"
                     >
                       Смотреть профиль
                     </Link>
@@ -473,10 +473,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         </section>
 
         {/* Section I: Reviews */}
-        <section className="py-12 md:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Отзывы по теме
               </h2>
               <p className="text-muted-foreground">
@@ -488,10 +488,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 <Card key={`${review.name}-${index}`} className="h-full">
                   <CardContent className="pt-6 h-full flex flex-col">
                     <div className="flex items-start justify-between gap-4 mb-3">
-                      <div className="text-sm font-semibold">{review.name}</div>
-                      <div className="text-xs text-muted-foreground">{review.date}</div>
+                      <div className="text-small font-semibold">{review.name}</div>
+                      <div className="text-small text-muted-foreground">{review.date}</div>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">
+                    <p className="text-small text-muted-foreground leading-relaxed">
                       {review.text}
                     </p>
                   </CardContent>
@@ -499,7 +499,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
               ))}
             </div>
             <div className="mt-8">
-              <Button asChild className="bg-[#0B1F3A] text-white hover:bg-[#0B1F3A]/90">
+              <Button asChild className="bg-primary text-white hover:bg-primary/90">
                 <a
                   href="https://yandex.ru/maps/org/244880896695/reviews/"
                   target="_blank"
@@ -513,10 +513,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         </section>
 
         {/* Internal Links */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Другие услуги физлицам
               </h2>
               <p className="text-muted-foreground">
@@ -529,7 +529,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                   <CardContent className="pt-6">
                     <Link
                       to={service.path}
-                      className="text-sm font-semibold text-[#0B1F3A] hover:text-[#C9A227]"
+                      className="text-small font-semibold text-primary hover:text-accent"
                     >
                       {service.title}
                     </Link>
@@ -546,17 +546,17 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         </section>
 
         {/* SEO Text */}
-        <section className="py-12 md:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Подробно об услуге
               </h2>
               <p className="text-muted-foreground">
                 Разъясняем нюансы, этапы и типовые ситуации по теме услуги.
               </p>
             </div>
-            <div className="space-y-4 text-sm md:text-base text-muted-foreground leading-relaxed">
+            <div className="space-y-4 text-small text-muted-foreground leading-relaxed">
               {data.seoText.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
@@ -565,10 +565,10 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         </section>
 
         {/* Section J: FAQ */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 FAQ по услуге
               </h2>
               <p className="text-muted-foreground">
@@ -591,11 +591,11 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         </section>
 
         {/* Section K: Final CTA */}
-        <section id="final-cta" className="py-12 md:py-16 bg-[#0B1F3A] text-white scroll-mt-24">
-          <div className="container mx-auto px-4">
+        <section id="final-cta" className="section bg-primary text-white scroll-mt-24">
+          <div className="container">
             <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
-                <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-4">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                   Получите оценку перспектив и план действий
                 </h2>
                 <p className="text-white/80 mb-6">
@@ -609,13 +609,13 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                     situationOptions={data.scenarios.map((item) => item.title)}
                     desiredResults={data.desiredResults}
                   />
-                  <div className="text-xs text-muted-foreground mt-4">
+                  <div className="text-small text-muted-foreground mt-4">
                     Первичная оценка — после уточняющих вопросов и документов. Бесплатные консультации не обещаем.
                     В срочных случаях — приоритетная связь.
                   </div>
-                  <p className="text-xs text-muted-foreground mt-3">
+                  <p className="text-small text-muted-foreground mt-3">
                     Нажимая кнопку, вы соглашаетесь с{" "}
-                    <a href="/privacy" className="text-[#C9A227] hover:underline">
+                    <a href="/privacy" className="text-accent hover:underline">
                       политикой конфиденциальности
                     </a>.
                   </p>

@@ -42,21 +42,21 @@ const LegalBackground = ({
 
       {/* Dark Navy Overlay with Gradient */}
       <div 
-        className="absolute inset-0 bg-gradient-to-t from-[#0A1F44] via-[#0A1F44]/80 to-[#0A1F44]/60"
+        className="absolute inset-0 bg-gradient-to-t from-primary via-primary/80 to-primary/60"
         style={{
           background: `
             linear-gradient(
               to top,
-              hsl(214 77% 15% / ${overlayOpacity + 0.1}),
-              hsl(214 77% 15% / ${overlayOpacity}),
-              hsl(214 77% 15% / ${overlayOpacity - 0.1})
+              hsl(var(--primary) / ${overlayOpacity + 0.1}),
+              hsl(var(--primary) / ${overlayOpacity}),
+              hsl(var(--primary) / ${overlayOpacity - 0.1})
             )
           `
         }}
       />
 
       {/* Content */}
-      <div className="relative z-10 container mx-auto px-6 md:px-8 py-16 md:py-24">
+      <div className="relative z-10 container py-16 md:py-24">
         {children}
       </div>
     </section>

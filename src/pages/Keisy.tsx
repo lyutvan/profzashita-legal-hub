@@ -67,10 +67,10 @@ const Cases = () => {
           overlayOpacity={0.65}
         >
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6 text-white">
+            <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 text-white">
               Наши <span className="text-accent">кейсы</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/90 leading-relaxed">
+            <p className="text-body-mobile md:text-body text-white/90 leading-relaxed">
               Реальные дела, реальные результаты. Примеры успешного решения 
               сложных юридических вопросов для наших клиентов.
             </p>
@@ -78,37 +78,37 @@ const Cases = () => {
         </LegalBackground>
 
         {/* Stats Section */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
               <div className="text-center">
                 <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                   <Scale className="h-8 w-8 text-accent" />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-accent mb-2">500+</div>
-                <div className="text-sm text-muted-foreground">Выигранных дел</div>
+                <div className="text-h2-mobile md:text-h2 font-bold text-accent mb-2">500+</div>
+                <div className="text-small text-muted-foreground">Выигранных дел</div>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                   <Gavel className="h-8 w-8 text-accent" />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-accent mb-2">15+</div>
-                <div className="text-sm text-muted-foreground">Лет практики</div>
+                <div className="text-h2-mobile md:text-h2 font-bold text-accent mb-2">15+</div>
+                <div className="text-small text-muted-foreground">Лет практики</div>
               </div>
               <div className="text-center">
                 <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                   <CheckCircle2 className="h-8 w-8 text-accent" />
                 </div>
-                <div className="text-3xl md:text-4xl font-bold text-accent mb-2">98%</div>
-                <div className="text-sm text-muted-foreground">Успешных решений</div>
+                <div className="text-h2-mobile md:text-h2 font-bold text-accent mb-2">98%</div>
+                <div className="text-small text-muted-foreground">Успешных решений</div>
               </div>
             </div>
           </div>
         </section>
 
         {/* Cases Section */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-5xl mx-auto space-y-8">
               {cases.map((caseItem, index) => (
                 <Card 
@@ -119,7 +119,7 @@ const Cases = () => {
                   <CardContent className="pt-6">
                     <div className="mb-6 flex items-start gap-4">
                       {/* Icon */}
-                      <div className="w-20 h-20 rounded-lg overflow-hidden flex-shrink-0 bg-muted/50">
+                      <div className="w-20 h-20 rounded-xl overflow-hidden flex-shrink-0 bg-muted/50">
                         <img 
                           src={index % 2 === 0 ? scalesIcon : gavelIcon} 
                           alt="" 
@@ -131,7 +131,7 @@ const Cases = () => {
                           <Badge variant="secondary" className="bg-accent/10 text-accent border-accent/20">
                             {caseItem.category}
                           </Badge>
-                          <span className="text-xs text-muted-foreground">
+                          <span className="text-small text-muted-foreground">
                             {new Date(caseItem.datePublished).toLocaleDateString('ru-RU', {
                               year: 'numeric',
                               month: 'long',
@@ -139,7 +139,7 @@ const Cases = () => {
                             })}
                           </span>
                         </div>
-                        <h2 className="font-playfair text-xl md:text-2xl font-bold mb-2">
+                        <h2 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2">
                           {caseItem.title}
                         </h2>
                       </div>
@@ -148,7 +148,7 @@ const Cases = () => {
                     <div className="space-y-6">
                       <div>
                         <h3 className="font-semibold text-accent mb-3 flex items-center gap-2">
-                          <span className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-xs">1</span>
+                          <span className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-small">1</span>
                           Задача
                         </h3>
                         <p className="text-muted-foreground leading-relaxed pl-8">
@@ -158,7 +158,7 @@ const Cases = () => {
 
                       <div>
                         <h3 className="font-semibold text-accent mb-3 flex items-center gap-2">
-                          <span className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-xs">2</span>
+                          <span className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-small">2</span>
                           Наши действия
                         </h3>
                         <p className="text-muted-foreground leading-relaxed pl-8">
@@ -166,7 +166,7 @@ const Cases = () => {
                         </p>
                       </div>
 
-                      <div className="bg-accent/5 border-l-4 border-accent rounded-lg p-6">
+                      <div className="bg-accent/5 border-l-4 border-accent rounded-xl p-6">
                         <h3 className="font-semibold text-accent mb-3 flex items-center gap-2">
                           <CheckCircle2 className="h-5 w-5" />
                           Результат
@@ -190,7 +190,7 @@ const Cases = () => {
                                 href={doc}
                                 target="_blank"
                                 rel="noopener noreferrer"
-                                className="group relative aspect-[3/4] overflow-hidden rounded-lg border border-border hover:border-accent transition-all hover:shadow-md"
+                                className="group relative aspect-[3/4] overflow-hidden rounded-xl border border-border hover:border-accent transition-all hover:shadow-md"
                               >
                                 <img
                                   src={doc}
@@ -200,7 +200,7 @@ const Cases = () => {
                                 />
                                 <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
                                   <div className="absolute bottom-0 left-0 right-0 p-3">
-                                    <p className="text-white text-xs font-medium">
+                                    <p className="text-white text-small font-medium">
                                       Просмотреть документ
                                     </p>
                                   </div>
@@ -208,7 +208,7 @@ const Cases = () => {
                               </a>
                             ))}
                           </div>
-                          <p className="text-xs text-muted-foreground mt-3 italic">
+                          <p className="text-small text-muted-foreground mt-3 italic">
                             * Персональные данные на документах скрыты в соответствии с законодательством о защите персональных данных
                           </p>
                         </div>
@@ -222,18 +222,18 @@ const Cases = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-20 bg-gradient-to-br from-primary to-primary/90">
-          <div className="container mx-auto px-4">
+        <section className="section bg-gradient-to-br from-primary to-primary/90">
+          <div className="container">
             <div className="max-w-3xl mx-auto text-center">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6 text-white">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6 text-white">
                 Нужна помощь в вашем деле?
               </h2>
-              <p className="text-lg text-white/90 mb-8 leading-relaxed">
+              <p className="text-body-mobile md:text-body text-white/90 mb-8 leading-relaxed">
                 Получите бесплатную консультацию и узнайте, как мы можем помочь именно вам
               </p>
               <a
                 href="/kontakty"
-                className="inline-flex items-center justify-center rounded-lg bg-accent hover:bg-accent/90 text-primary font-medium px-8 py-3 transition-colors"
+                className="inline-flex items-center justify-center rounded-xl bg-accent hover:bg-accent/90 text-white font-medium px-8 py-3 transition-colors"
               >
                 Записаться на консультацию
               </a>

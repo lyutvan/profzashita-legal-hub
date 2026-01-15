@@ -169,8 +169,8 @@ const ServiceTemplate = ({
         {/* Hero Section */}
         <section
           className={[
-            "relative text-white py-12 md:py-16",
-            heroImageSrc ? "bg-[#0B1F3A]" : "bg-gradient-to-br from-[#0B1F3A] to-[#0C1926]"
+            "relative text-white py-16 md:py-24",
+            heroImageSrc ? "bg-primary" : "bg-gradient-to-br from-primary to-primary/90"
           ].join(" ")}
           style={
             heroImageSrc
@@ -187,11 +187,11 @@ const ServiceTemplate = ({
               className="absolute inset-0 pointer-events-none" 
               aria-hidden="true"
               style={{
-                background: "linear-gradient(180deg, rgba(5,12,28,0.9) 0%, rgba(11,31,58,0.7) 45%, rgba(11,31,58,0.28) 100%)"
+                background: "linear-gradient(180deg, hsl(var(--primary) / 0.92) 0%, hsl(var(--primary) / 0.7) 45%, hsl(var(--primary) / 0.28) 100%)"
               }}
             />
           )}
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container relative z-10">
             <Breadcrumbs items={[
               { label: "Услуги", path: "/uslugi" },
               { label: audienceCrumb.label, path: audienceCrumb.path },
@@ -200,14 +200,14 @@ const ServiceTemplate = ({
             
             <div className="mt-8 max-w-4xl">
               {subtitle && (
-                <div className="text-[#C9A227] text-sm md:text-base font-semibold tracking-wide uppercase mb-3">
+                <div className="text-accent text-small font-semibold tracking-wide uppercase mb-3">
                   {subtitle}
                 </div>
               )}
-              <h1 className="font-montserrat text-3xl md:text-5xl font-bold mb-6 leading-tight">
+              <h1 className="font-serif font-bold mb-6 leading-tight">
                 {h1}
               </h1>
-              <div className="space-y-5 text-lg md:text-xl text-white/90 leading-relaxed">
+              <div className="space-y-5 text-body-mobile md:text-body text-white/90 leading-relaxed">
                 <p>{leadParagraph}</p>
                 {introParagraphs?.map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>
@@ -218,20 +218,20 @@ const ServiceTemplate = ({
         </section>
 
         {/* Main Content */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Main Content Column */}
               <div className="lg:col-span-2 space-y-12">
                 {/* When to Contact */}
                 <div>
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
+                  <h2 className="font-serif font-bold mb-6">
                     {whenToContactTitle}
                   </h2>
                   <ul className="space-y-3">
                     {whenToContact.map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-[#C9A227] flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                         <span className="text-muted-foreground">{item}</span>
                       </li>
                     ))}
@@ -240,13 +240,13 @@ const ServiceTemplate = ({
 
                 {/* What We Do */}
                 <div>
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
+                  <h2 className="font-serif font-bold mb-6">
                     {whatWeDoTitle}
                   </h2>
                   <ul className="space-y-3">
                     {whatWeDo.map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-[#C9A227] flex-shrink-0 mt-0.5" />
+                        <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                         <span className="text-muted-foreground">{item}</span>
                       </li>
                     ))}
@@ -255,20 +255,20 @@ const ServiceTemplate = ({
 
                 {/* Process Steps */}
                 <div>
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
+                  <h2 className="font-serif font-bold mb-6">
                     {stepsTitle}
                   </h2>
                   <div className="space-y-4">
                     {steps.map((step) => (
-                      <Card key={step.number} className="border-l-4 border-l-[#C9A227]">
+                      <Card key={step.number} className="border-l-4 border-l-accent">
                         <CardContent className="pt-6">
                           <div className="flex gap-4">
-                            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#C9A227]/10 flex items-center justify-center">
-                              <span className="font-bold text-[#C9A227]">{step.number}</span>
+                            <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                              <span className="font-bold text-accent">{step.number}</span>
                             </div>
                             <div>
-                              <h3 className="font-semibold text-lg mb-2">{step.title}</h3>
-                              <p className="text-sm text-muted-foreground">{step.description}</p>
+                              <h3 className="font-semibold text-body-mobile md:text-body mb-2">{step.title}</h3>
+                              <p className="text-small text-muted-foreground">{step.description}</p>
                             </div>
                           </div>
                         </CardContent>
@@ -279,20 +279,20 @@ const ServiceTemplate = ({
 
                 {/* Documents and Timing */}
                 <div>
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
+                  <h2 className="font-serif font-bold mb-6">
                     {documentsAndTimingTitle}
                   </h2>
                   <Card>
                     <CardContent className="pt-6">
                       <div className="flex flex-col gap-4">
                         <div className="flex items-start gap-4">
-                          <FileText className="h-6 w-6 text-[#C9A227] flex-shrink-0" />
+                          <FileText className="h-6 w-6 text-accent flex-shrink-0" />
                           <div className="text-muted-foreground leading-relaxed space-y-4">
                             {documentsList && documentsList.length > 0 && (
                               <ul className="space-y-2">
                                 {documentsList.map((item, index) => (
                                   <li key={index} className="flex items-start gap-2">
-                                    <CheckCircle2 className="h-4 w-4 text-[#C9A227] mt-1" />
+                                    <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
                                     <span>{item}</span>
                                   </li>
                                 ))}
@@ -311,10 +311,10 @@ const ServiceTemplate = ({
                 {/* Custom CTA */}
                 {ctaBlock && (
                   <div>
-                    <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
+                    <h2 className="font-serif font-bold mb-6">
                       {ctaBlock.title}
                     </h2>
-                    <Card className="bg-gradient-to-br from-[#0B1F3A] to-[#0C1926] text-white border-0">
+                    <Card className="bg-gradient-to-br from-primary to-primary/90 text-white border-0">
                       <CardContent className="pt-6 pb-6">
                         <p className="text-white/80 leading-relaxed">
                           {ctaBlock.description}
@@ -333,12 +333,12 @@ const ServiceTemplate = ({
 
                 {/* FAQ */}
                 <div>
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
+                  <h2 className="font-serif font-bold mb-6">
                     Частые вопросы
                   </h2>
                   <Accordion type="single" collapsible className="space-y-4">
                     {faqs.map((faq, index) => (
-                      <AccordionItem key={index} value={`item-${index}`} className="border rounded-lg px-6">
+                      <AccordionItem key={index} value={`item-${index}`} className="border rounded-xl px-6">
                         <AccordionTrigger className="text-left hover:no-underline py-4">
                           <span className="font-semibold">{faq.question}</span>
                         </AccordionTrigger>
@@ -355,17 +355,17 @@ const ServiceTemplate = ({
               <div className="lg:col-span-1">
                 <div className="sticky top-24 space-y-6">
                   {/* CTA Card */}
-                  <Card className="bg-gradient-to-br from-[#0B1F3A] to-[#0C1926] text-white border-0">
+                  <Card className="bg-gradient-to-br from-primary to-primary/90 text-white border-0">
                     <CardContent className="pt-6 pb-6">
-                      <h3 className="font-montserrat text-xl font-bold mb-4">
+                      <h3 className="font-serif font-bold mb-4">
                         Нужна консультация?
                       </h3>
-                      <p className="text-white/80 text-sm mb-6">
+                      <p className="text-white/80 text-small mb-6">
                         Свяжитесь с нами для получения профессиональной юридической помощи
                       </p>
                       <div className="space-y-3">
                         <Button 
-                          className="w-full bg-[#C9A227] hover:bg-[#B08E1F] text-white"
+                          className="w-full bg-accent text-white hover:bg-accent/90"
                           asChild
                         >
                           <Link to={primaryCtaTo}>
@@ -383,12 +383,12 @@ const ServiceTemplate = ({
                           </a>
                         </Button>
                         {secondaryCtaNote && (
-                          <div className="text-white/70 text-xs text-center">
+                          <div className="text-white/70 text-small text-center">
                             {secondaryCtaNote}
                           </div>
                         )}
                       </div>
-                      <p className="text-white/60 text-xs mt-4 text-center">
+                      <p className="text-white/60 text-small mt-4 text-center">
                         Работаем круглосуточно
                       </p>
                     </CardContent>
@@ -399,17 +399,17 @@ const ServiceTemplate = ({
                     <CardContent className="pt-6 pb-6">
                       <div className="space-y-4">
                         <div className="flex items-start gap-3">
-                          <Clock className="h-5 w-5 text-[#C9A227] flex-shrink-0 mt-0.5" />
+                          <Clock className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                           <div>
-                            <div className="font-semibold text-sm mb-1">Срочный выезд</div>
-                            <div className="text-xs text-muted-foreground">В течение 2 часов по Москве</div>
+                            <div className="font-semibold text-small mb-1">Срочный выезд</div>
+                            <div className="text-small text-muted-foreground">В течение 2 часов по Москве</div>
                           </div>
                         </div>
                         <div className="flex items-start gap-3">
-                          <CheckCircle2 className="h-5 w-5 text-[#C9A227] flex-shrink-0 mt-0.5" />
+                          <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                           <div>
-                            <div className="font-semibold text-sm mb-1">Опыт 15+ лет</div>
-                            <div className="text-xs text-muted-foreground">Более 500 выигранных дел</div>
+                            <div className="font-semibold text-small mb-1">Опыт 15+ лет</div>
+                            <div className="text-small text-muted-foreground">Более 500 выигранных дел</div>
                           </div>
                         </div>
                       </div>
@@ -426,7 +426,7 @@ const ServiceTemplate = ({
                             <li key={index}>
                               <Link 
                                 to={link.url}
-                                className="text-sm text-[#C9A227] hover:underline"
+                                className="text-small text-accent hover:underline"
                               >
                                 {link.title}
                               </Link>

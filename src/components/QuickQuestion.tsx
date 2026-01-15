@@ -15,7 +15,7 @@ const QuickQuestion = () => {
         aria-label="Задать вопрос"
       >
         <MessageSquare className="h-6 w-6" />
-        <span className="absolute right-full mr-3 px-3 py-2 bg-background border border-border rounded-lg text-sm font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg">
+        <span className="absolute right-full mr-3 px-3 py-2 bg-background border border-border rounded-xl text-small font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg">
           Задать вопрос
         </span>
       </button>
@@ -24,7 +24,7 @@ const QuickQuestion = () => {
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className="sm:max-w-md">
           <DialogHeader>
-            <DialogTitle className="text-xl font-playfair">Быстрый вопрос юристу</DialogTitle>
+            <DialogTitle className="font-serif text-h3-mobile md:text-h3">Быстрый вопрос юристу</DialogTitle>
             <DialogDescription>
               Оставьте свои контакты, и мы свяжемся с вами в ближайшее время
             </DialogDescription>

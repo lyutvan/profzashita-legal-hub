@@ -56,13 +56,13 @@ const Novosti = () => {
         
         <main className="flex-1">
           {/* Hero Section */}
-          <section className="bg-gradient-to-br from-primary/10 via-background to-background py-16 md:py-24">
-            <div className="container mx-auto px-4">
+          <section className="bg-gradient-to-br from-primary/10 via-background to-background section">
+            <div className="container">
               <div className="max-w-3xl mx-auto text-center">
-                <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-6">
+                <h1 className="text-h1-mobile md:text-h1 font-bold text-foreground mb-6">
                   Новости и мероприятия
                 </h1>
-                <p className="text-lg text-muted-foreground">
+                <p className="text-body-mobile md:text-body text-muted-foreground">
                   Следите за актуальными новостями юридического сообщества, нашими статьями и предстоящими мероприятиями
                 </p>
               </div>
@@ -70,8 +70,8 @@ const Novosti = () => {
           </section>
 
           {/* Filter Section */}
-          <section className="py-8 border-b">
-            <div className="container mx-auto px-4">
+          <section className="section border-b">
+            <div className="container">
               <div className="flex flex-wrap gap-3 justify-center">
                 <Button
                   variant={filter === 'all' ? 'default' : 'outline'}
@@ -110,8 +110,8 @@ const Novosti = () => {
           </section>
 
           {/* News Grid */}
-          <section className="py-16">
-            <div className="container mx-auto px-4">
+          <section className="section">
+            <div className="container">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
                 {filteredNews.map((item) => (
                   <Card 
@@ -123,7 +123,7 @@ const Novosti = () => {
                         <Badge className={getCategoryColor(item.category)}>
                           {getCategoryLabel(item.category)}
                         </Badge>
-                        <span className="text-sm text-muted-foreground">
+                        <span className="text-small text-muted-foreground">
                           {formatDate(item.date)}
                         </span>
                       </div>
@@ -148,7 +148,7 @@ const Novosti = () => {
 
               {filteredNews.length === 0 && (
                 <div className="text-center py-12">
-                  <p className="text-muted-foreground text-lg">
+                  <p className="text-muted-foreground text-body-mobile md:text-body">
                     Новостей в данной категории пока нет
                   </p>
                 </div>

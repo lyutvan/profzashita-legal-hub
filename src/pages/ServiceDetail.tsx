@@ -74,8 +74,8 @@ const ServiceDetail = () => {
 
       <main className="flex-1">
         {/* Hero */}
-        <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground py-12 overflow-hidden">
-          <div className="container mx-auto px-4">
+        <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground section overflow-hidden">
+          <div className="container">
             <Breadcrumbs 
               items={[
                 { label: "Услуги", path: "/uslugi" },
@@ -84,13 +84,13 @@ const ServiceDetail = () => {
               ]} 
             />
             <div className="max-w-4xl mt-6">
-              <div className="inline-block px-3 py-1 bg-accent/20 text-accent rounded-full text-sm font-medium mb-4">
+              <div className="inline-block px-3 py-1 bg-accent/20 text-accent rounded-full text-small font-medium mb-4">
                 {category.title}
               </div>
-              <h1 className="font-playfair text-3xl md:text-5xl font-bold mb-4">
+              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-4">
                 {service.title}
               </h1>
-              <p className="text-lg text-primary-foreground/80">
+              <p className="text-body-mobile md:text-body text-primary-foreground/80">
                 {service.shortDescription}
               </p>
             </div>
@@ -98,22 +98,22 @@ const ServiceDetail = () => {
         </section>
 
         {/* Content */}
-        <section className="py-12">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Main Content */}
               <div className="lg:col-span-2 space-y-12">
                 {/* When We Help */}
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold mb-6 flex items-center gap-2">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6 flex items-center gap-2">
                     <AlertCircle className="h-6 w-6 text-accent" />
                     Когда мы помогаем
                   </h2>
                   <ul className="grid grid-cols-1 md:grid-cols-2 gap-4">
                     {service.situations.map((situation, index) => (
-                      <li key={index} className="flex items-start gap-3 p-4 bg-muted/50 rounded-lg">
+                      <li key={index} className="flex items-start gap-3 p-4 bg-muted/50 rounded-xl">
                         <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                        <span className="text-sm">{situation}</span>
+                        <span className="text-small">{situation}</span>
                       </li>
                     ))}
                   </ul>
@@ -121,11 +121,11 @@ const ServiceDetail = () => {
 
                 {/* What We Do */}
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold mb-6">Что мы делаем</h2>
-                  <ul className="space-y-3">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">Что мы делаем</h2>
+                  <ul className="space-y-4">
                     {service.actions.map((action, index) => (
                       <li key={index} className="flex items-start gap-3">
-                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/20 text-accent flex items-center justify-center text-sm font-medium">
+                        <span className="flex-shrink-0 w-6 h-6 rounded-full bg-accent/20 text-accent flex items-center justify-center text-small font-medium">
                           {index + 1}
                         </span>
                         <span>{action}</span>
@@ -136,15 +136,15 @@ const ServiceDetail = () => {
 
                 {/* Process */}
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold mb-6">Процесс работы</h2>
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">Процесс работы</h2>
                   <div className="space-y-6">
                     {service.process.map((step) => (
                       <div key={step.number} className="flex gap-4">
-                        <div className="flex-shrink-0 w-12 h-12 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-xl font-bold">
+                        <div className="flex-shrink-0 w-12 h-12 rounded-full bg-accent text-accent-foreground flex items-center justify-center text-h3-mobile md:text-h3 font-bold">
                           {step.number}
                         </div>
                         <div className="flex-1">
-                          <h3 className="font-semibold text-lg mb-2">{step.title}</h3>
+                          <h3 className="font-semibold text-body-mobile md:text-body mb-2">{step.title}</h3>
                           <p className="text-muted-foreground">{step.description}</p>
                         </div>
                       </div>
@@ -153,8 +153,8 @@ const ServiceDetail = () => {
                 </div>
 
                 {/* Timing */}
-                <div className="bg-muted/50 rounded-lg p-6">
-                  <h3 className="font-semibold text-lg mb-3 flex items-center gap-2">
+                <div className="bg-muted/50 rounded-xl p-6">
+                  <h3 className="font-semibold text-body-mobile md:text-body mb-3 flex items-center gap-2">
                     <Clock className="h-5 w-5 text-accent" />
                     Сроки и риски
                   </h3>
@@ -169,19 +169,19 @@ const ServiceDetail = () => {
 
                 {/* Pricing */}
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold mb-6">Стоимость услуг</h2>
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">Стоимость услуг</h2>
                   <PricingBlock packages={service.pricing} />
                 </div>
 
                 {/* FAQ */}
                 <div>
-                  <h2 className="font-playfair text-2xl font-bold mb-6">Часто задаваемые вопросы</h2>
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">Часто задаваемые вопросы</h2>
                   <Accordion type="single" collapsible className="space-y-4">
                     {service.faqs.map((faq, index) => (
                       <AccordionItem 
                         key={index} 
                         value={`faq-${index}`}
-                        className="border border-border rounded-lg px-6 bg-card"
+                        className="border border-border rounded-xl px-6 bg-card"
                       >
                         <AccordionTrigger className="hover:text-accent hover:no-underline text-left">
                           {faq.question}
@@ -195,8 +195,8 @@ const ServiceDetail = () => {
                 </div>
 
                 {/* CTA */}
-                <div className="bg-gradient-to-br from-primary to-primary/90 text-primary-foreground rounded-lg p-8 text-center">
-                  <h3 className="font-playfair text-2xl font-bold mb-4">
+                <div className="bg-gradient-to-br from-primary to-primary/90 text-primary-foreground rounded-xl p-8 text-center">
+                  <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-4">
                     Готовы решить вашу задачу?
                   </h3>
                   <p className="text-primary-foreground/80 mb-6">
@@ -217,15 +217,15 @@ const ServiceDetail = () => {
 
               {/* Sidebar */}
               <div className="lg:sticky lg:top-24 h-fit space-y-6">
-                <div className="bg-card border border-border rounded-lg p-6">
-                  <h3 className="font-semibold text-lg mb-4">Получить консультацию</h3>
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <h3 className="font-semibold text-h3-mobile md:text-h3 mb-4">Получить консультацию</h3>
                   <LeadForm variant="compact" practiceType={service.title} />
                 </div>
 
                 {/* Other Services */}
-                <div className="bg-muted/50 rounded-lg p-6">
-                  <h3 className="font-semibold text-lg mb-4">Другие услуги</h3>
-                  <ul className="space-y-3">
+                <div className="bg-muted/50 rounded-xl p-6">
+                  <h3 className="font-semibold text-h3-mobile md:text-h3 mb-4">Другие услуги</h3>
+                  <ul className="space-y-4">
                     {category.items
                       .filter(item => item.id !== service.id)
                       .slice(0, 5)
@@ -233,7 +233,7 @@ const ServiceDetail = () => {
                         <li key={item.id}>
                           <Link
                             to={`/uslugi/${category.slug}/${item.slug}`}
-                            className="text-sm text-muted-foreground hover:text-accent transition-colors"
+                            className="text-small text-muted-foreground hover:text-accent transition-colors"
                           >
                             {item.title}
                           </Link>
@@ -242,7 +242,7 @@ const ServiceDetail = () => {
                   </ul>
                   <Link
                     to="/uslugi"
-                    className="inline-block mt-4 text-sm text-accent hover:underline"
+                    className="inline-block mt-4 text-small text-accent hover:underline"
                   >
                     Все услуги →
                   </Link>

@@ -14,10 +14,10 @@ const PracticeCard = ({ title, description, icon: Icon, slug }: PracticeCardProp
   return (
     <Card className="group hover:shadow-elegant transition-all duration-300 hover:-translate-y-1 border-border bg-card h-full flex flex-col">
       <CardHeader>
-        <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
+        <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4 group-hover:bg-accent/20 transition-colors">
           <Icon className="h-6 w-6 text-accent" />
         </div>
-        <CardTitle className="font-playfair text-xl">{title}</CardTitle>
+        <CardTitle className="font-serif">{title}</CardTitle>
         <CardDescription className="text-muted-foreground leading-relaxed">
           {description}
         </CardDescription>

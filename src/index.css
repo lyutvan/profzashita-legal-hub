@@ -10,42 +10,42 @@ All colors MUST be HSL.
   :root {
     /* Navy Blue Primary - Professional, trustworthy */
     --background: 0 0% 100%;
-    --foreground: 214 77% 15%;
+    --foreground: 222 47% 11%;
 
     --card: 0 0% 100%;
-    --card-foreground: 214 77% 15%;
+    --card-foreground: 222 47% 11%;
 
     --popover: 0 0% 100%;
-    --popover-foreground: 214 77% 15%;
+    --popover-foreground: 222 47% 11%;
 
     /* Dark Navy - Main brand color */
-    --primary: 214 77% 15%;
+    --primary: 214 68% 14%;
     --primary-foreground: 0 0% 100%;
 
     /* Gold Accent - Premium, excellence */
-    --secondary: 45 70% 50%;
-    --secondary-foreground: 214 77% 15%;
+    --secondary: 210 40% 98%;
+    --secondary-foreground: 222 47% 11%;
 
-    --muted: 214 20% 95%;
-    --muted-foreground: 214 15% 45%;
+    --muted: 210 40% 98%;
+    --muted-foreground: 215 16% 47%;
 
     /* Gold for special accents */
-    --accent: 45 70% 50%;
-    --accent-foreground: 214 77% 15%;
+    --accent: 46 68% 47%;
+    --accent-foreground: 0 0% 100%;
 
     --destructive: 0 84.2% 60.2%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 214 20% 90%;
-    --input: 214 20% 90%;
-    --ring: 45 70% 50%;
+    --border: 214 32% 91%;
+    --input: 214 32% 91%;
+    --ring: 46 68% 47%;
 
-    --radius: 0.5rem;
+    --radius: 0.75rem;
 
     /* Premium gradients */
-    --gradient-primary: linear-gradient(135deg, hsl(214 77% 15%), hsl(214 77% 25%));
-    --gradient-gold: linear-gradient(135deg, hsl(45 70% 46%), hsl(45 80% 56%));
-    --gradient-section: linear-gradient(180deg, hsl(214 77% 12%), hsl(214 77% 15%));
+    --gradient-primary: linear-gradient(135deg, hsl(214 68% 14%), hsl(210 52% 10%));
+    --gradient-gold: linear-gradient(135deg, hsl(46 68% 47%), hsl(46 70% 41%));
+    --gradient-section: linear-gradient(180deg, hsl(214 68% 12%), hsl(214 68% 14%));
     
     /* Elegant shadows */
     --shadow-elegant: 0 10px 40px -10px hsl(214 77% 15% / 0.2);
@@ -55,14 +55,14 @@ All colors MUST be HSL.
     /* Animations */
     --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 
-    --sidebar-background: 0 0% 98%;
-    --sidebar-foreground: 214 77% 15%;
-    --sidebar-primary: 214 77% 15%;
-    --sidebar-primary-foreground: 0 0% 98%;
-    --sidebar-accent: 214 20% 95%;
-    --sidebar-accent-foreground: 214 77% 15%;
-    --sidebar-border: 214 20% 90%;
-    --sidebar-ring: 45 70% 46%;
+    --sidebar-background: 0 0% 100%;
+    --sidebar-foreground: 222 47% 11%;
+    --sidebar-primary: 214 68% 14%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 210 40% 98%;
+    --sidebar-accent-foreground: 214 68% 14%;
+    --sidebar-border: 214 32% 91%;
+    --sidebar-ring: 46 68% 47%;
   }
 
   .dark {
@@ -111,6 +111,28 @@ All colors MUST be HSL.
   }
 
   body {
-    @apply bg-background text-foreground;
+    @apply bg-background text-foreground font-sans text-body-mobile md:text-body;
+  }
+
+  h1 {
+    @apply font-serif text-h1-mobile md:text-h1;
+  }
+
+  h2 {
+    @apply font-serif text-h2-mobile md:text-h2;
+  }
+
+  h3 {
+    @apply font-serif text-h3-mobile md:text-h3;
+  }
+
+  small {
+    @apply text-small;
+  }
+}
+
+@layer components {
+  .section {
+    @apply py-16 md:py-24;
   }
 }

@@ -7,23 +7,23 @@ const Privacy = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="relative flex-1 py-20 overflow-hidden">
-        <div className="container mx-auto px-4">
+      <main className="relative flex-1 section overflow-hidden">
+        <div className="container">
           <div className="max-w-4xl mx-auto">
-            <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-8 text-center">
+            <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-8 text-center">
               Политика <span className="text-accent">конфиденциальности</span>
             </h1>
 
             <Card className="border-border">
               <CardContent className="pt-8 space-y-6">
                 <section>
-                  <h2 className="font-playfair text-2xl font-semibold mb-4">1. Общие положения</h2>
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-semibold mb-4">1. Общие положения</h2>
                   <p className="text-muted-foreground leading-relaxed">
                     Настоящая Политика конфиденциальности персональных данных (далее — Политика) действует в отношении всей информации, 
                     размещенной на сайте в сети Интернет по адресу profzashchita.ru (далее — Сайт), которую пользователи могут получить 
                     о Пользователе во время использования Сайта, его сервисов, программ и продуктов.
                   </p>
-                  <p className="text-muted-foreground leading-relaxed mt-3">
+                  <p className="text-muted-foreground leading-relaxed mt-4">
                     Использование Сайта означает безоговорочное согласие Пользователя с настоящей Политикой и указанными в ней условиями 
                     обработки его персональной информации; в случае несогласия с этими условиями Пользователь должен воздержаться от 
                     использования Сайта.
@@ -31,8 +31,8 @@ const Privacy = () => {
                 </section>
 
                 <section>
-                  <h2 className="font-playfair text-2xl font-semibold mb-4">2. Персональная информация пользователей</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-semibold mb-4">2. Персональная информация пользователей</h2>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
                     Под персональной информацией в настоящей Политике понимается:
                   </p>
                   <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4">
@@ -45,8 +45,8 @@ const Privacy = () => {
                 </section>
 
                 <section>
-                  <h2 className="font-playfair text-2xl font-semibold mb-4">3. Цели обработки персональной информации</h2>
-                  <p className="text-muted-foreground leading-relaxed mb-3">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-semibold mb-4">3. Цели обработки персональной информации</h2>
+                  <p className="text-muted-foreground leading-relaxed mb-4">
                     Сайт собирает и хранит только ту персональную информацию, которая необходима для предоставления сервисов или исполнения 
                     соглашений и договоров с Пользователем, за исключением случаев, когда законодательством предусмотрено обязательное хранение 
                     персональной информации в течение определенного законом срока.
@@ -54,7 +54,7 @@ const Privacy = () => {
                   <p className="text-muted-foreground leading-relaxed">
                     Персональную информацию Пользователя Сайт обрабатывает в следующих целях:
                   </p>
-                  <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4 mt-3">
+                  <ul className="list-disc list-inside text-muted-foreground space-y-2 ml-4 mt-4">
                     <li>Установления с Пользователем обратной связи, включая направление уведомлений, запросов, касающихся использования Сайта, 
                     оказания услуг, обработку запросов и заявок от Пользователя;</li>
                     <li>Предоставления Пользователю эффективной клиентской и технической поддержки при возникновении проблем, связанных с 
@@ -66,12 +66,12 @@ const Privacy = () => {
                 </section>
 
                 <section>
-                  <h2 className="font-playfair text-2xl font-semibold mb-4">4. Условия обработки персональной информации</h2>
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-semibold mb-4">4. Условия обработки персональной информации</h2>
                   <p className="text-muted-foreground leading-relaxed">
                     Сайт обрабатывает персональную информацию Пользователя только с его согласия. Обработка персональной информации 
                     осуществляется с использованием средств автоматизации и без использования средств автоматизации.
                   </p>
-                  <p className="text-muted-foreground leading-relaxed mt-3">
+                  <p className="text-muted-foreground leading-relaxed mt-4">
                     Сайт принимает необходимые организационные и технические меры для защиты персональной информации Пользователя от 
                     неправомерного или случайного доступа, уничтожения, изменения, блокирования, копирования, распространения, а также от 
                     иных неправомерных действий третьих лиц.
@@ -79,7 +79,7 @@ const Privacy = () => {
                 </section>
 
                 <section>
-                  <h2 className="font-playfair text-2xl font-semibold mb-4">5. Изменение Политики конфиденциальности</h2>
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-semibold mb-4">5. Изменение Политики конфиденциальности</h2>
                   <p className="text-muted-foreground leading-relaxed">
                     Сайт имеет право вносить изменения в настоящую Политику конфиденциальности. При внесении изменений в актуальной редакции 
                     указывается дата последнего обновления. Новая редакция Политики вступает в силу с момента ее размещения, если иное не 
@@ -88,14 +88,14 @@ const Privacy = () => {
                 </section>
 
                 <section>
-                  <h2 className="font-playfair text-2xl font-semibold mb-4">6. Обратная связь</h2>
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-semibold mb-4">6. Обратная связь</h2>
                   <p className="text-muted-foreground leading-relaxed">
                     Все предложения или вопросы по поводу настоящей Политики следует направлять на электронный адрес: profzashchita@internet.ru
                   </p>
                 </section>
 
                 <div className="border-t border-border pt-6 mt-8">
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-small text-muted-foreground">
                     Дата последнего обновления: 01.01.2025
                   </p>
                 </div>

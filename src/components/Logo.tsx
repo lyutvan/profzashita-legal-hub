@@ -24,7 +24,7 @@ const Logo = ({
       />
       
       <span 
-        className={`font-serif text-lg md:text-xl font-semibold tracking-wide transition-all duration-300 text-white ${className}`}
+        className={`font-serif text-body-mobile md:text-body font-semibold tracking-wide transition-all duration-300 text-white ${className}`}
       >
         Профзащита
       </span>

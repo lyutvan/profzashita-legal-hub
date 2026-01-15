@@ -231,7 +231,7 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
 
       <Button
         type="submit"
-        className="w-full min-h-[44px]"
+        className="w-full"
         disabled={isSubmitting}
       >
         {isSubmitting ? (
@@ -244,7 +244,7 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
         )}
       </Button>
 
-      <p className="text-xs text-muted-foreground text-center">
+      <p className="text-small text-muted-foreground text-center">
         Нажимая кнопку, вы соглашаетесь с{" "}
         <a href="/privacy" className="text-accent hover:underline">
           политикой конфиденциальности

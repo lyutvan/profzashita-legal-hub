@@ -26,34 +26,34 @@ const PriceBlock = ({
 
   return (
     <div className={className}>
-      <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
+      <h2 className="font-serif font-bold mb-6">
         Цена
       </h2>
       
-      <Card className="border-[#C9A227]/20 bg-gradient-to-br from-background to-muted/20">
+      <Card className="border-accent/20 bg-gradient-to-br from-background to-muted/20">
         <CardContent className="pt-6 pb-6">
           <div className="flex items-start gap-4">
-            <div className="flex-shrink-0 p-3 bg-[#C9A227]/10 rounded-lg">
-              <DollarSign className="h-6 w-6 text-[#C9A227]" />
+            <div className="flex-shrink-0 p-3 bg-accent/10 rounded-xl">
+              <DollarSign className="h-6 w-6 text-accent" />
             </div>
             <div className="flex-1">
               {priceFrom ? (
                 <>
-                  <div className="text-3xl font-bold mb-2">
+                  <div className="text-h3 font-bold mb-2">
                     от {formatPrice(priceFrom)} ₽
                   </div>
                   {priceNote && (
-                    <p className="text-sm text-muted-foreground">
+                    <p className="text-small text-muted-foreground">
                       {priceNote}
                     </p>
                   )}
                 </>
               ) : (
                 <>
-                  <div className="text-3xl font-bold mb-2">
+                  <div className="text-h3 font-bold mb-2">
                     {fallbackTitle}
                   </div>
-                  <p className="text-sm text-muted-foreground">
+                  <p className="text-small text-muted-foreground">
                     {fallbackNote}
                   </p>
                 </>

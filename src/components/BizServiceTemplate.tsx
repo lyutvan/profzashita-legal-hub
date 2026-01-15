@@ -26,12 +26,12 @@ interface BizServiceTemplateProps {
 }
 
 const iconMap: Record<BizWhyUsItem["icon"], JSX.Element> = {
-  shield: <Shield className="h-6 w-6 text-[#C9A227]" />,
-  clock: <Clock className="h-6 w-6 text-[#C9A227]" />,
-  trend: <TrendingUp className="h-6 w-6 text-[#C9A227]" />,
-  users: <Users className="h-6 w-6 text-[#C9A227]" />,
-  award: <Award className="h-6 w-6 text-[#C9A227]" />,
-  check: <CheckCircle2 className="h-6 w-6 text-[#C9A227]" />
+  shield: <Shield className="h-6 w-6 text-accent" />,
+  clock: <Clock className="h-6 w-6 text-accent" />,
+  trend: <TrendingUp className="h-6 w-6 text-accent" />,
+  users: <Users className="h-6 w-6 text-accent" />,
+  award: <Award className="h-6 w-6 text-accent" />,
+  check: <CheckCircle2 className="h-6 w-6 text-accent" />
 };
 
 const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
@@ -81,7 +81,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
       <main className="flex-1">
         {/* Hero */}
         <section
-          className="relative text-white py-12 md:py-16"
+          className="relative text-white section"
           style={{
             backgroundImage: `url("${heroImage}")`,
             backgroundSize: "cover",
@@ -96,20 +96,20 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 "linear-gradient(180deg, rgba(5,12,28,0.92) 0%, rgba(11,31,58,0.75) 45%, rgba(11,31,58,0.35) 100%)"
             }}
           />
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container relative z-10">
             <Breadcrumbs items={data.breadcrumbs} />
             <div className="max-w-4xl mt-6">
-              <div className="text-[#C9A227] text-sm md:text-base font-semibold tracking-wide uppercase mb-3">
+              <div className="text-accent text-small font-semibold tracking-wide uppercase mb-3">
                 {data.categoryLabel}
               </div>
-              <h1 className="font-montserrat text-3xl md:text-5xl font-bold mb-6 leading-tight">
+              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 leading-tight">
                 {data.heroTitle}
               </h1>
-              <p className="text-lg md:text-xl text-white/90 leading-relaxed mb-6">
+              <p className="text-body-mobile md:text-body text-white/90 leading-relaxed mb-6">
                 {data.heroSubtitle}
               </p>
               <div className="flex flex-wrap items-center gap-5">
-                <Button size="lg" className="bg-[#C9A227] hover:bg-[#B08E1F] text-white" asChild>
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white" asChild>
                   <a href="#consultation">Получить консультацию</a>
                 </Button>
               </div>
@@ -118,10 +118,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* Who fits */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Кому подходит
               </h2>
               <p className="text-muted-foreground">
@@ -133,8 +133,8 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 <Card key={item} className="h-full border-border">
                   <CardContent className="pt-6">
                     <div className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-[#C9A227] mt-0.5" />
-                      <span className="text-sm text-muted-foreground">{item}</span>
+                      <CheckCircle2 className="h-5 w-5 text-accent mt-0.5" />
+                      <span className="text-small text-muted-foreground">{item}</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -144,10 +144,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* Outcomes */}
-        <section className="py-12 md:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Что получите на выходе
               </h2>
               <p className="text-muted-foreground">
@@ -159,8 +159,8 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 <Card key={item} className="h-full border-border">
                   <CardContent className="pt-6">
                     <div className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-[#C9A227] mt-0.5" />
-                      <span className="text-sm text-muted-foreground">{item}</span>
+                      <CheckCircle2 className="h-5 w-5 text-accent mt-0.5" />
+                      <span className="text-small text-muted-foreground">{item}</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -170,10 +170,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* Risks */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Риски, которые снимаем
               </h2>
               <p className="text-muted-foreground">
@@ -185,8 +185,8 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 <Card key={item} className="h-full border-border">
                   <CardContent className="pt-6">
                     <div className="flex items-start gap-3">
-                      <AlertTriangle className="h-5 w-5 text-[#C9A227] mt-0.5" />
-                      <span className="text-sm text-muted-foreground">{item}</span>
+                      <AlertTriangle className="h-5 w-5 text-accent mt-0.5" />
+                      <span className="text-small text-muted-foreground">{item}</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -196,10 +196,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* Steps */}
-        <section className="py-12 md:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Как работаем
               </h2>
               <p className="text-muted-foreground">
@@ -208,15 +208,15 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
             </div>
             <div className="grid gap-4">
               {data.steps.map((step, index) => (
-                <Card key={step.title} className="border-l-4 border-l-[#C9A227]">
+                <Card key={step.title} className="border-l-4 border-l-accent">
                   <CardContent className="pt-6">
                     <div className="flex gap-4">
-                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-[#C9A227]/10 flex items-center justify-center">
-                        <span className="font-bold text-[#C9A227]">{index + 1}</span>
+                      <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
+                        <span className="font-bold text-accent">{index + 1}</span>
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2">{step.title}</h3>
-                        <p className="text-sm text-muted-foreground">{step.description}</p>
+                        <h3 className="font-semibold text-body-mobile md:text-body mb-2">{step.title}</h3>
+                        <p className="text-small text-muted-foreground">{step.description}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -227,10 +227,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* Included */}
-        <section id="included" className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section id="included" className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Что входит
               </h2>
               <p className="text-muted-foreground">
@@ -242,8 +242,8 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 <Card key={item} className="h-full border-border">
                   <CardContent className="pt-6">
                     <div className="flex items-start gap-3">
-                      <CheckCircle2 className="h-5 w-5 text-[#C9A227] mt-0.5" />
-                      <span className="text-sm text-muted-foreground">{item}</span>
+                      <CheckCircle2 className="h-5 w-5 text-accent mt-0.5" />
+                      <span className="text-small text-muted-foreground">{item}</span>
                     </div>
                   </CardContent>
                 </Card>
@@ -253,10 +253,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* Timing */}
-        <section className="py-12 md:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Сроки
               </h2>
               <p className="text-muted-foreground">{data.timing}</p>
@@ -265,10 +265,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* Price */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Стоимость
               </h2>
               <p className="text-muted-foreground">{data.priceNote}</p>
@@ -277,10 +277,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* Practice */}
-        <section className="py-12 md:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Кейсы и практика
               </h2>
               <p className="text-muted-foreground">
@@ -295,16 +295,16 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                   <Card key={`${item.situation}-${index}`}>
                     <CardContent className="pt-6 space-y-4">
                       <div>
-                        <div className="text-xs uppercase text-muted-foreground mb-1">Ситуация</div>
+                        <div className="text-small uppercase text-muted-foreground mb-1">Ситуация</div>
                         <p className="font-semibold">{item.situation}</p>
                       </div>
                       <div>
-                        <div className="text-xs uppercase text-muted-foreground mb-1">Что сделали</div>
-                        <p className="text-sm text-muted-foreground">{item.actions}</p>
+                        <div className="text-small uppercase text-muted-foreground mb-1">Что сделали</div>
+                        <p className="text-small text-muted-foreground">{item.actions}</p>
                       </div>
                       <div>
-                        <div className="text-xs uppercase text-muted-foreground mb-1">Итог</div>
-                        <p className="text-sm text-muted-foreground">{item.result}</p>
+                        <div className="text-small uppercase text-muted-foreground mb-1">Итог</div>
+                        <p className="text-small text-muted-foreground">{item.result}</p>
                       </div>
                     </CardContent>
                   </Card>
@@ -316,8 +316,8 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                   <Card key={item} className="h-full border-border">
                     <CardContent className="pt-6">
                       <div className="flex items-start gap-3">
-                        <CheckCircle2 className="h-5 w-5 text-[#C9A227] mt-0.5" />
-                        <span className="text-sm text-muted-foreground">{item}</span>
+                        <CheckCircle2 className="h-5 w-5 text-accent mt-0.5" />
+                        <span className="text-small text-muted-foreground">{item}</span>
                       </div>
                     </CardContent>
                   </Card>
@@ -328,10 +328,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* Why Us */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Почему выбирают нас
               </h2>
               <p className="text-muted-foreground">
@@ -340,15 +340,15 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
             </div>
             <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {data.whyUs.map((item) => (
-                <Card key={item.title} className="border-l-4 border-l-[#C9A227]">
+                <Card key={item.title} className="border-l-4 border-l-accent">
                   <CardContent className="pt-6">
                     <div className="flex items-start gap-4">
-                      <div className="p-3 rounded-lg bg-[#C9A227]/10">
+                      <div className="p-3 rounded-lg bg-accent/10">
                         {iconMap[item.icon]}
                       </div>
                       <div>
-                        <h3 className="font-semibold text-lg mb-2">{item.title}</h3>
-                        <p className="text-sm text-muted-foreground">{item.description}</p>
+                        <h3 className="font-semibold text-body-mobile md:text-body mb-2">{item.title}</h3>
+                        <p className="text-small text-muted-foreground">{item.description}</p>
                       </div>
                     </div>
                   </CardContent>
@@ -359,10 +359,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* Team */}
-        <section id="team" className="py-12 md:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section id="team" className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Наша команда
               </h2>
               <p className="text-muted-foreground">
@@ -385,17 +385,17 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                         </div>
                       )}
                       <div>
-                        <div className="font-semibold text-lg">{member.name}</div>
-                        <div className="text-sm text-accent">{member.role}</div>
+                        <div className="font-semibold text-body-mobile md:text-body">{member.name}</div>
+                        <div className="text-small text-accent">{member.role}</div>
                         {member.experience && (
-                          <div className="text-xs text-muted-foreground mt-1">{member.experience}</div>
+                          <div className="text-small text-muted-foreground mt-1">{member.experience}</div>
                         )}
                       </div>
                     </div>
-                    <ul className="space-y-2 text-sm text-muted-foreground mb-4">
+                    <ul className="space-y-2 text-small text-muted-foreground mb-4">
                       {member.bullets.map((item) => (
                         <li key={item} className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-[#C9A227] mt-0.5" />
+                          <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -411,10 +411,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* Reviews */}
-        <section id="reviews" className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section id="reviews" className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Отзывы
               </h2>
               <p className="text-muted-foreground">
@@ -426,16 +426,16 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 <Card key={`${review.name}-${index}`} className="h-full">
                   <CardContent className="pt-6 h-full flex flex-col">
                     <div className="flex items-start justify-between gap-4 mb-3">
-                      <div className="text-sm font-semibold">{review.name}</div>
-                      <div className="text-xs text-muted-foreground">{review.date}</div>
+                      <div className="text-small font-semibold">{review.name}</div>
+                      <div className="text-small text-muted-foreground">{review.date}</div>
                     </div>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{review.text}</p>
+                    <p className="text-small text-muted-foreground leading-relaxed">{review.text}</p>
                   </CardContent>
                 </Card>
               ))}
             </div>
             <div className="mt-8">
-              <Button asChild className="bg-[#0B1F3A] text-white hover:bg-[#0B1F3A]/90">
+              <Button asChild className="bg-primary text-white hover:bg-primary/90">
                 <a
                   href="https://yandex.ru/maps/org/244880896695/reviews/"
                   target="_blank"
@@ -449,10 +449,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* FAQ */}
-        <section id="faq" className="py-12 md:py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section id="faq" className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 FAQ по теме услуги
               </h2>
               <p className="text-muted-foreground">Короткие ответы на частые вопросы.</p>
@@ -473,11 +473,11 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         </section>
 
         {/* Consultation */}
-        <section id="consultation" className="py-12 md:py-16 bg-[#0B1F3A] text-white scroll-mt-24">
-          <div className="container mx-auto px-4">
+        <section id="consultation" className="section bg-primary text-white scroll-mt-24">
+          <div className="container">
             <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
-                <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-4">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                   Получите план решения и оценку рисков
                 </h2>
                 <p className="text-white/80 mb-6">
@@ -487,10 +487,10 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
               <Card className="bg-white text-foreground border-0">
                 <CardContent className="pt-6">
                   <LeadForm practiceType={data.entry.title} variant="compact" />
-                  <div className="text-xs text-muted-foreground mt-4">
+                  <div className="text-small text-muted-foreground mt-4">
                     Первичная оценка — после уточняющих вопросов и документов. Срочные запросы обрабатываются в приоритете.
                   </div>
-                  <p className="text-xs text-muted-foreground mt-3">{data.disclaimer}</p>
+                  <p className="text-small text-muted-foreground mt-3">{data.disclaimer}</p>
                 </CardContent>
               </Card>
             </div>

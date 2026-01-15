@@ -33,21 +33,20 @@ const LegalFigure = ({
   const widthClasses = position === "full" 
     ? "w-full" 
     : "w-full md:w-[400px] lg:w-[480px]";
+  
+  const marginClasses = position === "full" ? "" : "mt-2";
 
   return (
     <figure 
       className={`
         ${positionClasses[position]} 
         ${widthClasses}
+        ${marginClasses}
         mb-6 md:mb-0
         ${className}
       `}
-      style={{
-        marginTop: position !== "full" ? "6px" : undefined,
-        marginBottom: position !== "full" ? "24px" : undefined
-      }}
     >
-      <div className="overflow-hidden rounded-lg shadow-elegant">
+      <div className="overflow-hidden rounded-xl shadow-elegant">
         <img
           src={imageSrc}
           alt={imageAlt}
@@ -60,7 +59,7 @@ const LegalFigure = ({
       </div>
       
       {caption && (
-        <figcaption className="mt-3 px-2 text-sm text-muted-foreground italic">
+        <figcaption className="mt-2 px-2 text-small text-muted-foreground italic">
           {caption}
         </figcaption>
       )}

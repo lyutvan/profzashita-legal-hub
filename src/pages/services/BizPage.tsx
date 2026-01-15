@@ -94,7 +94,7 @@ const BizPage = () => {
       <main className="flex-1">
         {/* Hero Section */}
         <section 
-          className="relative text-white py-16 md:py-20"
+          className="relative text-white section"
           style={{
             backgroundImage: `url(${businessHandshake})`,
             backgroundSize: 'cover',
@@ -107,7 +107,7 @@ const BizPage = () => {
               background: "linear-gradient(180deg, rgba(5,12,28,0.9) 0%, rgba(11,31,58,0.7) 48%, rgba(11,31,58,0.3) 100%)"
             }}
           ></div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container relative z-10">
             <Breadcrumbs
               items={[
                 { label: "Услуги", path: "/uslugi" },
@@ -115,15 +115,15 @@ const BizPage = () => {
               ]} 
             />
             <div className="max-w-4xl mt-8">
-              <h1 className="font-montserrat text-4xl md:text-5xl font-bold mb-4">
+              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-4">
                 {audienceConfig.biz.title}
               </h1>
-              <p className="text-xl text-white/80 mb-6">
+              <p className="text-body-mobile md:text-body text-white/80 mb-6">
                 {audienceConfig.biz.description}
               </p>
               <ServiceCallBanner className="mb-6" />
               <div className="flex items-center gap-2 text-white/70">
-                <CheckCircle2 className="h-5 w-5 text-[#C9A227]" />
+                <CheckCircle2 className="h-5 w-5 text-accent" />
                 <span>{totalServices} специализаций</span>
               </div>
             </div>
@@ -131,10 +131,10 @@ const BizPage = () => {
         </section>
 
         {/* Categories overview */}
-        <section className="py-12 md:py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Основные направления
               </h2>
               <p className="text-muted-foreground">
@@ -146,7 +146,7 @@ const BizPage = () => {
                 <Link
                   key={category.slug}
                   to={`/services/biz#${category.slug}`}
-                  className="text-sm text-[#0B1F3A] hover:text-[#C9A227] hover:underline"
+                  className="text-small text-foreground hover:text-accent hover:underline"
                 >
                   {category.title}
                 </Link>
@@ -156,14 +156,14 @@ const BizPage = () => {
         </section>
 
         {/* Services by Category */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             {categories.map(({ title, slug, services }) => {
               const seed = "biz";
 
               return (
                 <div key={slug} id={slug} className="mb-12 scroll-mt-20">
-                  <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-6">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
                     {title}
                   </h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -183,10 +183,10 @@ const BizPage = () => {
         </section>
 
         {/* All Services List */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-montserrat text-2xl md:text-3xl font-bold mb-3">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Все услуги для бизнеса
               </h2>
               <p className="text-muted-foreground">
@@ -198,7 +198,7 @@ const BizPage = () => {
                 <Link
                   key={service.path}
                   to={service.path}
-                  className="text-sm text-[#0B1F3A] hover:text-[#C9A227] hover:underline"
+                  className="text-small text-foreground hover:text-accent hover:underline"
                 >
                   {service.title}
                 </Link>
@@ -208,18 +208,18 @@ const BizPage = () => {
         </section>
 
         {/* CTA Section */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
-            <Card className="bg-gradient-to-br from-[#0B1F3A] to-[#0C1926] text-white border-0">
+        <section className="section bg-muted/30">
+          <div className="container">
+            <Card className="bg-gradient-to-br from-primary to-primary/90 text-white border-0">
               <CardContent className="pt-12 pb-12">
                 <div className="max-w-3xl mx-auto text-center">
-                  <h2 className="font-montserrat text-3xl md:text-4xl font-bold mb-4">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                     Нужна консультация?
                   </h2>
-                  <p className="text-xl text-white/80 mb-8">
+                  <p className="text-body-mobile md:text-body text-white/80 mb-8">
                     Получите бесплатную консультацию и узнайте, как мы можем помочь вашему бизнесу
                   </p>
-                  <Button size="lg" className="bg-[#C9A227] hover:bg-[#B08E1F] text-white font-medium" asChild>
+                  <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-medium" asChild>
                     <Link to="/kontakty">
                       Связаться с нами
                     </Link>

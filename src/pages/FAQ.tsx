@@ -143,27 +143,27 @@ const FAQ = () => {
         >
           <Breadcrumbs items={[{ label: "Вопросы и ответы" }]} />
           <div className="max-w-3xl mt-6">
-            <div className="flex items-center gap-3 mb-4">
+            <div className="flex items-center gap-4 mb-4">
               <HelpCircle className="h-10 w-10 text-accent" />
-              <h1 className="font-playfair text-4xl md:text-5xl font-bold text-white">
+              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-white">
                 Вопросы и ответы
               </h1>
             </div>
-            <p className="text-lg text-white/90">
+            <p className="text-body-mobile md:text-body text-white/90">
               Здесь собраны ответы на самые частые вопросы о работе нашей коллегии
             </p>
           </div>
         </PageHero>
 
         {/* FAQ Content */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* FAQ List */}
               <div className="lg:col-span-2 space-y-8">
                 {faqCategories.map((category, catIndex) => (
                   <div key={catIndex}>
-                    <h2 className="font-playfair text-2xl font-bold mb-6">
+                    <h2 className="font-serif text-h3-mobile md:text-h3 font-bold mb-6">
                       {category.category}
                     </h2>
                     <Accordion type="single" collapsible className="space-y-4">
@@ -171,7 +171,7 @@ const FAQ = () => {
                         <AccordionItem 
                           key={faqIndex} 
                           value={`${catIndex}-${faqIndex}`}
-                          className="border border-border rounded-lg px-6 bg-card"
+                          className="border border-border rounded-xl px-6 bg-card"
                         >
                           <AccordionTrigger className="hover:text-accent hover:no-underline text-left">
                             <span className="font-semibold">{faq.q}</span>
@@ -186,8 +186,8 @@ const FAQ = () => {
                 ))}
 
                 {/* CTA */}
-                <div className="bg-muted/50 rounded-lg p-8 mt-12">
-                  <h3 className="font-playfair text-xl font-bold mb-2">
+                <div className="bg-muted/50 rounded-xl p-8 mt-12">
+                  <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2">
                     Не нашли ответ на свой вопрос?
                   </h3>
                   <p className="text-muted-foreground mb-4">
@@ -198,14 +198,14 @@ const FAQ = () => {
 
               {/* Sidebar */}
               <div className="lg:sticky lg:top-24 h-fit space-y-6">
-                <div className="bg-card border border-border rounded-lg p-6">
-                  <h3 className="font-semibold text-lg mb-4">Задать вопрос</h3>
+                <div className="bg-card border border-border rounded-xl p-6">
+                  <h3 className="font-semibold text-h3-mobile md:text-h3 mb-4">Задать вопрос</h3>
                   <LeadForm variant="compact" />
                 </div>
 
-                <div className="bg-muted/50 rounded-lg p-6">
-                  <h3 className="font-semibold text-lg mb-4">Контакты</h3>
-                  <div className="space-y-3 text-sm">
+                <div className="bg-muted/50 rounded-xl p-6">
+                  <h3 className="font-semibold text-h3-mobile md:text-h3 mb-4">Контакты</h3>
+                  <div className="space-y-4 text-small">
                     <p>
                       <strong>Телефон:</strong><br />
                       <a href="tel:+79168597654" className="text-accent hover:underline">

@@ -64,13 +64,13 @@ const About = () => {
       
       <main className="flex-1">
         {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground py-20 overflow-hidden">
-          <div className="container mx-auto px-4">
+        <section className="relative bg-gradient-to-br from-primary to-primary/90 text-primary-foreground section overflow-hidden">
+          <div className="container">
             <div className="max-w-3xl mx-auto text-center">
-              <h1 className="font-playfair text-4xl md:text-5xl font-bold mb-6">
+              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6">
                 О <span className="text-accent">коллегии</span>
               </h1>
-              <p className="text-lg text-primary-foreground/80 leading-relaxed">
+              <p className="text-body-mobile md:text-body text-primary-foreground/80 leading-relaxed">
                 Команда профессионалов, которая стоит на защите ваших прав и интересов
               </p>
             </div>
@@ -78,14 +78,14 @@ const About = () => {
         </section>
 
         {/* Mission Section with Library Image */}
-        <section className="py-20">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-6xl mx-auto">
               {/* Office images + Mission side by side */}
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 items-center">
                 {/* Office images */}
                 <div className="space-y-6">
-                  <div className="rounded-lg overflow-hidden shadow-elegant">
+                  <div className="rounded-xl overflow-hidden shadow-elegant">
                     <img 
                       src={office1Img} 
                       alt="Офис коллегии адвокатов Профзащита" 
@@ -93,7 +93,7 @@ const About = () => {
                       loading="lazy"
                     />
                   </div>
-                  <div className="rounded-lg overflow-hidden shadow-elegant">
+                  <div className="rounded-xl overflow-hidden shadow-elegant">
                     <img 
                       src={office2Img} 
                       alt="Кабинет адвоката в коллегии Профзащита" 
@@ -107,10 +107,10 @@ const About = () => {
                 <div className="space-y-6">
                   <Card className="border-border">
                     <CardContent className="pt-6">
-                      <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
                         <Target className="h-6 w-6 text-accent" />
                       </div>
-                      <h3 className="font-playfair text-xl font-bold mb-3">Наша миссия</h3>
+                      <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-3">Наша миссия</h3>
                       <p className="text-muted-foreground leading-relaxed">
                         Обеспечить каждому клиенту профессиональную юридическую защиту, 
                         основанную на глубоких знаниях законодательства и многолетнем опыте.
@@ -120,10 +120,10 @@ const About = () => {
 
                   <Card className="border-border">
                     <CardContent className="pt-6">
-                      <div className="w-12 h-12 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
                         <TrendingUp className="h-6 w-6 text-accent" />
                       </div>
-                      <h3 className="font-playfair text-xl font-bold mb-3">Наши ценности</h3>
+                      <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-3">Наши ценности</h3>
                       <p className="text-muted-foreground leading-relaxed">
                         Профессионализм, честность, конфиденциальность и неизменная ответственность 
                         перед каждым клиентом — основа нашей работы.
@@ -134,16 +134,16 @@ const About = () => {
               </div>
 
               <div className="prose prose-lg max-w-none">
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                <p className="text-body-mobile md:text-body text-muted-foreground leading-relaxed mb-6">
                   Коллегия адвокатов «Профзащита» была основана группой опытных юристов, 
                   объединённых желанием предоставлять качественные юридические услуги на самом высоком уровне.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed mb-6">
+                <p className="text-body-mobile md:text-body text-muted-foreground leading-relaxed mb-6">
                   За годы работы мы сформировали команду специалистов, каждый из которых является экспертом 
                   в своей области права. Наши адвокаты регулярно повышают квалификацию, следят за изменениями 
                   в законодательстве и судебной практике.
                 </p>
-                <p className="text-lg text-muted-foreground leading-relaxed">
+                <p className="text-body-mobile md:text-body text-muted-foreground leading-relaxed">
                   Мы гордимся тем, что более 98% наших клиентов достигают положительного результата в своих делах. 
                   Это стало возможным благодаря индивидуальному подходу, тщательной подготовке и профессионализму 
                   наших адвокатов.
@@ -154,24 +154,24 @@ const About = () => {
         </section>
 
         {/* Stats Section */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">15+</div>
-                <div className="text-sm text-muted-foreground">лет на рынке</div>
+                <div className="text-h1-mobile md:text-h1 font-bold text-accent mb-2">15+</div>
+                <div className="text-small text-muted-foreground">лет на рынке</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">25+</div>
-                <div className="text-sm text-muted-foreground">адвокатов в команде</div>
+                <div className="text-h1-mobile md:text-h1 font-bold text-accent mb-2">25+</div>
+                <div className="text-small text-muted-foreground">адвокатов в команде</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">500+</div>
-                <div className="text-sm text-muted-foreground">выигранных дел</div>
+                <div className="text-h1-mobile md:text-h1 font-bold text-accent mb-2">500+</div>
+                <div className="text-small text-muted-foreground">выигранных дел</div>
               </div>
               <div className="text-center">
-                <div className="text-4xl md:text-5xl font-bold text-accent mb-2">98%</div>
-                <div className="text-sm text-muted-foreground">довольных клиентов</div>
+                <div className="text-h1-mobile md:text-h1 font-bold text-accent mb-2">98%</div>
+                <div className="text-small text-muted-foreground">довольных клиентов</div>
               </div>
             </div>
           </div>
@@ -184,10 +184,10 @@ const About = () => {
         />
 
         {/* Criminal Services Links */}
-        <section className="py-16">
-          <div className="container mx-auto px-4">
+        <section className="section">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                 Направления уголовной защиты
               </h2>
               <p className="text-muted-foreground">
@@ -199,7 +199,7 @@ const About = () => {
                 <Link
                   key={service.path}
                   to={service.path}
-                  className="text-sm text-[#0B1F3A] hover:text-[#C9A227] hover:underline"
+                  className="text-small text-foreground hover:text-accent hover:underline"
                 >
                   {service.title}
                 </Link>
@@ -209,10 +209,10 @@ const About = () => {
         </section>
 
         {/* Business Services Links */}
-        <section className="py-16 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mb-8">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-4">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                 Направления для бизнеса
               </h2>
               <p className="text-muted-foreground">
@@ -224,7 +224,7 @@ const About = () => {
                 <Link
                   key={service.path}
                   to={service.path}
-                  className="text-sm text-[#0B1F3A] hover:text-[#C9A227] hover:underline"
+                  className="text-small text-foreground hover:text-accent hover:underline"
                 >
                   {service.title}
                 </Link>
@@ -234,10 +234,10 @@ const About = () => {
         </section>
 
         {/* Achievements Section */}
-        <section className="py-20 bg-muted/30">
-          <div className="container mx-auto px-4">
+        <section className="section bg-muted/30">
+          <div className="container">
             <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
                 Достижения и <span className="text-accent">признание</span>
               </h2>
             </div>
@@ -249,9 +249,9 @@ const About = () => {
                 "Рекомендованы ведущими деловыми изданиями",
                 "Многократные победители в резонансных делах",
               ].map((achievement, index) => (
-                <div key={index} className="flex items-start gap-3 p-4 bg-card rounded-lg border border-border">
+                <div key={index} className="flex items-start gap-3 p-4 bg-card rounded-xl border border-border">
                   <Award className="h-6 w-6 text-accent flex-shrink-0 mt-0.5" />
-                  <p className="text-base">{achievement}</p>
+                  <p className="text-body-mobile md:text-body">{achievement}</p>
                 </div>
               ))}
             </div>

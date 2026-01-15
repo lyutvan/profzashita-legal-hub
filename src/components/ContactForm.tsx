@@ -69,7 +69,7 @@ const ContactForm = () => {
           onChange={handleChange}
           required
           placeholder="Иван Иванов"
-          className="mt-1"
+          className="mt-2"
         />
       </div>
 
@@ -91,7 +91,7 @@ const ContactForm = () => {
           value={formData.email}
           onChange={handleChange}
           placeholder="example@mail.com"
-          className="mt-1"
+          className="mt-2"
         />
       </div>
 
@@ -104,7 +104,7 @@ const ContactForm = () => {
           onChange={handleChange}
           placeholder="Кратко опишите вашу ситуацию..."
           rows={5}
-          className="mt-1"
+          className="mt-2"
         />
       </div>
 
@@ -112,7 +112,7 @@ const ContactForm = () => {
         Отправить заявку
       </Button>
 
-      <p className="text-xs text-muted-foreground text-center">
+      <p className="text-small text-muted-foreground text-center">
         Нажимая кнопку, вы соглашаетесь с политикой конфиденциальности
       </p>
     </form>

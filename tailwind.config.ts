@@ -7,15 +7,31 @@ export default {
   theme: {
     container: {
       center: true,
-      padding: "2rem",
+      padding: {
+        DEFAULT: "1rem",
+        lg: "1.5rem",
+      },
       screens: {
-        "2xl": "1400px",
+        "2xl": "1240px",
       },
     },
     extend: {
       fontFamily: {
-        playfair: ['Playfair Display', 'serif'],
-        inter: ['Inter', 'sans-serif'],
+        playfair: ["Playfair Display", "serif"],
+        inter: ["Inter", "sans-serif"],
+        serif: ["Playfair Display", "serif"],
+        sans: ["Inter", "sans-serif"],
+      },
+      fontSize: {
+        "h1": ["3.5rem", { lineHeight: "1.1" }],
+        "h1-mobile": ["2.5rem", { lineHeight: "1.1" }],
+        "h2": ["2.25rem", { lineHeight: "1.2" }],
+        "h2-mobile": ["1.875rem", { lineHeight: "1.2" }],
+        "h3": ["1.75rem", { lineHeight: "1.25" }],
+        "h3-mobile": ["1.375rem", { lineHeight: "1.25" }],
+        "body": ["1.125rem", { lineHeight: "1.7" }],
+        "body-mobile": ["1rem", { lineHeight: "1.7" }],
+        "small": ["0.875rem", { lineHeight: "1.5" }],
       },
       colors: {
         border: "hsl(var(--border))",
@@ -64,7 +80,7 @@ export default {
       },
       borderRadius: {
         lg: "var(--radius)",
-        md: "calc(var(--radius) - 2px)",
+        md: "var(--radius)",
         sm: "calc(var(--radius) - 4px)",
       },
       keyframes: {

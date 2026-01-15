@@ -144,19 +144,19 @@ const Index = () => {
           className="min-h-[600px] md:min-h-[700px]"
         >
           <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block border-2 border-white/30 rounded-lg px-6 py-3 mb-8">
-              <p className="text-white text-base md:text-lg font-medium">
+            <div className="inline-block border-2 border-white/30 rounded-xl px-6 py-3 mb-8">
+              <p className="text-white text-body-mobile md:text-body font-medium">
                 Коллегия адвокатов города Москвы "ПРОФЗАЩИТА"
               </p>
             </div>
-            <h1 className="font-playfair text-4xl md:text-6xl font-bold text-white mb-6 leading-tight mt-4">
+            <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-white mb-6 leading-tight mt-4">
               Юридическая помощь по делам любой сложности
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-8 leading-relaxed">
+            <p className="text-body-mobile md:text-body text-white/90 mb-8 leading-relaxed">
               Бесплатная консультация · Индивидуальная стратегия · Профессиональный подход
             </p>
             <div className="flex justify-center">
-              <Button size="lg" variant="destructive" className="text-lg px-8" asChild>
+              <Button size="lg" className="bg-accent text-white hover:bg-accent/90 px-8" asChild>
                 <Link to="/kontakty">Дежурный адвокат</Link>
               </Button>
             </div>
@@ -167,12 +167,12 @@ const Index = () => {
               <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant flex flex-col h-full">
                 <CardContent className="p-4 flex flex-col flex-1">
                   <div className="flex-1">
-                    <h3 className="font-playfair text-xl font-bold mb-2 text-white">Уголовные дела</h3>
-                    <p className="text-white/80 mb-4 leading-relaxed text-sm">
+                    <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-white">Уголовные дела</h3>
+                    <p className="text-white/80 mb-4 leading-relaxed text-small">
                       Профессиональные юридические услуги для защиты ваших интересов
                     </p>
                   </div>
-                  <Button asChild className="w-full bg-[#C9A227] hover:bg-[#B08E1F] text-white">
+                  <Button asChild className="w-full bg-accent hover:bg-accent/90 text-white">
                     <Link to="/services/criminal">
                       Подробнее →
                     </Link>
@@ -184,12 +184,12 @@ const Index = () => {
               <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant flex flex-col h-full">
                 <CardContent className="p-4 flex flex-col flex-1">
                   <div className="flex-1">
-                    <h3 className="font-playfair text-xl font-bold mb-2 text-white">Для бизнеса</h3>
-                    <p className="text-white/80 mb-4 leading-relaxed text-sm">
+                    <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-white">Для бизнеса</h3>
+                    <p className="text-white/80 mb-4 leading-relaxed text-small">
                       Комплексное юридическое сопровождение компаний и предпринимателей
                     </p>
                   </div>
-                  <Button asChild className="w-full bg-[#C9A227] hover:bg-[#B08E1F] text-white">
+                  <Button asChild className="w-full bg-accent hover:bg-accent/90 text-white">
                     <Link to="/services/biz">
                       Подробнее →
                     </Link>
@@ -201,12 +201,12 @@ const Index = () => {
               <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant flex flex-col h-full">
                 <CardContent className="p-4 flex flex-col flex-1">
                   <div className="flex-1">
-                    <h3 className="font-playfair text-xl font-bold mb-2 text-white">Для граждан</h3>
-                    <p className="text-white/80 mb-4 leading-relaxed text-sm">
+                    <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-white">Для граждан</h3>
+                    <p className="text-white/80 mb-4 leading-relaxed text-small">
                       Защита прав и интересов физических лиц в гражданских делах
                     </p>
                   </div>
-                  <Button asChild className="w-full bg-[#C9A227] hover:bg-[#B08E1F] text-white">
+                  <Button asChild className="w-full bg-accent hover:bg-accent/90 text-white">
                     <Link to="/services/phys">
                       Подробнее →
                     </Link>
@@ -218,7 +218,7 @@ const Index = () => {
         </LegalBackground>
 
         {/* About Section */}
-        <section className="relative py-20 overflow-hidden">
+        <section className="relative section overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0">
             <img 
@@ -231,12 +231,12 @@ const Index = () => {
           </div>
           {/* Texture strip */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent z-10" />
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
                 О коллегии адвокатов <span className="text-accent">Профзащита</span>
               </h2>
-              <p className="text-lg text-muted-foreground leading-relaxed">
+              <p className="text-body-mobile md:text-body text-muted-foreground leading-relaxed">
                 Мы — команда опытных адвокатов, объединённых общей целью: защитить права и интересы наших клиентов. 
                 За годы работы мы помогли сотням людей и организаций добиться справедливости.
               </p>
@@ -248,8 +248,8 @@ const Index = () => {
                   <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                     <Shield className="h-8 w-8 text-accent" />
                   </div>
-                  <h3 className="font-playfair text-xl font-semibold mb-2">Опыт</h3>
-                  <p className="text-sm text-muted-foreground">Более 15 лет успешной практики</p>
+                  <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">Опыт</h3>
+                  <p className="text-small text-muted-foreground">Более 15 лет успешной практики</p>
                 </CardContent>
               </Card>
 
@@ -258,8 +258,8 @@ const Index = () => {
                   <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                     <Target className="h-8 w-8 text-accent" />
                   </div>
-                  <h3 className="font-playfair text-xl font-semibold mb-2">Точность</h3>
-                  <p className="text-sm text-muted-foreground">Детальный анализ каждого дела</p>
+                  <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">Точность</h3>
+                  <p className="text-small text-muted-foreground">Детальный анализ каждого дела</p>
                 </CardContent>
               </Card>
 
@@ -268,8 +268,8 @@ const Index = () => {
                   <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                     <Award className="h-8 w-8 text-accent" />
                   </div>
-                  <h3 className="font-playfair text-xl font-semibold mb-2">Качество</h3>
-                  <p className="text-sm text-muted-foreground">Высокий процент выигранных дел</p>
+                  <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">Качество</h3>
+                  <p className="text-small text-muted-foreground">Высокий процент выигранных дел</p>
                 </CardContent>
               </Card>
 
@@ -278,8 +278,8 @@ const Index = () => {
                   <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
                     <Users className="h-8 w-8 text-accent" />
                   </div>
-                  <h3 className="font-playfair text-xl font-semibold mb-2">Команда</h3>
-                  <p className="text-sm text-muted-foreground">Профессиональные адвокаты</p>
+                  <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">Команда</h3>
+                  <p className="text-small text-muted-foreground">Профессиональные адвокаты</p>
                 </CardContent>
               </Card>
             </div>
@@ -287,7 +287,7 @@ const Index = () => {
         </section>
 
         {/* Practices Section */}
-        <section className="relative py-20 overflow-hidden">
+        <section className="relative section overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0">
             <img 
@@ -300,12 +300,12 @@ const Index = () => {
           </div>
           {/* Texture strip */}
           <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent z-10" />
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
                 Наши <span className="text-accent">услуги</span>
               </h2>
-              <p className="text-lg text-muted-foreground">
+              <p className="text-body-mobile md:text-body text-muted-foreground">
                 Комплексная юридическая помощь в различных областях права
               </p>
             </div>
@@ -313,10 +313,10 @@ const Index = () => {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
               <Card className="border-border hover:shadow-elegant transition-all group">
                 <CardContent className="pt-6">
-                  <h3 className="font-playfair text-2xl font-bold mb-2 text-accent">
+                  <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-accent">
                     Физическим лицам
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <p className="text-small text-muted-foreground mb-4">
                     Защита прав граждан в различных сферах
                   </p>
                   <ul className="space-y-2">
@@ -324,7 +324,7 @@ const Index = () => {
                       <li key={category.slug}>
                         <Link
                           to={`/services/phys#${category.slug}`}
-                          className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                          className="text-small text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                         >
                           <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
                           {category.title}
@@ -333,7 +333,7 @@ const Index = () => {
                     ))}
                   </ul>
                   <div className="border-t border-border mt-4 pt-4">
-                    <div className="text-xs uppercase text-muted-foreground mb-3">
+                    <div className="text-small uppercase text-muted-foreground mb-3">
                       Популярные услуги
                     </div>
                     <ul className="space-y-2">
@@ -341,7 +341,7 @@ const Index = () => {
                         <li key={service.path}>
                           <Link
                             to={service.path}
-                            className="text-sm text-muted-foreground hover:text-accent transition-colors"
+                            className="text-small text-muted-foreground hover:text-accent transition-colors"
                           >
                             {service.title}
                           </Link>
@@ -354,10 +354,10 @@ const Index = () => {
               
               <Card className="border-border hover:shadow-elegant transition-all group">
                 <CardContent className="pt-6">
-                  <h3 className="font-playfair text-2xl font-bold mb-2 text-accent">
+                  <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-accent">
                     Юридическим лицам
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <p className="text-small text-muted-foreground mb-4">
                     Корпоративное обслуживание бизнеса
                   </p>
                   <ul className="space-y-2">
@@ -365,7 +365,7 @@ const Index = () => {
                       <li key={category.slug}>
                         <Link
                           to={`/services/biz#${category.slug}`}
-                          className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                          className="text-small text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                         >
                           <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
                           {category.title}
@@ -374,7 +374,7 @@ const Index = () => {
                     ))}
                   </ul>
                   <div className="border-t border-border mt-4 pt-4">
-                    <div className="text-xs uppercase text-muted-foreground mb-3">
+                    <div className="text-small uppercase text-muted-foreground mb-3">
                       Популярные услуги
                     </div>
                     <ul className="space-y-2">
@@ -382,7 +382,7 @@ const Index = () => {
                         <li key={service.path}>
                           <Link
                             to={service.path}
-                            className="text-sm text-muted-foreground hover:text-accent transition-colors"
+                            className="text-small text-muted-foreground hover:text-accent transition-colors"
                           >
                             {service.title}
                           </Link>
@@ -395,10 +395,10 @@ const Index = () => {
 
               <Card className="border-border hover:shadow-elegant transition-all group">
                 <CardContent className="pt-6">
-                  <h3 className="font-playfair text-2xl font-bold mb-2 text-accent">
+                  <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-accent">
                     Уголовные дела
                   </h3>
-                  <p className="text-sm text-muted-foreground mb-4">
+                  <p className="text-small text-muted-foreground mb-4">
                     Защита на всех стадиях процесса
                   </p>
                   <ul className="space-y-2">
@@ -406,7 +406,7 @@ const Index = () => {
                       <li key={category.slug}>
                         <Link
                           to={`/services/criminal#${category.slug}`}
-                          className="text-sm text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
+                          className="text-small text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
                         >
                           <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
                           {category.title}
@@ -415,7 +415,7 @@ const Index = () => {
                     ))}
                   </ul>
                   <div className="border-t border-border mt-4 pt-4">
-                    <div className="text-xs uppercase text-muted-foreground mb-3">
+                    <div className="text-small uppercase text-muted-foreground mb-3">
                       Популярные услуги
                     </div>
                     <ul className="space-y-2">
@@ -423,7 +423,7 @@ const Index = () => {
                         <li key={service.path}>
                           <Link
                             to={service.path}
-                            className="text-sm text-muted-foreground hover:text-accent transition-colors"
+                            className="text-small text-muted-foreground hover:text-accent transition-colors"
                           >
                             {service.title}
                           </Link>
@@ -444,7 +444,7 @@ const Index = () => {
         </section>
 
         {/* Advantages Section */}
-        <section className="relative py-20 overflow-hidden">
+        <section className="relative section overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0">
             <img 
@@ -455,9 +455,9 @@ const Index = () => {
             />
             <div className="absolute inset-0 bg-background/85" />
           </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container relative z-10">
             <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
                 Почему выбирают <span className="text-accent">нас</span>
               </h2>
             </div>
@@ -471,9 +471,9 @@ const Index = () => {
                 "Работаем по всей России, представительство в судах любых инстанций",
                 "Возможность удалённого взаимодействия через видеосвязь",
               ].map((advantage, index) => (
-                <div key={index} className="flex items-start gap-4 bg-card p-6 rounded-lg border border-border hover:shadow-elegant transition-all">
-                  <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-1" />
-                  <p className="text-base leading-relaxed">{advantage}</p>
+                <div key={index} className="flex items-start gap-4 bg-card p-6 rounded-xl border border-border hover:shadow-elegant transition-all">
+                  <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-2" />
+                  <p className="text-body-mobile md:text-body leading-relaxed">{advantage}</p>
                 </div>
               ))}
             </div>
@@ -487,7 +487,7 @@ const Index = () => {
         <Testimonials />
 
         {/* FAQ Section */}
-        <section className="relative py-20 overflow-hidden">
+        <section className="relative section overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0">
             <img 
@@ -498,16 +498,16 @@ const Index = () => {
             />
             <div className="absolute inset-0 bg-background/85" />
           </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container relative z-10">
             <div className="max-w-3xl mx-auto">
               <div className="text-center mb-16">
-                <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
                   Часто задаваемые <span className="text-accent">вопросы</span>
                 </h2>
               </div>
 
               <Accordion type="single" collapsible className="space-y-4">
-                <AccordionItem value="item-1" className="bg-card border border-border rounded-lg px-6">
+                <AccordionItem value="item-1" className="bg-card border border-border rounded-xl px-6">
                   <AccordionTrigger className="text-left hover:text-accent">
                     Сколько стоит первичная консультация?
                   </AccordionTrigger>
@@ -516,7 +516,7 @@ const Index = () => {
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="item-2" className="bg-card border border-border rounded-lg px-6">
+                <AccordionItem value="item-2" className="bg-card border border-border rounded-xl px-6">
                   <AccordionTrigger className="text-left hover:text-accent">
                     Как происходит оплата услуг?
                   </AccordionTrigger>
@@ -525,7 +525,7 @@ const Index = () => {
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="item-3" className="bg-card border border-border rounded-lg px-6">
+                <AccordionItem value="item-3" className="bg-card border border-border rounded-xl px-6">
                   <AccordionTrigger className="text-left hover:text-accent">
                     Можно ли работать удалённо?
                   </AccordionTrigger>
@@ -534,7 +534,7 @@ const Index = () => {
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="item-4" className="bg-card border border-border rounded-lg px-6">
+                <AccordionItem value="item-4" className="bg-card border border-border rounded-xl px-6">
                   <AccordionTrigger className="text-left hover:text-accent">
                     Какие гарантии успеха?
                   </AccordionTrigger>
@@ -543,7 +543,7 @@ const Index = () => {
                   </AccordionContent>
                 </AccordionItem>
 
-                <AccordionItem value="item-5" className="bg-card border border-border rounded-lg px-6">
+                <AccordionItem value="item-5" className="bg-card border border-border rounded-xl px-6">
                   <AccordionTrigger className="text-left hover:text-accent">
                     Как быстро можно начать работу?
                   </AccordionTrigger>
@@ -557,7 +557,7 @@ const Index = () => {
         </section>
 
         {/* Contact Form Section */}
-        <section className="relative py-20 overflow-hidden">
+        <section className="relative section overflow-hidden">
           {/* Background Image */}
           <div className="absolute inset-0">
             <img 
@@ -568,21 +568,21 @@ const Index = () => {
             />
             <div className="absolute inset-0 bg-background/90" />
           </div>
-          <div className="container mx-auto px-4 relative z-10">
+          <div className="container relative z-10">
             <div className="max-w-4xl mx-auto">
               <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
                 <div>
-                  <h2 className="font-playfair text-3xl md:text-4xl font-bold mb-6">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
                     Получите бесплатную <span className="text-accent">консультацию</span>
                   </h2>
-                  <p className="text-lg text-muted-foreground mb-8 leading-relaxed">
+                  <p className="text-body-mobile md:text-body text-muted-foreground mb-8 leading-relaxed">
                     Оставьте заявку, и наш специалист свяжется с вами в течение 15 минут, 
                     чтобы обсудить вашу ситуацию и предложить решение.
                   </p>
                   <div className="space-y-4">
                     <div className="flex items-center gap-3">
                       <Phone className="h-5 w-5 text-accent" />
-                      <a href="tel:+79168597654" className="text-lg font-medium hover:text-accent transition-colors">
+                      <a href="tel:+79168597654" className="text-body-mobile md:text-body font-medium hover:text-accent transition-colors">
                         +7 (916) 859‑76‑54
                       </a>
                     </div>
