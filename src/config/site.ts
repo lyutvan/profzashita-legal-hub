@@ -2,7 +2,7 @@ export const SITE = {
   url: "https://prof-zashita.ru/",
   name: "Коллегия адвокатов «Профзащита»",
   legalName: "КАГМ «Профзащита»",
-  logo: "https://prof-zashita.ru/logo.svg",
+  logo: "https://prof-zashita.ru/logo-new.png",
   ogImage: "https://prof-zashita.ru/og-cover.jpg",
   phone: "+7 (916) 859-76-54",
   phoneRaw: "+79168597654",

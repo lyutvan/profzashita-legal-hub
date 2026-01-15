@@ -1,4 +1,4 @@
-import logoSvg from "@/assets/logo.svg";
+import logoNew from "@/assets/logo-new.png";
 
 const Logo = ({ 
   className = "", 
@@ -16,9 +16,9 @@ const Logo = ({
       : "h-10";
   
   return (
-    <div className="flex items-center gap-2.5">
+    <div className="flex items-center gap-2">
       <img 
-        src={logoSvg} 
+        src={logoNew} 
         alt="Профзащита logo" 
         className={`transition-all duration-300 ${heightClass} w-auto`}
       />
