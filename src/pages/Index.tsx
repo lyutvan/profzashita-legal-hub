@@ -2,103 +2,145 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LegalBackground from "@/components/LegalBackground";
-import LeadForm from "@/components/LeadForm";
-import Testimonials from "@/components/Testimonials";
 import { OrganizationSchema, WebSiteSchema, ReviewsSchema } from "@/components/JsonLd";
 import { testimonials } from "@/data/testimonials";
-import { Shield, Target, Award, Users, CheckCircle, Phone } from "lucide-react";
+import { cases } from "@/data/cases";
+import { teamMembers } from "@/data/team";
+import {
+  Shield,
+  Target,
+  Award,
+  Users,
+  CheckCircle,
+  Phone,
+  Mail,
+  MapPin,
+  Scale,
+  Clock,
+  Star
+} from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import courtColumnsImg from "@/assets/legal/court-columns.jpg";
-import gavelScalesBookImg from "@/assets/legal/gavel-scales-book.jpg";
-import lawyerConsultationImg from "@/assets/legal/lawyer-consultation.jpg";
-import themisStatueImg from "@/assets/legal/themis-statue.jpg";
-import courtBuildingImg from "@/assets/legal/court-building.jpg";
-import lawyerWritingImg from "@/assets/legal/lawyer-writing.jpg";
-import themisDeskImg from "@/assets/legal/themis-desk.jpg";
 import { Helmet } from "react-helmet";
 import { SITE } from "@/config/site";
-import TeamSection from "@/components/TeamSection";
-import { getCategoriesForAudience, getServicesByAudience } from "@/data/services-audiences";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
 const Index = () => {
-  const buildCategoryLinks = (
-    audience: 'phys' | 'biz' | 'criminal',
-    items: { key: string; label?: string }[],
-    minCount: number
-  ) => {
-    const categories = getCategoriesForAudience(audience);
-    const byTitle = new Map(categories.map((cat) => [cat.title.toLowerCase(), cat]));
-    const used = new Set<string>();
-
-    const selected = items
-      .map((item) => {
-        const cat = byTitle.get(item.key.toLowerCase());
-        if (!cat || used.has(cat.slug)) return null;
-        used.add(cat.slug);
-        return { slug: cat.slug, title: item.label ?? cat.title };
-      })
-      .filter(Boolean) as { slug: string; title: string }[];
-
-    if (selected.length < minCount) {
-      categories.forEach((cat) => {
-        if (selected.length >= minCount) return;
-        if (used.has(cat.slug)) return;
-        used.add(cat.slug);
-        selected.push({ slug: cat.slug, title: cat.title });
-      });
+  const navigationSections = [
+    {
+      title: "Физическим лицам",
+      description: "Личные, семейные и имущественные споры с понятной стратегией.",
+      items: [
+        "Семейные споры",
+        "Жилищные споры",
+        "Наследство",
+        "ДТП и страховые споры",
+        "Защита прав потребителей",
+        "Взыскание долгов",
+        "Административные дела"
+      ],
+      href: "/uslugi/fiz-lica"
+    },
+    {
+      title: "Юридическим лицам",
+      description: "Сопровождение бизнеса, защита интересов и снижение рисков.",
+      items: [
+        "Договорная работа",
+        "Арбитражные споры",
+        "Взыскание задолженности",
+        "Налоговые споры",
+        "Банкротство",
+        "Корпоративные споры",
+        "Абонентское сопровождение"
+      ],
+      href: "/uslugi/yur-lica"
+    },
+    {
+      title: "Уголовные дела",
+      description: "Защита на всех стадиях: проверка, следствие, суд.",
+      items: [
+        "Преступления против личности",
+        "Преступления против собственности",
+        "Экономические преступления",
+        "Должностные и коррупционные",
+        "Наркотики",
+        "Общественная безопасность",
+        "Порядок управления"
+      ],
+      href: "/uslugi/ugolovnye"
     }
+  ];
 
-    return selected;
+  const advantages = [
+    {
+      title: "Стратегия под задачу",
+      description: "Не обещаем невозможного — вы получаете честную оценку перспектив.",
+      icon: Target
+    },
+    {
+      title: "Сильная судебная практика",
+      description: "Готовим позицию так, чтобы выдержать проверку в суде.",
+      icon: Scale
+    },
+    {
+      title: "Ответственный подход",
+      description: "Фиксируем сроки, этапы и держим в курсе каждого решения.",
+      icon: Shield
+    },
+    {
+      title: "Опыт в сложных делах",
+      description: "Работаем с конфликтами высокой сложности и ставки.",
+      icon: Award
+    },
+    {
+      title: "Команда, а не один адвокат",
+      description: "К делу подключаются профильные специалисты.",
+      icon: Users
+    },
+    {
+      title: "Быстрый старт",
+      description: "Срочные консультации и подключение к делу в сжатые сроки.",
+      icon: Clock
+    }
+  ];
+
+  const featuredCases = cases.slice(0, 4);
+  const featuredTestimonials = testimonials.slice(0, 6);
+  const featuredTeam = teamMembers.slice(0, 4);
+
+  const faqItems = [
+    {
+      question: "С чего начинается работа с адвокатом?",
+      answer: "С короткой консультации: оцениваем ситуацию, документы и предлагаем план действий."
+    },
+    {
+      question: "Можно ли получить консультацию в день обращения?",
+      answer: "Да, мы организуем консультацию в день обращения, особенно по срочным вопросам."
+    },
+    {
+      question: "Какие документы нужны для старта?",
+      answer: "Базовые материалы по делу, переписка, договоры, судебные документы — всё, что есть у вас на руках."
+    },
+    {
+      question: "Работаете ли вы по Московской области?",
+      answer: "Да, ведём дела в Москве и Московской области, при необходимости выезжаем в другие регионы."
+    },
+    {
+      question: "Сколько времени занимает анализ дела?",
+      answer: "Как правило, первичный анализ занимает 1–2 дня после получения документов."
+    }
+  ];
+
+  const truncateText = (text: string, max = 160) => {
+    if (text.length <= max) return text;
+    return `${text.slice(0, max).trim()}…`;
   };
 
-  const physCategories = buildCategoryLinks('phys', [
-    { key: 'Семейные споры' },
-    { key: 'Жилищные споры' },
-    { key: 'Наследственные дела' },
-    { key: 'Защита прав потребителей' },
-    { key: 'ДТП, страхование, вред здоровью', label: 'ДТП и страховые споры / вред здоровью' },
-    { key: 'Трудовые споры' },
-    { key: 'Взыскание долгов и договорные споры' },
-    { key: 'Административные споры', label: 'Административные дела' },
-    { key: 'Банковские и кредитные споры' },
-  ], 9);
-
-  const bizCategories = buildCategoryLinks('biz', [
-    { key: 'Договоры и сделки', label: 'Договорная работа и претензии' },
-    { key: 'Арбитражные споры (B2B)', label: 'Арбитражные споры' },
-    { key: 'Взыскание дебиторской задолженности' },
-    { key: 'Налоговые споры и проверки' },
-    { key: 'Банкротство и субсидиарная ответственность' },
-    { key: 'Корпоративное право и конфликты собственников', label: 'Корпоративные споры / сделки' },
-    { key: 'Абонентское юридическое сопровождение бизнеса', label: 'Абонентское сопровождение бизнеса' },
-    { key: 'Исполнительное производство и приставы', label: 'Исполнительное производство' },
-    { key: 'Разблокировка счёта и 115‑ФЗ', label: '115-ФЗ / разблокировка счетов' },
-  ], 9);
-
-  const criminalCategories = buildCategoryLinks('criminal', [
-    { key: 'Преступления против жизни и здоровья' },
-    { key: 'Преступления против свободы, чести и достоинства' },
-    { key: 'Преступления против половой неприкосновенности' },
-    { key: 'Преступления против собственности' },
-    { key: 'Преступления в сфере экономической деятельности' },
-    { key: 'Преступления против государственной власти', label: 'Должностные/коррупционные' },
-    { key: 'Преступления против здоровья населения', label: 'Наркотики' },
-    { key: 'Преступления против общественной безопасности' },
-    { key: 'Преступления против порядка управления' },
-  ], 9);
-  const topBizServices = getServicesByAudience('biz').slice(0, 6);
-  const topCriminalServices = getServicesByAudience('criminal').slice(0, 6);
-  const topPhysServices = [
-    { title: "Развод и раздел имущества", path: "/services/phys/razvod-razdel-imushchestva" },
-    { title: "Алименты", path: "/services/phys/alimenty" },
-    { title: "Наследство", path: "/services/phys/nasledstvo" },
-    { title: "Жилищные споры / выписка / выселение", path: "/services/phys/zhilishchnye-spory" },
-    { title: "ДТП и страховые споры", path: "/services/phys/dtp-strahovye-spory" },
-    { title: "Защита прав потребителей", path: "/services/phys/zashchita-prav-potrebitelya" },
-    { title: "Взыскание долгов / расписка", path: "/services/phys/vzyskanie-po-raspiskam" }
-  ];
+  const formatReviewDate = (value: string) => {
+    return /\d{4}/.test(value) ? value : `${value} 2025`;
+  };
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -136,466 +178,341 @@ const Index = () => {
       <Header />
       
       <main className="flex-1">
-        {/* Hero with Legal Background */}
+        {/* Hero */}
         <LegalBackground
           imageSrc={courtColumnsImg}
           imageAlt="Классический зал суда с мраморными колоннами"
           overlayOpacity={0.6}
-          className="min-h-[600px] md:min-h-[700px]"
+          className="min-h-[520px] md:min-h-[600px]"
         >
-          <div className="max-w-4xl mx-auto text-center">
-            <div className="inline-block border-2 border-white/30 rounded-xl px-6 py-3 mb-8">
-              <p className="text-white text-body-mobile md:text-body font-medium">
-                Коллегия адвокатов города Москвы "ПРОФЗАЩИТА"
-              </p>
-            </div>
-            <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-white mb-6 leading-tight mt-4">
+          <div className="max-w-3xl mx-auto text-center">
+            <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-white mb-6 leading-tight">
               Юридическая помощь по делам любой сложности
             </h1>
-            <p className="text-body-mobile md:text-body text-white/90 mb-8 leading-relaxed">
-              Бесплатная консультация · Индивидуальная стратегия · Профессиональный подход
+            <p className="text-body-mobile md:text-body text-white/90 mb-8">
+              Москва и Московская область · консультация в день обращения
             </p>
-            <div className="flex justify-center">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button size="lg" className="bg-accent text-white hover:bg-accent/90 px-8" asChild>
-                <Link to="/kontakty">Дежурный адвокат</Link>
+                <Link to="/kontakty">Получить консультацию</Link>
               </Button>
-            </div>
-
-            {/* Services Quick Access */}
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-4 max-w-6xl mx-auto mt-12">
-              {/* Уголовные дела */}
-              <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant flex flex-col h-full">
-                <CardContent className="p-4 flex flex-col flex-1">
-                  <div className="flex-1">
-                    <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-white">Уголовные дела</h3>
-                    <p className="text-white/80 mb-4 leading-relaxed text-small">
-                      Профессиональные юридические услуги для защиты ваших интересов
-                    </p>
-                  </div>
-                  <Button asChild className="w-full bg-accent hover:bg-accent/90 text-white">
-                    <Link to="/services/criminal">
-                      Подробнее →
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Для бизнеса */}
-              <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant flex flex-col h-full">
-                <CardContent className="p-4 flex flex-col flex-1">
-                  <div className="flex-1">
-                    <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-white">Для бизнеса</h3>
-                    <p className="text-white/80 mb-4 leading-relaxed text-small">
-                      Комплексное юридическое сопровождение компаний и предпринимателей
-                    </p>
-                  </div>
-                  <Button asChild className="w-full bg-accent hover:bg-accent/90 text-white">
-                    <Link to="/services/biz">
-                      Подробнее →
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Для граждан */}
-              <Card className="border-2 border-white/20 bg-black/30 backdrop-blur-sm hover:border-accent/50 transition-all hover:shadow-elegant flex flex-col h-full">
-                <CardContent className="p-4 flex flex-col flex-1">
-                  <div className="flex-1">
-                    <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-white">Для граждан</h3>
-                    <p className="text-white/80 mb-4 leading-relaxed text-small">
-                      Защита прав и интересов физических лиц в гражданских делах
-                    </p>
-                  </div>
-                  <Button asChild className="w-full bg-accent hover:bg-accent/90 text-white">
-                    <Link to="/services/phys">
-                      Подробнее →
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
+              <Button
+                size="lg"
+                variant="outline"
+                className="border-white/30 text-white bg-white/10 hover:bg-white/20"
+                asChild
+              >
+                <a href={`https://wa.me/${SITE.phoneRaw.replace("+", "")}`} target="_blank" rel="noopener noreferrer">
+                  <WhatsAppIcon size={18} />
+                  WhatsApp
+                </a>
+              </Button>
             </div>
           </div>
         </LegalBackground>
 
-        {/* About Section */}
-        <section className="relative section overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img 
-              src={courtBuildingImg} 
-              alt="" 
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-background/85" />
-          </div>
-          {/* Texture strip */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent z-10" />
-          <div className="container relative z-10">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
-                О коллегии адвокатов <span className="text-accent">Профзащита</span>
-              </h2>
-              <p className="text-body-mobile md:text-body text-muted-foreground leading-relaxed">
-                Мы — команда опытных адвокатов, объединённых общей целью: защитить права и интересы наших клиентов. 
-                За годы работы мы помогли сотням людей и организаций добиться справедливости.
-              </p>
-            </div>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
-              <Card className="text-center border-border hover:shadow-elegant transition-all">
-                <CardContent className="pt-8 pb-6">
-                  <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                    <Shield className="h-8 w-8 text-accent" />
-                  </div>
-                  <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">Опыт</h3>
-                  <p className="text-small text-muted-foreground">Более 15 лет успешной практики</p>
-                </CardContent>
-              </Card>
-
-              <Card className="text-center border-border hover:shadow-elegant transition-all">
-                <CardContent className="pt-8 pb-6">
-                  <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                    <Target className="h-8 w-8 text-accent" />
-                  </div>
-                  <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">Точность</h3>
-                  <p className="text-small text-muted-foreground">Детальный анализ каждого дела</p>
-                </CardContent>
-              </Card>
-
-              <Card className="text-center border-border hover:shadow-elegant transition-all">
-                <CardContent className="pt-8 pb-6">
-                  <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                    <Award className="h-8 w-8 text-accent" />
-                  </div>
-                  <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">Качество</h3>
-                  <p className="text-small text-muted-foreground">Высокий процент выигранных дел</p>
-                </CardContent>
-              </Card>
-
-              <Card className="text-center border-border hover:shadow-elegant transition-all">
-                <CardContent className="pt-8 pb-6">
-                  <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                    <Users className="h-8 w-8 text-accent" />
-                  </div>
-                  <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">Команда</h3>
-                  <p className="text-small text-muted-foreground">Профессиональные адвокаты</p>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Practices Section */}
-        <section className="relative section overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img 
-              src={gavelScalesBookImg} 
-              alt="" 
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-background/90" />
-          </div>
-          {/* Texture strip */}
-          <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-accent/20 to-transparent z-10" />
-          <div className="container relative z-10">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
-                Наши <span className="text-accent">услуги</span>
+        {/* Navigation Section */}
+        <section className="section">
+          <div className="container">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
+                Выберите направление
               </h2>
               <p className="text-body-mobile md:text-body text-muted-foreground">
-                Комплексная юридическая помощь в различных областях права
+                Главная страница помогает быстро перейти в нужный раздел услуг.
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12 max-w-6xl mx-auto">
-              <Card className="border-border hover:shadow-elegant transition-all group">
-                <CardContent className="pt-6">
-                  <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-accent">
-                    Физическим лицам
-                  </h3>
-                  <p className="text-small text-muted-foreground mb-4">
-                    Защита прав граждан в различных сферах
-                  </p>
-                  <ul className="space-y-2">
-                    {physCategories.map((category) => (
-                      <li key={category.slug}>
-                        <Link
-                          to={`/services/phys#${category.slug}`}
-                          className="text-small text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                        >
-                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                          {category.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="border-t border-border mt-4 pt-4">
-                    <div className="text-small uppercase text-muted-foreground mb-3">
-                      Популярные услуги
-                    </div>
-                    <ul className="space-y-2">
-                      {topPhysServices.map((service) => (
-                        <li key={service.path}>
-                          <Link
-                            to={service.path}
-                            className="text-small text-muted-foreground hover:text-accent transition-colors"
-                          >
-                            {service.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-              
-              <Card className="border-border hover:shadow-elegant transition-all group">
-                <CardContent className="pt-6">
-                  <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-accent">
-                    Юридическим лицам
-                  </h3>
-                  <p className="text-small text-muted-foreground mb-4">
-                    Корпоративное обслуживание бизнеса
-                  </p>
-                  <ul className="space-y-2">
-                    {bizCategories.map((category) => (
-                      <li key={category.slug}>
-                        <Link
-                          to={`/services/biz#${category.slug}`}
-                          className="text-small text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                        >
-                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                          {category.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="border-t border-border mt-4 pt-4">
-                    <div className="text-small uppercase text-muted-foreground mb-3">
-                      Популярные услуги
-                    </div>
-                    <ul className="space-y-2">
-                      {topBizServices.map((service) => (
-                        <li key={service.path}>
-                          <Link
-                            to={service.path}
-                            className="text-small text-muted-foreground hover:text-accent transition-colors"
-                          >
-                            {service.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-border hover:shadow-elegant transition-all group">
-                <CardContent className="pt-6">
-                  <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-accent">
-                    Уголовные дела
-                  </h3>
-                  <p className="text-small text-muted-foreground mb-4">
-                    Защита на всех стадиях процесса
-                  </p>
-                  <ul className="space-y-2">
-                    {criminalCategories.map((category) => (
-                      <li key={category.slug}>
-                        <Link
-                          to={`/services/criminal#${category.slug}`}
-                          className="text-small text-muted-foreground hover:text-accent transition-colors flex items-start gap-2"
-                        >
-                          <CheckCircle className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                          {category.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="border-t border-border mt-4 pt-4">
-                    <div className="text-small uppercase text-muted-foreground mb-3">
-                      Популярные услуги
-                    </div>
-                    <ul className="space-y-2">
-                      {topCriminalServices.map((service) => (
-                        <li key={service.path}>
-                          <Link
-                            to={service.path}
-                            className="text-small text-muted-foreground hover:text-accent transition-colors"
-                          >
-                            {service.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="text-center">
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/uslugi">Все услуги →</Link>
-              </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Advantages Section */}
-        <section className="relative section overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img 
-              src={lawyerWritingImg} 
-              alt="" 
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-background/85" />
-          </div>
-          <div className="container relative z-10">
-            <div className="max-w-3xl mx-auto text-center mb-16">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
-                Почему выбирают <span className="text-accent">нас</span>
-              </h2>
-            </div>
-
-            <div className="max-w-4xl mx-auto space-y-6">
-              {[
-                "Бесплатная первичная консультация для оценки перспектив дела",
-                "Индивидуальный подход к каждому клиенту и делу",
-                "Прозрачное ценообразование без скрытых комиссий",
-                "Конфиденциальность и соблюдение адвокатской тайны",
-                "Работаем по всей России, представительство в судах любых инстанций",
-                "Возможность удалённого взаимодействия через видеосвязь",
-              ].map((advantage, index) => (
-                <div key={index} className="flex items-start gap-4 bg-card p-6 rounded-xl border border-border hover:shadow-elegant transition-all">
-                  <CheckCircle className="h-6 w-6 text-accent flex-shrink-0 mt-2" />
-                  <p className="text-body-mobile md:text-body leading-relaxed">{advantage}</p>
-                </div>
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              {navigationSections.map((section) => (
+                <Link key={section.title} to={section.href} className="group block h-full">
+                  <Card className="border-border hover:shadow-elegant transition-all h-full">
+                    <CardContent className="pt-6 flex flex-col h-full">
+                      <div className="flex-1">
+                        <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-foreground">
+                          {section.title}
+                        </h3>
+                        <p className="text-small text-muted-foreground mb-4">
+                          {section.description}
+                        </p>
+                        <ul className="space-y-2">
+                          {section.items.map((item) => (
+                            <li key={item} className="flex items-start gap-2 text-small text-muted-foreground">
+                              <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                      <span className="mt-6 inline-flex items-center gap-2 text-small font-semibold text-accent group-hover:underline">
+                        Все услуги раздела →
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
               ))}
             </div>
           </div>
         </section>
 
-        {/* Team Section */}
-        <TeamSection id="team" backgroundImage={lawyerConsultationImg} />
+        {/* Advantages Section */}
+        <section className="section bg-muted/30">
+          <div className="container">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
+                Почему выбирают нас
+              </h2>
+              <p className="text-body-mobile md:text-body text-muted-foreground">
+                Коротко о том, что получает клиент на старте и в процессе работы.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {advantages.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Card key={item.title} className="border-border hover:shadow-elegant transition-all">
+                    <CardContent className="pt-6">
+                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+                        <Icon className="h-6 w-6 text-accent" />
+                      </div>
+                      <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">
+                        {item.title}
+                      </h3>
+                      <p className="text-small text-muted-foreground">
+                        {item.description}
+                      </p>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+          </div>
+        </section>
+
+        {/* Practice / Results */}
+        <section className="section">
+          <div className="container">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
+                Практика / Результаты
+              </h2>
+              <p className="text-body-mobile md:text-body text-muted-foreground">
+                Примеры дел, где защита привела к конкретному результату.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {featuredCases.map((caseItem) => (
+                <Link key={caseItem.id} to="/keisy" className="group block h-full">
+                  <Card className="border-border hover:shadow-elegant transition-all h-full">
+                    <CardContent className="pt-6 flex flex-col h-full">
+                      <div className="text-small text-muted-foreground mb-2">
+                        {caseItem.category}
+                      </div>
+                      <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-3">
+                        {caseItem.title}
+                      </h3>
+                      <p className="text-small text-muted-foreground leading-relaxed">
+                        {truncateText(caseItem.result)}
+                      </p>
+                      <span className="mt-6 inline-flex items-center gap-2 text-small font-semibold text-accent group-hover:underline">
+                        Смотреть кейсы →
+                      </span>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+
+            <div className="text-center mt-10">
+              <Button variant="outline" size="lg" asChild>
+                <Link to="/keisy">Все кейсы →</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
 
         {/* Testimonials Section */}
-        <Testimonials />
+        <section className="section bg-muted/30">
+          <div className="container">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
+                Отзывы клиентов
+              </h2>
+              <p className="text-body-mobile md:text-body text-muted-foreground">
+                Ровно шесть отзывов о нашей работе в разных ситуациях.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              {featuredTestimonials.map((testimonial) => (
+                <Card key={testimonial.id} className="border-border h-full">
+                  <CardContent className="pt-6 h-full flex flex-col">
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <div className="flex items-center gap-1 text-accent">
+                        {[...Array(testimonial.rating)].map((_, i) => (
+                          <Star key={i} className="h-4 w-4 fill-current" />
+                        ))}
+                      </div>
+                      <p className="text-small text-muted-foreground">
+                        {formatReviewDate(testimonial.date)}
+                      </p>
+                    </div>
+                    <blockquote className="text-small text-muted-foreground italic mb-4 leading-relaxed">
+                      “{testimonial.text}”
+                    </blockquote>
+                    <div className="border-t border-border pt-4 mt-auto">
+                      <p className="text-small font-semibold">{testimonial.name}</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="text-center mt-10">
+              <Button asChild size="lg" className="px-6">
+                <a
+                  href="https://yandex.ru/maps/org/244880896695/reviews/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Смотреть все отзывы на Яндекс.Картах
+                </a>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* Team Section */}
+        <section id="team" className="section">
+          <div className="container">
+            <div className="max-w-3xl mx-auto text-center mb-12">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
+                Команда
+              </h2>
+              <p className="text-body-mobile md:text-body text-muted-foreground">
+                Специалисты, которые ведут дела клиентов в ключевых направлениях.
+              </p>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+              {featuredTeam.map((member) => (
+                <Card key={member.slug} className="border-border hover:shadow-elegant transition-all h-full">
+                  <CardContent className="pt-6 flex flex-col h-full">
+                    <div className="w-24 h-24 rounded-xl overflow-hidden mb-4 border border-border">
+                      <img
+                        src={member.photo}
+                        alt={member.name}
+                        className="w-full h-full object-cover"
+                        loading="lazy"
+                      />
+                    </div>
+                    <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">
+                      {member.name}
+                    </h3>
+                    <p className="text-small text-muted-foreground mb-3">{member.role}</p>
+                    {member.experienceText && (
+                      <p className="text-small text-muted-foreground mb-4">{member.experienceText}</p>
+                    )}
+                    <ul className="space-y-2 text-small text-muted-foreground">
+                      {(member.specializations ?? []).slice(0, 2).map((spec) => (
+                        <li key={spec}>• {spec}</li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="text-center mt-10">
+              <Button variant="outline" size="lg" asChild>
+                <Link to="/team">Смотреть всю команду →</Link>
+              </Button>
+            </div>
+          </div>
+        </section>
 
         {/* FAQ Section */}
-        <section className="relative section overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img 
-              src={themisDeskImg} 
-              alt="" 
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-background/85" />
-          </div>
-          <div className="container relative z-10">
+        <section className="section">
+          <div className="container">
             <div className="max-w-3xl mx-auto">
-              <div className="text-center mb-16">
-                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
-                  Часто задаваемые <span className="text-accent">вопросы</span>
+              <div className="text-center mb-12">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
+                  Короткий FAQ
                 </h2>
               </div>
 
               <Accordion type="single" collapsible className="space-y-4">
-                <AccordionItem value="item-1" className="bg-card border border-border rounded-xl px-6">
-                  <AccordionTrigger className="text-left hover:text-accent">
-                    Сколько стоит первичная консультация?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    Первичная консультация бесплатна. На ней мы оценим перспективы вашего дела и предложим стратегию защиты.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-2" className="bg-card border border-border rounded-xl px-6">
-                  <AccordionTrigger className="text-left hover:text-accent">
-                    Как происходит оплата услуг?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    Стоимость определяется после изучения дела. Возможна поэтапная оплата. Мы заключаем официальный договор с прозрачными условиями.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-3" className="bg-card border border-border rounded-xl px-6">
-                  <AccordionTrigger className="text-left hover:text-accent">
-                    Можно ли работать удалённо?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    Да, мы работаем с клиентами из любого региона России. Консультации проводим по видеосвязи, документы обмениваем электронно.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-4" className="bg-card border border-border rounded-xl px-6">
-                  <AccordionTrigger className="text-left hover:text-accent">
-                    Какие гарантии успеха?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    Мы честно оцениваем перспективы дела на этапе консультации. Более 98% наших клиентов получают положительное решение.
-                  </AccordionContent>
-                </AccordionItem>
-
-                <AccordionItem value="item-5" className="bg-card border border-border rounded-xl px-6">
-                  <AccordionTrigger className="text-left hover:text-accent">
-                    Как быстро можно начать работу?
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground">
-                    После первичной консультации и заключения договора мы приступаем к работе немедленно. В срочных случаях — в течение суток.
-                  </AccordionContent>
-                </AccordionItem>
+                {faqItems.map((item, index) => (
+                  <AccordionItem key={item.question} value={`faq-${index}`} className="bg-card border border-border rounded-xl px-6">
+                    <AccordionTrigger className="text-left hover:text-accent">
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground">
+                      {item.answer}
+                    </AccordionContent>
+                  </AccordionItem>
+                ))}
               </Accordion>
             </div>
           </div>
         </section>
 
-        {/* Contact Form Section */}
-        <section className="relative section overflow-hidden">
-          {/* Background Image */}
-          <div className="absolute inset-0">
-            <img 
-              src={themisStatueImg} 
-              alt="" 
-              className="w-full h-full object-cover"
-              loading="lazy"
-            />
-            <div className="absolute inset-0 bg-background/90" />
-          </div>
-          <div className="container relative z-10">
-            <div className="max-w-4xl mx-auto">
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
-                <div>
-                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
-                    Получите бесплатную <span className="text-accent">консультацию</span>
-                  </h2>
-                  <p className="text-body-mobile md:text-body text-muted-foreground mb-8 leading-relaxed">
-                    Оставьте заявку, и наш специалист свяжется с вами в течение 15 минут, 
-                    чтобы обсудить вашу ситуацию и предложить решение.
-                  </p>
-                  <div className="space-y-4">
-                    <div className="flex items-center gap-3">
-                      <Phone className="h-5 w-5 text-accent" />
-                      <a href="tel:+79168597654" className="text-body-mobile md:text-body font-medium hover:text-accent transition-colors">
-                        +7 (916) 859‑76‑54
-                      </a>
+        {/* Contacts Section */}
+        <section className="section">
+          <div className="container">
+            <Card className="border-border shadow-elegant">
+              <CardContent className="pt-8 pb-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
+                  <div>
+                    <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
+                      Контакты
+                    </h2>
+                    <p className="text-body-mobile md:text-body text-muted-foreground mb-6">
+                      Напишите или позвоните — мы подскажем, как лучше начать работу с вашим вопросом.
+                    </p>
+                    <div className="space-y-4">
+                      <div className="flex items-center gap-3">
+                        <Phone className="h-5 w-5 text-accent" />
+                        <a href={`tel:${SITE.phoneRaw}`} className="text-body-mobile md:text-body font-medium hover:text-accent transition-colors">
+                          {SITE.phone}
+                        </a>
+                      </div>
+                      <div className="flex items-center gap-3">
+                        <Mail className="h-5 w-5 text-accent" />
+                        <a href={`mailto:${SITE.email}`} className="text-body-mobile md:text-body font-medium hover:text-accent transition-colors">
+                          {SITE.email}
+                        </a>
+                      </div>
+                      <div className="flex items-start gap-3">
+                        <MapPin className="h-5 w-5 text-accent mt-1" />
+                        <p className="text-body-mobile md:text-body font-medium">
+                          {SITE.address.city}, {SITE.address.street}
+                        </p>
+                      </div>
                     </div>
                   </div>
-                </div>
 
-                <Card className="border-border shadow-elegant">
-                  <CardContent className="pt-6">
-                    <LeadForm />
-                  </CardContent>
-                </Card>
-              </div>
-            </div>
+                  <div className="flex flex-col gap-4">
+                    <Button size="lg" className="bg-accent text-white hover:bg-accent/90" asChild>
+                      <Link to="/kontakty">Получить консультацию</Link>
+                    </Button>
+                    <Button
+                      size="lg"
+                      variant="outline"
+                      className="border-border"
+                      asChild
+                    >
+                      <a href={`https://wa.me/${SITE.phoneRaw.replace("+", "")}`} target="_blank" rel="noopener noreferrer">
+                        <WhatsAppIcon size={18} />
+                        WhatsApp
+                      </a>
+                    </Button>
+                  </div>
+                </div>
+              </CardContent>
+            </Card>
           </div>
         </section>
       </main>

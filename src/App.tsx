@@ -58,6 +58,9 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/uslugi-old" element={<Uslugi />} />
           <Route path="/uslugi" element={<UslugiNew />} />
+          <Route path="/uslugi/fiz-lica" element={<Navigate to="/services/phys" replace />} />
+          <Route path="/uslugi/yur-lica" element={<Navigate to="/services/biz" replace />} />
+          <Route path="/uslugi/ugolovnye" element={<Navigate to="/services/criminal" replace />} />
           <Route path="/uslugi/:clusterSlug/:situationSlug" element={<ClusterServiceRouter />} />
           <Route path="/uslugi/:categorySlug/:serviceSlug/old" element={<ServiceDetail />} />
           <Route path="/o-kollegii" element={<OKollegii />} />
