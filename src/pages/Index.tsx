@@ -3,7 +3,6 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LegalBackground from "@/components/LegalBackground";
 import { OrganizationSchema, WebSiteSchema, ReviewsSchema } from "@/components/JsonLd";
-import { testimonials } from "@/data/testimonials";
 import { cases } from "@/data/cases";
 import { teamMembers } from "@/data/team";
 import {
@@ -106,8 +105,46 @@ const Index = () => {
     }
   ];
 
+  const testimonials = [
+    {
+      nameShort: "Евгений С.",
+      dateText: "10 декабря 2025",
+      rating: 5,
+      text: "Понятно объяснили перспективы и риски, подготовили документы и представили в суде. Результат совпал с планом."
+    },
+    {
+      nameShort: "Мария Л.",
+      dateText: "28 ноября 2025",
+      rating: 5,
+      text: "Быстро включились, помогли с претензией и переговорами. Дело закрыли без затяжных процессов."
+    },
+    {
+      nameShort: "Ирина К.",
+      dateText: "15 октября 2025",
+      rating: 5,
+      text: "Получила четкий план действий и список документов. Всю коммуникацию вели за меня, я была в курсе."
+    },
+    {
+      nameShort: "Алексей П.",
+      dateText: "2 сентября 2025",
+      rating: 5,
+      text: "В споре со страховой добились выплаты в полном объеме. Работали аккуратно и без лишних обещаний."
+    },
+    {
+      nameShort: "Ольга Н.",
+      dateText: "20 августа 2025",
+      rating: 5,
+      text: "Отстояли интересы в жилищном вопросе и объясняли каждый шаг. Осталась довольна подходом."
+    },
+    {
+      nameShort: "Сергей В.",
+      dateText: "5 июля 2025",
+      rating: 5,
+      text: "Сдержанные и профессиональные, без давления. После консультации стало понятно, как двигаться дальше."
+    }
+  ];
+
   const featuredCases = cases.slice(0, 4);
-  const featuredTestimonials = testimonials.slice(0, 6);
   const featuredTeam = teamMembers.slice(0, 4);
 
   const faqItems = [
@@ -138,10 +175,6 @@ const Index = () => {
     return `${text.slice(0, max).trim()}…`;
   };
 
-  const formatReviewDate = (value: string) => {
-    return /\d{4}/.test(value) ? value : `${value} 2025`;
-  };
-
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
@@ -170,10 +203,10 @@ const Index = () => {
       <OrganizationSchema />
       <WebSiteSchema />
       <ReviewsSchema reviews={testimonials.map(t => ({
-        author: t.name,
+        author: t.nameShort,
         rating: t.rating,
         reviewBody: t.text,
-        datePublished: t.date
+        datePublished: t.dateText
       }))} />
       <Header />
       
@@ -337,33 +370,38 @@ const Index = () => {
         <section className="section bg-muted/30">
           <div className="container">
             <div className="max-w-3xl mx-auto text-center mb-12">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
-                Отзывы клиентов
-              </h2>
-              <p className="text-body-mobile md:text-body text-muted-foreground">
+              <div className="flex flex-col items-center gap-4 md:flex-row md:justify-center md:gap-6">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold text-center">
+                  Отзывы клиентов
+                </h2>
+                <div className="max-w-full overflow-hidden">
+                  <iframe src="https://yandex.ru/sprav/widget/rating-badge/244880896695?type=rating" width="150" height="50" frameborder="0"></iframe>
+                </div>
+              </div>
+              <p className="text-body-mobile md:text-body text-muted-foreground mt-4">
                 Ровно шесть отзывов о нашей работе в разных ситуациях.
               </p>
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {featuredTestimonials.map((testimonial) => (
-                <Card key={testimonial.id} className="border-border h-full">
+              {testimonials.map((testimonial, index) => (
+                <Card key={`${testimonial.nameShort}-${index}`} className="border-border h-full">
                   <CardContent className="pt-6 h-full flex flex-col">
                     <div className="flex items-start justify-between gap-4 mb-4">
                       <div className="flex items-center gap-1 text-accent">
-                        {[...Array(testimonial.rating)].map((_, i) => (
-                          <Star key={i} className="h-4 w-4 fill-current" />
+                        {[...Array(testimonial.rating)].map((_, starIndex) => (
+                          <Star key={starIndex} className="h-4 w-4 fill-current" />
                         ))}
                       </div>
                       <p className="text-small text-muted-foreground">
-                        {formatReviewDate(testimonial.date)}
+                        {testimonial.dateText}
                       </p>
                     </div>
                     <blockquote className="text-small text-muted-foreground italic mb-4 leading-relaxed">
                       “{testimonial.text}”
                     </blockquote>
                     <div className="border-t border-border pt-4 mt-auto">
-                      <p className="text-small font-semibold">{testimonial.name}</p>
+                      <p className="text-small font-semibold">{testimonial.nameShort}</p>
                     </div>
                   </CardContent>
                 </Card>
