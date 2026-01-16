@@ -105,7 +105,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
               <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 leading-tight">
                 {data.heroTitle}
               </h1>
-              <p className="text-body-mobile md:text-body text-white/90 leading-relaxed mb-6">
+              <p className="lead text-white/90 leading-relaxed mb-6">
                 {data.heroSubtitle}
               </p>
               <ul className="grid gap-3 md:grid-cols-2 mb-8">
@@ -134,7 +134,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
         {/* Offer 24/48 */}
         <section id="offer" className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Что сделаем в первые 24–48 часов
               </h2>
@@ -142,7 +142,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
                 Планируем первичные действия без обещаний результата — только то, что реально влияет на защиту.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="section__content grid gap-6 md:grid-cols-2">
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-4">За 24 часа</h3>
@@ -176,7 +176,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
         {/* Triggers */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Когда нужен адвокат
               </h2>
@@ -184,7 +184,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
                 Эти ситуации требуют защиты как можно раньше.
               </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {data.triggers.map((item) => (
                 <Card key={item} className="h-full border-border">
                   <CardContent className="pt-6">
@@ -202,7 +202,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
         {/* Plan */}
         <section id="plan" className="section bg-muted/30 scroll-mt-24">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Что делаем по шагам
               </h2>
@@ -210,7 +210,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
                 Пошаговая защита на каждом этапе процесса.
               </p>
             </div>
-            <div className="grid gap-4">
+            <div className="section__content grid gap-4">
               {data.planSteps.map((step, index) => (
                 <Card key={step.title} className="border-l-4 border-l-accent">
                   <CardContent className="pt-6">
@@ -233,7 +233,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
         {/* Included */}
         <section id="included" className="section scroll-mt-24">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Что входит в помощь
               </h2>
@@ -241,7 +241,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
                 Фиксируем объем работ сразу, чтобы вы понимали, что получаете.
               </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {data.included.map((item) => (
                 <Card key={item} className="h-full border-border">
                   <CardContent className="pt-6">
@@ -259,7 +259,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
         {/* Practice */}
         <section id="practice" className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Практика и кейсы
               </h2>
@@ -270,7 +270,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
               </p>
             </div>
             {data.cases.length > 0 ? (
-              <div className="grid gap-6 md:grid-cols-2">
+              <div className="section__content grid gap-6 md:grid-cols-2">
                 {data.cases.map((item, index) => (
                   <Card key={`${item.situation}-${index}`}>
                     <CardContent className="pt-6 space-y-4">
@@ -291,7 +291,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
                 ))}
               </div>
             ) : (
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="section__content grid gap-4 sm:grid-cols-2">
                 {data.practiceHighlights.map((item) => (
                   <Card key={item} className="h-full border-border">
                     <CardContent className="pt-6">
@@ -310,13 +310,13 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
         {/* Price */}
         <section id="price" className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Стоимость
               </h2>
               <p className="text-muted-foreground">{data.priceNote}</p>
             </div>
-            <div className="grid gap-6 lg:grid-cols-2">
+            <div className="section__content grid gap-6 lg:grid-cols-2">
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-3">Что влияет на стоимость</h3>
@@ -350,7 +350,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
         {/* Why Us */}
         <section id="why-us" className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Почему выбирают нас
               </h2>
@@ -358,7 +358,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
                 Сильная защита строится на опыте, стратегии и дисциплине.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {data.whyUs.map((item) => (
                 <Card key={item.title} className="border-l-4 border-l-accent">
                   <CardContent className="pt-6">
@@ -381,7 +381,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
         {/* Team */}
         <section id="team" className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Наша команда
               </h2>
@@ -389,7 +389,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
                 Профильные адвокаты, которые ведут уголовные дела.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="section__content grid gap-6 md:grid-cols-2">
               {data.team.map((member) => (
                 <Card key={member.slug} className="h-full">
                   <CardContent className="pt-6 h-full flex flex-col">
@@ -433,7 +433,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
         {/* Reviews */}
         <section id="reviews" className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Отзывы
               </h2>
@@ -441,7 +441,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
                 Клиенты отмечают точность и аккуратность защиты.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {data.reviews.map((review, index) => (
                 <Card key={`${review.name}-${index}`} className="h-full">
                   <CardContent className="pt-6 h-full flex flex-col">
@@ -471,7 +471,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
         {/* FAQ */}
         <section id="faq" className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 FAQ по теме
               </h2>
@@ -495,7 +495,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
         {/* Consultation */}
         <section id="consultation" className="section bg-primary text-white scroll-mt-24">
           <div className="container">
-            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="section__content grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                   Получите оценку ситуации и план защиты

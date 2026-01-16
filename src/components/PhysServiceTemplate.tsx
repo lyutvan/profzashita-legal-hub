@@ -97,7 +97,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
               <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 leading-tight">
                 {data.heroTitle}
               </h1>
-              <p className="text-body-mobile md:text-body text-white/90 leading-relaxed mb-6">
+              <p className="lead text-white/90 leading-relaxed mb-6">
                 {data.heroSubtitle}
               </p>
               <ul className="grid gap-3 md:grid-cols-2 mb-8">
@@ -133,7 +133,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         {/* Section B: Scenarios */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Это ваш случай?
               </h2>
@@ -141,7 +141,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Выберите ситуацию — покажем ближайший шаг и что важно учесть.
               </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {data.scenarios.map((scenario, index) => (
                 <button
                   key={`${scenario.title}-${index}`}
@@ -166,7 +166,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         {/* Section C: Plan */}
         <section id="plan" className="section bg-muted/30 scroll-mt-24">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Что сделаем и как
               </h2>
@@ -174,7 +174,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Структурируем работу так, чтобы вы понимали каждый этап и сроки.
               </p>
             </div>
-            <div className="grid gap-4">
+            <div className="section__content grid gap-4">
               {data.planSteps.map((step, index) => {
                 const isActive = highlightStep === index;
                 return (
@@ -197,7 +197,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 );
               })}
             </div>
-            <div className="grid gap-6 md:grid-cols-2 mt-8">
+            <div className="section__content grid gap-6 md:grid-cols-2 mt-8">
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-3">Если дело уже в суде</h3>
@@ -231,7 +231,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         {/* Section D: Timing and documents */}
         <section id="documents" className="section scroll-mt-24">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Сроки и документы
               </h2>
@@ -239,7 +239,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Сразу обозначаем, что влияет на сроки и что нужно подготовить.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="section__content grid gap-6 md:grid-cols-2">
               <Card>
                 <CardContent className="pt-6">
                   <div className="flex items-center gap-3 mb-4">
@@ -287,7 +287,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         {/* Section E: Pricing */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Стоимость
               </h2>
@@ -295,7 +295,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Стоимость определяется после анализа документов и стадии дела.
               </p>
             </div>
-            <div className="grid gap-6 lg:grid-cols-2">
+            <div className="section__content grid gap-6 lg:grid-cols-2">
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-3">Что влияет на стоимость</h3>
@@ -344,7 +344,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         {/* Section F: Risks */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Риски и частые ошибки клиентов
               </h2>
@@ -352,7 +352,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Эти ошибки часто ухудшают позицию и удлиняют сроки.
               </p>
             </div>
-            <div className="grid gap-6 lg:grid-cols-2">
+            <div className="section__content grid gap-6 lg:grid-cols-2">
               <Card>
                 <CardContent className="pt-6">
                   <h3 className="font-semibold mb-3">Типовые ошибки</h3>
@@ -386,7 +386,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         {/* Section G: Cases */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Кейсы и результаты
               </h2>
@@ -394,7 +394,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Обобщенные примеры без раскрытия персональных данных.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="section__content grid gap-6 md:grid-cols-2">
               {data.cases.map((item, index) => (
                 <Card key={`${item.situation}-${index}`}>
                   <CardContent className="pt-6 space-y-4">
@@ -420,7 +420,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         {/* Section H: Team */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Кто ведет дела
               </h2>
@@ -428,7 +428,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Ведущие специалисты по теме и профильные эксперты.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="section__content grid gap-6 md:grid-cols-2">
               {data.team.map((member) => (
                 <Card key={member.slug} className="h-full">
                   <CardContent className="pt-6 h-full flex flex-col">
@@ -475,7 +475,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         {/* Section I: Reviews */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Отзывы по теме
               </h2>
@@ -483,7 +483,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Клиенты отмечают прозрачность и результативность работы.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {data.reviews.map((review, index) => (
                 <Card key={`${review.name}-${index}`} className="h-full">
                   <CardContent className="pt-6 h-full flex flex-col">
@@ -515,7 +515,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         {/* Internal Links */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Другие услуги физлицам
               </h2>
@@ -523,7 +523,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Посмотрите другие направления, если ваш запрос шире текущей услуги.
               </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {data.otherServices.map((service) => (
                 <Card key={service.path} className="h-full">
                   <CardContent className="pt-6">
@@ -548,7 +548,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         {/* SEO Text */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Подробно об услуге
               </h2>
@@ -556,7 +556,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Разъясняем нюансы, этапы и типовые ситуации по теме услуги.
               </p>
             </div>
-            <div className="space-y-4 text-small text-muted-foreground leading-relaxed">
+            <div className="section__content space-y-4 text-small text-muted-foreground leading-relaxed">
               {data.seoText.map((paragraph, index) => (
                 <p key={index}>{paragraph}</p>
               ))}
@@ -567,7 +567,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         {/* Section J: FAQ */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 FAQ по услуге
               </h2>
@@ -575,7 +575,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Короткие ответы на самые частые вопросы.
               </p>
             </div>
-            <Accordion type="single" collapsible className="space-y-4">
+            <Accordion type="single" collapsible className="section__content space-y-4">
               {data.faqs.map((faq, index) => (
                 <AccordionItem key={`${faq.question}-${index}`} value={`item-${index}`} className="border rounded-lg px-6">
                   <AccordionTrigger className="text-left hover:no-underline py-4">
@@ -593,7 +593,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
         {/* Section K: Final CTA */}
         <section id="final-cta" className="section bg-primary text-white scroll-mt-24">
           <div className="container">
-            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="section__content grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                   Получите оценку перспектив и план действий

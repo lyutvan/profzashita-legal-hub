@@ -40,12 +40,12 @@ const Contacts = () => {
         <section className="relative section overflow-hidden">
           <div className="absolute inset-0 bg-gradient-to-br from-primary to-primary/90" />
           <div className="absolute inset-0 opacity-5 bg-[url('data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNjAiIGhlaWdodD0iNjAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGRlZnM+PHBhdHRlcm4gaWQ9ImdyaWQiIHdpZHRoPSI2MCIgaGVpZ2h0PSI2MCIgcGF0dGVyblVuaXRzPSJ1c2VyU3BhY2VPblVzZSI+PHBhdGggZD0iTSAxMCAwIEwgMCAwIDAgMTAiIGZpbGw9Im5vbmUiIHN0cm9rZT0iIzAwMCIgc3Ryb2tlLXdpZHRoPSIxIi8+PC9wYXR0ZXJuPjwvZGVmcz48cmVjdCB3aWR0aD0iMTAwJSIgaGVpZ2h0PSIxMDAlIiBmaWxsPSJ1cmwoI2dyaWQpIi8+PC9zdmc+')]" />
-          <div className="container relative z-10">
+          <div className="container section__content relative z-10">
             <div className="max-w-3xl mx-auto text-center">
               <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6">
                 <span className="text-accent">Контакты</span>
               </h1>
-              <p className="text-body-mobile md:text-body text-primary-foreground/80 leading-relaxed">
+              <p className="lead text-primary-foreground/80 leading-relaxed">
                 Свяжитесь с нами удобным способом. Мы всегда готовы помочь вам 
                 решить любые юридические вопросы.
               </p>
@@ -56,11 +56,11 @@ const Contacts = () => {
         {/* Contact Info & Form Section */}
         <section className="relative section overflow-hidden">
           <div className="container">
-            <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <div className="section__content grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
               {/* Contact Information */}
               <div className="space-y-6">
                 <div>
-                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
+                  <h2 className="section__header font-serif text-h2-mobile md:text-h2 font-bold">
                     Как с нами связаться
                   </h2>
                 </div>
@@ -161,7 +161,7 @@ const Contacts = () => {
         <section className="relative section bg-muted/30 overflow-hidden">
           <div className="container">
             <div className="max-w-5xl mx-auto">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-8 text-center">
+              <h2 className="section__header font-serif text-h2-mobile md:text-h2 font-bold text-center">
                 Как нас найти
               </h2>
               <div className="aspect-video rounded-xl border border-border overflow-hidden">
@@ -182,7 +182,7 @@ const Contacts = () => {
         <section className="relative section overflow-hidden">
           <div className="container">
             <div className="max-w-3xl mx-auto">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-8 text-center">
+              <h2 className="section__header font-serif text-h2-mobile md:text-h2 font-bold text-center">
                 Реквизиты
               </h2>
               <Card className="border-border">

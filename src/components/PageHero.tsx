@@ -42,7 +42,7 @@ const PageHero = ({
           aria-hidden="true"
         />
       )}
-      <div className="container relative z-10 text-white">
+      <div className="container section__content relative z-10 text-white">
         {children}
       </div>
     </section>

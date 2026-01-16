@@ -7,7 +7,7 @@ const Testimonials = () => {
   return (
     <section className="relative section bg-muted/30 overflow-hidden">
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center mb-12">
+        <div className="section__header max-w-3xl mx-auto text-center">
           <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
             Отзывы <span className="text-accent">клиентов</span>
           </h2>
@@ -16,7 +16,7 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto mb-12">
+        <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
           {testimonials.map((testimonial) => (
             <Card key={testimonial.id} className="border-border hover:shadow-elegant transition-all">
               <CardContent className="pt-6 h-full flex flex-col">
@@ -46,7 +46,7 @@ const Testimonials = () => {
           ))}
         </div>
 
-        <div className="flex justify-center mb-12">
+        <div className="flex justify-center mt-8">
           <Button asChild size="lg" className="px-6">
             <a
               href="https://yandex.ru/maps/org/244880896695/reviews/"

@@ -149,7 +149,7 @@ const FAQ = () => {
                 Вопросы и ответы
               </h1>
             </div>
-            <p className="text-body-mobile md:text-body text-white/90">
+            <p className="lead text-white/90">
               Здесь собраны ответы на самые частые вопросы о работе нашей коллегии
             </p>
           </div>
@@ -158,7 +158,7 @@ const FAQ = () => {
         {/* FAQ Content */}
         <section className="section">
           <div className="container">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="section__content grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* FAQ List */}
               <div className="lg:col-span-2 space-y-8">
                 {faqCategories.map((category, catIndex) => (
@@ -186,7 +186,7 @@ const FAQ = () => {
                 ))}
 
                 {/* CTA */}
-                <div className="bg-muted/50 rounded-xl p-8 mt-12">
+                <div className="bg-muted/50 rounded-xl p-8 mt-8">
                   <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2">
                     Не нашли ответ на свой вопрос?
                   </h3>

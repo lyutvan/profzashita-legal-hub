@@ -38,7 +38,7 @@ const TeamSection = ({
       )}
 
       <div className="container relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-12">
+        <div className="section__header max-w-3xl mx-auto text-center">
           <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
             {title}
           </h2>
@@ -49,7 +49,7 @@ const TeamSection = ({
           )}
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="section__content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {teamMembers.map((member) => {
             const specs = member.specializations.slice(0, specsLimit);
             return (

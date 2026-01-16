@@ -222,7 +222,7 @@ const Index = () => {
             <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-white mb-6 leading-tight">
               Юридическая помощь по делам любой сложности
             </h1>
-            <p className="text-body-mobile md:text-body text-white/90 mb-8">
+            <p className="lead text-white/90 mb-8">
               Москва и Московская область · консультация в день обращения
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -247,7 +247,7 @@ const Index = () => {
         {/* Navigation Section */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mx-auto text-center mb-12">
+            <div className="section__header max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                 Выберите направление
               </h2>
@@ -256,7 +256,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="section__content grid grid-cols-1 lg:grid-cols-3 gap-8">
               {navigationSections.map((section) => (
                 <Link key={section.title} to={section.href} className="group block h-full">
                   <Card className="border-border hover:shadow-elegant transition-all h-full">
@@ -291,7 +291,7 @@ const Index = () => {
         {/* Advantages Section */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mx-auto text-center mb-12">
+            <div className="section__header max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                 Почему выбирают нас
               </h2>
@@ -300,7 +300,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {advantages.map((item) => {
                 const Icon = item.icon;
                 return (
@@ -326,7 +326,7 @@ const Index = () => {
         {/* Practice / Results */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mx-auto text-center mb-12">
+            <div className="section__header max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                 Практика / Результаты
               </h2>
@@ -335,7 +335,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {featuredCases.map((caseItem) => (
                 <Link key={caseItem.id} to="/keisy" className="group block h-full">
                   <Card className="border-border hover:shadow-elegant transition-all h-full">
@@ -369,7 +369,7 @@ const Index = () => {
         {/* Testimonials Section */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mx-auto text-center mb-12">
+            <div className="section__header max-w-3xl mx-auto text-center">
               <div className="flex flex-col items-center gap-4 md:flex-row md:justify-center md:gap-6">
                 <h2 className="font-serif text-h2-mobile md:text-h2 font-bold text-center">
                   Отзывы клиентов
@@ -383,7 +383,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               {testimonials.map((testimonial, index) => (
                 <Card key={`${testimonial.nameShort}-${index}`} className="border-border h-full">
                   <CardContent className="pt-6 h-full flex flex-col">
@@ -425,7 +425,7 @@ const Index = () => {
         {/* Team Section */}
         <section id="team" className="section">
           <div className="container">
-            <div className="max-w-3xl mx-auto text-center mb-12">
+            <div className="section__header max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                 Команда
               </h2>
@@ -434,7 +434,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {featuredTeam.map((member) => (
                 <Card key={member.slug} className="border-border hover:shadow-elegant transition-all h-full">
                   <CardContent className="pt-6 flex flex-col h-full">
@@ -475,13 +475,13 @@ const Index = () => {
         <section className="section">
           <div className="container">
             <div className="max-w-3xl mx-auto">
-              <div className="text-center mb-12">
+              <div className="section__header text-center">
                 <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                   Короткий FAQ
                 </h2>
               </div>
 
-              <Accordion type="single" collapsible className="space-y-4">
+              <Accordion type="single" collapsible className="section__content space-y-4">
                 {faqItems.map((item, index) => (
                   <AccordionItem key={item.question} value={`faq-${index}`} className="bg-card border border-border rounded-xl px-6">
                     <AccordionTrigger className="text-left hover:text-accent">

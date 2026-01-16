@@ -48,7 +48,7 @@ const UslugiNew = () => {
               <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 leading-tight">
                 Юридические услуги в Москве
               </h1>
-              <p className="text-body-mobile md:text-body text-white/80 mb-8 leading-relaxed">
+              <p className="lead text-white/80 mb-8 leading-relaxed">
                 Профессиональная защита ваших прав по всем категориям дел
               </p>
               <div className="flex flex-wrap gap-4">
@@ -71,7 +71,7 @@ const UslugiNew = () => {
         {/* Stats Section */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+            <div className="section__content grid grid-cols-2 md:grid-cols-4 gap-6">
               <div className="text-center">
                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-4">
                   <Award className="h-8 w-8 text-accent" />
@@ -107,14 +107,14 @@ const UslugiNew = () => {
         {/* Services Audiences */}
         <section className="section">
           <div className="container">
-            <div className="text-center mb-12">
+            <div className="section__header text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">Наши услуги</h2>
               <p className="text-body-mobile md:text-body text-muted-foreground max-w-2xl mx-auto">
                 Предоставляем полный спектр юридических услуг для физических и юридических лиц
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 mb-12">
+            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
               {/* Физическим лицам */}
               <Card 
                 className="h-full flex flex-col hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 group"
@@ -310,14 +310,14 @@ const UslugiNew = () => {
         {/* Why Us Section */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="text-center mb-12">
+            <div className="section__header text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">Почему выбирают нас</h2>
               <p className="text-body-mobile md:text-body text-muted-foreground max-w-2xl mx-auto">
                 Профессионализм, опыт и индивидуальный подход к каждому клиенту
               </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
               <Card className="border-l-4 border-l-accent">
                 <CardContent className="pt-6">
                   <div className="flex items-start gap-4">
@@ -420,7 +420,7 @@ const UslugiNew = () => {
         {/* CTA Section */}
         <section className="section">
           <div className="container">
-            <Card className="bg-gradient-to-br from-primary to-primary/90 text-white border-0">
+            <Card className="section__content bg-gradient-to-br from-primary to-primary/90 text-white border-0">
               <CardContent className="pt-12 pb-12">
                 <div className="max-w-3xl mx-auto text-center">
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">

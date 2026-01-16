@@ -119,7 +119,7 @@ const CriminalPage = () => {
               <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-4">
                 {audienceConfig.criminal.title}
               </h1>
-              <p className="text-body-mobile md:text-body text-white/80 mb-6 whitespace-pre-line leading-relaxed">
+              <p className="lead text-white/80 mb-6 whitespace-pre-line leading-relaxed">
                 {audienceConfig.criminal.description}
               </p>
               <ServiceCallBanner className="mb-6" />
@@ -134,7 +134,7 @@ const CriminalPage = () => {
         {/* Services by Category */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                 Основные направления
               </h2>
@@ -142,7 +142,7 @@ const CriminalPage = () => {
                 Выберите направление, чтобы перейти к конкретным статьям и услугам.
               </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {categories.map((category) => (
                 <Link
                   key={category.slug}
@@ -158,12 +158,12 @@ const CriminalPage = () => {
 
         {/* Services by Category */}
         <section className="section">
-          <div className="container">
+          <div className="container section__content">
             {categories.map(({ title, slug, services }) => {
               const seed = "criminal";
 
               return (
-                <div key={slug} id={slug} className="mb-12 scroll-mt-20">
+                <div key={slug} id={slug} className="mb-8 scroll-mt-20">
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">{title}</h2>
                   <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
                     {services.map((service) => (
@@ -184,7 +184,7 @@ const CriminalPage = () => {
         {/* All Services List */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Все услуги по уголовным делам
               </h2>
@@ -192,7 +192,7 @@ const CriminalPage = () => {
                 Полный перечень с прямыми ссылками на каждую страницу.
               </p>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {allServices.map((service) => (
                 <Link
                   key={service.path}
@@ -209,7 +209,7 @@ const CriminalPage = () => {
         {/* CTA Section */}
         <section className="section bg-muted/30">
           <div className="container">
-            <Card className="bg-gradient-to-br from-primary to-primary/90 text-white border-0">
+            <Card className="section__content bg-gradient-to-br from-primary to-primary/90 text-white border-0">
               <CardContent className="pt-12 pb-12">
                 <div className="max-w-3xl mx-auto text-center">
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">

@@ -105,7 +105,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
               <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 leading-tight">
                 {data.heroTitle}
               </h1>
-              <p className="text-body-mobile md:text-body text-white/90 leading-relaxed mb-6">
+              <p className="lead text-white/90 leading-relaxed mb-6">
                 {data.heroSubtitle}
               </p>
               <div className="flex flex-wrap items-center gap-5">
@@ -120,7 +120,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* Who fits */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Кому подходит
               </h2>
@@ -128,7 +128,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 Подходит компаниям, которым важны срок, результат и управляемые риски.
               </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {data.whoFits.map((item) => (
                 <Card key={item} className="h-full border-border">
                   <CardContent className="pt-6">
@@ -146,7 +146,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* Outcomes */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Что получите на выходе
               </h2>
@@ -154,7 +154,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 Результат фиксируем документально и по этапам.
               </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {data.outcomes.map((item) => (
                 <Card key={item} className="h-full border-border">
                   <CardContent className="pt-6">
@@ -172,7 +172,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* Risks */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Риски, которые снимаем
               </h2>
@@ -180,7 +180,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 Снижаем юридические и финансовые риски без обещаний невозможного.
               </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {data.risks.map((item) => (
                 <Card key={item} className="h-full border-border">
                   <CardContent className="pt-6">
@@ -198,7 +198,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* Steps */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Как работаем
               </h2>
@@ -206,7 +206,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 Пошаговый процесс, чтобы вы понимали сроки и зоны ответственности.
               </p>
             </div>
-            <div className="grid gap-4">
+            <div className="section__content grid gap-4">
               {data.steps.map((step, index) => (
                 <Card key={step.title} className="border-l-4 border-l-accent">
                   <CardContent className="pt-6">
@@ -229,7 +229,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* Included */}
         <section id="included" className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Что входит
               </h2>
@@ -237,7 +237,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 Фиксируем объем работ до начала проекта.
               </p>
             </div>
-            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {data.included.map((item) => (
                 <Card key={item} className="h-full border-border">
                   <CardContent className="pt-6">
@@ -255,7 +255,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* Timing */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Сроки
               </h2>
@@ -267,7 +267,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* Price */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Стоимость
               </h2>
@@ -279,7 +279,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* Practice */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Кейсы и практика
               </h2>
@@ -290,7 +290,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
               </p>
             </div>
             {data.cases.length > 0 ? (
-              <div className="grid gap-6 md:grid-cols-2">
+              <div className="section__content grid gap-6 md:grid-cols-2">
                 {data.cases.map((item, index) => (
                   <Card key={`${item.situation}-${index}`}>
                     <CardContent className="pt-6 space-y-4">
@@ -311,7 +311,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 ))}
               </div>
             ) : (
-              <div className="grid gap-4 sm:grid-cols-2">
+              <div className="section__content grid gap-4 sm:grid-cols-2">
                 {data.practiceHighlights.map((item) => (
                   <Card key={item} className="h-full border-border">
                     <CardContent className="pt-6">
@@ -330,7 +330,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* Why Us */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Почему выбирают нас
               </h2>
@@ -338,7 +338,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 Опыт, стратегия и прозрачность — основа защиты бизнеса.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {data.whyUs.map((item) => (
                 <Card key={item.title} className="border-l-4 border-l-accent">
                   <CardContent className="pt-6">
@@ -361,7 +361,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* Team */}
         <section id="team" className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Наша команда
               </h2>
@@ -369,7 +369,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 Профильные специалисты по юридическому сопровождению бизнеса.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="section__content grid gap-6 md:grid-cols-2">
               {data.team.map((member) => (
                 <Card key={member.slug} className="h-full">
                   <CardContent className="pt-6 h-full flex flex-col">
@@ -413,7 +413,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* Reviews */}
         <section id="reviews" className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Отзывы
               </h2>
@@ -421,7 +421,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 Клиенты ценят точность и прозрачность работы.
               </p>
             </div>
-            <div className="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-6 md:grid-cols-2 lg:grid-cols-3">
               {data.reviews.map((review, index) => (
                 <Card key={`${review.name}-${index}`} className="h-full">
                   <CardContent className="pt-6 h-full flex flex-col">
@@ -451,7 +451,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* FAQ */}
         <section id="faq" className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 FAQ по теме услуги
               </h2>
@@ -475,7 +475,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
         {/* Consultation */}
         <section id="consultation" className="section bg-primary text-white scroll-mt-24">
           <div className="container">
-            <div className="grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+            <div className="section__content grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
               <div>
                 <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                   Получите план решения и оценку рисков

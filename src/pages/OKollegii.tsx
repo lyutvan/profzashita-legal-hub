@@ -82,7 +82,7 @@ const About = () => {
           <div className="container">
             <div className="max-w-6xl mx-auto">
               {/* Office images + Mission side by side */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8 items-center">
                 {/* Office images */}
                 <div className="space-y-6">
                   <div className="rounded-xl overflow-hidden shadow-elegant">
@@ -156,7 +156,7 @@ const About = () => {
         {/* Stats Section */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
+            <div className="section__content grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
               <div className="text-center">
                 <div className="text-h1-mobile md:text-h1 font-bold text-accent mb-2">15+</div>
                 <div className="text-small text-muted-foreground">лет на рынке</div>
@@ -186,7 +186,7 @@ const About = () => {
         {/* Criminal Services Links */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                 Направления уголовной защиты
               </h2>
@@ -194,7 +194,7 @@ const About = () => {
                 Ключевые направления, по которым мы ведем уголовные дела.
               </p>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {topCriminalServices.map((service) => (
                 <Link
                   key={service.path}
@@ -211,7 +211,7 @@ const About = () => {
         {/* Business Services Links */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                 Направления для бизнеса
               </h2>
@@ -219,7 +219,7 @@ const About = () => {
                 Основные услуги для юридических лиц и корпоративного сопровождения.
               </p>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {topBizServices.map((service) => (
                 <Link
                   key={service.path}
@@ -236,13 +236,13 @@ const About = () => {
         {/* Achievements Section */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mx-auto text-center mb-12">
+            <div className="section__header max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
                 Достижения и <span className="text-accent">признание</span>
               </h2>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
+            <div className="section__content grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto">
               {[
                 "Победители рейтинга лучших юридических компаний России",
                 "Член Адвокатской палаты города Москвы",

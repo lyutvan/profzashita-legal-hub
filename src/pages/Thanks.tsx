@@ -18,7 +18,7 @@ const Thanks = () => {
     <div className="min-h-screen flex flex-col">
       <Header />
       
-      <main className="flex-1 flex items-center justify-center px-4 py-16">
+      <main className="flex-1 flex items-center justify-center px-4 section">
         <Card className="max-w-md w-full p-8 text-center space-y-6">
           <div className="flex justify-center">
             <CheckCircle className="h-16 w-16 text-accent" />

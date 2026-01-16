@@ -118,7 +118,7 @@ const BizPage = () => {
               <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-4">
                 {audienceConfig.biz.title}
               </h1>
-              <p className="text-body-mobile md:text-body text-white/80 mb-6">
+              <p className="lead text-white/80 mb-6">
                 {audienceConfig.biz.description}
               </p>
               <ServiceCallBanner className="mb-6" />
@@ -133,7 +133,7 @@ const BizPage = () => {
         {/* Categories overview */}
         <section className="section">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Основные направления
               </h2>
@@ -141,7 +141,7 @@ const BizPage = () => {
                 Выберите категорию, чтобы перейти к конкретным услугам.
               </p>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {categories.map((category) => (
                 <Link
                   key={category.slug}
@@ -157,12 +157,12 @@ const BizPage = () => {
 
         {/* Services by Category */}
         <section className="section">
-          <div className="container">
+          <div className="container section__content">
             {categories.map(({ title, slug, services }) => {
               const seed = "biz";
 
               return (
-                <div key={slug} id={slug} className="mb-12 scroll-mt-20">
+                <div key={slug} id={slug} className="mb-8 scroll-mt-20">
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
                     {title}
                   </h2>
@@ -185,7 +185,7 @@ const BizPage = () => {
         {/* All Services List */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="max-w-3xl mb-8">
+            <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Все услуги для бизнеса
               </h2>
@@ -193,7 +193,7 @@ const BizPage = () => {
                 Полный перечень услуг с прямыми ссылками на каждую страницу.
               </p>
             </div>
-            <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+            <div className="section__content grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
               {allServices.map((service) => (
                 <Link
                   key={service.path}
@@ -210,7 +210,7 @@ const BizPage = () => {
         {/* CTA Section */}
         <section className="section bg-muted/30">
           <div className="container">
-            <Card className="bg-gradient-to-br from-primary to-primary/90 text-white border-0">
+            <Card className="section__content bg-gradient-to-br from-primary to-primary/90 text-white border-0">
               <CardContent className="pt-12 pb-12">
                 <div className="max-w-3xl mx-auto text-center">
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">

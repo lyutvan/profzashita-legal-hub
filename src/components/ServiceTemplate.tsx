@@ -169,7 +169,7 @@ const ServiceTemplate = ({
         {/* Hero Section */}
         <section
           className={[
-            "relative text-white py-8 md:py-12 lg:py-16",
+            "relative text-white section section--hero",
             heroImageSrc ? "bg-primary" : "bg-gradient-to-br from-primary to-primary/90"
           ].join(" ")}
           style={
@@ -207,7 +207,7 @@ const ServiceTemplate = ({
               <h1 className="font-serif font-bold mb-6 leading-tight">
                 {h1}
               </h1>
-              <div className="space-y-5 text-body-mobile md:text-body text-white/90 leading-relaxed">
+              <div className="space-y-5 lead text-white/90 leading-relaxed">
                 <p>{leadParagraph}</p>
                 {introParagraphs?.map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>
@@ -220,7 +220,7 @@ const ServiceTemplate = ({
         {/* Main Content */}
         <section className="section">
           <div className="container">
-            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="section__content grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Main Content Column */}
               <div className="lg:col-span-2 space-y-12">
                 {/* When to Contact */}
