@@ -38,7 +38,7 @@ const TeamSection = ({
       )}
 
       <div className="container relative z-10">
-        <div className="max-w-3xl mx-auto text-center mb-12 md:mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
             {title}
           </h2>

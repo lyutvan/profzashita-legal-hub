@@ -169,7 +169,7 @@ const ServiceTemplate = ({
         {/* Hero Section */}
         <section
           className={[
-            "relative text-white py-16 md:py-24",
+            "relative text-white py-8 md:py-12 lg:py-16",
             heroImageSrc ? "bg-primary" : "bg-gradient-to-br from-primary to-primary/90"
           ].join(" ")}
           style={

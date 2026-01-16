@@ -56,7 +56,7 @@ const LegalBackground = ({
       />
 
       {/* Content */}
-      <div className="relative z-10 container py-16 md:py-24">
+      <div className="relative z-10 container py-8 md:py-12 lg:py-16">
         {children}
       </div>
     </section>

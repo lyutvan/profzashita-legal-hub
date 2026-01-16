@@ -45,7 +45,7 @@ const Uslugi = () => {
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-12">
               {/* Services Content */}
-              <div className="lg:col-span-2 space-y-16">
+              <div className="lg:col-span-2 space-y-12">
                 {/* Физическим лицам */}
                 {individualsCategory && (
                   <div id={individualsCategory.slug}>
@@ -133,7 +133,7 @@ const Uslugi = () => {
                 )}
 
                 {/* How We Work Section */}
-                <div className="bg-muted/30 rounded-xl p-8 mt-16">
+                <div className="bg-muted/30 rounded-xl p-8">
                   <h2 className="font-serif text-h3-mobile md:text-h3 font-bold mb-6">
                     Как мы работаем
                   </h2>

@@ -82,7 +82,7 @@ const About = () => {
           <div className="container">
             <div className="max-w-6xl mx-auto">
               {/* Office images + Mission side by side */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-16 items-center">
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12 items-center">
                 {/* Office images */}
                 <div className="space-y-6">
                   <div className="rounded-xl overflow-hidden shadow-elegant">

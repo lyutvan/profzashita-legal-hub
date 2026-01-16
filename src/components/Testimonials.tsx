@@ -7,7 +7,7 @@ const Testimonials = () => {
   return (
     <section className="relative section bg-muted/30 overflow-hidden">
       <div className="container">
-        <div className="max-w-3xl mx-auto text-center mb-16">
+        <div className="max-w-3xl mx-auto text-center mb-12">
           <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6">
             Отзывы <span className="text-accent">клиентов</span>
           </h2>
@@ -46,7 +46,7 @@ const Testimonials = () => {
           ))}
         </div>
 
-        <div className="flex justify-center mb-16">
+        <div className="flex justify-center mb-12">
           <Button asChild size="lg" className="px-6">
             <a
               href="https://yandex.ru/maps/org/244880896695/reviews/"
