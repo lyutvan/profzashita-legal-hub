@@ -58,15 +58,15 @@ All colors MUST be HSL.
     /* Spacing tokens */
     --container-max: 1240px;
     --container-pad: 16px;
-    --section-y-mobile: 32px;
-    --section-y-tablet: 48px;
-    --section-y-desktop: 64px;
-    --section-y-sm: 24px;
+    --section-y-mobile: 16px;
+    --section-y-tablet: 24px;
+    --section-y-desktop: 32px;
+    --section-y-sm: 12px;
     --gap: 16px;
     --gap-sm: 12px;
-    --section-inner-gap-mobile: 24px;
-    --section-inner-gap-tablet: 32px;
-    --section-inner-gap-desktop: 32px;
+    --section-inner-gap-mobile: 16px;
+    --section-inner-gap-tablet: 20px;
+    --section-inner-gap-desktop: 24px;
     --section-y: var(--section-y-mobile);
     --section-inner-gap: var(--section-inner-gap-mobile);
 
@@ -140,7 +140,7 @@ All colors MUST be HSL.
   :root {
     --container-pad: 20px;
     --section-y: var(--section-y-tablet);
-    --section-y-sm: 32px;
+    --section-y-sm: 16px;
     --gap: 20px;
     --gap-sm: 16px;
     --section-inner-gap: var(--section-inner-gap-tablet);
@@ -156,7 +156,7 @@ All colors MUST be HSL.
   :root {
     --container-pad: 24px;
     --section-y: var(--section-y-desktop);
-    --section-y-sm: 48px;
+    --section-y-sm: 24px;
     --gap: 24px;
     --gap-sm: 16px;
     --section-inner-gap: var(--section-inner-gap-desktop);
@@ -246,7 +246,7 @@ All colors MUST be HSL.
   }
 
   .section--hero {
-    padding-block: calc(var(--section-y) * 1.15);
+    padding-block: calc(var(--section-y) * 1.25);
   }
 
   .h1 {

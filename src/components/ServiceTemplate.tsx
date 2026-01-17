@@ -222,7 +222,7 @@ const ServiceTemplate = ({
           <div className="container">
             <div className="section__content grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Main Content Column */}
-              <div className="lg:col-span-2 space-y-12">
+              <div className="lg:col-span-2 space-y-6">
                 {/* When to Contact */}
                 <div>
                   <h2 className="font-serif font-bold mb-6">

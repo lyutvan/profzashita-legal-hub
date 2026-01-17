@@ -154,7 +154,7 @@ const ClusterServicePage = ({
           <div className="container">
           <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
             {/* Main Content */}
-            <div className="lg:col-span-2 space-y-12">
+            <div className="lg:col-span-2 space-y-6">
               {/* 1. Что грозит (Risks) */}
               <section>
                 <div className="flex items-center gap-3 mb-6">

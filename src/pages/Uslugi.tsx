@@ -43,9 +43,9 @@ const Uslugi = () => {
         {/* Services Section */}
         <section className="section">
           <div className="container">
-            <div className="section__content grid grid-cols-1 lg:grid-cols-3 gap-12">
+            <div className="section__content grid grid-cols-1 lg:grid-cols-3 gap-6">
               {/* Services Content */}
-              <div className="lg:col-span-2 space-y-12">
+              <div className="lg:col-span-2 space-y-6">
                 {/* Физическим лицам */}
                 {individualsCategory && (
                   <div id={individualsCategory.slug}>

@@ -102,7 +102,7 @@ const ServiceDetail = () => {
           <div className="container">
             <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
               {/* Main Content */}
-              <div className="lg:col-span-2 space-y-12">
+              <div className="lg:col-span-2 space-y-6">
                 {/* When We Help */}
                 <div>
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-6 flex items-center gap-2">
