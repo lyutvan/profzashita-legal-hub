@@ -1,458 +1,676 @@
+import { useMemo, useRef, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
-import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import LeadForm from "@/components/LeadForm";
+import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { getTopCategories, getServicesByAudience, audienceConfig } from "@/data/services-audiences";
-import { Shield, Clock, Users, Award, CheckCircle2, TrendingUp, Phone, UserCircle, Building2, Scale } from "lucide-react";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import {
+  ArrowRight,
+  ArrowUpRight,
+  Building2,
+  CheckCircle2,
+  Clock,
+  Phone,
+  Scale,
+  Search,
+  Shield,
+  TrendingUp,
+  UserCircle
+} from "lucide-react";
+import { getServicesByAudience } from "@/data/services-audiences";
+import { sharedReviews } from "@/data/shared-reviews";
+import { SITE } from "@/config/site";
+
+interface PopularService {
+  title: string;
+  subtitle: string;
+  path: string;
+  tags: string[];
+}
+
+const quickChips = [
+  "Развод",
+  "Алименты",
+  "Наследство",
+  "ДТП",
+  "Взыскание долга",
+  "Договоры",
+  "115-ФЗ",
+  "Арбитраж",
+  "158 УК",
+  "159 УК",
+  "228 УК",
+  "264 УК"
+];
+
+const popularServices: PopularService[] = [
+  {
+    title: "Развод и раздел имущества",
+    subtitle: "Стратегия, документы, суд и защита интересов",
+    path: "/services/phys/razvod-razdel-imushchestva",
+    tags: ["развод", "раздел", "семейные", "имущество"]
+  },
+  {
+    title: "Алименты",
+    subtitle: "Назначение, изменение, взыскание задолженности",
+    path: "/services/phys/alimenty",
+    tags: ["алименты", "семья"]
+  },
+  {
+    title: "Наследство",
+    subtitle: "Вступление, оспаривание, раздел наследства",
+    path: "/services/phys/nasledstvo",
+    tags: ["наследство", "наследственные"]
+  },
+  {
+    title: "ДТП и страховые споры",
+    subtitle: "Возмещение ущерба, страховые выплаты, вред здоровью",
+    path: "/services/phys/dtp-strahovye-spory",
+    tags: ["дтп", "страхование", "вред здоровью"]
+  },
+  {
+    title: "Взыскание долга по расписке",
+    subtitle: "Подготовка претензий и исков, сопровождение суда",
+    path: "/services/phys/vzyskanie-po-raspiskam",
+    tags: ["взыскание", "долг", "расписка"]
+  },
+  {
+    title: "115-ФЗ и блокировка счета",
+    subtitle: "Снятие ограничений, коммуникация с банком",
+    path: "/services/biz/razblokirovka-schyota-po-115-fz",
+    tags: ["115-фз", "115", "блокировка", "банк"]
+  },
+  {
+    title: "Арбитражные споры",
+    subtitle: "Поставка, подряд, услуги, аренда, взыскание",
+    path: "/services/biz/arbitrazh-spory-postavka-podryad-uslugi-arenda",
+    tags: ["арбитраж", "бизнес", "споры"]
+  },
+  {
+    title: "Договорная работа для бизнеса",
+    subtitle: "Разработка, экспертиза и защита сделок",
+    path: "/services/biz/razrabotka-ekspertiza-dogovorov-postavka-podryad-uslugi-arenda",
+    tags: ["договоры", "сделки", "бизнес"]
+  },
+  {
+    title: "158 УК РФ — кража",
+    subtitle: "Защита на стадии проверки, следствия, суда",
+    path: "/uslugi/ugolovnoye-delo/158-uk-rf",
+    tags: ["158 ук", "кража", "уголовное"]
+  },
+  {
+    title: "159 УК РФ — мошенничество",
+    subtitle: "Стратегия защиты, работа с доказательствами",
+    path: "/uslugi/ugolovnoye-delo/159-uk-rf",
+    tags: ["159 ук", "мошенничество", "уголовное"]
+  },
+  {
+    title: "228 УК РФ — наркотики",
+    subtitle: "Подключение адвоката и контроль процедуры",
+    path: "/uslugi/ugolovnoye-delo/228-uk-rf",
+    tags: ["228 ук", "наркотики", "уголовное"]
+  },
+  {
+    title: "264 УК РФ — ДТП с пострадавшими",
+    subtitle: "Срочная защита водителей, смягчение последствий",
+    path: "/uslugi/ugolovnoye-delo/264-uk-rf",
+    tags: ["264 ук", "дтп", "уголовное"]
+  }
+];
+
+const directionCards = [
+  {
+    title: "Физическим лицам",
+    subtitle: "Защита прав граждан и сопровождение личных споров",
+    icon: <UserCircle className="h-10 w-10 text-accent" />,
+    items: [
+      "Защита прав потребителей",
+      "ДТП / страхование / вред здоровью",
+      "Семейные споры",
+      "Жилищные вопросы",
+      "Наследство",
+      "Трудовые споры",
+      "Взыскание долгов",
+      "Ущерб имуществу"
+    ],
+    to: "/services/phys",
+    audience: "phys" as const
+  },
+  {
+    title: "Юридическим лицам",
+    subtitle: "Комплексное сопровождение бизнеса и сделок",
+    icon: <Building2 className="h-10 w-10 text-accent" />,
+    items: [
+      "Абонентское сопровождение",
+      "Взыскание дебиторки",
+      "Арбитражные споры",
+      "Договорная работа",
+      "Налоговые споры",
+      "Банкротство",
+      "115-ФЗ / блокировки",
+      "Корпоративные конфликты"
+    ],
+    to: "/services/biz",
+    audience: "biz" as const
+  },
+  {
+    title: "Уголовные дела",
+    subtitle: "Защита на всех стадиях уголовного процесса",
+    icon: <Scale className="h-10 w-10 text-accent" />,
+    items: [
+      "Жизнь и здоровье",
+      "Свобода и честь",
+      "Половая неприкосновенность",
+      "Собственность",
+      "Экономические",
+      "Общественная безопасность",
+      "Госвласть",
+      "Здоровье населения"
+    ],
+    to: "/services/criminal",
+    audience: "criminal" as const
+  }
+];
+
+const howWeWork = [
+  {
+    title: "Запрос и первичная оценка",
+    description: "Уточняем ситуацию, сроки, риски и возможные сценарии."
+  },
+  {
+    title: "Стратегия и план",
+    description: "Фиксируем цель, этапы, документы и ориентиры по срокам."
+  },
+  {
+    title: "Действия и сопровождение",
+    description: "Готовим документы, ведем переговоры, представляем в суде."
+  },
+  {
+    title: "Контроль результата",
+    description: "Доводим дело до результата и контролируем исполнение."
+  }
+];
+
+const advantages = [
+  {
+    title: "Опыт с 2005 года",
+    description: "Ведем сложные споры и уголовные дела с устойчивой практикой.",
+    icon: <Shield className="h-6 w-6 text-accent" />
+  },
+  {
+    title: "Работаем 24/7",
+    description: "Срочное подключение, выезд адвоката и поддержка в любое время.",
+    icon: <Clock className="h-6 w-6 text-accent" />
+  },
+  {
+    title: "Сильная стратегия",
+    description: "Выстраиваем позицию на фактах, сроках и судебной практике.",
+    icon: <TrendingUp className="h-6 w-6 text-accent" />
+  },
+  {
+    title: "Прозрачные этапы",
+    description: "Понятный план действий, сроки и регулярные отчеты.",
+    icon: <CheckCircle2 className="h-6 w-6 text-accent" />
+  },
+  {
+    title: "Команда экспертов",
+    description: "Профильные адвокаты и эксперты под вашу задачу.",
+    icon: <UserCircle className="h-6 w-6 text-accent" />
+  },
+  {
+    title: "Фокус на результат",
+    description: "Делаем то, что реально влияет на исход и сроки.",
+    icon: <ArrowRight className="h-6 w-6 text-accent" />
+  }
+];
+
+const faqItems = [
+  {
+    question: "Как быстро можно получить консультацию?",
+    answer: "Свяжитесь с нами — уточним детали и предложим ближайшее время. В срочных ситуациях подключаемся в течение нескольких часов."
+  },
+  {
+    question: "Работаете ли вы по договору?",
+    answer: "Да. Мы фиксируем объем работ, этапы и порядок оплаты в договоре."
+  },
+  {
+    question: "Можно ли начать работу без личной встречи?",
+    answer: "Да. Можно начать с онлайн-консультации и передать документы дистанционно."
+  },
+  {
+    question: "Сколько стоят услуги?",
+    answer: "Стоимость зависит от сложности задачи и стадии дела. Оценку дадим после анализа документов."
+  }
+];
+
+const normalizeText = (value: string) => value.toLowerCase().replace(/ё/g, "е");
+
+const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
+
+const buildHighlightRegex = (tokens: string[]) => {
+  const escapedTokens = tokens.map(escapeRegExp).filter(Boolean);
+  if (!escapedTokens.length) return null;
+  const pattern = escapedTokens.sort((a, b) => b.length - a.length).join("|");
+  return pattern ? new RegExp(`(${pattern})`, "gi") : null;
+};
+
+const highlightText = (text: string, tokens: string[]) => {
+  if (!tokens.length) return text;
+  const regex = buildHighlightRegex(tokens);
+  if (!regex) return text;
+  const parts = text.split(regex);
+  return parts.map((part, index) =>
+    index % 2 === 1 ? (
+      <span key={`${part}-${index}`} className="services-highlight">
+        {part}
+      </span>
+    ) : (
+      part
+    )
+  );
+};
 
 const UslugiNew = () => {
-  const physCategories = getTopCategories('phys', 8);
-  const bizCategories = getTopCategories('biz', 8);
-  const criminalCategories = getTopCategories('criminal', 8);
-  const topBizServices = getServicesByAudience('biz').slice(0, 6);
-  const topCriminalServices = getServicesByAudience('criminal').slice(0, 6);
-  const topPhysServices = [
-    { title: "Развод и раздел имущества", path: "/services/phys/razvod-razdel-imushchestva" },
-    { title: "Алименты", path: "/services/phys/alimenty" },
-    { title: "Наследство", path: "/services/phys/nasledstvo" },
-    { title: "Жилищные споры / выписка / выселение", path: "/services/phys/zhilishchnye-spory" },
-    { title: "ДТП и страховые споры", path: "/services/phys/dtp-strahovye-spory" },
-    { title: "Защита прав потребителей", path: "/services/phys/zashchita-prav-potrebitelya" },
-    { title: "Взыскание долгов / расписка", path: "/services/phys/vzyskanie-po-raspiskam" }
-  ];
+  const [query, setQuery] = useState("");
+  const popularRef = useRef<HTMLDivElement | null>(null);
+  const whatsappNumber = SITE.phoneRaw.replace(/\D/g, "");
+
+  const tokens = useMemo(() => {
+    return normalizeText(query)
+      .split(/[\s,]+/)
+      .map((token) => token.trim())
+      .filter(Boolean);
+  }, [query]);
+
+  const filteredPopular = useMemo(() => {
+    if (!tokens.length) return popularServices;
+
+    return popularServices.filter((service) => {
+      const haystack = normalizeText(
+        [service.title, service.subtitle, ...service.tags].join(" ")
+      );
+      return tokens.every((token) => haystack.includes(token));
+    });
+  }, [tokens]);
+
+  const totalByAudience = {
+    phys: getServicesByAudience("phys").length,
+    biz: getServicesByAudience("biz").length,
+    criminal: getServicesByAudience("criminal").length
+  };
+
+  const handleChipClick = (chip: string) => {
+    setQuery(chip);
+    if (popularRef.current) {
+      popularRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="services-page min-h-screen flex flex-col">
       <Helmet>
-        <title>Юридические услуги — Профзащита</title>
-        <meta name="description" content="Полный спектр юридических услуг в Москве: уголовные дела, гражданские споры, арбитраж. Опыт 15+ лет." />
+        <title>Юридические услуги в Москве — Профзащита</title>
+        <meta
+          name="description"
+          content="Юридические услуги в Москве: выберите направление или найдите нужную услугу за 10 секунд. Семейные, гражданские, бизнес и уголовные дела."
+        />
+        <link rel="canonical" href={`${SITE.url}uslugi`} />
       </Helmet>
 
       <Header />
 
       <main className="flex-1">
-        {/* Hero Section */}
-        <section className="relative bg-gradient-to-br from-primary to-primary/90 text-white section overflow-hidden">
-          <div className="absolute inset-0 opacity-5">
-            <div className="absolute inset-0" style={{
-              backgroundImage: 'url("data:image/svg+xml,%3Csvg width="60" height="60" viewBox="0 0 60 60" xmlns="http://www.w3.org/2000/svg"%3E%3Cg fill="none" fill-rule="evenodd"%3E%3Cg fill="%23ffffff" fill-opacity="1"%3E%3Cpath d="M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z"/%3E%3C/g%3E%3C/g%3E%3C/svg%3E")',
-            }} />
-          </div>
-
-          <div className="container relative z-10">
+        {/* A) Hero */}
+        <section className="section py-10 md:py-12 lg:py-14 bg-gradient-to-br from-primary to-primary/90 text-white">
+          <div className="container">
             <Breadcrumbs items={[{ label: "Услуги" }]} />
-            <div className="max-w-4xl mt-8">
-              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 leading-tight">
+            <div className="mt-6 max-w-3xl space-y-4">
+              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold leading-tight">
                 Юридические услуги в Москве
               </h1>
-              <p className="lead text-white/80 mb-8 leading-relaxed">
-                Профессиональная защита ваших прав по всем категориям дел
+              <p className="lead text-white/85">
+                Выберите направление или найдите услугу по вашей ситуации за 10 секунд.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-medium" asChild>
-                  <Link to="/kontakty">
-                    Бесплатная консультация
-                  </Link>
+                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white" asChild>
+                  <Link to="/kontakty">Бесплатная консультация</Link>
                 </Button>
-                <Button size="lg" variant="outline" className="border-white/20 bg-white/10 hover:bg-white/20 text-white" asChild>
-                  <a href="tel:+79168597654">
+                <Button
+                  size="lg"
+                  variant="outline"
+                  className="border-white/25 bg-white/10 text-white hover:bg-white/20"
+                  asChild
+                >
+                  <a href={`tel:${SITE.phoneRaw}`}>
                     <Phone className="mr-2 h-5 w-5" />
                     Позвонить сейчас
                   </a>
                 </Button>
               </div>
-            </div>
-          </div>
-        </section>
-
-        {/* Stats Section */}
-        <section className="section bg-muted/30">
-          <div className="container">
-            <div className="section__content grid grid-cols-2 md:grid-cols-4 gap-6">
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-4">
-                  <Award className="h-8 w-8 text-accent" />
-                </div>
-                <div className="text-h2-mobile md:text-h2 font-bold text-accent mb-2">15+</div>
-                <div className="text-small text-muted-foreground">лет опыта</div>
-              </div>
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-4">
-                  <CheckCircle2 className="h-8 w-8 text-accent" />
-                </div>
-                <div className="text-h2-mobile md:text-h2 font-bold text-accent mb-2">500+</div>
-                <div className="text-small text-muted-foreground">выигранных дел</div>
-              </div>
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-4">
-                  <Users className="h-8 w-8 text-accent" />
-                </div>
-                <div className="text-h2-mobile md:text-h2 font-bold text-accent mb-2">1000+</div>
-                <div className="text-small text-muted-foreground">довольных клиентов</div>
-              </div>
-              <div className="text-center">
-                <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-accent/10 mb-4">
-                  <Clock className="h-8 w-8 text-accent" />
-                </div>
-                <div className="text-h2-mobile md:text-h2 font-bold text-accent mb-2">24/7</div>
-                <div className="text-small text-muted-foreground">готовы помочь</div>
+              <div className="text-small text-white/70">
+                Или напишите в WhatsApp:{" "}
+                <a
+                  href={`https://wa.me/${whatsappNumber}`}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-white underline underline-offset-4"
+                >
+                  {SITE.phone}
+                </a>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Services Audiences */}
-        <section className="section">
+        {/* B) Quick Search */}
+        <section className="section pt-0">
           <div className="container">
-            <div className="section__header text-center">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">Наши услуги</h2>
-              <p className="text-body-mobile md:text-body text-muted-foreground max-w-2xl mx-auto">
-                Предоставляем полный спектр юридических услуг для физических и юридических лиц
-              </p>
-            </div>
-
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {/* Физическим лицам */}
-              <Card 
-                className="h-full flex flex-col hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 group"
-              >
-                <CardHeader className="pb-4">
-                  <div className="mb-4 inline-flex p-4 rounded-xl bg-accent/10 group-hover:bg-accent/20 transition-colors">
-                    <UserCircle className="h-12 w-12 text-accent" />
+            <Card className="border-border/60 shadow-lg">
+              <CardContent className="pt-6 pb-6">
+                <div className="grid grid-cols-4 lg:grid-cols-12 gap-6 items-start">
+                  <div className="col-span-4 lg:col-span-5">
+                    <h2 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">
+                      Быстрый поиск услуги
+                    </h2>
+                    <p className="text-small text-muted-foreground">
+                      Введите ключевое слово или выберите популярный запрос ниже.
+                    </p>
                   </div>
-                  <CardTitle className="font-serif text-h3-mobile md:text-h3 mb-3">
-                    {audienceConfig.phys.title}
-                  </CardTitle>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {audienceConfig.phys.subtitle}
-                  </p>
-                </CardHeader>
-                <CardContent className="flex-1 flex flex-col">
-                  <div className="mb-4 text-small text-muted-foreground">
-                    <span className="font-semibold text-foreground">
-                      {physCategories.reduce((sum, cat) => sum + cat.services.length, 0)}
-                    </span> специализаций
-                  </div>
-                  <ul className="space-y-2 mb-6">
-                    {physCategories.map((category) => (
-                      <li key={category.slug} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        <Link
-                          to={`/services/phys#${category.slug}`}
-                          className="text-small text-muted-foreground hover:text-accent transition-colors"
+                  <div className="col-span-4 lg:col-span-7">
+                    <label className="sr-only" htmlFor="service-search">
+                      Поиск услуги
+                    </label>
+                    <div className="relative">
+                      <Search className="absolute left-4 top-1/2 h-5 w-5 -translate-y-1/2 text-muted-foreground" />
+                      <input
+                        id="service-search"
+                        type="search"
+                        value={query}
+                        onChange={(event) => setQuery(event.target.value)}
+                        placeholder="Например: развод, ДТП, наследство, 115-ФЗ, 159 УК…"
+                        className="w-full rounded-xl border border-border bg-background px-12 py-3 text-body focus:outline-none focus:ring-2 focus:ring-accent/40"
+                      />
+                    </div>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                      {quickChips.map((chip) => (
+                        <button
+                          key={chip}
+                          type="button"
+                          onClick={() => handleChipClick(chip)}
+                          className="rounded-full border border-border px-4 py-1.5 text-small text-muted-foreground transition-colors hover:border-accent hover:text-accent"
                         >
-                          {category.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="border-t border-border pt-4 mb-6">
-                    <div className="text-small uppercase text-muted-foreground mb-3">
-                      Популярные услуги
-                    </div>
-                    <ul className="space-y-2">
-                      {topPhysServices.map((service) => (
-                        <li key={service.path}>
-                          <Link
-                            to={service.path}
-                            className="text-small text-muted-foreground hover:text-accent transition-colors"
-                          >
-                            {service.title}
-                          </Link>
-                        </li>
+                          {chip}
+                        </button>
                       ))}
-                    </ul>
-                  </div>
-                  <Button 
-                    variant="outline" 
-                    className="mt-auto w-full border-accent/30 hover:bg-accent/10 hover:border-accent"
-                    asChild
-                  >
-                    <Link to="/services/phys">
-                      Все услуги раздела ({physCategories.reduce((sum, cat) => sum + cat.services.length, 0)})
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Юридическим лицам */}
-              <Card 
-                className="h-full flex flex-col hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 group"
-              >
-                <CardHeader className="pb-4">
-                  <div className="mb-4 inline-flex p-4 rounded-xl bg-accent/10 group-hover:bg-accent/20 transition-colors">
-                    <Building2 className="h-12 w-12 text-accent" />
-                  </div>
-                  <CardTitle className="font-serif text-h3-mobile md:text-h3 mb-3">
-                    {audienceConfig.biz.title}
-                  </CardTitle>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {audienceConfig.biz.subtitle}
-                  </p>
-                </CardHeader>
-                <CardContent className="flex-1 flex flex-col">
-                  <div className="mb-4 text-small text-muted-foreground">
-                    <span className="font-semibold text-foreground">
-                      {bizCategories.reduce((sum, cat) => sum + cat.services.length, 0)}
-                    </span> специализаций
-                  </div>
-                  <ul className="space-y-2 mb-6">
-                    {bizCategories.map((category) => (
-                      <li key={category.slug} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        <Link
-                          to={`/services/biz#${category.slug}`}
-                          className="text-small text-muted-foreground hover:text-accent transition-colors"
+                      {query && (
+                        <button
+                          type="button"
+                          onClick={() => setQuery("")}
+                          className="rounded-full border border-accent/30 px-4 py-1.5 text-small text-accent hover:border-accent"
                         >
-                          {category.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="border-t border-border pt-4 mb-6">
-                    <div className="text-small uppercase text-muted-foreground mb-3">
-                      Популярные услуги
-                    </div>
-                    <ul className="space-y-2">
-                      {topBizServices.map((service) => (
-                        <li key={service.path}>
-                          <Link
-                            to={service.path}
-                            className="text-small text-muted-foreground hover:text-accent transition-colors"
-                          >
-                            {service.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Button 
-                    variant="outline" 
-                    className="mt-auto w-full border-accent/30 hover:bg-accent/10 hover:border-accent"
-                    asChild
-                  >
-                    <Link to="/services/biz">
-                      Все услуги раздела ({bizCategories.reduce((sum, cat) => sum + cat.services.length, 0)})
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-
-              {/* Уголовные дела */}
-              <Card 
-                className="h-full flex flex-col hover:shadow-xl transition-all duration-300 border-2 hover:border-accent/30 group"
-              >
-                <CardHeader className="pb-4">
-                  <div className="mb-4 inline-flex p-4 rounded-xl bg-accent/10 group-hover:bg-accent/20 transition-colors">
-                    <Scale className="h-12 w-12 text-accent" />
-                  </div>
-                  <CardTitle className="font-serif text-h3-mobile md:text-h3 mb-3">
-                    {audienceConfig.criminal.title}
-                  </CardTitle>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {audienceConfig.criminal.subtitle}
-                  </p>
-                </CardHeader>
-                <CardContent className="flex-1 flex flex-col">
-                  <div className="mb-4 text-small text-muted-foreground">
-                    <span className="font-semibold text-foreground">
-                      {criminalCategories.reduce((sum, cat) => sum + cat.services.length, 0)}
-                    </span> специализаций
-                  </div>
-                  <ul className="space-y-2 mb-6">
-                    {criminalCategories.map((category) => (
-                      <li key={category.slug} className="flex items-start gap-2">
-                        <CheckCircle2 className="h-4 w-4 text-accent flex-shrink-0 mt-0.5" />
-                        <Link
-                          to={`/services/criminal#${category.slug}`}
-                          className="text-small text-muted-foreground hover:text-accent transition-colors"
-                        >
-                          {category.title}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="border-t border-border pt-4 mb-6">
-                    <div className="text-small uppercase text-muted-foreground mb-3">
-                      Популярные услуги
-                    </div>
-                    <ul className="space-y-2">
-                      {topCriminalServices.map((service) => (
-                        <li key={service.path}>
-                          <Link
-                            to={service.path}
-                            className="text-small text-muted-foreground hover:text-accent transition-colors"
-                          >
-                            {service.title}
-                          </Link>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                  <Button 
-                    variant="outline" 
-                    className="mt-auto w-full border-accent/30 hover:bg-accent/10 hover:border-accent"
-                    asChild
-                  >
-                    <Link to="/services/criminal">
-                      Все услуги раздела ({criminalCategories.reduce((sum, cat) => sum + cat.services.length, 0)})
-                    </Link>
-                  </Button>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* Why Us Section */}
-        <section className="section bg-muted/30">
-          <div className="container">
-            <div className="section__header text-center">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">Почему выбирают нас</h2>
-              <p className="text-body-mobile md:text-body text-muted-foreground max-w-2xl mx-auto">
-                Профессионализм, опыт и индивидуальный подход к каждому клиенту
-              </p>
-            </div>
-
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-              <Card className="border-l-4 border-l-accent">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-accent/10">
-                      <Shield className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-body-mobile md:text-body mb-2">Опыт с 2005 года</h3>
-                      <p className="text-small text-muted-foreground">
-                        Более 15 лет успешной практики в самых сложных делах
-                      </p>
+                          Сбросить фильтр
+                        </button>
+                      )}
                     </div>
                   </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-accent">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-accent/10">
-                      <Clock className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-body-mobile md:text-body mb-2">Работаем 24/7</h3>
-                      <p className="text-small text-muted-foreground">
-                        Срочная помощь в любое время, выезд в течение 2 часов
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-accent">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-accent/10">
-                      <TrendingUp className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-body-mobile md:text-body mb-2">Высокий процент побед</h3>
-                      <p className="text-small text-muted-foreground">
-                        Более 85% дел завершаются в пользу наших клиентов
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-accent">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-accent/10">
-                      <Users className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-body-mobile md:text-body mb-2">Индивидуальный подход</h3>
-                      <p className="text-small text-muted-foreground">
-                        Разрабатываем уникальную стратегию для каждого дела
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-accent">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-accent/10">
-                      <Award className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-body-mobile md:text-body mb-2">Команда профессионалов</h3>
-                      <p className="text-small text-muted-foreground">
-                        Адвокаты с опытом работы в крупных делах и сложных спорах
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-l-4 border-l-accent">
-                <CardContent className="pt-6">
-                  <div className="flex items-start gap-4">
-                    <div className="p-3 rounded-xl bg-accent/10">
-                      <CheckCircle2 className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h3 className="font-semibold text-body-mobile md:text-body mb-2">Прозрачность</h3>
-                      <p className="text-small text-muted-foreground">
-                        Честные цены, никаких скрытых платежей, регулярная отчётность
-                      </p>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
-            </div>
-          </div>
-        </section>
-
-        {/* CTA Section */}
-        <section className="section">
-          <div className="container">
-            <Card className="section__content bg-gradient-to-br from-primary to-primary/90 text-white border-0">
-              <CardContent className="pt-12 pb-12">
-                <div className="max-w-3xl mx-auto text-center">
-                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
-                    Нужна юридическая помощь?
-                  </h2>
-                  <p className="text-body-mobile md:text-body text-white/80 mb-8">
-                    Получите бесплатную консультацию и узнайте, как мы можем помочь в вашей ситуации
-                  </p>
-                  <div className="flex flex-wrap gap-4 justify-center">
-                    <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-medium" asChild>
-                      <Link to="/kontakty">
-                        Записаться на консультацию
-                      </Link>
-                    </Button>
-                    <Button 
-                      size="lg" 
-                      variant="outline" 
-                      className="border-white/20 bg-white/10 hover:bg-white/20 text-white"
-                      asChild
-                    >
-                      <a href="tel:+79168597654">
-                        <Phone className="mr-2 h-5 w-5" />
-                        +7 (916) 859-76-54
-                      </a>
-                    </Button>
-                  </div>
-                  <p className="text-small text-white/60 mt-6">
-                    Работаем круглосуточно. Срочный выезд в течение 2 часов.
-                  </p>
                 </div>
               </CardContent>
             </Card>
+          </div>
+        </section>
+
+        {/* C) Directions */}
+        <section className="section">
+          <div className="container">
+            <div className="section__header max-w-3xl">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                Направления услуг
+              </h2>
+              <p className="text-muted-foreground">
+                Быстрый вход в нужный раздел — выберите вашу ситуацию.
+              </p>
+            </div>
+            <div className="section__content grid grid-cols-4 lg:grid-cols-12 gap-6">
+              {directionCards.map((card) => (
+                <Card key={card.title} className="col-span-4 lg:col-span-4 h-full border-border/80">
+                  <CardContent className="pt-6 h-full flex flex-col">
+                    <div className="flex items-center gap-4 mb-4">
+                      <div className="rounded-xl bg-accent/10 p-3">{card.icon}</div>
+                      <div>
+                        <div className="font-semibold text-body-mobile md:text-body">{card.title}</div>
+                        <div className="text-small text-muted-foreground">{card.subtitle}</div>
+                      </div>
+                    </div>
+                    <ul className="space-y-2 text-small text-muted-foreground mb-6">
+                      {card.items.map((item) => (
+                        <li key={item} className="flex items-start gap-2">
+                          <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
+                          <span>{item}</span>
+                        </li>
+                      ))}
+                    </ul>
+                    <Button asChild variant="outline" className="mt-auto">
+                      <Link to={card.to}>
+                        Все услуги раздела ({totalByAudience[card.audience]})
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* D) Popular services */}
+        <section className="section bg-muted/30 scroll-mt-24" ref={popularRef} id="popular">
+          <div className="container">
+            <div className="section__header">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                Популярные услуги
+              </h2>
+              <p className="text-muted-foreground">
+                Быстрые переходы по самым частым запросам. Ищите по ключевым словам — результаты подсвечиваются.
+              </p>
+            </div>
+            {query && (
+              <div className="mb-4 text-small text-muted-foreground">
+                Найдено: <span className="text-foreground font-semibold">{filteredPopular.length}</span>
+              </div>
+            )}
+            <div className="section__content grid grid-cols-4 lg:grid-cols-12 gap-4 lg:gap-6">
+              {filteredPopular.map((service) => (
+                <Link
+                  key={service.path}
+                  to={service.path}
+                  className="col-span-4 lg:col-span-4 group"
+                >
+                  <Card className="h-full border-border/80 transition-all hover:border-accent/60 hover:shadow-elegant">
+                    <CardContent className="pt-5 pb-5">
+                      <div className="flex items-start justify-between gap-4">
+                        <div>
+                          <h3 className="font-semibold text-body-mobile md:text-body mb-2 text-foreground group-hover:text-accent">
+                            {highlightText(service.title, tokens)}
+                          </h3>
+                          <p className="text-small text-muted-foreground">
+                            {highlightText(service.subtitle, tokens)}
+                          </p>
+                        </div>
+                        <ArrowUpRight className="h-4 w-4 text-muted-foreground group-hover:text-accent" />
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+              {!filteredPopular.length && (
+                <div className="col-span-4 lg:col-span-12 text-center text-muted-foreground py-6">
+                  Ничего не найдено. Попробуйте другой запрос или получите консультацию.
+                </div>
+              )}
+            </div>
+          </div>
+        </section>
+
+        {/* E) How we work */}
+        <section className="section">
+          <div className="container">
+            <div className="section__header max-w-3xl">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                Как мы работаем
+              </h2>
+              <p className="text-muted-foreground">
+                Понятные этапы, чтобы вы контролировали процесс и сроки.
+              </p>
+            </div>
+            <div className="section__content grid grid-cols-4 lg:grid-cols-12 gap-4 lg:gap-6">
+              {howWeWork.map((step, index) => (
+                <Card key={step.title} className="col-span-4 lg:col-span-3 border-border/80">
+                  <CardContent className="pt-5 pb-5">
+                    <div className="flex items-start gap-3">
+                      <div className="flex h-9 w-9 items-center justify-center rounded-full bg-accent/10 text-accent font-semibold">
+                        {index + 1}
+                      </div>
+                      <div>
+                        <div className="font-semibold mb-2">{step.title}</div>
+                        <p className="text-small text-muted-foreground">{step.description}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* F) Why us */}
+        <section className="section bg-muted/30">
+          <div className="container">
+            <div className="section__header max-w-3xl">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Почему выбирают нас</h2>
+              <p className="text-muted-foreground">
+                Фокус на результате, прозрачности и сильной юридической позиции.
+              </p>
+            </div>
+            <div className="section__content grid grid-cols-4 lg:grid-cols-12 gap-4 lg:gap-6">
+              {advantages.map((item) => (
+                <Card key={item.title} className="col-span-4 lg:col-span-4 border-border/80">
+                  <CardContent className="pt-5 pb-5">
+                    <div className="flex items-start gap-4">
+                      <div className="rounded-xl bg-accent/10 p-3">{item.icon}</div>
+                      <div>
+                        <h3 className="font-semibold mb-2">{item.title}</h3>
+                        <p className="text-small text-muted-foreground">{item.description}</p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* G) Reviews */}
+        <section className="section">
+          <div className="container">
+            <div className="section__header max-w-3xl">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Отзывы</h2>
+              <p className="text-muted-foreground">
+                Реальные истории клиентов — о подходе, сроках и результате.
+              </p>
+            </div>
+            <div className="section__content grid grid-cols-4 lg:grid-cols-12 gap-4 lg:gap-6">
+              {sharedReviews.slice(0, 6).map((review) => (
+                <Card key={review.id} className="col-span-4 lg:col-span-4 border-border/80">
+                  <CardContent className="pt-5 pb-5 h-full flex flex-col">
+                    <div className="flex items-center justify-between text-small text-muted-foreground mb-2">
+                      <span className="font-semibold text-foreground">{review.name}</span>
+                      <span>{review.date}</span>
+                    </div>
+                    <p className="text-small text-muted-foreground leading-relaxed">{review.text}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <div className="mt-6">
+              <Button asChild className="bg-primary text-white hover:bg-primary/90">
+                <a
+                  href="https://yandex.ru/maps/org/244880896695/reviews/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Смотреть все отзывы в Яндекс Картах
+                </a>
+              </Button>
+            </div>
+          </div>
+        </section>
+
+        {/* H) FAQ + Final CTA */}
+        <section className="section bg-muted/30">
+          <div className="container">
+            <div className="section__header max-w-3xl">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">FAQ</h2>
+              <p className="text-muted-foreground">Короткие ответы на частые вопросы.</p>
+            </div>
+            <Accordion type="single" collapsible className="section__content max-w-3xl space-y-3">
+              {faqItems.map((faq, index) => (
+                <AccordionItem
+                  key={`${faq.question}-${index}`}
+                  value={`faq-${index}`}
+                  className="border rounded-lg px-6 bg-background"
+                >
+                  <AccordionTrigger className="text-left hover:no-underline py-4">
+                    <span className="font-semibold">{faq.question}</span>
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pb-4">
+                    {faq.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+
+            <div className="mt-10">
+              <Card className="bg-gradient-to-br from-primary to-primary/90 text-white border-0">
+                <CardContent className="pt-6 pb-6">
+                  <div className="grid grid-cols-4 lg:grid-cols-12 gap-6 items-start">
+                    <div className="col-span-4 lg:col-span-5">
+                      <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-3">
+                        Получите оценку и план действий
+                      </h3>
+                      <p className="text-white/80 text-small">
+                        Заполните форму — мы уточним детали и предложим следующий шаг.
+                      </p>
+                      <div className="mt-4 text-small text-white/70">
+                        Или напишите в WhatsApp: {SITE.phone}
+                      </div>
+                      <div className="mt-4 flex flex-wrap gap-3">
+                        <Button className="bg-accent text-white hover:bg-accent/90" asChild>
+                          <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer">
+                            Написать в WhatsApp
+                          </a>
+                        </Button>
+                        <Button variant="outline" className="border-white/30 text-white" asChild>
+                          <a href={`tel:${SITE.phoneRaw}`}>Позвонить</a>
+                        </Button>
+                      </div>
+                    </div>
+                    <div className="col-span-4 lg:col-span-7">
+                      <Card className="bg-white text-foreground border-0">
+                        <CardContent className="pt-6">
+                          <LeadForm variant="compact" />
+                          <p className="text-small text-muted-foreground mt-4">
+                            Первичная оценка — после уточняющих вопросов и документов.
+                          </p>
+                        </CardContent>
+                      </Card>
+                    </div>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
           </div>
         </section>
       </main>

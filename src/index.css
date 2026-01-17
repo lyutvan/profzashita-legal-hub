@@ -223,6 +223,32 @@ All colors MUST be HSL.
     padding-block: var(--section-y);
   }
 
+  .services-page {
+    --section-y: 40px;
+    --section-inner-gap: 20px;
+  }
+
+  @media (min-width: 768px) {
+    .services-page {
+      --section-y: 48px;
+      --section-inner-gap: 24px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .services-page {
+      --section-y: 64px;
+      --section-inner-gap: 28px;
+    }
+  }
+
+  .services-highlight {
+    background: hsl(var(--accent) / 0.18);
+    color: hsl(var(--accent));
+    border-radius: 0.2em;
+    padding: 0 0.2em;
+  }
+
   .section__header {
     margin-bottom: var(--section-inner-gap);
     display: grid;
