@@ -118,7 +118,7 @@ const Header = () => {
             <Button 
               variant="default" 
               size="sm" 
-              className="transition-colors duration-150 bg-accent text-white hover:bg-accent/90"
+              className="transition-colors duration-150 bg-accent text-white hover:bg-accent/90 h-11 px-4 text-small"
               asChild
             >
               <Link to="/kontakty">Консультация</Link>
@@ -126,7 +126,7 @@ const Header = () => {
             <Button 
               variant="outline" 
               size="sm" 
-              className="border-accent text-accent hover:bg-accent hover:text-accent-foreground gap-2"
+              className="border-accent text-accent hover:bg-accent hover:text-accent-foreground gap-2 h-11 px-4 text-small"
               asChild
             >
               <a href={`https://wa.me/${SITE.phoneRaw.replace('+', '')}`} target="_blank" rel="noopener noreferrer">
@@ -202,7 +202,7 @@ const Header = () => {
                 <Button 
                   variant="default" 
                   size="sm" 
-                  className="bg-accent text-white hover:bg-accent/90 w-full min-h-[44px]"
+                  className="bg-accent text-white hover:bg-accent/90 w-full h-11 px-4 text-small"
                   asChild
                 >
                   <Link to="/kontakty" onClick={() => setIsMenuOpen(false)}>
@@ -212,7 +212,7 @@ const Header = () => {
                 <Button 
                   variant="outline" 
                   size="sm" 
-                  className="border-accent text-accent hover:bg-accent hover:text-accent-foreground w-full min-h-[44px] gap-2"
+                  className="border-accent text-accent hover:bg-accent hover:text-accent-foreground w-full h-11 px-4 text-small gap-2"
                   asChild
                 >
                   <a href={`https://wa.me/${SITE.phoneRaw.replace('+', '')}`} target="_blank" rel="noopener noreferrer">

@@ -652,7 +652,11 @@ const UslugiNew = () => {
                             Написать в WhatsApp
                           </a>
                         </Button>
-                        <Button variant="outline" className="border-white/30 text-white" asChild>
+                        <Button
+                          variant="outline"
+                          className="border-primary/35 bg-white/95 text-primary hover:bg-primary/5 hover:text-primary hover:border-primary/50 focus-visible:ring-primary/40"
+                          asChild
+                        >
                           <a href={`tel:${SITE.phoneRaw}`}>Позвонить</a>
                         </Button>
                       </div>
