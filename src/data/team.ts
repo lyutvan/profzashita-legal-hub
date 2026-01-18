@@ -30,6 +30,7 @@ export interface TeamMember {
     title: string;
     org?: string;
     date?: string;
+    previewImage: string;
     fileUrl: string;
     type: "pdf" | "image";
   }[];
@@ -252,25 +253,29 @@ export const teamMembers: TeamMember[] = [
       {
         title: "Лексториум — субсидиарная ответственность",
         org: "Лексториум",
-        fileUrl: "/assets/certs/lyadova-lektorium-subsidiary.pdf",
+        previewImage: "/certificates/previews/lyadova-lektorium-subsidiary.jpg",
+        fileUrl: "/certificates/files/lyadova-lektorium-subsidiary.pdf",
         type: "pdf"
       },
       {
         title: "Legal Academy — право интеллектуальной собственности",
         org: "Legal Academy",
-        fileUrl: "/assets/certs/lyadova-legal-academy-ip.pdf",
+        previewImage: "/certificates/previews/lyadova-legal-academy-ip.jpg",
+        fileUrl: "/certificates/files/lyadova-legal-academy-ip.pdf",
         type: "pdf"
       },
       {
         title: "Повышение квалификации — сделки",
-        fileUrl: "/assets/certs/lyadova-qualification-deals.pdf",
+        previewImage: "/certificates/previews/lyadova-qualification-deals.jpg",
+        fileUrl: "/certificates/files/lyadova-qualification-deals.pdf",
         type: "pdf"
       },
       {
         title: "Уголовно-правовые аспекты в семейных спорах",
         org: "4Legal Global",
         date: "7–8 февраля 2024",
-        fileUrl: "/assets/certs/lyadova-criminal-family-aspects.png",
+        previewImage: "/certificates/previews/lyadova-criminal-family-aspects.png",
+        fileUrl: "/certificates/files/lyadova-criminal-family-aspects.png",
         type: "image"
       }
     ]

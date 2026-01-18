@@ -9,7 +9,7 @@ import { Button } from "@/components/ui/button";
 import LeadForm from "@/components/LeadForm";
 import { getTeamMemberBySlug } from "@/data/team";
 import { SITE } from "@/config/site";
-import { Phone, MapPin, Briefcase, CheckCircle2, BookOpen, FileText, Image as ImageIcon } from "lucide-react";
+import { Phone, MapPin, Briefcase, CheckCircle2, BookOpen, FileText } from "lucide-react";
 
 const TeamMemberPage = () => {
   const { slug } = useParams();
@@ -236,26 +236,25 @@ const TeamMemberPage = () => {
                       {achievements.map((item) => (
                         <div
                           key={item.fileUrl}
-                          className="rounded-xl border border-border/70 bg-background p-4 flex flex-col justify-between"
+                          className="rounded-xl border border-border/70 bg-background p-4 flex flex-col gap-4"
                         >
-                          <div className="flex items-start gap-3">
-                            <div className="mt-1 text-accent">
-                              {item.type === "pdf" ? (
-                                <FileText className="h-5 w-5" />
-                              ) : (
-                                <ImageIcon className="h-5 w-5" />
-                              )}
-                            </div>
-                            <div>
-                              <p className="font-medium">{item.title}</p>
-                              {(item.org || item.date) && (
-                                <p className="text-small text-muted-foreground">
-                                  {[item.org, item.date].filter(Boolean).join(" · ")}
-                                </p>
-                              )}
-                            </div>
+                          <div className="rounded-lg border border-border/60 bg-muted/30 overflow-hidden">
+                            <img
+                              src={item.previewImage}
+                              alt={`Сертификат: ${item.title}`}
+                              className="w-full aspect-[3/4] object-contain bg-white"
+                              loading="lazy"
+                            />
                           </div>
-                          <div className="mt-4">
+                          <div>
+                            <p className="font-medium">{item.title}</p>
+                            {(item.org || item.date) && (
+                              <p className="text-small text-muted-foreground">
+                                {[item.org, item.date].filter(Boolean).join(" · ")}
+                              </p>
+                            )}
+                          </div>
+                          <div>
                             <Button
                               asChild
                               variant="outline"
