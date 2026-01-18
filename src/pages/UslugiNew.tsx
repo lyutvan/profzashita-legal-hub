@@ -1,5 +1,5 @@
-import { useMemo, useRef, useState } from "react";
-import { Link } from "react-router-dom";
+import { useMemo, useRef, useState, type KeyboardEvent } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -19,108 +19,13 @@ import {
   Search,
   Shield,
   TrendingUp,
-  UserCircle
+  UserCircle,
+  X
 } from "lucide-react";
-import { getServicesByAudience } from "@/data/services-audiences";
+import { getCategoriesForAudience, getServicesByAudience } from "@/data/services-audiences";
 import { sharedReviews } from "@/data/shared-reviews";
+import { popularServiceItems, searchQuickChips, serviceSearchItems } from "@/data/services-search";
 import { SITE } from "@/config/site";
-
-interface PopularService {
-  title: string;
-  subtitle: string;
-  path: string;
-  tags: string[];
-}
-
-const quickChips = [
-  "Развод",
-  "Алименты",
-  "Наследство",
-  "ДТП",
-  "Взыскание долга",
-  "Договоры",
-  "115-ФЗ",
-  "Арбитраж",
-  "158 УК",
-  "159 УК",
-  "228 УК",
-  "264 УК"
-];
-
-const popularServices: PopularService[] = [
-  {
-    title: "Развод и раздел имущества",
-    subtitle: "Стратегия, документы, суд и защита интересов",
-    path: "/services/phys/razvod-razdel-imushchestva",
-    tags: ["развод", "раздел", "семейные", "имущество"]
-  },
-  {
-    title: "Алименты",
-    subtitle: "Назначение, изменение, взыскание задолженности",
-    path: "/services/phys/alimenty",
-    tags: ["алименты", "семья"]
-  },
-  {
-    title: "Наследство",
-    subtitle: "Вступление, оспаривание, раздел наследства",
-    path: "/services/phys/nasledstvo",
-    tags: ["наследство", "наследственные"]
-  },
-  {
-    title: "ДТП и страховые споры",
-    subtitle: "Возмещение ущерба, страховые выплаты, вред здоровью",
-    path: "/services/phys/dtp-strahovye-spory",
-    tags: ["дтп", "страхование", "вред здоровью"]
-  },
-  {
-    title: "Взыскание долга по расписке",
-    subtitle: "Подготовка претензий и исков, сопровождение суда",
-    path: "/services/phys/vzyskanie-po-raspiskam",
-    tags: ["взыскание", "долг", "расписка"]
-  },
-  {
-    title: "115-ФЗ и блокировка счета",
-    subtitle: "Снятие ограничений, коммуникация с банком",
-    path: "/services/biz/razblokirovka-schyota-po-115-fz",
-    tags: ["115-фз", "115", "блокировка", "банк"]
-  },
-  {
-    title: "Арбитражные споры",
-    subtitle: "Поставка, подряд, услуги, аренда, взыскание",
-    path: "/services/biz/arbitrazh-spory-postavka-podryad-uslugi-arenda",
-    tags: ["арбитраж", "бизнес", "споры"]
-  },
-  {
-    title: "Договорная работа для бизнеса",
-    subtitle: "Разработка, экспертиза и защита сделок",
-    path: "/services/biz/razrabotka-ekspertiza-dogovorov-postavka-podryad-uslugi-arenda",
-    tags: ["договоры", "сделки", "бизнес"]
-  },
-  {
-    title: "158 УК РФ — кража",
-    subtitle: "Защита на стадии проверки, следствия, суда",
-    path: "/uslugi/ugolovnoye-delo/158-uk-rf",
-    tags: ["158 ук", "кража", "уголовное"]
-  },
-  {
-    title: "159 УК РФ — мошенничество",
-    subtitle: "Стратегия защиты, работа с доказательствами",
-    path: "/uslugi/ugolovnoye-delo/159-uk-rf",
-    tags: ["159 ук", "мошенничество", "уголовное"]
-  },
-  {
-    title: "228 УК РФ — наркотики",
-    subtitle: "Подключение адвоката и контроль процедуры",
-    path: "/uslugi/ugolovnoye-delo/228-uk-rf",
-    tags: ["228 ук", "наркотики", "уголовное"]
-  },
-  {
-    title: "264 УК РФ — ДТП с пострадавшими",
-    subtitle: "Срочная защита водителей, смягчение последствий",
-    path: "/uslugi/ugolovnoye-delo/264-uk-rf",
-    tags: ["264 ук", "дтп", "уголовное"]
-  }
-];
 
 const directionCards = [
   {
@@ -247,7 +152,24 @@ const faqItems = [
   }
 ];
 
-const normalizeText = (value: string) => value.toLowerCase().replace(/ё/g, "е");
+const popularServices = popularServiceItems;
+
+const audienceLabels = {
+  phys: "Физическим лицам",
+  biz: "Юридическим лицам",
+  criminal: "Уголовные дела"
+};
+
+const audienceOrder = ["phys", "biz", "criminal"] as const;
+
+const normalizeSearch = (value: string) =>
+  value
+    .toLowerCase()
+    .replace(/ё/g, "е")
+    .replace(/[‐‑–—−]/g, " ")
+    .replace(/[^a-z0-9а-я\s]/gi, " ")
+    .replace(/\s+/g, " ")
+    .trim();
 
 const escapeRegExp = (value: string) => value.replace(/[.*+?^${}()|[\]\\]/g, "\\$&");
 
@@ -276,22 +198,54 @@ const highlightText = (text: string, tokens: string[]) => {
 
 const UslugiNew = () => {
   const [query, setQuery] = useState("");
+  const [showAllResults, setShowAllResults] = useState(false);
   const popularRef = useRef<HTMLDivElement | null>(null);
+  const navigate = useNavigate();
   const whatsappNumber = SITE.phoneRaw.replace(/\D/g, "");
 
   const tokens = useMemo(() => {
-    return normalizeText(query)
+    return normalizeSearch(query)
       .split(/[\s,]+/)
       .map((token) => token.trim())
       .filter(Boolean);
   }, [query]);
 
+  const searchResults = useMemo(() => {
+    if (!tokens.length) return [];
+
+    return serviceSearchItems
+      .filter((service) => {
+        const haystack = normalizeSearch(
+          [
+            service.title,
+            service.subtitle ?? "",
+            service.category ?? "",
+            service.slug.replace(/-/g, " "),
+            service.description ?? "",
+            ...(service.keywords ?? [])
+          ].join(" ")
+        );
+        return tokens.every((token) => haystack.includes(token));
+      })
+      .sort((a, b) => (a.priority ?? 999) - (b.priority ?? 999));
+  }, [tokens]);
+
+  const resultsToShow = showAllResults ? searchResults : searchResults.slice(0, 8);
+  const hasMoreResults = searchResults.length > resultsToShow.length;
+
   const filteredPopular = useMemo(() => {
     if (!tokens.length) return popularServices;
 
     return popularServices.filter((service) => {
-      const haystack = normalizeText(
-        [service.title, service.subtitle, ...service.tags].join(" ")
+      const haystack = normalizeSearch(
+        [
+          service.title,
+          service.subtitle ?? "",
+          service.category ?? "",
+          service.slug.replace(/-/g, " "),
+          service.description ?? "",
+          ...(service.keywords ?? [])
+        ].join(" ")
       );
       return tokens.every((token) => haystack.includes(token));
     });
@@ -303,10 +257,31 @@ const UslugiNew = () => {
     criminal: getServicesByAudience("criminal").length
   };
 
+  const categoriesByAudience = useMemo(
+    () => ({
+      phys: getCategoriesForAudience("phys"),
+      biz: getCategoriesForAudience("biz"),
+      criminal: getCategoriesForAudience("criminal")
+    }),
+    []
+  );
+
+  const handleQueryChange = (value: string) => {
+    setQuery(value);
+    setShowAllResults(false);
+  };
+
   const handleChipClick = (chip: string) => {
-    setQuery(chip);
-    if (popularRef.current) {
-      popularRef.current.scrollIntoView({ behavior: "smooth", block: "start" });
+    handleQueryChange(chip);
+  };
+
+  const handleSearchKeyDown = (event: KeyboardEvent<HTMLInputElement>) => {
+    if (event.key === "Escape") {
+      handleQueryChange("");
+      return;
+    }
+    if (event.key === "Enter" && searchResults.length === 1) {
+      navigate(searchResults[0].path);
     }
   };
 
@@ -390,13 +365,25 @@ const UslugiNew = () => {
                         id="service-search"
                         type="search"
                         value={query}
-                        onChange={(event) => setQuery(event.target.value)}
+                        onChange={(event) => handleQueryChange(event.target.value)}
+                        onKeyDown={handleSearchKeyDown}
                         placeholder="Например: развод, ДТП, наследство, 115-ФЗ, 159 УК…"
-                        className="w-full rounded-xl border border-border bg-background px-12 py-3 text-body focus:outline-none focus:ring-2 focus:ring-accent/40"
+                        className="w-full rounded-xl border border-border bg-background pl-12 pr-12 py-3 text-body focus:outline-none focus:ring-2 focus:ring-accent/40"
+                        autoFocus
                       />
+                      {query && (
+                        <button
+                          type="button"
+                          onClick={() => handleQueryChange("")}
+                          className="absolute right-4 top-1/2 -translate-y-1/2 text-muted-foreground hover:text-accent"
+                          aria-label="Очистить поиск"
+                        >
+                          <X className="h-4 w-4" />
+                        </button>
+                      )}
                     </div>
                     <div className="mt-4 flex flex-wrap gap-2">
-                      {quickChips.map((chip) => (
+                      {searchQuickChips.map((chip) => (
                         <button
                           key={chip}
                           type="button"
@@ -409,13 +396,61 @@ const UslugiNew = () => {
                       {query && (
                         <button
                           type="button"
-                          onClick={() => setQuery("")}
+                          onClick={() => handleQueryChange("")}
                           className="rounded-full border border-accent/30 px-4 py-1.5 text-small text-accent hover:border-accent"
                         >
                           Сбросить фильтр
                         </button>
                       )}
                     </div>
+                    {query && (
+                      <div className="mt-6">
+                        <div className="flex flex-wrap items-center justify-between gap-3 text-small text-muted-foreground">
+                          <span>
+                            Найдено: <span className="text-foreground font-semibold">{searchResults.length}</span>
+                          </span>
+                          {hasMoreResults && !showAllResults && (
+                            <span>Показаны первые {resultsToShow.length} результатов</span>
+                          )}
+                        </div>
+                        {searchResults.length > 0 ? (
+                          <div className="mt-3 grid gap-2">
+                            {resultsToShow.map((service) => (
+                              <Link
+                                key={service.id}
+                                to={service.path}
+                                className="rounded-xl border border-border/80 bg-background px-4 py-3 transition-colors hover:border-accent hover:bg-accent/5"
+                              >
+                                <div className="flex items-start justify-between gap-4">
+                                  <div>
+                                    <div className="font-medium text-foreground">
+                                      {highlightText(service.title, tokens)}
+                                    </div>
+                                    <div className="text-small text-muted-foreground">
+                                      {highlightText(service.subtitle ?? service.category ?? "", tokens)}
+                                    </div>
+                                  </div>
+                                  <span className="rounded-full border border-border px-3 py-1 text-[12px] text-muted-foreground">
+                                    {audienceLabels[service.audience]}
+                                  </span>
+                                </div>
+                              </Link>
+                            ))}
+                          </div>
+                        ) : (
+                          <div className="mt-3 rounded-xl border border-dashed border-border/70 bg-muted/40 px-4 py-4 text-small text-muted-foreground">
+                            Ничего не найдено. Попробуйте запросы: «развод», «дтп», «наследство», «115-фз», «159 ук».
+                          </div>
+                        )}
+                        {hasMoreResults && !showAllResults && (
+                          <div className="mt-4">
+                            <Button variant="outline" onClick={() => setShowAllResults(true)}>
+                              Показать все результаты
+                            </Button>
+                          </div>
+                        )}
+                      </div>
+                    )}
                   </div>
                 </div>
               </CardContent>
@@ -423,7 +458,65 @@ const UslugiNew = () => {
           </div>
         </section>
 
-        {/* C) Directions */}
+        {/* C) Catalog */}
+        <section className="section">
+          <div className="container">
+            <div className="section__header max-w-3xl">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                Каталог услуг
+              </h2>
+              <p className="text-muted-foreground">
+                Полный список направлений и услуг с быстрыми переходами.
+              </p>
+            </div>
+            <div className="section__content grid grid-cols-1 lg:grid-cols-3 gap-6">
+              {audienceOrder.map((audience) => (
+                <Card key={audience} className="border-border/80 h-full">
+                  <CardContent className="pt-6 pb-6 h-full flex flex-col">
+                    <div className="flex items-start justify-between gap-4 mb-4">
+                      <div>
+                        <h3 className="font-semibold text-body-mobile md:text-body">
+                          {audienceLabels[audience]}
+                        </h3>
+                        <p className="text-small text-muted-foreground">
+                          {totalByAudience[audience]} услуг в разделе
+                        </p>
+                      </div>
+                      <Button variant="outline" size="sm" asChild className="h-10 px-4 text-small">
+                        <Link to={directionCards.find((card) => card.audience === audience)?.to ?? "/"}>
+                          Все услуги
+                        </Link>
+                      </Button>
+                    </div>
+                    <div className="space-y-5">
+                      {categoriesByAudience[audience].map((category) => (
+                        <div key={category.slug}>
+                          <p className="text-small font-semibold text-foreground">
+                            {category.title}
+                          </p>
+                          <ul className="mt-2 space-y-1 text-small text-muted-foreground">
+                            {category.services.map((service) => (
+                              <li key={service.path}>
+                                <Link
+                                  to={service.path}
+                                  className="transition-colors hover:text-accent"
+                                >
+                                  {service.title}
+                                </Link>
+                              </li>
+                            ))}
+                          </ul>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* D) Directions */}
         <section className="section">
           <div className="container">
             <div className="section__header max-w-3xl">
@@ -465,7 +558,7 @@ const UslugiNew = () => {
           </div>
         </section>
 
-        {/* D) Popular services */}
+        {/* E) Popular services */}
         <section className="section bg-muted/30 scroll-mt-24" ref={popularRef} id="popular">
           <div className="container">
             <div className="section__header">
@@ -514,7 +607,7 @@ const UslugiNew = () => {
           </div>
         </section>
 
-        {/* E) How we work */}
+        {/* F) How we work */}
         <section className="section">
           <div className="container">
             <div className="section__header max-w-3xl">
@@ -545,7 +638,7 @@ const UslugiNew = () => {
           </div>
         </section>
 
-        {/* F) Why us */}
+        {/* G) Why us */}
         <section className="section bg-muted/30">
           <div className="container">
             <div className="section__header max-w-3xl">
@@ -572,7 +665,7 @@ const UslugiNew = () => {
           </div>
         </section>
 
-        {/* G) Reviews */}
+        {/* H) Reviews */}
         <section className="section">
           <div className="container">
             <div className="section__header max-w-3xl">
@@ -608,7 +701,7 @@ const UslugiNew = () => {
           </div>
         </section>
 
-        {/* H) FAQ + Final CTA */}
+        {/* I) FAQ + Final CTA */}
         <section className="section bg-muted/30">
           <div className="container">
             <div className="section__header max-w-3xl">

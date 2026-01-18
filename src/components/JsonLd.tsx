@@ -5,6 +5,8 @@ interface JsonLdProps {
   data: object;
 }
 
+type JsonLdObject = Record<string, unknown>;
+
 export const JsonLd = ({ data }: JsonLdProps) => {
   return (
     <Helmet>
@@ -96,7 +98,7 @@ interface LegalServiceSchemaProps {
 }
 
 export const LegalServiceSchema = ({ serviceType, url, priceFrom }: LegalServiceSchemaProps) => {
-  const schema: any = {
+  const schema: JsonLdObject = {
     "@context": "https://schema.org",
     "@type": "LegalService",
     "@id": `${url}#service`,
@@ -132,7 +134,7 @@ interface PersonSchemaProps {
 }
 
 export const PersonSchema = ({ name, jobTitle, image, url, credential }: PersonSchemaProps) => {
-  const schema: any = {
+  const schema: JsonLdObject = {
     "@context": "https://schema.org",
     "@type": ["Person", "Attorney"],
     "@id": `${url}#person`,
@@ -169,7 +171,7 @@ interface ArticleSchemaProps {
 }
 
 export const ArticleSchema = ({ headline, description, datePublished, author, url, image, articleBody }: ArticleSchemaProps) => {
-  const schema: any = {
+  const schema: JsonLdObject = {
     "@context": "https://schema.org",
     "@type": "Article",
     "@id": `${url}#article`,

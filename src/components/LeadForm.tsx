@@ -6,7 +6,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { Loader2 } from "lucide-react";
 import { submitToWebhook } from "@/lib/webhook";
-import { useInRouterContext, useLocation } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import PhoneInput from "@/components/PhoneInput";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 
@@ -16,8 +16,7 @@ interface LeadFormProps {
 }
 
 const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
-  const inRouter = useInRouterContext();
-  const location = inRouter ? useLocation() : { pathname: "" };
+  const location = useLocation();
   const CASE_RU: Record<string, string> = {
     criminal: "Уголовное право",
     civil: "Гражданские дела",
@@ -43,7 +42,12 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
   const isCompact = variant === "compact";
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handlePhoneChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, phone: value }));
   };
 
   const validateForm = (): boolean => {
@@ -192,7 +196,7 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
         </Label>
         <PhoneInput
           value={formData.phone}
-          onChange={(val) => handleChange({ target: { name: "phone", value: val } } as any)}
+          onChange={handlePhoneChange}
           disabled={isSubmitting}
           required
         />

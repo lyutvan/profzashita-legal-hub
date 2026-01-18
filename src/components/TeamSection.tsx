@@ -52,6 +52,7 @@ const TeamSection = ({
         <div className="section__content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
           {teamMembers.map((member) => {
             const specs = member.specializations.slice(0, specsLimit);
+            const certCount = member.achievements?.length ?? 0;
             return (
               <Card key={member.slug} className="border-border hover:shadow-elegant transition-all h-full flex flex-col">
                 <CardContent className="pt-6 flex flex-col h-full">
@@ -67,6 +68,13 @@ const TeamSection = ({
                   <p className="text-accent text-body-mobile md:text-body font-medium mb-2 text-center">{member.role}</p>
                   {member.experienceText && (
                     <p className="text-small text-muted-foreground mb-4 text-center">{member.experienceText}</p>
+                  )}
+                  {certCount > 0 && (
+                    <div className="mb-4 flex justify-center">
+                      <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[12px] text-accent">
+                        {certCount} сертификата
+                      </span>
+                    </div>
                   )}
                   <ul className="space-y-2 text-small text-muted-foreground text-center mb-4">
                     {specs.map((spec) => (

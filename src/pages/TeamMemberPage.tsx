@@ -8,7 +8,7 @@ import { Button } from "@/components/ui/button";
 import LeadForm from "@/components/LeadForm";
 import { getTeamMemberBySlug } from "@/data/team";
 import { SITE } from "@/config/site";
-import { Phone, MapPin, Briefcase, CheckCircle2, BookOpen } from "lucide-react";
+import { Phone, MapPin, Briefcase, CheckCircle2, BookOpen, FileText, Image as ImageIcon } from "lucide-react";
 
 const TeamMemberPage = () => {
   const { slug } = useParams();
@@ -19,6 +19,13 @@ const TeamMemberPage = () => {
   }
 
   const experience = member.experienceText;
+  const headline = member.headline ?? member.name;
+  const leadText = member.leadText;
+  const achievements = member.achievements ?? [];
+  const seoTitle = member.seoTitle ?? `${member.name} — адвокат | Профзащита`;
+  const seoDescription =
+    member.seoDescription ??
+    `${member.role}. ${member.specializations.join(", ")}. Консультация и представительство в суде.`;
   const city = member.city ?? SITE.address.city;
   const phone = member.phone ?? SITE.phone;
   const email = member.email ?? SITE.email;
@@ -33,11 +40,8 @@ const TeamMemberPage = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
-        <title>{member.name} — адвокат | Профзащита</title>
-        <meta 
-          name="description" 
-          content={`${member.role}. ${member.specializations.join(", ")}. Консультация и представительство в суде.`} 
-        />
+        <title>{seoTitle}</title>
+        <meta name="description" content={seoDescription} />
         <link rel="canonical" href={`${SITE.url}team/${member.slug}`} />
       </Helmet>
 
@@ -58,9 +62,10 @@ const TeamMemberPage = () => {
             <div className="grid grid-cols-1 lg:grid-cols-[1.1fr,0.9fr] gap-10 items-center mt-8">
               <div className="space-y-4">
                 <p className="text-white/70 uppercase tracking-[0.08em] text-small">Профиль адвоката</p>
-                <h1 className="font-serif text-h1-mobile md:text-h1 font-bold leading-tight">{member.name}</h1>
+                <h1 className="font-serif text-h1-mobile md:text-h1 font-bold leading-tight">{headline}</h1>
+                {leadText && <p className="lead text-white/85">{leadText}</p>}
                 <p className="text-body-mobile md:text-body text-accent font-semibold">{member.role}</p>
-                {experience && (
+                {experience && !leadText && (
                   <p className="text-white/80 text-body-mobile md:text-body">{experience}</p>
                 )}
 
@@ -209,6 +214,57 @@ const TeamMemberPage = () => {
                   )}
                 </CardContent>
               </Card>
+
+              {achievements.length > 0 && (
+                <Card className="border-border">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-h3-mobile md:text-h3">
+                      <FileText className="h-5 w-5 text-accent" />
+                      Достижения и повышение квалификации
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                      {achievements.map((item) => (
+                        <div
+                          key={item.fileUrl}
+                          className="rounded-xl border border-border/70 bg-background p-4 flex flex-col justify-between"
+                        >
+                          <div className="flex items-start gap-3">
+                            <div className="mt-1 text-accent">
+                              {item.type === "pdf" ? (
+                                <FileText className="h-5 w-5" />
+                              ) : (
+                                <ImageIcon className="h-5 w-5" />
+                              )}
+                            </div>
+                            <div>
+                              <p className="font-medium">{item.title}</p>
+                              {(item.org || item.date) && (
+                                <p className="text-small text-muted-foreground">
+                                  {[item.org, item.date].filter(Boolean).join(" · ")}
+                                </p>
+                              )}
+                            </div>
+                          </div>
+                          <div className="mt-4">
+                            <Button
+                              asChild
+                              variant="outline"
+                              size="sm"
+                              className="h-10 px-4 text-small"
+                            >
+                              <a href={item.fileUrl} target="_blank" rel="noopener noreferrer">
+                                Открыть
+                              </a>
+                            </Button>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              )}
 
               {publications.length > 0 && (
                 <Card className="border-border">

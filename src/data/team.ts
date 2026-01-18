@@ -7,6 +7,10 @@ import kalabekovImg from "@/assets/team/kalabekov.jpg";
 export interface TeamMember {
   name: string;
   slug: string;
+  headline?: string;
+  leadText?: string;
+  seoTitle?: string;
+  seoDescription?: string;
   role: string;
   experienceText?: string;
   specializations: string[];
@@ -22,6 +26,13 @@ export interface TeamMember {
   city?: string;
   reesterNumber?: string;
   languages?: string[];
+  achievements?: {
+    title: string;
+    org?: string;
+    date?: string;
+    fileUrl: string;
+    type: "pdf" | "image";
+  }[];
 }
 
 export const teamMembers: TeamMember[] = [
@@ -208,6 +219,61 @@ export const teamMembers: TeamMember[] = [
       { title: "Как вернуть деньги по договору услуг", url: "https://prof-zashita.ru" }
     ],
     languages: ["Русский", "Английский", "Турецкий"]
+  },
+  {
+    name: "Лядова Юлия Сергеевна",
+    slug: "yulia-lyadova",
+    headline: "Адвокат Лядова Юлия Сергеевна",
+    leadText: "18 лет практики. Договорные/имущественные, семейные споры, интеллектуальная собственность.",
+    seoTitle: "Адвокат Лядова Юлия Сергеевна — Профзащита",
+    seoDescription:
+      "Адвокат Лядова Юлия Сергеевна — 18 лет практики. Договорные и имущественные споры, семейные дела, интеллектуальная собственность. Консультация в Москве.",
+    role: "Адвокат",
+    experienceText: "Стаж 18 лет",
+    specializations: [
+      "Договорные и имущественные споры",
+      "Семейные споры",
+      "Интеллектуальная собственность"
+    ],
+    about:
+      "Сопровождает договорные и имущественные споры, помогает урегулировать семейные конфликты и защищает интересы клиентов в вопросах интеллектуальной собственности. В работе делает акцент на точной правовой позиции, сборе доказательств и понятной стратегии для клиента.\n\nВедёт дела на досудебной стадии и в суде, готовит процессуальные документы, участвует в переговорах и добивается исполнения решений.",
+    competencies: [
+      "Экспертиза договоров и защита интересов в спорах",
+      "Сопровождение семейных дел и раздел имущества",
+      "Регистрация и защита прав на объекты интеллектуальной собственности"
+    ],
+    practice: [
+      "Договорные и имущественные споры",
+      "Семейные споры",
+      "Интеллектуальная собственность"
+    ],
+    photo: "/assets/team/yulia-lyadova.jpg",
+    achievements: [
+      {
+        title: "Лексториум — субсидиарная ответственность",
+        org: "Лексториум",
+        fileUrl: "/assets/certs/lyadova-lektorium-subsidiary.pdf",
+        type: "pdf"
+      },
+      {
+        title: "Legal Academy — право интеллектуальной собственности",
+        org: "Legal Academy",
+        fileUrl: "/assets/certs/lyadova-legal-academy-ip.pdf",
+        type: "pdf"
+      },
+      {
+        title: "Повышение квалификации — сделки",
+        fileUrl: "/assets/certs/lyadova-qualification-deals.pdf",
+        type: "pdf"
+      },
+      {
+        title: "Уголовно-правовые аспекты в семейных спорах",
+        org: "4Legal Global",
+        date: "7–8 февраля 2024",
+        fileUrl: "/assets/certs/lyadova-criminal-family-aspects.png",
+        type: "image"
+      }
+    ]
   }
 ];
 

@@ -3,7 +3,7 @@ const METRIKA_ID = 1051784949;
 
 declare global {
   interface Window {
-    ym?: (id: number, method: string, ...args: any[]) => void;
+    ym?: (id: number, method: string, ...args: unknown[]) => void;
   }
 }
 
@@ -31,10 +31,10 @@ export const initMetrika = () => {
   setTimeout(metrikaHit, 100);
 
   // Хиты при программной навигации
-  ["pushState", "replaceState"].forEach((fn) => {
-    const orig = (history as any)[fn];
-    (history as any)[fn] = function() {
-      const result = orig.apply(this, arguments);
+  (["pushState", "replaceState"] as const).forEach((fn) => {
+    const orig = history[fn];
+    history[fn] = function (...args: Parameters<History["pushState"]>) {
+      const result = orig.apply(this, args);
       setTimeout(metrikaHit, 0);
       return result;
     };

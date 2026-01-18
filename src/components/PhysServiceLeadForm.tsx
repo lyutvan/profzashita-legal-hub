@@ -34,7 +34,12 @@ const PhysServiceLeadForm = ({ serviceTitle, situationOptions, desiredResults }:
   const [submitTime, setSubmitTime] = useState<number>(Date.now());
 
   const handleChange = (e: ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
+
+  const handlePhoneChange = (value: string) => {
+    setFormData((prev) => ({ ...prev, phone: value }));
   };
 
   const validateForm = () => {
@@ -193,7 +198,7 @@ const PhysServiceLeadForm = ({ serviceTitle, situationOptions, desiredResults }:
           </Label>
           <PhoneInput
             value={formData.phone}
-            onChange={(val) => handleChange({ target: { name: "phone", value: val } } as any)}
+            onChange={handlePhoneChange}
             disabled={isSubmitting}
             required
           />

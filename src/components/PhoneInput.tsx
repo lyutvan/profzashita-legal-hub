@@ -1,4 +1,5 @@
 import InputMask from "react-input-mask";
+import type { ComponentProps } from "react";
 
 import { Input } from "@/components/ui/input";
 import { PHONE_MASK } from "@/lib/phone";
@@ -29,10 +30,9 @@ const PhoneInput = ({
       onChange={(e) => onChange(e.target.value)}
       disabled={disabled}
     >
-      {/* @ts-ignore - InputMask types issue */}
-      {(inputProps: any) => (
+      {(inputProps) => (
         <Input
-          {...inputProps}
+          {...(inputProps as ComponentProps<"input">)}
           id={id}
           name={name}
           type="tel"
@@ -45,4 +45,3 @@ const PhoneInput = ({
 };
 
 export default PhoneInput;
-
