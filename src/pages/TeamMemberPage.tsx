@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, Navigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
@@ -13,6 +14,7 @@ import { Phone, MapPin, Briefcase, CheckCircle2, BookOpen, FileText, Image as Im
 const TeamMemberPage = () => {
   const { slug } = useParams();
   const member = slug ? getTeamMemberBySlug(slug) : undefined;
+  const [imageFailed, setImageFailed] = useState(false);
 
   if (!member) {
     return <Navigate to="/#team" replace />;
@@ -26,6 +28,7 @@ const TeamMemberPage = () => {
   const seoDescription =
     member.seoDescription ??
     `${member.role}. ${member.specializations.join(", ")}. Консультация и представительство в суде.`;
+  const hasPhoto = Boolean(member.photo) && !imageFailed;
   const city = member.city ?? SITE.address.city;
   const phone = member.phone ?? SITE.phone;
   const email = member.email ?? SITE.email;
@@ -90,13 +93,18 @@ const TeamMemberPage = () => {
                 </div>
               </div>
 
-              <div className="relative w-full max-w-[320px] md:max-w-[420px] aspect-square md:aspect-[4/5] rounded-xl overflow-hidden shadow-elegant border-2 border-accent/25 bg-white/5 mx-auto md:mx-0">
-                {member.photo ? (
+              <div
+                className={`relative w-full max-w-[320px] md:max-w-[420px] aspect-square md:aspect-[4/5] rounded-xl overflow-hidden shadow-elegant mx-auto md:mx-0 ${
+                  hasPhoto ? "border-2 border-accent/25 bg-white/5" : "bg-white/10"
+                }`}
+              >
+                {hasPhoto ? (
                   <img 
                     src={member.photo} 
                     alt={member.name} 
                     className="w-full h-full object-cover object-center"
                     loading="lazy"
+                    onError={() => setImageFailed(true)}
                   />
                 ) : (
                   <div className="w-full h-full bg-gradient-to-br from-primary to-primary/90 flex items-center justify-center text-h2-mobile md:text-h2 font-bold">

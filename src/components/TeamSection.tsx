@@ -1,7 +1,9 @@
+import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { teamMembers } from "@/data/team";
+import { UserCircle } from "lucide-react";
+import { teamMembers, type TeamMember } from "@/data/team";
 
 interface TeamSectionProps {
   id?: string;
@@ -19,6 +21,71 @@ const TeamSection = ({
   backgroundImage
 }: TeamSectionProps) => {
   const specsLimit = 3;
+  const TeamCard = ({ member }: { member: TeamMember }) => {
+    const [imageFailed, setImageFailed] = useState(false);
+    const hasPhoto = Boolean(member.photo) && !imageFailed;
+    const certCount = member.achievements?.length ?? 0;
+    const specs = member.specializations.slice(0, specsLimit);
+
+    return (
+      <Card className="border-border hover:shadow-elegant transition-all h-full flex flex-col">
+        <CardContent className="pt-6 flex flex-col h-full">
+          <div
+            className={`w-48 h-48 rounded-xl overflow-hidden mx-auto mb-4 ${
+              hasPhoto ? "border-2 border-accent/20" : "bg-muted/40"
+            }`}
+          >
+            {hasPhoto ? (
+              <img
+                src={member.photo}
+                alt={member.name}
+                className="w-full h-full object-cover"
+                loading="lazy"
+                onError={() => setImageFailed(true)}
+              />
+            ) : (
+              <div className="w-full h-full flex items-center justify-center text-muted-foreground">
+                <UserCircle className="h-16 w-16" />
+              </div>
+            )}
+          </div>
+          <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2 text-center">
+            {member.name}
+          </h3>
+          <p className="text-accent text-body-mobile md:text-body font-medium mb-2 text-center">
+            {member.role}
+          </p>
+          {member.experienceText && (
+            <p className="text-small text-muted-foreground mb-4 text-center">{member.experienceText}</p>
+          )}
+          {certCount > 0 && (
+            <div className="mb-4 flex justify-center">
+              <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[12px] text-accent">
+                {certCount} сертификата
+              </span>
+            </div>
+          )}
+          <ul className="space-y-2 text-small text-muted-foreground text-center mb-4">
+            {specs.map((spec) => (
+              <li key={spec} className="leading-relaxed">
+                • {spec}
+              </li>
+            ))}
+          </ul>
+          <div className="mt-auto flex justify-center">
+            <Button
+              asChild
+              className="bg-accent text-white hover:bg-accent/90 min-w-[160px]"
+            >
+              <Link to={`/team/${member.slug}`}>
+                Подробнее
+              </Link>
+            </Button>
+          </div>
+        </CardContent>
+      </Card>
+    );
+  };
 
   return (
     <section
@@ -50,53 +117,9 @@ const TeamSection = ({
         </div>
 
         <div className="section__content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
-          {teamMembers.map((member) => {
-            const specs = member.specializations.slice(0, specsLimit);
-            const certCount = member.achievements?.length ?? 0;
-            return (
-              <Card key={member.slug} className="border-border hover:shadow-elegant transition-all h-full flex flex-col">
-                <CardContent className="pt-6 flex flex-col h-full">
-                  <div className="w-48 h-48 rounded-xl overflow-hidden mx-auto mb-4 border-2 border-accent/20">
-                    <img
-                      src={member.photo}
-                      alt={member.name}
-                      className="w-full h-full object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                  <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2 text-center">{member.name}</h3>
-                  <p className="text-accent text-body-mobile md:text-body font-medium mb-2 text-center">{member.role}</p>
-                  {member.experienceText && (
-                    <p className="text-small text-muted-foreground mb-4 text-center">{member.experienceText}</p>
-                  )}
-                  {certCount > 0 && (
-                    <div className="mb-4 flex justify-center">
-                      <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[12px] text-accent">
-                        {certCount} сертификата
-                      </span>
-                    </div>
-                  )}
-                  <ul className="space-y-2 text-small text-muted-foreground text-center mb-4">
-                    {specs.map((spec) => (
-                      <li key={spec} className="leading-relaxed">
-                        • {spec}
-                      </li>
-                    ))}
-                  </ul>
-                  <div className="mt-auto flex justify-center">
-                    <Button
-                      asChild
-                      className="bg-accent text-white hover:bg-accent/90 min-w-[160px]"
-                    >
-                      <Link to={`/team/${member.slug}`}>
-                        Подробнее
-                      </Link>
-                    </Button>
-                  </div>
-                </CardContent>
-              </Card>
-            );
-          })}
+          {teamMembers.map((member) => (
+            <TeamCard key={member.slug} member={member} />
+          ))}
         </div>
       </div>
     </section>

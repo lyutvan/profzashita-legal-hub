@@ -247,7 +247,7 @@ export const teamMembers: TeamMember[] = [
       "Семейные споры",
       "Интеллектуальная собственность"
     ],
-    photo: "/assets/team/yulia-lyadova.jpg",
+    photo: "/images/team/lyadova-yuliya.jpg",
     achievements: [
       {
         title: "Лексториум — субсидиарная ответственность",
