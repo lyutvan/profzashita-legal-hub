@@ -15,7 +15,7 @@ const QuickQuestion = () => {
         aria-label="Задать вопрос"
       >
         <MessageSquare className="h-6 w-6" />
-        <span className="absolute right-full mr-3 px-3 py-2 bg-background border border-border rounded-xl text-small font-medium whitespace-nowrap opacity-0 group-hover:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg">
+        <span className="absolute right-full mr-3 min-w-[140px] px-3 py-2 bg-background border border-border rounded-xl text-small font-medium leading-[1.2] text-foreground whitespace-nowrap opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg z-50">
           Задать вопрос
         </span>
       </button>

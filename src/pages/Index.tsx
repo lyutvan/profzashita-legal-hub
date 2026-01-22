@@ -522,7 +522,7 @@ const Index = () => {
               <Accordion type="single" collapsible className="section__content space-y-4">
                 {faqItems.map((item, index) => (
                   <AccordionItem key={item.question} value={`faq-${index}`} className="bg-card border border-border rounded-xl px-6">
-                    <AccordionTrigger className="text-left hover:text-accent">
+                    <AccordionTrigger className="faq-question text-left hover:text-accent">
                       {item.question}
                     </AccordionTrigger>
                     <AccordionContent className="text-muted-foreground">

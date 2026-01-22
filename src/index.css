@@ -288,6 +288,17 @@ All colors MUST be HSL.
     line-height: 1.2;
   }
 
+  .faq-question,
+  .faq-question * {
+    text-decoration: none !important;
+  }
+
+  .faq-question:hover,
+  .faq-question:focus,
+  .faq-question:active {
+    text-decoration: none !important;
+  }
+
   .section--tight {
     padding-block: var(--section-y-sm);
   }
