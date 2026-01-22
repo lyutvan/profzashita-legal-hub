@@ -8,6 +8,7 @@ const rootDir = process.cwd();
 const sitemapPath = path.join(rootDir, "public", "sitemap.xml");
 const servicesDataPath = path.join(rootDir, "src", "data", "services-audiences.ts");
 const physContentPath = path.join(rootDir, "src", "data", "phys-service-content.ts");
+const newsDataPath = path.join(rootDir, "src", "data", "news.ts");
 
 const readFileSafe = (filePath) => {
   if (!fs.existsSync(filePath)) return "";
@@ -101,6 +102,16 @@ const collectBizPaths = () => {
   };
 };
 
+const collectNewsPaths = () => {
+  const newsData = readFileSafe(newsDataPath);
+  const idMatches = [...newsData.matchAll(/id:\s*'([^']+)'/g)].map((m) => m[1]);
+  const newsPaths = unique(idMatches).map((id) => `/news/${id}`);
+  return {
+    newsIndex: "/novosti",
+    newsPaths
+  };
+};
+
 const readExistingSitemap = () => {
   const xml = readFileSafe(sitemapPath);
   const items = [];
@@ -120,6 +131,7 @@ const buildSitemap = () => {
   const { physIndex, physPaths, categoryPaths } = collectPhysPaths();
   const { criminalIndex, criminalPaths } = collectCriminalPaths();
   const { bizIndex, bizPaths } = collectBizPaths();
+  const { newsIndex, newsPaths } = collectNewsPaths();
   const existingItems = readExistingSitemap();
   const physBase = `${SITE_URL}${physIndex}`;
   const criminalBase = `${SITE_URL}${criminalIndex}`;
@@ -137,6 +149,8 @@ const buildSitemap = () => {
   const criminalUrls = Array.from(criminalUrlSet).sort();
   const bizUrlSet = new Set([bizIndex, ...bizPaths]);
   const bizUrls = Array.from(bizUrlSet).sort();
+  const newsUrlSet = new Set([newsIndex, ...newsPaths]);
+  const newsUrls = Array.from(newsUrlSet).sort();
 
   const physItems = physUrls.map((pathItem) => {
     const loc = `${SITE_URL}${pathItem}`;
@@ -169,14 +183,31 @@ const buildSitemap = () => {
     };
   });
 
-  const items = [...preserved, ...physItems, ...criminalItems, ...bizItems];
+  const newsItems = newsUrls.map((pathItem) => {
+    const loc = `${SITE_URL}${pathItem}`;
+    const isIndex = pathItem === newsIndex;
+    return {
+      loc,
+      priority: isIndex ? "0.7" : "0.6",
+      changefreq: isIndex ? "weekly" : "monthly"
+    };
+  });
+
+  const items = [...preserved, ...physItems, ...criminalItems, ...bizItems, ...newsItems];
+  const uniqueItems = [];
+  const seen = new Set();
+  for (const item of items) {
+    if (seen.has(item.loc)) continue;
+    seen.add(item.loc);
+    uniqueItems.push(item);
+  }
 
   const xml = [
     '<?xml version="1.0" encoding="UTF-8"?>',
     '<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">'
   ];
 
-  for (const item of items) {
+  for (const item of uniqueItems) {
     xml.push("  <url>");
     xml.push(`    <loc>${item.loc}</loc>`);
     xml.push(`    <lastmod>${today}</lastmod>`);

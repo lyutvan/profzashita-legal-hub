@@ -1,10 +1,11 @@
-import { useParams, Navigate } from "react-router-dom";
+import { Link, Navigate, useParams } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { newsItems } from "@/data/news";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
+import { ArticleSchema } from "@/components/JsonLd";
 import { Calendar, ArrowLeft, Clock, MapPin, Users } from "lucide-react";
 import { SITE } from "@/config/site";
 
@@ -18,11 +19,11 @@ const NewsDetail = () => {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('ru-RU', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
+    return new Intl.DateTimeFormat('ru-RU', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    }).format(date);
   };
 
   const getCategoryLabel = (category: typeof newsItem.category) => {
@@ -42,15 +43,30 @@ const NewsDetail = () => {
   };
 
 
+  const newsUrl = `${SITE.url}news/${newsItem.id}`;
+  const ogImage = newsItem.image ?? SITE.ogImage;
+
   return (
     <>
       <Helmet>
         <title>{newsItem.title} - {SITE.name}</title>
         <meta name="description" content={newsItem.excerpt} />
+        <link rel="canonical" href={newsUrl} />
         <meta property="og:title" content={`${newsItem.title} - ${SITE.name}`} />
         <meta property="og:description" content={newsItem.excerpt} />
-        {newsItem.image && <meta property="og:image" content={newsItem.image} />}
+        <meta property="og:type" content="article" />
+        <meta property="og:url" content={newsUrl} />
+        <meta property="og:image" content={ogImage} />
       </Helmet>
+
+      <ArticleSchema
+        headline={newsItem.title}
+        description={newsItem.excerpt}
+        datePublished={newsItem.date}
+        author="Коллегия адвокатов города Москвы «Профзащита»"
+        url={newsUrl}
+        image={ogImage}
+      />
       
       <div className="min-h-screen flex flex-col bg-background">
         <Header />
@@ -236,6 +252,47 @@ const NewsDetail = () => {
                       </p>
                     </div>
                   </div>
+                ) : newsItem.sections ? (
+                  <div className="space-y-8">
+                    {newsItem.intro && (
+                      <p className="text-body-mobile md:text-body text-muted-foreground leading-relaxed">
+                        {newsItem.intro}
+                      </p>
+                    )}
+
+                    {newsItem.sections.map((section) => (
+                      <div key={section.title} className="space-y-4">
+                        <h2 className="text-h2-mobile md:text-h2 font-bold text-foreground">
+                          {section.title}
+                        </h2>
+                        <ul className="space-y-3">
+                          {section.items.map((item, index) => (
+                            <li key={`${section.title}-${index}`} className="flex flex-col gap-2">
+                              <div className="flex items-start gap-3">
+                                <span className="mt-2 h-2 w-2 rounded-full bg-accent flex-shrink-0" />
+                                <span className="text-body-mobile md:text-body text-muted-foreground leading-relaxed">
+                                  {item.text}
+                                </span>
+                              </div>
+                              {item.subitems && (
+                                <ul className="ml-6 space-y-1 list-disc text-small text-muted-foreground">
+                                  {item.subitems.map((subitem) => (
+                                    <li key={subitem}>{subitem}</li>
+                                  ))}
+                                </ul>
+                              )}
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+
+                    {newsItem.closing && (
+                      <p className="text-body-mobile md:text-body text-muted-foreground leading-relaxed">
+                        {newsItem.closing}
+                      </p>
+                    )}
+                  </div>
                 ) : (
                   <div className="prose prose-lg max-w-none">
                     <p className="text-muted-foreground leading-relaxed">
@@ -252,18 +309,19 @@ const NewsDetail = () => {
             <div className="container">
               <div className="max-w-3xl mx-auto text-center">
                 <h2 className="text-h2-mobile md:text-h2 font-bold text-foreground mb-4">
-                  Нужна юридическая помощь?
+                  Нужна консультация по вашей ситуации?
                 </h2>
                 <p className="text-muted-foreground mb-8">
-                  Свяжитесь с нами для получения профессиональной консультации
+                  Поможем оценить ситуацию и предложим следующий шаг.
                 </p>
                 <div className="flex flex-wrap gap-4 justify-center">
-                  <Button size="lg">
-                    Получить консультацию
+                  <Button size="lg" asChild>
+                    <Link to="/kontakty">Записаться</Link>
                   </Button>
-                  <Button size="lg" variant="outline" onClick={() => window.history.back()}>
-                    <ArrowLeft className="h-4 w-4 mr-2" />
-                    Вернуться к новостям
+                  <Button size="lg" variant="outline" asChild>
+                    <a href={`https://wa.me/${SITE.phoneRaw.replace("+", "")}`} target="_blank" rel="noopener noreferrer">
+                      Связаться
+                    </a>
                   </Button>
                 </div>
               </div>

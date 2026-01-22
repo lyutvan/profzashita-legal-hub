@@ -35,11 +35,11 @@ const Novosti = () => {
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
-    return date.toLocaleDateString('ru-RU', { 
-      year: 'numeric', 
-      month: 'long', 
-      day: 'numeric' 
-    });
+    return new Intl.DateTimeFormat('ru-RU', {
+      day: '2-digit',
+      month: '2-digit',
+      year: 'numeric'
+    }).format(date);
   };
 
   return (
@@ -135,9 +135,9 @@ const Novosti = () => {
                       </CardDescription>
                     </CardHeader>
                     <CardContent>
-                      <Link to={`/novosti/${item.id}`}>
+                      <Link to={`/news/${item.id}`}>
                         <Button variant="ghost" className="w-full justify-between group/btn">
-                          Читать далее
+                          Читать
                           <ChevronRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
                         </Button>
                       </Link>
