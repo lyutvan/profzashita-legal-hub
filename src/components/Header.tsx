@@ -1,5 +1,5 @@
 import { Link, useLocation } from "react-router-dom";
-import { Menu, X, ChevronDown } from "lucide-react";
+import { Menu, X, Mail, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import Logo from "./Logo";
@@ -115,25 +115,43 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-4">
-            <Button 
-              variant="default" 
-              size="sm" 
-              className="transition-colors duration-150 bg-accent text-white hover:bg-accent/90 h-11 px-4 text-small"
-              asChild
-            >
-              <Link to="/kontakty">Консультация</Link>
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="border-accent text-accent hover:bg-accent hover:text-accent-foreground gap-2 h-11 px-4 text-small"
-              asChild
-            >
-              <a href={`https://wa.me/${SITE.phoneRaw.replace('+', '')}`} target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon size={16} />
-                WhatsApp
+            <div className="flex flex-col gap-1.5 text-small leading-[1.2] text-white/90">
+              <a
+                href="tel:+79168597654"
+                className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
+              >
+                <Phone className="h-4 w-4" strokeWidth={1.8} />
+                +7 (916) 859-76-54
               </a>
-            </Button>
+              <a
+                href="mailto:profzashchita@internet.ru"
+                className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
+              >
+                <Mail className="h-4 w-4" strokeWidth={1.8} />
+                profzashchita@internet.ru
+              </a>
+            </div>
+            <div className="flex items-center gap-3">
+              <Button 
+                variant="default" 
+                size="sm" 
+                className="transition-colors duration-150 bg-accent text-white hover:bg-accent/90 h-11 px-4 text-small"
+                asChild
+              >
+                <Link to="/kontakty">Консультация</Link>
+              </Button>
+              <Button 
+                variant="outline" 
+                size="sm" 
+                className="border-accent text-accent hover:bg-accent hover:text-accent-foreground gap-2 h-11 px-4 text-small"
+                asChild
+              >
+                <a href={`https://wa.me/${SITE.phoneRaw.replace('+', '')}`} target="_blank" rel="noopener noreferrer">
+                  <WhatsAppIcon size={16} />
+                  WhatsApp
+                </a>
+              </Button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
