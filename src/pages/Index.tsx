@@ -341,9 +341,12 @@ const Index = () => {
             </div>
 
             <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-              {featuredCases.map((caseItem) => (
-                <Link key={caseItem.id} to="/keisy" className="group block h-full">
-                  <Card className="border-border hover:shadow-elegant transition-all h-full">
+              {featuredCases.map((caseItem) => {
+                const decisionPreview = caseItem.decisionPreview ?? caseItem.documents?.[0];
+                const decisionUrl = caseItem.decisionUrl ?? caseItem.documents?.[0];
+
+                return (
+                  <Card key={caseItem.id} className="border-border hover:shadow-elegant transition-all h-full flex flex-col">
                     <CardContent className="pt-6 flex flex-col h-full">
                       <div className="text-small text-muted-foreground mb-2">
                         {caseItem.category}
@@ -351,16 +354,46 @@ const Index = () => {
                       <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-3">
                         {caseItem.title}
                       </h3>
+
+                      {decisionPreview ? (
+                        <div className="mb-4 overflow-hidden rounded-xl border border-border bg-muted/20">
+                          <img
+                            src={decisionPreview}
+                            alt={`Скан решения по делу: ${caseItem.title}`}
+                            className="h-[200px] w-full object-cover"
+                            loading="lazy"
+                          />
+                        </div>
+                      ) : (
+                        <div className="mb-4 h-[200px] w-full rounded-xl border border-border bg-muted/30 flex items-center justify-center text-small text-muted-foreground">
+                          Скан решения скоро будет добавлен
+                        </div>
+                      )}
+
                       <p className="text-small text-muted-foreground leading-relaxed">
                         {truncateText(caseItem.result)}
                       </p>
-                      <span className="mt-6 inline-flex items-center gap-2 text-small font-semibold text-accent group-hover:underline">
-                        Смотреть кейсы →
-                      </span>
+
+                      <div className="mt-auto pt-5 flex flex-wrap gap-2">
+                        <Button variant="link" className="p-0 h-auto text-accent font-semibold" asChild>
+                          <Link to={`/keisy#${caseItem.slug}`}>Смотреть кейс →</Link>
+                        </Button>
+                        {decisionUrl ? (
+                          <Button variant="outline" size="sm" asChild>
+                            <a href={decisionUrl} target="_blank" rel="noopener noreferrer">
+                              Открыть решение
+                            </a>
+                          </Button>
+                        ) : (
+                          <Button variant="outline" size="sm" disabled>
+                            Скоро
+                          </Button>
+                        )}
+                      </div>
                     </CardContent>
                   </Card>
-                </Link>
-              ))}
+                );
+              })}
             </div>
 
             <div className="text-center mt-10">

@@ -9,6 +9,8 @@ export interface Case {
   datePublished: string; // ISO format
   author: string;
   image?: string;
+  decisionPreview?: string;
+  decisionUrl?: string;
   documents?: string[]; // Массив сканов документов для отображения в деле
 }
 
@@ -23,6 +25,8 @@ export const cases: Case[] = [
     result: "Постановлением Таганского районного суда г. Москвы от 21 декабря 2020 года избрана мера пресечения в виде домашнего ареста по месту фактического проживания сроком на 28 суток. Избежали заключения доверителя в СИЗО, что позволило ему сохранить контакт с семьей и более эффективно участвовать в своей защите.",
     datePublished: "2020-12-21",
     author: "Коллегия адвокатов Профзащита",
+    decisionPreview: "/cases/ugolovnoe-st159-domashnij-arest-2020-1.jpg",
+    decisionUrl: "/cases/ugolovnoe-st159-domashnij-arest-2020-1.jpg",
     documents: [
       "/cases/ugolovnoe-st159-domashnij-arest-2020-1.jpg",
       "/cases/ugolovnoe-st159-domashnij-arest-2020-2.jpg",
@@ -39,6 +43,8 @@ export const cases: Case[] = [
     result: "Решением Можайского городского суда Московской области от 07 мая 2014 года с ответчика в пользу истца взыскана задолженность по заработной плате в размере 72 172 рублей 80 копеек. Клиент получил все причитающиеся ему денежные средства.",
     datePublished: "2014-05-07",
     author: "Коллегия адвокатов Профзащита",
+    decisionPreview: "/cases/trudovoj-zarplata-klementevo-1.jpg",
+    decisionUrl: "/cases/trudovoj-zarplata-klementevo-1.jpg",
     documents: [
       "/cases/trudovoj-zarplata-klementevo-1.jpg",
       "/cases/trudovoj-zarplata-klementevo-2.jpg"
@@ -54,6 +60,8 @@ export const cases: Case[] = [
     result: "Апелляционным определением Московского областного суда от 03 апреля 2019 года решение Реутовского городского суда отменено, в удовлетворении иска ТСЖ отказано. Брачный договор признан законным, имущественные права доверительницы полностью защищены.",
     datePublished: "2019-04-03",
     author: "Коллегия адвокатов Профзащита",
+    decisionPreview: "/cases/grazhdanskoe-apellyaciya-parkovaya-1.jpg",
+    decisionUrl: "/cases/grazhdanskoe-apellyaciya-parkovaya-1.jpg",
     documents: [
       "/cases/grazhdanskoe-apellyaciya-parkovaya-1.jpg",
       "/cases/grazhdanskoe-apellyaciya-parkovaya-2.jpg"
@@ -69,6 +77,8 @@ export const cases: Case[] = [
     result: "Постановлением Тупинского районного суда г. Москвы от 06 ноября 2020 года жалоба адвоката Лютикова И.И. удовлетворена. Действия оперуполномоченного ОУР ОМВД России по району Митино г. Москвы Веселова Е.А. признаны незаконными. Постановление заместителя начальника СО ОМВД России по району Южное Тушино г. Москвы Соколинской Е.В. от 30 июля 2019 года отменено. Протокол осмотра места происшествия признан недопустимым доказательством. Автомобиль постановлено выдать на ответственное хранение доверителю. Производство по жалобе прекращено.",
     datePublished: "2020-11-06",
     author: "Лютиков Иван Иванович",
+    decisionPreview: "/cases/ugolovnoe-priznanie-nezakonnym-158-1.jpg",
+    decisionUrl: "/cases/ugolovnoe-priznanie-nezakonnym-158-1.jpg",
     documents: [
       "/cases/ugolovnoe-priznanie-nezakonnym-158-1.jpg",
       "/cases/ugolovnoe-priznanie-nezakonnym-158-2.jpg"
