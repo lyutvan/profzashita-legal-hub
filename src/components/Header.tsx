@@ -75,7 +75,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden lg:flex items-center gap-6">
+          <nav className="header-nav hidden lg:flex flex-1 items-center justify-center min-w-0">
             <Link
               to="/"
               className={`text-small font-medium transition-colors duration-150 py-2 min-h-[44px] flex items-center relative ${
@@ -114,11 +114,11 @@ const Header = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="hidden lg:flex items-center gap-4">
+          <div className="header-actions hidden lg:flex items-center flex-shrink-0">
             <Button 
               variant="default" 
               size="sm" 
-              className="transition-colors duration-150 bg-accent text-white hover:bg-accent/90 h-11 px-4 text-small"
+              className="transition-colors duration-150 bg-accent text-white hover:bg-accent/90 h-10 px-3 text-[13px]"
               asChild
             >
               <Link to="/kontakty">Консультация</Link>
@@ -126,27 +126,27 @@ const Header = () => {
             <Button 
               variant="outline" 
               size="sm" 
-              className="border-accent text-accent hover:bg-accent hover:text-accent-foreground gap-2 h-11 px-4 text-small"
+              className="border-accent text-accent hover:bg-accent hover:text-accent-foreground gap-2 h-10 px-3 text-[13px]"
               asChild
             >
               <a href={`https://wa.me/${SITE.phoneRaw.replace('+', '')}`} target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon size={16} />
+                <WhatsAppIcon size={14} />
                 WhatsApp
               </a>
             </Button>
-            <div className="flex flex-col items-start gap-1.5 text-small leading-[1.2] text-white/90">
+            <div className="header-contacts flex flex-col items-start gap-1.5 text-white/90">
               <a
                 href="tel:+79168597654"
-                className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
+                className="inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-150 hover:text-white"
               >
-                <Phone className="h-4 w-4" strokeWidth={1.8} />
+                <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />
                 +7 (916) 859-76-54
               </a>
               <a
                 href="mailto:profzashchita@internet.ru"
-                className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
+                className="inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-150 hover:text-white"
               >
-                <Mail className="h-4 w-4" strokeWidth={1.8} />
+                <Mail className="h-3.5 w-3.5" strokeWidth={1.8} />
                 profzashchita@internet.ru
               </a>
             </div>
@@ -236,6 +236,22 @@ const Header = () => {
                     WhatsApp
                   </a>
                 </Button>
+                <div className="header-contacts flex flex-col items-start gap-2 text-white/90 pt-3 border-t border-white/10">
+                  <a
+                    href="tel:+79168597654"
+                    className="inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-150 hover:text-white"
+                  >
+                    <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />
+                    +7 (916) 859-76-54
+                  </a>
+                  <a
+                    href="mailto:profzashchita@internet.ru"
+                    className="inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-150 hover:text-white"
+                  >
+                    <Mail className="h-3.5 w-3.5" strokeWidth={1.8} />
+                    profzashchita@internet.ru
+                  </a>
+                </div>
               </div>
             </div>
           </nav>

@@ -267,6 +267,27 @@ All colors MUST be HSL.
     gap: var(--gap-sm);
   }
 
+  .header-nav {
+    gap: 16px;
+    flex-wrap: nowrap;
+    white-space: nowrap;
+  }
+
+  .header-nav a {
+    white-space: nowrap;
+  }
+
+  .header-actions {
+    gap: 14px;
+    white-space: nowrap;
+    flex-wrap: nowrap;
+  }
+
+  .header-contacts {
+    font-size: 12px;
+    line-height: 1.2;
+  }
+
   .section--tight {
     padding-block: var(--section-y-sm);
   }
@@ -355,5 +376,29 @@ All colors MUST be HSL.
 
   .btn--secondary {
     font-weight: 500;
+  }
+}
+
+@media (min-width: 992px) and (max-width: 1099px) {
+  .header-nav {
+    gap: 12px;
+  }
+
+  .header-actions {
+    gap: 12px;
+  }
+}
+
+@media (min-width: 1200px) {
+  .header-nav {
+    gap: 24px;
+  }
+
+  .header-actions {
+    gap: 16px;
+  }
+
+  .header-contacts {
+    font-size: 13px;
   }
 }
