@@ -115,7 +115,26 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="hidden lg:flex items-center gap-4">
-            <div className="flex flex-col gap-1.5 text-small leading-[1.2] text-white/90">
+            <Button 
+              variant="default" 
+              size="sm" 
+              className="transition-colors duration-150 bg-accent text-white hover:bg-accent/90 h-11 px-4 text-small"
+              asChild
+            >
+              <Link to="/kontakty">Консультация</Link>
+            </Button>
+            <Button 
+              variant="outline" 
+              size="sm" 
+              className="border-accent text-accent hover:bg-accent hover:text-accent-foreground gap-2 h-11 px-4 text-small"
+              asChild
+            >
+              <a href={`https://wa.me/${SITE.phoneRaw.replace('+', '')}`} target="_blank" rel="noopener noreferrer">
+                <WhatsAppIcon size={16} />
+                WhatsApp
+              </a>
+            </Button>
+            <div className="flex flex-col items-start gap-1.5 text-small leading-[1.2] text-white/90">
               <a
                 href="tel:+79168597654"
                 className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
@@ -130,27 +149,6 @@ const Header = () => {
                 <Mail className="h-4 w-4" strokeWidth={1.8} />
                 profzashchita@internet.ru
               </a>
-            </div>
-            <div className="flex items-center gap-3">
-              <Button 
-                variant="default" 
-                size="sm" 
-                className="transition-colors duration-150 bg-accent text-white hover:bg-accent/90 h-11 px-4 text-small"
-                asChild
-              >
-                <Link to="/kontakty">Консультация</Link>
-              </Button>
-              <Button 
-                variant="outline" 
-                size="sm" 
-                className="border-accent text-accent hover:bg-accent hover:text-accent-foreground gap-2 h-11 px-4 text-small"
-                asChild
-              >
-                <a href={`https://wa.me/${SITE.phoneRaw.replace('+', '')}`} target="_blank" rel="noopener noreferrer">
-                  <WhatsAppIcon size={16} />
-                  WhatsApp
-                </a>
-              </Button>
             </div>
           </div>
 
