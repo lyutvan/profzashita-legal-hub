@@ -179,6 +179,7 @@ const About = () => {
 
         {/* Team Section */}
         <TeamSection 
+          id="team"
           title="Наша команда" 
           subtitle="Профессионалы с многолетним опытом в различных областях права"
         />
