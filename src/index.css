@@ -286,19 +286,13 @@ All colors MUST be HSL.
   }
 
   .home-hero {
-    min-height: clamp(520px, 70vh, 680px);
-    padding-top: clamp(90px, 10vh, 140px);
-    padding-bottom: clamp(40px, 6vh, 80px);
-  }
-
-  @media (min-width: 768px) {
-    .home-hero {
-      min-height: clamp(520px, 75vh, 760px);
-    }
+    min-height: auto;
+    padding-top: clamp(100px, 12vh, 160px);
+    padding-bottom: clamp(24px, 5vh, 56px);
   }
 
   .home-navigation {
-    padding-top: clamp(28px, 4vh, 56px);
+    padding-top: clamp(20px, 3vh, 40px);
   }
 
   .h1 {
