@@ -218,7 +218,7 @@ const Index = () => {
           imageSrc={courtColumnsImg}
           imageAlt="Классический зал суда с мраморными колоннами"
           overlayOpacity={0.6}
-          className="min-h-[520px] md:min-h-[600px] section--hero"
+          className="home-hero"
         >
           <div className="max-w-3xl mx-auto text-center">
             <div className="inline-flex max-w-[90%] mx-auto items-center justify-center rounded-xl border border-accent/70 bg-black/30 px-5 py-2.5 text-small md:text-[15px] font-medium tracking-[0.06em] text-white/90 text-center leading-snug mb-4">
@@ -250,7 +250,7 @@ const Index = () => {
         </LegalBackground>
 
         {/* Navigation Section */}
-        <section className="section">
+        <section className="section home-navigation">
           <div className="container">
             <div className="section__header max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">

@@ -275,6 +275,32 @@ All colors MUST be HSL.
     padding-block: calc(var(--section-y) * 1.25);
   }
 
+  .legal-background {
+    min-height: 400px;
+  }
+
+  @media (min-width: 768px) {
+    .legal-background {
+      min-height: 500px;
+    }
+  }
+
+  .home-hero {
+    min-height: clamp(520px, 70vh, 680px);
+    padding-top: clamp(90px, 10vh, 140px);
+    padding-bottom: clamp(40px, 6vh, 80px);
+  }
+
+  @media (min-width: 768px) {
+    .home-hero {
+      min-height: clamp(520px, 75vh, 760px);
+    }
+  }
+
+  .home-navigation {
+    padding-top: clamp(28px, 4vh, 56px);
+  }
+
   .h1 {
     font-family: var(--font-heading);
     font-size: var(--h1);

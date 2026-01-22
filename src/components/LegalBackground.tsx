@@ -26,7 +26,7 @@ const LegalBackground = ({
   className = "" 
 }: LegalBackgroundProps) => {
   return (
-    <section className={`relative w-full min-h-[400px] md:min-h-[500px] section ${className}`}>
+    <section className={`relative w-full section legal-background ${className}`}>
       {/* Background Image */}
       <div className="absolute inset-0 w-full h-full">
         <img
