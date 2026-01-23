@@ -234,17 +234,6 @@ const Index = () => {
               <Button size="lg" className="bg-accent text-white hover:bg-accent/90 px-8" asChild>
                 <Link to="/kontakty">Получить консультацию</Link>
               </Button>
-              <Button
-                size="lg"
-                variant="outline"
-                className="border-white/30 text-white bg-white/10 hover:bg-white/20"
-                asChild
-              >
-                <a href={`https://wa.me/${SITE.phoneRaw.replace("+", "")}`} target="_blank" rel="noopener noreferrer">
-                  <WhatsAppIcon size={18} />
-                  WhatsApp
-                </a>
-              </Button>
             </div>
           </div>
         </LegalBackground>
@@ -336,14 +325,13 @@ const Index = () => {
                 Практика / Результаты
               </h2>
               <p className="text-body-mobile md:text-body text-muted-foreground">
-                Примеры дел, где защита привела к конкретному результату.
+                Реальные судебные дела из нашей практики с подтверждёнными результатами.
               </p>
             </div>
 
             <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
               {featuredCases.map((caseItem) => {
-                const decisionPreview = caseItem.decisionPreview ?? caseItem.documents?.[0];
-                const decisionUrl = caseItem.decisionUrl ?? caseItem.documents?.[0];
+                const decisionPreview = caseItem.documents?.[0];
 
                 return (
                   <Card key={caseItem.id} className="border-border hover:shadow-elegant transition-all h-full flex flex-col">
@@ -356,11 +344,11 @@ const Index = () => {
                       </h3>
 
                       {decisionPreview ? (
-                        <div className="mb-4 overflow-hidden rounded-xl border border-border bg-muted/20">
+                        <div className="mb-4 overflow-hidden rounded-xl border border-border bg-white">
                           <img
                             src={decisionPreview}
                             alt={`Скан решения по делу: ${caseItem.title}`}
-                            className="h-[200px] w-full object-cover"
+                            className="h-[200px] w-full object-contain"
                             loading="lazy"
                           />
                         </div>
@@ -374,21 +362,10 @@ const Index = () => {
                         {truncateText(caseItem.result)}
                       </p>
 
-                      <div className="mt-auto pt-5 flex flex-wrap gap-2">
-                        <Button variant="link" className="p-0 h-auto text-accent font-semibold" asChild>
-                          <Link to={`/keisy#${caseItem.slug}`}>Смотреть кейс →</Link>
+                      <div className="mt-auto pt-5">
+                        <Button size="sm" asChild>
+                          <Link to={`/keisy#${caseItem.slug}`}>Перейти к кейсу</Link>
                         </Button>
-                        {decisionUrl ? (
-                          <Button variant="outline" size="sm" asChild>
-                            <a href={decisionUrl} target="_blank" rel="noopener noreferrer">
-                              Открыть решение
-                            </a>
-                          </Button>
-                        ) : (
-                          <Button variant="outline" size="sm" disabled>
-                            Скоро
-                          </Button>
-                        )}
                       </div>
                     </CardContent>
                   </Card>
