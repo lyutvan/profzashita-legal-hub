@@ -201,7 +201,6 @@ const UslugiNew = () => {
   const [showAllResults, setShowAllResults] = useState(false);
   const popularRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
-  const whatsappNumber = SITE.phoneRaw.replace(/\D/g, "");
 
   const tokens = useMemo(() => {
     return normalizeSearch(query)
@@ -326,17 +325,7 @@ const UslugiNew = () => {
                   </a>
                 </Button>
               </div>
-              <div className="text-small text-white/70">
-                Или напишите в WhatsApp:{" "}
-                <a
-                  href={`https://wa.me/${whatsappNumber}`}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-white underline underline-offset-4"
-                >
-                  {SITE.phone}
-                </a>
-              </div>
+              
             </div>
           </div>
         </section>
@@ -509,48 +498,6 @@ const UslugiNew = () => {
                         </div>
                       ))}
                     </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* D) Directions */}
-        <section className="section">
-          <div className="container">
-            <div className="section__header max-w-3xl">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                Направления услуг
-              </h2>
-              <p className="text-muted-foreground">
-                Быстрый вход в нужный раздел — выберите вашу ситуацию.
-              </p>
-            </div>
-            <div className="section__content grid grid-cols-4 lg:grid-cols-12 gap-6">
-              {directionCards.map((card) => (
-                <Card key={card.title} className="col-span-4 lg:col-span-4 h-full border-border/80">
-                  <CardContent className="pt-6 h-full flex flex-col">
-                    <div className="flex items-center gap-4 mb-4">
-                      <div className="rounded-xl bg-accent/10 p-3">{card.icon}</div>
-                      <div>
-                        <div className="font-semibold text-body-mobile md:text-body">{card.title}</div>
-                        <div className="text-small text-muted-foreground">{card.subtitle}</div>
-                      </div>
-                    </div>
-                    <ul className="space-y-2 text-small text-muted-foreground mb-6">
-                      {card.items.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button asChild variant="outline" className="mt-auto">
-                      <Link to={card.to}>
-                        Все услуги раздела ({totalByAudience[card.audience]})
-                      </Link>
-                    </Button>
                   </CardContent>
                 </Card>
               ))}
@@ -736,15 +683,7 @@ const UslugiNew = () => {
                       <p className="text-white/80 text-small">
                         Заполните форму — мы уточним детали и предложим следующий шаг.
                       </p>
-                      <div className="mt-4 text-small text-white/70">
-                        Или напишите в WhatsApp: {SITE.phone}
-                      </div>
                       <div className="mt-4 flex flex-wrap gap-3">
-                        <Button className="bg-accent text-white hover:bg-accent/90" asChild>
-                          <a href={`https://wa.me/${whatsappNumber}`} target="_blank" rel="noopener noreferrer">
-                            Написать в WhatsApp
-                          </a>
-                        </Button>
                         <Button
                           variant="outline"
                           className="border-primary/35 bg-white/95 text-primary hover:bg-primary/5 hover:text-primary hover:border-primary/50 focus-visible:ring-primary/40"
