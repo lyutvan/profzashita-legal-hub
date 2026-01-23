@@ -66,7 +66,6 @@ export const teamMembers: TeamMember[] = [
       { title: "Защита собственника в корпоративном споре", result: "Отменён запрет на сделки и разблокированы счета" }
     ],
     education: [
-      "Волгоградская академия МВД Российской Федерации",
       "Курсы повышения квалификации по экономическим преступлениям"
     ],
     publications: [
@@ -77,8 +76,20 @@ export const teamMembers: TeamMember[] = [
         title: "Особенности организации производства судебных технико-криминалистических экспертиз документов. Экспертиза давности документа и её виды.",
         org: "НП «Саморегулируемая организация судебных экспертов»",
         date: "26.11.2025 · 3 академических часа",
-        previewImage: "/certificates/previews/lyutikov-qualification-2025.jpg",
+        previewImage: "/certificates/files/lyutikov-qualification-2025.jpg",
         fileUrl: "/certificates/files/lyutikov-qualification-2025.jpg",
+        type: "image"
+      },
+      {
+        title: "Удостоверение адвоката",
+        previewImage: "/certificates/files/lyutikov-advocate-id.jpg",
+        fileUrl: "/certificates/files/lyutikov-advocate-id.jpg",
+        type: "image"
+      },
+      {
+        title: "Удостоверение МВД (служебное)",
+        previewImage: "/certificates/files/lyutikov-id-mvd.jpg",
+        fileUrl: "/certificates/files/lyutikov-id-mvd.jpg",
         type: "image"
       }
     ],
