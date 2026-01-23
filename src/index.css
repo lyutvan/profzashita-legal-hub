@@ -267,8 +267,19 @@ All colors MUST be HSL.
     gap: var(--gap-sm);
   }
 
+  .header-container {
+    max-width: 1240px;
+    padding-inline: 24px;
+    margin-inline: auto;
+  }
+
+  .header-row {
+    flex-wrap: nowrap;
+    gap: 24px;
+  }
+
   .header-nav {
-    gap: 16px;
+    gap: 20px;
     flex-wrap: nowrap;
     white-space: nowrap;
   }
@@ -278,7 +289,7 @@ All colors MUST be HSL.
   }
 
   .header-actions {
-    gap: 14px;
+    gap: 16px;
     white-space: nowrap;
     flex-wrap: nowrap;
   }
@@ -390,9 +401,9 @@ All colors MUST be HSL.
   }
 }
 
-@media (min-width: 992px) and (max-width: 1099px) {
+@media (min-width: 992px) and (max-width: 1199px) {
   .header-nav {
-    gap: 12px;
+    gap: 18px;
   }
 
   .header-actions {

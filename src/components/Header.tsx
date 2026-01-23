@@ -3,18 +3,7 @@ import { Menu, X, Mail, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import Logo from "./Logo";
-import WhatsAppIcon from "./icons/WhatsAppIcon";
-import { serviceClusters } from "@/data/services-clusters";
-import {
-  NavigationMenu,
-  NavigationMenuContent,
-  NavigationMenuItem,
-  NavigationMenuLink,
-  NavigationMenuList,
-  NavigationMenuTrigger,
-} from "@/components/ui/navigation-menu";
-import { cn } from "@/lib/utils";
-import { SITE } from "@/config/site";
+
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -64,8 +53,8 @@ const Header = () => {
     <header 
       className="sticky top-0 z-[1000] transition-all duration-200 bg-primary shadow-sm border-b border-white/10"
     >
-      <div className="container">
-        <div className={`flex items-center justify-between transition-all duration-200 ${isScrolled ? 'h-16' : 'h-20'}`}>
+      <div className="container header-container">
+        <div className={`header-row flex items-center justify-between transition-all duration-200 ${isScrolled ? 'h-16' : 'h-20'}`}>
           <Link 
             to="/" 
             className="flex items-center gap-2 flex-shrink-0"
@@ -122,17 +111,6 @@ const Header = () => {
               asChild
             >
               <Link to="/kontakty">Консультация</Link>
-            </Button>
-            <Button 
-              variant="outline" 
-              size="sm" 
-              className="border-accent text-accent hover:bg-accent hover:text-accent-foreground gap-2 h-10 px-3 text-[13px]"
-              asChild
-            >
-              <a href={`https://wa.me/${SITE.phoneRaw.replace('+', '')}`} target="_blank" rel="noopener noreferrer">
-                <WhatsAppIcon size={14} />
-                WhatsApp
-              </a>
             </Button>
             <div className="header-contacts flex flex-col items-start gap-1.5 text-white/90">
               <a
@@ -224,17 +202,6 @@ const Header = () => {
                   <Link to="/kontakty" onClick={() => setIsMenuOpen(false)}>
                     Консультация
                   </Link>
-                </Button>
-                <Button 
-                  variant="outline" 
-                  size="sm" 
-                  className="border-accent text-accent hover:bg-accent hover:text-accent-foreground w-full h-11 px-4 text-small gap-2"
-                  asChild
-                >
-                  <a href={`https://wa.me/${SITE.phoneRaw.replace('+', '')}`} target="_blank" rel="noopener noreferrer">
-                    <WhatsAppIcon size={16} />
-                    WhatsApp
-                  </a>
                 </Button>
                 <div className="header-contacts flex flex-col items-start gap-2 text-white/90 pt-3 border-t border-white/10">
                   <a
