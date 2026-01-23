@@ -8,6 +8,7 @@ import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import LeadForm from "@/components/LeadForm";
 import { getTeamMemberBySlug } from "@/data/team";
+import { cases } from "@/data/cases";
 import { SITE } from "@/config/site";
 import { Phone, MapPin, Briefcase, CheckCircle2, BookOpen, FileText } from "lucide-react";
 
@@ -33,6 +34,7 @@ const TeamMemberPage = () => {
   const phone = member.phone ?? SITE.phone;
   const email = member.email ?? SITE.email;
   const about = member.about;
+  const relatedCases = cases.filter((caseItem) => caseItem.lawyers?.includes(member.slug));
   const caseList = member.cases ?? [];
   const education = member.education ?? [];
   const competencies = member.competencies ?? [];
@@ -183,7 +185,23 @@ const TeamMemberPage = () => {
                   </CardTitle>
                 </CardHeader>
                 <CardContent>
-                  {caseList.length > 0 ? (
+                  {relatedCases.length > 0 ? (
+                    <ul className="space-y-3">
+                      {relatedCases.map((caseItem) => (
+                        <li key={caseItem.id} className="p-3 rounded-xl bg-muted/50 border border-border/60">
+                          <Link
+                            to={`/keisy#${caseItem.slug}`}
+                            className="font-medium text-foreground hover:text-accent transition-colors"
+                          >
+                            {caseItem.title}
+                          </Link>
+                          {caseItem.result && (
+                            <p className="text-small text-muted-foreground mt-1">{caseItem.result}</p>
+                          )}
+                        </li>
+                      ))}
+                    </ul>
+                  ) : caseList.length > 0 ? (
                     <ul className="space-y-3">
                       {caseList.map((item, idx) => (
                         <li key={idx} className="p-3 rounded-xl bg-muted/50 border border-border/60">
@@ -195,7 +213,7 @@ const TeamMemberPage = () => {
                       ))}
                     </ul>
                   ) : (
-                    <p className="text-muted-foreground">Кейсы будут добавлены позже. Запросите информацию у нашего консультанта.</p>
+                    <p className="text-muted-foreground">Кейсы в работе — информация будет дополнена.</p>
                   )}
                 </CardContent>
               </Card>
