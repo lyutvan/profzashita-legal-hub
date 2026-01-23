@@ -24,7 +24,6 @@ const TeamSection = ({
   const TeamCard = ({ member }: { member: TeamMember }) => {
     const [imageFailed, setImageFailed] = useState(false);
     const hasPhoto = Boolean(member.photo) && !imageFailed;
-    const certCount = member.achievements?.length ?? 0;
     const specs = member.specializations.slice(0, specsLimit);
 
     return (
@@ -57,13 +56,6 @@ const TeamSection = ({
           </p>
           {member.experienceText && (
             <p className="text-small text-muted-foreground mb-4 text-center">{member.experienceText}</p>
-          )}
-          {certCount > 0 && (
-            <div className="mb-4 flex justify-center">
-              <span className="rounded-full border border-accent/30 bg-accent/10 px-3 py-1 text-[12px] text-accent">
-                {certCount} сертификата
-              </span>
-            </div>
           )}
           <ul className="space-y-2 text-small text-muted-foreground text-center mb-4">
             {specs.map((spec) => (
