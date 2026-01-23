@@ -394,7 +394,7 @@ const Index = () => {
                 </div>
               </div>
               <p className="text-body-mobile md:text-body text-muted-foreground mt-4">
-                Ровно шесть отзывов о нашей работе в разных ситуациях.
+                Реальные отзывы клиентов о качестве нашей юридической помощи.
               </p>
             </div>
 
@@ -445,7 +445,7 @@ const Index = () => {
                 Команда
               </h2>
               <p className="text-body-mobile md:text-body text-muted-foreground">
-                Специалисты, которые ведут дела клиентов в ключевых направлениях.
+                Профессионалы, которые ведут дела доверителей по ключевым направлениям.
               </p>
             </div>
 
