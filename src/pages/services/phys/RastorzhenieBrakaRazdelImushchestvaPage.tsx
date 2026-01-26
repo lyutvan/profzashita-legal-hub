@@ -7,9 +7,9 @@ import {
   Mail,
   MapPin,
   HeartHandshake,
-  Scale,
+  House,
   HandCoins,
-  Home,
+  Users,
   MessageCircle,
   Shield,
   FileSearch,
@@ -235,7 +235,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
     {
       title: "Раздел совместно нажитого имущества",
       description: "Защитим ваши права на квартиру, автомобиль и сбережения",
-      icon: Scale
+      icon: House
     },
     {
       title: "Взыскание алиментов",
@@ -245,7 +245,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
     {
       title: "Определение места жительства ребенка",
       description: "Разберем, как законно оформить проживание ребенка",
-      icon: Home
+      icon: Users
     },
     {
       title: "Определение порядка общения с ребенком",
@@ -608,7 +608,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                     className="h-full rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
                   >
                     <CardContent className="p-5 md:p-6 pt-5 md:pt-6 h-full flex flex-col items-center text-center gap-3">
-                      <Icon className="h-12 w-12 text-slate-600" strokeWidth={1.6} />
+                      <Icon className="h-12 w-12 text-[#111827]" strokeWidth={2} />
                       <h3 className="font-semibold text-[16px] md:text-[17px] text-slate-900">
                         {card.title}
                       </h3>
