@@ -163,7 +163,6 @@ export const teamMembers: TeamMember[] = [
     ],
     education: [
       "Российская правовая академия Минюста РФ",
-      "Повышение квалификации по медиации"
     ],
     achievements: [
       {
