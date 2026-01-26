@@ -153,7 +153,7 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
           value={formData.name}
           onChange={(event) => setFormData((prev) => ({ ...prev, name: event.target.value }))}
           required
-          placeholder="Ирина"
+          placeholder="Ваше имя*"
           disabled={isSubmitting}
         />
       </div>
@@ -168,6 +168,7 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
           onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
           disabled={isSubmitting}
           required
+          placeholder="Ваш номер телефона*"
         />
       </div>
 
@@ -907,7 +908,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 <LeadForm
                   formId="lead-final"
                   submitLabel="Оценить перспективы"
-                  placeholder="Хочу расторгнуть брак, есть ребенок 5 лет, спор о квартире"
+                  placeholder="Например: «Хочу расторгнуть брак, есть ребенок 5 лет, спор о квартире»"
                   footerNote="Перезвоним в течение 15–20 минут в рабочее время"
                 />
               </CardContent>

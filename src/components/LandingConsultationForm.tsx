@@ -121,7 +121,7 @@ const LandingConsultationForm = ({ onSuccess, submitLabel = "Получить к
             setFormData((prev) => ({ ...prev, name: event.target.value }));
             if (errors.name) setErrors((prev) => ({ ...prev, name: "" }));
           }}
-          placeholder="Иван Иванов"
+          placeholder="Ваше имя*"
           className={cn(baseInputClass, errors.name && "border-destructive focus-visible:ring-destructive/30")}
           disabled={isSubmitting}
           maxLength={100}
@@ -143,7 +143,7 @@ const LandingConsultationForm = ({ onSuccess, submitLabel = "Получить к
           }}
           disabled={isSubmitting}
           required
-          placeholder="+7 (999) 123-45-67"
+          placeholder="Ваш номер телефона*"
           className={cn(baseInputClass, errors.phone && "border-destructive focus-visible:ring-destructive/30")}
         />
         {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
