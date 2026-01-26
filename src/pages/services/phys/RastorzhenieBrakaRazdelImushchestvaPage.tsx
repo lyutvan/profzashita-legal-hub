@@ -725,15 +725,17 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
                 <CardContent className="p-6 text-center">
-                  <p className="font-semibold text-body-mobile md:text-body text-slate-900">
-                    Если дело уже в суде — мы входим в процесс сразу…
+                  <p className="text-body-mobile md:text-body text-slate-900">
+                    Если дело уже в суде — мы входим в процесс сразу. Просто пришлите материалы — мы проанализируем,
+                    что можно изменить, и начнём действовать.
                   </p>
                 </CardContent>
               </Card>
               <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
                 <CardContent className="p-6 text-center">
-                  <p className="font-semibold text-body-mobile md:text-body text-slate-900">
-                    Если ещё не дошло до суда — подготовим сильную позицию заранее…
+                  <p className="text-body-mobile md:text-body text-slate-900">
+                    Если ещё не дошло до суда — подготовим сильную позицию заранее. Часто этого достаточно, чтобы
+                    вторая сторона пошла на уступки — без зала суда.
                   </p>
                 </CardContent>
               </Card>
