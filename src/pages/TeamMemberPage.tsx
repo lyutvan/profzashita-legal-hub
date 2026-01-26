@@ -59,7 +59,7 @@ const TeamMemberPage = () => {
             <Breadcrumbs 
               items={[
                 { label: "Главная", path: "/" },
-                { label: "Команда", path: "/#team" },
+                { label: "Команда", path: "/o-kollegii#team" },
                 { label: member.name }
               ]}
             />
