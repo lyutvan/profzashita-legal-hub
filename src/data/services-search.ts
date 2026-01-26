@@ -20,7 +20,7 @@ export interface ServiceSearchItem {
 type BaseSearchItem = Omit<ServiceSearchItem, "subtitle">;
 
 export const searchQuickChips = [
-  "Развод",
+  "Расторжение брака",
   "Алименты",
   "Наследство",
   "Жилищные споры",
@@ -49,7 +49,7 @@ const subtitleOverridesByPath: Record<string, string> = {
 };
 
 const keywordOverridesBySlug: Record<string, string[]> = {
-  "razvod-razdel-imushchestva": ["развод", "раздел имущества", "семейные споры"],
+  "razvod-razdel-imushchestva": ["расторжение брака", "раздел имущества", "семейные споры"],
   "alimenty": ["алименты", "ребенок", "взыскание", "семья"],
   "nasledstvo": ["наследство", "завещание", "наследственные дела"],
   "zhilishchnye-spory": ["жилищные споры", "выселение", "выписка", "доли"],

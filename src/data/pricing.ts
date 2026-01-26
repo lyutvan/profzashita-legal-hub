@@ -116,7 +116,7 @@ export const servicePricing: ServicePrice[] = [
     priceNote: 'Стоимость зависит от категории спора'
   },
   
-  // Развод и раздел имущества
+  // Расторжение брака и раздел имущества
   {
     slug: '/services/phys/razvod',
     priceFrom: 25000,

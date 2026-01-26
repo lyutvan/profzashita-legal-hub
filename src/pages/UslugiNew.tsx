@@ -356,7 +356,7 @@ const UslugiNew = () => {
                         value={query}
                         onChange={(event) => handleQueryChange(event.target.value)}
                         onKeyDown={handleSearchKeyDown}
-                        placeholder="Например: развод, ДТП, наследство, 115-ФЗ, 159 УК…"
+                        placeholder="Например: расторжение брака, ДТП, наследство, 115-ФЗ, 159 УК…"
                         className="w-full rounded-xl border border-border bg-background pl-12 pr-12 py-3 text-body focus:outline-none focus:ring-2 focus:ring-accent/40"
                         autoFocus
                       />
@@ -428,7 +428,7 @@ const UslugiNew = () => {
                           </div>
                         ) : (
                           <div className="mt-3 rounded-xl border border-dashed border-border/70 bg-muted/40 px-4 py-4 text-small text-muted-foreground">
-                            Ничего не найдено. Попробуйте запросы: «развод», «дтп», «наследство», «115-фз», «159 ук».
+                            Ничего не найдено. Попробуйте запросы: «расторжение брака», «дтп», «наследство», «115-фз», «159 ук».
                           </div>
                         )}
                         {hasMoreResults && !showAllResults && (

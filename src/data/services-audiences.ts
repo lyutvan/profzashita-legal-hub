@@ -452,14 +452,14 @@ export const audienceServices: AudienceService[] = [
     category: 'Семейные споры'
   },
   {
-    title: 'Развод и раздел имущества',
+    title: 'Расторжение брака и раздел имущества',
     slug: 'razvod-razdel-imushchestva',
     path: '/services/phys/razvod-razdel-imushchestva',
     audience: 'phys',
     priority: 2.2,
     category: 'Семейные споры',
-    description: 'Сопровождение развода и раздела имущества: стратегия, документы и защита интересов.',
-    heroServiceName: 'разводу и разделу имущества'
+    description: 'Сопровождение расторжения брака и раздела имущества: стратегия, документы и защита интересов.',
+    heroServiceName: 'расторжению брака и разделу имущества'
   },
   {
     title: 'Взыскание алиментов, изменение размера алиментов, задолженность по алиментам',

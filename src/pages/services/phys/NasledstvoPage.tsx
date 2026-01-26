@@ -78,7 +78,7 @@ const NasledstvoPage = () => {
       ]}
       relatedLinks={[
         { title: "Жилищные споры", url: "/services/phys/zhilishchnye-spory" },
-        { title: "Развод и раздел имущества", url: "/services/phys/razvod-razdel-imushchestva" }
+        { title: "Расторжение брака и раздел имущества", url: "/services/phys/razvod-razdel-imushchestva" }
       ]}
     />
   );
