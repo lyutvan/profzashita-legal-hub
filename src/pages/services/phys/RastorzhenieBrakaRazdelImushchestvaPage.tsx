@@ -563,7 +563,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               <h1 className="font-serif text-h1-mobile md:text-h1 font-bold">
                 Адвокаты по семейным делам: берем на себя переговоры, документы и суды
               </h1>
-              <ul className="space-y-2 text-body-mobile md:text-body text-white/85">
+              <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
                 <li>Расторжение брака с детьми и споры об опеке</li>
                 <li>Раздел имущества: квартиры, ипотека, бизнес, вклады и долги</li>
                 <li>Представительство в суде и переговоры</li>
