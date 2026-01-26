@@ -97,7 +97,7 @@ export const teamMembers: TeamMember[] = [
   {
     name: "Рыженко Дмитрий Петрович",
     slug: "ryzhenko",
-    role: "Юрист",
+    role: "Юрист, помощник председателя коллегии",
     experienceText: "Стаж 23 года",
     specializations: [
       "Корпоративные споры",
@@ -373,6 +373,7 @@ export const teamMembers: TeamMember[] = [
       "Интеллектуальная собственность"
     ],
     photo: "/images/team/lyadova-yuliya.jpg",
+    education: ["Вологодский государственный университет"],
     achievements: [
       {
         title: "Лексториум — субсидиарная ответственность",
