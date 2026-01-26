@@ -568,7 +568,11 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               <p className="lead text-white/90">
                 Оценим перспективы, риски и возможный результат по вашей ситуации
               </p>
-              <Button size="lg" className="w-full sm:w-auto" onClick={() => setIsLeadOpen(true)}>
+              <Button
+                size="lg"
+                className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
+                onClick={() => setIsLeadOpen(true)}
+              >
                 Получить первичную оценку за 15 минут
               </Button>
               <div className="flex flex-wrap items-center gap-y-2 text-small text-white/75">
