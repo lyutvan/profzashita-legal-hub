@@ -21,6 +21,7 @@ import QuickQuestion from "./components/QuickQuestion";
 import BizServicePage from "./pages/services/biz/BizServicePage";
 import PhysPage from "./pages/services/PhysPage";
 import PhysServiceDetailPage from "./pages/services/phys/PhysServiceDetailPage";
+import RastorzhenieBrakaRazdelImushchestvaPage from "./pages/services/phys/RastorzhenieBrakaRazdelImushchestvaPage";
 import BizPage from "./pages/services/BizPage";
 import CriminalPage from "./pages/services/CriminalPage";
 import CriminalServiceDetailPage from "./pages/services/criminal/CriminalServiceDetailPage";
@@ -97,6 +98,10 @@ const App = () => (
           <Route path="/services/phys/statya-119" element={<Navigate to="/services/criminal/advokat-po-ugroza-ubiystvom-ili-prichineniem-tyazhkogo-vreda-zdorovyu-119" replace />} />
           
           {/* Physical persons services */}
+          <Route
+            path="/services/phys/razvod-razdel-imushchestva"
+            element={<RastorzhenieBrakaRazdelImushchestvaPage />}
+          />
           <Route path="/services/phys/:slug" element={<PhysServiceDetailPage />} />
           
           {/* Redirects from old family services URLs */}
