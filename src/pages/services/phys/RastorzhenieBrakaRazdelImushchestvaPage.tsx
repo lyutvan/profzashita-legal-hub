@@ -274,6 +274,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
       name: "Лядова Юлия Сергеевна",
       role: "Адвокат",
       experience: "Стаж 18 лет",
+      profileUrl: "/team/yulia-lyadova",
       photo: "/images/team/lyadova-yuliya.jpg",
       specializations: ["Семейные споры", "Договорные и имущественные споры", "Интеллектуальная собственность"],
       description: [
@@ -285,6 +286,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
       name: "Калабеков Эльдар Султан-Муратович",
       role: "Адвокат",
       experience: "Стаж 8 лет",
+      profileUrl: "/team/kalabekov",
       photo: kalabekovImg,
       specializations: [
         "Гражданское и семейное право",
@@ -301,6 +303,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
       name: "Васьковский Михаил Михайлович",
       role: "Адвокат",
       experience: "Стаж 15 лет",
+      profileUrl: "/team/vaskovsky",
       photo: vaskovskyImg,
       specializations: ["Семейные споры и раздел имущества", "Наследственные дела", "Административные дела", "Страховые споры"],
       description: [
@@ -682,6 +685,13 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                         <p key={`${member.name}-${index}`}>{paragraph}</p>
                       ))}
                     </div>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="mt-2 w-full md:w-auto h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                    >
+                      <Link to={member.profileUrl}>Подробнее об адвокате</Link>
+                    </Button>
                   </CardContent>
                 </Card>
               ))}
