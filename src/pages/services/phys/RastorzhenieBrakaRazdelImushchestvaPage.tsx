@@ -13,9 +13,10 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { BreadcrumbSchema, FAQPageSchema, JsonLd } from "@/components/JsonLd";
+import LandingConsultationForm from "@/components/LandingConsultationForm";
 import { toast } from "@/hooks/use-toast";
 import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
@@ -201,6 +202,8 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
 const RastorzhenieBrakaRazdelImushchestvaPage = () => {
   const [isLeadOpen, setIsLeadOpen] = useState(false);
   const canonical = new URL("/services/phys/razvod-razdel-imushchestva", SITE.url).toString();
+  const landingDialogClassName =
+    "!w-[calc(100%-32px)] !max-w-[640px] !rounded-[20px] bg-white p-8 shadow-[0_24px_80px_rgba(15,23,42,0.18)] border border-slate-200";
 
   const trustItems = [
     "Конфиденциально",
@@ -496,16 +499,14 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
       <Header />
 
       <Dialog open={isLeadOpen} onOpenChange={setIsLeadOpen}>
-        <DialogContent className="sm:max-w-lg">
-          <DialogHeader>
-            <DialogTitle>Оставьте свой номер телефона — адвокат свяжется с вами в течение 15 минут</DialogTitle>
+        <DialogContent className={landingDialogClassName}>
+          <DialogHeader className="space-y-2 text-left">
+            <DialogTitle>Быстрый вопрос юристу</DialogTitle>
+            <DialogDescription>
+              Оставьте свои контакты, и мы свяжемся с вами в ближайшее время
+            </DialogDescription>
           </DialogHeader>
-          <LeadForm
-            formId="lead-modal"
-            submitLabel="Получить консультацию"
-            footerNote="Перезвоним в течение 15–20 минут в рабочее время"
-            onSuccess={() => setIsLeadOpen(false)}
-          />
+          <LandingConsultationForm onSuccess={() => setIsLeadOpen(false)} />
         </DialogContent>
       </Dialog>
 

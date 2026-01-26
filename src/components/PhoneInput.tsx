@@ -12,6 +12,7 @@ type PhoneInputProps = {
   disabled?: boolean;
   required?: boolean;
   placeholder?: string;
+  className?: string;
 };
 
 const PhoneInput = ({
@@ -21,7 +22,8 @@ const PhoneInput = ({
   name = "phone",
   disabled,
   required,
-  placeholder = PHONE_MASK
+  placeholder = PHONE_MASK,
+  className
 }: PhoneInputProps) => {
   return (
     <InputMask
@@ -38,6 +40,7 @@ const PhoneInput = ({
           type="tel"
           required={required}
           placeholder={placeholder}
+          className={className}
         />
       )}
     </InputMask>

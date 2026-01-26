@@ -1,10 +1,18 @@
 import { useState } from "react";
+import { useLocation } from "react-router-dom";
 import { MessageSquare } from "lucide-react";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "./ui/dialog";
 import LeadForm from "./LeadForm";
+import LandingConsultationForm from "./LandingConsultationForm";
+import { cn } from "@/lib/utils";
 
 const QuickQuestion = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const location = useLocation();
+  const normalizedPath = location.pathname.replace(/\/+$/, "");
+  const isLandingModal = normalizedPath === "/services/phys/razvod-razdel-imushchestva";
+  const landingDialogClassName =
+    "!w-[calc(100%-32px)] !max-w-[640px] !rounded-[20px] bg-white p-8 shadow-[0_24px_80px_rgba(15,23,42,0.18)] border border-slate-200";
 
   return (
     <>
@@ -22,15 +30,15 @@ const QuickQuestion = () => {
 
       {/* Modal */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
-        <DialogContent className="sm:max-w-md">
-          <DialogHeader>
+        <DialogContent className={cn(isLandingModal ? landingDialogClassName : "sm:max-w-md")}>
+          <DialogHeader className={isLandingModal ? "space-y-2 text-left" : undefined}>
             <DialogTitle className="font-serif text-h3-mobile md:text-h3">Быстрый вопрос юристу</DialogTitle>
             <DialogDescription>
               Оставьте свои контакты, и мы свяжемся с вами в ближайшее время
             </DialogDescription>
           </DialogHeader>
 
-          <LeadForm variant="compact" />
+          {isLandingModal ? <LandingConsultationForm /> : <LeadForm variant="compact" />}
         </DialogContent>
       </Dialog>
     </>
