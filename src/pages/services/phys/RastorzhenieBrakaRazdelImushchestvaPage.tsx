@@ -656,42 +656,46 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                   key={member.name}
                   className="h-full rounded-[12px] border border-[#C9A227] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
                 >
-                  <CardContent className="p-6 h-full flex flex-col items-center text-center gap-4">
-                    <div className="w-full overflow-hidden rounded-[10px] border border-[#E6DDCC] bg-white">
-                      <img
-                        src={member.photo}
-                        alt={member.name}
-                        className="h-[320px] w-full object-cover object-center md:h-[340px] lg:h-[360px]"
-                        loading="lazy"
-                      />
-                    </div>
-                    <h3 className="font-semibold text-[16px] md:text-[18px] text-slate-900">
-                      {member.name}
-                    </h3>
-                    <span className="inline-flex items-center rounded-full bg-[#C9A227] px-4 py-1 text-[12px] font-semibold text-slate-900">
-                      {member.role}
-                    </span>
-                    <div className="text-[13px] font-semibold text-slate-800">{member.experience}</div>
-                    <div className="w-full">
-                      <div className="text-[12px] font-semibold text-slate-700">Специализации:</div>
-                      <ul className="mt-2 space-y-1 text-[13px] text-slate-700 list-disc list-inside text-center">
-                        {member.specializations.map((item) => (
-                          <li key={item}>{item}</li>
+                  <CardContent className="p-6 h-full flex flex-col items-center text-center">
+                    <div className="flex w-full flex-col items-center text-center gap-4">
+                      <div className="w-full overflow-hidden rounded-[10px] border border-[#E6DDCC] bg-white">
+                        <img
+                          src={member.photo}
+                          alt={member.name}
+                          className="h-[320px] w-full object-cover object-center md:h-[340px] lg:h-[360px]"
+                          loading="lazy"
+                        />
+                      </div>
+                      <h3 className="font-semibold text-[16px] md:text-[18px] text-slate-900">
+                        {member.name}
+                      </h3>
+                      <span className="inline-flex items-center rounded-full bg-[#C9A227] px-4 py-1 text-[12px] font-semibold text-slate-900">
+                        {member.role}
+                      </span>
+                      <div className="text-[13px] font-semibold text-slate-800">{member.experience}</div>
+                      <div className="w-full">
+                        <div className="text-[12px] font-semibold text-slate-700">Специализации:</div>
+                        <ul className="mt-2 space-y-1 text-[13px] text-slate-700 list-disc list-inside text-center">
+                          {member.specializations.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="text-[13px] text-slate-600 leading-relaxed space-y-2">
+                        {member.description.map((paragraph, index) => (
+                          <p key={`${member.name}-${index}`}>{paragraph}</p>
                         ))}
-                      </ul>
+                      </div>
                     </div>
-                    <div className="text-[13px] text-slate-600 leading-relaxed space-y-2">
-                      {member.description.map((paragraph, index) => (
-                        <p key={`${member.name}-${index}`}>{paragraph}</p>
-                      ))}
+                    <div className="mt-auto w-full pt-5 flex justify-center">
+                      <Button
+                        asChild
+                        size="lg"
+                        className="w-full md:w-auto h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                      >
+                        <Link to={member.profileUrl}>Подробнее об адвокате</Link>
+                      </Button>
                     </div>
-                    <Button
-                      asChild
-                      size="lg"
-                      className="mt-2 w-full md:w-auto h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                    >
-                      <Link to={member.profileUrl}>Подробнее об адвокате</Link>
-                    </Button>
                   </CardContent>
                 </Card>
               ))}
