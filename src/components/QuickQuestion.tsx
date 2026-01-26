@@ -31,7 +31,7 @@ const QuickQuestion = () => {
       {/* Modal */}
       <Dialog open={isOpen} onOpenChange={setIsOpen}>
         <DialogContent className={cn(isLandingModal ? landingDialogClassName : "sm:max-w-md")}>
-          <DialogHeader className={isLandingModal ? "space-y-2 text-left" : undefined}>
+          <DialogHeader className={isLandingModal ? "space-y-2 text-center" : undefined}>
             <DialogTitle className="font-serif text-h3-mobile md:text-h3">Быстрый вопрос юристу</DialogTitle>
             <DialogDescription>
               Оставьте свои контакты, и мы свяжемся с вами в ближайшее время

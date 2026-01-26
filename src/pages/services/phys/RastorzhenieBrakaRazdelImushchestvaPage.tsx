@@ -521,7 +521,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
 
       <Dialog open={isLeadOpen} onOpenChange={setIsLeadOpen}>
         <DialogContent className={landingDialogClassName}>
-          <DialogHeader className="space-y-2 text-left">
+          <DialogHeader className="space-y-2 text-center">
             <DialogTitle>Быстрый вопрос юристу</DialogTitle>
             <DialogDescription>
               Оставьте свои контакты, и мы свяжемся с вами в ближайшее время
@@ -600,7 +600,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 return (
                   <Card
                     key={card.title}
-                    className="h-full rounded-[12px] border border-[#E6DDCC] bg-[#F4F0E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+                    className="h-full rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
                   >
                     <CardContent className="p-5 md:p-6 pt-5 md:pt-6 h-full flex flex-col items-center text-center gap-3">
                       <Icon className="h-12 w-12 text-slate-600" strokeWidth={1.6} />
@@ -622,7 +622,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 );
               })}
             </div>
-            <div className="mt-7 md:mt-8 rounded-[12px] border border-[#E6DDCC] bg-[#F7F3EA] p-6 text-center shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
+            <div className="mt-7 md:mt-8 rounded-[12px] border border-[#D8C08B] bg-[#F7F2E8] p-6 text-center shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
               <p className="font-semibold text-body-mobile md:text-body text-slate-900">
                 Каждая неделя без четкой позиции — это риск потерять квартиру, контакт с ребенком или деньги.
               </p>
@@ -644,25 +644,37 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
             </div>
             <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
               {teamMembers.map((member) => (
-                <Card key={member.name} className="h-full">
-                  <CardContent className="pt-6 h-full flex flex-col">
-                    <div className="mb-4 overflow-hidden rounded-xl">
+                <Card
+                  key={member.name}
+                  className="h-full rounded-[14px] border border-[#D8C08B] bg-white shadow-[0_10px_24px_rgba(60,52,31,0.08)]"
+                >
+                  <CardContent className="p-6 h-full flex flex-col items-center text-center gap-4">
+                    <div className="w-full overflow-hidden rounded-[14px] border border-[#E6DDCC] bg-white">
                       <img
                         src={member.photo}
                         alt={member.name}
-                        className="h-56 w-full object-cover"
+                        className="h-60 w-full object-cover object-center md:h-64 lg:h-72"
                         loading="lazy"
                       />
                     </div>
-                    <h3 className="font-semibold text-body-mobile md:text-body">{member.name}</h3>
-                    <div className="text-small text-muted-foreground">{member.role}</div>
-                    <div className="text-small font-semibold mt-1">{member.experience}</div>
-                    <ul className="mt-4 space-y-1 text-small text-muted-foreground list-disc list-inside">
-                      {member.specializations.map((item) => (
-                        <li key={item}>{item}</li>
-                      ))}
-                    </ul>
-                    <div className="mt-4 space-y-3 text-small text-muted-foreground leading-relaxed">
+                    <h3 className="font-semibold text-[16px] md:text-[17px] text-slate-900">
+                      {member.name}
+                    </h3>
+                    <span className="inline-flex items-center rounded-full bg-[#C9A227] px-3 py-1 text-[12px] font-semibold text-slate-900">
+                      {member.role}
+                    </span>
+                    <div className="text-[13px] font-semibold text-slate-800">{member.experience}</div>
+                    <div className="w-full">
+                      <div className="text-[11px] uppercase tracking-[0.08em] text-slate-500">
+                        Специализации
+                      </div>
+                      <ul className="mt-2 space-y-1 text-[13px] text-slate-700 list-disc list-inside text-center">
+                        {member.specializations.map((item) => (
+                          <li key={item}>{item}</li>
+                        ))}
+                      </ul>
+                    </div>
+                    <div className="text-[13px] text-slate-600 leading-relaxed space-y-2">
                       {member.description.map((paragraph, index) => (
                         <p key={`${member.name}-${index}`}>{paragraph}</p>
                       ))}
@@ -707,15 +719,31 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 </Card>
               ))}
             </div>
-            <div className="mt-8 rounded-2xl border border-border bg-muted/30 p-6 space-y-4">
-              <p className="font-semibold text-body-mobile md:text-body">Если дело уже в суде — мы входим в процесс сразу…</p>
-              <p className="text-muted-foreground font-medium">
-                Если ещё не дошло до суда — подготовим сильную позицию заранее…
-              </p>
-              <Button size="lg" className="w-full sm:w-auto" onClick={() => setIsLeadOpen(true)}>
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+              <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
+                <CardContent className="p-6 text-center">
+                  <p className="font-semibold text-body-mobile md:text-body text-slate-900">
+                    Если дело уже в суде — мы входим в процесс сразу…
+                  </p>
+                </CardContent>
+              </Card>
+              <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
+                <CardContent className="p-6 text-center">
+                  <p className="font-semibold text-body-mobile md:text-body text-slate-900">
+                    Если ещё не дошло до суда — подготовим сильную позицию заранее…
+                  </p>
+                </CardContent>
+              </Card>
+            </div>
+            <div className="mt-8 flex flex-col items-center gap-3 text-center">
+              <Button
+                size="lg"
+                className="w-full sm:w-[360px] h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                onClick={() => setIsLeadOpen(true)}
+              >
                 Получить индивидуальный план действий
               </Button>
-              <p className="text-small text-muted-foreground">
+              <p className="text-small text-slate-600">
                 Мы проанализируем вашу ситуацию и покажем, как действовать дальше — без обязательств
               </p>
             </div>

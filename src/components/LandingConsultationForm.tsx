@@ -5,7 +5,6 @@ import { Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
 import PhoneInput from "@/components/PhoneInput";
 import { toast } from "@/hooks/use-toast";
@@ -21,9 +20,7 @@ type LandingConsultationFormProps = {
 const LandingConsultationForm = ({ onSuccess, submitLabel = "Получить консультацию" }: LandingConsultationFormProps) => {
   const [formData, setFormData] = useState({
     name: "",
-    phone: "",
-    email: "",
-    message: ""
+    phone: ""
   });
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -62,10 +59,6 @@ const LandingConsultationForm = ({ onSuccess, submitLabel = "Получить к
       nextErrors.phone = "Укажите корректный номер телефона";
     }
 
-    if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
-      nextErrors.email = "Проверьте email";
-    }
-
     if (!consent) {
       nextErrors.consent = "Подтвердите согласие";
     }
@@ -80,15 +73,13 @@ const LandingConsultationForm = ({ onSuccess, submitLabel = "Получить к
       await submitToWebhook({
         name: formData.name.trim(),
         phone: formData.phone,
-        email: formData.email.trim() || undefined,
-        topic: "Расторжение брака и раздел имущества",
-        message: formData.message.trim() || undefined
+        topic: "Расторжение брака и раздел имущества"
       });
       toast({
         title: "Заявка отправлена",
         description: "Мы свяжемся с вами в ближайшее время"
       });
-      setFormData({ name: "", phone: "", email: "", message: "" });
+      setFormData({ name: "", phone: "" });
       setConsent(false);
       setErrors({});
       setSubmitTime(Date.now());
@@ -141,7 +132,7 @@ const LandingConsultationForm = ({ onSuccess, submitLabel = "Получить к
 
       <div className="space-y-2">
         <Label htmlFor="landing-phone">
-          Телефон <span className="text-destructive">*</span>
+          Ваш номер телефона <span className="text-destructive">*</span>
         </Label>
         <PhoneInput
           id="landing-phone"
@@ -156,41 +147,6 @@ const LandingConsultationForm = ({ onSuccess, submitLabel = "Получить к
           className={cn(baseInputClass, errors.phone && "border-destructive focus-visible:ring-destructive/30")}
         />
         {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="landing-email">Email (необязательно)</Label>
-        <Input
-          id="landing-email"
-          name="email"
-          type="email"
-          value={formData.email}
-          onChange={(event) => {
-            setFormData((prev) => ({ ...prev, email: event.target.value }));
-            if (errors.email) setErrors((prev) => ({ ...prev, email: "" }));
-          }}
-          placeholder="ivan@example.com"
-          className={cn(baseInputClass, errors.email && "border-destructive focus-visible:ring-destructive/30")}
-          disabled={isSubmitting}
-          maxLength={255}
-        />
-        {errors.email && <p className="text-xs text-destructive">{errors.email}</p>}
-      </div>
-
-      <div className="space-y-2">
-        <Label htmlFor="landing-message">Опишите вашу ситуацию</Label>
-        <Textarea
-          id="landing-message"
-          name="message"
-          value={formData.message}
-          onChange={(event) => setFormData((prev) => ({ ...prev, message: event.target.value }))}
-          placeholder="Опишите вашу ситуацию"
-          className={cn(
-            "min-h-[120px] rounded-[14px] border border-slate-200 bg-white px-4 py-3 placeholder:text-slate-400 focus-visible:ring-2 focus-visible:ring-accent/30 focus-visible:ring-offset-0 focus-visible:border-accent"
-          )}
-          disabled={isSubmitting}
-          maxLength={1000}
-        />
       </div>
 
       <div className="space-y-2">
@@ -220,7 +176,7 @@ const LandingConsultationForm = ({ onSuccess, submitLabel = "Получить к
       <Button
         type="submit"
         size="lg"
-        className="w-full bg-primary text-primary-foreground border border-primary hover:border-accent hover:bg-primary/90"
+        className="w-full h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
         disabled={isSubmitting}
       >
         {isSubmitting ? (
