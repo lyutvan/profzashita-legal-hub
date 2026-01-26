@@ -190,7 +190,7 @@ const TeamMemberPage = () => {
                       {relatedCases.map((caseItem) => (
                         <li key={caseItem.id} className="p-3 rounded-xl bg-muted/50 border border-border/60">
                           <Link
-                            to={`/keisy#${caseItem.slug}`}
+                            to={`/cases#${caseItem.slug}`}
                             className="font-medium text-foreground hover:text-accent transition-colors"
                           >
                             {caseItem.title}

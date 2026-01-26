@@ -132,7 +132,7 @@ const App = () => (
           <Route path="/services/biz/vzyskanie/*" element={<Navigate to="/services/biz" replace />} />
           <Route path="/services/biz/bankrotstvo/*" element={<Navigate to="/services/biz" replace />} />
           <Route path="/about" element={<Navigate to="/o-kollegii" replace />} />
-          <Route path="/cases" element={<Navigate to="/keisy" replace />} />
+          <Route path="/cases" element={<Keisy />} />
           <Route path="/contacts" element={<Navigate to="/kontakty" replace />} />
           <Route path="/practices" element={<Navigate to="/uslugi" replace />} />
           <Route path="/practices/:slug" element={<Navigate to="/uslugi" replace />} />

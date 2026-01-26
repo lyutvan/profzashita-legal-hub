@@ -1,3 +1,5 @@
+import { useEffect } from "react";
+import { useLocation } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LegalBackground from "@/components/LegalBackground";
@@ -13,6 +15,17 @@ import { SITE } from "@/config/site";
 import { CheckCircle2, Scale, Gavel } from "lucide-react";
 
 const Cases = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    if (!location.hash) return;
+    const targetId = decodeURIComponent(location.hash.replace("#", ""));
+    const el = document.getElementById(targetId);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth", block: "start" });
+    }
+  }, [location.hash]);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Helmet>
