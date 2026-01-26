@@ -1,7 +1,20 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
-import { Star, Phone, Mail, MapPin } from "lucide-react";
+import {
+  Star,
+  Phone,
+  Mail,
+  MapPin,
+  HeartHandshake,
+  Scale,
+  HandCoins,
+  Home,
+  MessageCircle,
+  Shield,
+  FileSearch,
+  HelpCircle
+} from "lucide-react";
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -215,35 +228,43 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
   const situations = [
     {
       title: "Расторжение брака без лишних нервов",
-      description: "Подготовим документы, представим интересы в суде"
+      description: "Подготовим документы, представим интересы в суде",
+      icon: HeartHandshake
     },
     {
       title: "Раздел совместно нажитого имущества",
-      description: "Защитим ваши права на квартиру, автомобиль и сбережения"
+      description: "Защитим ваши права на квартиру, автомобиль и сбережения",
+      icon: Scale
     },
     {
       title: "Взыскание алиментов",
-      description: "Поможем получить долг и установить выплаты через суд"
+      description: "Поможем получить долг и установить выплаты через суд",
+      icon: HandCoins
     },
     {
       title: "Определение места жительства ребенка",
-      description: "Разберем, как законно оформить проживание ребенка"
+      description: "Разберем, как законно оформить проживание ребенка",
+      icon: Home
     },
     {
       title: "Определение порядка общения с ребенком",
-      description: "Поможем установить законный порядок встреч с учетом интересов ребенка"
+      description: "Поможем установить законный порядок встреч с учетом интересов ребенка",
+      icon: MessageCircle
     },
     {
       title: "Ограничение или лишение родительских прав",
-      description: "Действуем в интересах ребенка"
+      description: "Действуем в интересах ребенка",
+      icon: Shield
     },
     {
       title: "Оспаривание отцовства/материнства",
-      description: "Юридически оспорим или подтвердим родственную связь"
+      description: "Юридически оспорим или подтвердим родственную связь",
+      icon: FileSearch
     },
     {
       title: "Другая ситуация — нужна помощь",
-      description: "Разберем и подскажем, как действовать"
+      description: "Разберем и подскажем, как действовать",
+      icon: HelpCircle
     }
   ];
 
@@ -567,28 +588,45 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
         {/* Экран 2: Ситуации */}
         <section className="section">
           <div className="container">
-            <div className="section__header max-w-3xl">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Помогаем в любых семейных вопросах</h2>
+            <div className="section__header max-w-3xl mx-auto text-center pt-2 md:pt-4 mb-6 md:mb-7">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                Помогаем в любых семейных вопросах
+              </h2>
               <p className="text-muted-foreground">Выберите вашу ситуацию — подскажем, как действовать:</p>
             </div>
-            <div className="section__content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6 auto-rows-fr">
-              {situations.map((card) => (
-                <Card key={card.title} className="h-full">
-                  <CardContent className="pt-6 h-full flex flex-col">
-                    <h3 className="font-semibold text-body-mobile md:text-body">{card.title}</h3>
-                    <p className="text-small text-muted-foreground mt-3">{card.description}</p>
-                    <Button size="lg" className="mt-auto w-full" onClick={() => setIsLeadOpen(true)}>
-                      Получить консультацию
-                    </Button>
-                  </CardContent>
-                </Card>
-              ))}
+            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-fr">
+              {situations.map((card) => {
+                const Icon = card.icon;
+                return (
+                  <Card
+                    key={card.title}
+                    className="h-full rounded-[12px] border border-[#E6DDCC] bg-[#F4F0E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+                  >
+                    <CardContent className="p-5 md:p-6 pt-5 md:pt-6 h-full flex flex-col items-center text-center gap-3">
+                      <Icon className="h-12 w-12 text-slate-600" strokeWidth={1.6} />
+                      <h3 className="font-semibold text-[16px] md:text-[17px] text-slate-900">
+                        {card.title}
+                      </h3>
+                      <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed flex-1">
+                        {card.description}
+                      </p>
+                      <Button
+                        size="lg"
+                        className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                        onClick={() => setIsLeadOpen(true)}
+                      >
+                        Получить консультацию
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
-            <div className="mt-8 rounded-2xl border border-accent/20 bg-accent/5 p-6">
-              <p className="font-semibold text-body-mobile md:text-body">
+            <div className="mt-7 md:mt-8 rounded-[12px] border border-[#E6DDCC] bg-[#F7F3EA] p-6 text-center shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
+              <p className="font-semibold text-body-mobile md:text-body text-slate-900">
                 Каждая неделя без четкой позиции — это риск потерять квартиру, контакт с ребенком или деньги.
               </p>
-              <p className="mt-2 text-muted-foreground font-medium">
+              <p className="mt-2 text-[14px] md:text-[15px] text-slate-600 font-medium">
                 В 70% случаев клиенты обращаются слишком поздно — когда позиция уже ослаблена!
               </p>
             </div>
