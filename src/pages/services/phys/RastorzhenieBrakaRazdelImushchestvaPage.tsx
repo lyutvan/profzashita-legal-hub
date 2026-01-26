@@ -832,13 +832,13 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
         {/* Экран 6: Большой продающий блок + аккордеон */}
         <section className="section">
           <div className="container">
-            <div className="section__header max-w-4xl">
+            <div className="section__header max-w-4xl !mb-4 md:!mb-5">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
                 Расторжение брака и раздел имущества: как получить справедливый результат — без потерь и стресса?
               </h2>
             </div>
             <Card className="border-border">
-              <CardContent className="pt-6 space-y-4 text-muted-foreground leading-relaxed">
+              <CardContent className="pt-6 space-y-3 text-muted-foreground leading-relaxed">
                 <p>
                   В семейных спорах время работает против тех, кто откладывает решение: активы можно вывести,
                   переписать или спрятать, а позиция по детям становится слабее без четких доказательств.
