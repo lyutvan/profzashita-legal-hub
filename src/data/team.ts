@@ -165,6 +165,110 @@ export const teamMembers: TeamMember[] = [
       "Российский государственный университет правосудия",
       "Повышение квалификации по медиации"
     ],
+    achievements: [
+      {
+        title: "Повышение квалификации (2011)",
+        previewImage: "/certificates/files/sotnikov-qualification-2011.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2011.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2013)",
+        previewImage: "/certificates/files/sotnikov-qualification-2013.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2013.jpg",
+        type: "image"
+      },
+      {
+        title: "Сертификат (2016)",
+        previewImage: "/certificates/files/sotnikov-certificate-2016.jpg",
+        fileUrl: "/certificates/files/sotnikov-certificate-2016.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2019)",
+        previewImage: "/certificates/files/sotnikov-qualification-2019.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2019.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2023) — удостоверение №1",
+        previewImage: "/certificates/files/sotnikov-qualification-2023-01.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2023-01.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2023) — удостоверение №2",
+        previewImage: "/certificates/files/sotnikov-qualification-2023-02.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2023-02.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2023) — удостоверение №3",
+        previewImage: "/certificates/files/sotnikov-qualification-2023-03.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2023-03.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2023) — удостоверение №4",
+        previewImage: "/certificates/files/sotnikov-qualification-2023-04.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2023-04.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2024) — удостоверение №1",
+        previewImage: "/certificates/files/sotnikov-qualification-2024-01.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2024-01.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2024) — удостоверение №2",
+        previewImage: "/certificates/files/sotnikov-qualification-2024-02.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2024-02.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2024) — удостоверение №3",
+        previewImage: "/certificates/files/sotnikov-qualification-2024-03.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2024-03.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2024) — удостоверение №4",
+        previewImage: "/certificates/files/sotnikov-qualification-2024-04.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2024-04.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2024) — удостоверение №5",
+        previewImage: "/certificates/files/sotnikov-qualification-2024-05.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2024-05.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2025) — удостоверение №1",
+        previewImage: "/certificates/files/sotnikov-qualification-2025-01.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2025-01.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2025) — удостоверение №2",
+        previewImage: "/certificates/files/sotnikov-qualification-2025-02.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2025-02.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2025) — удостоверение №3",
+        previewImage: "/certificates/files/sotnikov-qualification-2025-03.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2025-03.jpg",
+        type: "image"
+      },
+      {
+        title: "Повышение квалификации (2025) — удостоверение №4",
+        previewImage: "/certificates/files/sotnikov-qualification-2025-04.jpg",
+        fileUrl: "/certificates/files/sotnikov-qualification-2025-04.jpg",
+        type: "image"
+      }
+    ],
     languages: ["Русский"]
   },
   {
