@@ -636,7 +636,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
         {/* Экран 3: Команда */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="section__header max-w-3xl">
+            <div className="section__header max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кто ведет ваши дела</h2>
               <p className="text-muted-foreground">
                 Вашим делом занимаются практикующие адвокаты с опытом в семейных спорах
@@ -646,28 +646,26 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               {teamMembers.map((member) => (
                 <Card
                   key={member.name}
-                  className="h-full rounded-[14px] border border-[#D8C08B] bg-white shadow-[0_10px_24px_rgba(60,52,31,0.08)]"
+                  className="h-full rounded-[12px] border border-[#C9A227] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
                 >
                   <CardContent className="p-6 h-full flex flex-col items-center text-center gap-4">
-                    <div className="w-full overflow-hidden rounded-[14px] border border-[#E6DDCC] bg-white">
+                    <div className="w-full overflow-hidden rounded-[10px] border border-[#E6DDCC] bg-white">
                       <img
                         src={member.photo}
                         alt={member.name}
-                        className="h-60 w-full object-cover object-center md:h-64 lg:h-72"
+                        className="h-[320px] w-full object-cover object-center md:h-[340px] lg:h-[360px]"
                         loading="lazy"
                       />
                     </div>
-                    <h3 className="font-semibold text-[16px] md:text-[17px] text-slate-900">
+                    <h3 className="font-semibold text-[16px] md:text-[18px] text-slate-900">
                       {member.name}
                     </h3>
-                    <span className="inline-flex items-center rounded-full bg-[#C9A227] px-3 py-1 text-[12px] font-semibold text-slate-900">
+                    <span className="inline-flex items-center rounded-full bg-[#C9A227] px-4 py-1 text-[12px] font-semibold text-slate-900">
                       {member.role}
                     </span>
                     <div className="text-[13px] font-semibold text-slate-800">{member.experience}</div>
                     <div className="w-full">
-                      <div className="text-[11px] uppercase tracking-[0.08em] text-slate-500">
-                        Специализации
-                      </div>
+                      <div className="text-[12px] font-semibold text-slate-700">Специализации:</div>
                       <ul className="mt-2 space-y-1 text-[13px] text-slate-700 list-disc list-inside text-center">
                         {member.specializations.map((item) => (
                           <li key={item}>{item}</li>
