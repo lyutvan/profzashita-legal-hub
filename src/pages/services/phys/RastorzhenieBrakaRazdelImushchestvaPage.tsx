@@ -220,10 +220,14 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
     "!w-[calc(100%-32px)] !max-w-[640px] !rounded-[20px] bg-white p-8 shadow-[0_24px_80px_rgba(15,23,42,0.18)] border border-slate-200";
 
   const trustItems = [
-    "Конфиденциально",
-    "15+ лет практики",
-    "Работаем в Москве и Московской области",
-    "150+ дел по расторжению брака и разделу имущества"
+    { id: "confidential", label: "Конфиденциально" },
+    { id: "experience", label: "15+ лет практики" },
+    { id: "region", label: "Работаем в Москве и Московской области" },
+    {
+      id: "cases",
+      label: "дел по расторжению брака и разделу имущества",
+      accent: "150+"
+    }
   ];
 
   const situations = [
@@ -495,7 +499,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col family-landing-page">
       <Helmet>
         <title>Расторжение брака и раздел имущества — адвокаты по семейным делам | Профзащита</title>
         <meta
@@ -561,7 +565,9 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
             />
             <div className="max-w-4xl mt-6 space-y-5">
               <h1 className="font-serif text-h1-mobile md:text-h1 font-bold">
-                Адвокаты по семейным делам: берем на себя переговоры, документы и суды
+                Адвокаты по семейным делам: берем на себя{" "}
+                <span className="accent-underline">переговоры, документы и суды</span>
+                {/* Вариант B (marker highlight): <span className="accent-marker">переговоры, документы и суды</span> */}
               </h1>
               <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
                 <li>Расторжение брака с детьми и споры об опеке</li>
@@ -582,10 +588,18 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               <div className="flex flex-wrap items-center gap-y-2 text-small text-white/75">
                 {trustItems.map((item, index) => (
                   <span
-                    key={item}
+                    key={item.id}
                     className={`flex items-center ${index > 0 ? "before:content-['•'] before:mx-2 before:text-white/50" : ""}`}
                   >
-                    {item}
+                    {item.accent ? (
+                      <>
+                        <span className="accent-underline">{item.accent}</span>{" "}
+                        {item.label}
+                        {/* Вариант B (marker highlight): <span className="accent-marker">{item.accent}</span> {item.label} */}
+                      </>
+                    ) : (
+                      item.label
+                    )}
                   </span>
                 ))}
               </div>
