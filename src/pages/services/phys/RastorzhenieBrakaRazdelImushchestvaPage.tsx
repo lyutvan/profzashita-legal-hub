@@ -1130,7 +1130,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">Адрес</h3>
-                        <p className="text-muted-foreground">
+                        <p className="text-accent">
                           {SITE.address.city}, {SITE.address.street}
                         </p>
                       </div>
