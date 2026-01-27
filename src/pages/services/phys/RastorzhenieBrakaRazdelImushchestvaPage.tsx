@@ -409,25 +409,14 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
 
   const YandexRatingWidget = () => (
     <div className="mt-8 flex justify-center">
-      <div className="w-full max-w-md rounded-2xl border border-[#D8C08B] bg-[#F9F6EE] p-5 text-center shadow-[0_14px_34px_rgba(15,23,42,0.08)]">
-        <div className="text-[28px] font-bold text-slate-900">5,0</div>
-        <div className="mt-1 flex items-center justify-center gap-1 text-accent">
-          {Array.from({ length: 5 }).map((_, index) => (
-            <Star key={`yandex-rating-star-${index}`} className="h-5 w-5 fill-current" />
-          ))}
-        </div>
-        <div className="mt-2 text-small text-muted-foreground">Рейтинг организации в Яндексе</div>
-        <div className="mt-3 flex justify-center">
-          <iframe
-            src={`https://yandex.ru/sprav/widget/rating-badge/${yandexOrgId}?type=rating`}
-            width="150"
-            height="50"
-            frameBorder="0"
-            title="Рейтинг Профзащита в Яндекс.Картах"
-            className="max-w-full"
-          ></iframe>
-        </div>
-      </div>
+      <iframe
+        src={`https://yandex.ru/sprav/widget/rating-badge/${yandexOrgId}?type=rating`}
+        width="150"
+        height="50"
+        frameBorder="0"
+        title="Рейтинг Профзащита в Яндекс.Картах"
+        className="max-w-full"
+      ></iframe>
     </div>
   );
 
