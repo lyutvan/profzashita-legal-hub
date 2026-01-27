@@ -267,24 +267,26 @@ const TeamMemberPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {achievements.map((item) => {
                         const isLyadovaIpCert =
-                          member.slug === "yulia-lyadova" && item.fileUrl.includes("lyadova-legal-academy-ip");
+                          member.slug === "yulia-lyadova" && (item.fileUrl ?? "").includes("lyadova-legal-academy-ip");
                         const previewClassName = isLyadovaIpCert
                           ? "w-full aspect-[4/3] object-contain origin-center rotate-90 scale-[0.82] bg-white"
                           : "w-full aspect-[3/4] object-contain bg-white";
 
                         return (
                           <div
-                            key={item.fileUrl}
+                            key={item.fileUrl ?? item.title}
                             className="rounded-xl border border-border/70 bg-background p-4 flex flex-col gap-4"
                           >
-                            <div className="rounded-lg border border-border/60 bg-muted/30 overflow-hidden">
-                              <img
-                                src={item.previewImage}
-                                alt={`Сертификат: ${item.title}`}
-                                className={previewClassName}
-                                loading="lazy"
-                              />
-                            </div>
+                            {item.previewImage && (
+                              <div className="rounded-lg border border-border/60 bg-muted/30 overflow-hidden">
+                                <img
+                                  src={item.previewImage}
+                                  alt={`Сертификат: ${item.title}`}
+                                  className={previewClassName}
+                                  loading="lazy"
+                                />
+                              </div>
+                            )}
                             <div>
                               <p className="font-medium">{item.title}</p>
                               {(item.org || item.date) && (
@@ -293,18 +295,20 @@ const TeamMemberPage = () => {
                                 </p>
                               )}
                             </div>
-                            <div>
-                              <Button
-                                asChild
-                                variant="outline"
-                                size="sm"
-                                className="h-10 px-4 text-small"
-                              >
-                                <a href={item.fileUrl} target="_blank" rel="noopener noreferrer">
-                                  Открыть
-                                </a>
-                              </Button>
-                            </div>
+                            {item.fileUrl && (
+                              <div>
+                                <Button
+                                  asChild
+                                  variant="outline"
+                                  size="sm"
+                                  className="h-10 px-4 text-small"
+                                >
+                                  <a href={item.fileUrl} target="_blank" rel="noopener noreferrer">
+                                    Открыть
+                                  </a>
+                                </Button>
+                              </div>
+                            )}
                           </div>
                         );
                       })}

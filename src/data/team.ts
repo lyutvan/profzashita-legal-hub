@@ -30,9 +30,9 @@ export interface TeamMember {
     title: string;
     org?: string;
     date?: string;
-    previewImage: string;
-    fileUrl: string;
-    type: "pdf" | "image";
+    previewImage?: string;
+    fileUrl?: string;
+    type?: "pdf" | "image";
   }[];
 }
 
@@ -409,7 +409,13 @@ export const teamMembers: TeamMember[] = [
         previewImage: "/certificates/previews/lyadova-criminal-family-aspects.png",
         fileUrl: "/certificates/files/lyadova-criminal-family-aspects.png",
         type: "image"
-      }
+      },
+      { title: "Жилищно-правовые споры (ФПА, 2024)" },
+      { title: "Медиация семейных споров (ФПА, 2025)" },
+      { title: "Споры о детях и раздел имущества супругов (ФПА, 2024)" },
+      { title: "Способы защиты прав собственности (ФПА, 2025)" },
+      { title: "Судебная экспертиза детско-родительских отношений (ФПА, 2024)" },
+      { title: "Юридическая помощь по семейным делам (ФПА, 2025)" }
     ]
   }
 ];
