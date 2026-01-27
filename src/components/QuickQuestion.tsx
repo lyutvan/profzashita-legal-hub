@@ -19,7 +19,7 @@ const QuickQuestion = () => {
       {/* Floating Button */}
       <button
         onClick={() => setIsOpen(true)}
-        className="fixed bottom-6 right-6 z-40 h-14 w-14 rounded-full bg-accent text-accent-foreground shadow-elegant hover:scale-110 transition-transform duration-200 flex items-center justify-center group"
+        className="fixed bottom-[76px] right-[18px] z-40 h-14 w-14 rounded-full bg-accent text-accent-foreground shadow-elegant hover:scale-110 transition-transform duration-200 flex items-center justify-center group"
         aria-label="Задать вопрос"
       >
         <MessageSquare className="h-6 w-6" />

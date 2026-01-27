@@ -18,6 +18,7 @@ import Disclaimer from "./pages/Disclaimer";
 import Thanks from "./pages/Thanks";
 import NotFound from "./pages/NotFound";
 import QuickQuestion from "./components/QuickQuestion";
+import MessengerTelegramButton from "./components/MessengerTelegramButton";
 import BizServicePage from "./pages/services/biz/BizServicePage";
 import PhysPage from "./pages/services/PhysPage";
 import PhysServiceDetailPage from "./pages/services/phys/PhysServiceDetailPage";
@@ -54,6 +55,7 @@ const App = () => (
       <Sonner />
       <BrowserRouter>
         <QuickQuestion />
+        <MessengerTelegramButton />
         <ScrollToTop />
         <Routes>
           <Route path="/" element={<Index />} />
