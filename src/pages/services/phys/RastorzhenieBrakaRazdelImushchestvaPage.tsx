@@ -717,26 +717,27 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 Как мы работаем: 6 этапов, чтобы вы вышли из ситуации с минимальными потерями
               </h2>
             </div>
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+            <div className="section__content mx-auto w-full max-w-4xl">
               {steps.map((step, index) => (
-                <Card key={step.title} className="h-full">
-                  <CardContent className="pt-6 h-full flex flex-col gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 rounded-full bg-accent/10 text-accent flex items-center justify-center font-semibold">
-                        {index + 1}
-                      </div>
-                      <h3 className="font-semibold text-body-mobile md:text-body">{step.title}</h3>
+                <div
+                  key={step.title}
+                  className="flex flex-col gap-4 border-b border-slate-200 py-6 last:border-b-0 sm:flex-row sm:gap-6"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-slate-50 text-lg font-semibold text-accent">
+                    {index + 1}
+                  </div>
+                  <div className="flex-1 space-y-4">
+                    <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{step.title}</h3>
+                    <div>
+                      <div className="mb-2 text-xs uppercase tracking-wide text-muted-foreground">Что мы делаем</div>
+                      <p className="text-small leading-relaxed text-muted-foreground">{step.action}</p>
                     </div>
                     <div>
-                      <div className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Что мы делаем</div>
-                      <p className="text-small text-muted-foreground leading-relaxed">{step.action}</p>
+                      <div className="mb-2 text-xs uppercase tracking-wide text-muted-foreground">Результат для вас</div>
+                      <p className="text-small leading-relaxed text-muted-foreground">{step.result}</p>
                     </div>
-                    <div>
-                      <div className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Результат для вас</div>
-                      <p className="text-small text-muted-foreground leading-relaxed">{step.result}</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
