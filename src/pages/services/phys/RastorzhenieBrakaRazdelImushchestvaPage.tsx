@@ -131,7 +131,7 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-4">
+    <form onSubmit={handleSubmit} className="space-y-5">
       <input
         type="text"
         name="website"
@@ -143,33 +143,35 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
         aria-hidden="true"
       />
 
-      <div className="space-y-2">
-        <Label htmlFor={`${formId}-name`}>
-          Имя <span className="text-destructive">*</span>
-        </Label>
-        <Input
-          id={`${formId}-name`}
-          name="name"
-          value={formData.name}
-          onChange={(event) => setFormData((prev) => ({ ...prev, name: event.target.value }))}
-          required
-          placeholder="Ваше имя*"
-          disabled={isSubmitting}
-        />
-      </div>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        <div className="space-y-2">
+          <Label htmlFor={`${formId}-name`}>
+            Имя <span className="text-destructive">*</span>
+          </Label>
+          <Input
+            id={`${formId}-name`}
+            name="name"
+            value={formData.name}
+            onChange={(event) => setFormData((prev) => ({ ...prev, name: event.target.value }))}
+            required
+            placeholder="Ваше имя*"
+            disabled={isSubmitting}
+          />
+        </div>
 
-      <div className="space-y-2">
-        <Label htmlFor={`${formId}-phone`}>
-          Телефон <span className="text-destructive">*</span>
-        </Label>
-        <PhoneInput
-          id={`${formId}-phone`}
-          value={formData.phone}
-          onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
-          disabled={isSubmitting}
-          required
-          placeholder="Ваш номер телефона*"
-        />
+        <div className="space-y-2">
+          <Label htmlFor={`${formId}-phone`}>
+            Телефон <span className="text-destructive">*</span>
+          </Label>
+          <PhoneInput
+            id={`${formId}-phone`}
+            value={formData.phone}
+            onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
+            disabled={isSubmitting}
+            required
+            placeholder="Ваш номер телефона*"
+          />
+        </div>
       </div>
 
       <div className="space-y-2">
@@ -204,7 +206,12 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
         </Label>
       </div>
 
-      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+      <Button
+        type="submit"
+        size="lg"
+        className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[15px] font-semibold text-slate-900 shadow-[0_6px_16px_rgba(111,83,15,0.28)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+        disabled={isSubmitting}
+      >
         {submitLabel}
       </Button>
 
@@ -1025,22 +1032,55 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
         {/* Экран 8: Финальная форма */}
         <section className="section">
           <div className="container">
-            <div className="section__header max-w-3xl">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Получите оценку перспектив по вашей ситуации</h2>
-              <p className="text-muted-foreground">
-                Оставьте контакты — адвокат по семейным спорам свяжется и расскажет, как действовать дальше.
-              </p>
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_520px] lg:items-start lg:gap-14">
+              <div className="max-w-2xl space-y-6">
+                <div className="section__header max-w-2xl !mb-0">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                    Получите оценку перспектив по вашей ситуации
+                  </h2>
+                  <p className="text-muted-foreground">
+                    Оставьте контакты — адвокат по семейным спорам свяжется с вами, задаст уточняющие вопросы и
+                    предложит варианты действий.
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <p className="text-small font-semibold text-slate-900">Или напишите нам напрямую:</p>
+                  <div className="flex items-center gap-4">
+                    <a
+                      href="https://t.me/profzashita_consult_bot"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Написать в Telegram"
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-[#229ED9] shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] hover:text-[#C9A227] md:h-14 md:w-14"
+                    >
+                      <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
+                        <path
+                          d="M21.2 4.6L3.9 11.2c-.9.3-.9 1.6 0 1.9l4.4 1.4 1.7 5.1c.3.9 1.5 1.1 2 .3l2.5-3.4 4.6 3.4c.7.5 1.7.1 1.9-.8l2.6-13.6c.2-1-.8-1.8-1.8-1.4z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </a>
+                    <a
+                      href={`mailto:${SITE.email}`}
+                      aria-label="Написать на email"
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-accent shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] hover:text-[#b8911f] md:h-14 md:w-14"
+                    >
+                      <Mail className="h-6 w-6" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <Card className="w-full rounded-[16px] border border-[#E5E7EB] bg-[#F8FAFC] shadow-[0_18px_40px_rgba(15,23,42,0.08)] lg:max-w-[520px] lg:justify-self-end">
+                <CardContent className="p-7 md:p-8">
+                  <LeadForm
+                    formId="lead-final"
+                    submitLabel="Получить консультацию"
+                    placeholder="Например: «Хочу расторгнуть брак, есть ребенок 5 лет, спор о квартире»"
+                    footerNote="Перезвоним в течение 15–20 минут в рабочее время"
+                  />
+                </CardContent>
+              </Card>
             </div>
-            <Card className="border-border max-w-3xl">
-              <CardContent className="pt-6">
-                <LeadForm
-                  formId="lead-final"
-                  submitLabel="Оценить перспективы"
-                  placeholder="Например: «Хочу расторгнуть брак, есть ребенок 5 лет, спор о квартире»"
-                  footerNote="Перезвоним в течение 15–20 минут в рабочее время"
-                />
-              </CardContent>
-            </Card>
           </div>
         </section>
 
