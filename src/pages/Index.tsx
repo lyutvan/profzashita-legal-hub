@@ -1,4 +1,4 @@
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LegalBackground from "@/components/LegalBackground";
@@ -27,6 +27,8 @@ import { SITE } from "@/config/site";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 
 const Index = () => {
+  const navigate = useNavigate();
+  const familyDisputesPath = "/services/phys/razvod-razdel-imushchestva";
   const navigationSections = [
     {
       title: "Физическим лицам",
@@ -264,7 +266,32 @@ const Index = () => {
                         </p>
                         <ul className="space-y-2">
                           {section.items.map((item) => (
-                            <li key={item} className="flex items-start gap-2 text-small text-muted-foreground">
+                            <li
+                              key={item}
+                              className="flex items-start gap-2 text-small text-muted-foreground"
+                              onClick={
+                                item === "Семейные споры"
+                                  ? (event) => {
+                                      event.preventDefault();
+                                      event.stopPropagation();
+                                      navigate(familyDisputesPath);
+                                    }
+                                  : undefined
+                              }
+                              onKeyDown={
+                                item === "Семейные споры"
+                                  ? (event) => {
+                                      if (event.key === "Enter" || event.key === " ") {
+                                        event.preventDefault();
+                                        event.stopPropagation();
+                                        navigate(familyDisputesPath);
+                                      }
+                                    }
+                                  : undefined
+                              }
+                              role={item === "Семейные споры" ? "link" : undefined}
+                              tabIndex={item === "Семейные споры" ? 0 : undefined}
+                            >
                               <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
                               <span>{item}</span>
                             </li>
