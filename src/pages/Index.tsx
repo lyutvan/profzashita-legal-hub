@@ -25,9 +25,11 @@ import courtColumnsImg from "@/assets/legal/court-columns.jpg";
 import { Helmet } from "react-helmet";
 import { SITE } from "@/config/site";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const Index = () => {
   const navigate = useNavigate();
+  const { openQuickQuestionModal } = useQuickQuestionModal();
   const familyDisputesPath = "/services/phys/razvod-razdel-imushchestva";
   const navigationSections = [
     {
@@ -233,8 +235,12 @@ const Index = () => {
               Москва и Московская область · консультация в день обращения
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button size="lg" className="bg-accent text-white hover:bg-accent/90 px-8" asChild>
-                <Link to="/kontakty">Получить консультацию</Link>
+              <Button
+                size="lg"
+                className="bg-accent text-white hover:bg-accent/90 px-8"
+                onClick={() => openQuickQuestionModal()}
+              >
+                Получить консультацию
               </Button>
             </div>
           </div>
@@ -575,8 +581,12 @@ const Index = () => {
                   </div>
 
                   <div className="flex flex-col gap-4">
-                    <Button size="lg" className="bg-accent text-white hover:bg-accent/90" asChild>
-                      <Link to="/kontakty">Получить консультацию</Link>
+                    <Button
+                      size="lg"
+                      className="bg-accent text-white hover:bg-accent/90"
+                      onClick={() => openQuickQuestionModal()}
+                    >
+                      Получить консультацию
                     </Button>
                     <Button
                       size="lg"

@@ -7,6 +7,7 @@ import LeadForm from "@/components/LeadForm";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import {
   AlertTriangle,
   Award,
@@ -35,6 +36,7 @@ const iconMap: Record<BizWhyUsItem["icon"], JSX.Element> = {
 };
 
 const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
+  const { openQuickQuestionModal } = useQuickQuestionModal();
   const heroImage = getServiceHeroImage(data.entry.path, "biz");
   const ogImage = heroImage.startsWith("http")
     ? heroImage
@@ -109,8 +111,12 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 {data.heroSubtitle}
               </p>
               <div className="flex flex-wrap items-center gap-5">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white" asChild>
-                  <a href="#consultation">Получить консультацию</a>
+                <Button
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-white"
+                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                >
+                  Получить консультацию
                 </Button>
               </div>
             </div>

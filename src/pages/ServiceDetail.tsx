@@ -12,9 +12,11 @@ import { CheckCircle2, Clock, AlertCircle } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { LegalServiceSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const ServiceDetail = () => {
   const { categorySlug, serviceSlug } = useParams();
+  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   // Find category and service
   const category = serviceCategories.find(cat => cat.slug === categorySlug);
@@ -203,8 +205,12 @@ const ServiceDetail = () => {
                     Получите бесплатную консультацию и узнайте точную стоимость
                   </p>
                   <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                    <Button size="lg" variant="secondary" asChild>
-                      <Link to="/kontakty">Получить консультацию</Link>
+                    <Button
+                      size="lg"
+                      variant="secondary"
+                      onClick={() => openQuickQuestionModal({ topic: service.title })}
+                    >
+                      Получить консультацию
                     </Button>
                     <Button size="lg" variant="outline" className="border-primary-foreground/20 hover:bg-primary-foreground/10" asChild>
                       <a href="tel:+79168597654">

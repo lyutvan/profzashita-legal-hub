@@ -10,6 +10,7 @@ import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/
 import { CheckCircle2, FileText, Clock, Phone } from "lucide-react";
 import { LegalServiceSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import { getPriceBySlug } from "@/data/pricing";
 import { getServiceCardImageForPath } from "@/lib/serviceCardImages";
 
@@ -107,6 +108,7 @@ const ServiceTemplate = ({
 }: ServiceTemplateProps) => {
   const location = useLocation();
   const pathname = location.pathname.replace(/\/+$/, "") || "/";
+  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   const resolvedAudience: "phys" | "biz" | "criminal" =
     audience ??
@@ -366,11 +368,9 @@ const ServiceTemplate = ({
                       <div className="space-y-3">
                         <Button 
                           className="w-full bg-accent text-white hover:bg-accent/90"
-                          asChild
+                          onClick={() => openQuickQuestionModal({ topic: h1 })}
                         >
-                          <Link to={primaryCtaTo}>
-                            {primaryCtaLabel}
-                          </Link>
+                          {primaryCtaLabel}
                         </Button>
                         <Button 
                           variant="outline" 

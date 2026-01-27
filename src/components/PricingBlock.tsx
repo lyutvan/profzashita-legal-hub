@@ -2,13 +2,14 @@ import { Check } from "lucide-react";
 import { Button } from "./ui/button";
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from "./ui/card";
 import { PricingPackage } from "@/data/services";
-import { Link } from "react-router-dom";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 interface PricingBlockProps {
   packages: PricingPackage[];
 }
 
 const PricingBlock = ({ packages }: PricingBlockProps) => {
+  const { openQuickQuestionModal } = useQuickQuestionModal();
   return (
     <div className="space-y-6">
       <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
@@ -41,10 +42,12 @@ const PricingBlock = ({ packages }: PricingBlockProps) => {
                 ))}
               </ul>
               <div className="pt-4">
-                <Button className="w-full" variant={index === 1 ? "default" : "outline"} asChild>
-                  <Link to="/kontakty">
-                    Получить смету
-                  </Link>
+                <Button
+                  className="w-full"
+                  variant={index === 1 ? "default" : "outline"}
+                  onClick={() => openQuickQuestionModal({ topic: pkg.name })}
+                >
+                  Получить смету
                 </Button>
               </div>
             </CardContent>

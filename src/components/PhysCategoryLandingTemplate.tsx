@@ -27,10 +27,8 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { BreadcrumbSchema, FAQPageSchema, LegalServiceSchema, ReviewsSchema } from "@/components/JsonLd";
-import LandingConsultationForm from "@/components/LandingConsultationForm";
 import { toast } from "@/hooks/use-toast";
 import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
@@ -38,6 +36,7 @@ import { SITE } from "@/config/site";
 import { audienceServices } from "@/data/services-audiences";
 import { sharedReviews } from "@/data/shared-reviews";
 import { getServiceHeroImage } from "@/lib/serviceCardImages";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import type { PhysServicePageData } from "@/data/phys-service-content";
 
 type LeadFormProps = {
@@ -226,9 +225,7 @@ type PhysCategoryLandingTemplateProps = {
 const CATEGORY_ICONS = [Scale, Home, Building2, Users, MessageCircle, Shield, FileSearch, Landmark, HelpCircle] as const;
 
 const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps) => {
-  const [isLeadOpen, setIsLeadOpen] = useState(false);
-  const landingDialogClassName =
-    "!w-[calc(100%-32px)] !max-w-[640px] !rounded-[20px] bg-white p-8 shadow-[0_24px_80px_rgba(15,23,42,0.18)] border border-slate-200";
+  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   const heroImage = getServiceHeroImage(data.entry.path, "phys");
   const ogImage = heroImage.startsWith("http") ? heroImage : `${SITE.url}${heroImage.replace(/^\//, "")}`;
@@ -401,18 +398,6 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
 
       <Header />
 
-      <Dialog open={isLeadOpen} onOpenChange={setIsLeadOpen}>
-        <DialogContent className={landingDialogClassName}>
-          <DialogHeader className="space-y-2 text-center">
-            <DialogTitle>Быстрый вопрос юристу</DialogTitle>
-            <DialogDescription>
-              Оставьте свои контакты, и мы свяжемся с вами в ближайшее время
-            </DialogDescription>
-          </DialogHeader>
-          <LandingConsultationForm onSuccess={() => setIsLeadOpen(false)} />
-        </DialogContent>
-      </Dialog>
-
       <main className="flex-1 services-page">
         {/* Экран 1: Hero */}
         <section
@@ -443,7 +428,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <Button
                 size="lg"
                 className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
-                onClick={() => setIsLeadOpen(true)}
+                onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
               >
                 Получить консультацию
               </Button>
@@ -641,7 +626,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <Button
                 size="lg"
                 className="w-full sm:w-[360px] h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                onClick={() => setIsLeadOpen(true)}
+                onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
               >
                 Получить индивидуальный план действий
               </Button>
@@ -836,7 +821,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
             </Accordion>
             <div className="mt-8 text-center space-y-4">
               <p className="text-muted-foreground">Не нашли свой вопрос? Оставьте заявку и мы оценим вашу ситуацию</p>
-              <Button size="lg" onClick={() => setIsLeadOpen(true)}>
+              <Button size="lg" onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}>
                 Получить оценку перспектив
               </Button>
             </div>

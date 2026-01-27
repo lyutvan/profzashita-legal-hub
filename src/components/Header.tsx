@@ -3,12 +3,14 @@ import { Menu, X, Mail, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import Logo from "./Logo";
+import { useQuickQuestionModal } from "./QuickQuestionModalProvider";
 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
+  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,6 +49,11 @@ const Header = () => {
       return location.pathname === "/" && location.hash === "#team";
     }
     return location.pathname === path;
+  };
+
+  const handleConsultationClick = () => {
+    setIsMenuOpen(false);
+    openQuickQuestionModal();
   };
 
   return (
@@ -108,9 +115,9 @@ const Header = () => {
               variant="default" 
               size="sm" 
               className="transition-colors duration-150 bg-accent text-white hover:bg-accent/90 h-10 px-3 text-[13px]"
-              asChild
+              onClick={handleConsultationClick}
             >
-              <Link to="/kontakty">Консультация</Link>
+              Консультация
             </Button>
             <div className="header-contacts flex flex-col items-start gap-1.5 text-white/90">
               <a
@@ -197,11 +204,9 @@ const Header = () => {
                   variant="default" 
                   size="sm" 
                   className="bg-accent text-white hover:bg-accent/90 w-full h-11 px-4 text-small"
-                  asChild
+                  onClick={handleConsultationClick}
                 >
-                  <Link to="/kontakty" onClick={() => setIsMenuOpen(false)}>
-                    Консультация
-                  </Link>
+                  Консультация
                 </Button>
                 <div className="header-contacts flex flex-col items-start gap-2 text-white/90 pt-3 border-t border-white/10">
                   <a

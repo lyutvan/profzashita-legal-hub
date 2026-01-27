@@ -26,15 +26,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { BreadcrumbSchema, FAQPageSchema, JsonLd } from "@/components/JsonLd";
-import LandingConsultationForm from "@/components/LandingConsultationForm";
 import { toast } from "@/hooks/use-toast";
 import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 import { sharedReviews } from "@/data/shared-reviews";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 import vaskovskyImg from "@/assets/team/vaskovsky.jpg";
@@ -215,10 +214,8 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, topic, onSucce
 };
 
 const UshcherbImushchestvuPage = () => {
-  const [isLeadOpen, setIsLeadOpen] = useState(false);
+  const { openQuickQuestionModal } = useQuickQuestionModal();
   const canonical = new URL("/services/phys/ushcherb-imushchestvu", SITE.url).toString();
-  const landingDialogClassName =
-    "!w-[calc(100%-32px)] !max-w-[640px] !rounded-[20px] bg-white p-8 shadow-[0_24px_80px_rgba(15,23,42,0.18)] border border-slate-200";
 
   const trustItems = [
     "Конфиденциально",
@@ -528,18 +525,6 @@ const UshcherbImushchestvuPage = () => {
 
       <Header />
 
-      <Dialog open={isLeadOpen} onOpenChange={setIsLeadOpen}>
-        <DialogContent className={landingDialogClassName}>
-          <DialogHeader className="space-y-2 text-center">
-            <DialogTitle>Быстрый вопрос юристу</DialogTitle>
-            <DialogDescription>
-              Оставьте свои контакты, и мы свяжемся с вами в ближайшее время
-            </DialogDescription>
-          </DialogHeader>
-          <LandingConsultationForm onSuccess={() => setIsLeadOpen(false)} />
-        </DialogContent>
-      </Dialog>
-
       <main className="flex-1 services-page">
         {/* Экран 1: Hero */}
         <section
@@ -584,7 +569,7 @@ const UshcherbImushchestvuPage = () => {
               <Button
                 size="lg"
                 className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
-                onClick={() => setIsLeadOpen(true)}
+                onClick={() => openQuickQuestionModal({ topic: "Ущерб имуществу" })}
               >
                 Получить консультацию
               </Button>
@@ -763,7 +748,7 @@ const UshcherbImushchestvuPage = () => {
               <Button
                 size="lg"
                 className="w-full sm:w-[360px] h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                onClick={() => setIsLeadOpen(true)}
+                onClick={() => openQuickQuestionModal({ topic: "Ущерб имуществу" })}
               >
                 Получить индивидуальный план действий
               </Button>
@@ -911,7 +896,7 @@ const UshcherbImushchestvuPage = () => {
               <Button
                 size="lg"
                 className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                onClick={() => setIsLeadOpen(true)}
+                onClick={() => openQuickQuestionModal({ topic: "Ущерб имуществу" })}
               >
                 Получить оценку перспектив
               </Button>

@@ -7,6 +7,7 @@ import LeadForm from "@/components/LeadForm";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import {
   AlertTriangle,
   Award,
@@ -39,6 +40,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
   const ogImage = heroImage.startsWith("http")
     ? heroImage
     : `${SITE.url}${heroImage.replace(/^\//, "")}`;
+  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -117,8 +119,12 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
                 ))}
               </ul>
               <div className="flex flex-wrap items-center gap-5">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white" asChild>
-                  <a href="#consultation">Получить план защиты</a>
+                <Button
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-white"
+                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                >
+                  Получить план защиты
                 </Button>
                 <a
                   href="#included"

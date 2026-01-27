@@ -14,6 +14,7 @@ import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
 import businessHandshake from "@/assets/legal/business-handshake.jpg";
 import { getServiceCardImage } from "@/lib/serviceCardImages";
 import { SITE } from "@/config/site";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const BizPage = () => {
   const categories = getCategoriesForAudience('biz');
@@ -21,6 +22,7 @@ const BizPage = () => {
   const allServices = getServicesByAudience("biz").slice().sort((a, b) => a.title.localeCompare(b.title));
   const location = useLocation();
   const canonical = new URL("/services/biz", SITE.url).toString();
+  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   useEffect(() => {
     if (!location.hash) return;
@@ -219,10 +221,12 @@ const BizPage = () => {
                   <p className="text-body-mobile md:text-body text-white/80 mb-8">
                     Получите бесплатную консультацию и узнайте, как мы можем помочь вашему бизнесу
                   </p>
-                  <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-medium" asChild>
-                    <Link to="/kontakty">
-                      Связаться с нами
-                    </Link>
+                  <Button
+                    size="lg"
+                    className="bg-accent hover:bg-accent/90 text-white font-medium"
+                    onClick={() => openQuickQuestionModal({ topic: "Юридические лица" })}
+                  >
+                    Связаться с нами
                   </Button>
                 </div>
               </CardContent>

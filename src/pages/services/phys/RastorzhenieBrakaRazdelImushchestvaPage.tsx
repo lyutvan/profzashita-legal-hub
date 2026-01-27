@@ -26,15 +26,14 @@ import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Textarea } from "@/components/ui/textarea";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { BreadcrumbSchema, FAQPageSchema, JsonLd } from "@/components/JsonLd";
-import LandingConsultationForm from "@/components/LandingConsultationForm";
 import { toast } from "@/hooks/use-toast";
 import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 import { cases as casesData } from "@/data/cases";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 import vaskovskyImg from "@/assets/team/vaskovsky.jpg";
@@ -221,10 +220,8 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
 };
 
 const RastorzhenieBrakaRazdelImushchestvaPage = () => {
-  const [isLeadOpen, setIsLeadOpen] = useState(false);
+  const { openQuickQuestionModal } = useQuickQuestionModal();
   const canonical = new URL("/services/phys/razvod-razdel-imushchestva", SITE.url).toString();
-  const landingDialogClassName =
-    "!w-[calc(100%-32px)] !max-w-[640px] !rounded-[20px] bg-white p-8 shadow-[0_24px_80px_rgba(15,23,42,0.18)] border border-slate-200";
 
   const trustItems = [
     { id: "confidential", label: "Конфиденциально" },
@@ -580,18 +577,6 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
 
       <Header />
 
-      <Dialog open={isLeadOpen} onOpenChange={setIsLeadOpen}>
-        <DialogContent className={landingDialogClassName}>
-          <DialogHeader className="space-y-2 text-center">
-            <DialogTitle>Быстрый вопрос юристу</DialogTitle>
-            <DialogDescription>
-              Оставьте свои контакты, и мы свяжемся с вами в ближайшее время
-            </DialogDescription>
-          </DialogHeader>
-          <LandingConsultationForm onSuccess={() => setIsLeadOpen(false)} />
-        </DialogContent>
-      </Dialog>
-
       <main className="flex-1 services-page">
         {/* Экран 1: Hero */}
         <section
@@ -632,7 +617,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               <Button
                 size="lg"
                 className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
-                onClick={() => setIsLeadOpen(true)}
+                onClick={() => openQuickQuestionModal({ topic: "Расторжение брака и раздел имущества" })}
               >
                 Получить первичную оценку за 15 минут
               </Button>
@@ -678,7 +663,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                       <Button
                         size="lg"
                         className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                        onClick={() => setIsLeadOpen(true)}
+                        onClick={() => openQuickQuestionModal({ topic: "Расторжение брака и раздел имущества" })}
                       >
                         Получить консультацию
                       </Button>
@@ -816,7 +801,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               <Button
                 size="lg"
                 className="w-full sm:w-[360px] h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                onClick={() => setIsLeadOpen(true)}
+                onClick={() => openQuickQuestionModal({ topic: "Расторжение брака и раздел имущества" })}
               >
                 Получить индивидуальный план действий
               </Button>
@@ -962,7 +947,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
             <Accordion type="single" collapsible className="section__content mt-8 space-y-4">
               {salesAccordion.map((item, index) => (
                 <AccordionItem key={item.title} value={`sales-${index}`} className="border rounded-xl px-6">
-                  <AccordionTrigger className="text-left hover:no-underline py-4">
+                  <AccordionTrigger className="family-accordion-trigger text-left hover:no-underline py-4">
                     {item.title}
                   </AccordionTrigger>
                   <AccordionContent className="pb-4">{item.content}</AccordionContent>
@@ -987,7 +972,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                   value={`faq-${index}`}
                   className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
                 >
-                  <AccordionTrigger className="py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f] [&>svg]:text-accent hover:[&>svg]:text-accent data-[state=open]:[&>svg]:text-accent">
+                  <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
                     {item.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pb-4">
@@ -1003,7 +988,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               <Button
                 size="lg"
                 className="w-full sm:w-auto border border-[#b8911f] bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                onClick={() => setIsLeadOpen(true)}
+                onClick={() => openQuickQuestionModal({ topic: "Расторжение брака и раздел имущества" })}
               >
                 Получить оценку перспектив
               </Button>

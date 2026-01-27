@@ -8,10 +8,12 @@ import { Button } from "@/components/ui/button";
 import { ArticleSchema } from "@/components/JsonLd";
 import { Calendar, ArrowLeft, Clock, MapPin, Users } from "lucide-react";
 import { SITE } from "@/config/site";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const NewsDetail = () => {
   const { id } = useParams();
   const newsItem = newsItems.find(item => item.id === id);
+  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   if (!newsItem) {
     return <Navigate to="/novosti" replace />;
@@ -315,8 +317,8 @@ const NewsDetail = () => {
                   Поможем оценить ситуацию и предложим следующий шаг.
                 </p>
                 <div className="flex flex-wrap gap-4 justify-center">
-                  <Button size="lg" asChild>
-                    <Link to="/kontakty">Записаться</Link>
+                  <Button size="lg" onClick={() => openQuickQuestionModal({ topic: newsItem.title })}>
+                    Записаться
                   </Button>
                   <Button size="lg" variant="outline" asChild>
                     <a href={`https://wa.me/${SITE.phoneRaw.replace("+", "")}`} target="_blank" rel="noopener noreferrer">

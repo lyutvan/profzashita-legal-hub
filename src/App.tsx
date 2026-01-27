@@ -17,8 +17,7 @@ import Privacy from "./pages/Privacy";
 import Disclaimer from "./pages/Disclaimer";
 import Thanks from "./pages/Thanks";
 import NotFound from "./pages/NotFound";
-import QuickQuestion from "./components/QuickQuestion";
-import MessengerTelegramButton from "./components/MessengerTelegramButton";
+import { QuickQuestionModalProvider } from "./components/QuickQuestionModalProvider";
 import BizServicePage from "./pages/services/biz/BizServicePage";
 import PhysPage from "./pages/services/PhysPage";
 import PhysServiceDetailPage from "./pages/services/phys/PhysServiceDetailPage";
@@ -57,10 +56,9 @@ const App = () => (
       <Toaster />
       <Sonner />
       <BrowserRouter>
-        <QuickQuestion />
-        <MessengerTelegramButton />
-        <ScrollToTop />
-        <Routes>
+        <QuickQuestionModalProvider>
+          <ScrollToTop />
+          <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/uslugi-old" element={<Uslugi />} />
           <Route path="/uslugi" element={<UslugiNew />} />
@@ -153,7 +151,8 @@ const App = () => (
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
-        </Routes>
+          </Routes>
+        </QuickQuestionModalProvider>
       </BrowserRouter>
     </TooltipProvider>
   </QueryClientProvider>

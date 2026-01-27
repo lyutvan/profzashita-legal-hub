@@ -11,11 +11,13 @@ import { getTeamMemberBySlug } from "@/data/team";
 import { cases } from "@/data/cases";
 import { SITE } from "@/config/site";
 import { Phone, MapPin, Briefcase, CheckCircle2, BookOpen, FileText } from "lucide-react";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const TeamMemberPage = () => {
   const { slug } = useParams();
   const member = slug ? getTeamMemberBySlug(slug) : undefined;
   const [imageFailed, setImageFailed] = useState(false);
+  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   if (!member) {
     return <Navigate to="/#team" replace />;
@@ -379,8 +381,11 @@ const TeamMemberPage = () => {
                         Позвонить сейчас
                       </a>
                     </Button>
-                    <Button asChild variant="outline">
-                      <Link to="/kontakty">Записаться на встречу</Link>
+                    <Button
+                      variant="outline"
+                      onClick={() => openQuickQuestionModal({ topic: member.name })}
+                    >
+                      Записаться на встречу
                     </Button>
                   </div>
                 </CardContent>

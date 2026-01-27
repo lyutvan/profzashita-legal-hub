@@ -15,6 +15,7 @@ import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 import { getServiceCardImage } from "@/lib/serviceCardImages";
 import { SITE } from "@/config/site";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const PhysPage = () => {
   const categories = getCategoriesForAudience('phys');
@@ -22,6 +23,7 @@ const PhysPage = () => {
   const allServices = getServicesByAudience("phys").slice().sort((a, b) => a.title.localeCompare(b.title));
   const location = useLocation();
   const canonical = new URL("/services/phys", SITE.url).toString();
+  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   useEffect(() => {
     if (!location.hash) return;
@@ -203,10 +205,12 @@ const PhysPage = () => {
                   <p className="text-body-mobile md:text-body text-white/80 mb-8">
                     Получите бесплатную консультацию и узнайте, как мы можем помочь в вашей ситуации
                   </p>
-                  <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-medium" asChild>
-                    <Link to="/kontakty">
-                      Связаться с нами
-                    </Link>
+                  <Button
+                    size="lg"
+                    className="bg-accent hover:bg-accent/90 text-white font-medium"
+                    onClick={() => openQuickQuestionModal({ topic: "Физические лица" })}
+                  >
+                    Связаться с нами
                   </Button>
                 </div>
               </CardContent>

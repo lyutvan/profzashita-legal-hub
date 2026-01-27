@@ -14,6 +14,7 @@ import prisonBarsImage from "@/assets/legal/prison-bars.jpg";
 import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
 import { getServiceCardImage } from "@/lib/serviceCardImages";
 import { SITE } from "@/config/site";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const CriminalPage = () => {
   const categories = getCategoriesForAudience('criminal');
@@ -21,6 +22,7 @@ const CriminalPage = () => {
   const allServices = getServicesByAudience("criminal").slice().sort((a, b) => a.title.localeCompare(b.title));
   const location = useLocation();
   const canonical = new URL("/services/criminal", SITE.url).toString();
+  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   useEffect(() => {
     if (!location.hash) return;
@@ -218,10 +220,12 @@ const CriminalPage = () => {
                   <p className="text-body-mobile md:text-body text-white/80 mb-8">
                     Получите бесплатную консультацию и узнайте, как мы можем помочь в вашей ситуации
                   </p>
-                  <Button size="lg" className="bg-accent hover:bg-accent/90 text-white font-medium" asChild>
-                    <Link to="/kontakty">
-                      Связаться с нами
-                    </Link>
+                  <Button
+                    size="lg"
+                    className="bg-accent hover:bg-accent/90 text-white font-medium"
+                    onClick={() => openQuickQuestionModal({ topic: "Уголовные дела" })}
+                  >
+                    Связаться с нами
                   </Button>
                 </div>
               </CardContent>

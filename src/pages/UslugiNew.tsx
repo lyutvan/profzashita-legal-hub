@@ -8,6 +8,7 @@ import LeadForm from "@/components/LeadForm";
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import {
   ArrowRight,
   ArrowUpRight,
@@ -201,6 +202,7 @@ const UslugiNew = () => {
   const [showAllResults, setShowAllResults] = useState(false);
   const popularRef = useRef<HTMLDivElement | null>(null);
   const navigate = useNavigate();
+  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   const tokens = useMemo(() => {
     return normalizeSearch(query)
@@ -310,8 +312,12 @@ const UslugiNew = () => {
                 Выберите направление или найдите услугу по вашей ситуации за 10 секунд.
               </p>
               <div className="flex flex-wrap gap-4">
-                <Button size="lg" className="bg-accent hover:bg-accent/90 text-white" asChild>
-                  <Link to="/kontakty">Бесплатная консультация</Link>
+                <Button
+                  size="lg"
+                  className="bg-accent hover:bg-accent/90 text-white"
+                  onClick={() => openQuickQuestionModal()}
+                >
+                  Бесплатная консультация
                 </Button>
                 <Button
                   size="lg"

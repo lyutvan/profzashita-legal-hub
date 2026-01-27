@@ -8,6 +8,7 @@ import PriceBlock from "./PriceBlock";
 import { Button } from "./ui/button";
 import { Card, CardContent } from "./ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "./ui/accordion";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import { ServiceSituation } from "@/data/services-clusters";
 import { 
   AlertTriangle, 
@@ -41,6 +42,7 @@ const ClusterServicePage = ({
   const currentUrl = `${SITE.url}uslugi/${clusterSlug}/${situation.slug}/`;
   const ogImage = situation.ogImage || `${SITE.url}og-cover.jpg`;
   const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${SITE.url}${ogImage.replace(/^\//, '')}`;
+  const { openQuickQuestionModal } = useQuickQuestionModal();
   
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -123,15 +125,13 @@ const ClusterServicePage = ({
 
               {/* CTA Buttons */}
               <div className="flex flex-wrap gap-4">
-                <Button 
-                  size="lg" 
+                <Button
+                  size="lg"
                   className="bg-accent text-white hover:bg-accent/90 font-medium"
-                  asChild
+                  onClick={() => openQuickQuestionModal({ topic: situation.title })}
                 >
-                  <Link to="/kontakty">
-                    <Phone className="mr-2 h-5 w-5" />
-                    Бесплатная консультация
-                  </Link>
+                  <Phone className="mr-2 h-5 w-5" />
+                  Бесплатная консультация
                 </Button>
                 
                 <Button 
@@ -378,8 +378,12 @@ const ClusterServicePage = ({
                           +7 (916) 859-76-54
                         </a>
                       </Button>
-                      <Button size="lg" variant="outline" asChild>
-                        <Link to="/kontakty">Записаться на встречу</Link>
+                      <Button
+                        size="lg"
+                        variant="outline"
+                        onClick={() => openQuickQuestionModal({ topic: situation.title })}
+                      >
+                        Записаться на встречу
                       </Button>
                     </div>
                   </div>
@@ -448,8 +452,11 @@ const ClusterServicePage = ({
                       ? "Стоимость определяется индивидуально после анализа вашей ситуации"
                       : "Точная стоимость определяется после консультации"}
                   </p>
-                  <Button className="w-full bg-accent hover:bg-accent/90" asChild>
-                    <Link to="/kontakty">Узнать точную цену</Link>
+                  <Button
+                    className="w-full bg-accent hover:bg-accent/90"
+                    onClick={() => openQuickQuestionModal({ topic: situation.title })}
+                  >
+                    Узнать точную цену
                   </Button>
                 </CardContent>
               </Card>
@@ -502,10 +509,8 @@ const ClusterServicePage = ({
               WhatsApp
             </a>
           </Button>
-          <Button variant="outline" asChild>
-            <Link to="/kontakty">
-              <MessageCircle className="h-4 w-4" />
-            </Link>
+          <Button variant="outline" onClick={() => openQuickQuestionModal({ topic: situation.title })}>
+            <MessageCircle className="h-4 w-4" />
           </Button>
         </div>
       </div>

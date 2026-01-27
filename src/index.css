@@ -374,6 +374,16 @@ All colors MUST be HSL.
     text-shadow: 0 1px 1px rgba(5, 12, 28, 0.3);
   }
 
+  .family-landing-page .family-accordion-trigger > svg {
+    color: #c9a227;
+  }
+
+  .family-landing-page .family-accordion-trigger:hover > svg,
+  .family-landing-page .family-accordion-trigger:focus-visible > svg,
+  .family-landing-page .family-accordion-trigger[data-state="open"] > svg {
+    color: #c9a227;
+  }
+
   .section__header {
     margin-bottom: var(--section-inner-gap);
     display: grid;

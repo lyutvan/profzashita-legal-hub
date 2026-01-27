@@ -9,7 +9,6 @@ import PhoneInput from "@/components/PhoneInput";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Checkbox } from "@/components/ui/checkbox";
-import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -36,6 +35,7 @@ import { submitToWebhook } from "@/lib/webhook";
 import { toast } from "@/hooks/use-toast";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import type { PhysServicePageData } from "@/data/phys-service-content";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const FAMILY_ISSUES = [
   {
@@ -298,7 +298,7 @@ interface PhysServiceTemplateProps {
 
 const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
   const [highlightStep, setHighlightStep] = useState<number | null>(null);
-  const [isFamilyFormOpen, setIsFamilyFormOpen] = useState(false);
+  const { openQuickQuestionModal } = useQuickQuestionModal();
   const heroImage = getServiceHeroImage(data.entry.path, "phys");
   const isFamilyLanding = data.entry.slug === "razvod-razdel-imushchestva";
   const ogImage = heroImage.startsWith("http")
@@ -364,24 +364,6 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
       <Header />
 
       <main className="flex-1">
-        {isFamilyLanding && (
-          <Dialog open={isFamilyFormOpen} onOpenChange={setIsFamilyFormOpen}>
-            <DialogContent className="sm:max-w-lg">
-              <DialogHeader>
-                <DialogTitle className="font-serif text-h3-mobile md:text-h3">
-                  Оставьте свой номер телефона — адвокат свяжется с вами в течение 15 минут
-                </DialogTitle>
-                <DialogDescription>
-                  Перезвоним в течение 15–20 минут в рабочее время
-                </DialogDescription>
-              </DialogHeader>
-              <FamilyShortForm
-                topic={data.entry.title}
-                onSuccess={() => setIsFamilyFormOpen(false)}
-              />
-            </DialogContent>
-          </Dialog>
-        )}
         {/* Section A: Hero */}
         <section
           className="relative text-white section"
@@ -422,9 +404,9 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 <Button
                   size="lg"
                   className="bg-accent hover:bg-accent/90 text-white"
-                  asChild
+                  onClick={() => openQuickQuestionModal({ topic: data.entry.title })}
                 >
-                  <a href="#final-cta">Оценить перспективы</a>
+                  Оценить перспективы
                 </Button>
                 <a
                   href="#documents"
@@ -473,7 +455,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                           </p>
                           <Button
                             type="button"
-                            onClick={() => setIsFamilyFormOpen(true)}
+                            onClick={() => openQuickQuestionModal({ topic: data.entry.title })}
                             className="mt-auto bg-[#C9A227] text-white shadow-[0_2px_0_rgba(0,0,0,0.2)] hover:bg-[#B88F1E]"
                           >
                             Получить консультацию
@@ -640,9 +622,9 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
             <div className="mt-8">
               <Button
                 className="bg-accent hover:bg-accent/90 text-white"
-                asChild
+                onClick={() => openQuickQuestionModal({ topic: data.entry.title })}
               >
-                <a href="#final-cta">Отправить документы на оценку</a>
+                Отправить документы на оценку
               </Button>
             </div>
           </div>

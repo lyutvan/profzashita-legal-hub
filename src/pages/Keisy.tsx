@@ -13,10 +13,12 @@ import { cases } from "@/data/cases";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import { CheckCircle2, Scale, Gavel } from "lucide-react";
+import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const Cases = () => {
   const location = useLocation();
   const { slug } = useParams<{ slug?: string }>();
+  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   useEffect(() => {
     const targetId = slug
@@ -249,12 +251,13 @@ const Cases = () => {
               <p className="text-body-mobile md:text-body text-white/90 mb-8 leading-relaxed">
                 Получите бесплатную консультацию и узнайте, как мы можем помочь именно вам
               </p>
-              <a
-                href="/kontakty"
+              <button
+                type="button"
+                onClick={() => openQuickQuestionModal({ topic: "Кейсы" })}
                 className="inline-flex items-center justify-center rounded-xl bg-accent hover:bg-accent/90 text-white font-medium px-8 py-3 transition-colors"
               >
                 Записаться на консультацию
-              </a>
+              </button>
             </div>
           </div>
         </section>
