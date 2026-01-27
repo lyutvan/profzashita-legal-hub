@@ -108,7 +108,6 @@ const ServiceTemplate = ({
 }: ServiceTemplateProps) => {
   const location = useLocation();
   const pathname = location.pathname.replace(/\/+$/, "") || "/";
-  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   const resolvedAudience: "phys" | "biz" | "criminal" =
     audience ??
@@ -368,9 +367,11 @@ const ServiceTemplate = ({
                       <div className="space-y-3">
                         <Button 
                           className="w-full bg-accent text-white hover:bg-accent/90"
-                          onClick={() => openQuickQuestionModal({ topic: h1 })}
+                          asChild
                         >
-                          {primaryCtaLabel}
+                          <Link to={primaryCtaTo}>
+                            {primaryCtaLabel}
+                          </Link>
                         </Button>
                         <Button 
                           variant="outline" 
