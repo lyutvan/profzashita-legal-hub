@@ -862,14 +862,14 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                           )}
                         </div>
                         {hasDecision && (
-                          <div className="w-full lg:w-[45%] lg:max-w-[440px]">
+                          <div className="w-full lg:w-[48%] lg:max-w-[520px]">
                             <div className="rounded-[12px] border border-[#E6DDCC] bg-[#F8F4EA] p-4">
                               <div className="text-sm font-semibold text-slate-900">Решение суда</div>
                               <div className="mt-3 rounded-[10px] border border-[#E6DDCC] bg-white p-2">
                                 <img
                                   src={decisionPreview}
                                   alt={`Решение суда: ${caseItem.title}`}
-                                  className="max-h-[420px] w-full object-contain"
+                                  className="max-h-[520px] w-full object-contain"
                                   loading="lazy"
                                 />
                               </div>
