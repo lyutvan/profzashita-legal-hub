@@ -346,8 +346,7 @@ export const cases: Case[] = [
     documents: [
       "/cases/case-reshenie-07-10-2024-1.jpg",
       "/cases/case-reshenie-07-10-2024-2.jpg",
-      "/cases/case-reshenie-07-10-2024-3.jpg",
-      "/cases/case-reshenie-07-10-2024-4.jpg"
+      "/cases/case-reshenie-07-10-2024-3.jpg"
     ]
   }
 ];
