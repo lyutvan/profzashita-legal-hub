@@ -32,6 +32,7 @@ import TeamMemberPage from "./pages/TeamMemberPage";
 import { audienceServices } from "@/data/services-audiences";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
+import QuickQuestion from "./components/QuickQuestion";
 
 const queryClient = new QueryClient();
 
@@ -58,6 +59,7 @@ const App = () => (
       <BrowserRouter>
         <QuickQuestionModalProvider>
           <ScrollToTop />
+          <QuickQuestion />
           <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/uslugi-old" element={<Uslugi />} />

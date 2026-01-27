@@ -862,14 +862,14 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                           )}
                         </div>
                         {hasDecision && (
-                          <div className="w-full lg:w-[40%] lg:max-w-[360px]">
+                          <div className="w-full lg:w-[45%] lg:max-w-[440px]">
                             <div className="rounded-[12px] border border-[#E6DDCC] bg-[#F8F4EA] p-4">
                               <div className="text-sm font-semibold text-slate-900">Решение суда</div>
                               <div className="mt-3 rounded-[10px] border border-[#E6DDCC] bg-white p-2">
                                 <img
                                   src={decisionPreview}
                                   alt={`Решение суда: ${caseItem.title}`}
-                                  className="max-h-[320px] w-full object-contain"
+                                  className="max-h-[420px] w-full object-contain"
                                   loading="lazy"
                                 />
                               </div>
@@ -946,8 +946,12 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
 
             <Accordion type="single" collapsible className="section__content mt-8 space-y-4">
               {salesAccordion.map((item, index) => (
-                <AccordionItem key={item.title} value={`sales-${index}`} className="border rounded-xl px-6">
-                  <AccordionTrigger className="family-accordion-trigger text-left hover:no-underline py-4">
+                <AccordionItem
+                  key={item.title}
+                  value={`sales-${index}`}
+                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+                >
+                  <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
                     {item.title}
                   </AccordionTrigger>
                   <AccordionContent className="pb-4">{item.content}</AccordionContent>
