@@ -225,8 +225,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
     { id: "region", label: "Работаем в Москве и Московской области" },
     {
       id: "cases",
-      label: "дел по расторжению брака и разделу имущества",
-      accent: "150+"
+      label: "150+ дел по расторжению брака и разделу имущества"
     }
   ];
 
@@ -564,13 +563,9 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               ]}
             />
             <div className="max-w-4xl mt-6 space-y-5">
-              <div className="w-full max-w-[900px] rounded-[12px] border-2 border-[#E84545] bg-[rgba(11,31,58,0.55)] px-3 py-3 md:inline-block md:w-fit md:px-5 md:py-4">
-                <h1 className="font-serif text-h1-mobile md:text-h1 font-bold">
-                  Адвокаты по семейным делам: берем на себя{" "}
-                  <span className="accent-underline">переговоры, документы и суды</span>
-                  {/* Вариант B (marker highlight): <span className="accent-marker">переговоры, документы и суды</span> */}
-                </h1>
-              </div>
+              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-accent">
+                Адвокаты по семейным делам: берем на себя переговоры, документы и суды
+              </h1>
               <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
                 <li>Расторжение брака с детьми и споры об опеке</li>
                 <li>Раздел имущества: квартиры, ипотека, бизнес, вклады и долги</li>
@@ -587,21 +582,13 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               >
                 Получить первичную оценку за 15 минут
               </Button>
-              <div className="flex flex-wrap items-center gap-y-2 text-small text-white/75">
+              <div className="flex flex-wrap items-center gap-y-2 text-small text-white/75 lg:flex-nowrap lg:whitespace-nowrap">
                 {trustItems.map((item, index) => (
                   <span
                     key={item.id}
                     className={`flex items-center ${index > 0 ? "before:content-['•'] before:mx-2 before:text-white/50" : ""}`}
                   >
-                    {item.accent ? (
-                      <>
-                        <span className="accent-underline">{item.accent}</span>{" "}
-                        {item.label}
-                        {/* Вариант B (marker highlight): <span className="accent-marker">{item.accent}</span> {item.label} */}
-                      </>
-                    ) : (
-                      item.label
-                    )}
+                    {item.label}
                   </span>
                 ))}
               </div>
