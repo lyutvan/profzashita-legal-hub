@@ -35,6 +35,7 @@ import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 import { sharedReviews } from "@/data/shared-reviews";
+import { cases as casesData } from "@/data/cases";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 import vaskovskyImg from "@/assets/team/vaskovsky.jpg";
@@ -349,22 +350,9 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
     }
   ];
 
-  const cases = [
-    {
-      title: "Расторжение брака, спор о детях и разделе имущества",
-      situation: "Супруги с ребенком 7 лет не смогли договориться о месте жительства и разделе квартиры в ипотеке.",
-      task: "Расторгнуть брак, закрепить проживание ребенка с матерью и добиться справедливого раздела имущества и долгов.",
-      actions: "Собрали доказательства условий проживания, подготовили иск и ходатайства, провели переговоры по имуществу, представили позицию в суде.",
-      result: "Суд определил место жительства ребенка, утвердил порядок общения и разделил имущество с учетом интересов клиента."
-    },
-    {
-      title: "Уклонение от алиментов и сокрытие доходов",
-      situation: "Бывший супруг не выплачивал алименты и скрывал реальные доходы.",
-      task: "Взыскать задолженность и установить регулярные выплаты.",
-      actions: "Собрали сведения о доходах, подготовили расчет задолженности, подали иск и сопровождали исполнительное производство.",
-      result: "Алименты назначены в твердой сумме, задолженность взыскана."
-    }
-  ];
+  const cases = casesData
+    .filter((caseItem) => caseItem.category === "Семейное право")
+    .sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime());
 
   const faqItems = [
     {
@@ -783,31 +771,82 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               </p>
             </div>
             <div className="section__content grid grid-cols-1 lg:grid-cols-2 gap-6">
-              {cases.map((caseItem) => (
-                <Card key={caseItem.title} className="h-full">
-                  <CardContent className="pt-6 h-full flex flex-col gap-4">
-                    <h3 className="font-semibold text-body-mobile md:text-body">{caseItem.title}</h3>
-                    <div className="space-y-3 text-small text-muted-foreground leading-relaxed">
-                      <div>
-                        <span className="font-semibold text-foreground">Ситуация: </span>
-                        {caseItem.situation}
+              {cases.map((caseItem) => {
+                const decisionHref = caseItem.decisionUrl ?? caseItem.documents?.[0];
+                const decisionPreview = caseItem.decisionPreview ?? caseItem.documents?.[0];
+                return (
+                  <Card
+                    key={caseItem.slug}
+                    className="h-full border border-slate-200 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.06)] transition-all hover:border-[#C9A227] hover:shadow-[0_16px_40px_rgba(201,162,39,0.18)]"
+                  >
+                    <CardContent className="pt-6 h-full flex flex-col">
+                      <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{caseItem.title}</h3>
+                      <div className="mt-4 space-y-3 text-small text-muted-foreground leading-relaxed">
+                        <div>
+                          <span className="font-semibold text-foreground">Задача: </span>
+                          {caseItem.task}
+                        </div>
+                        <div>
+                          <span className="font-semibold text-foreground">Что сделали: </span>
+                          {caseItem.actions}
+                        </div>
+                        <div>
+                          <span className="font-semibold text-foreground">Результат: </span>
+                          {caseItem.result}
+                        </div>
                       </div>
-                      <div>
-                        <span className="font-semibold text-foreground">Задача: </span>
-                        {caseItem.task}
-                      </div>
-                      <div>
-                        <span className="font-semibold text-foreground">Что сделали: </span>
-                        {caseItem.actions}
-                      </div>
-                      <div>
-                        <span className="font-semibold text-foreground">Результат: </span>
-                        {caseItem.result}
-                      </div>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+
+                      {decisionHref && (
+                        <div className="mt-6 rounded-[12px] border border-[#E6DDCC] bg-[#F8F4EA] p-4">
+                          <div className="text-sm font-semibold text-slate-900">Решение суда</div>
+                          {decisionPreview && (
+                            <div className="mt-3 overflow-hidden rounded-[10px] border border-[#E6DDCC] bg-white">
+                              <img
+                                src={decisionPreview}
+                                alt={`Решение суда: ${caseItem.title}`}
+                                className="h-44 w-full object-cover object-top"
+                                loading="lazy"
+                              />
+                            </div>
+                          )}
+                          <div className="mt-4 flex flex-col gap-2 sm:flex-row sm:flex-wrap">
+                            <Button
+                              asChild
+                              size="lg"
+                              className="h-11 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-5 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                            >
+                              <a href={decisionHref} target="_blank" rel="noreferrer">
+                                Смотреть решение
+                              </a>
+                            </Button>
+                            <Button
+                              asChild
+                              size="lg"
+                              variant="outline"
+                              className="h-11 rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
+                            >
+                              <Link to={`/cases/${caseItem.slug}`}>Подробнее о кейсе</Link>
+                            </Button>
+                          </div>
+                        </div>
+                      )}
+
+                      {!decisionHref && (
+                        <div className="mt-6">
+                          <Button
+                            asChild
+                            size="lg"
+                            variant="outline"
+                            className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
+                          >
+                            <Link to={`/cases/${caseItem.slug}`}>Подробнее о кейсе</Link>
+                          </Button>
+                        </div>
+                      )}
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
 
             <div className="mt-12">
