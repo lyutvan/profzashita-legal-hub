@@ -82,8 +82,8 @@ export interface PhysServicePageData {
 }
 
 const CATEGORY_SLUG_OVERRIDES: Record<string, string> = {
-  "Семейные споры": "semeynye-spory",
-  "Жилищные споры": "zhilishchnye-spory",
+  "Семейные споры": "razvod-razdel-imushchestva",
+  "Жилищные споры": "vyselenie",
   "Наследственные дела": "nasledstvo",
   "Защита прав потребителей": "zashchita-prav-potrebitelya",
   "ДТП, страхование, вред здоровью": "dtp-strahovye-spory",

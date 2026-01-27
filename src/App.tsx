@@ -23,6 +23,7 @@ import BizServicePage from "./pages/services/biz/BizServicePage";
 import PhysPage from "./pages/services/PhysPage";
 import PhysServiceDetailPage from "./pages/services/phys/PhysServiceDetailPage";
 import RastorzhenieBrakaRazdelImushchestvaPage from "./pages/services/phys/RastorzhenieBrakaRazdelImushchestvaPage";
+import VyseleniePage from "./pages/services/phys/VyseleniePage";
 import BizPage from "./pages/services/BizPage";
 import CriminalPage from "./pages/services/CriminalPage";
 import CriminalServiceDetailPage from "./pages/services/criminal/CriminalServiceDetailPage";
@@ -103,6 +104,15 @@ const App = () => (
           <Route
             path="/services/phys/razvod-razdel-imushchestva"
             element={<RastorzhenieBrakaRazdelImushchestvaPage />}
+          />
+          <Route path="/services/phys/vyselenie" element={<VyseleniePage />} />
+          <Route
+            path="/services/phys/semeynye-spory"
+            element={<Navigate to="/services/phys/razvod-razdel-imushchestva" replace />}
+          />
+          <Route
+            path="/services/phys/zhilishchnye-spory"
+            element={<Navigate to="/services/phys/vyselenie" replace />}
           />
           <Route path="/services/phys/:slug" element={<PhysServiceDetailPage />} />
           

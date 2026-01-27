@@ -1,6 +1,7 @@
 import { useParams } from "react-router-dom";
 import NotFound from "@/pages/NotFound";
 import PhysServiceTemplate from "@/components/PhysServiceTemplate";
+import PhysCategoryLandingTemplate from "@/components/PhysCategoryLandingTemplate";
 import { getPhysServiceEntryBySlug, getPhysServicePageData } from "@/data/phys-service-content";
 
 const PhysServiceDetailPage = () => {
@@ -12,6 +13,10 @@ const PhysServiceDetailPage = () => {
   if (!entry) return <NotFound />;
 
   const pageData = getPhysServicePageData(entry);
+  if (entry.isCategory) {
+    return <PhysCategoryLandingTemplate data={pageData} />;
+  }
+
   return <PhysServiceTemplate data={pageData} />;
 };
 
