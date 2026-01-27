@@ -904,8 +904,12 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
             </div>
             <Accordion type="single" collapsible className="section__content space-y-4">
               {faqItems.map((item, index) => (
-                <AccordionItem key={item.question} value={`faq-${index}`} className="border rounded-xl px-6">
-                  <AccordionTrigger className="text-left hover:no-underline py-4">
+                <AccordionItem
+                  key={item.question}
+                  value={`faq-${index}`}
+                  className="rounded-xl border border-slate-200 px-6 transition-colors hover:border-[#C9A227]/70 data-[state=open]:border-[#C9A227]"
+                >
+                  <AccordionTrigger className="py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f] [&>svg]:text-[#b8911f] hover:[&>svg]:text-[#a8831a] data-[state=open]:[&>svg]:text-[#C9A227]">
                     {item.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pb-4">
@@ -918,7 +922,11 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               <p className="text-muted-foreground">
                 Не нашли свой вопрос? Оставьте заявку и мы оценим вашу ситуацию
               </p>
-              <Button size="lg" onClick={() => setIsLeadOpen(true)}>
+              <Button
+                size="lg"
+                className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                onClick={() => setIsLeadOpen(true)}
+              >
                 Получить оценку перспектив
               </Button>
             </div>

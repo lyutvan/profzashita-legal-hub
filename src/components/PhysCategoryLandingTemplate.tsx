@@ -205,7 +205,12 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, topic, onSucce
         </Label>
       </div>
 
-      <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+      <Button
+        type="submit"
+        size="lg"
+        className="w-full h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+        disabled={isSubmitting}
+      >
         {submitLabel}
       </Button>
 
@@ -229,10 +234,10 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const ogImage = heroImage.startsWith("http") ? heroImage : `${SITE.url}${heroImage.replace(/^\//, "")}`;
 
   const trustItems = [
-    "Конфиденциально",
-    "15+ лет практики",
-    "Работаем в Москве и Московской области",
-    `Опыт в категории «${data.categoryLabel}»`
+    { id: "confidential", label: "Конфиденциально" },
+    { id: "experience", accent: "15+", label: "лет практики" },
+    { id: "region", label: "Работаем в Москве и Московской области" },
+    { id: "category", label: `Экспертиза в категории «${data.categoryLabel}»` }
   ];
 
   const categoryServices = useMemo(() => {
@@ -261,15 +266,23 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     ])
   ).slice(0, 6);
 
-  const cases = data.cases.slice(0, 2).map((item, index) => ({
-    title: `${data.categoryLabel}: кейс ${index + 1}`,
-    situation: item.situation,
-    task:
-      data.desiredResults[index % data.desiredResults.length] ??
-      "Защитить права и добиться управляемого результата.",
-    actions: item.actions,
-    result: item.result
-  }));
+  const cases = data.cases.slice(0, 2).map((item, index) => {
+    const withDecision = item as PhysServicePageData["cases"][number] & {
+      decisionPreview?: string;
+      decisionUrl?: string;
+    };
+    return {
+      title: `${data.categoryLabel}: кейс ${index + 1}`,
+      situation: item.situation,
+      task:
+        data.desiredResults[index % data.desiredResults.length] ??
+        "Защитить права и добиться управляемого результата.",
+      actions: item.actions,
+      result: item.result,
+      decisionPreview: withDecision.decisionPreview,
+      decisionUrl: withDecision.decisionUrl
+    };
+  });
 
   const steps = data.planSteps.slice(0, 6).map((step, index) => ({
     title: step.title,
@@ -355,7 +368,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const shouldShowCases = cases.length > 0;
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col category-landing-page">
       <Helmet>
         <title>{data.metaTitle}</title>
         <meta name="description" content={data.metaDescription} />
@@ -420,8 +433,8 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           <div className="container relative z-10">
             <Breadcrumbs items={data.breadcrumbs} />
             <div className="max-w-4xl mt-6 space-y-5">
-              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold">{data.heroTitle}</h1>
-              <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
+              <h1 className="category-hero-title font-serif text-h1-mobile md:text-h1 font-bold">{data.heroTitle}</h1>
+              <ul className="category-hero-benefits pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
                 {data.heroBenefits.slice(0, 6).map((benefit) => (
                   <li key={benefit}>{benefit}</li>
                 ))}
@@ -434,15 +447,22 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               >
                 Получить консультацию
               </Button>
-              <div className="flex flex-wrap items-center gap-y-2 text-small text-white/75">
+              <div className="category-hero-trust flex flex-wrap items-center gap-y-2 text-small text-white/80">
                 {trustItems.map((item, index) => (
                   <span
-                    key={item}
-                    className={`flex items-center ${
+                    key={item.id}
+                    className={`category-hero-trust-item flex items-center ${
                       index > 0 ? "before:content-['•'] before:mx-2 before:text-white/50" : ""
                     }`}
                   >
-                    {item}
+                    {item.accent ? (
+                      <>
+                        <span className="category-hero-trust-accent">{item.accent}</span>{" "}
+                        {item.label}
+                      </>
+                    ) : (
+                      item.label
+                    )}
                   </span>
                 ))}
               </div>
@@ -573,27 +593,31 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 Как мы работаем: 6 этапов, чтобы вы вышли из ситуации с минимальными потерями
               </h2>
             </div>
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
-              {steps.map((step, index) => (
-                <Card key={step.title} className="h-full">
-                  <CardContent className="pt-6 h-full flex flex-col gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 rounded-full bg-accent/10 text-accent flex items-center justify-center font-semibold">
-                        {index + 1}
+            <div className="section__content">
+              <div className="category-steps-list divide-y divide-border/80 rounded-2xl border border-border/80 bg-white/90 shadow-[0_12px_28px_rgba(15,23,42,0.06)] overflow-hidden">
+                {steps.map((step, index) => (
+                  <div key={step.title} className="category-step-item flex gap-4 md:gap-6 px-4 md:px-6 py-5 md:py-6">
+                    <div className="category-step-number h-11 w-11 md:h-12 md:w-12 shrink-0 rounded-full border border-accent/40 bg-accent/10 text-accent flex items-center justify-center font-semibold">
+                      {index + 1}
+                    </div>
+                    <div className="flex-1 space-y-3">
+                      <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{step.title}</h3>
+                      <div>
+                        <div className="category-step-label text-xs uppercase tracking-wide text-muted-foreground mb-1">
+                          Что мы делаем
+                        </div>
+                        <p className="category-step-text text-small text-muted-foreground leading-relaxed">{step.action}</p>
                       </div>
-                      <h3 className="font-semibold text-body-mobile md:text-body">{step.title}</h3>
+                      <div>
+                        <div className="category-step-label text-xs uppercase tracking-wide text-muted-foreground mb-1">
+                          Результат для вас
+                        </div>
+                        <p className="category-step-text text-small text-muted-foreground leading-relaxed">{step.result}</p>
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Что мы делаем</div>
-                      <p className="text-small text-muted-foreground leading-relaxed">{step.action}</p>
-                    </div>
-                    <div>
-                      <div className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Результат для вас</div>
-                      <p className="text-small text-muted-foreground leading-relaxed">{step.result}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
@@ -632,7 +656,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         <section className="section bg-muted/30">
           <div className="container">
             {shouldShowCases && (
-              <>
+              <div className="category-cases-surface rounded-2xl border border-[#D8C08B] bg-[#F8F4EA] p-6 md:p-8 shadow-[0_16px_36px_rgba(60,52,31,0.1)]">
                 <div className="section__header max-w-3xl">
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кейсы</h2>
                   <p className="text-muted-foreground">
@@ -641,9 +665,26 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 </div>
                 <div className="section__content grid grid-cols-1 lg:grid-cols-2 gap-6">
                   {cases.map((caseItem) => (
-                    <Card key={caseItem.title} className="h-full">
-                      <CardContent className="pt-6 h-full flex flex-col gap-4">
-                        <h3 className="font-semibold text-body-mobile md:text-body">{caseItem.title}</h3>
+                    <Card
+                      key={caseItem.title}
+                      className="category-case-card h-full rounded-xl border border-[#D8C08B]/80 bg-white shadow-[0_10px_24px_rgba(15,23,42,0.06)]"
+                    >
+                      <CardContent className="pt-6 h-full flex flex-col gap-5">
+                        {caseItem.decisionPreview ? (
+                          <div className="category-case-preview overflow-hidden rounded-lg border border-[#E6DDCC] bg-white">
+                            <img
+                              src={caseItem.decisionPreview}
+                              alt={`Решение по кейсу: ${caseItem.title}`}
+                              className="h-[190px] w-full object-contain bg-white"
+                              loading="lazy"
+                            />
+                          </div>
+                        ) : (
+                          <div className="category-case-preview flex h-[190px] w-full items-center justify-center rounded-lg border border-dashed border-[#D8C08B] bg-white/70 text-center text-small text-slate-500">
+                            Скан решения будет добавлен
+                          </div>
+                        )}
+                        <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{caseItem.title}</h3>
                         <div className="space-y-3 text-small text-muted-foreground leading-relaxed">
                           <div>
                             <span className="font-semibold text-foreground">Ситуация: </span>
@@ -662,47 +703,85 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                             {caseItem.result}
                           </div>
                         </div>
+                        <div className="mt-auto flex flex-wrap gap-3 pt-2">
+                          <Button
+                            asChild
+                            size="lg"
+                            className="category-case-button h-11 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-5 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                          >
+                            <Link to="/keisy">Смотреть кейсы</Link>
+                          </Button>
+                          {caseItem.decisionUrl && (
+                            <Button asChild variant="outline" size="lg" className="h-11 rounded-[12px] border-[#C9A227] text-slate-900 hover:bg-[#F7F2E8]">
+                              <a href={caseItem.decisionUrl} target="_blank" rel="noopener noreferrer">
+                                Решение
+                              </a>
+                            </Button>
+                          )}
+                        </div>
                       </CardContent>
                     </Card>
                   ))}
                 </div>
-              </>
+              </div>
             )}
 
             <div className={shouldShowCases ? "mt-12" : undefined}>
-              <div className="section__header max-w-3xl">
-                <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
-              </div>
-              <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {reviews.map((review, reviewIndex) => (
-                  <Card key={`${review.name}-${reviewIndex}`} className="h-full">
-                    <CardContent className="pt-6 h-full flex flex-col">
-                      <div className="flex items-start justify-between gap-4 mb-3">
-                        <div className="flex items-center gap-1 text-accent">
-                          {Array.from({ length: review.rating }).map((_, index) => (
-                            <Star key={`${review.name}-${index}`} className="h-4 w-4 fill-current" />
-                          ))}
+              <div className="category-reviews-surface rounded-2xl border border-[#D8C08B] bg-white p-6 md:p-8 shadow-[0_16px_36px_rgba(15,23,42,0.08)]">
+                <div className="category-reviews-header mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
+                  <div className="section__header max-w-3xl !mb-0">
+                    <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
+                    <p className="text-muted-foreground">Реальные отзывы о качестве нашей юридической помощи</p>
+                  </div>
+                  <div className="category-yandex-badge w-full max-w-[170px]">
+                    <iframe
+                      src="https://yandex.ru/sprav/widget/rating-badge/244880896695?type=rating"
+                      width="150"
+                      height="50"
+                      frameBorder="0"
+                      title="Рейтинг Профзащита в Яндекс.Картах"
+                      className="max-w-full"
+                    ></iframe>
+                  </div>
+                </div>
+                <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                  {reviews.map((review, reviewIndex) => (
+                    <Card
+                      key={`${review.name}-${reviewIndex}`}
+                      className="category-review-card h-full rounded-xl border border-[#E6DDCC] bg-[#F9F7F2] shadow-[0_10px_22px_rgba(15,23,42,0.06)]"
+                    >
+                      <CardContent className="pt-6 h-full flex flex-col">
+                        <div className="flex items-start justify-between gap-4 mb-3">
+                          <div className="flex items-center gap-1 text-accent">
+                            {Array.from({ length: review.rating }).map((_, index) => (
+                              <Star key={`${review.name}-${index}`} className="h-4 w-4 fill-current" />
+                            ))}
+                          </div>
+                          <span className="text-small text-muted-foreground">{review.date}</span>
                         </div>
-                        <span className="text-small text-muted-foreground">{review.date}</span>
-                      </div>
-                      <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
-                      <div className="border-t border-border mt-4 pt-4">
-                        <span className="text-small font-semibold">{review.name}</span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-              <div className="flex justify-center mt-8">
-                <Button asChild size="lg" className="px-6">
-                  <a
-                    href="https://yandex.ru/maps/org/244880896695/reviews/"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                        <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
+                        <div className="border-t border-border mt-4 pt-4">
+                          <span className="text-small font-semibold">{review.name}</span>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+                <div className="flex justify-center mt-8">
+                  <Button
+                    asChild
+                    size="lg"
+                    className="category-yandex-button h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                   >
-                    Смотреть все отзывы на Яндекс.Картах
-                  </a>
-                </Button>
+                    <a
+                      href="https://yandex.ru/maps/org/244880896695/reviews/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Смотреть все отзывы на Яндекс.Картах
+                    </a>
+                  </Button>
+                </div>
               </div>
             </div>
           </div>
@@ -773,8 +852,8 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 Оставьте контакты — адвокат свяжется и расскажет, как действовать дальше.
               </p>
             </div>
-            <Card className="border-border max-w-3xl">
-              <CardContent className="pt-6">
+            <Card className="category-form-card max-w-3xl rounded-2xl border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_16px_36px_rgba(60,52,31,0.1)]">
+              <CardContent className="pt-6 md:pt-8">
                 <LeadForm
                   formId="lead-final"
                   submitLabel="Оценить перспективы"
@@ -833,7 +912,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">Адрес</h3>
-                        <p className="text-muted-foreground">
+                        <p className="category-contact-address text-accent font-semibold">
                           {SITE.address.city}, {SITE.address.street}
                         </p>
                       </div>
