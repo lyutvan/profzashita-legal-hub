@@ -48,6 +48,7 @@ const TeamMemberPage = () => {
   const shouldShowCasesCard = member.slug !== "yulia-lyadova" || sortedRelatedCases.length > 0;
   const caseList = member.cases ?? [];
   const education = member.education ?? [];
+  const educationIconClassName = "h-5 w-5 shrink-0 text-accent mt-0.5";
   const competencies = member.competencies ?? [];
   const practice = member.practice ?? [];
   const publications = member.publications ?? [];
@@ -244,7 +245,7 @@ const TeamMemberPage = () => {
                     <ul className="space-y-2 text-small">
                       {education.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
+                          <CheckCircle2 className={educationIconClassName} />
                           <span>{item}</span>
                         </li>
                       ))}
