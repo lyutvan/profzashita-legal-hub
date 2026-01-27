@@ -996,7 +996,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 <AccordionItem
                   key={item.question}
                   value={`faq-${index}`}
-                  className="rounded-xl border border-slate-200 px-6 transition-colors hover:border-[#C9A227]/70 data-[state=open]:border-[#C9A227]"
+                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
                 >
                   <AccordionTrigger className="py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f] [&>svg]:text-[#b8911f] hover:[&>svg]:text-[#a8831a] data-[state=open]:[&>svg]:text-[#C9A227]">
                     {item.question}
@@ -1013,7 +1013,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               </p>
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="w-full sm:w-auto border border-[#b8911f] bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 onClick={() => setIsLeadOpen(true)}
               >
                 Получить оценку перспектив
