@@ -564,11 +564,13 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               ]}
             />
             <div className="max-w-4xl mt-6 space-y-5">
-              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold">
-                Адвокаты по семейным делам: берем на себя{" "}
-                <span className="accent-underline">переговоры, документы и суды</span>
-                {/* Вариант B (marker highlight): <span className="accent-marker">переговоры, документы и суды</span> */}
-              </h1>
+              <div className="w-full max-w-[900px] rounded-[12px] border-2 border-[#E84545] bg-[rgba(11,31,58,0.55)] px-3 py-3 md:inline-block md:w-fit md:px-5 md:py-4">
+                <h1 className="font-serif text-h1-mobile md:text-h1 font-bold">
+                  Адвокаты по семейным делам: берем на себя{" "}
+                  <span className="accent-underline">переговоры, документы и суды</span>
+                  {/* Вариант B (marker highlight): <span className="accent-marker">переговоры, документы и суды</span> */}
+                </h1>
+              </div>
               <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
                 <li>Расторжение брака с детьми и споры об опеке</li>
                 <li>Раздел имущества: квартиры, ипотека, бизнес, вклады и долги</li>
