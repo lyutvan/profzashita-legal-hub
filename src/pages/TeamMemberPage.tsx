@@ -24,6 +24,7 @@ const TeamMemberPage = () => {
   const experience = member.experienceText;
   const headline = member.headline ?? member.name;
   const leadText = member.leadText;
+  const affiliation = member.affiliation;
   const achievements = member.achievements ?? [];
   const seoTitle = member.seoTitle ?? `${member.name} — адвокат | Профзащита`;
   const seoDescription =
@@ -80,6 +81,7 @@ const TeamMemberPage = () => {
                 <h1 className="font-serif text-h1-mobile md:text-h1 font-bold leading-tight">{headline}</h1>
                 {leadText && <p className="lead text-white/85">{leadText}</p>}
                 <p className="text-body-mobile md:text-body text-accent font-semibold">{member.role}</p>
+                {affiliation && <p className="text-body-mobile md:text-body text-white/85">{affiliation}</p>}
                 {experience && !leadText && (
                   <p className="text-white/80 text-body-mobile md:text-body">{experience}</p>
                 )}
@@ -263,41 +265,49 @@ const TeamMemberPage = () => {
                   </CardHeader>
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {achievements.map((item) => (
-                        <div
-                          key={item.fileUrl}
-                          className="rounded-xl border border-border/70 bg-background p-4 flex flex-col gap-4"
-                        >
-                          <div className="rounded-lg border border-border/60 bg-muted/30 overflow-hidden">
-                            <img
-                              src={item.previewImage}
-                              alt={`Сертификат: ${item.title}`}
-                              className="w-full aspect-[3/4] object-contain bg-white"
-                              loading="lazy"
-                            />
+                      {achievements.map((item) => {
+                        const isLyadovaIpCert =
+                          member.slug === "yulia-lyadova" && item.fileUrl.includes("lyadova-legal-academy-ip");
+                        const previewClassName = isLyadovaIpCert
+                          ? "w-full aspect-[4/3] object-contain origin-center rotate-90 scale-[0.82] bg-white"
+                          : "w-full aspect-[3/4] object-contain bg-white";
+
+                        return (
+                          <div
+                            key={item.fileUrl}
+                            className="rounded-xl border border-border/70 bg-background p-4 flex flex-col gap-4"
+                          >
+                            <div className="rounded-lg border border-border/60 bg-muted/30 overflow-hidden">
+                              <img
+                                src={item.previewImage}
+                                alt={`Сертификат: ${item.title}`}
+                                className={previewClassName}
+                                loading="lazy"
+                              />
+                            </div>
+                            <div>
+                              <p className="font-medium">{item.title}</p>
+                              {(item.org || item.date) && (
+                                <p className="text-small text-muted-foreground">
+                                  {[item.org, item.date].filter(Boolean).join(" · ")}
+                                </p>
+                              )}
+                            </div>
+                            <div>
+                              <Button
+                                asChild
+                                variant="outline"
+                                size="sm"
+                                className="h-10 px-4 text-small"
+                              >
+                                <a href={item.fileUrl} target="_blank" rel="noopener noreferrer">
+                                  Открыть
+                                </a>
+                              </Button>
+                            </div>
                           </div>
-                          <div>
-                            <p className="font-medium">{item.title}</p>
-                            {(item.org || item.date) && (
-                              <p className="text-small text-muted-foreground">
-                                {[item.org, item.date].filter(Boolean).join(" · ")}
-                              </p>
-                            )}
-                          </div>
-                          <div>
-                            <Button
-                              asChild
-                              variant="outline"
-                              size="sm"
-                              className="h-10 px-4 text-small"
-                            >
-                              <a href={item.fileUrl} target="_blank" rel="noopener noreferrer">
-                                Открыть
-                              </a>
-                            </Button>
-                          </div>
-                        </div>
-                      ))}
+                        );
+                      })}
                     </div>
                   </CardContent>
                 </Card>

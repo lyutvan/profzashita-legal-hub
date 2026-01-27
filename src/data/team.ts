@@ -10,6 +10,7 @@ export interface TeamMember {
   leadText?: string;
   seoTitle?: string;
   seoDescription?: string;
+  affiliation?: string;
   role: string;
   experienceText?: string;
   specializations: string[];
@@ -349,12 +350,12 @@ export const teamMembers: TeamMember[] = [
     name: "Лядова Юлия Сергеевна",
     slug: "yulia-lyadova",
     headline: "Адвокат Лядова Юлия Сергеевна",
-    leadText: "18 лет практики. Договорные/имущественные, семейные споры, интеллектуальная собственность.",
     seoTitle: "Адвокат Лядова Юлия Сергеевна — Профзащита",
     seoDescription:
       "Адвокат Лядова Юлия Сергеевна — 18 лет практики. Договорные и имущественные споры, семейные дела, интеллектуальная собственность. Консультация в Москве.",
     role: "Адвокат",
-    experienceText: "Стаж 18 лет",
+    affiliation: "Член Ассоциации юристов России",
+    experienceText: "Стаж — 18 лет",
     specializations: [
       "Договорные и имущественные споры",
       "Семейные споры",
@@ -373,30 +374,36 @@ export const teamMembers: TeamMember[] = [
       "Интеллектуальная собственность"
     ],
     photo: "/images/team/lyadova-yuliya.jpg",
-    education: ["Вологодский государственный университет"],
+    education: [
+      "Вологодский государственный университет",
+      "Legal Academy — \"Право интеллектуальной собственности\" (38 акад. часов), Санкт-Петербург, 2024",
+      "4Legal Global — \"Механизм защиты от злоупотреблений второго супруга при разделе бизнеса\" и \"Уголовно-правовые аспекты семейных споров\" (2-дневный мастер-класс), Москва, 2024",
+      "Лексториум — \"Актуальные проблемы субсидиарной ответственности лиц, контролирующих должника\" (60 акад. часов), Москва, 2021",
+      "Лексториум — \"Сделки и банкротство: искусство нападать и защищаться\" (32 акад. часа), Москва, 2019"
+    ],
     achievements: [
       {
-        title: "Лексториум — субсидиарная ответственность",
+        title: "Субсидиарная ответственность контролирующих лиц (Лексториум, 2021)",
         org: "Лексториум",
         previewImage: "/certificates/previews/lyadova-lektorium-subsidiary.jpg",
         fileUrl: "/certificates/files/lyadova-lektorium-subsidiary.pdf",
         type: "pdf"
       },
       {
-        title: "Legal Academy — право интеллектуальной собственности",
+        title: "Право интеллектуальной собственности (Legal Academy, 2024)",
         org: "Legal Academy",
         previewImage: "/certificates/previews/lyadova-legal-academy-ip.jpg",
         fileUrl: "/certificates/files/lyadova-legal-academy-ip.pdf",
         type: "pdf"
       },
       {
-        title: "Повышение квалификации — сделки",
+        title: "Сделки в банкротстве (Лексториум, 2019)",
         previewImage: "/certificates/previews/lyadova-qualification-deals.jpg",
         fileUrl: "/certificates/files/lyadova-qualification-deals.pdf",
         type: "pdf"
       },
       {
-        title: "Уголовно-правовые аспекты в семейных спорах",
+        title: "Семейные споры (4Legal Global, 2024)",
         org: "4Legal Global",
         date: "7–8 февраля 2024",
         previewImage: "/certificates/previews/lyadova-criminal-family-aspects.png",
