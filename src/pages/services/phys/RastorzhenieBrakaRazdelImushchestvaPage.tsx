@@ -1005,7 +1005,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                   value={`faq-${index}`}
                   className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
                 >
-                  <AccordionTrigger className="py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f] [&>svg]:text-[#b8911f] hover:[&>svg]:text-[#a8831a] data-[state=open]:[&>svg]:text-[#C9A227]">
+                  <AccordionTrigger className="py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f] [&>svg]:text-accent hover:[&>svg]:text-accent data-[state=open]:[&>svg]:text-accent">
                     {item.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pb-4">
