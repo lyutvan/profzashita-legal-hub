@@ -34,7 +34,6 @@ import { toast } from "@/hooks/use-toast";
 import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
-import { sharedReviews } from "@/data/shared-reviews";
 import { cases as casesData } from "@/data/cases";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
@@ -353,6 +352,77 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
   const cases = casesData
     .filter((caseItem) => caseItem.category === "Семейное право")
     .sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime());
+
+  const yandexOrgId = "244880896695";
+
+  const familyReviews = [
+    {
+      id: "family-1",
+      name: "Екатерина М.",
+      rating: 5,
+      date: "18.11.2025",
+      text: "Сопровождали расторжение брака и спор о порядке общения с ребенком. Подготовили позицию и документы так, что вторая сторона пошла на соглашение без затягивания."
+    },
+    {
+      id: "family-2",
+      name: "Андрей К.",
+      rating: 5,
+      date: "02.11.2025",
+      text: "Помогли грамотно разделить квартиру в ипотеке и долги. Всё разложили по шагам, объяснили риски и держали в курсе по каждому заседанию."
+    },
+    {
+      id: "family-3",
+      name: "Ольга С.",
+      rating: 5,
+      date: "25.10.2025",
+      text: "Бывший супруг скрывал доходы, алименты не платил. Адвокат собрал доказательства, сделал расчеты и добился решения в твердой сумме."
+    },
+    {
+      id: "family-4",
+      name: "Дмитрий В.",
+      rating: 5,
+      date: "11.10.2025",
+      text: "Обратился на стадии переговоров по разделу имущества. Подготовили соглашение, где учли интересы детей и мои вложения, избежали суда."
+    },
+    {
+      id: "family-5",
+      name: "Марина Л.",
+      rating: 5,
+      date: "29.09.2025",
+      text: "Сложный спор о месте жительства ребенка. Команда спокойно и уверенно выстроила стратегию, помогла собрать нужные документы и доказательства."
+    },
+    {
+      id: "family-6",
+      name: "Сергей Н.",
+      rating: 5,
+      date: "12.09.2025",
+      text: "Получил четкий план действий по брачному договору и разделу бизнеса. Без лишних обещаний, но по факту — сильная позиция и понятный результат."
+    }
+  ];
+
+  const YandexRatingWidget = () => (
+    <div className="mt-8 flex justify-center">
+      <div className="w-full max-w-md rounded-2xl border border-[#D8C08B] bg-[#F9F6EE] p-5 text-center shadow-[0_14px_34px_rgba(15,23,42,0.08)]">
+        <div className="text-[28px] font-bold text-slate-900">5,0</div>
+        <div className="mt-1 flex items-center justify-center gap-1 text-accent">
+          {Array.from({ length: 5 }).map((_, index) => (
+            <Star key={`yandex-rating-star-${index}`} className="h-5 w-5 fill-current" />
+          ))}
+        </div>
+        <div className="mt-2 text-small text-muted-foreground">Рейтинг организации в Яндексе</div>
+        <div className="mt-3 flex justify-center">
+          <iframe
+            src={`https://yandex.ru/sprav/widget/rating-badge/${yandexOrgId}?type=rating`}
+            width="150"
+            height="50"
+            frameBorder="0"
+            title="Рейтинг Профзащита в Яндекс.Картах"
+            className="max-w-full"
+          ></iframe>
+        </div>
+      </div>
+    </div>
+  );
 
   const faqItems = [
     {
@@ -854,7 +924,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
               </div>
               <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {sharedReviews.slice(0, 6).map((review) => (
+                {familyReviews.map((review) => (
                   <Card key={review.id} className="h-full">
                     <CardContent className="pt-6 h-full flex flex-col">
                       <div className="flex items-start justify-between gap-4 mb-3">
@@ -873,17 +943,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                   </Card>
                 ))}
               </div>
-              <div className="flex justify-center mt-8">
-                <Button asChild size="lg" className="px-6">
-                  <a
-                    href="https://yandex.ru/maps/org/244880896695/reviews/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Смотреть все отзывы на Яндекс.Картах
-                  </a>
-                </Button>
-              </div>
+              <YandexRatingWidget />
             </div>
           </div>
         </section>
