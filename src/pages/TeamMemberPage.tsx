@@ -34,7 +34,17 @@ const TeamMemberPage = () => {
   const phone = member.phone ?? SITE.phone;
   const email = member.email ?? SITE.email;
   const about = member.about;
-  const relatedCases = cases.filter((caseItem) => caseItem.lawyers?.includes(member.slug));
+  const memberCaseKey = member.slug === "yulia-lyadova" ? "lyadova" : member.slug;
+  const relatedCases = cases.filter((caseItem) => caseItem.lawyers?.includes(memberCaseKey));
+  const sortedRelatedCases =
+    member.slug === "yulia-lyadova"
+      ? [...relatedCases].sort((a, b) => {
+          const aTime = a.datePublished ? new Date(a.datePublished).getTime() : 0;
+          const bTime = b.datePublished ? new Date(b.datePublished).getTime() : 0;
+          return bTime - aTime;
+        })
+      : relatedCases;
+  const shouldShowCasesCard = member.slug !== "yulia-lyadova" || sortedRelatedCases.length > 0;
   const caseList = member.cases ?? [];
   const education = member.education ?? [];
   const competencies = member.competencies ?? [];
@@ -177,46 +187,48 @@ const TeamMemberPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-border">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-h3-mobile md:text-h3">
-                    <CheckCircle2 className="h-5 w-5 text-accent" />
-                    Практика / кейсы
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  {relatedCases.length > 0 ? (
-                    <ul className="space-y-3">
-                      {relatedCases.map((caseItem) => (
-                        <li key={caseItem.id} className="p-3 rounded-xl bg-muted/50 border border-border/60">
-                          <Link
-                            to={`/cases#${caseItem.slug}`}
-                            className="font-medium text-foreground hover:text-accent transition-colors"
-                          >
-                            {caseItem.title}
-                          </Link>
-                          {caseItem.result && (
-                            <p className="text-small text-muted-foreground mt-1">{caseItem.result}</p>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : caseList.length > 0 ? (
-                    <ul className="space-y-3">
-                      {caseList.map((item, idx) => (
-                        <li key={idx} className="p-3 rounded-xl bg-muted/50 border border-border/60">
-                          <p className="font-medium">{item.title}</p>
-                          {item.result && (
-                            <p className="text-small text-muted-foreground mt-1">{item.result}</p>
-                          )}
-                        </li>
-                      ))}
-                    </ul>
-                  ) : (
-                    <p className="text-muted-foreground">Кейсы в работе — информация будет дополнена.</p>
-                  )}
-                </CardContent>
-              </Card>
+              {shouldShowCasesCard && (
+                <Card className="border-border">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-h3-mobile md:text-h3">
+                      <CheckCircle2 className="h-5 w-5 text-accent" />
+                      Практика / кейсы
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    {sortedRelatedCases.length > 0 ? (
+                      <ul className="space-y-3">
+                        {sortedRelatedCases.map((caseItem) => (
+                          <li key={caseItem.id} className="p-3 rounded-xl bg-muted/50 border border-border/60">
+                            <Link
+                              to={`/cases#${caseItem.slug}`}
+                              className="font-medium text-foreground hover:text-accent transition-colors"
+                            >
+                              {caseItem.title}
+                            </Link>
+                            {caseItem.result && (
+                              <p className="text-small text-muted-foreground mt-1">{caseItem.result}</p>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : caseList.length > 0 ? (
+                      <ul className="space-y-3">
+                        {caseList.map((item, idx) => (
+                          <li key={idx} className="p-3 rounded-xl bg-muted/50 border border-border/60">
+                            <p className="font-medium">{item.title}</p>
+                            {item.result && (
+                              <p className="text-small text-muted-foreground mt-1">{item.result}</p>
+                            )}
+                          </li>
+                        ))}
+                      </ul>
+                    ) : (
+                      <p className="text-muted-foreground">Кейсы в работе — информация будет дополнена.</p>
+                    )}
+                  </CardContent>
+                </Card>
+              )}
 
               <Card className="border-border">
                 <CardHeader>
