@@ -30,7 +30,7 @@ const TeamSection = ({
       <Card className="border-border hover:shadow-elegant transition-all h-full flex flex-col">
         <CardContent className="pt-6 flex flex-col h-full">
           <div
-            className={`w-48 h-48 rounded-xl overflow-hidden mx-auto mb-4 ${
+            className={`w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[180px] lg:h-[180px] rounded-xl overflow-hidden mx-auto mb-4 ${
               hasPhoto ? "border-2 border-accent/20" : "bg-muted/40"
             }`}
           >
@@ -38,7 +38,7 @@ const TeamSection = ({
               <img
                 src={member.photo}
                 alt={member.name}
-                className="w-full h-full object-cover"
+                className="w-full h-full object-cover object-center"
                 loading="lazy"
                 onError={() => setImageFailed(true)}
               />

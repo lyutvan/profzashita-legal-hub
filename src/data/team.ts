@@ -33,6 +33,7 @@ export interface TeamMember {
     previewImage?: string;
     fileUrl?: string;
     type?: "pdf" | "image";
+    rotation?: number;
   }[];
 }
 
@@ -394,7 +395,8 @@ export const teamMembers: TeamMember[] = [
         org: "Legal Academy",
         previewImage: "/certificates/previews/lyadova-legal-academy-ip.jpg",
         fileUrl: "/certificates/files/lyadova-legal-academy-ip.pdf",
-        type: "pdf"
+        type: "pdf",
+        rotation: 90
       },
       {
         title: "Сделки в банкротстве (Лексториум, 2019)",

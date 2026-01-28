@@ -276,13 +276,16 @@ const TeamMemberPage = () => {
                         const resolvedFileUrl = fileUrl ? encodeURI(fileUrl) : "";
                         const resolvedPreviewUrl = previewImage ? encodeURI(previewImage) : "";
                         const isPdf = fileUrl.toLowerCase().endsWith(".pdf");
-                        const isLyadovaIpCert =
-                          member.slug === "yulia-lyadova" && fileUrl.includes("lyadova-legal-academy-ip");
-                        const previewClassName = isLyadovaIpCert
-                          ? "w-full aspect-[4/3] object-contain bg-white"
-                          : "w-full aspect-[3/4] object-contain bg-white";
+                        const rotation = item.rotation ?? 0;
+                        const previewClassName =
+                          rotation !== 0
+                            ? "w-full aspect-[4/3] object-contain bg-white"
+                            : "w-full aspect-[3/4] object-contain bg-white";
                         const cardClassName = "rounded-xl border border-border/70 bg-background p-4 flex flex-col gap-4 h-full";
                         const previewSrc = resolvedPreviewUrl || (!isPdf ? resolvedFileUrl : "");
+                        const rotationStyle = rotation
+                          ? { transform: `rotate(${rotation}deg) scale(0.9)`, transformOrigin: "center" as const }
+                          : undefined;
 
                         return (
                           <div
@@ -291,12 +294,15 @@ const TeamMemberPage = () => {
                           >
                             {previewSrc && (
                               <div className="rounded-lg border border-border/60 bg-muted/30 overflow-hidden">
-                                <img
-                                  src={previewSrc}
-                                  alt={`Сертификат: ${item.title}`}
-                                  className={previewClassName}
-                                  loading="lazy"
-                                />
+                                <div className="w-full h-full flex items-center justify-center">
+                                  <img
+                                    src={previewSrc}
+                                    alt={`Сертификат: ${item.title}`}
+                                    className={previewClassName}
+                                    style={rotationStyle}
+                                    loading="lazy"
+                                  />
+                                </div>
                               </div>
                             )}
                             <div>
