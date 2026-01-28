@@ -58,6 +58,7 @@ const TeamMemberPage = () => {
         })
       : relatedCases;
   const shouldShowCasesCard = member.slug !== "yulia-lyadova" || sortedRelatedCases.length > 0;
+  const shouldShowCertificateTitle = member.slug !== "yulia-lyadova";
   const caseList = member.cases ?? [];
   const education = member.education ?? [];
   const educationIconClassName = "h-5 w-5 shrink-0 text-accent mt-0.5";
@@ -500,9 +501,11 @@ const TeamMemberPage = () => {
           </DialogClose>
           {certificatePreview && (
             <>
-              <DialogHeader>
-                <DialogTitle className="text-base md:text-lg">{certificatePreview.title}</DialogTitle>
-              </DialogHeader>
+              {shouldShowCertificateTitle && (
+                <DialogHeader>
+                  <DialogTitle className="text-base md:text-lg">{certificatePreview.title}</DialogTitle>
+                </DialogHeader>
+              )}
               <div className="w-full rounded-xl border border-border/60 bg-muted/30 p-3 overflow-hidden">
                 <img
                   src={certificatePreview.src}

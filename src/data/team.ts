@@ -434,6 +434,14 @@ export const teamMembers: TeamMember[] = [
     ],
     achievements: [
       {
+        title: "Право интеллектуальной собственности (Legal Academy, 2024)",
+        org: "Legal Academy",
+        date: "19.09.2024",
+        previewImage: "/certs/lyadova/legal-academy-2024.jpg",
+        fileUrl: "/certs/lyadova/legal-academy-2024.pdf",
+        type: "pdf"
+      },
+      {
         title: "Субсидиарная ответственность контролирующих лиц (Лексториум, 2021)",
         org: "Лексториум",
         previewImage: "/certificates/previews/lyadova-lektorium-subsidiary.jpg",

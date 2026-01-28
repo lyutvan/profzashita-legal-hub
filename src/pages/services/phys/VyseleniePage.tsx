@@ -216,6 +216,20 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
 const VyseleniePage = () => {
   const { openQuickQuestionModal } = useQuickQuestionModal();
   const canonical = new URL("/services/phys/vyselenie", SITE.url).toString();
+  const yandexOrgId = "244880896695";
+
+  const YandexRatingWidget = () => (
+    <div className="mt-8 flex justify-center">
+      <iframe
+        src={`https://yandex.ru/sprav/widget/rating-badge/${yandexOrgId}?type=rating`}
+        width="150"
+        height="50"
+        frameBorder="0"
+        title="Рейтинг Профзащита в Яндекс.Картах"
+        className="max-w-full"
+      ></iframe>
+    </div>
+  );
 
   const trustItems = [
     "Конфиденциально",
@@ -499,7 +513,7 @@ const VyseleniePage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col family-landing-page">
       <Helmet>
         <title>Жилищные споры — адвокаты по жилищным вопросам | Профзащита</title>
         <meta
@@ -553,7 +567,7 @@ const VyseleniePage = () => {
               ]}
             />
             <div className="max-w-4xl mt-6 space-y-5">
-              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold">
+              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-accent">
                 Жилищные споры: защищаем ваши права на жилье и имущество
               </h1>
               <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
@@ -574,7 +588,7 @@ const VyseleniePage = () => {
               >
                 Получить консультацию
               </Button>
-              <div className="flex flex-wrap items-center gap-y-2 text-small text-white/75">
+              <div className="flex flex-wrap items-center gap-y-2 text-small text-white/75 lg:flex-nowrap lg:whitespace-nowrap">
                 {trustItems.map((item, index) => (
                   <span
                     key={item}
@@ -707,26 +721,27 @@ const VyseleniePage = () => {
                 Как мы работаем: 6 этапов, чтобы защитить ваши права на жилье с минимальными потерями
               </h2>
             </div>
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+            <div className="section__content mx-auto w-full max-w-4xl">
               {steps.map((step, index) => (
-                <Card key={step.title} className="h-full">
-                  <CardContent className="pt-6 h-full flex flex-col gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 rounded-full bg-accent/10 text-accent flex items-center justify-center font-semibold">
-                        {index + 1}
-                      </div>
-                      <h3 className="font-semibold text-body-mobile md:text-body">{step.title}</h3>
+                <div
+                  key={step.title}
+                  className="flex flex-col gap-4 border-b border-slate-200 py-6 last:border-b-0 sm:flex-row sm:gap-6"
+                >
+                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-slate-50 text-lg font-semibold text-accent">
+                    {index + 1}
+                  </div>
+                  <div className="flex-1 space-y-4">
+                    <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{step.title}</h3>
+                    <div>
+                      <div className="mb-2 text-xs uppercase tracking-wide text-muted-foreground">Что мы делаем</div>
+                      <p className="text-small leading-relaxed text-muted-foreground">{step.action}</p>
                     </div>
                     <div>
-                      <div className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Что мы делаем</div>
-                      <p className="text-small text-muted-foreground leading-relaxed">{step.action}</p>
+                      <div className="mb-2 text-xs uppercase tracking-wide text-muted-foreground">Результат для вас</div>
+                      <p className="text-small leading-relaxed text-muted-foreground">{step.result}</p>
                     </div>
-                    <div>
-                      <div className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Результат для вас</div>
-                      <p className="text-small text-muted-foreground leading-relaxed">{step.result}</p>
-                    </div>
-                  </CardContent>
-                </Card>
+                  </div>
+                </div>
               ))}
             </div>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
@@ -773,9 +788,12 @@ const VyseleniePage = () => {
             </div>
             <div className="section__content grid grid-cols-1 lg:grid-cols-2 gap-6">
               {cases.map((caseItem) => (
-                <Card key={caseItem.title} className="h-full">
+                <Card
+                  key={caseItem.title}
+                  className="h-full border border-slate-200 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.06)] transition-all hover:border-[#C9A227] hover:shadow-[0_16px_40px_rgba(201,162,39,0.18)]"
+                >
                   <CardContent className="pt-6 h-full flex flex-col gap-4">
-                    <h3 className="font-semibold text-body-mobile md:text-body">{caseItem.title}</h3>
+                    <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{caseItem.title}</h3>
                     <div className="space-y-3 text-small text-muted-foreground leading-relaxed">
                       <div>
                         <span className="font-semibold text-foreground">Ситуация: </span>
@@ -823,17 +841,7 @@ const VyseleniePage = () => {
                   </Card>
                 ))}
               </div>
-              <div className="flex justify-center mt-8">
-                <Button asChild size="lg" className="px-6">
-                  <a
-                    href="https://yandex.ru/maps/org/244880896695/reviews/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Смотреть все отзывы на Яндекс.Картах
-                  </a>
-                </Button>
-              </div>
+              <YandexRatingWidget />
             </div>
           </div>
         </section>
@@ -862,8 +870,14 @@ const VyseleniePage = () => {
 
             <Accordion type="single" collapsible className="section__content mt-8 space-y-4">
               {salesAccordion.map((item, index) => (
-                <AccordionItem key={item.title} value={`sales-${index}`} className="border rounded-xl px-6">
-                  <AccordionTrigger className="text-left hover:no-underline py-4">{item.title}</AccordionTrigger>
+                <AccordionItem
+                  key={item.title}
+                  value={`sales-${index}`}
+                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+                >
+                  <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
+                    {item.title}
+                  </AccordionTrigger>
                   <AccordionContent className="pb-4">{item.content}</AccordionContent>
                 </AccordionItem>
               ))}
@@ -884,9 +898,9 @@ const VyseleniePage = () => {
                 <AccordionItem
                   key={item.question}
                   value={`faq-${index}`}
-                  className="rounded-xl border border-slate-200 px-6 transition-colors hover:border-[#C9A227]/70 data-[state=open]:border-[#C9A227]"
+                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
                 >
-                  <AccordionTrigger className="py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f] [&>svg]:text-[#b8911f] hover:[&>svg]:text-[#a8831a] data-[state=open]:[&>svg]:text-[#C9A227]">
+                  <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
                     {item.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pb-4">{item.answer}</AccordionContent>
@@ -897,7 +911,7 @@ const VyseleniePage = () => {
               <p className="text-muted-foreground">Не нашли свой вопрос? Оставьте заявку и мы оценим вашу ситуацию</p>
               <Button
                 size="lg"
-                className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className="w-full sm:w-auto border border-[#b8911f] bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
                 onClick={() => openQuickQuestionModal({ topic: "Жилищные споры" })}
               >
                 Получить оценку перспектив
@@ -909,24 +923,54 @@ const VyseleniePage = () => {
         {/* Экран 8: Финальная форма */}
         <section className="section">
           <div className="container">
-            <div className="section__header max-w-3xl">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                Получите оценку перспектив по жилищному спору
-              </h2>
-              <p className="text-muted-foreground">
-                Оставьте контакты — адвокат по жилищным вопросам свяжется и расскажет, как действовать дальше.
-              </p>
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_520px] lg:items-start lg:gap-14">
+              <div className="max-w-2xl space-y-6">
+                <div className="section__header max-w-2xl !mb-0">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                    Получите оценку перспектив по жилищному спору
+                  </h2>
+                  <p className="text-muted-foreground">
+                    Оставьте контакты — адвокат по жилищным вопросам свяжется и расскажет, как действовать дальше.
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <p className="text-small font-semibold text-slate-900">Или напишите нам напрямую:</p>
+                  <div className="flex items-center gap-4">
+                    <a
+                      href="https://t.me/profzashita_consult_bot"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Написать в Telegram"
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-[#229ED9] shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] hover:text-[#C9A227] md:h-14 md:w-14"
+                    >
+                      <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
+                        <path
+                          d="M21.2 4.6L3.9 11.2c-.9.3-.9 1.6 0 1.9l4.4 1.4 1.7 5.1c.3.9 1.5 1.1 2 .3l2.5-3.4 4.6 3.4c.7.5 1.7.1 1.9-.8l2.6-13.6c.2-1-.8-1.8-1.8-1.4z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </a>
+                    <a
+                      href={`mailto:${SITE.email}`}
+                      aria-label="Написать на email"
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-accent shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] hover:text-[#b8911f] md:h-14 md:w-14"
+                    >
+                      <Mail className="h-6 w-6" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <Card className="w-full rounded-[16px] border border-[#E5E7EB] bg-[#F8FAFC] shadow-[0_18px_40px_rgba(15,23,42,0.08)] lg:max-w-[520px] lg:justify-self-end">
+                <CardContent className="p-7 md:p-8">
+                  <LeadForm
+                    formId="lead-final"
+                    submitLabel="Оценить перспективы"
+                    placeholder="Например: «Нужно снять с регистрации бывшего родственника и закрепить порядок пользования квартирой»"
+                    footerNote="Перезвоним в течение 15–20 минут в рабочее время"
+                  />
+                </CardContent>
+              </Card>
             </div>
-            <Card className="border-border max-w-3xl">
-              <CardContent className="pt-6">
-                <LeadForm
-                  formId="lead-final"
-                  submitLabel="Оценить перспективы"
-                  placeholder="Например: «Нужно снять с регистрации бывшего родственника и закрепить порядок пользования квартирой»"
-                  footerNote="Перезвоним в течение 15–20 минут в рабочее время"
-                />
-              </CardContent>
-            </Card>
           </div>
         </section>
 
@@ -976,7 +1020,7 @@ const VyseleniePage = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">Адрес</h3>
-                        <p className="text-muted-foreground">
+                        <p className="text-accent font-semibold">
                           {SITE.address.city}, {SITE.address.street}
                         </p>
                       </div>
