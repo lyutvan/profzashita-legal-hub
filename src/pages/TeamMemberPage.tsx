@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import LeadForm from "@/components/LeadForm";
 import { getTeamMemberBySlug } from "@/data/team";
 import { cases } from "@/data/cases";
@@ -17,6 +18,7 @@ const TeamMemberPage = () => {
   const { slug } = useParams();
   const member = slug ? getTeamMemberBySlug(slug) : undefined;
   const [imageFailed, setImageFailed] = useState(false);
+  const [certificatePreview, setCertificatePreview] = useState<{ src: string; title: string } | null>(null);
   const { openQuickQuestionModal } = useQuickQuestionModal();
 
   if (!member) {
@@ -270,7 +272,9 @@ const TeamMemberPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {achievements.map((item) => {
                         const fileUrl = item.fileUrl ?? "";
+                        const previewImage = item.previewImage ?? "";
                         const resolvedFileUrl = fileUrl ? encodeURI(fileUrl) : "";
+                        const resolvedPreviewUrl = previewImage ? encodeURI(previewImage) : "";
                         const isPdf = fileUrl.toLowerCase().endsWith(".pdf");
                         const isLyadovaIpCert =
                           member.slug === "yulia-lyadova" && fileUrl.includes("lyadova-legal-academy-ip");
@@ -278,35 +282,21 @@ const TeamMemberPage = () => {
                           ? "w-full aspect-[4/3] object-contain bg-white"
                           : "w-full aspect-[3/4] object-contain bg-white";
                         const cardClassName = "rounded-xl border border-border/70 bg-background p-4 flex flex-col gap-4 h-full";
+                        const previewSrc = resolvedPreviewUrl || (!isPdf ? resolvedFileUrl : "");
 
                         return (
                           <div
                             key={item.fileUrl ?? item.title}
                             className={cardClassName}
                           >
-                            {(item.previewImage || fileUrl) && (
+                            {previewSrc && (
                               <div className="rounded-lg border border-border/60 bg-muted/30 overflow-hidden">
-                                {item.previewImage ? (
-                                  <img
-                                    src={item.previewImage}
-                                    alt={`Сертификат: ${item.title}`}
-                                    className={previewClassName}
-                                    loading="lazy"
-                                  />
-                                ) : isPdf ? (
-                                  <iframe
-                                    src={`${resolvedFileUrl}#page=1&zoom=page-width`}
-                                    title={`Сертификат: ${item.title}`}
-                                    className="w-full aspect-[3/4] bg-white pointer-events-none select-none"
-                                  />
-                                ) : (
-                                  <img
-                                    src={resolvedFileUrl}
-                                    alt={`Сертификат: ${item.title}`}
-                                    className="w-full aspect-[3/4] object-contain bg-white"
-                                    loading="lazy"
-                                  />
-                                )}
+                                <img
+                                  src={previewSrc}
+                                  alt={`Сертификат: ${item.title}`}
+                                  className={previewClassName}
+                                  loading="lazy"
+                                />
                               </div>
                             )}
                             <div>
@@ -317,17 +307,15 @@ const TeamMemberPage = () => {
                                 </p>
                               )}
                             </div>
-                            {item.fileUrl && (
+                            {item.fileUrl && previewSrc && (
                               <div className="mt-auto">
                                 <Button
-                                  asChild
                                   variant="outline"
                                   size="sm"
                                   className="h-10 px-4 text-small"
+                                  onClick={() => setCertificatePreview({ src: previewSrc, title: item.title })}
                                 >
-                                  <a href={resolvedFileUrl} target="_blank" rel="noopener noreferrer">
-                                    Открыть
-                                  </a>
+                                  Открыть
                                 </Button>
                               </div>
                             )}
@@ -424,6 +412,26 @@ const TeamMemberPage = () => {
       </main>
 
       <Footer />
+
+      <Dialog open={Boolean(certificatePreview)} onOpenChange={(open) => !open && setCertificatePreview(null)}>
+        <DialogContent className="max-w-4xl bg-white">
+          {certificatePreview && (
+            <>
+              <DialogHeader>
+                <DialogTitle className="text-base md:text-lg">{certificatePreview.title}</DialogTitle>
+              </DialogHeader>
+              <div className="w-full rounded-xl border border-border/60 bg-muted/30 p-3">
+                <img
+                  src={certificatePreview.src}
+                  alt={`Сертификат: ${certificatePreview.title}`}
+                  className="w-full max-h-[80vh] object-contain bg-white"
+                  loading="lazy"
+                />
+              </div>
+            </>
+          )}
+        </DialogContent>
+      </Dialog>
     </div>
   );
 };
