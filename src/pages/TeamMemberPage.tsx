@@ -34,6 +34,9 @@ const TeamMemberPage = () => {
   const leadText = member.leadText;
   const affiliation = member.affiliation;
   const achievements = member.achievements ?? [];
+  const shortBio = member.shortBio;
+  const statusText = member.statusText;
+  const specializationGroups = member.specializationGroups ?? [];
   const seoTitle = member.seoTitle ?? `${member.name} — адвокат | Профзащита`;
   const seoDescription =
     member.seoDescription ??
@@ -142,24 +145,66 @@ const TeamMemberPage = () => {
         <section className="section bg-muted/20">
           <div className="container grid grid-cols-1 lg:grid-cols-[1.35fr,0.65fr] gap-10">
             <div className="space-y-8">
-              <Card className="border-border">
-                <CardHeader>
-                  <CardTitle className="flex items-center gap-2 text-h3-mobile md:text-h3">
-                    <Briefcase className="h-5 w-5 text-accent" />
-                    Специализации
-                  </CardTitle>
-                </CardHeader>
-                <CardContent>
-                  <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                    {specializationItems.map((spec) => (
-                      <li key={spec} className="flex items-start gap-2 text-small">
-                        <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
-                        <span>{spec}</span>
-                      </li>
+              {shortBio && (
+                <Card className="border-border">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-h3-mobile md:text-h3">
+                      <Briefcase className="h-5 w-5 text-accent" />
+                      Коротко о себе
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-3 text-muted-foreground leading-relaxed">
+                    {shortBio.split("\n").filter(Boolean).map((paragraph, index) => (
+                      <p key={index}>{paragraph}</p>
                     ))}
-                  </ul>
-                </CardContent>
-              </Card>
+                  </CardContent>
+                </Card>
+              )}
+
+              {specializationGroups.length > 0 ? (
+                <Card className="border-border">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-h3-mobile md:text-h3">
+                      <Briefcase className="h-5 w-5 text-accent" />
+                      Специализация
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="space-y-5">
+                    {specializationGroups.map((group) => (
+                      <div key={group.title} className="space-y-2">
+                        <h4 className="font-semibold text-body-mobile md:text-body">{group.title}</h4>
+                        <ul className="space-y-2 text-small text-muted-foreground">
+                          {group.items.map((item) => (
+                            <li key={item} className="flex items-start gap-2">
+                              <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
+                              <span>{item}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
+              ) : (
+                <Card className="border-border">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-h3-mobile md:text-h3">
+                      <Briefcase className="h-5 w-5 text-accent" />
+                      Специализации
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
+                      {specializationItems.map((spec) => (
+                        <li key={spec} className="flex items-start gap-2 text-small">
+                          <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
+                          <span>{spec}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </CardContent>
+                </Card>
+              )}
 
               <Card className="border-border">
                 <CardHeader>
@@ -174,6 +219,20 @@ const TeamMemberPage = () => {
                   ))}
                 </CardContent>
               </Card>
+
+              {statusText && (
+                <Card className="border-border">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-h3-mobile md:text-h3">
+                      <CheckCircle2 className="h-5 w-5 text-accent" />
+                      Статус адвоката
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent className="text-muted-foreground leading-relaxed">
+                    <p>{statusText}</p>
+                  </CardContent>
+                </Card>
+              )}
 
               <Card className="border-border">
                 <CardHeader>

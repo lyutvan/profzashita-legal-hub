@@ -112,13 +112,13 @@ const Novosti = () => {
           {/* News Grid */}
           <section className="section">
             <div className="container">
-              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
                 {filteredNews.map((item) => (
                   <Card 
                     key={item.id} 
-                    className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden"
+                    className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden h-full flex flex-col"
                   >
-                    <CardHeader>
+                    <CardHeader className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <Badge className={getCategoryColor(item.category)}>
                           {getCategoryLabel(item.category)}
@@ -134,7 +134,7 @@ const Novosti = () => {
                         {item.excerpt}
                       </CardDescription>
                     </CardHeader>
-                    <CardContent>
+                    <CardContent className="mt-auto">
                       <Link to={`/news/${item.id}`}>
                         <Button variant="ghost" className="w-full justify-between group/btn">
                           Читать
