@@ -22,6 +22,7 @@ const TeamMemberPage = () => {
     src: string;
     title: string;
     rotation?: number;
+    fileUrl?: string;
   } | null>(null);
   const { openQuickQuestionModal } = useQuickQuestionModal();
 
@@ -383,7 +384,12 @@ const TeamMemberPage = () => {
                                   size="sm"
                                   className="h-10 px-4 text-small"
                                   onClick={() =>
-                                    setCertificatePreview({ src: previewSrc, title: item.title, rotation })
+                                    setCertificatePreview({
+                                      src: previewSrc,
+                                      title: item.title,
+                                      rotation,
+                                      fileUrl: resolvedFileUrl
+                                    })
                                   }
                                 >
                                   Открыть
@@ -513,6 +519,18 @@ const TeamMemberPage = () => {
                   loading="lazy"
                 />
               </div>
+              {certificatePreview.fileUrl && (
+                <div className="pt-3">
+                  <a
+                    href={certificatePreview.fileUrl}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-small font-medium text-accent hover:underline"
+                  >
+                    Скачать PDF
+                  </a>
+                </div>
+              )}
             </>
           )}
         </DialogContent>

@@ -349,6 +349,14 @@ export const teamMembers: TeamMember[] = [
     education: [
       "Южный федеральный университет."
     ],
+    achievements: [
+      {
+        title: "Сертификат повышения квалификации",
+        previewImage: "/certs/previews/vaskovskiy-certificate.jpg",
+        fileUrl: "/certs/vaskovskiy-certificate.pdf",
+        type: "pdf"
+      }
+    ],
     languages: ["Русский", "Английский"]
   },
   {
