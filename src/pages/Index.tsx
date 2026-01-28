@@ -26,24 +26,29 @@ import { Helmet } from "react-helmet";
 import { SITE } from "@/config/site";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
+import { getCategoriesForAudience } from "@/data/services-audiences";
+import { getPhysCategoryPagePath, getPhysServiceEntryBySlug } from "@/data/phys-service-content";
 
 const Index = () => {
   const navigate = useNavigate();
   const { openQuickQuestionModal } = useQuickQuestionModal();
-  const familyDisputesPath = "/services/phys/razvod-razdel-imushchestva";
+  const physCategoryItems = getCategoriesForAudience("phys")
+    .map((category) => {
+      const path = getPhysCategoryPagePath(category.title);
+      if (!path) return null;
+      const slug = path.replace("/services/phys/", "");
+      const entry = getPhysServiceEntryBySlug(slug);
+      return {
+        label: entry?.title ?? category.title,
+        path
+      };
+    })
+    .filter((item): item is { label: string; path: string } => Boolean(item));
   const navigationSections = [
     {
       title: "Физическим лицам",
       description: "Личные, семейные и имущественные споры с понятной стратегией.",
-      items: [
-        "Семейные споры",
-        "Жилищные споры",
-        "Наследство",
-        "ДТП и страховые споры",
-        "Защита прав потребителей",
-        "Взыскание долгов",
-        "Административные дела"
-      ],
+      items: physCategoryItems,
       href: "/uslugi/fiz-lica"
     },
     {
@@ -271,37 +276,40 @@ const Index = () => {
                           {section.description}
                         </p>
                         <ul className="space-y-2">
-                          {section.items.map((item) => (
+                          {section.items.map((item) => {
+                            const label = typeof item === "string" ? item : item.label;
+                            const targetPath = typeof item === "string" ? undefined : item.path;
+                            return (
                             <li
-                              key={item}
+                              key={label}
                               className="flex items-start gap-2 text-small text-muted-foreground"
                               onClick={
-                                item === "Семейные споры"
+                                targetPath
                                   ? (event) => {
                                       event.preventDefault();
                                       event.stopPropagation();
-                                      navigate(familyDisputesPath);
+                                      navigate(targetPath);
                                     }
                                   : undefined
                               }
                               onKeyDown={
-                                item === "Семейные споры"
+                                targetPath
                                   ? (event) => {
                                       if (event.key === "Enter" || event.key === " ") {
                                         event.preventDefault();
                                         event.stopPropagation();
-                                        navigate(familyDisputesPath);
+                                        navigate(targetPath);
                                       }
                                     }
                                   : undefined
                               }
-                              role={item === "Семейные споры" ? "link" : undefined}
-                              tabIndex={item === "Семейные споры" ? 0 : undefined}
+                              role={targetPath ? "link" : undefined}
+                              tabIndex={targetPath ? 0 : undefined}
                             >
                               <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
-                              <span>{item}</span>
+                              <span>{label}</span>
                             </li>
-                          ))}
+                          )})}
                         </ul>
                       </div>
                       <span className="mt-6 inline-flex items-center gap-2 text-small font-semibold text-accent group-hover:underline">
