@@ -6,7 +6,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle } from "@/components/ui/dialog";
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
 import LeadForm from "@/components/LeadForm";
 import { getTeamMemberBySlug } from "@/data/team";
 import { cases } from "@/data/cases";
@@ -18,7 +18,11 @@ const TeamMemberPage = () => {
   const { slug } = useParams();
   const member = slug ? getTeamMemberBySlug(slug) : undefined;
   const [imageFailed, setImageFailed] = useState(false);
-  const [certificatePreview, setCertificatePreview] = useState<{ src: string; title: string } | null>(null);
+  const [certificatePreview, setCertificatePreview] = useState<{
+    src: string;
+    title: string;
+    rotation?: number;
+  } | null>(null);
   const { openQuickQuestionModal } = useQuickQuestionModal();
 
   if (!member) {
@@ -319,7 +323,9 @@ const TeamMemberPage = () => {
                                   variant="outline"
                                   size="sm"
                                   className="h-10 px-4 text-small"
-                                  onClick={() => setCertificatePreview({ src: previewSrc, title: item.title })}
+                                  onClick={() =>
+                                    setCertificatePreview({ src: previewSrc, title: item.title, rotation })
+                                  }
                                 >
                                   Открыть
                                 </Button>
@@ -421,15 +427,29 @@ const TeamMemberPage = () => {
 
       <Dialog open={Boolean(certificatePreview)} onOpenChange={(open) => !open && setCertificatePreview(null)}>
         <DialogContent className="max-w-4xl bg-white">
+          <DialogClose
+            aria-label="Закрыть"
+            className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50"
+          >
+            ×
+          </DialogClose>
           {certificatePreview && (
             <>
               <DialogHeader>
                 <DialogTitle className="text-base md:text-lg">{certificatePreview.title}</DialogTitle>
               </DialogHeader>
-              <div className="w-full rounded-xl border border-border/60 bg-muted/30 p-3">
+              <div className="w-full rounded-xl border border-border/60 bg-muted/30 p-3 overflow-hidden">
                 <img
                   src={certificatePreview.src}
                   alt={`Сертификат: ${certificatePreview.title}`}
+                  style={
+                    certificatePreview.rotation
+                      ? {
+                          transform: `rotate(${certificatePreview.rotation}deg) scale(0.9)`,
+                          transformOrigin: "center"
+                        }
+                      : undefined
+                  }
                   className="w-full max-h-[80vh] object-contain bg-white"
                   loading="lazy"
                 />
