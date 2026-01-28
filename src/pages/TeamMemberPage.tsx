@@ -275,7 +275,7 @@ const TeamMemberPage = () => {
                         const isLyadovaIpCert =
                           member.slug === "yulia-lyadova" && fileUrl.includes("lyadova-legal-academy-ip");
                         const previewClassName = isLyadovaIpCert
-                          ? "w-full aspect-[4/3] object-contain origin-center rotate-180 bg-white"
+                          ? "w-full aspect-[4/3] object-contain bg-white"
                           : "w-full aspect-[3/4] object-contain bg-white";
                         const cardClassName = "rounded-xl border border-border/70 bg-background p-4 flex flex-col gap-4 h-full";
 
@@ -297,7 +297,7 @@ const TeamMemberPage = () => {
                                   <iframe
                                     src={`${resolvedFileUrl}#page=1&zoom=page-width`}
                                     title={`Сертификат: ${item.title}`}
-                                    className="w-full aspect-[3/4] bg-white"
+                                    className="w-full aspect-[3/4] bg-white pointer-events-none select-none"
                                   />
                                 ) : (
                                   <img
