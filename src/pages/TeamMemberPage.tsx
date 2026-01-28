@@ -269,8 +269,10 @@ const TeamMemberPage = () => {
                   <CardContent>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {achievements.map((item) => {
+                        const fileUrl = item.fileUrl ?? "";
+                        const isPdf = fileUrl.toLowerCase().endsWith(".pdf");
                         const isLyadovaIpCert =
-                          member.slug === "yulia-lyadova" && (item.fileUrl ?? "").includes("lyadova-legal-academy-ip");
+                          member.slug === "yulia-lyadova" && fileUrl.includes("lyadova-legal-academy-ip");
                         const previewClassName = isLyadovaIpCert
                           ? "w-full aspect-[4/3] object-contain origin-center rotate-180 scale-[0.82] bg-white"
                           : "w-full aspect-[3/4] object-contain bg-white";
@@ -280,14 +282,29 @@ const TeamMemberPage = () => {
                             key={item.fileUrl ?? item.title}
                             className="rounded-xl border border-border/70 bg-background p-4 flex flex-col gap-4"
                           >
-                            {item.previewImage && (
+                            {(item.previewImage || fileUrl) && (
                               <div className="rounded-lg border border-border/60 bg-muted/30 overflow-hidden">
-                                <img
-                                  src={item.previewImage}
-                                  alt={`Сертификат: ${item.title}`}
-                                  className={previewClassName}
-                                  loading="lazy"
-                                />
+                                {item.previewImage ? (
+                                  <img
+                                    src={item.previewImage}
+                                    alt={`Сертификат: ${item.title}`}
+                                    className={previewClassName}
+                                    loading="lazy"
+                                  />
+                                ) : isPdf ? (
+                                  <iframe
+                                    src={`${fileUrl}#page=1&zoom=page-width`}
+                                    title={`Сертификат: ${item.title}`}
+                                    className="w-full aspect-[3/4] bg-white"
+                                  />
+                                ) : (
+                                  <img
+                                    src={fileUrl}
+                                    alt={`Сертификат: ${item.title}`}
+                                    className="w-full aspect-[3/4] object-contain bg-white"
+                                    loading="lazy"
+                                  />
+                                )}
                               </div>
                             )}
                             <div>
