@@ -226,6 +226,7 @@ const CATEGORY_ICONS = [Scale, Home, Building2, Users, MessageCircle, Shield, Fi
 
 const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps) => {
   const { openQuickQuestionModal } = useQuickQuestionModal();
+  const yandexOrgId = "244880896695";
 
   const heroImage = getServiceHeroImage(data.entry.path, "phys");
   const ogImage = heroImage.startsWith("http") ? heroImage : `${SITE.url}${heroImage.replace(/^\//, "")}`;
@@ -365,7 +366,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const shouldShowCases = cases.length > 0;
 
   return (
-    <div className="min-h-screen flex flex-col category-landing-page">
+    <div className="min-h-screen flex flex-col category-landing-page family-landing-page">
       <Helmet>
         <title>{data.metaTitle}</title>
         <meta name="description" content={data.metaDescription} />
@@ -418,7 +419,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           <div className="container relative z-10">
             <Breadcrumbs items={data.breadcrumbs} />
             <div className="max-w-4xl mt-6 space-y-5">
-              <h1 className="category-hero-title font-serif text-h1-mobile md:text-h1 font-bold">{data.heroTitle}</h1>
+              <h1 className="category-hero-title font-serif text-h1-mobile md:text-h1 font-bold text-accent">{data.heroTitle}</h1>
               <ul className="category-hero-benefits pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
                 {data.heroBenefits.slice(0, 6).map((benefit) => (
                   <li key={benefit}>{benefit}</li>
@@ -641,7 +642,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         <section className="section bg-muted/30">
           <div className="container">
             {shouldShowCases && (
-              <div className="category-cases-surface rounded-2xl border border-[#D8C08B] bg-[#F8F4EA] p-6 md:p-8 shadow-[0_16px_36px_rgba(60,52,31,0.1)]">
+              <>
                 <div className="section__header max-w-3xl">
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кейсы</h2>
                   <p className="text-muted-foreground">
@@ -649,124 +650,116 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   </p>
                 </div>
                 <div className="section__content grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {cases.map((caseItem) => (
-                    <Card
-                      key={caseItem.title}
-                      className="category-case-card h-full rounded-xl border border-[#D8C08B]/80 bg-white shadow-[0_10px_24px_rgba(15,23,42,0.06)]"
-                    >
-                      <CardContent className="pt-6 h-full flex flex-col gap-5">
-                        {caseItem.decisionPreview ? (
-                          <div className="category-case-preview overflow-hidden rounded-lg border border-[#E6DDCC] bg-white">
-                            <img
-                              src={caseItem.decisionPreview}
-                              alt={`Решение по кейсу: ${caseItem.title}`}
-                              className="h-[190px] w-full object-contain bg-white"
-                              loading="lazy"
-                            />
+                  {cases.map((caseItem) => {
+                    const decisionPreview = caseItem.decisionPreview;
+                    const hasDecision = Boolean(decisionPreview);
+                    return (
+                      <Card
+                        key={caseItem.title}
+                        className="h-full border border-slate-200 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.06)] transition-all hover:border-[#C9A227] hover:shadow-[0_16px_40px_rgba(201,162,39,0.18)]"
+                      >
+                        <CardContent className="pt-6 h-full">
+                          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
+                            <div className="flex-1">
+                              <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{caseItem.title}</h3>
+                              <div className="mt-4 space-y-3 text-small text-muted-foreground leading-relaxed">
+                                <div>
+                                  <span className="font-semibold text-foreground">Ситуация: </span>
+                                  {caseItem.situation}
+                                </div>
+                                <div>
+                                  <span className="font-semibold text-foreground">Задача: </span>
+                                  {caseItem.task}
+                                </div>
+                                <div>
+                                  <span className="font-semibold text-foreground">Что сделали: </span>
+                                  {caseItem.actions}
+                                </div>
+                                <div>
+                                  <span className="font-semibold text-foreground">Результат: </span>
+                                  {caseItem.result}
+                                </div>
+                              </div>
+                              {!hasDecision && (
+                                <div className="mt-6">
+                                  <Button
+                                    asChild
+                                    size="lg"
+                                    variant="outline"
+                                    className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
+                                  >
+                                    <Link to="/keisy">Смотреть кейсы</Link>
+                                  </Button>
+                                </div>
+                              )}
+                            </div>
+                            {hasDecision && (
+                              <div className="w-full lg:w-[52%] lg:max-w-[600px]">
+                                <div className="rounded-[12px] border border-[#E6DDCC] bg-[#F8F4EA] p-4">
+                                  <div className="text-sm font-semibold text-slate-900">Решение суда</div>
+                                  <div className="mt-3 rounded-[10px] border border-[#E6DDCC] bg-white p-2">
+                                    <img
+                                      src={decisionPreview}
+                                      alt={`Решение суда: ${caseItem.title}`}
+                                      className="max-h-[640px] w-full object-contain"
+                                      loading="lazy"
+                                    />
+                                  </div>
+                                  <div className="mt-4">
+                                    <Button
+                                      asChild
+                                      size="lg"
+                                      variant="outline"
+                                      className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
+                                    >
+                                      <Link to="/keisy">Смотреть кейсы</Link>
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
                           </div>
-                        ) : (
-                          <div className="category-case-preview flex h-[190px] w-full items-center justify-center rounded-lg border border-dashed border-[#D8C08B] bg-white/70 text-center text-small text-slate-500">
-                            Скан решения будет добавлен
-                          </div>
-                        )}
-                        <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{caseItem.title}</h3>
-                        <div className="space-y-3 text-small text-muted-foreground leading-relaxed">
-                          <div>
-                            <span className="font-semibold text-foreground">Ситуация: </span>
-                            {caseItem.situation}
-                          </div>
-                          <div>
-                            <span className="font-semibold text-foreground">Задача: </span>
-                            {caseItem.task}
-                          </div>
-                          <div>
-                            <span className="font-semibold text-foreground">Что сделали: </span>
-                            {caseItem.actions}
-                          </div>
-                          <div>
-                            <span className="font-semibold text-foreground">Результат: </span>
-                            {caseItem.result}
-                          </div>
-                        </div>
-                        <div className="mt-auto flex flex-wrap gap-3 pt-2">
-                          <Button
-                            asChild
-                            size="lg"
-                            className="category-case-button h-11 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-5 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
-                          >
-                            <Link to="/keisy">Смотреть кейсы</Link>
-                          </Button>
-                          {caseItem.decisionUrl && (
-                            <Button asChild variant="outline" size="lg" className="h-11 rounded-[12px] border-[#C9A227] text-slate-900 hover:bg-[#F7F2E8]">
-                              <a href={caseItem.decisionUrl} target="_blank" rel="noopener noreferrer">
-                                Решение
-                              </a>
-                            </Button>
-                          )}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
                 </div>
-              </div>
+              </>
             )}
 
             <div className={shouldShowCases ? "mt-12" : undefined}>
-              <div className="category-reviews-surface rounded-2xl border border-[#D8C08B] bg-white p-6 md:p-8 shadow-[0_16px_36px_rgba(15,23,42,0.08)]">
-                <div className="category-reviews-header mb-6 flex flex-col gap-4 md:flex-row md:items-center md:justify-between">
-                  <div className="section__header max-w-3xl !mb-0">
-                    <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
-                    <p className="text-muted-foreground">Реальные отзывы о качестве нашей юридической помощи</p>
-                  </div>
-                  <div className="category-yandex-badge w-full max-w-[170px]">
-                    <iframe
-                      src="https://yandex.ru/sprav/widget/rating-badge/244880896695?type=rating"
-                      width="150"
-                      height="50"
-                      frameBorder="0"
-                      title="Рейтинг Профзащита в Яндекс.Картах"
-                      className="max-w-full"
-                    ></iframe>
-                  </div>
-                </div>
-                <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                  {reviews.map((review, reviewIndex) => (
-                    <Card
-                      key={`${review.name}-${reviewIndex}`}
-                      className="category-review-card h-full rounded-xl border border-[#E6DDCC] bg-[#F9F7F2] shadow-[0_10px_22px_rgba(15,23,42,0.06)]"
-                    >
-                      <CardContent className="pt-6 h-full flex flex-col">
-                        <div className="flex items-start justify-between gap-4 mb-3">
-                          <div className="flex items-center gap-1 text-accent">
-                            {Array.from({ length: review.rating }).map((_, index) => (
-                              <Star key={`${review.name}-${index}`} className="h-4 w-4 fill-current" />
-                            ))}
-                          </div>
-                          <span className="text-small text-muted-foreground">{review.date}</span>
+              <div className="section__header max-w-3xl">
+                <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
+              </div>
+              <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {reviews.map((review, reviewIndex) => (
+                  <Card key={`${review.name}-${reviewIndex}`} className="h-full">
+                    <CardContent className="pt-6 h-full flex flex-col">
+                      <div className="flex items-start justify-between gap-4 mb-3">
+                        <div className="flex items-center gap-1 text-accent">
+                          {Array.from({ length: review.rating }).map((_, index) => (
+                            <Star key={`${review.name}-${index}`} className="h-4 w-4 fill-current" />
+                          ))}
                         </div>
-                        <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
-                        <div className="border-t border-border mt-4 pt-4">
-                          <span className="text-small font-semibold">{review.name}</span>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
-                </div>
-                <div className="flex justify-center mt-8">
-                  <Button
-                    asChild
-                    size="lg"
-                    className="category-yandex-button h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
-                  >
-                    <a
-                      href="https://yandex.ru/maps/org/244880896695/reviews/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Смотреть все отзывы на Яндекс.Картах
-                    </a>
-                  </Button>
-                </div>
+                        <span className="text-small text-muted-foreground">{review.date}</span>
+                      </div>
+                      <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
+                      <div className="border-t border-border mt-4 pt-4">
+                        <span className="text-small font-semibold">{review.name}</span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              <div className="mt-8 flex justify-center">
+                <iframe
+                  src={`https://yandex.ru/sprav/widget/rating-badge/${yandexOrgId}?type=rating`}
+                  width="150"
+                  height="50"
+                  frameBorder="0"
+                  title="Рейтинг Профзащита в Яндекс.Картах"
+                  className="max-w-full"
+                ></iframe>
               </div>
             </div>
           </div>
@@ -796,8 +789,14 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
 
             <Accordion type="single" collapsible className="section__content mt-8 space-y-4">
               {accordionItems.map((item, index) => (
-                <AccordionItem key={item.title} value={`sales-${index}`} className="border rounded-xl px-6">
-                  <AccordionTrigger className="text-left hover:no-underline py-4">{item.title}</AccordionTrigger>
+                <AccordionItem
+                  key={item.title}
+                  value={`sales-${index}`}
+                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+                >
+                  <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
+                    {item.title}
+                  </AccordionTrigger>
                   <AccordionContent className="pb-4">{item.content}</AccordionContent>
                 </AccordionItem>
               ))}
@@ -813,15 +812,25 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
             </div>
             <Accordion type="single" collapsible className="section__content space-y-4">
               {data.faqs.slice(0, 7).map((item, index) => (
-                <AccordionItem key={item.question} value={`faq-${index}`} className="border rounded-xl px-6">
-                  <AccordionTrigger className="text-left hover:no-underline py-4">{item.question}</AccordionTrigger>
+                <AccordionItem
+                  key={item.question}
+                  value={`faq-${index}`}
+                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+                >
+                  <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
+                    {item.question}
+                  </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pb-4">{item.answer}</AccordionContent>
                 </AccordionItem>
               ))}
             </Accordion>
             <div className="mt-8 text-center space-y-4">
               <p className="text-muted-foreground">Не нашли свой вопрос? Оставьте заявку и мы оценим вашу ситуацию</p>
-              <Button size="lg" onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}>
+              <Button
+                size="lg"
+                className="w-full sm:w-auto border border-[#b8911f] bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+              >
                 Получить оценку перспектив
               </Button>
             </div>
@@ -831,23 +840,55 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         {/* Экран 8: Финальная форма */}
         <section className="section" id="final-cta">
           <div className="container">
-            <div className="section__header max-w-3xl">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Получите оценку перспектив по вашей ситуации</h2>
-              <p className="text-muted-foreground">
-                Оставьте контакты — адвокат свяжется и расскажет, как действовать дальше.
-              </p>
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_520px] lg:items-start lg:gap-14">
+              <div className="max-w-2xl space-y-6">
+                <div className="section__header max-w-2xl !mb-0">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                    Получите оценку перспектив по вашей ситуации
+                  </h2>
+                  <p className="text-muted-foreground">
+                    Оставьте контакты — адвокат свяжется и расскажет, как действовать дальше.
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <p className="text-small font-semibold text-slate-900">Или напишите нам напрямую:</p>
+                  <div className="flex items-center gap-4">
+                    <a
+                      href="https://t.me/profzashita_consult_bot"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Написать в Telegram"
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-[#229ED9] shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] hover:text-[#C9A227] md:h-14 md:w-14"
+                    >
+                      <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
+                        <path
+                          d="M21.2 4.6L3.9 11.2c-.9.3-.9 1.6 0 1.9l4.4 1.4 1.7 5.1c.3.9 1.5 1.1 2 .3l2.5-3.4 4.6 3.4c.7.5 1.7.1 1.9-.8l2.6-13.6c.2-1-.8-1.8-1.8-1.4z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </a>
+                    <a
+                      href={`mailto:${SITE.email}`}
+                      aria-label="Написать на email"
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-accent shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] hover:text-[#b8911f] md:h-14 md:w-14"
+                    >
+                      <Mail className="h-6 w-6" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <Card className="w-full rounded-[16px] border border-[#E5E7EB] bg-[#F8FAFC] shadow-[0_18px_40px_rgba(15,23,42,0.08)] lg:max-w-[520px] lg:justify-self-end">
+                <CardContent className="p-7 md:p-8">
+                  <LeadForm
+                    formId="lead-final"
+                    submitLabel="Оценить перспективы"
+                    placeholder={`Например: «${data.heroBenefits[0] ?? "Нужна помощь по моей ситуации"}»`}
+                    footerNote="Перезвоним в течение 15–20 минут в рабочее время"
+                    topic={data.entry.title}
+                  />
+                </CardContent>
+              </Card>
             </div>
-            <Card className="category-form-card max-w-3xl rounded-2xl border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_16px_36px_rgba(60,52,31,0.1)]">
-              <CardContent className="pt-6 md:pt-8">
-                <LeadForm
-                  formId="lead-final"
-                  submitLabel="Оценить перспективы"
-                  placeholder={`Например: «${data.heroBenefits[0] ?? "Нужна помощь по моей ситуации"}»`}
-                  footerNote="Перезвоним в течение 15–20 минут в рабочее время"
-                  topic={data.entry.title}
-                />
-              </CardContent>
-            </Card>
           </div>
         </section>
 
