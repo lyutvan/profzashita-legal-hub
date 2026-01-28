@@ -272,7 +272,7 @@ const TeamMemberPage = () => {
                         const isLyadovaIpCert =
                           member.slug === "yulia-lyadova" && (item.fileUrl ?? "").includes("lyadova-legal-academy-ip");
                         const previewClassName = isLyadovaIpCert
-                          ? "w-full aspect-[4/3] object-contain origin-center rotate-90 scale-[0.82] bg-white"
+                          ? "w-full aspect-[4/3] object-contain origin-center rotate-180 scale-[0.82] bg-white"
                           : "w-full aspect-[3/4] object-contain bg-white";
 
                         return (
