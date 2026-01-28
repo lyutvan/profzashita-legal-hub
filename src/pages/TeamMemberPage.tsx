@@ -429,9 +429,9 @@ const TeamMemberPage = () => {
         <DialogContent className="max-w-4xl bg-white">
           <DialogClose
             aria-label="Закрыть"
-            className="absolute right-4 top-4 inline-flex h-9 w-9 items-center justify-center rounded-full border border-slate-200 bg-white text-slate-700 shadow-sm transition hover:bg-slate-50"
+            className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-[#0b1320] shadow-[0_6px_16px_rgba(15,23,42,0.18)] transition hover:bg-slate-50 hover:shadow-[0_8px_18px_rgba(15,23,42,0.22)]"
           >
-            ×
+            <span className="text-[22px] leading-none">×</span>
           </DialogClose>
           {certificatePreview && (
             <>

@@ -391,14 +391,6 @@ export const teamMembers: TeamMember[] = [
         type: "pdf"
       },
       {
-        title: "Право интеллектуальной собственности (Legal Academy, 2024)",
-        org: "Legal Academy",
-        previewImage: "/certificates/previews/lyadova-legal-academy-ip.jpg",
-        fileUrl: "/certificates/files/lyadova-legal-academy-ip.pdf",
-        type: "pdf",
-        rotation: 90
-      },
-      {
         title: "Сделки в банкротстве (Лексториум, 2019)",
         previewImage: "/certificates/previews/lyadova-qualification-deals.jpg",
         fileUrl: "/certificates/files/lyadova-qualification-deals.pdf",
