@@ -270,6 +270,7 @@ const TeamMemberPage = () => {
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                       {achievements.map((item) => {
                         const fileUrl = item.fileUrl ?? "";
+                        const resolvedFileUrl = fileUrl ? encodeURI(fileUrl) : "";
                         const isPdf = fileUrl.toLowerCase().endsWith(".pdf");
                         const isLyadovaIpCert =
                           member.slug === "yulia-lyadova" && fileUrl.includes("lyadova-legal-academy-ip");
@@ -294,13 +295,13 @@ const TeamMemberPage = () => {
                                   />
                                 ) : isPdf ? (
                                   <iframe
-                                    src={`${fileUrl}#page=1&zoom=page-width`}
+                                    src={`${resolvedFileUrl}#page=1&zoom=page-width`}
                                     title={`Сертификат: ${item.title}`}
                                     className="w-full aspect-[3/4] bg-white"
                                   />
                                 ) : (
                                   <img
-                                    src={fileUrl}
+                                    src={resolvedFileUrl}
                                     alt={`Сертификат: ${item.title}`}
                                     className="w-full aspect-[3/4] object-contain bg-white"
                                     loading="lazy"
@@ -324,7 +325,7 @@ const TeamMemberPage = () => {
                                   size="sm"
                                   className="h-10 px-4 text-small"
                                 >
-                                  <a href={item.fileUrl} target="_blank" rel="noopener noreferrer">
+                                  <a href={resolvedFileUrl} target="_blank" rel="noopener noreferrer">
                                     Открыть
                                   </a>
                                 </Button>
