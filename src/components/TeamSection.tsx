@@ -30,7 +30,7 @@ const TeamSection = ({
       <Card className="border-border hover:shadow-elegant transition-all h-full flex flex-col">
         <CardContent className="pt-6 flex flex-col h-full">
           <div
-            className={`w-[140px] h-[140px] sm:w-[160px] sm:h-[160px] lg:w-[180px] lg:h-[180px] rounded-xl overflow-hidden mx-auto mb-4 ${
+            className={`w-[150px] h-[150px] sm:w-[170px] sm:h-[170px] lg:w-[200px] lg:h-[200px] rounded-xl overflow-hidden mx-auto mb-4 ${
               hasPhoto ? "border-2 border-accent/20" : "bg-muted/40"
             }`}
           >
