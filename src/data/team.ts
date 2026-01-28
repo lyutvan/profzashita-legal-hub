@@ -412,27 +412,39 @@ export const teamMembers: TeamMember[] = [
       },
       {
         title: "Жилищно-правовые споры (ФПА, 2024)",
-        fileUrl: "/certificates/files/Жилищно-правовые споры (ФПА, 2024).pdf"
+        previewImage: "/certificates/files/lyadova-cert-1.jpg",
+        fileUrl: "/certificates/files/Жилищно-правовые споры (ФПА, 2024).pdf",
+        type: "pdf"
       },
       {
         title: "Медиация семейных споров (ФПА, 2025)",
-        fileUrl: "/certificates/files/Медиация_семейных_споров_ФПА,_2025.pdf"
+        previewImage: "/certificates/files/lyadova-cert-2.jpg",
+        fileUrl: "/certificates/files/Медиация_семейных_споров_ФПА,_2025.pdf",
+        type: "pdf"
       },
       {
         title: "Споры о детях и раздел имущества супругов (ФПА, 2024)",
-        fileUrl: "/certificates/files/Споры_о_детях_и_раздел_имущества_супругов_ФПА,_2024.pdf"
+        previewImage: "/certificates/files/lyadova-cert-3.jpg",
+        fileUrl: "/certificates/files/Споры_о_детях_и_раздел_имущества_супругов_ФПА,_2024.pdf",
+        type: "pdf"
       },
       {
         title: "Способы защиты прав собственности (ФПА, 2025)",
-        fileUrl: "/certificates/files/Способы_защиты_прав_собственности_ФПА,_2025.pdf"
+        previewImage: "/certificates/files/lyadova-cert-4.jpg",
+        fileUrl: "/certificates/files/Способы_защиты_прав_собственности_ФПА,_2025.pdf",
+        type: "pdf"
       },
       {
         title: "Судебная экспертиза детско-родительских отношений (ФПА, 2024)",
-        fileUrl: "/certificates/files/Судебная_экспертиза_детско_родительских_отношений_ФПА,_2024.pdf"
+        previewImage: "/certificates/files/lyadova-cert-5.jpg",
+        fileUrl: "/certificates/files/Судебная_экспертиза_детско_родительских_отношений_ФПА,_2024.pdf",
+        type: "pdf"
       },
       {
         title: "Юридическая помощь по семейным делам (ФПА, 2025)",
-        fileUrl: "/certificates/files/Юридическая_помощь_по_семейным_делам_ФПА,_2025.pdf"
+        previewImage: "/certificates/files/lyadova-cert-6.jpg",
+        fileUrl: "/certificates/files/Юридическая_помощь_по_семейным_делам_ФПА,_2025.pdf",
+        type: "pdf"
       }
     ]
   }
