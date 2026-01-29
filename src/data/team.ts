@@ -95,6 +95,12 @@ export const teamMembers: TeamMember[] = [
         previewImage: "/certificates/files/lyutikov-id-mvd.jpg",
         fileUrl: "/certificates/files/lyutikov-id-mvd.jpg",
         type: "image"
+      },
+      {
+        title: "Сертификат ФПА (20.01.2026)",
+        previewImage: "/certificates/files/lyutikov-fpa-vebinary-2026-01-20.jpg",
+        fileUrl: "/certificates/files/sertifikat-fpa-lyutikov-vebinary-2026-01-20.pdf",
+        type: "pdf"
       }
     ],
     languages: ["Русский", "Английский"]

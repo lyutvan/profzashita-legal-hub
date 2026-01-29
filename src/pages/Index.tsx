@@ -44,6 +44,14 @@ const Index = () => {
       };
     })
     .filter((item): item is { label: string; path: string } => Boolean(item));
+  const bizCategoryItems = getCategoriesForAudience("biz").map((category) => ({
+    label: category.title,
+    path: `/services/biz#${category.slug}`
+  }));
+  const criminalCategoryItems = getCategoriesForAudience("criminal").map((category) => ({
+    label: category.title,
+    path: `/services/criminal#${category.slug}`
+  }));
   const navigationSections = [
     {
       title: "Физическим лицам",
@@ -54,29 +62,13 @@ const Index = () => {
     {
       title: "Юридическим лицам",
       description: "Сопровождение бизнеса, защита интересов и снижение рисков.",
-      items: [
-        "Договорная работа",
-        "Арбитражные споры",
-        "Взыскание задолженности",
-        "Налоговые споры",
-        "Банкротство",
-        "Корпоративные споры",
-        "Абонентское сопровождение"
-      ],
+      items: bizCategoryItems,
       href: "/uslugi/yur-lica"
     },
     {
       title: "Уголовные дела",
       description: "Защита на всех стадиях: проверка, следствие, суд.",
-      items: [
-        "Преступления против личности",
-        "Преступления против собственности",
-        "Экономические преступления",
-        "Должностные и коррупционные",
-        "Наркотики",
-        "Общественная безопасность",
-        "Порядок управления"
-      ],
+      items: criminalCategoryItems,
       href: "/uslugi/ugolovnye"
     }
   ];
@@ -282,7 +274,11 @@ const Index = () => {
                             return (
                             <li
                               key={label}
-                              className="flex items-start gap-2 text-small text-muted-foreground"
+                              className={`flex items-start gap-2 text-small text-muted-foreground ${
+                                targetPath
+                                  ? "cursor-pointer rounded-md px-2 py-1 -mx-2 transition-colors hover:text-foreground hover:bg-accent/10 focus-visible:bg-accent/10 focus-visible:text-foreground focus-visible:outline-none"
+                                  : ""
+                              }`}
                               onClick={
                                 targetPath
                                   ? (event) => {
