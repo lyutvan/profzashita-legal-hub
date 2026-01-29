@@ -419,8 +419,7 @@ export const cases: Case[] = [
     decisionPreview: "/cases/dtp-ostankinskiy-2-5079-2025-1.jpg",
     decisionUrl: "/cases/dtp-ostankinskiy-2-5079-2025-1.jpg",
     documents: [
-      "/cases/dtp-ostankinskiy-2-5079-2025-1.jpg",
-      "/cases/dtp-ostankinskiy-2-5079-2025-2.jpg"
+      "/cases/dtp-ostankinskiy-2-5079-2025-1.jpg"
     ]
   }
 ];
