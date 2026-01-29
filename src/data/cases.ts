@@ -436,8 +436,7 @@ export const cases: Case[] = [
     decisionPreview: "/cases/sem-mosgorsud-33-56423-2025-apellyaciya-1.jpg",
     decisionUrl: "/cases/sem-mosgorsud-33-56423-2025-apellyaciya-1.jpg",
     documents: [
-      "/cases/sem-mosgorsud-33-56423-2025-apellyaciya-1.jpg",
-      "/cases/sem-mosgorsud-33-56423-2025-apellyaciya-2.jpg"
+      
     ]
   },
   {
@@ -454,8 +453,7 @@ export const cases: Case[] = [
     decisionPreview: "/cases/sem-razvod-strogino-426-2-331-2025-1.jpg",
     decisionUrl: "/cases/sem-razvod-strogino-426-2-331-2025-1.jpg",
     documents: [
-      "/cases/sem-razvod-strogino-426-2-331-2025-1.jpg",
-      "/cases/sem-razvod-strogino-426-2-331-2025-2.jpg"
+      
     ]
   },
   {
