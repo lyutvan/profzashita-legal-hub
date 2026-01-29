@@ -418,7 +418,8 @@ export const cases: Case[] = [
     decisionPreview: "/cases/dtp-ostankinskiy-2-5079-2025-1.jpg",
     decisionUrl: "/cases/dtp-ostankinskiy-2-5079-2025-1.jpg",
     documents: [
-      "/cases/dtp-ostankinskiy-2-5079-2025-1.jpg"
+      "/cases/dtp-ostankinskiy-2-5079-2025-1.jpg",
+      "/cases/dtp-ostankinskiy-2-5079-2025-2.jpg"
     ]
   },
   {
@@ -432,11 +433,11 @@ export const cases: Case[] = [
     datePublished: "2025-12-02",
     author: "Коллегия адвокатов Профзащита",
     lawyers: ["vaskovskiy"],
-    // TODO: добавить сканы в public/cases/ под этими именами
     decisionPreview: "/cases/sem-mosgorsud-33-56423-2025-apellyaciya-1.jpg",
     decisionUrl: "/cases/sem-mosgorsud-33-56423-2025-apellyaciya-1.jpg",
     documents: [
-      
+      "/cases/sem-mosgorsud-33-56423-2025-apellyaciya-1.jpg",
+      "/cases/sem-mosgorsud-33-56423-2025-apellyaciya-2.jpg"
     ]
   },
   {
