@@ -492,10 +492,10 @@ const TeamMemberPage = () => {
       <Footer />
 
       <Dialog open={Boolean(certificatePreview)} onOpenChange={(open) => !open && setCertificatePreview(null)}>
-        <DialogContent className="max-w-4xl bg-white">
+        <DialogContent className="max-w-4xl bg-white p-5 md:p-6">
           <DialogClose
             aria-label="Закрыть"
-            className="absolute right-4 top-4 z-10 inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-[#0b1320] shadow-[0_6px_16px_rgba(15,23,42,0.18)] transition hover:bg-slate-50 hover:shadow-[0_8px_18px_rgba(15,23,42,0.22)]"
+            className="absolute right-4 top-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-[#0b1320] shadow-[0_6px_16px_rgba(15,23,42,0.18)] transition hover:bg-slate-50 hover:shadow-[0_8px_18px_rgba(15,23,42,0.22)]"
           >
             <span className="text-[22px] leading-none">×</span>
           </DialogClose>
@@ -506,7 +506,7 @@ const TeamMemberPage = () => {
                   <DialogTitle className="text-base md:text-lg">{certificatePreview.title}</DialogTitle>
                 </DialogHeader>
               )}
-              <div className="w-full rounded-xl border border-border/60 bg-muted/30 p-3 overflow-hidden">
+              <div className="w-full rounded-xl border border-border/60 bg-muted/30 p-3 md:p-4 overflow-hidden">
                 <img
                   src={certificatePreview.src}
                   alt={`Сертификат: ${certificatePreview.title}`}
@@ -518,22 +518,10 @@ const TeamMemberPage = () => {
                         }
                       : undefined
                   }
-                  className="w-full max-h-[80vh] object-contain bg-white"
+                  className="w-full max-h-[70vh] object-contain bg-white"
                   loading="lazy"
                 />
               </div>
-              {certificatePreview.fileUrl && (
-                <div className="pt-3">
-                  <a
-                    href={certificatePreview.fileUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-small font-medium text-accent hover:underline"
-                  >
-                    Скачать PDF
-                  </a>
-                </div>
-              )}
             </>
           )}
         </DialogContent>
