@@ -381,8 +381,7 @@ export const cases: Case[] = [
     decisionUrl: "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg",
     decisionPreview: "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg",
     documents: [
-      "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg",
-      "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-2.jpg"
+      "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg"
     ]
   },
   {
@@ -437,8 +436,7 @@ export const cases: Case[] = [
     decisionPreview: "/cases/sem-mosgorsud-33-56423-2025-apellyaciya-1.jpg",
     decisionUrl: "/cases/sem-mosgorsud-33-56423-2025-apellyaciya-1.jpg",
     documents: [
-      "/cases/sem-mosgorsud-33-56423-2025-apellyaciya-1.jpg",
-      "/cases/sem-mosgorsud-33-56423-2025-apellyaciya-2.jpg"
+      
     ]
   },
   {
@@ -455,8 +453,7 @@ export const cases: Case[] = [
     decisionPreview: "/cases/sem-razvod-strogino-426-2-331-2025-1.jpg",
     decisionUrl: "/cases/sem-razvod-strogino-426-2-331-2025-1.jpg",
     documents: [
-      "/cases/sem-razvod-strogino-426-2-331-2025-1.jpg",
-      "/cases/sem-razvod-strogino-426-2-331-2025-2.jpg"
+      
     ]
   }
 ];
