@@ -361,10 +361,28 @@ export const cases: Case[] = [
     author: "Коллегия адвокатов Профзащита",
     lawyers: ["vaskovskiy"],
     decisionPreview: "/cases/sem-razdel-imushchestva-perovo-2-2621-2025-1.jpg",
-    decisionUrl: "/cases/sem-razdel-imushchestva-perovo-2-2621-2025.pdf",
+    decisionUrl: "/cases/sem-razdel-imushchestva-perovo-2-2621-2025-1.jpg",
     documents: [
       "/cases/sem-razdel-imushchestva-perovo-2-2621-2025-1.jpg",
       "/cases/sem-razdel-imushchestva-perovo-2-2621-2025-2.jpg"
+    ]
+  },
+  {
+    id: "44",
+    category: "Жилищные споры",
+    title: "Отказ в признании утратившей право пользования по соцнайму: апелляция оставила решение без изменения",
+    slug: "zhilishchnoe-socnaim-utrata-prava-mosgorsud-33-48847-2025",
+    task: "Требовалось признать утратившим право пользования жилым помещением по договору социального найма и снять с регистрационного учета.",
+    actions: "Представитель участвовал в рассмотрении дела, подготовил возражения и указал на отсутствие доказательств добровольного отказа от права пользования жилым помещением.",
+    result: "Апелляция оставила решение суда от 06.06.2025 без изменения, апелляционная жалоба — без удовлетворения.",
+    datePublished: "2025-11-12",
+    author: "Коллегия адвокатов Профзащита",
+    lawyers: ["vaskovskiy"],
+    decisionUrl: "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025.pdf",
+    decisionPreview: "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg",
+    documents: [
+      "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg",
+      "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-2.jpg"
     ]
   }
 ];
