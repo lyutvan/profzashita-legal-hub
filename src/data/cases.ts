@@ -378,7 +378,7 @@ export const cases: Case[] = [
     datePublished: "2025-11-12",
     author: "Коллегия адвокатов Профзащита",
     lawyers: ["vaskovskiy"],
-    decisionUrl: "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025.pdf",
+    decisionUrl: "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg",
     decisionPreview: "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg",
     documents: [
       "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg",
