@@ -565,5 +565,25 @@ export const cases: Case[] = [
       "/cases/zpp-tushinskiy-2-1636-2019-7.jpg",
       "/cases/zpp-tushinskiy-2-1636-2019-8.jpg"
     ]
+  },
+  {
+    id: "54",
+    category: "Имущественные споры",
+    title: "Возмещение ущерба от залива квартиры (дело № 2-15337/2023)",
+    slug: "grazhdanskoe-zaliv-kvartiry-shcherbinskiy-2-15337-2023",
+    task: "Требовалось взыскать ущерб после залива квартиры и компенсировать судебные расходы.",
+    actions: "Представлены доказательства причин залива, ущерба и расходов на экспертизу; заявлены требования о взыскании ущерба и судебных расходов.",
+    result: "Решением Щербинского районного суда от 12.12.2023 иск удовлетворен: взыскан ущерб и судебные расходы в пользу истцов.",
+    datePublished: "2023-12-12",
+    author: "Коллегия адвокатов Профзащита",
+    lawyers: ["kalabekov"],
+    decisionPreview: "/cases/grazhdanskoe-zaliv-kvartiry-shcherbinskiy-2-15337-2023-1.jpg",
+    decisionUrl: "/cases/grazhdanskoe-zaliv-kvartiry-shcherbinskiy-2-15337-2023-1.jpg",
+    documents: [
+      "/cases/grazhdanskoe-zaliv-kvartiry-shcherbinskiy-2-15337-2023-1.jpg",
+      "/cases/grazhdanskoe-zaliv-kvartiry-shcherbinskiy-2-15337-2023-2.jpg",
+      "/cases/grazhdanskoe-zaliv-kvartiry-shcherbinskiy-2-15337-2023-3.jpg",
+      "/cases/grazhdanskoe-zaliv-kvartiry-shcherbinskiy-2-15337-2023-4.jpg"
+    ]
   }
 ];
