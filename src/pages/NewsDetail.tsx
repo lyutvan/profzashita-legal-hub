@@ -261,6 +261,20 @@ const NewsDetail = () => {
                         {newsItem.intro}
                       </p>
                     )}
+                    {newsItem.images && newsItem.images.length > 0 && (
+                      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        {newsItem.images.map((img) => (
+                          <div key={img.src} className="rounded-xl overflow-hidden border bg-card">
+                            <img
+                              src={img.src}
+                              alt={img.alt}
+                              loading="lazy"
+                              className="w-full h-auto object-contain"
+                            />
+                          </div>
+                        ))}
+                      </div>
+                    )}
 
                     {newsItem.sections.map((section) => (
                       <div key={section.title} className="space-y-4">
