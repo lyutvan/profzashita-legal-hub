@@ -381,7 +381,9 @@ export const cases: Case[] = [
     decisionUrl: "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg",
     decisionPreview: "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg",
     documents: [
-      "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg"
+      "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-1.jpg",
+      "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-2.jpg",
+      "/cases/zhilishchnoe-mosgorsud-33-48847-2025-apellyaciya-12-11-2025-3.jpg"
     ]
   },
   {
