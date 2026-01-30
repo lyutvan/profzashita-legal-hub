@@ -585,5 +585,22 @@ export const cases: Case[] = [
       "/cases/grazhdanskoe-zaliv-kvartiry-shcherbinskiy-2-15337-2023-3.jpg",
       "/cases/grazhdanskoe-zaliv-kvartiry-shcherbinskiy-2-15337-2023-4.jpg"
     ]
+  },
+  {
+    id: "55",
+    category: "Защита прав потребителей",
+    title: "Взыскание неустойки за просрочку передачи квартиры по ДДУ (дело № 2-3650/19)",
+    slug: "zpp-taganskiy-zheldoripoteka-2-3650-2019",
+    task: "Требовалось взыскать неустойку, компенсацию морального вреда и штраф за нарушение срока передачи объекта долевого строительства по ДДУ.",
+    actions: "Представитель истца Калабеков Э.С‑М. участвовал в процессе, поддержал требования о взыскании неустойки, компенсации морального вреда и штрафа.",
+    result: "Решением Таганского районного суда г. Москвы от 12.11.2019 иск удовлетворен частично: взыскана неустойка 200 000 ₽, компенсация морального вреда 3 000 ₽ и штраф 101 500 ₽; в остальной части отказано.",
+    datePublished: "2019-11-12",
+    author: "Коллегия адвокатов Профзащита",
+    lawyers: ["kalabekov"],
+    decisionPreview: "/cases/zpp-taganskiy-zheldoripoteka-2-3650-2019-1.jpg",
+    decisionUrl: "/cases/zpp-taganskiy-zheldoripoteka-2-3650-2019-1.jpg",
+    documents: [
+      "/cases/zpp-taganskiy-zheldoripoteka-2-3650-2019-1.jpg"
+    ]
   }
 ];
