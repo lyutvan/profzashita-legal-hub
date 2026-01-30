@@ -456,7 +456,8 @@ export const cases: Case[] = [
     decisionPreview: "/cases/sem-razvod-strogino-426-2-331-2025-1.jpg",
     decisionUrl: "/cases/sem-razvod-strogino-426-2-331-2025-1.jpg",
     documents: [
-      
+      "/cases/sem-razvod-strogino-426-2-331-2025-1.jpg",
+      "/cases/sem-razvod-strogino-426-2-331-2025-2.jpg"
     ]
   },
   {
