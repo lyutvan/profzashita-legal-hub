@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import { Button } from "./ui/button";
 import Logo from "./Logo";
 import { useQuickQuestionModal } from "./QuickQuestionModalProvider";
+import TelegramIcon from "./icons/TelegramIcon";
 
 
 const Header = () => {
@@ -134,6 +135,16 @@ const Header = () => {
                 <Mail className="h-3.5 w-3.5" strokeWidth={1.8} />
                 profzashchita@internet.ru
               </a>
+              <a
+                href="https://t.me/profzashita_consult_bot"
+                className="inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-150 hover:text-white"
+                aria-label="Написать в Telegram"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <TelegramIcon className="h-3.5 w-3.5" />
+                Telegram
+              </a>
             </div>
           </div>
 
@@ -222,6 +233,16 @@ const Header = () => {
                   >
                     <Mail className="h-3.5 w-3.5" strokeWidth={1.8} />
                     profzashchita@internet.ru
+                  </a>
+                  <a
+                    href="https://t.me/profzashita_consult_bot"
+                    className="inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-150 hover:text-white"
+                    aria-label="Написать в Telegram"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    <TelegramIcon className="h-3.5 w-3.5" />
+                    Telegram
                   </a>
                 </div>
               </div>
