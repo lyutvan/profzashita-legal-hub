@@ -604,7 +604,10 @@ export const cases: Case[] = [
     decisionPreview: "/cases/zpp-taganskiy-zheldoripoteka-2-3650-2019-1.jpg",
     decisionUrl: "/cases/zpp-taganskiy-zheldoripoteka-2-3650-2019-1.jpg",
     documents: [
-      "/cases/zpp-taganskiy-zheldoripoteka-2-3650-2019-1.jpg"
+      "/cases/zpp-taganskiy-zheldoripoteka-2-3650-2019-1.jpg",
+      "/cases/zpp-taganskiy-zheldoripoteka-2-3650-2019-2.jpg",
+      "/cases/zpp-taganskiy-zheldoripoteka-2-3650-2019-3.jpg",
+      "/cases/zpp-taganskiy-zheldoripoteka-2-3650-2019-4.jpg"
     ]
   },
   {
