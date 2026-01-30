@@ -361,6 +361,36 @@ export const teamMembers: TeamMember[] = [
         previewImage: "/certs/previews/vaskovskiy-certificate.jpg",
         fileUrl: "/certs/vaskovskiy-certificate.pdf",
         type: "pdf"
+      },
+      {
+        title: "Сертификат",
+        previewImage: "/certs/vaskovsky/certificate-0.jpg",
+        fileUrl: "/certs/vaskovsky/certificate-0.pdf",
+        type: "pdf"
+      },
+      {
+        title: "Сертификат 1",
+        previewImage: "/certs/vaskovsky/certificate-1.jpg",
+        fileUrl: "/certs/vaskovsky/certificate-1.pdf",
+        type: "pdf"
+      },
+      {
+        title: "Сертификат 2",
+        previewImage: "/certs/vaskovsky/certificate-2.jpg",
+        fileUrl: "/certs/vaskovsky/certificate-2.pdf",
+        type: "pdf"
+      },
+      {
+        title: "Сертификат 3",
+        previewImage: "/certs/vaskovsky/certificate-3.jpg",
+        fileUrl: "/certs/vaskovsky/certificate-3.pdf",
+        type: "pdf"
+      },
+      {
+        title: "Сертификат 4",
+        previewImage: "/certs/vaskovsky/certificate-4.jpg",
+        fileUrl: "/certs/vaskovsky/certificate-4.pdf",
+        type: "pdf"
       }
     ],
     languages: ["Русский", "Английский"]
