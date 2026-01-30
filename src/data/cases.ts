@@ -628,5 +628,25 @@ export const cases: Case[] = [
       "/cases/zpp-tyumen-33-816-2019-apellyaciya-2.jpg",
       "/cases/zpp-tyumen-33-816-2019-apellyaciya-3.jpg"
     ]
+  },
+  {
+    id: "57",
+    category: "Исполнительное производство",
+    title: "Отмена заочного решения и возобновление рассмотрения дела (№ 2-395/2025)",
+    slug: "sobinskiy-2-395-2025-otmena-zaochnogo-2026",
+    task: "Требовалось отменить заочное решение по делу об обращении взыскания на долю земельного участка и возобновить рассмотрение дела.",
+    actions: "Представлены доводы о причинах неявки и отсутствии надлежащего извещения, заявлено ходатайство об отмене заочного решения.",
+    result: "Определением Собинского городского суда Владимирской области от 20.01.2026 заочное решение от 26.02.2025 отменено, рассмотрение дела возобновлено, назначено новое заседание.",
+    datePublished: "2026-01-20",
+    author: "Коллегия адвокатов Профзащита",
+    lawyers: ["lyutikov"],
+    decisionPreview: "/cases/sobinskiy-2-395-2025-otmena-zaochnogo-2026-1.jpg",
+    decisionUrl: "/cases/sobinskiy-2-395-2025-otmena-zaochnogo-2026-1.jpg",
+    documents: [
+      "/cases/sobinskiy-2-395-2025-otmena-zaochnogo-2026-1.jpg",
+      "/cases/sobinskiy-2-395-2025-otmena-zaochnogo-2026-2.jpg",
+      "/cases/sobinskiy-2-395-2025-otmena-zaochnogo-2026-3.jpg",
+      "/cases/sobinskiy-2-395-2025-otmena-zaochnogo-2026-4.jpg"
+    ]
   }
 ];
