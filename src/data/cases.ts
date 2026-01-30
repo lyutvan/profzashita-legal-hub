@@ -539,7 +539,11 @@ export const cases: Case[] = [
     decisionPreview: "/cases/zpp-mosgorsud-33-34379-2017-1.jpg",
     decisionUrl: "/cases/zpp-mosgorsud-33-34379-2017-1.jpg",
     documents: [
-      "/cases/zpp-mosgorsud-33-34379-2017-1.jpg"
+      "/cases/zpp-mosgorsud-33-34379-2017-1.jpg",
+      "/cases/zpp-mosgorsud-33-34379-2017-2.jpg",
+      "/cases/zpp-mosgorsud-33-34379-2017-3.jpg",
+      "/cases/zpp-mosgorsud-33-34379-2017-4.jpg",
+      "/cases/zpp-mosgorsud-33-34379-2017-5.jpg"
     ]
   },
   {
