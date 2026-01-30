@@ -602,5 +602,24 @@ export const cases: Case[] = [
     documents: [
       "/cases/zpp-taganskiy-zheldoripoteka-2-3650-2019-1.jpg"
     ]
+  },
+  {
+    id: "56",
+    category: "Защита прав потребителей",
+    title: "Апелляция: отказ во взыскании аванса, неустойки и штрафа (дело № 33-816/2019)",
+    slug: "zpp-tyumen-33-816-2019-apellyaciya",
+    task: "Истец требовал взыскать авансовый платеж, неустойку, штраф и компенсацию морального вреда по договору оказания услуг.",
+    actions: "В апелляции заявлены доводы о неверном применении норм Закона о защите прав потребителей и отсутствии оснований для взыскания заявленных сумм.",
+    result: "Апелляционным определением Тюменского областного суда от 04.03.2019 решение суда первой инстанции отменено, в иске отказано.",
+    datePublished: "2019-03-04",
+    author: "Коллегия адвокатов Профзащита",
+    lawyers: ["kalabekov"],
+    decisionPreview: "/cases/zpp-tyumen-33-816-2019-apellyaciya-1.jpg",
+    decisionUrl: "/cases/zpp-tyumen-33-816-2019-apellyaciya-1.jpg",
+    documents: [
+      "/cases/zpp-tyumen-33-816-2019-apellyaciya-1.jpg",
+      "/cases/zpp-tyumen-33-816-2019-apellyaciya-2.jpg",
+      "/cases/zpp-tyumen-33-816-2019-apellyaciya-3.jpg"
+    ]
   }
 ];
