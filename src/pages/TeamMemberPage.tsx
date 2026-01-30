@@ -47,7 +47,11 @@ const TeamMemberPage = () => {
   const phone = member.phone ?? SITE.phone;
   const email = member.email ?? SITE.email;
   const about = member.about;
-  const memberCaseKey = member.slug === "yulia-lyadova" ? "lyadova" : member.slug;
+  const memberCaseKeyMap: Record<string, string> = {
+    "yulia-lyadova": "lyadova",
+    vaskovsky: "vaskovskiy"
+  };
+  const memberCaseKey = memberCaseKeyMap[member.slug] ?? member.slug;
   const relatedCases = cases.filter((caseItem) => caseItem.lawyers?.includes(memberCaseKey));
   const sortedRelatedCases =
     member.slug === "yulia-lyadova"
