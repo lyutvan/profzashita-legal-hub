@@ -120,8 +120,8 @@ const Header = () => {
             >
               Консультация
             </Button>
-            <div className="header-contacts flex flex-col items-start gap-1.5 text-white/90">
-              <div className="inline-flex items-center gap-3 whitespace-nowrap">
+            <div className="header-contacts flex items-center gap-3 text-white/90">
+              <div className="flex flex-col items-start gap-1.5 whitespace-nowrap">
                 <a
                   href="tel:+79168597654"
                   className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
@@ -130,22 +130,22 @@ const Header = () => {
                   +7 (916) 859-76-54
                 </a>
                 <a
-                  href="https://t.me/profzashita_consult_bot"
-                  className="inline-flex items-center justify-center rounded-full transition-colors duration-150 hover:text-white"
-                  aria-label="Написать в Telegram"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  title="Telegram"
+                  href="mailto:profzashchita@internet.ru"
+                  className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
                 >
-                  <TelegramIcon className="h-6 w-6" />
+                  <Mail className="h-3.5 w-3.5" strokeWidth={1.8} />
+                  profzashchita@internet.ru
                 </a>
               </div>
               <a
-                href="mailto:profzashchita@internet.ru"
-                className="inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-150 hover:text-white"
+                href="https://t.me/profzashita_consult_bot"
+                className="inline-flex items-center justify-center rounded-full transition-colors duration-150 hover:text-white"
+                aria-label="Написать в Telegram"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="Telegram"
               >
-                <Mail className="h-3.5 w-3.5" strokeWidth={1.8} />
-                profzashchita@internet.ru
+                <TelegramIcon className="h-7 w-7" />
               </a>
             </div>
           </div>
@@ -221,8 +221,8 @@ const Header = () => {
                 >
                   Консультация
                 </Button>
-                <div className="header-contacts flex flex-col items-start gap-2 text-white/90 pt-3 border-t border-white/10">
-                  <div className="inline-flex items-center gap-3 whitespace-nowrap">
+                <div className="header-contacts flex items-center gap-3 text-white/90 pt-3 border-t border-white/10">
+                  <div className="flex flex-col items-start gap-2 whitespace-nowrap">
                     <a
                       href="tel:+79168597654"
                       className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
@@ -231,22 +231,22 @@ const Header = () => {
                       +7 (916) 859-76-54
                     </a>
                     <a
-                      href="https://t.me/profzashita_consult_bot"
-                      className="inline-flex items-center justify-center rounded-full transition-colors duration-150 hover:text-white"
-                      aria-label="Написать в Telegram"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      title="Telegram"
+                      href="mailto:profzashchita@internet.ru"
+                      className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
                     >
-                      <TelegramIcon className="h-6 w-6" />
+                      <Mail className="h-3.5 w-3.5" strokeWidth={1.8} />
+                      profzashchita@internet.ru
                     </a>
                   </div>
                   <a
-                    href="mailto:profzashchita@internet.ru"
-                    className="inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-150 hover:text-white"
+                    href="https://t.me/profzashita_consult_bot"
+                    className="inline-flex items-center justify-center rounded-full transition-colors duration-150 hover:text-white"
+                    aria-label="Написать в Telegram"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="Telegram"
                   >
-                    <Mail className="h-3.5 w-3.5" strokeWidth={1.8} />
-                    profzashchita@internet.ru
+                    <TelegramIcon className="h-7 w-7" />
                   </a>
                 </div>
               </div>
