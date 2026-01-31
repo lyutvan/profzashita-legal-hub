@@ -137,13 +137,13 @@ const Header = () => {
               </a>
               <a
                 href="https://t.me/profzashita_consult_bot"
-                className="inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-150 hover:text-white"
+                className="inline-flex items-center justify-center rounded-full transition-colors duration-150 hover:text-white"
                 aria-label="Написать в Telegram"
                 target="_blank"
                 rel="noopener noreferrer"
+                title="Telegram"
               >
-                <TelegramIcon className="h-3.5 w-3.5" />
-                Telegram
+                <TelegramIcon className="h-5 w-5" />
               </a>
             </div>
           </div>
@@ -236,13 +236,13 @@ const Header = () => {
                   </a>
                   <a
                     href="https://t.me/profzashita_consult_bot"
-                    className="inline-flex items-center gap-2 whitespace-nowrap transition-colors duration-150 hover:text-white"
+                    className="inline-flex items-center justify-center rounded-full transition-colors duration-150 hover:text-white"
                     aria-label="Написать в Telegram"
                     target="_blank"
                     rel="noopener noreferrer"
+                    title="Telegram"
                   >
-                    <TelegramIcon className="h-3.5 w-3.5" />
-                    Telegram
+                    <TelegramIcon className="h-5 w-5" />
                   </a>
                 </div>
               </div>
