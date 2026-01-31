@@ -87,7 +87,7 @@ export const teamMembers: TeamMember[] = [
         type: "image"
       },
       {
-        title: "Сертификат ФПА РФ — вебинары",
+        title: "Сертификат ФПА РФ: вебинары 20.01.2026",
         org: "Федеральная палата адвокатов Российской Федерации",
         date: "20.01.2026 · 6 часов",
         previewImage: "/certs/lyutikov/fpa-webinar-2026-01-20.jpg",
@@ -107,7 +107,7 @@ export const teamMembers: TeamMember[] = [
         type: "image"
       },
       {
-        title: "Сертификат ФПА (20.01.2026)",
+        title: "Сертификат ФПА РФ: вебинары 20.01.2026 (PDF)",
         previewImage: "/certificates/files/lyutikov-fpa-vebinary-2026-01-20.jpg",
         fileUrl: "/certificates/files/sertifikat-fpa-lyutikov-vebinary-2026-01-20.pdf",
         type: "pdf"
@@ -189,13 +189,13 @@ export const teamMembers: TeamMember[] = [
     ],
     achievements: [
       {
-        title: "Повышение квалификации (2011)",
+        title: "Удостоверение о повышении квалификации (2011)",
         previewImage: "/certificates/files/sotnikov-qualification-2011.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2011.jpg",
         type: "image"
       },
       {
-        title: "Сертификат ФПА РФ — вебинары",
+        title: "Сертификат ФПА РФ: вебинары 20.01.2026",
         org: "Федеральная палата адвокатов Российской Федерации",
         date: "20.01.2026 · 6 часов",
         previewImage: "/certs/sotnikov/fpa-webinar-2026-01-20.jpg",
@@ -203,97 +203,97 @@ export const teamMembers: TeamMember[] = [
         type: "image"
       },
       {
-        title: "Повышение квалификации (2013)",
+        title: "Удостоверение о повышении квалификации (2013)",
         previewImage: "/certificates/files/sotnikov-qualification-2013.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2013.jpg",
         type: "image"
       },
       {
-        title: "Сертификат (2016)",
+        title: "Сертификат о повышении квалификации (2016)",
         previewImage: "/certificates/files/sotnikov-certificate-2016.jpg",
         fileUrl: "/certificates/files/sotnikov-certificate-2016.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2019)",
+        title: "Удостоверение о повышении квалификации (2019)",
         previewImage: "/certificates/files/sotnikov-qualification-2019.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2019.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2023) — удостоверение №1",
+        title: "Удостоверение о повышении квалификации (2023) №1",
         previewImage: "/certificates/files/sotnikov-qualification-2023-01.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2023-01.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2023) — удостоверение №2",
+        title: "Удостоверение о повышении квалификации (2023) №2",
         previewImage: "/certificates/files/sotnikov-qualification-2023-02.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2023-02.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2023) — удостоверение №3",
+        title: "Удостоверение о повышении квалификации (2023) №3",
         previewImage: "/certificates/files/sotnikov-qualification-2023-03.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2023-03.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2023) — удостоверение №4",
+        title: "Удостоверение о повышении квалификации (2023) №4",
         previewImage: "/certificates/files/sotnikov-qualification-2023-04.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2023-04.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2024) — удостоверение №1",
+        title: "Удостоверение о повышении квалификации (2024) №1",
         previewImage: "/certificates/files/sotnikov-qualification-2024-01.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2024-01.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2024) — удостоверение №2",
+        title: "Удостоверение о повышении квалификации (2024) №2",
         previewImage: "/certificates/files/sotnikov-qualification-2024-02.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2024-02.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2024) — удостоверение №3",
+        title: "Удостоверение о повышении квалификации (2024) №3",
         previewImage: "/certificates/files/sotnikov-qualification-2024-03.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2024-03.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2024) — удостоверение №4",
+        title: "Удостоверение о повышении квалификации (2024) №4",
         previewImage: "/certificates/files/sotnikov-qualification-2024-04.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2024-04.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2024) — удостоверение №5",
+        title: "Удостоверение о повышении квалификации (2024) №5",
         previewImage: "/certificates/files/sotnikov-qualification-2024-05.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2024-05.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2025) — удостоверение №1",
+        title: "Удостоверение о повышении квалификации (2025) №1",
         previewImage: "/certificates/files/sotnikov-qualification-2025-01.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2025-01.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2025) — удостоверение №2",
+        title: "Удостоверение о повышении квалификации (2025) №2",
         previewImage: "/certificates/files/sotnikov-qualification-2025-02.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2025-02.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2025) — удостоверение №3",
+        title: "Удостоверение о повышении квалификации (2025) №3",
         previewImage: "/certificates/files/sotnikov-qualification-2025-03.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2025-03.jpg",
         type: "image"
       },
       {
-        title: "Повышение квалификации (2025) — удостоверение №4",
+        title: "Удостоверение о повышении квалификации (2025) №4",
         previewImage: "/certificates/files/sotnikov-qualification-2025-04.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2025-04.jpg",
         type: "image"
@@ -375,37 +375,37 @@ export const teamMembers: TeamMember[] = [
     ],
     achievements: [
       {
-        title: "Сертификат повышения квалификации",
+        title: "Сертификат о повышении квалификации",
         previewImage: "/certs/previews/vaskovskiy-certificate.jpg",
         fileUrl: "/certs/vaskovskiy-certificate.pdf",
         type: "pdf"
       },
       {
-        title: "Сертификат",
+        title: "Сертификат о повышении квалификации №1",
         previewImage: "/certs/vaskovsky/certificate-0.jpg",
         fileUrl: "/certs/vaskovsky/certificate-0.pdf",
         type: "pdf"
       },
       {
-        title: "Сертификат 1",
+        title: "Сертификат о повышении квалификации №2",
         previewImage: "/certs/vaskovsky/certificate-1.jpg",
         fileUrl: "/certs/vaskovsky/certificate-1.pdf",
         type: "pdf"
       },
       {
-        title: "Сертификат 2",
+        title: "Сертификат о повышении квалификации №3",
         previewImage: "/certs/vaskovsky/certificate-2.jpg",
         fileUrl: "/certs/vaskovsky/certificate-2.pdf",
         type: "pdf"
       },
       {
-        title: "Сертификат 3",
+        title: "Сертификат о повышении квалификации №4",
         previewImage: "/certs/vaskovsky/certificate-3.jpg",
         fileUrl: "/certs/vaskovsky/certificate-3.pdf",
         type: "pdf"
       },
       {
-        title: "Сертификат 4",
+        title: "Сертификат о повышении квалификации №5",
         previewImage: "/certs/vaskovsky/certificate-4.jpg",
         fileUrl: "/certs/vaskovsky/certificate-4.pdf",
         type: "pdf"
