@@ -490,6 +490,20 @@ const ZhilishchnyeSporyPage = () => {
 
   const shouldShowCases = cases.length > 0;
   const reviews = sharedReviews.slice(0, 6);
+  const yandexOrgId = "244880896695";
+
+  const YandexRatingWidget = () => (
+    <div className="mt-6 flex justify-center">
+      <iframe
+        src={`https://yandex.ru/sprav/widget/rating-badge/${yandexOrgId}?type=rating`}
+        width="150"
+        height="50"
+        frameBorder="0"
+        title="Рейтинг Профзащита в Яндекс.Картах"
+        className="max-w-full"
+      ></iframe>
+    </div>
+  );
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -796,10 +810,11 @@ const ZhilishchnyeSporyPage = () => {
             )}
 
             <div className={shouldShowCases ? "mt-12" : undefined}>
-              <div className="section__header max-w-3xl">
+              <div className="section__header max-w-3xl text-center mx-auto">
                 <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
               </div>
-              <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <YandexRatingWidget />
+              <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                 {reviews.map((review) => (
                   <Card key={review.id} className="h-full">
                     <CardContent className="pt-6 h-full flex flex-col">
@@ -820,14 +835,12 @@ const ZhilishchnyeSporyPage = () => {
                 ))}
               </div>
               <div className="flex justify-center mt-8">
-                <Button asChild size="lg" className="px-6">
-                  <a
-                    href="https://yandex.ru/maps/org/244880896695/reviews/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Смотреть все отзывы на Яндекс.Картах
-                  </a>
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                  onClick={() => openQuickQuestionModal({ topic: "Жилищные споры" })}
+                >
+                  Обсудить с адвокатом свою ситуацию
                 </Button>
               </div>
             </div>
