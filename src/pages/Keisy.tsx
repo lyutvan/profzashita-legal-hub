@@ -97,35 +97,6 @@ const Cases = () => {
           </div>
         </LegalBackground>
 
-        {/* Stats Section */}
-        <section className="section bg-muted/30">
-          <div className="container">
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-4xl mx-auto">
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                  <Scale className="h-8 w-8 text-accent" />
-                </div>
-                <div className="text-h2-mobile md:text-h2 font-bold text-accent mb-2">500+</div>
-                <div className="text-small text-muted-foreground">Выигранных дел</div>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                  <Gavel className="h-8 w-8 text-accent" />
-                </div>
-                <div className="text-h2-mobile md:text-h2 font-bold text-accent mb-2">15+</div>
-                <div className="text-small text-muted-foreground">Лет практики</div>
-              </div>
-              <div className="text-center">
-                <div className="w-16 h-16 rounded-full bg-accent/10 flex items-center justify-center mx-auto mb-4">
-                  <CheckCircle2 className="h-8 w-8 text-accent" />
-                </div>
-                <div className="text-h2-mobile md:text-h2 font-bold text-accent mb-2">98%</div>
-                <div className="text-small text-muted-foreground">Успешных решений</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Cases Section */}
         <section className="section">
           <div className="container">
