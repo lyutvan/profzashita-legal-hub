@@ -455,7 +455,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           <div className="container relative z-10">
             <Breadcrumbs items={data.breadcrumbs} />
             <div className="max-w-4xl mt-6 space-y-5">
-              <h1 className="category-hero-title font-serif text-h1-mobile md:text-h1 font-bold text-accent">{data.heroTitle}</h1>
+              <h1 className="category-hero-title font-serif text-h1-mobile md:text-h1 font-bold text-accent">
+                {data.heroTitle}
+              </h1>
               <ul className="category-hero-benefits pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
                 {data.heroBenefits.slice(0, 6).map((benefit) => (
                   <li key={benefit}>{benefit}</li>
@@ -469,11 +471,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               >
                 Получить консультацию
               </Button>
-              <div className="category-hero-trust flex flex-wrap items-center gap-y-2 text-small text-white/80">
+              <div className="category-hero-trust flex flex-nowrap items-center gap-y-2 text-small text-white/80 overflow-x-auto md:overflow-visible">
                 {trustItems.map((item, index) => (
                   <span
                     key={item.id}
-                    className={`category-hero-trust-item flex items-center ${
+                    className={`category-hero-trust-item flex items-center whitespace-nowrap ${
                       index > 0 ? "before:content-['•'] before:mx-2 before:text-white/50" : ""
                     }`}
                   >
