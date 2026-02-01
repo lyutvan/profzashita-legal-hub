@@ -107,6 +107,10 @@ const App = () => (
             path="/services/phys/razvod-razdel-imushchestva"
             element={<RastorzhenieBrakaRazdelImushchestvaPage />}
           />
+          <Route
+            path="/services/phys/semeynye-spory"
+            element={<RastorzhenieBrakaRazdelImushchestvaPage />}
+          />
           <Route path="/services/phys/vyselenie" element={<VyseleniePage />} />
           <Route path="/services/phys/zhilishchnye-spory" element={<ZhilishchnyeSporyPage />} />
           <Route path="/services/phys/ushcherb-imushchestvu" element={<UshcherbImushchestvuPage />} />
