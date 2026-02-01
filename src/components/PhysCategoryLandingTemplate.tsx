@@ -228,6 +228,8 @@ const CATEGORY_ICONS = [Scale, Home, Building2, Users, MessageCircle, Shield, Fi
 const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps) => {
   const { openQuickQuestionModal } = useQuickQuestionModal();
   const yandexOrgId = "244880896695";
+  const isFamilyOrHousing =
+    data.categoryLabel === "Семейные споры" || data.categoryLabel === "Жилищные споры";
 
   const heroImage = getServiceHeroImage(data.entry.path, "phys");
   const ogImage = heroImage.startsWith("http") ? heroImage : `${SITE.url}${heroImage.replace(/^\//, "")}`;
@@ -479,13 +481,15 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                       index > 0 ? "before:content-['•'] before:mx-2 before:text-white/50" : ""
                     }`}
                   >
-                    {item.accent ? (
+                    {item.accent && isFamilyOrHousing ? (
                       <>
                         <span className="category-hero-trust-accent">{item.accent}</span>{" "}
                         {item.label}
                       </>
                     ) : (
-                      item.label
+                      <>
+                        {item.accent ? `${item.accent} ${item.label}` : item.label}
+                      </>
                     )}
                   </span>
                 ))}
