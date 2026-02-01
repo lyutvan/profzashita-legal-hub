@@ -153,30 +153,6 @@ const About = () => {
           </div>
         </section>
 
-        {/* Stats Section */}
-        <section className="section bg-muted/30">
-          <div className="container">
-            <div className="section__content grid grid-cols-1 md:grid-cols-4 gap-8 max-w-5xl mx-auto">
-              <div className="text-center">
-                <div className="text-h1-mobile md:text-h1 font-bold text-accent mb-2">15+</div>
-                <div className="text-small text-muted-foreground">лет на рынке</div>
-              </div>
-              <div className="text-center">
-                <div className="text-h1-mobile md:text-h1 font-bold text-accent mb-2">25+</div>
-                <div className="text-small text-muted-foreground">адвокатов в команде</div>
-              </div>
-              <div className="text-center">
-                <div className="text-h1-mobile md:text-h1 font-bold text-accent mb-2">500+</div>
-                <div className="text-small text-muted-foreground">выигранных дел</div>
-              </div>
-              <div className="text-center">
-                <div className="text-h1-mobile md:text-h1 font-bold text-accent mb-2">98%</div>
-                <div className="text-small text-muted-foreground">довольных клиентов</div>
-              </div>
-            </div>
-          </div>
-        </section>
-
         {/* Team Section */}
         <TeamSection 
           id="team"
