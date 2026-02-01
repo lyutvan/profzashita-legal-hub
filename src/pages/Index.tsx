@@ -232,13 +232,11 @@ const Index = () => {
               Москва и Московская область · консультация в день обращения
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Button
-                size="lg"
-                className="bg-accent text-white hover:bg-accent/90 px-8"
-                onClick={() => openQuickQuestionModal()}
-              >
-                Получить консультацию
-              </Button>
+              <Link to="/kontakty#contacts">
+                <Button size="lg" className="bg-accent text-white hover:bg-accent/90 px-8">
+                  Получить консультацию
+                </Button>
+              </Link>
             </div>
           </div>
         </LegalBackground>
