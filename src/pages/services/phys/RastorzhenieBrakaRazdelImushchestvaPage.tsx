@@ -33,6 +33,7 @@ import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 import { cases as casesData } from "@/data/cases";
+import { useLocation } from "react-router-dom";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
@@ -221,6 +222,9 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
 
 const RastorzhenieBrakaRazdelImushchestvaPage = () => {
   const { openQuickQuestionModal } = useQuickQuestionModal();
+  const location = useLocation();
+  const isFamilyCategory = location.pathname.includes("/services/phys/semeynye-spory");
+  const pageBreadcrumbLabel = isFamilyCategory ? "Семейные споры" : "Расторжение брака и раздел имущества";
   const canonical = new URL("/services/phys/razvod-razdel-imushchestva", SITE.url).toString();
 
   const trustItems = [
@@ -516,7 +520,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
     { name: "Главная", url: SITE.url },
     { name: "Услуги", url: new URL("/uslugi", SITE.url).toString() },
     { name: "Физлицам", url: new URL("/services/phys", SITE.url).toString() },
-    { name: "Расторжение брака и раздел имущества", url: canonical }
+    { name: pageBreadcrumbLabel, url: canonical }
   ];
 
   const legalServiceSchema = {
@@ -598,7 +602,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               items={[
                 { label: "Услуги", path: "/uslugi" },
                 { label: "Физлицам", path: "/services/phys" },
-                { label: "Расторжение брака и раздел имущества" }
+                { label: pageBreadcrumbLabel }
               ]}
             />
             <div className="max-w-4xl mt-6 space-y-5">
