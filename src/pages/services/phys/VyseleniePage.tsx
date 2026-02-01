@@ -1019,7 +1019,7 @@ const VyseleniePage = () => {
                         <MapPin className="h-6 w-6 text-accent" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-1">Адрес</h3>
+                        <h3 className="font-normal mb-1">Адрес</h3>
                         <p className="text-accent font-semibold">
                           {SITE.address.city}, {SITE.address.street}
                         </p>
