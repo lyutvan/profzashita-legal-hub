@@ -898,30 +898,70 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
             </div>
 
             <div className="mt-12">
-              <div className="section__header max-w-3xl">
-                <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
-              </div>
-              <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {familyReviews.map((review) => (
-                  <Card key={review.id} className="h-full">
-                    <CardContent className="pt-6 h-full flex flex-col">
-                      <div className="flex items-start justify-between gap-4 mb-3">
-                        <div className="flex items-center gap-1 text-accent">
-                          {Array.from({ length: review.rating }).map((_, index) => (
-                            <Star key={`${review.id}-${index}`} className="h-4 w-4 fill-current" />
-                          ))}
-                        </div>
-                        <span className="text-small text-muted-foreground">{review.date}</span>
-                      </div>
-                      <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
-                      <div className="border-t border-border mt-4 pt-4">
-                        <span className="text-small font-semibold">{review.name}</span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
-              <YandexRatingWidget />
+              {isFamilyCategory ? (
+                <>
+                  <div className="section__header max-w-3xl text-center mx-auto">
+                    <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
+                  </div>
+                  <YandexRatingWidget />
+                  <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                    {familyReviews.map((review) => (
+                      <Card key={review.id} className="h-full">
+                        <CardContent className="pt-6 h-full flex flex-col">
+                          <div className="flex items-start justify-between gap-4 mb-3">
+                            <div className="flex items-center gap-1 text-accent">
+                              {Array.from({ length: review.rating }).map((_, index) => (
+                                <Star key={`${review.id}-${index}`} className="h-4 w-4 fill-current" />
+                              ))}
+                            </div>
+                            <span className="text-small text-muted-foreground">{review.date}</span>
+                          </div>
+                          <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
+                          <div className="border-t border-border mt-4 pt-4">
+                            <span className="text-small font-semibold">{review.name}</span>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                  <div className="mt-8 flex justify-center">
+                    <Button
+                      size="lg"
+                      className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                      onClick={() => openQuickQuestionModal({ topic: "Семейные споры" })}
+                    >
+                      Обсудить с адвокатом свою ситуацию
+                    </Button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div className="section__header max-w-3xl">
+                    <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
+                  </div>
+                  <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                    {familyReviews.map((review) => (
+                      <Card key={review.id} className="h-full">
+                        <CardContent className="pt-6 h-full flex flex-col">
+                          <div className="flex items-start justify-between gap-4 mb-3">
+                            <div className="flex items-center gap-1 text-accent">
+                              {Array.from({ length: review.rating }).map((_, index) => (
+                                <Star key={`${review.id}-${index}`} className="h-4 w-4 fill-current" />
+                              ))}
+                            </div>
+                            <span className="text-small text-muted-foreground">{review.date}</span>
+                          </div>
+                          <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
+                          <div className="border-t border-border mt-4 pt-4">
+                            <span className="text-small font-semibold">{review.name}</span>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    ))}
+                  </div>
+                  <YandexRatingWidget />
+                </>
+              )}
             </div>
           </div>
         </section>
