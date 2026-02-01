@@ -34,6 +34,7 @@ import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 import { audienceServices } from "@/data/services-audiences";
+import { cases as casesData } from "@/data/cases";
 import { sharedReviews } from "@/data/shared-reviews";
 import { getServiceHeroImage } from "@/lib/serviceCardImages";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
@@ -264,23 +265,58 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     ])
   ).slice(0, 6);
 
-  const cases = data.cases.slice(0, 2).map((item, index) => {
-    const withDecision = item as PhysServicePageData["cases"][number] & {
-      decisionPreview?: string;
-      decisionUrl?: string;
-    };
-    return {
-      title: `${data.categoryLabel}: кейс ${index + 1}`,
-      situation: item.situation,
-      task:
-        data.desiredResults[index % data.desiredResults.length] ??
-        "Защитить права и добиться управляемого результата.",
-      actions: item.actions,
-      result: item.result,
-      decisionPreview: withDecision.decisionPreview,
-      decisionUrl: withDecision.decisionUrl
-    };
+  const categoryCaseMatchers: Record<string, (caseCategory: string, caseTitle: string) => boolean> = {
+    "Защита прав потребителей": (cat, title) => /потребител/i.test(cat) || /потребител/i.test(title),
+    "ДТП и страховые споры": (cat, title) => /дтп|страхов/i.test(cat) || /дтп|страхов/i.test(title),
+    "Ущерб имуществу": (cat, title) => /ущерб|залив|поврежден/i.test(cat) || /ущерб|залив|поврежден/i.test(title),
+    "Наследственные дела": (cat, title) => /наслед/i.test(cat) || /наслед/i.test(title),
+    "Взыскание долгов и договорные споры": (cat, title) => /долг|задолж|договор/i.test(cat) || /долг|задолж|договор/i.test(title),
+    "Трудовые споры": (cat, title) => /труд/i.test(cat) || /труд/i.test(title),
+    "Банковские и кредитные споры": (cat, title) => /кредит|банк/i.test(cat) || /кредит|банк/i.test(title),
+    "Исполнительное производство": (cat, title) => /исполнител/i.test(cat) || /исполнител/i.test(title),
+    "Земельные споры": (cat, title) => /земел/i.test(cat) || /земел/i.test(title),
+    "Административные споры": (cat, title) => /административ/i.test(cat) || /административ/i.test(title),
+    "Банкротство физических лиц": (cat, title) => /банкрот/i.test(cat) || /банкрот/i.test(title),
+    "Документы и судебное сопровождение": (cat, title) =>
+      /документ|судеб/i.test(cat) || /документ|судеб/i.test(title)
+  };
+
+  const matchedCases = casesData.filter((caseItem) => {
+    const matcher = categoryCaseMatchers[data.categoryLabel];
+    if (!matcher) return false;
+    return matcher(caseItem.category, caseItem.title);
   });
+
+  const resolvedCases = (matchedCases.length > 0 ? matchedCases : []).slice(0, 2).map((caseItem) => ({
+    title: caseItem.title,
+    situation: caseItem.task,
+    task: "Добиться результата и защитить интересы клиента.",
+    actions: caseItem.actions,
+    result: caseItem.result,
+    decisionPreview: caseItem.decisionPreview,
+    decisionUrl: caseItem.decisionUrl,
+    slug: caseItem.slug
+  }));
+
+  const cases = (resolvedCases.length > 0
+    ? resolvedCases
+    : data.cases.slice(0, 2).map((item, index) => {
+        const withDecision = item as PhysServicePageData["cases"][number] & {
+          decisionPreview?: string;
+          decisionUrl?: string;
+        };
+        return {
+          title: `${data.categoryLabel}: кейс ${index + 1}`,
+          situation: item.situation,
+          task:
+            data.desiredResults[index % data.desiredResults.length] ??
+            "Защитить права и добиться управляемого результата.",
+          actions: item.actions,
+          result: item.result,
+          decisionPreview: withDecision.decisionPreview,
+          decisionUrl: withDecision.decisionUrl
+        };
+      }));
 
   const steps = data.planSteps.slice(0, 6).map((step, index) => ({
     title: step.title,
@@ -460,8 +496,10 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         <section className="section">
           <div className="container">
             <div className="section__header max-w-3xl mx-auto text-center pt-2 md:pt-4 mb-6 md:mb-7">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Популярные услуги в категории</h2>
-              <p className="text-muted-foreground">Выберите услугу — подскажем, как действовать:</p>
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                Помогаем по направлению «{data.categoryLabel}»
+              </h2>
+              <p className="text-muted-foreground">Выберите вашу ситуацию — подскажем, как действовать:</p>
             </div>
             <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-fr">
               {situationCards.map((card, index) => {
@@ -482,7 +520,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                         size="lg"
                         className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
                       >
-                        <Link to={card.path}>Перейти к услуге</Link>
+                        <Link to={card.path}>Получить консультацию</Link>
                       </Button>
                     </CardContent>
                   </Card>
@@ -688,7 +726,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                                     variant="outline"
                                     className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
                                   >
-                                    <Link to="/keisy">Смотреть кейсы</Link>
+                                    <Link to={caseItem.slug ? `/cases/${caseItem.slug}` : "/keisy"}>
+                                      Смотреть кейсы
+                                    </Link>
                                   </Button>
                                 </div>
                               )}
@@ -712,7 +752,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                                       variant="outline"
                                       className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
                                     >
-                                      <Link to="/keisy">Смотреть кейсы</Link>
+                                      <Link to={caseItem.slug ? `/cases/${caseItem.slug}` : "/keisy"}>
+                                        Смотреть кейсы
+                                      </Link>
                                     </Button>
                                   </div>
                                 </div>
@@ -728,10 +770,20 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
             )}
 
             <div className={shouldShowCases ? "mt-12" : undefined}>
-              <div className="section__header max-w-3xl">
+              <div className="section__header max-w-3xl text-center mx-auto">
                 <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
               </div>
-              <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className="mt-6 flex justify-center">
+                <iframe
+                  src={`https://yandex.ru/sprav/widget/rating-badge/${yandexOrgId}?type=rating`}
+                  width="150"
+                  height="50"
+                  frameBorder="0"
+                  title="Рейтинг Профзащита в Яндекс.Картах"
+                  className="max-w-full"
+                ></iframe>
+              </div>
+              <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
                 {reviews.map((review, reviewIndex) => (
                   <Card key={`${review.name}-${reviewIndex}`} className="h-full">
                     <CardContent className="pt-6 h-full flex flex-col">
@@ -752,14 +804,13 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 ))}
               </div>
               <div className="mt-8 flex justify-center">
-                <iframe
-                  src={`https://yandex.ru/sprav/widget/rating-badge/${yandexOrgId}?type=rating`}
-                  width="150"
-                  height="50"
-                  frameBorder="0"
-                  title="Рейтинг Профзащита в Яндекс.Картах"
-                  className="max-w-full"
-                ></iframe>
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                  onClick={() => openQuickQuestionModal({ topic: data.categoryLabel })}
+                >
+                  Обсудить с адвокатом свою ситуацию
+                </Button>
               </div>
             </div>
           </div>
