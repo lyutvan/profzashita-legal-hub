@@ -110,10 +110,7 @@ const App = () => (
           <Route path="/services/phys/vyselenie" element={<VyseleniePage />} />
           <Route path="/services/phys/zhilishchnye-spory" element={<ZhilishchnyeSporyPage />} />
           <Route path="/services/phys/ushcherb-imushchestvu" element={<UshcherbImushchestvuPage />} />
-          <Route
-            path="/services/phys/semeynye-spory"
-            element={<Navigate to="/services/phys/razvod-razdel-imushchestva" replace />}
-          />
+          <Route path="/services/phys/semeynye-spory" element={<PhysServiceDetailPage />} />
           <Route path="/services/phys/:slug" element={<PhysServiceDetailPage />} />
           
           {/* Redirects from old family services URLs */}
