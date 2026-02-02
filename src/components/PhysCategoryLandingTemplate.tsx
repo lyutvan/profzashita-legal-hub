@@ -995,7 +995,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                       </div>
                       <div>
                         <h3 className="font-normal mb-1">Адрес</h3>
-                        <p className="category-contact-address text-accent font-semibold">
+                        <p className="category-contact-address text-accent font-normal">
                           {SITE.address.city}, {SITE.address.street}
                         </p>
                       </div>

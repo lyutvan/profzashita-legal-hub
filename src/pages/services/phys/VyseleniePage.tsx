@@ -1020,7 +1020,7 @@ const VyseleniePage = () => {
                       </div>
                       <div>
                         <h3 className="font-normal mb-1">Адрес</h3>
-                        <p className="text-accent font-semibold">
+                        <p className="text-accent font-normal">
                           {SITE.address.city}, {SITE.address.street}
                         </p>
                       </div>
