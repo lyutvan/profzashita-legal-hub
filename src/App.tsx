@@ -110,8 +110,11 @@ const App = () => (
             path="/services/phys/semeynye-spory"
             element={<RastorzhenieBrakaRazdelImushchestvaPage />}
           />
-          <Route path="/services/phys/vyselenie" element={<VyseleniePage />} />
-          <Route path="/services/phys/zhilishchnye-spory" element={<ZhilishchnyeSporyPage />} />
+          <Route path="/services/phys/vyselenie" element={<ZhilishchnyeSporyPage />} />
+          <Route
+            path="/services/phys/zhilishchnye-spory"
+            element={<Navigate to="/services/phys/vyselenie" replace />}
+          />
           <Route
             path="/services/phys/ushcherb-imushchestvu"
             element={<Navigate to="/services/phys/zhilishchnye-spory" replace />}

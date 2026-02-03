@@ -215,7 +215,7 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, topic, onSucce
 
 const ZhilishchnyeSporyPage = () => {
   const { openQuickQuestionModal } = useQuickQuestionModal();
-  const canonical = new URL("/services/phys/zhilishchnye-spory", SITE.url).toString();
+  const canonical = new URL("/services/phys/vyselenie", SITE.url).toString();
 
   const trustItems = [
     "Конфиденциально",
