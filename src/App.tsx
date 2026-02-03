@@ -119,6 +119,10 @@ const App = () => (
             path="/services/phys/ushcherb-imushchestvu"
             element={<Navigate to="/services/phys/zhilishchnye-spory" replace />}
           />
+          <Route
+            path="/services/phys/bankovskie-i-kreditnye-spory"
+            element={<Navigate to="/services/phys/bankrotstvo-fiz-lits" replace />}
+          />
           <Route path="/services/phys/:slug" element={<PhysServiceDetailPage />} />
           
           {/* Redirects from old family services URLs */}

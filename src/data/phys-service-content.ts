@@ -124,7 +124,7 @@ const CATEGORY_MARKETING_SUBTITLES: Record<string, string> = {
   "Исполнительное производство": "Контролируем исполнение решения суда, работаем с приставами и добиваемся фактического результата.",
   "Земельные споры": "Разрешаем земельные споры: границы, право собственности, выдел долей и регистрация.",
   "Административные споры": "Оспариваем решения и действия госорганов, защищаем ваши права в административном судопроизводстве.",
-  "Банкротство": "Проводим банкротство физлиц с защитой имущества и законным списанием долгов.",
+  "Банкротство": "Помогаем законно снизить долговую нагрузку, защитить имущество и оспорить незаконные требования банков и коллекторов.",
   "Документы и судебное сопровождение": "Готовим процессуальные документы и сопровождаем дело на любой стадии, чтобы позиция была защищена."
 };
 
@@ -837,13 +837,21 @@ const CATEGORY_CONTENT: Record<string, Partial<PhysCategoryContent>> = {
     ]
   },
   "Банкротство": {
-    heroSubtitle: "Проводим процедуру банкротства физлиц с защитой имущества и законным списанием долгов.",
+    heroSubtitle:
+      "Помогаем законно снизить долговую нагрузку, защитить имущество и оспорить незаконные требования банков и коллекторов.",
     scenarios: [
-      "Долги превышают 500 тыс. рублей",
-      "Просрочка платежей более 3 месяцев",
-      "Аресты и взыскания от приставов",
-      "Несколько кредиторов и нагрузка по платежам",
-      "Нужно списать долги законным способом"
+      "Подготовка заявления о банкротстве физического лица",
+      "Сопровождение процедуры реструктуризации долгов",
+      "Реализация имущества и защита единственного жилья",
+      "Списание долгов по итогам процедуры",
+      "Защита от оспаривания сделок",
+      "Оспаривание процентов, пеней и неустоек",
+      "Снижение штрафов и платежной нагрузки",
+      "Переговоры о реструктуризации кредитов",
+      "Споры с коллекторами и незаконное давление",
+      "Незаконные списания и блокировки счетов",
+      "Защита зарплатной карты и социальных выплат",
+      "Исполнительное производство и работа с приставами"
     ],
     documents: [
       "Паспорт, ИНН, СНИЛС",
@@ -866,12 +874,36 @@ const CATEGORY_CONTENT: Record<string, Partial<PhysCategoryContent>> = {
     ],
     faqs: [
       {
-        question: "Можно ли сохранить единственное жилье?",
-        answer: "Да, в большинстве случаев единственное жилье не включается в конкурсную массу."
+        question: "Можно ли списать долги и сохранить имущество?",
+        answer: "Да, в ряде случаев возможно сохранить единственное жилье и часть имущества — оценим риски по документам."
       },
       {
-        question: "Сколько длится банкротство?",
-        answer: "Обычно от 6 месяцев, срок зависит от объема долгов и имущества."
+        question: "Когда банкротство не подходит?",
+        answer: "Если нет признаков неплатежеспособности или есть риски оспаривания сделок — предложим другой сценарий."
+      },
+      {
+        question: "Что делать, если коллекторы давят?",
+        answer: "Зафиксируем нарушения, подадим жалобы и выстроим правовую защиту от давления."
+      },
+      {
+        question: "Можно ли снизить штрафы и пени?",
+        answer: "Да, в переговорах или суде можно добиться снижения неустоек при наличии оснований."
+      },
+      {
+        question: "Сколько длится процедура?",
+        answer: "Обычно от 6 месяцев. Срок зависит от структуры долгов и наличия имущества."
+      },
+      {
+        question: "Какие документы нужны?",
+        answer: "Паспорт, сведения о доходах, договора с кредиторами, справки о долгах и документы на имущество."
+      },
+      {
+        question: "Что будет с зарплатой, картами и выплатами?",
+        answer: "Есть законные механизмы защиты — объясним, как сохранить доступ к средствам и правам."
+      },
+      {
+        question: "Можно ли решить без суда?",
+        answer: "Иногда возможно договориться с кредиторами или реструктуризировать долг без судебной процедуры."
       }
     ],
     desiredResults: [
@@ -1059,6 +1091,9 @@ const buildCategoryPages = (): PhysServiceEntry[] => {
 const categoryPages = buildCategoryPages();
 
 export const getPhysCategoryPagePath = (categoryTitle: string) => {
+  if (categoryTitle === "Банковские и кредитные споры") {
+    return "/services/phys/bankrotstvo-fiz-lits";
+  }
   return physCategoryPagePaths[categoryTitle];
 };
 
@@ -1121,8 +1156,11 @@ const getOtherServices = (entry: PhysServiceEntry, limit: number = 8) => {
 };
 
 export const getPhysServicePageData = (entry: PhysServiceEntry): PhysServicePageData => {
+  const isBankrotstvoMerged = entry.slug === "bankrotstvo-fiz-lits";
   const categoryContent = getCategoryContent(entry.category);
-  const heroServiceName = normalizeHeroServiceName(entry);
+  const heroServiceName = isBankrotstvoMerged
+    ? "банкротству и кредитным спорам"
+    : normalizeHeroServiceName(entry);
   const canonical = new URL(entry.path, SITE.url).toString();
 
   const categoryPath = getPhysCategoryPagePath(entry.category);
@@ -1145,8 +1183,14 @@ export const getPhysServicePageData = (entry: PhysServiceEntry): PhysServicePage
   }
   breadcrumbSchema.push({ name: entry.title, url: canonical });
 
-  const metaTitle = `Адвокат по ${heroServiceName} в Москве — Профзащита`;
-  const metaDescription = buildMetaDescription(heroServiceName);
+  const metaTitle = isBankrotstvoMerged
+    ? "Банкротство и кредитные споры — адвокат в Москве | Профзащита"
+    : `Адвокат по ${heroServiceName} в Москве — Профзащита`;
+  const metaDescription = isBankrotstvoMerged
+    ? clampMetaDescription(
+        "Помогаем законно снизить долговую нагрузку, защитить имущество и оспорить требования банков и коллекторов в Москве и области."
+      )
+    : buildMetaDescription(heroServiceName);
 
   const scenarios: PhysScenario[] = categoryContent.scenarios.map((title, index) => ({
     title,
@@ -1167,9 +1211,9 @@ export const getPhysServicePageData = (entry: PhysServiceEntry): PhysServicePage
     canonical,
     breadcrumbs,
     breadcrumbSchema,
-    categoryLabel: entry.isCategory ? entry.title : entry.category,
+    categoryLabel: isBankrotstvoMerged ? "Банкротство и кредитные споры" : entry.isCategory ? entry.title : entry.category,
     categoryPath,
-    heroTitle: `Адвокат по ${heroServiceName}`,
+    heroTitle: isBankrotstvoMerged ? "Банкротство и кредитные споры" : `Адвокат по ${heroServiceName}`,
     heroSubtitle: categoryContent.heroSubtitle,
     heroBenefits: categoryContent.benefits,
     scenarios,

@@ -230,6 +230,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const yandexOrgId = "244880896695";
   const isFamilyOrHousing =
     data.categoryLabel === "Семейные споры" || data.categoryLabel === "Жилищные споры";
+  const isBankrotstvoMerged = data.entry.slug === "bankrotstvo-fiz-lits";
 
   const heroImage = getServiceHeroImage(data.entry.path, "phys");
   const ogImage = heroImage.startsWith("http") ? heroImage : `${SITE.url}${heroImage.replace(/^\//, "")}`;
@@ -275,6 +276,8 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     "Взыскание долгов и договорные споры": (cat, title) => /долг|задолж|договор/i.test(cat) || /долг|задолж|договор/i.test(title),
     "Трудовые споры": (cat, title) => /труд/i.test(cat) || /труд/i.test(title),
     "Банковские и кредитные споры": (cat, title) => /кредит|банк/i.test(cat) || /кредит|банк/i.test(title),
+    "Банкротство и кредитные споры": (cat, title) =>
+      /банкрот|кредит|банк/i.test(cat) || /банкрот|кредит|банк/i.test(title),
     "Исполнительное производство": (cat, title) => /исполнител/i.test(cat) || /исполнител/i.test(title),
     "Земельные споры": (cat, title) => /земел/i.test(cat) || /земел/i.test(title),
     "Административные споры": (cat, title) => /административ/i.test(cat) || /административ/i.test(title),
@@ -503,36 +506,53 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           <div className="container">
             <div className="section__header max-w-3xl mx-auto text-center pt-2 md:pt-4 mb-6 md:mb-7">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                Помогаем по направлению «{data.categoryLabel}»
+                {isBankrotstvoMerged ? "Какие вопросы решаем" : `Помогаем по направлению «${data.categoryLabel}»`}
               </h2>
-              <p className="text-muted-foreground">Выберите вашу ситуацию — подскажем, как действовать:</p>
+              <p className="text-muted-foreground">
+                {isBankrotstvoMerged
+                  ? "Объединяем банкротство и кредитные споры — вы получите понятный план и поддержку."
+                  : "Выберите вашу ситуацию — подскажем, как действовать:"}
+              </p>
             </div>
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-fr">
-              {situationCards.map((card, index) => {
-                const Icon = CATEGORY_ICONS[index % CATEGORY_ICONS.length];
-                return (
-                  <Card
-                    key={card.title}
-                    className="h-full rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
-                  >
-                    <CardContent className="p-5 md:p-6 pt-5 md:pt-6 h-full flex flex-col items-center text-center gap-3">
-                      <Icon className="h-12 w-12 text-[#111827]" strokeWidth={2} />
-                      <h3 className="font-semibold text-[16px] md:text-[17px] text-slate-900">{card.title}</h3>
-                      <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed flex-1">
-                        {card.description ?? "Подготовим документы и защитим позицию в переговорах и суде"}
-                      </p>
-                      <Button
-                        asChild
-                        size="lg"
-                        className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                      >
-                        <Link to={card.path}>Получить консультацию</Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
+            {isBankrotstvoMerged ? (
+              <div className="section__content max-w-4xl mx-auto">
+                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left text-[14px] md:text-[15px] text-slate-700">
+                  {data.scenarios.slice(0, 14).map((item) => (
+                    <li key={item.title} className="flex items-start gap-2 rounded-xl border border-border/70 bg-white/80 px-4 py-3">
+                      <span className="mt-1 h-2.5 w-2.5 rounded-full bg-accent shrink-0" />
+                      <span>{item.title}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ) : (
+              <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-fr">
+                {situationCards.map((card, index) => {
+                  const Icon = CATEGORY_ICONS[index % CATEGORY_ICONS.length];
+                  return (
+                    <Card
+                      key={card.title}
+                      className="h-full rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+                    >
+                      <CardContent className="p-5 md:p-6 pt-5 md:pt-6 h-full flex flex-col items-center text-center gap-3">
+                        <Icon className="h-12 w-12 text-[#111827]" strokeWidth={2} />
+                        <h3 className="font-semibold text-[16px] md:text-[17px] text-slate-900">{card.title}</h3>
+                        <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed flex-1">
+                          {card.description ?? "Подготовим документы и защитим позицию в переговорах и суде"}
+                        </p>
+                        <Button
+                          asChild
+                          size="lg"
+                          className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                        >
+                          <Link to={card.path}>Получить консультацию</Link>
+                        </Button>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
+              </div>
+            )}
             <div className="mt-7 md:mt-8 rounded-[12px] border border-[#D8C08B] bg-[#F7F2E8] p-6 text-center shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
               <p className="font-semibold text-body-mobile md:text-body text-slate-900">
                 Каждая неделя без четкой позиции — это риск потерять время, деньги и сильную переговорную позицию.
