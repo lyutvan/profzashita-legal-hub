@@ -33,6 +33,7 @@ const Index = () => {
   const navigate = useNavigate();
   const { openQuickQuestionModal } = useQuickQuestionModal();
   const physCategoryItems = getCategoriesForAudience("phys")
+    .filter((category) => category.title !== "Ущерб имуществу")
     .map((category) => {
       const path = getPhysCategoryPagePath(category.title);
       if (!path) return null;
