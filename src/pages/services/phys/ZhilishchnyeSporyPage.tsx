@@ -299,9 +299,9 @@ const ZhilishchnyeSporyPage = () => {
       href: "/services/phys/zhilishchnye-spory",
       icon: HelpCircle
     }
-  ].filter(
-    (item, index, arr) => arr.findIndex((entry) => entry.title === item.title) === index
-  );
+  ]
+    .filter((item, index, arr) => arr.findIndex((entry) => entry.title === item.title) === index)
+    .slice(0, 6);
 
   const teamMembers = [
     {
@@ -680,11 +680,11 @@ const ZhilishchnyeSporyPage = () => {
                         {card.description}
                       </p>
                       <Button
-                        asChild
                         size="lg"
                         className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                        onClick={() => openQuickQuestionModal({ topic: "Жилищные споры и ущерб имуществу" })}
                       >
-                        <Link to={card.href}>Перейти к услуге</Link>
+                        Получить консультацию
                       </Button>
                     </CardContent>
                   </Card>
