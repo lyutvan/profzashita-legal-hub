@@ -564,7 +564,7 @@ const ZhilishchnyeSporyPage = () => {
   );
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen flex flex-col family-landing-page">
       <Helmet>
         <title>Жилищные споры и ущерб имуществу — адвокаты по жилищным вопросам | Профзащита</title>
         <meta
