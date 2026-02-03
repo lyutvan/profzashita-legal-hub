@@ -931,7 +931,9 @@ const ZhilishchnyeSporyPage = () => {
             <Accordion type="single" collapsible className="section__content mt-8 space-y-4">
               {salesAccordion.map((item, index) => (
                 <AccordionItem key={item.title} value={`sales-${index}`} className="border rounded-xl px-6">
-                  <AccordionTrigger className="text-left hover:no-underline py-4">{item.title}</AccordionTrigger>
+                  <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
+                    {item.title}
+                  </AccordionTrigger>
                   <AccordionContent className="pb-4">{item.content}</AccordionContent>
                 </AccordionItem>
               ))}
@@ -952,7 +954,7 @@ const ZhilishchnyeSporyPage = () => {
                   value={`faq-${index}`}
                   className="rounded-xl border border-slate-200 px-6 transition-colors hover:border-[#C9A227]/70 data-[state=open]:border-[#C9A227]"
                 >
-                  <AccordionTrigger className="py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f] [&>svg]:text-[#b8911f] hover:[&>svg]:text-[#a8831a] data-[state=open]:[&>svg]:text-[#C9A227]">
+                  <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
                     {item.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-muted-foreground pb-4">{item.answer}</AccordionContent>
