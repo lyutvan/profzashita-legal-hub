@@ -618,7 +618,7 @@ const ZhilishchnyeSporyPage = () => {
               ]}
             />
             <div className="max-w-4xl mt-6 space-y-5">
-              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold">
+              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-accent">
                 Жилищные споры и ущерб имуществу
               </h1>
               <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
@@ -642,11 +642,11 @@ const ZhilishchnyeSporyPage = () => {
               >
                 Получить консультацию
               </Button>
-              <div className="flex flex-wrap items-center gap-y-2 text-small text-white/75">
+              <div className="flex flex-nowrap items-center gap-y-2 text-small text-white/75 overflow-x-auto md:overflow-visible">
                 {trustItems.map((item, index) => (
                   <span
                     key={item}
-                    className={`flex items-center ${
+                    className={`flex items-center whitespace-nowrap ${
                       index > 0 ? "before:content-['•'] before:mx-2 before:text-white/50" : ""
                     }`}
                   >
@@ -773,27 +773,27 @@ const ZhilishchnyeSporyPage = () => {
                 Как мы работаем: 6 этапов, чтобы защитить ваши права на жильё с минимальными потерями
               </h2>
             </div>
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
-              {steps.map((step, index) => (
-                <Card key={step.title} className="h-full">
-                  <CardContent className="pt-6 h-full flex flex-col gap-4">
-                    <div className="flex items-center gap-3">
-                      <div className="h-10 w-10 rounded-full bg-accent/10 text-accent flex items-center justify-center font-semibold">
-                        {index + 1}
+            <div className="section__content">
+              <div className="divide-y divide-border/80 rounded-2xl border border-border/80 bg-white/90 shadow-[0_12px_28px_rgba(15,23,42,0.06)] overflow-hidden">
+                {steps.map((step, index) => (
+                  <div key={step.title} className="flex gap-4 md:gap-6 px-4 md:px-6 py-5 md:py-6">
+                    <div className="h-11 w-11 md:h-12 md:w-12 shrink-0 rounded-full border border-accent/40 bg-accent/10 text-accent flex items-center justify-center font-semibold">
+                      {index + 1}
+                    </div>
+                    <div className="flex-1 space-y-3">
+                      <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{step.title}</h3>
+                      <div>
+                        <div className="text-xs uppercase tracking-wide text-muted-foreground mb-1">Что мы делаем</div>
+                        <p className="text-small text-muted-foreground leading-relaxed">{step.action}</p>
                       </div>
-                      <h3 className="font-semibold text-body-mobile md:text-body">{step.title}</h3>
+                      <div>
+                        <div className="text-xs uppercase tracking-wide text-muted-foreground mb-1">Результат для вас</div>
+                        <p className="text-small text-muted-foreground leading-relaxed">{step.result}</p>
+                      </div>
                     </div>
-                    <div>
-                      <div className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Что мы делаем</div>
-                      <p className="text-small text-muted-foreground leading-relaxed">{step.action}</p>
-                    </div>
-                    <div>
-                      <div className="text-xs uppercase tracking-wide text-muted-foreground mb-2">Результат для вас</div>
-                      <p className="text-small text-muted-foreground leading-relaxed">{step.result}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                  </div>
+                ))}
+              </div>
             </div>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
@@ -1041,7 +1041,7 @@ const ZhilishchnyeSporyPage = () => {
                       </div>
                       <div>
                         <h3 className="font-normal mb-1">Адрес</h3>
-                        <p className="text-muted-foreground">
+                        <p className="text-accent font-normal">
                           {SITE.address.city}, {SITE.address.street}
                         </p>
                       </div>
