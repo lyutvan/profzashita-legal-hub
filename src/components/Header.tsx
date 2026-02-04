@@ -145,7 +145,7 @@ const Header = () => {
                 rel="noopener noreferrer"
                 title="Telegram"
               >
-                <TelegramIcon className="h-7 w-7" />
+                <TelegramIcon size={36} className="h-9 w-9 block" />
               </a>
             </div>
           </div>
@@ -246,7 +246,7 @@ const Header = () => {
                     rel="noopener noreferrer"
                     title="Telegram"
                   >
-                    <TelegramIcon className="h-7 w-7" />
+                    <TelegramIcon size={36} className="h-9 w-9 block" />
                   </a>
                 </div>
               </div>
