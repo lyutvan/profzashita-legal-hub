@@ -181,6 +181,16 @@ All colors MUST be HSL.
     letter-spacing: var(--ls-body);
   }
 
+  html {
+    scroll-behavior: smooth;
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html {
+      scroll-behavior: auto;
+    }
+  }
+
   h1 {
     font-family: var(--font-heading);
     font-size: var(--h1);
@@ -388,6 +398,10 @@ All colors MUST be HSL.
 
   .section__content--tight {
     gap: var(--gap-sm);
+  }
+
+  #reviews {
+    scroll-margin-top: 110px;
   }
 
   .anchor-offset {

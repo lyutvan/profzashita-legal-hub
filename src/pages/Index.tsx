@@ -1,5 +1,4 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
-import { useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LegalBackground from "@/components/LegalBackground";
@@ -32,7 +31,6 @@ import { getPhysCategoryPagePath, getPhysServiceEntryBySlug } from "@/data/phys-
 
 const Index = () => {
   const navigate = useNavigate();
-  const { hash } = useLocation();
   const { openQuickQuestionModal } = useQuickQuestionModal();
   const physCategoryItems = getCategoriesForAudience("phys")
     .filter((category) => category.title !== "Ущерб имуществу")
@@ -109,28 +107,6 @@ const Index = () => {
       icon: Clock
     }
   ];
-
-  useEffect(() => {
-    if (hash !== "#reviews") return;
-
-    const scrollToReviews = () => {
-      const target = document.querySelector("#reviews");
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-        window.scrollBy(0, -96);
-      }
-    };
-
-    const timers = [
-      window.setTimeout(scrollToReviews, 0),
-      window.setTimeout(scrollToReviews, 300),
-      window.setTimeout(scrollToReviews, 1000)
-    ];
-
-    return () => {
-      timers.forEach((timer) => window.clearTimeout(timer));
-    };
-  }, [hash]);
 
   const testimonials = [
     {
@@ -344,7 +320,7 @@ const Index = () => {
         </section>
 
         {/* Advantages Section */}
-        <section id="reviews" className="section bg-muted/30 anchor-offset">
+        <section className="section bg-muted/30">
           <div className="container">
             <div className="section__header max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
@@ -443,7 +419,7 @@ const Index = () => {
         </section>
 
         {/* Testimonials Section */}
-        <section className="section bg-muted/30">
+        <section id="reviews" className="section bg-muted/30">
           <div className="container">
             <div className="section__header max-w-3xl mx-auto text-center">
               <div className="flex flex-col items-center gap-4 md:flex-row md:justify-center md:gap-6">

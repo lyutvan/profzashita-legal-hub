@@ -139,13 +139,16 @@ const Header = () => {
               </div>
               <a
                 href="https://t.me/profzashita_consult_bot"
-                className="inline-flex items-center justify-center rounded-full transition-colors duration-150 hover:text-white"
+                className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#229ED9] text-white shadow-sm transition-colors duration-150 hover:bg-[#1d8fc6] md:h-[56px] md:w-[56px]"
                 aria-label="Написать в Telegram"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Telegram"
               >
-                <TelegramIcon size={36} className="h-9 w-9 block" />
+                <TelegramIcon
+                  size={30}
+                  className="h-[30px] w-[30px] translate-y-[-1px]"
+                />
               </a>
             </div>
           </div>
@@ -240,13 +243,16 @@ const Header = () => {
                   </div>
                   <a
                     href="https://t.me/profzashita_consult_bot"
-                    className="inline-flex items-center justify-center rounded-full transition-colors duration-150 hover:text-white"
+                    className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#229ED9] text-white shadow-sm transition-colors duration-150 hover:bg-[#1d8fc6]"
                     aria-label="Написать в Telegram"
                     target="_blank"
                     rel="noopener noreferrer"
                     title="Telegram"
                   >
-                    <TelegramIcon size={36} className="h-9 w-9 block" />
+                    <TelegramIcon
+                      size={30}
+                      className="h-[30px] w-[30px] translate-y-[-1px]"
+                    />
                   </a>
                 </div>
               </div>

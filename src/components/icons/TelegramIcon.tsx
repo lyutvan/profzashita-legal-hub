@@ -8,15 +8,18 @@ const TelegramIcon = ({ className = "", size = 24 }: TelegramIconProps) => {
     <svg
       width={size}
       height={size}
-      viewBox="0 0 24 24"
+      viewBox="0 0 240 240"
       xmlns="http://www.w3.org/2000/svg"
       className={className}
       aria-hidden="true"
+      focusable="false"
+      shapeRendering="geometricPrecision"
+      style={{ display: "block" }}
+      preserveAspectRatio="xMidYMid meet"
     >
-      <circle cx="12" cy="12" r="12" fill="#229ED9" />
       <path
-        d="M17.57 7.14l-1.79 8.44c-.13.6-.49.75-.99.47l-2.74-2.02-1.32 1.27c-.15.15-.28.28-.57.28l.2-2.82 5.13-4.63c.22-.2-.05-.31-.34-.11L9.1 11.6l-2.74-.86c-.6-.19-.61-.6.13-.89l10.7-4.12c.5-.18.94.11.78.83z"
-        fill="#FFFFFF"
+        fill="#fff"
+        d="M220.2 36.7 191 210.5c-2.2 12.8-8.1 16-16.4 10l-45.4-33.5-21.9 21.1c-2.4 2.4-4.4 4.4-9 4.4l3.2-45.7L185 85.4c3.6-3.2-.8-5-5.6-1.8l-103 64.8-44.3-13.8c-9.6-3-9.8-9.6 2-14.2l173-66.7c8-3 15 1.8 13.1 17z"
       />
     </svg>
   );

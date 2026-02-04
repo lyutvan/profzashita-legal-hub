@@ -1012,9 +1012,12 @@ const ZhilishchnyeSporyPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Написать в Telegram"
-                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] md:h-14 md:w-14"
+                      className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#229ED9] text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-[#1d8fc6] md:h-[56px] md:w-[56px]"
                     >
-                      <TelegramIcon size={28} className="h-7 w-7" />
+                      <TelegramIcon
+                        size={30}
+                        className="h-[30px] w-[30px] translate-y-[-1px]"
+                      />
                     </a>
                     <a
                       href={`mailto:${SITE.email}`}
