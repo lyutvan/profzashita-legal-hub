@@ -34,6 +34,7 @@ import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 import { sharedReviews } from "@/data/shared-reviews";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
+import TelegramIcon from "@/components/icons/TelegramIcon";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 import vaskovskyImg from "@/assets/team/vaskovsky.jpg";
@@ -1011,14 +1012,9 @@ const ZhilishchnyeSporyPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Написать в Telegram"
-                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-[#229ED9] shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] hover:text-[#C9A227] md:h-14 md:w-14"
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] md:h-14 md:w-14"
                     >
-                      <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
-                        <path
-                          d="M21.2 4.6L3.9 11.2c-.9.3-.9 1.6 0 1.9l4.4 1.4 1.7 5.1c.3.9 1.5 1.1 2 .3l2.5-3.4 4.6 3.4c.7.5 1.7.1 1.9-.8l2.6-13.6c.2-1-.8-1.8-1.8-1.4z"
-                          fill="currentColor"
-                        />
-                      </svg>
+                      <TelegramIcon size={28} className="h-7 w-7" />
                     </a>
                     <a
                       href={`mailto:${SITE.email}`}
