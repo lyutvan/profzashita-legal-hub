@@ -264,6 +264,18 @@ const ZhilishchnyeSporyPage = () => {
       icon: Landmark
     },
     {
+      title: "Другая ситуация — нужна помощь",
+      description: "Разберём и подскажем, как действовать",
+      href: "/services/phys/vyselenie",
+      icon: HelpCircle
+    },
+    {
+      title: "Перепланировки и споры по документам",
+      description: "Проверим документы и выстроим безопасную правовую позицию",
+      href: "/services/phys/osparivanie-privatizacii",
+      icon: Landmark
+    },
+    {
       title: "Взыскание ущерба",
       description: "Взыщем расходы на восстановление и стоимость повреждённого имущества",
       href: "/services/phys/vozmeshchenie-ushcherba",
@@ -301,7 +313,7 @@ const ZhilishchnyeSporyPage = () => {
     }
   ]
     .filter((item, index, arr) => arr.findIndex((entry) => entry.title === item.title) === index)
-    .slice(0, 6);
+    .slice(0, 8);
 
   const teamMembers = [
     {
@@ -930,7 +942,11 @@ const ZhilishchnyeSporyPage = () => {
 
             <Accordion type="single" collapsible className="section__content mt-8 space-y-4">
               {salesAccordion.map((item, index) => (
-                <AccordionItem key={item.title} value={`sales-${index}`} className="border rounded-xl px-6">
+                <AccordionItem
+                  key={item.title}
+                  value={`sales-${index}`}
+                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+                >
                   <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
                     {item.title}
                   </AccordionTrigger>
@@ -948,11 +964,11 @@ const ZhilishchnyeSporyPage = () => {
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">FAQ — Частые вопросы о жилищных спорах</h2>
             </div>
             <Accordion type="single" collapsible className="section__content space-y-4">
-              {faqItems.map((item, index) => (
+              {faqItems.slice(0, 6).map((item, index) => (
                 <AccordionItem
                   key={item.question}
                   value={`faq-${index}`}
-                  className="rounded-xl border border-slate-200 px-6 transition-colors hover:border-[#C9A227]/70 data-[state=open]:border-[#C9A227]"
+                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
                 >
                   <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
                     {item.question}
@@ -977,23 +993,55 @@ const ZhilishchnyeSporyPage = () => {
         {/* Экран 8: Финальная форма */}
         <section className="section">
           <div className="container">
-            <div className="section__header max-w-3xl">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Получите оценку перспектив по вашей ситуации</h2>
-              <p className="text-muted-foreground">
-                Оставьте контакты — адвокат по жилищным спорам свяжется и расскажет, как действовать дальше.
-              </p>
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_520px] lg:items-start lg:gap-14">
+              <div className="max-w-2xl space-y-6">
+                <div className="section__header max-w-2xl !mb-0">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                    Получите оценку перспектив по вашей ситуации
+                  </h2>
+                  <p className="text-muted-foreground">
+                    Оставьте контакты — адвокат по жилищным спорам свяжется и расскажет, как действовать дальше.
+                  </p>
+                </div>
+                <div className="space-y-3">
+                  <p className="text-small font-semibold text-slate-900">Или напишите нам напрямую:</p>
+                  <div className="flex items-center gap-4">
+                    <a
+                      href="https://t.me/profzashita_consult_bot"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Написать в Telegram"
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-[#229ED9] shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] hover:text-[#C9A227] md:h-14 md:w-14"
+                    >
+                      <svg viewBox="0 0 24 24" className="h-6 w-6" aria-hidden="true">
+                        <path
+                          d="M21.2 4.6L3.9 11.2c-.9.3-.9 1.6 0 1.9l4.4 1.4 1.7 5.1c.3.9 1.5 1.1 2 .3l2.5-3.4 4.6 3.4c.7.5 1.7.1 1.9-.8l2.6-13.6c.2-1-.8-1.8-1.8-1.4z"
+                          fill="currentColor"
+                        />
+                      </svg>
+                    </a>
+                    <a
+                      href={`mailto:${SITE.email}`}
+                      aria-label="Написать на email"
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-accent shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] hover:text-[#b8911f] md:h-14 md:w-14"
+                    >
+                      <Mail className="h-6 w-6" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+              <Card className="w-full rounded-[16px] border border-[#E5E7EB] bg-[#F8FAFC] shadow-[0_18px_40px_rgba(15,23,42,0.08)] lg:max-w-[520px] lg:justify-self-end">
+                <CardContent className="p-7 md:p-8">
+                  <LeadForm
+                    formId="lead-final"
+                    submitLabel="Получить консультацию"
+                    placeholder="Например: «Нужно снять с регистрации бывшего родственника и закрепить порядок пользования квартирой»"
+                    footerNote="Перезвоним в течение 15–20 минут в рабочее время"
+                    topic="Жилищные споры"
+                  />
+                </CardContent>
+              </Card>
             </div>
-            <Card className="border-border max-w-3xl">
-              <CardContent className="pt-6">
-                <LeadForm
-                  formId="lead-final"
-                  submitLabel="Оценить перспективы"
-                  placeholder="Например: «Нужно снять с регистрации бывшего родственника и закрепить порядок пользования квартирой»"
-                  footerNote="Перезвоним в течение 15–20 минут в рабочее время"
-                  topic="Жилищные споры"
-                />
-              </CardContent>
-            </Card>
           </div>
         </section>
 

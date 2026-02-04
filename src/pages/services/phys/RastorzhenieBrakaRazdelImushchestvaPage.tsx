@@ -760,28 +760,31 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 Как мы работаем: 6 этапов, чтобы вы вышли из ситуации с минимальными потерями
               </h2>
             </div>
-            <div className="section__content mx-auto w-full max-w-4xl">
-              {steps.map((step, index) => (
-                <div
-                  key={step.title}
-                  className="flex flex-col gap-4 border-b border-slate-200 py-6 last:border-b-0 sm:flex-row sm:gap-6"
-                >
-                  <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-slate-300 bg-slate-50 text-lg font-semibold text-accent">
-                    {index + 1}
-                  </div>
-                  <div className="flex-1 space-y-4">
-                    <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{step.title}</h3>
-                    <div>
-                      <div className="mb-2 text-xs uppercase tracking-wide text-muted-foreground">Что мы делаем</div>
-                      <p className="text-small leading-relaxed text-muted-foreground">{step.action}</p>
+            <div className="section__content">
+              <div className="category-steps-list divide-y divide-border/80 rounded-2xl border border-border/80 bg-white/90 shadow-[0_12px_28px_rgba(15,23,42,0.06)] overflow-hidden">
+                {steps.map((step, index) => (
+                  <div key={step.title} className="category-step-item flex gap-4 md:gap-6 px-4 md:px-6 py-5 md:py-6">
+                    <div className="category-step-number h-11 w-11 md:h-12 md:w-12 shrink-0 rounded-full border border-accent/40 bg-accent/10 text-accent flex items-center justify-center font-semibold">
+                      {index + 1}
                     </div>
-                    <div>
-                      <div className="mb-2 text-xs uppercase tracking-wide text-muted-foreground">Результат для вас</div>
-                      <p className="text-small leading-relaxed text-muted-foreground">{step.result}</p>
+                    <div className="flex-1 space-y-3">
+                      <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{step.title}</h3>
+                      <div>
+                        <div className="category-step-label text-xs uppercase tracking-wide text-muted-foreground mb-1">
+                          Что мы делаем
+                        </div>
+                        <p className="category-step-text text-small text-muted-foreground leading-relaxed">{step.action}</p>
+                      </div>
+                      <div>
+                        <div className="category-step-label text-xs uppercase tracking-wide text-muted-foreground mb-1">
+                          Результат для вас
+                        </div>
+                        <p className="category-step-text text-small text-muted-foreground leading-relaxed">{step.result}</p>
+                      </div>
                     </div>
                   </div>
-                </div>
-              ))}
+                ))}
+              </div>
             </div>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
               <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
