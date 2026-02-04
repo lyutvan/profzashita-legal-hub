@@ -139,7 +139,7 @@ const Header = () => {
               </div>
               <a
                 href="https://t.me/profzashita_consult_bot"
-                className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#229ED9] text-white shadow-sm transition-colors duration-150 hover:bg-[#1d8fc6] md:h-[56px] md:w-[56px]"
+                className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#229ED9] text-white shadow-sm transition-colors duration-150 hover:bg-[#1d8fc6] md:h-[44px] md:w-[44px]"
                 aria-label="Написать в Telegram"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -243,7 +243,7 @@ const Header = () => {
                   </div>
                   <a
                     href="https://t.me/profzashita_consult_bot"
-                    className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#229ED9] text-white shadow-sm transition-colors duration-150 hover:bg-[#1d8fc6]"
+                    className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#229ED9] text-white shadow-sm transition-colors duration-150 hover:bg-[#1d8fc6]"
                     aria-label="Написать в Telegram"
                     target="_blank"
                     rel="noopener noreferrer"
