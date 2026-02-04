@@ -6,15 +6,23 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     if (hash) {
-      const timer = window.setTimeout(() => {
+      const scrollToHash = () => {
         const target = document.querySelector(hash);
         if (target) {
           target.scrollIntoView({ behavior: "smooth", block: "start" });
+          // Fallback offset for fixed header if scroll-margin not applied
+          window.scrollBy(0, -96);
         } else {
           window.scrollTo(0, 0);
         }
-      }, 100);
-      return () => window.clearTimeout(timer);
+      };
+
+      const timer = window.setTimeout(scrollToHash, 200);
+      const timer2 = window.setTimeout(scrollToHash, 800);
+      return () => {
+        window.clearTimeout(timer);
+        window.clearTimeout(timer2);
+      };
     }
     window.scrollTo(0, 0);
   }, [pathname, hash]);
