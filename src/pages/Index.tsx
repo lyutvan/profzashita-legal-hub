@@ -320,7 +320,7 @@ const Index = () => {
         </section>
 
         {/* Advantages Section */}
-        <section className="section bg-muted/30">
+        <section id="reviews" className="section bg-muted/30 anchor-offset">
           <div className="container">
             <div className="section__header max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">

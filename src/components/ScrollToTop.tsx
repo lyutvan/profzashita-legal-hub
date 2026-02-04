@@ -6,12 +6,15 @@ const ScrollToTop = () => {
 
   useEffect(() => {
     if (hash) {
-      // Scroll to anchor if hash present
-      const target = document.querySelector(hash);
-      if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-        return;
-      }
+      const timer = window.setTimeout(() => {
+        const target = document.querySelector(hash);
+        if (target) {
+          target.scrollIntoView({ behavior: "smooth", block: "start" });
+        } else {
+          window.scrollTo(0, 0);
+        }
+      }, 100);
+      return () => window.clearTimeout(timer);
     }
     window.scrollTo(0, 0);
   }, [pathname, hash]);

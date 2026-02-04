@@ -390,6 +390,10 @@ All colors MUST be HSL.
     gap: var(--gap-sm);
   }
 
+  .anchor-offset {
+    scroll-margin-top: 96px;
+  }
+
   .header-container {
     max-width: 1240px;
     padding-inline: 24px;
