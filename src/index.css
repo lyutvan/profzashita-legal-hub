@@ -569,6 +569,7 @@ All colors MUST be HSL.
 
   .header-actions {
     gap: 16px;
+    margin-right: 40px;
   }
 
   .header-contacts {
