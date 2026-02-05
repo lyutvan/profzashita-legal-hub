@@ -132,7 +132,7 @@ const CATEGORY_TEAM: Record<string, string[]> = {
   "Семейные споры": ["vaskovsky", "kalabekov", "yulia-lyadova"],
   "Жилищные споры": ["vaskovsky", "ryzhenko"],
   "Ущерб имуществу": ["kalabekov", "ryzhenko"],
-  "Наследственные дела": ["vaskovsky", "kalabekov"],
+  "Наследственные дела": ["vaskovsky", "kalabekov", "lyadova"],
   "Взыскание долгов и договорные споры": ["sotnikov", "ryzhenko"],
   "Защита прав потребителей": ["kalabekov", "vaskovsky"],
   "ДТП, страхование, вред здоровью": ["vaskovsky", "ryzhenko"],
@@ -1204,6 +1204,8 @@ export const getPhysServicePageData = (entry: PhysServiceEntry): PhysServicePage
     rating: review.rating
   }));
 
+  const isNasledstvennyeCategory = entry.isCategory && entry.category === "Наследственные дела";
+
   return {
     entry,
     metaTitle,
@@ -1213,7 +1215,11 @@ export const getPhysServicePageData = (entry: PhysServiceEntry): PhysServicePage
     breadcrumbSchema,
     categoryLabel: isBankrotstvoMerged ? "Банкротство и кредитные споры" : entry.isCategory ? entry.title : entry.category,
     categoryPath,
-    heroTitle: isBankrotstvoMerged ? "Банкротство и кредитные споры" : `Адвокат по ${heroServiceName}`,
+    heroTitle: isBankrotstvoMerged
+      ? "Банкротство и кредитные споры"
+      : isNasledstvennyeCategory
+        ? "Помогаем в любых вопросах по наследственным делам"
+        : `Адвокат по ${heroServiceName}`,
     heroSubtitle: categoryContent.heroSubtitle,
     heroBenefits: categoryContent.benefits,
     scenarios,

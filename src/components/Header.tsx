@@ -146,8 +146,8 @@ const Header = () => {
                 title="Telegram"
               >
                 <TelegramIcon
-                  size={30}
-                  className="h-[30px] w-[30px] translate-y-[-1px]"
+                  size={28}
+                  className="h-[28px] w-[28px] translate-y-[-1px]"
                 />
               </a>
             </div>
@@ -250,8 +250,8 @@ const Header = () => {
                     title="Telegram"
                   >
                     <TelegramIcon
-                      size={30}
-                      className="h-[30px] w-[30px] translate-y-[-1px]"
+                      size={28}
+                      className="h-[28px] w-[28px] translate-y-[-1px]"
                     />
                   </a>
                 </div>

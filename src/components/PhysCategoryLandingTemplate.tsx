@@ -261,6 +261,18 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         path: data.entry.path
       }));
 
+  const isNasledstvennyeCategory = data.categoryLabel === "Наследственные дела";
+  const renderedSituationCards = isNasledstvennyeCategory && situationCards.length < 8
+    ? [
+        ...situationCards,
+        {
+          title: "Другая ситуация — нужна помощь",
+          description: "Разберем и подскажем, как действовать",
+          path: data.entry.path
+        }
+      ].slice(0, 8)
+    : situationCards.slice(0, 8);
+
   const salesWhatWeDo = Array.from(
     new Set([
       ...data.planBeforeCourt.slice(0, 3),
@@ -507,7 +519,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           <div className="container">
             <div className="section__header max-w-3xl mx-auto text-center pt-2 md:pt-4 mb-6 md:mb-7">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                {isBankrotstvoMerged ? "Какие вопросы решаем" : `Помогаем по направлению «${data.categoryLabel}»`}
+                {isBankrotstvoMerged
+                  ? "Какие вопросы решаем"
+                  : data.categoryLabel === "Наследственные дела"
+                    ? "Помогаем в любых вопросах по наследственным делам"
+                    : `Помогаем по направлению «${data.categoryLabel}»`}
               </h2>
               <p className="text-muted-foreground">
                 {isBankrotstvoMerged
@@ -528,12 +544,19 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
             ) : (
               <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-fr">
-                {situationCards.map((card, index) => {
+                {renderedSituationCards.map((card, index) => {
                   const Icon = CATEGORY_ICONS[index % CATEGORY_ICONS.length];
                   return (
                     <Card
                       key={card.title}
-                      className="h-full rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+                      className={`h-full rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)] ${
+                        isNasledstvennyeCategory ? "cursor-pointer" : ""
+                      }`}
+                      onClick={
+                        isNasledstvennyeCategory
+                          ? () => openQuickQuestionModal({ topic: `${data.categoryLabel}: ${card.title}` })
+                          : undefined
+                      }
                     >
                       <CardContent className="p-5 md:p-6 pt-5 md:pt-6 h-full flex flex-col items-center text-center gap-3">
                         <Icon className="h-12 w-12 text-[#111827]" strokeWidth={2} />
@@ -542,11 +565,15 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                           {card.description ?? "Подготовим документы и защитим позицию в переговорах и суде"}
                         </p>
                         <Button
-                          asChild
                           size="lg"
                           className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                          onClick={
+                            isNasledstvennyeCategory
+                              ? () => openQuickQuestionModal({ topic: `${data.categoryLabel}: ${card.title}` })
+                              : undefined
+                          }
                         >
-                          <Link to={card.path}>Получить консультацию</Link>
+                          {isNasledstvennyeCategory ? "Получить консультацию" : <Link to={card.path}>Получить консультацию</Link>}
                         </Button>
                       </CardContent>
                     </Card>
