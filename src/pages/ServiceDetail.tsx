@@ -213,7 +213,7 @@ const ServiceDetail = () => {
                       Получить консультацию
                     </Button>
                     <Button size="lg" variant="outline" className="border-primary-foreground/20 hover:bg-primary-foreground/10" asChild>
-                      <a href="tel:+79168597654">
+                      <a href="tel:+74950040196">
                         Позвонить
                       </a>
                     </Button>

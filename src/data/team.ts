@@ -64,7 +64,7 @@ export const teamMembers: TeamMember[] = [
       "Банкротство и субсидиарная ответственность"
     ],
     photo: "/images/team/lyutikov-ivan.jpg",
-    phone: "+7 (916) 859-76-54",
+    phone: "+7 (495) 004-01-96",
     email: "profzashchita@internet.ru",
     cases: [
       { title: "Отмена ареста активов компании на стадии следствия", result: "Сохранены оборотные средства и оборудование" },
@@ -140,7 +140,7 @@ export const teamMembers: TeamMember[] = [
       "Взыскание долгов и убытков"
     ],
     photo: ryzhenkoImg,
-    phone: "+7 (916) 859-76-54",
+    phone: "+7 (495) 004-01-96",
     email: "profzashchita@internet.ru",
     cases: [
       { title: "Взыскание долга по сложному контракту", result: "Взыскано более 45 млн руб. с контрагента" },
@@ -175,7 +175,7 @@ export const teamMembers: TeamMember[] = [
       "Досудебные соглашения и медиация"
     ],
     photo: sotnikovImg,
-    phone: "+7 (916) 859-76-54",
+    phone: "+7 (495) 004-01-96",
     email: "profzashchita@internet.ru",
     cases: [
       { title: "Смягчение квалификации уголовного дела с экономической статьёй", result: "Назначен условный срок без лишения свободы" },
@@ -363,7 +363,7 @@ export const teamMembers: TeamMember[] = [
       "Административные и страховые споры"
     ],
     photo: vaskovskyImg,
-    phone: "+7 (916) 859-76-54",
+    phone: "+7 (495) 004-01-96",
     email: "profzashchita@internet.ru",
     cases: [
       { title: "Раздел имущества супругов с иностранными активами", result: "Достигнут паритетный раздел и защита интересов детей" },
@@ -437,7 +437,7 @@ export const teamMembers: TeamMember[] = [
       "Обязательственное право и взыскания"
     ],
     photo: kalabekovImg,
-    phone: "+7 (916) 859-76-54",
+    phone: "+7 (495) 004-01-96",
     email: "profzashchita@internet.ru",
     cases: [
       { title: "Возврат средств за некачественные услуги", result: "Взыскана полная стоимость и штраф" },

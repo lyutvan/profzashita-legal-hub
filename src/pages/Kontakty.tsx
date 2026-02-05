@@ -17,7 +17,7 @@ const Contacts = () => {
         
         {/* OpenGraph */}
         <meta property="og:title" content="Контакты — Коллегия адвокатов Профзащита" />
-        <meta property="og:description" content="Свяжитесь с нами: +7 (916) 859-76-54. Офис в Москве. Бесплатная консультация." />
+        <meta property="og:description" content="Свяжитесь с нами: +7 (495) 004-01-96. Офис в Москве. Бесплатная консультация." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${SITE.url}kontakty/`} />
         <meta property="og:image" content={SITE.ogImage} />
@@ -29,7 +29,7 @@ const Contacts = () => {
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Контакты — Профзащита" />
-        <meta name="twitter:description" content="Свяжитесь с нами: +7 (916) 859-76-54. Бесплатная консультация." />
+        <meta name="twitter:description" content="Свяжитесь с нами: +7 (495) 004-01-96. Бесплатная консультация." />
         <meta name="twitter:image" content={SITE.ogImage} />
       </Helmet>
       
@@ -73,8 +73,8 @@ const Contacts = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-2">Телефон</h3>
-                        <a href="tel:+79168597654" className="text-body-mobile md:text-body text-accent hover:underline">
-                          +7 (916) 859-76-54
+                        <a href="tel:+74950040196" className="text-body-mobile md:text-body text-accent hover:underline">
+                          +7 (495) 004-01-96
                         </a>
                         <p className="text-small text-muted-foreground mt-1">
                           Звоните в любое время

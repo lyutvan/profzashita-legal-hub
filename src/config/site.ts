@@ -4,8 +4,8 @@ export const SITE = {
   legalName: "КАГМ «Профзащита»",
   logo: "https://prof-zashita.ru/logo-new.png",
   ogImage: "https://prof-zashita.ru/og-cover.jpg",
-  phone: "+7 (916) 859-76-54",
-  phoneRaw: "+79168597654",
+  phone: "+7 (495) 004-01-96",
+  phoneRaw: "+74950040196",
   email: "profzashchita@internet.ru",
   address: {
     country: "RU",

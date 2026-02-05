@@ -123,11 +123,11 @@ const Header = () => {
             <div className="header-contacts flex items-center gap-3 text-white/90">
               <div className="flex flex-col items-start gap-1.5 whitespace-nowrap">
                 <a
-                  href="tel:+79168597654"
+                  href="tel:+74950040196"
                   className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
                 >
                   <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />
-                  +7 (916) 859-76-54
+                  +7 (495) 004-01-96
                 </a>
                 <a
                   href="mailto:profzashchita@internet.ru"
@@ -227,11 +227,11 @@ const Header = () => {
                 <div className="header-contacts flex items-center gap-3 text-white/90 pt-3 border-t border-white/10">
                   <div className="flex flex-col items-start gap-2 whitespace-nowrap">
                     <a
-                      href="tel:+79168597654"
+                      href="tel:+74950040196"
                       className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
                     >
                       <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />
-                      +7 (916) 859-76-54
+                      +7 (495) 004-01-96
                     </a>
                     <a
                       href="mailto:profzashchita@internet.ru"

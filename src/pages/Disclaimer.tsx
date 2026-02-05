@@ -111,7 +111,7 @@ const Disclaimer = () => {
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-semibold mb-4">9. Контактная информация</h2>
                   <p className="text-muted-foreground leading-relaxed">
                     Если у вас есть вопросы относительно данного отказа от ответственности или любой информации на сайте, пожалуйста, 
-                    свяжитесь с нами по адресу: profzashchita@internet.ru или по телефону: +7 (916) 859-76-54.
+                    свяжитесь с нами по адресу: profzashchita@internet.ru или по телефону: +7 (495) 004-01-96.
                   </p>
                 </section>
 

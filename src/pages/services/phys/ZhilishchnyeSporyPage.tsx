@@ -33,6 +33,7 @@ import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 import { sharedReviews } from "@/data/shared-reviews";
+import { cases as casesData } from "@/data/cases";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 
@@ -393,13 +394,18 @@ const ZhilishchnyeSporyPage = () => {
     }
   ];
 
-  const cases: Array<{
-    title: string;
-    situation: string;
-    task: string;
-    actions: string;
-    result: string;
-  }> = [];
+  const matchesHousingCase = (item: typeof casesData[number]) => {
+    const haystack = `${item.category} ${item.title} ${item.slug ?? ""} ${item.task ?? ""} ${item.actions ?? ""}`.toLowerCase();
+    return (
+      item.category === "Жилищные споры" ||
+      /высел|vyselen/.test(haystack)
+    );
+  };
+
+  const cases = casesData
+    .filter(matchesHousingCase)
+    .sort((a, b) => (b.datePublished ?? "").localeCompare(a.datePublished ?? ""))
+    .slice(0, 2);
 
   const faqItems = [
     {
@@ -853,31 +859,77 @@ const ZhilishchnyeSporyPage = () => {
                   </p>
                 </div>
                 <div className="section__content grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {cases.map((caseItem) => (
-                    <Card key={caseItem.title} className="h-full">
-                      <CardContent className="pt-6 h-full flex flex-col gap-4">
-                        <h3 className="font-semibold text-body-mobile md:text-body">{caseItem.title}</h3>
-                        <div className="space-y-3 text-small text-muted-foreground leading-relaxed">
-                          <div>
-                            <span className="font-semibold text-foreground">Ситуация: </span>
-                            {caseItem.situation}
+                  {cases.map((caseItem) => {
+                    const decisionPreview = caseItem.decisionPreview ?? caseItem.documents?.[0];
+                    const hasDecision = Boolean(decisionPreview);
+                    return (
+                      <Card
+                        key={caseItem.slug ?? caseItem.title}
+                        className="h-full border border-slate-200 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.06)] transition-all hover:border-[#C9A227] hover:shadow-[0_16px_40px_rgba(201,162,39,0.18)]"
+                      >
+                        <CardContent className="pt-6 h-full">
+                          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
+                            <div className="flex-1">
+                              <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">
+                                {caseItem.title}
+                              </h3>
+                              <div className="mt-4 space-y-3 text-small text-muted-foreground leading-relaxed">
+                                <div>
+                                  <span className="font-semibold text-foreground">Задача: </span>
+                                  {caseItem.task}
+                                </div>
+                                <div>
+                                  <span className="font-semibold text-foreground">Что сделали: </span>
+                                  {caseItem.actions}
+                                </div>
+                                <div>
+                                  <span className="font-semibold text-foreground">Результат: </span>
+                                  {caseItem.result}
+                                </div>
+                              </div>
+                              {!hasDecision && (
+                                <div className="mt-6">
+                                  <Button
+                                    asChild
+                                    size="lg"
+                                    variant="outline"
+                                    className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
+                                  >
+                                    <Link to={`/cases/${caseItem.slug}`}>Подробнее о кейсе</Link>
+                                  </Button>
+                                </div>
+                              )}
+                            </div>
+                            {hasDecision && (
+                              <div className="w-full lg:w-[52%] lg:max-w-[600px]">
+                                <div className="rounded-[12px] border border-[#E6DDCC] bg-[#F8F4EA] p-4">
+                                  <div className="text-sm font-semibold text-slate-900">Решение суда</div>
+                                  <div className="mt-3 rounded-[10px] border border-[#E6DDCC] bg-white p-2">
+                                    <img
+                                      src={decisionPreview}
+                                      alt={`Решение суда: ${caseItem.title}`}
+                                      className="max-h-[640px] w-full object-contain"
+                                      loading="lazy"
+                                    />
+                                  </div>
+                                  <div className="mt-4">
+                                    <Button
+                                      asChild
+                                      size="lg"
+                                      variant="outline"
+                                      className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
+                                    >
+                                      <Link to={`/cases/${caseItem.slug}`}>Подробнее о кейсе</Link>
+                                    </Button>
+                                  </div>
+                                </div>
+                              </div>
+                            )}
                           </div>
-                          <div>
-                            <span className="font-semibold text-foreground">Задача: </span>
-                            {caseItem.task}
-                          </div>
-                          <div>
-                            <span className="font-semibold text-foreground">Что сделали: </span>
-                            {caseItem.actions}
-                          </div>
-                          <div>
-                            <span className="font-semibold text-foreground">Результат: </span>
-                            {caseItem.result}
-                          </div>
-                        </div>
-                      </CardContent>
-                    </Card>
-                  ))}
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
                 </div>
               </>
             )}
