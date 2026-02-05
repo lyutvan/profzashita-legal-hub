@@ -417,12 +417,15 @@ All colors MUST be HSL.
   .header-row {
     flex-wrap: nowrap;
     gap: 24px;
+    min-width: 0;
   }
 
   .header-nav {
     gap: 20px;
     flex-wrap: nowrap;
     white-space: nowrap;
+    flex: 1 1 auto;
+    min-width: 0;
   }
 
   .header-nav a {
@@ -433,6 +436,7 @@ All colors MUST be HSL.
     gap: 16px;
     white-space: nowrap;
     flex-wrap: nowrap;
+    flex: 0 0 auto;
   }
 
   .header-contacts {

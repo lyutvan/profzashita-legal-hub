@@ -72,7 +72,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="header-nav hidden lg:flex flex-1 items-center justify-center min-w-0">
+          <nav className="header-nav hidden xl:flex flex-1 items-center justify-center min-w-0">
             <Link
               to="/"
               className={`text-small font-medium transition-colors duration-150 py-2 min-h-[44px] flex items-center relative ${
@@ -111,7 +111,7 @@ const Header = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="header-actions hidden lg:flex items-center flex-shrink-0">
+          <div className="header-actions hidden xl:flex items-center flex-shrink-0">
             <Button 
               variant="default" 
               size="sm" 
@@ -156,7 +156,7 @@ const Header = () => {
           {/* Mobile Menu Button */}
           <button
             onClick={() => setIsMenuOpen(!isMenuOpen)}
-            className="lg:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center transition-all duration-150 rounded hover:bg-white/10 focus:outline focus:outline-2 focus:outline-offset-2 text-white focus:outline-white"
+            className="xl:hidden p-2 min-w-[44px] min-h-[44px] flex items-center justify-center transition-all duration-150 rounded hover:bg-white/10 focus:outline focus:outline-2 focus:outline-offset-2 text-white focus:outline-white"
             aria-label={isMenuOpen ? "Закрыть меню" : "Открыть меню"}
             aria-expanded={isMenuOpen}
           >
@@ -171,7 +171,7 @@ const Header = () => {
         {/* Mobile Navigation */}
         {isMenuOpen && (
           <nav 
-            className="lg:hidden py-6 bg-primary border-t border-white/10"
+            className="xl:hidden py-6 bg-primary border-t border-white/10"
             role="navigation"
             aria-label="Мобильное меню"
           >

@@ -87,12 +87,12 @@ export const teamMembers: TeamMember[] = [
         type: "image"
       },
       {
-        title: "Сертификат ФПА РФ: вебинары 20.01.2026",
-        org: "Федеральная палата адвокатов Российской Федерации",
-        date: "20.01.2026 · 6 часов",
-        previewImage: "/certs/lyutikov/fpa-webinar-2026-01-20.jpg",
-        fileUrl: "/certs/lyutikov/fpa-webinar-2026-01-20.jpg",
-        type: "image"
+        title: "Удостоверение «Ветеран труда»",
+        org: "Министерство социального развития Московской области",
+        date: "10.06.2024",
+        previewImage: "/certificates/files/lyutikov-veteran-truda.png",
+        fileUrl: "/certificates/files/lyutikov-veteran-truda.pdf",
+        type: "pdf"
       },
       {
         title: "Удостоверение адвоката",
@@ -192,14 +192,6 @@ export const teamMembers: TeamMember[] = [
         title: "Удостоверение о повышении квалификации (2011)",
         previewImage: "/certificates/files/sotnikov-qualification-2011.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2011.jpg",
-        type: "image"
-      },
-      {
-        title: "Сертификат ФПА РФ: вебинары 20.01.2026",
-        org: "Федеральная палата адвокатов Российской Федерации",
-        date: "20.01.2026 · 6 часов",
-        previewImage: "/certs/sotnikov/fpa-webinar-2026-01-20.jpg",
-        fileUrl: "/certs/sotnikov/fpa-webinar-2026-01-20.jpg",
         type: "image"
       },
       {

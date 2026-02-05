@@ -223,6 +223,7 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
 
 const RastorzhenieBrakaRazdelImushchestvaPage = () => {
   const { openQuickQuestionModal } = useQuickQuestionModal();
+  const callHref = "tel:+74950040196";
   const location = useLocation();
   const isFamilyCategory = location.pathname.includes("/services/phys/semeynye-spory");
   const pageBreadcrumbLabel = isFamilyCategory ? "Семейные споры" : "Расторжение брака и раздел имущества";
@@ -668,9 +669,9 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                       <Button
                         size="lg"
                         className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                        onClick={() => openQuickQuestionModal({ topic: "Расторжение брака и раздел имущества" })}
+                        asChild
                       >
-                        Получить консультацию
+                        <a href={callHref}>Получить консультацию</a>
                       </Button>
                     </CardContent>
                   </Card>
