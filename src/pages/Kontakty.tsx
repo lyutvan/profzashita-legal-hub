@@ -76,6 +76,11 @@ const Contacts = () => {
                         <a href="tel:+74950040196" className="text-body-mobile md:text-body text-accent hover:underline">
                           +7 (495) 004-01-96
                         </a>
+                        <div className="mt-1">
+                          <a href="tel:+79168597654" className="text-body-mobile md:text-body text-accent hover:underline">
+                            +7 (916) 859-76-54
+                          </a>
+                        </div>
                         <p className="text-small text-muted-foreground mt-1">
                           Звоните в любое время
                         </p>
