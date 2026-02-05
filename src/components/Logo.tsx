@@ -30,7 +30,8 @@ const Logo = ({
           Профзащита
         </span>
         <span className="logo__subtitle whitespace-nowrap">
-          Коллегия адвокатов
+          <span>Коллегия</span>
+          <span className="logo__subtitle-word">адвокатов</span>
         </span>
       </span>
     </div>

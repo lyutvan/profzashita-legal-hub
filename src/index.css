@@ -472,9 +472,13 @@ All colors MUST be HSL.
     font-weight: 600;
     font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: 0.1em;
+    letter-spacing: 0.14em;
     line-height: 1.1;
     color: hsl(var(--accent));
+  }
+
+  .logo__subtitle-word {
+    margin-left: 0.18em;
   }
 
   @media (max-width: 768px) {
@@ -488,7 +492,11 @@ All colors MUST be HSL.
 
     .logo__subtitle {
       font-size: 9px;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.12em;
+    }
+
+    .logo__subtitle-word {
+      margin-left: 0.14em;
     }
   }
 
