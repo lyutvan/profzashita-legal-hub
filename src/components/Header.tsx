@@ -61,8 +61,8 @@ const Header = () => {
     <header 
       className="sticky top-0 z-[1000] transition-all duration-200 bg-primary shadow-sm border-b border-white/10"
     >
-      <div className="container header-container">
-        <div className={`header-row flex items-center justify-between transition-all duration-200 ${isScrolled ? 'h-16' : 'h-20'}`}>
+      <div className="container header-container header-container--full">
+        <div className={`header-row flex items-center transition-all duration-200 ${isScrolled ? 'h-16' : 'h-20'}`}>
           <Link 
             to="/" 
             className="flex items-center gap-2 flex-shrink-0"
@@ -72,7 +72,7 @@ const Header = () => {
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="header-nav hidden xl:flex flex-1 items-center justify-center min-w-0">
+          <nav className="header-nav hidden xl:flex flex-1 items-center justify-center min-w-0 overflow-hidden">
             <Link
               to="/"
               className={`text-small font-medium transition-colors duration-150 py-2 min-h-[44px] flex items-center relative ${
@@ -111,7 +111,7 @@ const Header = () => {
           </nav>
 
           {/* Desktop CTA */}
-          <div className="header-actions hidden xl:flex items-center flex-shrink-0">
+          <div className="header-actions hidden xl:flex items-center flex-shrink-0 ml-auto">
             <Button 
               variant="default" 
               size="sm" 
@@ -131,7 +131,7 @@ const Header = () => {
                 </a>
                 <a
                   href="mailto:profzashchita@internet.ru"
-                  className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
+                  className="hidden items-center gap-2 transition-colors duration-150 hover:text-white xl:inline-flex"
                 >
                   <Mail className="h-3.5 w-3.5" strokeWidth={1.8} />
                   profzashchita@internet.ru
