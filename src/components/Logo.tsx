@@ -25,11 +25,11 @@ const Logo = ({
       
       <span className="logo__text flex flex-col min-w-0">
         <span 
-          className={`logo__title transition-all duration-300 text-white ${className}`}
+          className={`logo__title transition-all duration-300 ${className}`}
         >
           Профзащита
         </span>
-        <span className="logo__subtitle text-white whitespace-nowrap">
+        <span className="logo__subtitle whitespace-nowrap">
           Коллегия адвокатов
         </span>
       </span>

@@ -461,17 +461,20 @@ All colors MUST be HSL.
   .logo__title {
     font-family: var(--font-heading);
     font-weight: 700;
-    font-size: 26px;
-    line-height: 1.05;
-    letter-spacing: 0.02em;
+    font-size: 23px;
+    line-height: 1.1;
+    letter-spacing: 0.018em;
+    color: hsl(var(--accent));
   }
 
   .logo__subtitle {
     font-family: var(--font-body);
     font-weight: 600;
-    font-size: 12px;
+    font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: 0.22em;
+    letter-spacing: 0.1em;
+    line-height: 1.1;
+    color: hsl(var(--accent));
   }
 
   @media (max-width: 768px) {
@@ -480,12 +483,12 @@ All colors MUST be HSL.
     }
 
     .logo__title {
-      font-size: 22px;
+      font-size: 20px;
     }
 
     .logo__subtitle {
-      font-size: 10px;
-      letter-spacing: 0.2em;
+      font-size: 9px;
+      letter-spacing: 0.08em;
     }
   }
 
