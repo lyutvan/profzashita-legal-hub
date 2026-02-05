@@ -450,6 +450,45 @@ All colors MUST be HSL.
     line-height: 1.2;
   }
 
+  .logo {
+    gap: 16px;
+  }
+
+  .logo__text {
+    line-height: 1.05;
+  }
+
+  .logo__title {
+    font-family: var(--font-heading);
+    font-weight: 700;
+    font-size: 26px;
+    line-height: 1.05;
+    letter-spacing: 0.02em;
+  }
+
+  .logo__subtitle {
+    font-family: var(--font-body);
+    font-weight: 600;
+    font-size: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.22em;
+  }
+
+  @media (max-width: 768px) {
+    .logo {
+      gap: 14px;
+    }
+
+    .logo__title {
+      font-size: 22px;
+    }
+
+    .logo__subtitle {
+      font-size: 10px;
+      letter-spacing: 0.2em;
+    }
+  }
+
   .faq-question,
   .faq-question * {
     text-decoration: none !important;

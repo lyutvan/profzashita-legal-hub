@@ -16,20 +16,20 @@ const Logo = ({
       : "h-10";
   
   return (
-    <div className="flex items-center gap-2 min-w-0">
+    <div className="logo flex items-center min-w-0">
       <img 
         src={logoNew} 
         alt="Профзащита logo" 
-        className={`transition-all duration-300 ${heightClass} w-auto`}
+        className={`logo__mark transition-all duration-300 ${heightClass} w-auto`}
       />
       
-      <span className="flex flex-col leading-tight min-w-0">
+      <span className="logo__text flex flex-col min-w-0">
         <span 
-          className={`font-serif text-body-mobile md:text-body font-semibold tracking-wide transition-all duration-300 text-white ${className}`}
+          className={`logo__title transition-all duration-300 text-white ${className}`}
         >
           Профзащита
         </span>
-        <span className="text-[10px] md:text-[11px] uppercase tracking-[0.18em] text-white whitespace-nowrap">
+        <span className="logo__subtitle text-white whitespace-nowrap">
           Коллегия адвокатов
         </span>
       </span>
