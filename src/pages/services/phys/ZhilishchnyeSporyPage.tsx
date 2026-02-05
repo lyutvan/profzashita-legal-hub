@@ -34,7 +34,6 @@ import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 import { sharedReviews } from "@/data/shared-reviews";
 import { cases as casesData } from "@/data/cases";
-import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
@@ -216,7 +215,7 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, topic, onSucce
 };
 
 const ZhilishchnyeSporyPage = () => {
-  const { openQuickQuestionModal } = useQuickQuestionModal();
+  const callHref = "tel:+74950040196";
   const canonical = new URL("/services/phys/vyselenie", SITE.url).toString();
 
   const trustItems = [
@@ -404,8 +403,7 @@ const ZhilishchnyeSporyPage = () => {
 
   const cases = casesData
     .filter(matchesHousingCase)
-    .sort((a, b) => (b.datePublished ?? "").localeCompare(a.datePublished ?? ""))
-    .slice(0, 2);
+    .sort((a, b) => (b.datePublished ?? "").localeCompare(a.datePublished ?? ""));
 
   const faqItems = [
     {
@@ -655,11 +653,11 @@ const ZhilishchnyeSporyPage = () => {
                 восстановление имущества. Оценим перспективы и предложим понятный план действий.
               </p>
               <Button
+                asChild
                 size="lg"
                 className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
-                onClick={() => openQuickQuestionModal({ topic: "Жилищные споры" })}
               >
-                Получить консультацию
+                <a href={callHref}>Получить консультацию</a>
               </Button>
               <div className="flex flex-nowrap items-center gap-y-2 text-small text-white/75 overflow-x-auto md:overflow-visible">
                 {trustItems.map((item, index) => (
@@ -699,11 +697,11 @@ const ZhilishchnyeSporyPage = () => {
                         {card.description}
                       </p>
                       <Button
+                        asChild
                         size="lg"
                         className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                        onClick={() => openQuickQuestionModal({ topic: "Жилищные споры и ущерб имуществу" })}
                       >
-                        Получить консультацию
+                        <a href={callHref}>Получить консультацию</a>
                       </Button>
                     </CardContent>
                   </Card>
@@ -834,11 +832,11 @@ const ZhilishchnyeSporyPage = () => {
             </div>
             <div className="mt-8 flex flex-col items-center gap-3 text-center">
               <Button
+                asChild
                 size="lg"
                 className="w-full sm:w-[360px] h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                onClick={() => openQuickQuestionModal({ topic: "Жилищные споры" })}
               >
-                Получить индивидуальный план действий
+                <a href={callHref}>Получить индивидуальный план действий</a>
               </Button>
               <p className="text-small text-slate-600">
                 Мы проанализируем вашу ситуацию и покажем, как действовать дальше — без обязательств
@@ -961,11 +959,11 @@ const ZhilishchnyeSporyPage = () => {
               </div>
               <div className="flex justify-center mt-8">
                 <Button
+                  asChild
                   size="lg"
                   className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-                  onClick={() => openQuickQuestionModal({ topic: "Жилищные споры" })}
                 >
-                  Обсудить с адвокатом свою ситуацию
+                  <a href={callHref}>Обсудить с адвокатом свою ситуацию</a>
                 </Button>
               </div>
             </div>
@@ -1033,11 +1031,11 @@ const ZhilishchnyeSporyPage = () => {
             <div className="mt-8 text-center space-y-4">
               <p className="text-muted-foreground">Не нашли свой вопрос? Оставьте заявку и мы оценим вашу ситуацию</p>
               <Button
+                asChild
                 size="lg"
                 className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                onClick={() => openQuickQuestionModal({ topic: "Жилищные споры" })}
               >
-                Получить оценку перспектив
+                <a href={callHref}>Получить оценку перспектив</a>
               </Button>
             </div>
           </div>

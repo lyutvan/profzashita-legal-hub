@@ -23,15 +23,15 @@ const Logo = ({
         className={`logo__mark transition-all duration-300 ${heightClass} w-auto`}
       />
       
-      <span className="logo__text flex flex-col min-w-0">
+      <span className="logo__text brandText flex flex-col min-w-0">
         <span 
           className={`logo__title transition-all duration-300 ${className}`}
         >
           Профзащита
         </span>
         <span className="logo__subtitle whitespace-nowrap">
-          <span>Коллегия</span>
-          <span className="logo__subtitle-word">адвокатов</span>
+          <span>коллегия</span>
+          <span className="logo__subtitle-word2">адвокатов</span>
         </span>
       </span>
     </div>

@@ -76,6 +76,7 @@ interface ServiceTemplateProps {
 
   heroImageSrc?: string;
   heroAlt?: string;
+  extraSections?: React.ReactNode;
 }
 
 const ServiceTemplate = ({
@@ -104,7 +105,8 @@ const ServiceTemplate = ({
   ctaBlock,
   ctaButtons,
   heroImageSrc: providedHeroImageSrc,
-  heroAlt
+  heroAlt,
+  extraSections
 }: ServiceTemplateProps) => {
   const location = useLocation();
   const pathname = location.pathname.replace(/\/+$/, "") || "/";
@@ -277,6 +279,8 @@ const ServiceTemplate = ({
                     ))}
                   </div>
                 </div>
+
+                {extraSections}
 
                 {/* Documents and Timing */}
                 <div>

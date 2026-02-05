@@ -217,6 +217,7 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
 
 const VyseleniePage = () => {
   const { openQuickQuestionModal } = useQuickQuestionModal();
+  const callHref = "tel:+74950040196";
   const canonical = new URL("/services/phys/vyselenie", SITE.url).toString();
   const yandexOrgId = "244880896695";
 
@@ -370,8 +371,7 @@ const VyseleniePage = () => {
 
   const cases = casesData
     .filter(matchesHousingCase)
-    .sort((a, b) => (b.datePublished ?? "").localeCompare(a.datePublished ?? ""))
-    .slice(0, 2);
+    .sort((a, b) => (b.datePublished ?? "").localeCompare(a.datePublished ?? ""));
 
   const shouldShowCases = cases.length > 0;
 
@@ -582,11 +582,11 @@ const VyseleniePage = () => {
                 Оценим перспективы, риски и предложим понятный план действий по вашей ситуации.
               </p>
               <Button
+                asChild
                 size="lg"
                 className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
-                onClick={() => openQuickQuestionModal({ topic: "Жилищные споры" })}
               >
-                Получить консультацию
+                <a href={callHref}>Получить консультацию</a>
               </Button>
               <div className="flex flex-wrap items-center gap-y-2 text-small text-white/75 lg:flex-nowrap lg:whitespace-nowrap">
                 {trustItems.map((item, index) => (
@@ -628,11 +628,11 @@ const VyseleniePage = () => {
                         {card.description}
                       </p>
                       <Button
+                        asChild
                         size="lg"
                         className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                        onClick={() => openQuickQuestionModal({ topic: "Жилищные споры" })}
                       >
-                        Получить консультацию
+                        <a href={callHref}>Получить консультацию</a>
                       </Button>
                     </CardContent>
                   </Card>
