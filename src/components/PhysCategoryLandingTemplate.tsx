@@ -56,9 +56,18 @@ type LeadFormProps = {
   footerNote: string;
   topic: string;
   onSuccess?: () => void;
+  submitTextClassName?: string;
 };
 
-const LeadForm = ({ formId, submitLabel, placeholder, footerNote, topic, onSuccess }: LeadFormProps) => {
+const LeadForm = ({
+  formId,
+  submitLabel,
+  placeholder,
+  footerNote,
+  topic,
+  onSuccess,
+  submitTextClassName
+}: LeadFormProps) => {
   const [formData, setFormData] = useState({
     name: "",
     phone: "",
@@ -217,7 +226,9 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, topic, onSucce
       <Button
         type="submit"
         size="lg"
-        className="w-full h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+        className={`w-full h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] ${
+          submitTextClassName ?? "text-slate-900"
+        } shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]`}
         disabled={isSubmitting}
       >
         {submitLabel}
@@ -529,21 +540,19 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
 
   const bankrotstvoShowcaseCases = useMemo(() => {
     if (!isBankrotstvoMerged) return [];
-    const fromCases = matchedCases.map((caseItem) => ({
+    return matchedCases.slice(0, 3).map((caseItem) => ({
       title: caseItem.title,
       caseNumber: extractCaseNumber(caseItem.task, caseItem.result),
       debtAmount: extractDebtAmount(caseItem.task, caseItem.result),
-      result: shortenText(caseItem.result)
+      result: shortenText(caseItem.result),
+      scanUrl: caseItem.decisionPreview ?? caseItem.documents?.[0],
+      caseUrl: caseItem.slug ? `/cases/${caseItem.slug}` : "/keisy"
     }));
-    const fromContent = data.cases.map((caseItem, index) => ({
-      title: caseItem.situation,
-      caseNumber: null,
-      debtAmount: null,
-      result: caseItem.result,
-      fallbackId: `content-${index}`
-    }));
-    return [...fromCases, ...fromContent].slice(0, 3);
-  }, [data.cases, isBankrotstvoMerged, matchedCases]);
+  }, [isBankrotstvoMerged, matchedCases]);
+  const bankrotstvoCasesLayout =
+    bankrotstvoShowcaseCases.length >= 3
+      ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
+      : "grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr justify-items-center max-w-[760px] mx-auto";
 
   const steps = data.planSteps.slice(0, 6).map((step, index) => ({
     title: step.title,
@@ -623,6 +632,23 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
       )
     }
   ];
+  const bankrotstvoFaqQuestions = [
+    "Можно ли сохранить единственное жильё?",
+    "Сколько длится процедура банкротства?",
+    "С чего начать обращение?",
+    "Можно ли решить вопрос без суда?",
+    "Сколько времени занимает работа юристов по делу?",
+    "Как формируется стоимость услуг?",
+    "Нужно ли личное присутствие в суде?"
+  ];
+  const faqItems = useMemo(() => {
+    const items = data.faqs.slice(0, 7);
+    if (!isBankrotstvoMerged) return items;
+    return items.map((item, index) => ({
+      ...item,
+      question: bankrotstvoFaqQuestions[index] ?? item.question
+    }));
+  }, [data.faqs, isBankrotstvoMerged]);
 
   const resolvedTeam = useMemo(() => {
     if (!isDebtContractsCategory && !isConsumerProtectionCategory) return data.team;
@@ -745,7 +771,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 <Button
                   asChild
                   size="lg"
-                  className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
+                  className="w-full sm:w-auto bg-accent text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
                 >
                   <a href={callHref}>Получить консультацию по банкротству</a>
                 </Button>
@@ -844,7 +870,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                           <Button
                             asChild
                             size="lg"
-                            className="mt-auto h-10 rounded-[10px] border border-[#b8911f] bg-[#C9A227] px-5 text-[13px] text-slate-900 shadow-[0_4px_10px_rgba(111,83,15,0.2)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                            className="mt-auto h-10 rounded-[10px] border border-[#b8911f] bg-[#C9A227] px-5 text-[13px] text-white shadow-[0_4px_10px_rgba(111,83,15,0.2)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                           >
                             <a href={callHref}>Получить консультацию</a>
                           </Button>
@@ -1112,39 +1138,55 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   Мы не раскрываем персональные данные клиентов. Публикация осуществляется с согласия клиентов
                 </p>
               </div>
-              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+              <div className={`mt-8 ${bankrotstvoCasesLayout}`}>
                 {bankrotstvoShowcaseCases.map((caseItem, index) => (
-                  <Card
+                  <Link
                     key={caseItem.title ?? caseItem.fallbackId ?? index}
-                    className="h-full rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_16px_rgba(60,52,31,0.08)]"
+                    to={caseItem.caseUrl}
+                    className={`block h-full text-inherit no-underline ${
+                      bankrotstvoShowcaseCases.length < 3 ? "w-full max-w-[360px]" : ""
+                    }`}
                   >
-                    <CardContent className="p-6">
-                      <div className="flex items-start justify-between gap-4">
-                        <div className="text-xs text-slate-500">
-                          № дела
-                          <div className="mt-1 text-[13px] font-semibold text-slate-900">
-                            {caseItem.caseNumber ?? "Не раскрывается"}
+                    <Card className="h-full rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_16px_rgba(60,52,31,0.08)] transition-transform hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(60,52,31,0.12)]">
+                      <CardContent className="p-6 h-full flex flex-col">
+                        <div className="flex items-start justify-between gap-4">
+                          <div className="text-xs text-slate-500">
+                            № дела
+                            <div className="mt-1 text-[13px] font-semibold text-slate-900">
+                              {caseItem.caseNumber ?? "Не раскрывается"}
+                            </div>
+                          </div>
+                          <div className="h-24 w-24 md:h-28 md:w-28 border border-[#D8C08B] bg-white text-[11px] text-slate-500 flex items-center justify-center text-center leading-tight overflow-hidden">
+                            {caseItem.scanUrl ? (
+                              <img
+                                src={caseItem.scanUrl}
+                                alt={`Скан решения: ${caseItem.title}`}
+                                className="h-full w-full object-contain"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <>
+                                Скан
+                                <br />
+                                решения
+                              </>
+                            )}
                           </div>
                         </div>
-                        <div className="h-20 w-20 border border-[#D8C08B] bg-white text-[11px] text-slate-500 flex items-center justify-center text-center leading-tight">
-                          Скан
-                          <br />
-                          решения
+                        <h3 className="mt-4 text-[15px] font-semibold text-slate-900">{caseItem.title}</h3>
+                        <div className="mt-4 text-[13px] text-slate-700">
+                          <div className="text-slate-500">Сумма долга:</div>
+                          <div className="font-semibold text-slate-900">
+                            {caseItem.debtAmount ?? "Не раскрывается"}
+                          </div>
                         </div>
-                      </div>
-                      <h3 className="mt-4 text-[15px] font-semibold text-slate-900">{caseItem.title}</h3>
-                      <div className="mt-4 text-[13px] text-slate-700">
-                        <div className="text-slate-500">Сумма долга:</div>
-                        <div className="font-semibold text-slate-900">
-                          {caseItem.debtAmount ?? "Не раскрывается"}
+                        <div className="mt-3 text-[13px] text-slate-700">
+                          <div className="text-slate-500">Результат:</div>
+                          <div className="font-semibold text-slate-900">{caseItem.result}</div>
                         </div>
-                      </div>
-                      <div className="mt-3 text-[13px] text-slate-700">
-                        <div className="text-slate-500">Результат:</div>
-                        <div className="font-semibold text-slate-900">{caseItem.result}</div>
-                      </div>
-                    </CardContent>
-                  </Card>
+                      </CardContent>
+                    </Card>
+                  </Link>
                 ))}
               </div>
               <div className="mt-8 text-center text-small text-muted-foreground">
@@ -1205,7 +1247,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                           </div>
                         )}
                         <h3 className="font-semibold text-[16px] md:text-[18px] text-slate-900">{member.name}</h3>
-                        <span className="inline-flex items-center rounded-full bg-[#C9A227] px-4 py-1 text-[12px] font-semibold text-slate-900">
+                        <span className="inline-flex items-center rounded-full bg-[#C9A227] px-4 py-1 text-[12px] font-semibold text-white">
                           {member.role}
                         </span>
                         {member.experience && (
@@ -1228,91 +1270,104 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                         </div>
                       </div>
                       <div className="mt-auto w-full pt-5 flex justify-center">
-                        <Button
-                          asChild
-                          size="lg"
-                          className="w-full md:w-auto h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                        >
-                          <Link to={`/team/${member.slug}`}>Подробнее об адвокате</Link>
-                        </Button>
+                <Button
+                  asChild
+                  size="lg"
+                  className={`w-full md:w-auto h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] ${
+                    isBankrotstvoMerged ? "text-white" : "text-slate-900"
+                  } shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]`}
+                >
+                  <Link to={`/team/${member.slug}`}>Подробнее об адвокате</Link>
+                </Button>
                       </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
-              <p className="mt-8 text-center text-small text-muted-foreground">
-                Все наши юристы проходят ежегодную аттестацию и имеют доступ к базе судебной практики
-              </p>
+              {isBankrotstvoMerged ? (
+                <p className="mt-8 text-center text-small text-muted-foreground">
+                  Сопровождение осуществляется командой специалистов. В зависимости от ситуации к сопровождению
+                  подключаются профильные специалисты.
+                </p>
+              ) : (
+                <p className="mt-8 text-center text-small text-muted-foreground">
+                  Все наши юристы проходят ежегодную аттестацию и имеют доступ к базе судебной практики
+                </p>
+              )}
             </div>
           </section>
         )}
 
-        {/* Экран 4: Этапы работы */}
-        <section className="section">
-          <div className="container">
-            <div className="section__header max-w-3xl">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                Как мы работаем: 6 этапов, чтобы вы вышли из ситуации с минимальными потерями
-              </h2>
-            </div>
-            <div className="section__content">
-              <div className="category-steps-list divide-y divide-border/80 rounded-2xl border border-border/80 bg-white/90 shadow-[0_12px_28px_rgba(15,23,42,0.06)] overflow-hidden">
-                {steps.map((step, index) => (
-                  <div key={step.title} className="category-step-item flex gap-4 md:gap-6 px-4 md:px-6 py-5 md:py-6">
-                    <div className="category-step-number h-11 w-11 md:h-12 md:w-12 shrink-0 rounded-full border border-accent/40 bg-accent/10 text-accent flex items-center justify-center font-semibold">
-                      {index + 1}
-                    </div>
-                    <div className="flex-1 space-y-3">
-                      <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{step.title}</h3>
-                      <div>
-                        <div className="category-step-label text-xs uppercase tracking-wide text-muted-foreground mb-1">
-                          Что мы делаем
+        {!isBankrotstvoMerged && (
+          <>
+            {/* Экран 4: Этапы работы */}
+            <section className="section">
+              <div className="container">
+                <div className="section__header max-w-3xl">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                    Как мы работаем: 6 этапов, чтобы вы вышли из ситуации с минимальными потерями
+                  </h2>
+                </div>
+                <div className="section__content">
+                  <div className="category-steps-list divide-y divide-border/80 rounded-2xl border border-border/80 bg-white/90 shadow-[0_12px_28px_rgba(15,23,42,0.06)] overflow-hidden">
+                    {steps.map((step, index) => (
+                      <div key={step.title} className="category-step-item flex gap-4 md:gap-6 px-4 md:px-6 py-5 md:py-6">
+                        <div className="category-step-number h-11 w-11 md:h-12 md:w-12 shrink-0 rounded-full border border-accent/40 bg-accent/10 text-accent flex items-center justify-center font-semibold">
+                          {index + 1}
                         </div>
-                        <p className="category-step-text text-small text-muted-foreground leading-relaxed">{step.action}</p>
-                      </div>
-                      <div>
-                        <div className="category-step-label text-xs uppercase tracking-wide text-muted-foreground mb-1">
-                          Результат для вас
+                        <div className="flex-1 space-y-3">
+                          <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{step.title}</h3>
+                          <div>
+                            <div className="category-step-label text-xs uppercase tracking-wide text-muted-foreground mb-1">
+                              Что мы делаем
+                            </div>
+                            <p className="category-step-text text-small text-muted-foreground leading-relaxed">{step.action}</p>
+                          </div>
+                          <div>
+                            <div className="category-step-label text-xs uppercase tracking-wide text-muted-foreground mb-1">
+                              Результат для вас
+                            </div>
+                            <p className="category-step-text text-small text-muted-foreground leading-relaxed">{step.result}</p>
+                          </div>
                         </div>
-                        <p className="category-step-text text-small text-muted-foreground leading-relaxed">{step.result}</p>
                       </div>
-                    </div>
+                    ))}
                   </div>
-                ))}
+                </div>
+                <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
+                    <CardContent className="p-6 text-center">
+                      <p className="text-body-mobile md:text-body text-slate-900">
+                        Если дело уже в суде — подключимся сразу. Проанализируем материалы, укажем, что можно усилить,
+                        и начнем действовать.
+                      </p>
+                    </CardContent>
+                  </Card>
+                  <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
+                    <CardContent className="p-6 text-center">
+                      <p className="text-body-mobile md:text-body text-slate-900">
+                        Если еще не дошло до суда — подготовим сильную позицию заранее. Часто этого достаточно,
+                        чтобы вторая сторона пошла на уступки без заседаний.
+                      </p>
+                    </CardContent>
+                  </Card>
+                </div>
+                <div className="mt-8 flex flex-col items-center gap-3 text-center">
+                  <Button
+                    size="lg"
+                    className="w-full sm:w-[360px] h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                    onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
+                  >
+                    Получить индивидуальный план действий
+                  </Button>
+                  <p className="text-small text-slate-600">
+                    Мы проанализируем вашу ситуацию и покажем, как действовать дальше — без обязательств
+                  </p>
+                </div>
               </div>
-            </div>
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-              <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
-                <CardContent className="p-6 text-center">
-                  <p className="text-body-mobile md:text-body text-slate-900">
-                    Если дело уже в суде — подключимся сразу. Проанализируем материалы, укажем, что можно усилить,
-                    и начнем действовать.
-                  </p>
-                </CardContent>
-              </Card>
-              <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
-                <CardContent className="p-6 text-center">
-                  <p className="text-body-mobile md:text-body text-slate-900">
-                    Если еще не дошло до суда — подготовим сильную позицию заранее. Часто этого достаточно,
-                    чтобы вторая сторона пошла на уступки без заседаний.
-                  </p>
-                </CardContent>
-              </Card>
-            </div>
-            <div className="mt-8 flex flex-col items-center gap-3 text-center">
-              <Button
-                size="lg"
-                className="w-full sm:w-[360px] h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
-              >
-                Получить индивидуальный план действий
-              </Button>
-              <p className="text-small text-slate-600">
-                Мы проанализируем вашу ситуацию и покажем, как действовать дальше — без обязательств
-              </p>
-            </div>
-          </div>
-        </section>
+            </section>
+          </>
+        )}
 
         {/* Экран 5: Кейсы и отзывы */}
         <section className="section bg-muted/30">
@@ -1410,6 +1465,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
             <div className={shouldShowCases ? "mt-12" : undefined}>
               <div className="section__header max-w-3xl text-center mx-auto">
                 <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
+                {isBankrotstvoMerged && (
+                  <p className="mt-2 text-muted-foreground">
+                    Мы не раскрываем персональные данные клиентов. Отзывы публикуются с их согласия
+                  </p>
+                )}
               </div>
               <div className="mt-6 flex justify-center">
                 <iframe
@@ -1444,54 +1504,60 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <div className="mt-8 flex justify-center">
                 <Button
                   size="lg"
-                  className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                  className={`w-full sm:w-auto bg-accent ${
+                    isBankrotstvoMerged ? "text-white" : "text-primary"
+                  } shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white`}
                   onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.categoryLabel })}
                 >
-                  Обсудить с адвокатом свою ситуацию
+                  {isBankrotstvoMerged ? "Получить консультацию по банкротству" : "Обсудить с адвокатом свою ситуацию"}
                 </Button>
               </div>
             </div>
           </div>
         </section>
 
-        {/* Экран 6: Большой продающий блок + аккордеон */}
-        <section className="section">
-          <div className="container">
-            <div className="section__header max-w-4xl !mb-4 md:!mb-5">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                {data.categoryLabel}: как получить справедливый результат — без лишнего стресса и потерь?
-              </h2>
-            </div>
-            <Card className="border-border">
-              <CardContent className="pt-6 space-y-3 text-muted-foreground leading-relaxed">
-                <p>
-                  Если вы столкнулись со спором по направлению «{data.categoryLabel}» — главное сейчас:{" "}
-                  <strong>не терять время</strong>. В таких делах быстро теряются доказательства, усложняются
-                  переговоры и растут риски для вашей позиции.
-                </p>
-                <p>
-                  Мы не обещаем невозможного. Но мы помогаем объяснить перспективы, обозначить реальные риски
-                  и строим стратегию, которая работает именно в вашей ситуации.
-                </p>
-              </CardContent>
-            </Card>
+        {!isBankrotstvoMerged && (
+          <>
+            {/* Экран 6: Большой продающий блок + аккордеон */}
+            <section className="section">
+              <div className="container">
+                <div className="section__header max-w-4xl !mb-4 md:!mb-5">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                    {data.categoryLabel}: как получить справедливый результат — без лишнего стресса и потерь?
+                  </h2>
+                </div>
+                <Card className="border-border">
+                  <CardContent className="pt-6 space-y-3 text-muted-foreground leading-relaxed">
+                    <p>
+                      Если вы столкнулись со спором по направлению «{data.categoryLabel}» — главное сейчас:{" "}
+                      <strong>не терять время</strong>. В таких делах быстро теряются доказательства, усложняются
+                      переговоры и растут риски для вашей позиции.
+                    </p>
+                    <p>
+                      Мы не обещаем невозможного. Но мы помогаем объяснить перспективы, обозначить реальные риски
+                      и строим стратегию, которая работает именно в вашей ситуации.
+                    </p>
+                  </CardContent>
+                </Card>
 
-            <Accordion type="single" collapsible className="section__content mt-8 space-y-4">
-              {accordionItems.map((item, index) => (
-                <AccordionItem
-                  key={item.title}
-                  value={`sales-${index}`}
-                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
-                >
-                  <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
-                    {item.title}
-                  </AccordionTrigger>
-                  <AccordionContent className="pb-4">{item.content}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-          </div>
-        </section>
+                <Accordion type="single" collapsible className="section__content mt-8 space-y-4">
+                  {accordionItems.map((item, index) => (
+                    <AccordionItem
+                      key={item.title}
+                      value={`sales-${index}`}
+                      className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+                    >
+                      <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
+                        {item.title}
+                      </AccordionTrigger>
+                      <AccordionContent className="pb-4">{item.content}</AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </div>
+            </section>
+          </>
+        )}
 
         {/* Экран 7: FAQ */}
         <section className="section bg-muted/30">
@@ -1500,7 +1566,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">FAQ — Частые вопросы</h2>
             </div>
             <Accordion type="single" collapsible className="section__content space-y-4">
-              {data.faqs.slice(0, 7).map((item, index) => (
+              {faqItems.map((item, index) => (
                 <AccordionItem
                   key={item.question}
                   value={`faq-${index}`}
@@ -1517,7 +1583,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <p className="text-muted-foreground">Не нашли свой вопрос? Оставьте заявку и мы оценим вашу ситуацию</p>
               <Button
                 size="lg"
-                className="w-full sm:w-auto border border-[#b8911f] bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                className={`w-full sm:w-auto border border-[#b8911f] bg-accent ${
+                  isBankrotstvoMerged ? "text-white" : "text-primary"
+                } shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
                 onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
               >
                 Получить оценку перспектив
@@ -1572,6 +1640,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                     placeholder={`Например: «${data.heroBenefits[0] ?? "Нужна помощь по моей ситуации"}»`}
                     footerNote="Перезвоним в течение 15–20 минут в рабочее время"
                     topic={data.entry.title}
+                    submitTextClassName={isBankrotstvoMerged ? "text-white" : "text-slate-900"}
                   />
                 </CardContent>
               </Card>
