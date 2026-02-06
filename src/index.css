@@ -243,6 +243,16 @@ All colors MUST be HSL.
     }
   }
 
+  .trudovye-compact .section:not(.section--hero) {
+    padding-block: 24px;
+  }
+
+  @media (min-width: 768px) {
+    .trudovye-compact .section:not(.section--hero) {
+      padding-block: 28px;
+    }
+  }
+
   .services-page {
     --section-y: 40px;
     --section-inner-gap: 20px;

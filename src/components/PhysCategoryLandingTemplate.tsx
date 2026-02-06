@@ -21,7 +21,17 @@ import {
   Gavel,
   Pin,
   X,
-  Check
+  Check,
+  FileX,
+  LogOut,
+  Wallet,
+  FileWarning,
+  MessageSquare,
+  Zap,
+  Landmark as LandmarkIcon,
+  ScrollText,
+  UserCheck,
+  Timer
 } from "lucide-react";
 
 import Header from "@/components/Header";
@@ -251,6 +261,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const isConsumerProtectionCategory = data.entry.slug === "zashchita-prav-potrebitelya";
   const isNasledstvennyeCategory = data.categoryLabel === "Наследственные дела";
   const isBankrotstvoMerged = data.entry.slug === "bankrotstvo-fiz-lits";
+  const isTrudovyeCategory = data.entry.slug === "trudovye-spory";
   const isCallOnlyCta =
     isDebtContractsCategory || isConsumerProtectionCategory || isNasledstvennyeCategory || isBankrotstvoMerged;
   const callHref = "tel:+74950040196";
@@ -268,6 +279,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
 
   const heroImage = getServiceHeroImage(data.entry.path, "phys");
   const ogImage = heroImage.startsWith("http") ? heroImage : `${SITE.url}${heroImage.replace(/^\//, "")}`;
+  const heroOverlayBackground = isTrudovyeCategory
+    ? "linear-gradient(180deg, rgba(5,12,28,0.95) 0%, rgba(8,24,46,0.85) 60%, rgba(8,24,46,0.6) 100%)"
+    : "linear-gradient(180deg, rgba(5,12,28,0.9) 0%, rgba(11,31,58,0.75) 55%, rgba(11,31,58,0.4) 100%)";
 
   const trustItems = [
     { id: "confidential", label: "Конфиденциально" },
@@ -439,6 +453,114 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
       icon: MessageCircle
     }
   ];
+  const trudovyeSituations = [
+    {
+      title: "Незаконное увольнение",
+      description: "Если уволили без основания или с нарушением процедуры",
+      icon: FileX
+    },
+    {
+      title: "Принуждение к увольнению «по собственному»",
+      description: "Когда оказывают давление, угрожают или создают невыносимые условия",
+      icon: LogOut
+    },
+    {
+      title: "Невыплата заработной платы",
+      description: "Задержки, долги по зарплате, премиям, отпускным или компенсациям",
+      icon: Wallet
+    },
+    {
+      title: "Нарушения при сокращении",
+      description: "Не выплатили положенные суммы или нарушили порядок сокращения",
+      icon: Users
+    },
+    {
+      title: "Дисциплинарные взыскания и выговоры",
+      description: "Незаконные штрафы, взыскания, попытки «задокументировать» увольнение",
+      icon: FileWarning
+    },
+    {
+      title: "Другие трудовые конфликты с работодателем",
+      description: "Когда вы понимаете, что ваши права нарушены, но не знаете, как действовать",
+      icon: MessageSquare
+    }
+  ];
+  const trudovyeWorkSteps = [
+    "Анализируем вашу ситуацию и объясняем возможные варианты развития дела",
+    "Берем на себя взаимодействие с работодателем и его представителями",
+    "Представляем ваши интересы в переговорах и в суде",
+    "Сопровождаем дело до принятия и исполнения решения"
+  ];
+  const trudovyeOutcomes = [
+    "Оспорить незаконное увольнение и восстановиться на работе",
+    "Взыскать задолженность по заработной плате, компенсации и иные выплаты",
+    "Прекратить давление со стороны работодателя и зафиксировать правовую позицию",
+    "Защитить свои интересы в суде при рассмотрении трудового спора"
+  ];
+  const trudovyeProcessSteps = [
+    {
+      title: "Консультация и анализ ситуации",
+      description:
+        "Мы изучаем документы, обстоятельства и позицию работодателя, чтобы определить возможные варианты защиты и выбрать оптимальную стратегию в вашем случае"
+    },
+    {
+      title: "Формирование правовой позиции и подготовка документов",
+      description:
+        "Готовим необходимые документы: претензии, обращения, иски, объяснения и доказательства, которые усиливают вашу позицию в споре"
+    },
+    {
+      title: "Досудебное урегулирование и переговоры",
+      description:
+        "При необходимости взаимодействуем с работодателем и его представителями, фиксируем позицию и пытаемся решить спор без суда, если это возможно и выгодно для вас"
+    },
+    {
+      title: "Судебная защита",
+      description:
+        "Представляем ваши интересы в суде, заявляем ходатайства, формируем и представляем доказательства, сопровождаем дело на всех стадиях рассмотрения"
+    },
+    {
+      title: "Контроль исполнения решения",
+      description:
+        "Сопровождаем дело до фактического восстановления ваших прав — получения выплат, компенсаций или иных результатов, предусмотренных законом"
+    }
+  ];
+  const trudovyeWhyUs = [
+    {
+      title: "Работаем против сильной стороны",
+      description:
+        "Умеем вести дела, где работодатель давит, затягивает выплаты и прикрывается службой безопасности, юристами и внутренними регламентами",
+      icon: Zap
+    },
+    {
+      title: "Судебная практика по конфликтам высокой сложности",
+      description:
+        "Берем споры с высокой ценой ошибки, доказательственными рисками и активным сопротивлением со стороны работодателя",
+      icon: LandmarkIcon
+    },
+    {
+      title: "Опыт в резонансных делах",
+      description:
+        "Участвовали в конфликтах, которые доходили до суда и имели последствия, а не заканчивались формальными решениями",
+      icon: ScrollText
+    },
+    {
+      title: "Индивидуальная стратегия",
+      description:
+        "Каждое дело разбираем индивидуально и выстраиваем позицию под конкретную ситуацию, а не под универсальные схемы",
+      icon: UserCheck
+    },
+    {
+      title: "Команда коллегии под задачу",
+      description: "Над делом работает команда адвокатов и юристов с разной специализацией",
+      icon: Users
+    },
+    {
+      title: "Быстрый старт без потери времени",
+      description:
+        "Подключаемся срочно, фиксируем нарушения и не даем работодателю сформировать удобную для себя позицию",
+      icon: Timer
+    }
+  ];
   const extractCaseNumber = (...sources: Array<string | undefined>) => {
     for (const source of sources) {
       if (!source) continue;
@@ -553,6 +675,21 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     bankrotstvoShowcaseCases.length >= 3
       ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
       : "grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr justify-items-center max-w-[760px] mx-auto";
+  const trudovyeShowcaseCases = useMemo(() => {
+    if (!isTrudovyeCategory) return [];
+    return matchedCases.slice(0, 3).map((caseItem) => ({
+      title: caseItem.title,
+      situation: caseItem.task,
+      actions: caseItem.actions,
+      result: caseItem.result,
+      scanUrl: caseItem.decisionPreview ?? caseItem.documents?.[0],
+      caseUrl: caseItem.slug ? `/cases/${caseItem.slug}` : "/keisy"
+    }));
+  }, [isTrudovyeCategory, matchedCases]);
+  const trudovyeCasesLayout =
+    trudovyeShowcaseCases.length >= 3
+      ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
+      : "grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr justify-items-center max-w-[760px] mx-auto";
 
   const steps = data.planSteps.slice(0, 6).map((step, index) => ({
     title: step.title,
@@ -641,6 +778,15 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     "Как формируется стоимость услуг?",
     "Нужно ли личное присутствие в суде?"
   ];
+  const trudovyeFaqQuestions = [
+    "Можно ли сохранить работу, если увольнение незаконное?",
+    "Что делать, если не выплачивают зарплату или компенсации?",
+    "Обязательно ли сразу обращаться в суд?",
+    "Нужно ли мое личное присутствие?",
+    "Сколько времени занимает трудовой спор?",
+    "Как формируется стоимость услуг?",
+    "Что делать, если я не уверен(а), нарушены ли мои права?"
+  ];
   const faqItems = useMemo(() => {
     const items = data.faqs.slice(0, 7);
     if (!isBankrotstvoMerged) return items;
@@ -649,6 +795,14 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
       question: bankrotstvoFaqQuestions[index] ?? item.question
     }));
   }, [data.faqs, isBankrotstvoMerged]);
+  const resolvedFaqItems = useMemo(() => {
+    if (isBankrotstvoMerged) return faqItems;
+    if (!isTrudovyeCategory) return faqItems;
+    return faqItems.map((item, index) => ({
+      ...item,
+      question: trudovyeFaqQuestions[index] ?? item.question
+    }));
+  }, [faqItems, isBankrotstvoMerged, isTrudovyeCategory]);
 
   const resolvedTeam = useMemo(() => {
     if (!isDebtContractsCategory && !isConsumerProtectionCategory) return data.team;
@@ -695,7 +849,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
 
   const reviews = (data.reviews.length > 0 ? data.reviews : sharedReviews).slice(0, 6);
 
-  const shouldShowCases = cases.length > 0 && !isBankrotstvoMerged;
+  const shouldShowCases = cases.length > 0 && !isBankrotstvoMerged && !isTrudovyeCategory;
 
   return (
     <div className="min-h-screen flex flex-col category-landing-page family-landing-page">
@@ -731,7 +885,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
 
       <Header />
 
-      <main className={`flex-1 services-page${isBankrotstvoMerged ? " bankrotstvo-compact" : ""}`}>
+      <main
+        className={`flex-1 services-page${isBankrotstvoMerged ? " bankrotstvo-compact" : ""}${
+          isTrudovyeCategory ? " trudovye-compact" : ""
+        }`}
+      >
         {/* Экран 1: Hero */}
         <section
           className="relative text-white section section--hero"
@@ -744,8 +902,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-            background:
-                "linear-gradient(180deg, rgba(5,12,28,0.9) 0%, rgba(11,31,58,0.75) 55%, rgba(11,31,58,0.4) 100%)"
+            background: heroOverlayBackground
             }}
           />
           <div className="container relative z-10">
@@ -778,6 +935,40 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 <p className="text-small text-white/70 md:whitespace-nowrap">
                   <span className="text-accent font-semibold">ФЗ-№127</span> • Работаем в Москве и Московской области •{" "}
                   <span className="text-accent font-semibold">Гибкая система оплаты</span> • Скидки и рассрочка платежа
+                </p>
+              </div>
+            ) : isTrudovyeCategory ? (
+              <div className="mt-6 max-w-[980px] md:max-w-[1100px] space-y-5 text-left">
+                <h1 className="category-hero-title font-serif font-bold text-accent text-[clamp(28px,3.1vw,44px)] leading-[1.1]">
+                  Защита работников в трудовых спорах с работодателем
+                </h1>
+                <p className="text-white/90 text-base md:text-lg leading-relaxed">
+                  Помогаем законно отстоять ваши права — при незаконном увольнении, невыплате зарплаты и давлении со
+                  стороны работодателя
+                </p>
+                <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white">
+                  <li>
+                    Разбираем ситуацию и оцениваем перспективы{" "}
+                    <span className="text-accent font-semibold">до обращения в суд</span>
+                  </li>
+                  <li>Берем на себя переговоры с работодателем и подготовку документов</li>
+                  <li>Представляем интересы работника в суде и контролируем процесс до результата</li>
+                </ul>
+                <p className="text-small md:text-[15px] text-white/80">
+                  Разберем ситуацию и сориентируем по стоимости{" "}
+                  <span className="text-accent font-semibold">при первом звонке</span>
+                </p>
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto bg-accent text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
+                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                >
+                  Получить консультацию по трудовому спору
+                </Button>
+                <p className="text-small text-white/70 md:whitespace-nowrap">
+                  <span className="text-accent font-semibold">Конфиденциально</span> • Работаем в Москве и Московской
+                  области • <span className="text-accent font-semibold">Гибкая система оплаты</span> • Практика по
+                  трудовым спорам
                 </p>
               </div>
             ) : (
@@ -827,7 +1018,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         {/* Экран 2: Каталог услуг */}
         <section className="section">
           <div className="container">
-            {!isBankrotstvoMerged && (
+            {!isBankrotstvoMerged && !isTrudovyeCategory && (
               <div className="section__header max-w-3xl mx-auto text-center pt-2 md:pt-4 mb-6 md:mb-7">
                 <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
                   {data.categoryLabel === "Наследственные дела"
@@ -884,6 +1075,50 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   Подробнее о стоимости и условиях оплаты вы сможете узнать на консультации.
                 </p>
               </div>
+            ) : isTrudovyeCategory ? (
+              <div className="section__content">
+                <div className="section__header max-w-3xl mx-auto text-center">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                    С какими трудовыми спорами к нам обращаются чаще всего
+                  </h2>
+                  <p className="text-body-mobile md:text-body text-muted-foreground">
+                    Если вы столкнулись с одной из этих ситуаций — разберемся и подскажем законный путь решения
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                  {trudovyeSituations.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Card
+                        key={item.title}
+                        className="h-full rounded-[14px] border border-[#E6DDCC] bg-[#F8F4EA] shadow-[0_6px_14px_rgba(60,52,31,0.08)]"
+                      >
+                        <CardContent className="p-6 h-full flex flex-col items-center text-center gap-3">
+                          <div className="h-14 w-14 rounded-full border border-[#D8C08B] bg-white flex items-center justify-center">
+                            <Icon className="h-7 w-7 text-accent" strokeWidth={1.6} />
+                          </div>
+                          <h3 className="text-[15px] md:text-[16px] font-semibold text-slate-900">
+                            {item.title}
+                          </h3>
+                          <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed">
+                            {item.description}
+                          </p>
+                          <Button
+                            asChild
+                            size="lg"
+                            className="mt-auto h-10 rounded-[10px] border border-[#b8911f] bg-[#C9A227] px-5 text-[13px] text-white shadow-[0_4px_10px_rgba(111,83,15,0.2)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                          >
+                            <a href={callHref}>Получить консультацию</a>
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+                <p className="mt-8 text-center text-small text-muted-foreground">
+                  Если ваша ситуация отличается — мы разберем ее на консультации и ответим на все ваши вопросы
+                </p>
+              </div>
             ) : (
               <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-fr">
                 {renderedSituationCards.map((card, index) => {
@@ -936,7 +1171,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 })}
               </div>
             )}
-            {!isBankrotstvoMerged && (
+            {!isBankrotstvoMerged && !isTrudovyeCategory && (
               <div className="mt-7 md:mt-8 rounded-[12px] border border-[#D8C08B] bg-[#F7F2E8] p-6 text-center shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
                 <p className="font-semibold text-body-mobile md:text-body text-slate-900">
                   Каждая неделя без четкой позиции — это риск потерять время, деньги и сильную переговорную позицию.
@@ -948,6 +1183,227 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
             )}
           </div>
         </section>
+
+        {isTrudovyeCategory && (
+          <section className="section">
+            <div className="container">
+              <div className="section__header max-w-3xl mx-auto text-center">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                  Мы защищаем работников в трудовых спорах
+                </h2>
+                <p className="text-body-mobile md:text-body text-muted-foreground">
+                  Когда работодатель нарушает ваши права, важно действовать юридически точно и без лишних рисков.
+                </p>
+                <p className="text-body-mobile md:text-body text-muted-foreground">
+                  Мы берем на себя юридическую часть конфликта и сопровождаем вас, чтобы вы понимали, что происходит
+                  на каждом этапе.
+                </p>
+              </div>
+              <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-10">
+                <div>
+                  <h3 className="text-[16px] md:text-[18px] font-semibold text-slate-900 text-center">
+                    Что мы делаем
+                  </h3>
+                  <ul className="mt-5 space-y-3 text-[13px] md:text-[14px] text-slate-700">
+                    {trudovyeWorkSteps.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <span className="mt-0.5 h-5 w-5 rounded border border-[#D8C08B] bg-[#F7F2E8] flex items-center justify-center">
+                          <Check className="h-3 w-3 text-accent" />
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="text-[16px] md:text-[18px] font-semibold text-slate-900 text-center">
+                    Что вы можете получить
+                  </h3>
+                  <ul className="mt-5 space-y-3 text-[13px] md:text-[14px] text-slate-700">
+                    {trudovyeOutcomes.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <span className="mt-0.5 h-5 w-5 rounded border border-[#D8C08B] bg-[#F7F2E8] flex items-center justify-center">
+                          <Check className="h-3 w-3 text-accent" />
+                        </span>
+                        <span>{item}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+              <div className="mt-8 text-center text-small text-muted-foreground">
+                Каждый трудовой спор индивидуален.
+                <br />
+                Мы сначала анализируем документы и обстоятельства, и только после этого предлагаем возможные варианты
+                действий.
+              </div>
+              <div className="mt-6 flex justify-center">
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto border border-[#b8911f] bg-[#C9A227] text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
+                >
+                  Обсудить свою ситуацию
+                </Button>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isTrudovyeCategory && (
+          <section className="section">
+            <div className="container">
+              <div className="section__header max-w-3xl mx-auto text-center">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                  5 шагов для решения трудового спора
+                </h2>
+                <p className="text-body-mobile md:text-body text-muted-foreground">
+                  Каждое дело начинаем с анализа ситуации и выстраиваем защиту с учетом реальных рисков, позиции
+                  работодателя и судебной практики
+                </p>
+              </div>
+              <div className="mt-8 border-t border-[#E6DDCC]">
+                {trudovyeProcessSteps.map((step, index) => (
+                  <div
+                    key={step.title}
+                    className="flex items-start gap-4 md:gap-6 py-6 md:py-7 border-b border-[#E6DDCC]"
+                  >
+                    <div className="h-12 w-12 rounded-full border border-[#D8C08B] bg-[#F7F2E8] flex items-center justify-center text-[14px] font-semibold text-slate-900">
+                      {index + 1}
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-[15px] md:text-[16px] font-semibold text-slate-900">{step.title}</h3>
+                      <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isTrudovyeCategory && (
+          <section className="section">
+            <div className="container">
+              <div className="section__header max-w-3xl mx-auto text-center">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                  Почему нам доверяют в трудовых спорах
+                </h2>
+                <p className="text-body-mobile md:text-body text-muted-foreground">
+                  Работаем системно: стратегия, доказательства, переговоры и суд.
+                  <br />
+                  Подключаем команду коллегии под вашу задачу
+                </p>
+              </div>
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {trudovyeWhyUs.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={item.title} className="text-center px-4 md:px-5">
+                      <div className="mx-auto h-14 w-14 flex items-center justify-center">
+                        <Icon className="h-10 w-10 text-accent" strokeWidth={1.6} />
+                      </div>
+                      <h3 className="mt-4 text-[15px] md:text-[16px] font-semibold text-slate-900">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-[13px] md:text-[14px] text-slate-600 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="mt-10 text-center text-small text-muted-foreground">
+                Готовы обсудить вашу ситуацию и условия сопровождения?
+              </div>
+              <div className="mt-6 flex justify-center">
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto border border-[#b8911f] bg-[#C9A227] text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+                  onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
+                >
+                  Обсудить мою ситуацию с адвокатом
+                </Button>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isTrudovyeCategory && trudovyeShowcaseCases.length > 0 && (
+          <section className="section">
+            <div className="container">
+              <div className="section__header max-w-3xl mx-auto text-center">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                  Кейсы из практики по трудовым спорам
+                </h2>
+                <p className="text-body-mobile md:text-body text-muted-foreground">
+                  Мы не раскрываем персональные данные клиентов. Публикация осуществляется с согласия клиентов
+                </p>
+              </div>
+              <div className={`mt-8 ${trudovyeCasesLayout}`}>
+                {trudovyeShowcaseCases.map((caseItem, index) => (
+                  <Link
+                    key={`${caseItem.title}-${index}`}
+                    to={caseItem.caseUrl}
+                    className={`block h-full text-inherit no-underline ${
+                      trudovyeShowcaseCases.length < 3 ? "w-full max-w-[360px]" : ""
+                    }`}
+                  >
+                    <Card className="h-full rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_16px_rgba(60,52,31,0.08)] transition-transform hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(60,52,31,0.12)]">
+                      <CardContent className="p-6 h-full flex flex-col">
+                        <div className="flex justify-center">
+                          <div className="h-24 w-24 md:h-28 md:w-28 border border-[#D8C08B] bg-white text-[11px] text-slate-500 flex items-center justify-center text-center leading-tight overflow-hidden">
+                            {caseItem.scanUrl ? (
+                              <img
+                                src={caseItem.scanUrl}
+                                alt={`Скан решения: ${caseItem.title}`}
+                                className="h-full w-full object-contain"
+                                loading="lazy"
+                              />
+                            ) : (
+                              <>
+                                Скан
+                                <br />
+                                решения
+                              </>
+                            )}
+                          </div>
+                        </div>
+                        <h3 className="mt-4 text-[15px] font-semibold text-slate-900">{caseItem.title}</h3>
+                        <div className="mt-4 text-[13px] text-slate-700">
+                          <div className="text-slate-500">Ситуация:</div>
+                          <div className="font-semibold text-slate-900">{caseItem.situation}</div>
+                        </div>
+                        <div className="mt-3 text-[13px] text-slate-700">
+                          <div className="text-slate-500">Что сделали:</div>
+                          <div className="font-semibold text-slate-900">{caseItem.actions}</div>
+                        </div>
+                        <div className="mt-3 text-[13px] text-slate-700">
+                          <div className="text-slate-500">Результат:</div>
+                          <div className="font-semibold text-slate-900">{caseItem.result}</div>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  </Link>
+                ))}
+              </div>
+              <div className="mt-8 text-center text-small text-muted-foreground">
+                Ваша ситуация может быть похожей. Давайте обсудим ваш случай на консультации
+              </div>
+              <div className="mt-6 flex justify-center">
+                <Button
+                  size="lg"
+                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                >
+                  Получить консультацию по трудовому спору
+                </Button>
+              </div>
+            </div>
+          </section>
+        )}
 
         {isBankrotstvoMerged && (
           <section className="section">
@@ -1219,6 +1675,13 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                       Процедура банкротства физических лиц сопровождается профильными юристами и адвокатами коллегии
                     </p>
                   </>
+                ) : isTrudovyeCategory ? (
+                  <>
+                    <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кто будет заниматься вашим делом</h2>
+                    <p className="text-muted-foreground">
+                      Вашу ситуацию рассматривают и сопровождают адвокаты и юристы с опытом ведения трудовых споров
+                    </p>
+                  </>
                 ) : (
                   <>
                     <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кто ведет ваши дела</h2>
@@ -1274,7 +1737,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   asChild
                   size="lg"
                   className={`w-full md:w-auto h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] ${
-                    isBankrotstvoMerged ? "text-white" : "text-slate-900"
+                    isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-slate-900"
                   } shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]`}
                 >
                   <Link to={`/team/${member.slug}`}>Подробнее об адвокате</Link>
@@ -1284,7 +1747,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   </Card>
                 ))}
               </div>
-              {isBankrotstvoMerged ? (
+              {isBankrotstvoMerged || isTrudovyeCategory ? (
                 <p className="mt-8 text-center text-small text-muted-foreground">
                   Сопровождение осуществляется командой специалистов. В зависимости от ситуации к сопровождению
                   подключаются профильные специалисты.
@@ -1298,76 +1761,6 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           </section>
         )}
 
-        {!isBankrotstvoMerged && (
-          <>
-            {/* Экран 4: Этапы работы */}
-            <section className="section">
-              <div className="container">
-                <div className="section__header max-w-3xl">
-                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                    Как мы работаем: 6 этапов, чтобы вы вышли из ситуации с минимальными потерями
-                  </h2>
-                </div>
-                <div className="section__content">
-                  <div className="category-steps-list divide-y divide-border/80 rounded-2xl border border-border/80 bg-white/90 shadow-[0_12px_28px_rgba(15,23,42,0.06)] overflow-hidden">
-                    {steps.map((step, index) => (
-                      <div key={step.title} className="category-step-item flex gap-4 md:gap-6 px-4 md:px-6 py-5 md:py-6">
-                        <div className="category-step-number h-11 w-11 md:h-12 md:w-12 shrink-0 rounded-full border border-accent/40 bg-accent/10 text-accent flex items-center justify-center font-semibold">
-                          {index + 1}
-                        </div>
-                        <div className="flex-1 space-y-3">
-                          <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{step.title}</h3>
-                          <div>
-                            <div className="category-step-label text-xs uppercase tracking-wide text-muted-foreground mb-1">
-                              Что мы делаем
-                            </div>
-                            <p className="category-step-text text-small text-muted-foreground leading-relaxed">{step.action}</p>
-                          </div>
-                          <div>
-                            <div className="category-step-label text-xs uppercase tracking-wide text-muted-foreground mb-1">
-                              Результат для вас
-                            </div>
-                            <p className="category-step-text text-small text-muted-foreground leading-relaxed">{step.result}</p>
-                          </div>
-                        </div>
-                      </div>
-                    ))}
-                  </div>
-                </div>
-                <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
-                  <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
-                    <CardContent className="p-6 text-center">
-                      <p className="text-body-mobile md:text-body text-slate-900">
-                        Если дело уже в суде — подключимся сразу. Проанализируем материалы, укажем, что можно усилить,
-                        и начнем действовать.
-                      </p>
-                    </CardContent>
-                  </Card>
-                  <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
-                    <CardContent className="p-6 text-center">
-                      <p className="text-body-mobile md:text-body text-slate-900">
-                        Если еще не дошло до суда — подготовим сильную позицию заранее. Часто этого достаточно,
-                        чтобы вторая сторона пошла на уступки без заседаний.
-                      </p>
-                    </CardContent>
-                  </Card>
-                </div>
-                <div className="mt-8 flex flex-col items-center gap-3 text-center">
-                  <Button
-                    size="lg"
-                    className="w-full sm:w-[360px] h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                    onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
-                  >
-                    Получить индивидуальный план действий
-                  </Button>
-                  <p className="text-small text-slate-600">
-                    Мы проанализируем вашу ситуацию и покажем, как действовать дальше — без обязательств
-                  </p>
-                </div>
-              </div>
-            </section>
-          </>
-        )}
 
         {/* Экран 5: Кейсы и отзывы */}
         <section className="section bg-muted/30">
@@ -1505,7 +1898,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 <Button
                   size="lg"
                   className={`w-full sm:w-auto bg-accent ${
-                    isBankrotstvoMerged ? "text-white" : "text-primary"
+                    isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-primary"
                   } shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white`}
                   onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.categoryLabel })}
                 >
@@ -1516,7 +1909,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           </div>
         </section>
 
-        {!isBankrotstvoMerged && (
+        {!isBankrotstvoMerged && !isTrudovyeCategory && (
           <>
             {/* Экран 6: Большой продающий блок + аккордеон */}
             <section className="section">
@@ -1566,7 +1959,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">FAQ — Частые вопросы</h2>
             </div>
             <Accordion type="single" collapsible className="section__content space-y-4">
-              {faqItems.map((item, index) => (
+              {resolvedFaqItems.map((item, index) => (
                 <AccordionItem
                   key={item.question}
                   value={`faq-${index}`}
@@ -1584,7 +1977,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <Button
                 size="lg"
                 className={`w-full sm:w-auto border border-[#b8911f] bg-accent ${
-                  isBankrotstvoMerged ? "text-white" : "text-primary"
+                  isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-primary"
                 } shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
                 onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
               >
@@ -1640,7 +2033,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                     placeholder={`Например: «${data.heroBenefits[0] ?? "Нужна помощь по моей ситуации"}»`}
                     footerNote="Перезвоним в течение 15–20 минут в рабочее время"
                     topic={data.entry.title}
-                    submitTextClassName={isBankrotstvoMerged ? "text-white" : "text-slate-900"}
+                    submitTextClassName={
+                      isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-slate-900"
+                    }
                   />
                 </CardContent>
               </Card>
