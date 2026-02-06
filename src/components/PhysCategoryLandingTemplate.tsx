@@ -237,6 +237,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const handleCallClick = () => {
     window.location.href = callHref;
   };
+  const handleCallLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
+    if (isConsumerProtectionCategory) {
+      event.stopPropagation();
+    }
+  };
   const yandexOrgId = "244880896695";
   const isFamilyOrHousing =
     data.categoryLabel === "Семейные споры" || data.categoryLabel === "Жилищные споры";
@@ -645,7 +650,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                           }
                         >
                           {isCallOnlyCta ? (
-                            <a href={callHref}>Получить консультацию</a>
+                            <a href={callHref} onClick={handleCallLinkClick}>
+                              Получить консультацию
+                            </a>
                           ) : isNasledstvennyeCategory ? (
                             "Получить консультацию"
                           ) : (

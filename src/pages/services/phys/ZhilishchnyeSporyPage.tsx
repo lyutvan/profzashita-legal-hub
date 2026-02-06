@@ -33,7 +33,6 @@ import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 import { sharedReviews } from "@/data/shared-reviews";
-import { cases as casesData } from "@/data/cases";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
@@ -393,10 +392,6 @@ const ZhilishchnyeSporyPage = () => {
     }
   ];
 
-  const cases = casesData
-    .filter((item) => item.category === "Жилищные споры")
-    .sort((a, b) => (b.datePublished ?? "").localeCompare(a.datePublished ?? ""));
-
   const faqItems = [
     {
       question: "Можно ли выселить человека без права собственности?",
@@ -555,7 +550,6 @@ const ZhilishchnyeSporyPage = () => {
     }
   };
 
-  const shouldShowCases = cases.length > 0;
   const reviews = sharedReviews.slice(0, 6);
   const yandexOrgId = "244880896695";
 
@@ -837,94 +831,10 @@ const ZhilishchnyeSporyPage = () => {
           </div>
         </section>
 
-        {/* Экран 5: Кейсы и отзывы */}
+        {/* Экран 5: Отзывы */}
         <section className="section bg-muted/30">
           <div className="container">
-            {shouldShowCases && (
-              <>
-                <div className="section__header max-w-3xl">
-                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кейсы</h2>
-                  <p className="text-muted-foreground">
-                    Мы не раскрываем персональные данные клиентов — примеры основаны на реальных делах
-                  </p>
-                </div>
-                <div className="section__content grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {cases.map((caseItem) => {
-                    const decisionPreview = caseItem.decisionPreview ?? caseItem.documents?.[0];
-                    const hasDecision = Boolean(decisionPreview);
-                    return (
-                      <Card
-                        key={caseItem.slug ?? caseItem.title}
-                        className="h-full border border-slate-200 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.06)] transition-all hover:border-[#C9A227] hover:shadow-[0_16px_40px_rgba(201,162,39,0.18)]"
-                      >
-                        <CardContent className="pt-6 h-full">
-                          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
-                            <div className="flex-1">
-                              <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">
-                                {caseItem.title}
-                              </h3>
-                              <div className="mt-4 space-y-3 text-small text-muted-foreground leading-relaxed">
-                                <div>
-                                  <span className="font-semibold text-foreground">Задача: </span>
-                                  {caseItem.task}
-                                </div>
-                                <div>
-                                  <span className="font-semibold text-foreground">Что сделали: </span>
-                                  {caseItem.actions}
-                                </div>
-                                <div>
-                                  <span className="font-semibold text-foreground">Результат: </span>
-                                  {caseItem.result}
-                                </div>
-                              </div>
-                              {!hasDecision && (
-                                <div className="mt-6">
-                                  <Button
-                                    asChild
-                                    size="lg"
-                                    variant="outline"
-                                    className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
-                                  >
-                                    <Link to={`/cases/${caseItem.slug}`}>Подробнее о кейсе</Link>
-                                  </Button>
-                                </div>
-                              )}
-                            </div>
-                            {hasDecision && (
-                              <div className="w-full lg:w-[52%] lg:max-w-[600px]">
-                                <div className="rounded-[12px] border border-[#E6DDCC] bg-[#F8F4EA] p-4">
-                                  <div className="text-sm font-semibold text-slate-900">Решение суда</div>
-                                  <div className="mt-3 rounded-[10px] border border-[#E6DDCC] bg-white p-2">
-                                    <img
-                                      src={decisionPreview}
-                                      alt={`Решение суда: ${caseItem.title}`}
-                                      className="max-h-[640px] w-full object-contain"
-                                      loading="lazy"
-                                    />
-                                  </div>
-                                  <div className="mt-4">
-                                    <Button
-                                      asChild
-                                      size="lg"
-                                      variant="outline"
-                                      className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
-                                    >
-                                      <Link to={`/cases/${caseItem.slug}`}>Подробнее о кейсе</Link>
-                                    </Button>
-                                  </div>
-                                </div>
-                              </div>
-                            )}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
-                </div>
-              </>
-            )}
-
-            <div className={shouldShowCases ? "mt-12" : undefined}>
+            <div>
               <div className="section__header max-w-3xl text-center mx-auto">
                 <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
               </div>
@@ -951,11 +861,11 @@ const ZhilishchnyeSporyPage = () => {
               </div>
               <div className="flex justify-center mt-8">
                 <Button
-                  asChild
                   size="lg"
                   className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white"
+                  onClick={() => openQuickQuestionModal({ topic: "Жилищные споры" })}
                 >
-                  <a href={callHref}>Обсудить с адвокатом свою ситуацию</a>
+                  Обсудить с адвокатом свою ситуацию
                 </Button>
               </div>
             </div>
