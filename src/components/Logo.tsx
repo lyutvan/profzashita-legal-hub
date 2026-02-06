@@ -16,7 +16,7 @@ const Logo = ({
       : "h-10";
   
   return (
-    <div className="logo flex items-center min-w-0">
+    <div className={`logo flex items-center min-w-0${variant === "footer" ? " logo--footer" : ""}`}>
       <img 
         src={logoNew} 
         alt="Профзащита logo" 
