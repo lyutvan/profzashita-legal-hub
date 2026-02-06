@@ -450,23 +450,6 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     const lastSpace = cut.lastIndexOf(" ");
     return `${cut.slice(0, lastSpace > 80 ? lastSpace : max).trim()}…`;
   };
-  const bankrotstvoShowcaseCases = useMemo(() => {
-    if (!isBankrotstvoMerged) return [];
-    const fromCases = matchedCases.map((caseItem) => ({
-      title: caseItem.title,
-      caseNumber: extractCaseNumber(caseItem.task, caseItem.result),
-      debtAmount: extractDebtAmount(caseItem.task, caseItem.result),
-      result: shortenText(caseItem.result)
-    }));
-    const fromContent = data.cases.map((caseItem, index) => ({
-      title: caseItem.situation,
-      caseNumber: null,
-      debtAmount: null,
-      result: caseItem.result,
-      fallbackId: `content-${index}`
-    }));
-    return [...fromCases, ...fromContent].slice(0, 3);
-  }, [data.cases, isBankrotstvoMerged, matchedCases]);
 
   const renderedSituationCards = isConsumerProtectionCategory
     ? consumerSituationCards
@@ -543,6 +526,24 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           decisionUrl: withDecision.decisionUrl
         };
       }));
+
+  const bankrotstvoShowcaseCases = useMemo(() => {
+    if (!isBankrotstvoMerged) return [];
+    const fromCases = matchedCases.map((caseItem) => ({
+      title: caseItem.title,
+      caseNumber: extractCaseNumber(caseItem.task, caseItem.result),
+      debtAmount: extractDebtAmount(caseItem.task, caseItem.result),
+      result: shortenText(caseItem.result)
+    }));
+    const fromContent = data.cases.map((caseItem, index) => ({
+      title: caseItem.situation,
+      caseNumber: null,
+      debtAmount: null,
+      result: caseItem.result,
+      fallbackId: `content-${index}`
+    }));
+    return [...fromCases, ...fromContent].slice(0, 3);
+  }, [data.cases, isBankrotstvoMerged, matchedCases]);
 
   const steps = data.planSteps.slice(0, 6).map((step, index) => ({
     title: step.title,
@@ -1167,10 +1168,23 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           <section className="section bg-muted/30">
             <div className="container">
               <div className="section__header max-w-3xl mx-auto text-center">
-                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кто ведет ваши дела</h2>
-                <p className="text-muted-foreground">
-                  Вашим делом занимаются практикующие адвокаты с опытом именно в этой категории споров
-                </p>
+                {isBankrotstvoMerged ? (
+                  <>
+                    <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                      Кто будет сопровождать ваше дело о банкротстве
+                    </h2>
+                    <p className="text-muted-foreground">
+                      Процедура банкротства физических лиц сопровождается профильными юристами и адвокатами коллегии
+                    </p>
+                  </>
+                ) : (
+                  <>
+                    <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кто ведет ваши дела</h2>
+                    <p className="text-muted-foreground">
+                      Вашим делом занимаются практикующие адвокаты с опытом именно в этой категории споров
+                    </p>
+                  </>
+                )}
               </div>
               <div className={teamGridClassName}>
                 {resolvedTeam.map((member) => (
