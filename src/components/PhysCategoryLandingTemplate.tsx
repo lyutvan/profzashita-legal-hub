@@ -262,8 +262,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const isNasledstvennyeCategory = data.categoryLabel === "Наследственные дела";
   const isBankrotstvoMerged = data.entry.slug === "bankrotstvo-fiz-lits";
   const isTrudovyeCategory = data.entry.slug === "trudovye-spory";
-  const isCallOnlyCta =
-    isDebtContractsCategory || isConsumerProtectionCategory || isNasledstvennyeCategory || isBankrotstvoMerged;
+  const isCallOnlyCta = isDebtContractsCategory || isConsumerProtectionCategory || isNasledstvennyeCategory;
   const callHref = "tel:+74950040196";
   const handleCallClick = () => {
     window.location.href = callHref;
@@ -281,7 +280,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const ogImage = heroImage.startsWith("http") ? heroImage : `${SITE.url}${heroImage.replace(/^\//, "")}`;
   const heroOverlayBackground = isTrudovyeCategory
     ? "linear-gradient(180deg, rgba(5,12,28,0.95) 0%, rgba(8,24,46,0.85) 60%, rgba(8,24,46,0.6) 100%)"
-    : "linear-gradient(180deg, rgba(5,12,28,0.9) 0%, rgba(11,31,58,0.75) 55%, rgba(11,31,58,0.4) 100%)";
+    : isBankrotstvoMerged
+      ? "linear-gradient(180deg, rgba(4,10,24,0.96) 0%, rgba(8,22,44,0.86) 60%, rgba(8,22,44,0.68) 100%)"
+      : "linear-gradient(180deg, rgba(5,12,28,0.9) 0%, rgba(11,31,58,0.75) 55%, rgba(11,31,58,0.4) 100%)";
 
   const trustItems = [
     { id: "confidential", label: "Конфиденциально" },
@@ -926,11 +927,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   <span className="text-accent font-semibold">при первом звонке</span>
                 </p>
                 <Button
-                  asChild
                   size="lg"
                   className="w-full sm:w-auto bg-accent text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
+                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
                 >
-                  <a href={callHref}>Получить консультацию по банкротству</a>
+                  Получить консультацию по банкротству
                 </Button>
                 <p className="text-small text-white/70 md:whitespace-nowrap">
                   <span className="text-accent font-semibold">ФЗ-№127</span> • Работаем в Москве и Московской области •{" "}
@@ -939,7 +940,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
             ) : isTrudovyeCategory ? (
               <div className="mt-6 max-w-[980px] md:max-w-[1100px] space-y-5 text-left">
-                <h1 className="category-hero-title font-serif font-bold text-accent text-[clamp(28px,3.1vw,44px)] leading-[1.1]">
+                <h1 className="category-hero-title font-serif font-bold text-accent text-[clamp(26px,2.7vw,40px)] leading-[1.1] md:whitespace-nowrap">
                   Защита работников в трудовых спорах с работодателем
                 </h1>
                 <p className="text-white/90 text-base md:text-lg leading-relaxed">
@@ -1441,11 +1442,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-6 flex justify-center">
                 <Button
-                  asChild
                   size="lg"
                   className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
                 >
-                  <a href={callHref}>Получить консультацию по банкротству</a>
+                  Получить консультацию по банкротству
                 </Button>
               </div>
             </div>
@@ -1529,11 +1530,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-6 flex justify-center">
                 <Button
-                  asChild
                   size="lg"
                   className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
                 >
-                  <a href={callHref}>Оценить мою ситуацию</a>
+                  Оценить мою ситуацию
                 </Button>
               </div>
             </div>
@@ -1572,11 +1573,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-6 flex justify-center">
                 <Button
-                  asChild
                   size="lg"
                   className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
                 >
-                  <a href={callHref}>Получить консультацию по банкротству</a>
+                  Получить консультацию по банкротству
                 </Button>
               </div>
             </div>
@@ -1650,11 +1651,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-6 flex justify-center">
                 <Button
-                  asChild
                   size="lg"
                   className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
                 >
-                  <a href={callHref}>Получить консультацию по банкротству</a>
+                  Получить консультацию по банкротству
                 </Button>
               </div>
             </div>
