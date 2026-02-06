@@ -232,7 +232,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const isDebtContractsCategory = data.entry.slug === "vzyskanie-dolgov-i-dogovornye-spory";
   const isConsumerProtectionCategory = data.entry.slug === "zashchita-prav-potrebitelya";
   const isNasledstvennyeCategory = data.categoryLabel === "Наследственные дела";
-  const isCallOnlyCta = isDebtContractsCategory || isConsumerProtectionCategory || isNasledstvennyeCategory;
+  const isBankrotstvoMerged = data.entry.slug === "bankrotstvo-fiz-lits";
+  const isCallOnlyCta =
+    isDebtContractsCategory || isConsumerProtectionCategory || isNasledstvennyeCategory || isBankrotstvoMerged;
   const callHref = "tel:+74950040196";
   const handleCallClick = () => {
     window.location.href = callHref;
@@ -245,7 +247,6 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const yandexOrgId = "244880896695";
   const isFamilyOrHousing =
     data.categoryLabel === "Семейные споры" || data.categoryLabel === "Жилищные споры";
-  const isBankrotstvoMerged = data.entry.slug === "bankrotstvo-fiz-lits";
 
   const heroImage = getServiceHeroImage(data.entry.path, "phys");
   const ogImage = heroImage.startsWith("http") ? heroImage : `${SITE.url}${heroImage.replace(/^\//, "")}`;
@@ -535,51 +536,82 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           <div
             className="absolute inset-0 pointer-events-none"
             style={{
-              background:
+            background:
                 "linear-gradient(180deg, rgba(5,12,28,0.9) 0%, rgba(11,31,58,0.75) 55%, rgba(11,31,58,0.4) 100%)"
             }}
           />
           <div className="container relative z-10">
             <Breadcrumbs items={data.breadcrumbs} />
-            <div className="max-w-4xl mt-6 space-y-5">
-              <h1 className="category-hero-title font-serif text-h1-mobile md:text-h1 font-bold text-accent">
-                {data.heroTitle}
-              </h1>
-              <ul className="category-hero-benefits pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
-                {data.heroBenefits.slice(0, 6).map((benefit) => (
-                  <li key={benefit}>{benefit}</li>
-                ))}
-              </ul>
-              <p className="lead text-white/90">{data.heroSubtitle}</p>
-              <Button
-                size="lg"
-                className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
-                onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
-              >
-                Получить консультацию
-              </Button>
-              <div className="category-hero-trust flex flex-nowrap items-center gap-y-2 text-small text-white/80 overflow-x-auto md:overflow-visible">
-                {trustItems.map((item, index) => (
-                  <span
-                    key={item.id}
-                    className={`category-hero-trust-item flex items-center whitespace-nowrap ${
-                      index > 0 ? "before:content-['•'] before:mx-2 before:text-white/50" : ""
-                    }`}
-                  >
-                    {item.accent && isFamilyOrHousing ? (
-                      <>
-                        <span className="category-hero-trust-accent">{item.accent}</span>{" "}
-                        {item.label}
-                      </>
-                    ) : (
-                      <>
-                        {item.accent ? `${item.accent} ${item.label}` : item.label}
-                      </>
-                    )}
-                  </span>
-                ))}
+            {isBankrotstvoMerged ? (
+              <div className="mt-6 max-w-2xl space-y-5 text-left">
+                <h1 className="category-hero-title font-serif text-h1-mobile md:text-h1 font-bold text-accent">
+                  Банкротство физических лиц под ключ
+                </h1>
+                <div className="space-y-2 text-white/90 text-base md:text-lg leading-relaxed">
+                  <p>Помогаем законно избавиться от кредитов, займов и долгов</p>
+                  <p>без давления со стороны банков и коллекторов</p>
+                </div>
+                <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-accent/80">
+                  <li>Работаем строго в рамках закона</li>
+                  <li>Сопровождаем процедуру от консультации до решения суда</li>
+                  <li>Берем на себя общение с кредиторами и коллекторами</li>
+                </ul>
+                <p className="text-small md:text-[15px] text-white/80">
+                  Разберем ситуацию и сориентируем по стоимости{" "}
+                  <span className="text-accent font-semibold">при первом звонке</span>
+                </p>
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
+                >
+                  <a href={callHref}>Получить консультацию по банкротству</a>
+                </Button>
+                <p className="text-small text-white/70 md:whitespace-nowrap">
+                  ФЗ-№127 • Работаем в Москве и Московской области • Гибкая система оплаты • Скидки и рассрочка платежа
+                </p>
               </div>
-            </div>
+            ) : (
+              <div className="max-w-4xl mt-6 space-y-5">
+                <h1 className="category-hero-title font-serif text-h1-mobile md:text-h1 font-bold text-accent">
+                  {data.heroTitle}
+                </h1>
+                <ul className="category-hero-benefits pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
+                  {data.heroBenefits.slice(0, 6).map((benefit) => (
+                    <li key={benefit}>{benefit}</li>
+                  ))}
+                </ul>
+                <p className="lead text-white/90">{data.heroSubtitle}</p>
+                <Button
+                  size="lg"
+                  className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
+                  onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
+                >
+                  Получить консультацию
+                </Button>
+                <div className="category-hero-trust flex flex-nowrap items-center gap-y-2 text-small text-white/80 overflow-x-auto md:overflow-visible">
+                  {trustItems.map((item, index) => (
+                    <span
+                      key={item.id}
+                      className={`category-hero-trust-item flex items-center whitespace-nowrap ${
+                        index > 0 ? "before:content-['•'] before:mx-2 before:text-white/50" : ""
+                      }`}
+                    >
+                      {item.accent && isFamilyOrHousing ? (
+                        <>
+                          <span className="category-hero-trust-accent">{item.accent}</span>{" "}
+                          {item.label}
+                        </>
+                      ) : (
+                        <>
+                          {item.accent ? `${item.accent} ${item.label}` : item.label}
+                        </>
+                      )}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            )}
           </div>
         </section>
 
