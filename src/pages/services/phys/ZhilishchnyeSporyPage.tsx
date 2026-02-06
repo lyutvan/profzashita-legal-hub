@@ -393,16 +393,8 @@ const ZhilishchnyeSporyPage = () => {
     }
   ];
 
-  const matchesHousingCase = (item: typeof casesData[number]) => {
-    const haystack = `${item.category} ${item.title} ${item.slug ?? ""} ${item.task ?? ""} ${item.actions ?? ""}`.toLowerCase();
-    return (
-      item.category === "Жилищные споры" ||
-      /высел|vyselen/.test(haystack)
-    );
-  };
-
   const cases = casesData
-    .filter(matchesHousingCase)
+    .filter((item) => item.category === "Жилищные споры")
     .sort((a, b) => (b.datePublished ?? "").localeCompare(a.datePublished ?? ""));
 
   const faqItems = [

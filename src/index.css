@@ -481,6 +481,7 @@ All colors MUST be HSL.
     justify-content: center;
     width: 100%;
     text-align: center;
+    margin-top: 6px;
   }
 
   .logo__subtitle-word {

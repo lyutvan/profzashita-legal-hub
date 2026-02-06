@@ -36,6 +36,7 @@ import { SITE } from "@/config/site";
 import { audienceServices } from "@/data/services-audiences";
 import { cases as casesData } from "@/data/cases";
 import { sharedReviews } from "@/data/shared-reviews";
+import { teamMembers } from "@/data/team";
 import { getServiceHeroImage } from "@/lib/serviceCardImages";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import TelegramIcon from "@/components/icons/TelegramIcon";
@@ -228,6 +229,14 @@ const CATEGORY_ICONS = [Scale, Home, Building2, Users, MessageCircle, Shield, Fi
 
 const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps) => {
   const { openQuickQuestionModal } = useQuickQuestionModal();
+  const isDebtContractsCategory = data.entry.slug === "vzyskanie-dolgov-i-dogovornye-spory";
+  const isConsumerProtectionCategory = data.entry.slug === "zashchita-prav-potrebitelya";
+  const isNasledstvennyeCategory = data.categoryLabel === "Наследственные дела";
+  const isCallOnlyCta = isDebtContractsCategory || isConsumerProtectionCategory || isNasledstvennyeCategory;
+  const callHref = "tel:+74950040196";
+  const handleCallClick = () => {
+    window.location.href = callHref;
+  };
   const yandexOrgId = "244880896695";
   const isFamilyOrHousing =
     data.categoryLabel === "Семейные споры" || data.categoryLabel === "Жилищные споры";
@@ -261,17 +270,29 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         path: data.entry.path
       }));
 
-  const isNasledstvennyeCategory = data.categoryLabel === "Наследственные дела";
-  const renderedSituationCards = isNasledstvennyeCategory && situationCards.length < 8
-    ? [
-        ...situationCards,
-        {
-          title: "Другая ситуация — нужна помощь",
-          description: "Разберем и подскажем, как действовать",
-          path: data.entry.path
-        }
-      ].slice(0, 8)
-    : situationCards.slice(0, 8);
+  const consumerSituationCards = [
+    { title: "Возврат денег за товар", description: "Срывы сроков, брак, отказ в возврате", path: data.entry.path },
+    { title: "Некачественная услуга", description: "Работы выполнены плохо или не выполнены", path: data.entry.path },
+    { title: "Срыв сроков ремонта", description: "Ремонт задержан или затянут без причин", path: data.entry.path },
+    { title: "Отказ в гарантии", description: "Продавец/сервис не принимает претензию", path: data.entry.path },
+    { title: "Спор с продавцом/маркетплейсом", description: "Возвраты, обмены, защита прав онлайн", path: data.entry.path },
+    { title: "Неустойка и штраф по ЗоЗПП", description: "Рассчитаем и взыщем по закону", path: data.entry.path },
+    { title: "Компенсация морального вреда", description: "Соберем доказательства и обоснуем сумму", path: data.entry.path },
+    { title: "Возврат оплаты за услуги", description: "Расторжение и возврат средств", path: data.entry.path }
+  ];
+
+  const renderedSituationCards = isConsumerProtectionCategory
+    ? consumerSituationCards
+    : isNasledstvennyeCategory && situationCards.length < 8
+      ? [
+          ...situationCards,
+          {
+            title: "Другая ситуация — нужна помощь",
+            description: "Разберем и подскажем, как действовать",
+            path: data.entry.path
+          }
+        ].slice(0, 8)
+      : situationCards.slice(0, 8);
 
   const salesWhatWeDo = Array.from(
     new Set([
@@ -415,6 +436,49 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     }
   ];
 
+  const resolvedTeam = useMemo(() => {
+    if (!isDebtContractsCategory && !isConsumerProtectionCategory) return data.team;
+    if (data.team.length >= 3) return data.team.slice(0, 3);
+
+    const existing = new Set(data.team.map((member) => member.slug));
+    const hasDebtContractFocus = (member: typeof teamMembers[number]) => {
+      const fields = [
+        ...(member.specializations ?? []),
+        ...(member.practice ?? []),
+        ...(member.competencies ?? [])
+      ]
+        .join(" ")
+        .toLowerCase();
+      return isConsumerProtectionCategory
+        ? /потребител/.test(fields)
+        : /долг|взыск|договор|обязательств/.test(fields);
+    };
+
+    const extra = teamMembers.find((member) => !existing.has(member.slug) && hasDebtContractFocus(member));
+    if (!extra) return data.team;
+
+    return [
+      ...data.team,
+      {
+        slug: extra.slug,
+        name: extra.name,
+        role: extra.role,
+        experience: extra.experienceText,
+        bullets: extra.specializations.slice(0, 4),
+        photo: extra.photo
+      }
+    ].slice(0, 3);
+  }, [data.team, isConsumerProtectionCategory, isDebtContractsCategory]);
+
+  const isTwoTeamLayout = resolvedTeam.length === 2;
+  const teamGridClassName = isTwoTeamLayout
+    ? "section__content grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr max-w-4xl mx-auto justify-items-center"
+    : "section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr";
+
+  const teamCardClassName = isTwoTeamLayout
+    ? "h-full w-full max-w-[360px] rounded-[12px] border border-[#C9A227] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+    : "h-full rounded-[12px] border border-[#C9A227] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)]";
+
   const reviews = (data.reviews.length > 0 ? data.reviews : sharedReviews).slice(0, 6);
 
   const shouldShowCases = cases.length > 0;
@@ -485,7 +549,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <Button
                 size="lg"
                 className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
-                onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
               >
                 Получить консультацию
               </Button>
@@ -523,6 +587,8 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   ? "Какие вопросы решаем"
                   : data.categoryLabel === "Наследственные дела"
                     ? "Помогаем в любых вопросах по наследственным делам"
+                    : isConsumerProtectionCategory
+                      ? "Помогаем по всем вопросам защиты прав потребителей"
                     : `Помогаем по направлению «${data.categoryLabel}»`}
               </h2>
               <p className="text-muted-foreground">
@@ -550,10 +616,12 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                     <Card
                       key={card.title}
                       className={`h-full rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)] ${
-                        isNasledstvennyeCategory ? "cursor-pointer" : ""
+                        isNasledstvennyeCategory || isConsumerProtectionCategory ? "cursor-pointer" : ""
                       }`}
                       onClick={
                         isNasledstvennyeCategory
+                          ? handleCallClick
+                          : isConsumerProtectionCategory
                           ? () => openQuickQuestionModal({ topic: `${data.categoryLabel}: ${card.title}` })
                           : undefined
                       }
@@ -565,15 +633,24 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                           {card.description ?? "Подготовим документы и защитим позицию в переговорах и суде"}
                         </p>
                         <Button
+                          asChild={isCallOnlyCta}
                           size="lg"
                           className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
                           onClick={
-                            isNasledstvennyeCategory
+                            isCallOnlyCta
+                              ? undefined
+                              : isNasledstvennyeCategory
                               ? () => openQuickQuestionModal({ topic: `${data.categoryLabel}: ${card.title}` })
                               : undefined
                           }
                         >
-                          {isNasledstvennyeCategory ? "Получить консультацию" : <Link to={card.path}>Получить консультацию</Link>}
+                          {isCallOnlyCta ? (
+                            <a href={callHref}>Получить консультацию</a>
+                          ) : isNasledstvennyeCategory ? (
+                            "Получить консультацию"
+                          ) : (
+                            <Link to={card.path}>Получить консультацию</Link>
+                          )}
                         </Button>
                       </CardContent>
                     </Card>
@@ -593,7 +670,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         </section>
 
         {/* Экран 3: Команда */}
-        {data.team.length > 0 && (
+        {resolvedTeam.length > 0 && (
           <section className="section bg-muted/30">
             <div className="container">
               <div className="section__header max-w-3xl mx-auto text-center">
@@ -602,11 +679,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   Вашим делом занимаются практикующие адвокаты с опытом именно в этой категории споров
                 </p>
               </div>
-              <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
-                {data.team.map((member) => (
+              <div className={teamGridClassName}>
+                {resolvedTeam.map((member) => (
                   <Card
                     key={member.slug}
-                    className="h-full rounded-[12px] border border-[#C9A227] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+                    className={teamCardClassName}
                   >
                     <CardContent className="p-6 h-full flex flex-col items-center text-center">
                       <div className="flex w-full flex-col items-center text-center gap-4">
@@ -719,7 +796,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <Button
                 size="lg"
                 className="w-full sm:w-[360px] h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
               >
                 Получить индивидуальный план действий
               </Button>
@@ -861,7 +938,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 <Button
                   size="lg"
                   className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white"
-                  onClick={() => openQuickQuestionModal({ topic: data.categoryLabel })}
+                  onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.categoryLabel })}
                 >
                   Обсудить с адвокатом свою ситуацию
                 </Button>
@@ -934,7 +1011,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <Button
                 size="lg"
                 className="w-full sm:w-auto border border-[#b8911f] bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
               >
                 Получить оценку перспектив
               </Button>

@@ -224,13 +224,13 @@ const Index = () => {
           className="home-hero"
         >
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-white mb-5 leading-tight">
+            <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-white mb-4 leading-tight -mt-2">
               Юридическая помощь по делам любой сложности
             </h1>
-            <p className="lead text-white/90 mb-4">
+            <p className="lead text-white/90 mb-5">
               Москва и Московская область · консультация в день обращения
             </p>
-            <div className="inline-flex max-w-[90%] mx-auto items-center justify-center rounded-xl border border-accent/70 bg-black/30 px-5 py-2.5 text-small md:text-[15px] font-medium tracking-[0.06em] text-white/90 text-center leading-snug mb-7">
+            <div className="inline-flex max-w-[90%] mx-auto items-center justify-center rounded-xl border border-accent/70 bg-black/30 px-5 py-2.5 text-small md:text-[15px] font-medium tracking-[0.06em] text-white/90 text-center leading-snug mb-8">
               {heroBadge}
             </div>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
