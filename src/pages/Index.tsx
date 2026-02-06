@@ -24,7 +24,7 @@ import { Button } from "@/components/ui/button";
 import courtColumnsImg from "@/assets/legal/court-columns.jpg";
 import { Helmet } from "react-helmet";
 import { SITE } from "@/config/site";
-import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
+import TelegramIcon from "@/components/icons/TelegramIcon";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import { getCategoriesForAudience } from "@/data/services-audiences";
 import { getPhysCategoryPagePath, getPhysServiceEntryBySlug } from "@/data/phys-service-content";
@@ -601,9 +601,9 @@ const Index = () => {
                       className="border-border"
                       asChild
                     >
-                      <a href={`https://wa.me/${SITE.phoneRaw.replace("+", "")}`} target="_blank" rel="noopener noreferrer">
-                        <WhatsAppIcon size={18} />
-                        WhatsApp
+                      <a href="https://t.me/profzashita" target="_blank" rel="noopener noreferrer">
+                        <TelegramIcon size={18} />
+                        Telegram
                       </a>
                     </Button>
                   </div>

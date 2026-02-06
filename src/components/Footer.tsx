@@ -12,7 +12,7 @@ const Footer = () => {
           {/* About */}
           <div className="space-y-4">
             <Link to="/" className="inline-block">
-              <Logo className="h-8" variant="footer" />
+              <Logo variant="header" />
             </Link>
             <p className="text-small text-white/80 leading-relaxed">
               Опыт. Ответственность. Результат.
