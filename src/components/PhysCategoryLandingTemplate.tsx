@@ -14,7 +14,14 @@ import {
   Shield,
   FileSearch,
   HelpCircle,
-  Landmark
+  Landmark,
+  CreditCard,
+  AlertTriangle,
+  TrendingDown,
+  Gavel,
+  Pin,
+  X,
+  Check
 } from "lucide-react";
 
 import Header from "@/components/Header";
@@ -286,6 +293,180 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     { title: "Компенсация морального вреда", description: "Соберем доказательства и обоснуем сумму", path: data.entry.path },
     { title: "Возврат оплаты за услуги", description: "Расторжение и возврат средств", path: data.entry.path }
   ];
+  const bankrotstvoSituations = [
+    {
+      title: "Кредиты и займы, которые стало невозможно платить",
+      description: "Если ежемесячные платежи превышают доход, а долги только растут",
+      icon: CreditCard
+    },
+    {
+      title: "Просрочки, штрафы, коллекторы",
+      description: "Когда постоянные звонки и давление мешают нормально жить",
+      icon: AlertTriangle
+    },
+    {
+      title: "Несколько кредитов в разных банках",
+      description: "Потребительские кредиты, кредитные карты, МФО",
+      icon: Landmark
+    },
+    {
+      title: "Поручительство или долги по чужим обязательствам",
+      description: "Когда ответственность легла на вас, а платить нечем",
+      icon: Users
+    },
+    {
+      title: "Снижение дохода или потеря работы",
+      description: "Если финансовая ситуация изменилась, а обязательства остались",
+      icon: TrendingDown
+    },
+    {
+      title: "Риск суда, ареста счетов или имущества",
+      description: "Когда есть риск суда, ареста счетов или имущества и требуется законное решение",
+      icon: Gavel
+    }
+  ];
+  const bankrotstvoProcessSteps = [
+    {
+      title: "Консультация и анализ ситуации",
+      description:
+        "Мы изучаем вашу финансовую ситуацию, долги и обязательства, оцениваем риски и возможные варианты решения."
+    },
+    {
+      title: "Подготовка документов",
+      description: "Подготавливаем все необходимые документы для начала процедуры банкротства."
+    },
+    {
+      title: "Подача заявления в суд",
+      description: "Представляем ваши интересы в суде и сопровождаем процедуру на всех стадиях рассмотрения дела."
+    },
+    {
+      title: "Прохождение процедуры банкротства",
+      description:
+        "Берем на себя взаимодействие с кредиторами, финансовым управляющим и контролируем ход дела."
+    },
+    {
+      title: "Завершение процедуры и результат",
+      description:
+        "После завершения процедуры долги списываются в рамках закона, а вы получаете финансовое облегчение."
+    }
+  ];
+  const bankrotstvoEffectsLeft = [
+    {
+      title: "Фиксация задолженности",
+      description: "Долги перестают расти: прекращается начисление штрафов, пеней и процентов"
+    },
+    {
+      title: "Приостановка исполнительных производств",
+      description: "Исполнительные действия и взыскания приостанавливаются в рамках процедуры"
+    },
+    {
+      title: "Прекращение давления со стороны кредиторов",
+      description: "Общение с банками и коллекторами происходит в установленном законом порядке"
+    },
+    {
+      title: "Контроль всех судебных дел",
+      description: "Судебные споры по долгам рассматриваются в рамках процедуры банкротства"
+    }
+  ];
+  const bankrotstvoEffectsRight = [
+    {
+      title: "Временные ограничения на кредиты",
+      description: "В течение 5 лет необходимо сообщать о факте банкротства при обращении за кредитами"
+    },
+    {
+      title: "Ограничения на руководящие должности",
+      description: "В течение 3 лет действуют ограничения на участие в управлении юридическими лицами"
+    },
+    {
+      title: "Ограничения на повторное банкротство",
+      description: "В течение 5 лет после процедуры вы не можете снова подавать на банкротство"
+    }
+  ];
+  const bankrotstvoStillPossible = [
+    "Открывать ИП и устраиваться на работу",
+    "Получать доход и распоряжаться им в рамках закона",
+    "Выезжать за границу",
+    "Пользоваться имуществом, не подлежащим реализации",
+    "Продавать и приобретать недвижимость, автомобиль и т.д.",
+    "Взять новые кредиты и займы"
+  ];
+  const bankrotstvoWhyUs = [
+    {
+      title: "Сопровождение «под ключ»",
+      description:
+        "Мы берем на себя всю процедуру — от анализа ситуации и сбора документов до завершения дела и решения суда",
+      icon: Shield
+    },
+    {
+      title: "Команда профильных юристов",
+      description:
+        "Над делом работает команда специалистов, а не один юрист. Это снижает риски и повышает устойчивость позиции в суде",
+      icon: Users
+    },
+    {
+      title: "Фиксация условий в договоре",
+      description:
+        "Сроки, этапы и объем работ фиксируются в договоре. Вы заранее понимаете, за что и на каких условиях работаете с нами",
+      icon: FileSearch
+    },
+    {
+      title: "Прозрачная договорная стоимость",
+      description:
+        "Стоимость рассчитывается исходя из вашей ситуации — без навязанных услуг и скрытых доплат. Возможны скидки для различных категорий граждан",
+      icon: Scale
+    },
+    {
+      title: "Удобные условия оплаты",
+      description:
+        "Возможна рассрочка, поэтапная или помесячная оплата. По стоимости сориентируем уже при первом разговоре",
+      icon: CreditCard
+    },
+    {
+      title: "Минимум вашего участия",
+      description:
+        "Мы берем общение с кредиторами и процессуальные действия на себя. Вам не нужно разбираться в процедуре и ходить по судам",
+      icon: MessageCircle
+    }
+  ];
+  const extractCaseNumber = (...sources: Array<string | undefined>) => {
+    for (const source of sources) {
+      if (!source) continue;
+      const match = source.match(/№\s*([A-Za-zА-Яа-я0-9-\/]+)/);
+      if (match) return `№ ${match[1]}`;
+    }
+    return null;
+  };
+  const extractDebtAmount = (...sources: Array<string | undefined>) => {
+    for (const source of sources) {
+      if (!source) continue;
+      const match = source.match(/(\d[\d\s.,]*\s*(?:млн|тыс)?\s*(?:руб\.?|₽))/i);
+      if (match) return match[1].replace(/\s+/g, " ").trim();
+    }
+    return null;
+  };
+  const shortenText = (text: string, max = 150) => {
+    if (text.length <= max) return text;
+    const cut = text.slice(0, max);
+    const lastSpace = cut.lastIndexOf(" ");
+    return `${cut.slice(0, lastSpace > 80 ? lastSpace : max).trim()}…`;
+  };
+  const bankrotstvoShowcaseCases = useMemo(() => {
+    if (!isBankrotstvoMerged) return [];
+    const fromCases = matchedCases.map((caseItem) => ({
+      title: caseItem.title,
+      caseNumber: extractCaseNumber(caseItem.task, caseItem.result),
+      debtAmount: extractDebtAmount(caseItem.task, caseItem.result),
+      result: shortenText(caseItem.result)
+    }));
+    const fromContent = data.cases.map((caseItem, index) => ({
+      title: caseItem.situation,
+      caseNumber: null,
+      debtAmount: null,
+      result: caseItem.result,
+      fallbackId: `content-${index}`
+    }));
+    return [...fromCases, ...fromContent].slice(0, 3);
+  }, [data.cases, isBankrotstvoMerged, matchedCases]);
 
   const renderedSituationCards = isConsumerProtectionCategory
     ? consumerSituationCards
@@ -487,7 +668,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
 
   const reviews = (data.reviews.length > 0 ? data.reviews : sharedReviews).slice(0, 6);
 
-  const shouldShowCases = cases.length > 0;
+  const shouldShowCases = cases.length > 0 && !isBankrotstvoMerged;
 
   return (
     <div className="min-h-screen flex flex-col category-landing-page family-landing-page">
@@ -523,7 +704,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
 
       <Header />
 
-      <main className="flex-1 services-page">
+      <main className={`flex-1 services-page${isBankrotstvoMerged ? " bankrotstvo-compact" : ""}`}>
         {/* Экран 1: Hero */}
         <section
           className="relative text-white section section--hero"
@@ -543,15 +724,15 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           <div className="container relative z-10">
             <Breadcrumbs items={data.breadcrumbs} />
             {isBankrotstvoMerged ? (
-              <div className="mt-6 max-w-2xl space-y-5 text-left">
-                <h1 className="category-hero-title font-serif text-h1-mobile md:text-h1 font-bold text-accent">
+              <div className="mt-6 max-w-[980px] md:max-w-[1100px] space-y-5 text-left">
+                <h1 className="category-hero-title font-serif font-bold text-accent text-[clamp(28px,3.1vw,44px)] leading-[1.1] md:whitespace-nowrap">
                   Банкротство физических лиц под ключ
                 </h1>
                 <div className="space-y-2 text-white/90 text-base md:text-lg leading-relaxed">
                   <p>Помогаем законно избавиться от кредитов, займов и долгов</p>
                   <p>без давления со стороны банков и коллекторов</p>
                 </div>
-                <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-accent/80">
+                <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white">
                   <li>Работаем строго в рамках закона</li>
                   <li>Сопровождаем процедуру от консультации до решения суда</li>
                   <li>Берем на себя общение с кредиторами и коллекторами</li>
@@ -568,7 +749,8 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   <a href={callHref}>Получить консультацию по банкротству</a>
                 </Button>
                 <p className="text-small text-white/70 md:whitespace-nowrap">
-                  ФЗ-№127 • Работаем в Москве и Московской области • Гибкая система оплаты • Скидки и рассрочка платежа
+                  <span className="text-accent font-semibold">ФЗ-№127</span> • Работаем в Москве и Московской области •{" "}
+                  <span className="text-accent font-semibold">Гибкая система оплаты</span> • Скидки и рассрочка платежа
                 </p>
               </div>
             ) : (
@@ -618,32 +800,62 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         {/* Экран 2: Каталог услуг */}
         <section className="section">
           <div className="container">
-            <div className="section__header max-w-3xl mx-auto text-center pt-2 md:pt-4 mb-6 md:mb-7">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                {isBankrotstvoMerged
-                  ? "Какие вопросы решаем"
-                  : data.categoryLabel === "Наследственные дела"
+            {!isBankrotstvoMerged && (
+              <div className="section__header max-w-3xl mx-auto text-center pt-2 md:pt-4 mb-6 md:mb-7">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                  {data.categoryLabel === "Наследственные дела"
                     ? "Помогаем в любых вопросах по наследственным делам"
                     : isConsumerProtectionCategory
                       ? "Помогаем по всем вопросам защиты прав потребителей"
-                    : `Помогаем по направлению «${data.categoryLabel}»`}
-              </h2>
-              <p className="text-muted-foreground">
-                {isBankrotstvoMerged
-                  ? "Объединяем банкротство и кредитные споры — вы получите понятный план и поддержку."
-                  : "Выберите вашу ситуацию — подскажем, как действовать:"}
-              </p>
-            </div>
+                      : `Помогаем по направлению «${data.categoryLabel}»`}
+                </h2>
+                <p className="text-muted-foreground">Выберите вашу ситуацию — подскажем, как действовать:</p>
+              </div>
+            )}
             {isBankrotstvoMerged ? (
-              <div className="section__content max-w-4xl mx-auto">
-                <ul className="grid grid-cols-1 md:grid-cols-2 gap-3 text-left text-[14px] md:text-[15px] text-slate-700">
-                  {data.scenarios.slice(0, 14).map((item) => (
-                    <li key={item.title} className="flex items-start gap-2 rounded-xl border border-border/70 bg-white/80 px-4 py-3">
-                      <span className="mt-1 h-2.5 w-2.5 rounded-full bg-accent shrink-0" />
-                      <span>{item.title}</span>
-                    </li>
-                  ))}
-                </ul>
+              <div className="section__content">
+                <div className="section__header max-w-3xl mx-auto text-center">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                    С какими ситуациями по долгам мы работаем
+                  </h2>
+                  <p className="text-body-mobile md:text-body text-muted-foreground">
+                    Мы сопровождаем процедуру банкротства физических лиц в самых распространенных и сложных долговых ситуациях
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+                  {bankrotstvoSituations.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Card
+                        key={item.title}
+                        className="h-full rounded-[14px] border border-[#E6DDCC] bg-[#F8F4EA] shadow-[0_6px_14px_rgba(60,52,31,0.08)]"
+                      >
+                        <CardContent className="p-6 h-full flex flex-col items-center text-center gap-3">
+                          <div className="h-14 w-14 rounded-full border border-[#D8C08B] bg-white flex items-center justify-center">
+                            <Icon className="h-7 w-7 text-accent" strokeWidth={1.6} />
+                          </div>
+                          <h3 className="text-[15px] md:text-[16px] font-semibold text-slate-900">
+                            {item.title}
+                          </h3>
+                          <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed">
+                            {item.description}
+                          </p>
+                          <Button
+                            asChild
+                            size="lg"
+                            className="mt-auto h-10 rounded-[10px] border border-[#b8911f] bg-[#C9A227] px-5 text-[13px] text-slate-900 shadow-[0_4px_10px_rgba(111,83,15,0.2)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                          >
+                            <a href={callHref}>Получить консультацию</a>
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+                <p className="mt-8 text-center text-small text-muted-foreground">
+                  В зависимости от ситуации по банкротству меняется объем работы и условия сопровождения.
+                  Подробнее о стоимости и условиях оплаты вы сможете узнать на консультации.
+                </p>
               </div>
             ) : (
               <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-fr">
@@ -697,16 +909,258 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 })}
               </div>
             )}
-            <div className="mt-7 md:mt-8 rounded-[12px] border border-[#D8C08B] bg-[#F7F2E8] p-6 text-center shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
-              <p className="font-semibold text-body-mobile md:text-body text-slate-900">
-                Каждая неделя без четкой позиции — это риск потерять время, деньги и сильную переговорную позицию.
-              </p>
-              <p className="mt-2 text-[14px] md:text-[15px] text-slate-600 font-medium">
-                Чем раньше вы фиксируете факты и стратегию, тем выше шанс решить вопрос в вашу пользу.
-              </p>
-            </div>
+            {!isBankrotstvoMerged && (
+              <div className="mt-7 md:mt-8 rounded-[12px] border border-[#D8C08B] bg-[#F7F2E8] p-6 text-center shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
+                <p className="font-semibold text-body-mobile md:text-body text-slate-900">
+                  Каждая неделя без четкой позиции — это риск потерять время, деньги и сильную переговорную позицию.
+                </p>
+                <p className="mt-2 text-[14px] md:text-[15px] text-slate-600 font-medium">
+                  Чем раньше вы фиксируете факты и стратегию, тем выше шанс решить вопрос в вашу пользу.
+                </p>
+              </div>
+            )}
           </div>
         </section>
+
+        {isBankrotstvoMerged && (
+          <section className="section">
+            <div className="container">
+              <div className="section__header max-w-3xl mx-auto text-center">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                  Как проходит процедура банкротства с нашим сопровождением
+                </h2>
+                <p className="text-body-mobile md:text-body text-muted-foreground">
+                  Мы берем на себя юридическую часть процедуры и сопровождаем вас на каждом этапе — от первой консультации
+                  до завершения дела в суде
+                </p>
+              </div>
+              <div className="mt-8 border-t border-[#E6DDCC]">
+                {bankrotstvoProcessSteps.map((step, index) => (
+                  <div
+                    key={step.title}
+                    className="flex items-start gap-4 md:gap-6 py-6 md:py-7 border-b border-[#E6DDCC]"
+                  >
+                    <div className="h-12 w-12 rounded-full border border-[#D8C08B] bg-[#F7F2E8] flex items-center justify-center text-[14px] font-semibold text-slate-900">
+                      {index + 1}
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-[15px] md:text-[16px] font-semibold text-slate-900">{step.title}</h3>
+                      <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 text-center text-small text-muted-foreground">
+                <p>Конкретный порядок работы и условия определяются после анализа ситуации.</p>
+                <p>Оставьте заявку на консультацию, адвокат свяжется с вами и подробно ответит на ваши вопросы.</p>
+              </div>
+              <div className="mt-6 flex justify-center">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                >
+                  <a href={callHref}>Получить консультацию по банкротству</a>
+                </Button>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isBankrotstvoMerged && (
+          <section className="section">
+            <div className="container">
+              <div className="section__header max-w-3xl mx-auto text-center">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                  Что важно знать о последствиях банкротства физических лиц
+                </h2>
+                <p className="text-body-mobile md:text-body text-muted-foreground">
+                  Мы заранее рассказываем о юридических последствиях процедуры, чтобы вы принимали решение осознанно и
+                  без неприятных сюрпризов
+                </p>
+              </div>
+              <div className="mt-8 grid grid-cols-1 lg:grid-cols-2 gap-6">
+                <Card className="rounded-[14px] border border-[#D8C08B] bg-white shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
+                  <CardContent className="p-6 md:p-7">
+                    <h3 className="text-[15px] md:text-[16px] font-semibold text-slate-900 text-center">
+                      Что меняется после начала процедуры
+                    </h3>
+                    <div className="mt-6 space-y-4">
+                      {bankrotstvoEffectsLeft.map((item) => (
+                        <div key={item.title} className="flex gap-3">
+                          <span className="mt-1 h-7 w-7 rounded-full border border-[#D8C08B] bg-[#F7F2E8] flex items-center justify-center">
+                            <Pin className="h-4 w-4 text-accent" />
+                          </span>
+                          <div>
+                            <p className="text-[14px] md:text-[15px] font-semibold text-slate-900">{item.title}</p>
+                            <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed">{item.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="rounded-[14px] border border-[#D8C08B] bg-white shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
+                  <CardContent className="p-6 md:p-7">
+                    <h3 className="text-[15px] md:text-[16px] font-semibold text-slate-900 text-center">
+                      Основные последствия банкротства
+                    </h3>
+                    <div className="mt-6 space-y-4">
+                      {bankrotstvoEffectsRight.map((item) => (
+                        <div key={item.title} className="flex gap-3">
+                          <span className="mt-1 h-7 w-7 rounded-full border border-[#D8C08B] bg-[#F7F2E8] flex items-center justify-center">
+                            <X className="h-4 w-4 text-accent" />
+                          </span>
+                          <div>
+                            <p className="text-[14px] md:text-[15px] font-semibold text-slate-900">{item.title}</p>
+                            <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed">{item.description}</p>
+                          </div>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+
+              <div className="mt-10 text-center">
+                <h3 className="text-[15px] md:text-[16px] font-semibold text-slate-900">
+                  Что по-прежнему будет можно:
+                </h3>
+                <ul className="mt-5 max-w-2xl mx-auto space-y-2 text-left text-[13px] md:text-[14px] text-slate-700">
+                  {bankrotstvoStillPossible.map((item) => (
+                    <li key={item} className="flex items-start gap-2">
+                      <span className="mt-0.5 h-5 w-5 rounded border border-[#D8C08B] bg-white flex items-center justify-center">
+                        <Check className="h-3 w-3 text-accent" />
+                      </span>
+                      <span>{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <div className="mt-8 text-center text-small text-muted-foreground">
+                <p>Конкретные последствия и ограничения зависят от вашей ситуации.</p>
+                <p>На консультации мы подробно объясняем, что будет применимо именно в вашем случае.</p>
+              </div>
+              <div className="mt-6 flex justify-center">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                >
+                  <a href={callHref}>Оценить мою ситуацию</a>
+                </Button>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isBankrotstvoMerged && (
+          <section className="section">
+            <div className="container">
+              <div className="section__header max-w-3xl mx-auto text-center">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Почему выбирают нас</h2>
+                <p className="text-body-mobile md:text-body text-muted-foreground">
+                  Юридическое сопровождение банкротства с понятными условиями и прозрачной оплатой
+                </p>
+              </div>
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {bankrotstvoWhyUs.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={item.title} className="text-center px-4 md:px-5">
+                      <div className="mx-auto h-14 w-14 flex items-center justify-center">
+                        <Icon className="h-10 w-10 text-accent" strokeWidth={1.6} />
+                      </div>
+                      <h3 className="mt-4 text-[15px] md:text-[16px] font-semibold text-slate-900">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-[13px] md:text-[14px] text-slate-600 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="mt-10 text-center text-small text-muted-foreground">
+                Готовы обсудить вашу ситуацию и условия сопровождения?
+              </div>
+              <div className="mt-6 flex justify-center">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                >
+                  <a href={callHref}>Получить консультацию по банкротству</a>
+                </Button>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isBankrotstvoMerged && bankrotstvoShowcaseCases.length > 0 && (
+          <section className="section">
+            <div className="container">
+              <div className="section__header max-w-3xl mx-auto text-center">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                  Кейсы из практики по банкротству физических лиц
+                </h2>
+                <p className="text-body-mobile md:text-body text-muted-foreground">
+                  Мы не раскрываем персональные данные клиентов. Публикация осуществляется с согласия клиентов
+                </p>
+              </div>
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+                {bankrotstvoShowcaseCases.map((caseItem, index) => (
+                  <Card
+                    key={caseItem.title ?? caseItem.fallbackId ?? index}
+                    className="h-full rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_16px_rgba(60,52,31,0.08)]"
+                  >
+                    <CardContent className="p-6">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="text-xs text-slate-500">
+                          № дела
+                          <div className="mt-1 text-[13px] font-semibold text-slate-900">
+                            {caseItem.caseNumber ?? "Не раскрывается"}
+                          </div>
+                        </div>
+                        <div className="h-20 w-20 border border-[#D8C08B] bg-white text-[11px] text-slate-500 flex items-center justify-center text-center leading-tight">
+                          Скан
+                          <br />
+                          решения
+                        </div>
+                      </div>
+                      <h3 className="mt-4 text-[15px] font-semibold text-slate-900">{caseItem.title}</h3>
+                      <div className="mt-4 text-[13px] text-slate-700">
+                        <div className="text-slate-500">Сумма долга:</div>
+                        <div className="font-semibold text-slate-900">
+                          {caseItem.debtAmount ?? "Не раскрывается"}
+                        </div>
+                      </div>
+                      <div className="mt-3 text-[13px] text-slate-700">
+                        <div className="text-slate-500">Результат:</div>
+                        <div className="font-semibold text-slate-900">{caseItem.result}</div>
+                      </div>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              <div className="mt-8 text-center text-small text-muted-foreground">
+                Ваша ситуация может быть похожей. Давайте обсудим ваш случай на консультации
+              </div>
+              <div className="mt-6 flex justify-center">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                >
+                  <a href={callHref}>Получить консультацию по банкротству</a>
+                </Button>
+              </div>
+            </div>
+          </section>
+        )}
 
         {/* Экран 3: Команда */}
         {resolvedTeam.length > 0 && (

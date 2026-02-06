@@ -46,6 +46,9 @@ const Index = () => {
       };
     })
     .filter((item): item is { label: string; path: string } => Boolean(item));
+  const uniquePhysCategoryItems = physCategoryItems.filter(
+    (item, index, array) => array.findIndex((other) => other.path === item.path) === index
+  );
   const bizCategoryItems = getCategoriesForAudience("biz").map((category) => ({
     label: category.title,
     path: `/services/biz#${category.slug}`
@@ -58,7 +61,7 @@ const Index = () => {
     {
       title: "Физическим лицам",
       description: "Личные, семейные и имущественные споры с понятной стратегией.",
-      items: physCategoryItems,
+      items: uniquePhysCategoryItems,
       href: "/uslugi/fiz-lica"
     },
     {

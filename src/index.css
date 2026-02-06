@@ -233,6 +233,16 @@ All colors MUST be HSL.
     padding-block: var(--section-y);
   }
 
+  .bankrotstvo-compact .section:not(.section--hero) {
+    padding-block: 16px;
+  }
+
+  @media (min-width: 768px) {
+    .bankrotstvo-compact .section:not(.section--hero) {
+      padding-block: 20px;
+    }
+  }
+
   .services-page {
     --section-y: 40px;
     --section-inner-gap: 20px;
