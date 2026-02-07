@@ -804,8 +804,32 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
       question: trudovyeFaqQuestions[index] ?? item.question
     }));
   }, [faqItems, isBankrotstvoMerged, isTrudovyeCategory]);
+  const teamOverrideSlugs = useMemo(() => {
+    if (isBankrotstvoMerged) {
+      return ["lyutikov", "ryzhenko", "vaskovsky"];
+    }
+    if (isConsumerProtectionCategory) {
+      return ["ryzhenko", "vaskovsky", "sotnikov"];
+    }
+    return null;
+  }, [isBankrotstvoMerged, isConsumerProtectionCategory]);
 
   const resolvedTeam = useMemo(() => {
+    if (teamOverrideSlugs) {
+      const membersBySlug = new Map(teamMembers.map((member) => [member.slug, member]));
+      const override = teamOverrideSlugs
+        .map((slug) => membersBySlug.get(slug))
+        .filter(Boolean)
+        .map((member) => ({
+          slug: member!.slug,
+          name: member!.name,
+          role: member!.role,
+          experience: member!.experienceText,
+          bullets: (member!.specializations ?? []).slice(0, 4),
+          photo: member!.photo
+        }));
+      if (override.length > 0) return override;
+    }
     if (!isDebtContractsCategory && !isConsumerProtectionCategory) return data.team;
     if (data.team.length >= 3) return data.team.slice(0, 3);
 
@@ -837,7 +861,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         photo: extra.photo
       }
     ].slice(0, 3);
-  }, [data.team, isConsumerProtectionCategory, isDebtContractsCategory]);
+  }, [data.team, isConsumerProtectionCategory, isDebtContractsCategory, teamOverrideSlugs]);
 
   const isTwoTeamLayout = resolvedTeam.length === 2;
   const teamGridClassName = isTwoTeamLayout

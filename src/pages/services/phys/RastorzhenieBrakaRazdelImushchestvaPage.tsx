@@ -33,13 +33,12 @@ import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 import { cases as casesData } from "@/data/cases";
+import { teamMembers as allTeamMembers } from "@/data/team";
 import { useLocation } from "react-router-dom";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
-import vaskovskyImg from "@/assets/team/vaskovsky.jpg";
-import kalabekovImg from "@/assets/team/kalabekov.jpg";
 
 type LeadFormProps = {
   formId: string;
@@ -282,49 +281,40 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
     }
   ];
 
+  type PageTeamMember = {
+    name: string;
+    role: string;
+    experience: string;
+    profileUrl: string;
+    photo: string;
+    specializations: string[];
+    description: string[];
+  };
+
+  const buildTeamMember = (slug: string): PageTeamMember | null => {
+    const member = allTeamMembers.find((item) => item.slug === slug);
+    if (!member) return null;
+    const description = member.about
+      ? member.about.split("\n\n").filter(Boolean).slice(0, 2)
+      : (member.competencies ?? []).slice(0, 2);
+    const safeDescription =
+      description.length > 0 ? description : (member.specializations ?? []).slice(0, 2);
+    return {
+      name: member.name,
+      role: member.role,
+      experience: member.experienceText ?? "",
+      profileUrl: `/team/${member.slug}`,
+      photo: member.photo,
+      specializations: (member.specializations ?? []).slice(0, 4),
+      description: safeDescription
+    };
+  };
+
   const teamMembers = [
-    {
-      name: "Лядова Юлия Сергеевна",
-      role: "Адвокат",
-      experience: "Стаж 18 лет",
-      profileUrl: "/team/yulia-lyadova",
-      photo: "/images/team/lyadova-yuliya.jpg",
-      specializations: ["Семейные споры", "Договорные и имущественные споры", "Интеллектуальная собственность"],
-      description: [
-        "Помогает урегулировать семейные конфликты, сопровождает договорные и имущественные споры, защищает интересы клиентов в вопросах интеллектуальной собственности. В работе делает акцент на точной правовой позиции, сборе доказательств и понятной стратегии для клиента.",
-        "Ведет дела на досудебной стадии и в суде, готовит процессуальные документы, участвует в переговорах и добивается исполнения решений."
-      ]
-    },
-    {
-      name: "Калабеков Эльдар Султан-Муратович",
-      role: "Адвокат",
-      experience: "Стаж 8 лет",
-      profileUrl: "/team/kalabekov",
-      photo: kalabekovImg,
-      specializations: [
-        "Гражданское и семейное право",
-        "Семейные и наследственные споры",
-        "Защита прав потребителей",
-        "Обязательственное право и взыскания"
-      ],
-      description: [
-        "Сфокусирован на семейных вопросах и на защите потребителей: от возврата средств до сопровождения наследственных дел. Внимателен к деталям договоров и коммуникации с контрагентами, помогает клиентам быстро вернуть деньги и закрыть конфликт.",
-        "Работает с доказательствами, готовит претензии, сопровождает в суде и контролирует исполнение решений."
-      ]
-    },
-    {
-      name: "Васьковский Михаил Михайлович",
-      role: "Адвокат",
-      experience: "Стаж 15 лет",
-      profileUrl: "/team/vaskovsky",
-      photo: vaskovskyImg,
-      specializations: ["Семейные споры и раздел имущества", "Наследственные дела", "Административные дела", "Страховые споры"],
-      description: [
-        "Работает с конфликтами, где важна доказательная база и чувствительный контекст: семейные споры, наследство, отношения с государственными органами и страховыми. Выстраивает стратегию так, чтобы сохранить баланс интересов и избежать эскалации.",
-        "Ведет переговоры, готовит документы, сопровождает клиента в судах и на внесудебных этапах."
-      ]
-    }
-  ];
+    buildTeamMember("lyutikov"),
+    buildTeamMember("ryzhenko"),
+    buildTeamMember("yulia-lyadova")
+  ].filter(Boolean) as PageTeamMember[];
 
   const steps = [
     {

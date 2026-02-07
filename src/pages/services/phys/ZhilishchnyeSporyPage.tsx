@@ -33,11 +33,10 @@ import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 import { sharedReviews } from "@/data/shared-reviews";
+import { teamMembers as allTeamMembers } from "@/data/team";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
-import vaskovskyImg from "@/assets/team/vaskovsky.jpg";
-import kalabekovImg from "@/assets/team/kalabekov.jpg";
 
 type LeadFormProps = {
   formId: string;
@@ -315,49 +314,40 @@ const ZhilishchnyeSporyPage = () => {
     .filter((item, index, arr) => arr.findIndex((entry) => entry.title === item.title) === index)
     .slice(0, 8);
 
+  type PageTeamMember = {
+    name: string;
+    role: string;
+    experience: string;
+    profileUrl: string;
+    photo: string;
+    specializations: string[];
+    description: string[];
+  };
+
+  const buildTeamMember = (slug: string): PageTeamMember | null => {
+    const member = allTeamMembers.find((item) => item.slug === slug);
+    if (!member) return null;
+    const description = member.about
+      ? member.about.split("\n\n").filter(Boolean).slice(0, 2)
+      : (member.competencies ?? []).slice(0, 2);
+    const safeDescription =
+      description.length > 0 ? description : (member.specializations ?? []).slice(0, 2);
+    return {
+      name: member.name,
+      role: member.role,
+      experience: member.experienceText ?? "",
+      profileUrl: `/team/${member.slug}`,
+      photo: member.photo,
+      specializations: (member.specializations ?? []).slice(0, 4),
+      description: safeDescription
+    };
+  };
+
   const teamMembers = [
-    {
-      name: "Лядова Юлия Сергеевна",
-      role: "Адвокат",
-      experience: "Стаж 18 лет",
-      profileUrl: "/team/yulia-lyadova",
-      photo: "/images/team/lyadova-yuliya.jpg",
-      specializations: ["Жилищные споры", "Имущественные споры", "Договорное право"],
-      description: [
-        "Сопровождает жилищные и имущественные споры: от регистрации и порядка пользования до сложных конфликтов по долям и документам. Делает акцент на точной правовой позиции, доказательствах и стратегии, которая работает в суде и на переговорах.",
-        "Ведёт дела на досудебной стадии и в суде, готовит процессуальные документы, участвует в переговорах и добивается исполнения решений."
-      ]
-    },
-    {
-      name: "Калабеков Эльдар Султан-Муратович",
-      role: "Адвокат",
-      experience: "Стаж 8 лет",
-      profileUrl: "/team/kalabekov",
-      photo: kalabekovImg,
-      specializations: [
-        "Жилищное и гражданское право",
-        "Споры с управляющими компаниями",
-        "Защита прав потребителей",
-        "Взыскание ущерба и расходов"
-      ],
-      description: [
-        "Сфокусирован на жилищных вопросах и спорах с организациями: управляющими компаниями, подрядчиками и контрагентами. Внимателен к документам, переписке и доказательствам, помогает вернуть деньги и зафиксировать ответственность.",
-        "Работает с доказательствами, готовит претензии, сопровождает в суде и контролирует исполнение решений."
-      ]
-    },
-    {
-      name: "Васьковский Михаил Михайлович",
-      role: "Адвокат",
-      experience: "Стаж 15 лет",
-      profileUrl: "/team/vaskovsky",
-      photo: vaskovskyImg,
-      specializations: ["Жилищные споры и право собственности", "Наследственные дела", "Административные дела", "Страховые споры"],
-      description: [
-        "Работает с конфликтами, где важны документы на недвижимость, регистрационные действия и чувствительный контекст. Выстраивает стратегию так, чтобы сохранить баланс интересов, снизить риски и избежать эскалации.",
-        "Ведёт переговоры, готовит документы, сопровождает клиента в судах и на внесудебных этапах."
-      ]
-    }
-  ];
+    buildTeamMember("yulia-lyadova"),
+    buildTeamMember("ryzhenko"),
+    buildTeamMember("sotnikov")
+  ].filter(Boolean) as PageTeamMember[];
 
   const steps = [
     {
