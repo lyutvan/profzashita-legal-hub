@@ -634,6 +634,43 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         "В большинстве случаев личное присутствие клиента не требуется. Мы представляем ваши интересы по доверенности и берём на себя участие в судебных заседаниях. Если потребуется ваше участие, об этом заранее сообщается и объясняется причина."
     }
   ];
+  const trudovyeFaqItems = [
+    {
+      question: "Можно ли сохранить работу, если увольнение незаконное?",
+      answer:
+        "Да, в ряде случаев возможно оспорить увольнение и восстановиться на работе. Перспектива зависит от оснований увольнения, документов и соблюдения процедуры со стороны работодателя. Эти моменты мы оцениваем на консультации."
+    },
+    {
+      question: "Что делать, если не выплачивают зарплату или компенсации?",
+      answer:
+        "Задержки и невыплаты заработной платы, отпускных и компенсаций можно взыскивать в законном порядке. Важно зафиксировать факт нарушения и правильно выстроить дальнейшие действия — от претензии до суда."
+    },
+    {
+      question: "Обязательно ли сразу обращаться в суд?",
+      answer:
+        "Нет. В некоторых ситуациях спор можно попытаться урегулировать в досудебном порядке. Мы оцениваем, какой путь будет наиболее безопасным и эффективным именно в вашей ситуации."
+    },
+    {
+      question: "Нужно ли мое личное присутствие?",
+      answer:
+        "Не всегда. Часть действий и процессов мы можем взять на себя. Необходимость личного участия зависит от стадии спора и конкретных обстоятельств дела."
+    },
+    {
+      question: "Сколько времени занимает трудовой спор?",
+      answer:
+        "Сроки зависят от сложности ситуации, позиции работодателя и выбранного способа защиты. На консультации мы объясняем возможные этапы и ориентировочные сроки."
+    },
+    {
+      question: "Как формируется стоимость услуг?",
+      answer:
+        "Стоимость зависит от объема работы, сложности ситуации и выбранного формата сопровождения. После анализа вашей ситуации мы озвучиваем условия и фиксируем их в договоре."
+    },
+    {
+      question: "Что делать, если я не уверен(а), нарушены ли мои права?",
+      answer:
+        "Это частая ситуация. На консультации мы разберем документы и обстоятельства дела и подскажем, есть ли основания для защиты и какие варианты действий возможны."
+    }
+  ];
   const trudovyeFaqQuestions = [
     "Можно ли сохранить работу, если увольнение незаконное?",
     "Что делать, если не выплачивают зарплату или компенсации?",
@@ -646,15 +683,18 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const faqItems = useMemo(() => data.faqs.slice(0, 7), [data.faqs]);
   const resolvedFaqItems = useMemo(() => {
     if (isBankrotstvoMerged) return bankrotstvoFaqItems;
-    if (!isTrudovyeCategory) return faqItems;
+    if (isTrudovyeCategory) return trudovyeFaqItems;
     return faqItems.map((item, index) => ({
       ...item,
       question: trudovyeFaqQuestions[index] ?? item.question
     }));
-  }, [bankrotstvoFaqItems, faqItems, isBankrotstvoMerged, isTrudovyeCategory]);
+  }, [bankrotstvoFaqItems, faqItems, isBankrotstvoMerged, isTrudovyeCategory, trudovyeFaqItems]);
   const teamOverrideSlugs = useMemo(() => {
     if (isBankrotstvoMerged) {
       return ["lyutikov", "ryzhenko"];
+    }
+    if (isTrudovyeCategory) {
+      return ["ryzhenko", "sotnikov"];
     }
     if (isConsumerProtectionCategory) {
       return ["ryzhenko", "vaskovsky", "sotnikov"];
@@ -763,6 +803,57 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     }>;
   }, [isBankrotstvoMerged]);
 
+  const trudovyeTeamCards = useMemo(() => {
+    if (!isTrudovyeCategory) return [];
+    const membersBySlug = new Map(teamMembers.map((member) => [member.slug, member]));
+    const cards = [
+      {
+        slug: "ryzhenko",
+        badge: "Юрист",
+        roleTitle: "Помощник председателя коллегии",
+        experience: "Стаж 23 года",
+        bullets: [
+          "Анализирует ситуацию и подготавливает документы",
+          "Формирует правовую позицию клиента",
+          "Сопровождает дело на всех этапах, представляет интересы работников в переговорах и суде"
+        ],
+        cta: "Подробнее о юристе"
+      },
+      {
+        slug: "sotnikov",
+        badge: "Адвокат",
+        roleTitle: "Адвокат коллегии",
+        experience: "Стаж 15 лет",
+        bullets: [
+          "Представляет интересы работников в трудовых спорах",
+          "Участвует в переговорах с работодателями и судебных разбирательствах"
+        ],
+        cta: "Подробнее об адвокате"
+      }
+    ];
+
+    return cards
+      .map((card) => {
+        const member = membersBySlug.get(card.slug);
+        if (!member) return null;
+        return {
+          ...card,
+          name: member.name,
+          photo: member.photo
+        };
+      })
+      .filter(Boolean) as Array<{
+      slug: string;
+      badge: string;
+      roleTitle: string;
+      experience: string;
+      bullets: string[];
+      cta: string;
+      name: string;
+      photo: string;
+    }>;
+  }, [isTrudovyeCategory]);
+
   const isTwoTeamLayout = resolvedTeam.length === 2;
   const teamGridClassName = isTwoTeamLayout
     ? "section__content grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr max-w-4xl mx-auto justify-items-center"
@@ -816,11 +907,63 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
       text: "У меня была сложная ситуация с кредитами и просрочками, даже уже были исполнительные производства. Состояние было ужасное, не понимала что делать. Юрист взял все на себя, объяснил порядок действий и дальнейшие шаги. Были всегда на связи, поэтому вся процедура прошла спокойно и без нервов."
     }
   ];
+  const trudovyeReviews = [
+    {
+      id: "tr-1",
+      name: "Константин Г.",
+      rating: 5,
+      date: "",
+      text:
+        "Уволили без объяснений причин, сказали «хочешь подавай в суд». На консультации объяснили все нюансы, разработали стратегию, я все подтвердил. Дальше делом занимались юристы, меня почти не дергали. В итоге восстановили мои права. Спасибо за спокойную и понятную работу."
+    },
+    {
+      id: "tr-2",
+      name: "Марина К.",
+      rating: 5,
+      date: "",
+      text:
+        "Работодатель несколько месяцев задерживал зарплату, на обращения не реагировал. Юрист оценил ситуацию, подготовили документы и довели дело до результата. Деньги выплатили полностью. Понравилось, что все объясняли простым языком, было понятно."
+    },
+    {
+      id: "tr-3",
+      name: "Сергей М.",
+      rating: 5,
+      date: "",
+      text:
+        "Меня вынуждали уволиться «по собственному», я не хотел, но говорили, что иначе будет хуже. Очень переживал. Юрист помог зафиксировать нарушения, объяснил риски и дальнейшие шаги. В итоге вопрос решился в мою пользу. Остался доволен работой и подходом."
+    },
+    {
+      id: "tr-4",
+      name: "Любовь В.",
+      rating: 5,
+      date: "",
+      text:
+        "Боялась идти против работодателя, компания крупная. Юристы сразу сказали, на что могу рассчитывать и какие есть варианты. Все прошло спокойно, без лишних эмоций. Получила хорошую компенсацию. Спасибо!"
+    },
+    {
+      id: "tr-5",
+      name: "Алексей А.",
+      rating: 5,
+      date: "",
+      text:
+        "Был конфликт с работодателем, дело дошло до суда. Представляли мои интересы полностью, держали в курсе всех этапов. Результатом доволен, помогли защитить мои права, благодарю за профессиональную работу."
+    },
+    {
+      id: "tr-6",
+      name: "Елена С.",
+      rating: 5,
+      date: "",
+      text:
+        "Обратилась сначала просто за консультацией, долго думала, но в итоге решила вести дело с юристами. Все объяснили понятным языком. Сопровождали до конца, всегда были на связи. Спасибо за поддержку в сложной ситуации."
+    }
+  ];
   const reviews = (isBankrotstvoMerged
     ? bankrotstvoReviews
-    : data.reviews.length > 0
-      ? data.reviews
-      : sharedReviews).slice(0, 6);
+    : isTrudovyeCategory
+      ? trudovyeReviews
+      : data.reviews.length > 0
+        ? data.reviews
+        : sharedReviews).slice(0, 6);
 
   const shouldShowCases = cases.length > 0 && !isBankrotstvoMerged && !isTrudovyeCategory;
 
@@ -1712,6 +1855,48 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                     </Card>
                   ))}
                 </div>
+              ) : isTrudovyeCategory ? (
+                <div className="section__content grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr justify-items-center max-w-[760px] mx-auto">
+                  {trudovyeTeamCards.map((card) => (
+                    <Card
+                      key={card.slug}
+                      className="h-full rounded-[14px] border border-[#D8C08B] bg-white shadow-[0_10px_24px_rgba(60,52,31,0.08)]"
+                    >
+                      <CardContent className="p-6 h-full flex flex-col items-center text-center">
+                        <div className="w-full overflow-hidden rounded-[12px] border border-[#E6DDCC] bg-white">
+                          <img
+                            src={card.photo}
+                            alt={card.name}
+                            className="h-[320px] w-full object-cover object-center md:h-[340px] lg:h-[360px]"
+                            loading="lazy"
+                          />
+                        </div>
+                        <h3 className="mt-5 text-[16px] md:text-[18px] font-semibold text-slate-900">
+                          {card.name}
+                        </h3>
+                        <span className="mt-2 inline-flex items-center rounded-full bg-[#C9A227] px-4 py-1 text-[12px] font-semibold text-white">
+                          {card.badge}
+                        </span>
+                        <div className="mt-3 text-[13px] font-semibold text-slate-800">{card.roleTitle}</div>
+                        <div className="mt-2 text-[13px] text-slate-700">{card.experience}</div>
+                        <ul className="mt-4 space-y-2 text-[13px] text-slate-700 text-left list-disc list-inside">
+                          {card.bullets.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                        <div className="mt-auto w-full pt-6 flex justify-center">
+                          <Button
+                            asChild
+                            size="lg"
+                            className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                          >
+                            <Link to={`/team/${card.slug}`}>{card.cta}</Link>
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
               ) : (
                 <div className={teamGridClassName}>
                   {resolvedTeam.map((member) => (
@@ -2016,13 +2201,27 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_520px] lg:items-start lg:gap-14">
               <div className="max-w-2xl space-y-6">
                 <div className="section__header max-w-2xl !mb-0">
-                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                    Получите консультацию по банкротству физических лиц
-                  </h2>
-                  <p className="text-muted-foreground">
-                    Позвоните нам — адвокат по банкротству физических лиц ответит на вопросы, уточнит детали и
-                    предложит варианты действий
-                  </p>
+                  {isTrudovyeCategory ? (
+                    <>
+                      <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                        Обсудите вашу ситуацию с адвокатом по трудовым спорам
+                      </h2>
+                      <p className="text-muted-foreground">
+                        Оставьте контакты — адвокат по трудовым спорам свяжется с вами, уточнит детали ситуации и
+                        подскажет возможные варианты действий
+                      </p>
+                    </>
+                  ) : (
+                    <>
+                      <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                        Получите консультацию по банкротству физических лиц
+                      </h2>
+                      <p className="text-muted-foreground">
+                        Позвоните нам — адвокат по банкротству физических лиц ответит на вопросы, уточнит детали и
+                        предложит варианты действий
+                      </p>
+                    </>
+                  )}
                 </div>
                 <div className="space-y-3">
                   <p className="text-small font-semibold text-slate-900">Или напишите нам напрямую:</p>
