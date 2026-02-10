@@ -923,7 +923,9 @@ const ZhilishchnyeSporyPage = () => {
               ))}
             </Accordion>
             <div className="mt-8 text-center space-y-4">
-              <p className="text-muted-foreground">Не нашли свой вопрос? Оставьте заявку и мы оценим вашу ситуацию</p>
+              <p className="text-muted-foreground">
+                Не нашли свой вопрос? Позвоните нам — подскажем, как действовать дальше.
+              </p>
               <Button
                 asChild
                 size="lg"
@@ -945,7 +947,7 @@ const ZhilishchnyeSporyPage = () => {
                     Получите оценку перспектив по вашей ситуации
                   </h2>
                   <p className="text-muted-foreground">
-                    Оставьте контакты — адвокат по жилищным спорам свяжется и расскажет, как действовать дальше.
+                    Позвоните нам — адвокат по жилищным спорам расскажет, как действовать дальше.
                   </p>
                 </div>
                 <div className="space-y-3">
@@ -975,13 +977,19 @@ const ZhilishchnyeSporyPage = () => {
               </div>
               <Card className="w-full rounded-[16px] border border-[#E5E7EB] bg-[#F8FAFC] shadow-[0_18px_40px_rgba(15,23,42,0.08)] lg:max-w-[520px] lg:justify-self-end">
                 <CardContent className="p-7 md:p-8">
-                  <LeadForm
-                    formId="lead-final"
-                    submitLabel="Получить консультацию"
-                    placeholder="Например: «Нужно снять с регистрации бывшего родственника и закрепить порядок пользования квартирой»"
-                    footerNote="Перезвоним в течение 15–20 минут в рабочее время"
-                    topic="Жилищные споры"
-                  />
+                  <div className="space-y-4">
+                    <div className="text-sm text-muted-foreground">Телефон для консультации:</div>
+                    <a href={`tel:${SITE.phoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
+                      {SITE.phone}
+                    </a>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                    >
+                      <a href={`tel:${SITE.phoneRaw}`}>Свяжитесь с нами</a>
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </div>

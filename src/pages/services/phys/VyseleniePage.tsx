@@ -38,8 +38,8 @@ import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
-import vaskovskyImg from "@/assets/team/vaskovsky.jpg";
-import kalabekovImg from "@/assets/team/kalabekov.jpg";
+import ryzhenkoImg from "@/assets/team/ryzhenko.jpg";
+import sotnikovImg from "@/assets/team/sotnikov.jpg";
 
 type LeadFormProps = {
   formId: string;
@@ -299,32 +299,27 @@ const VyseleniePage = () => {
       ]
     },
     {
-      name: "Калабеков Эльдар Султан-Муратович",
-      role: "Адвокат",
-      experience: "Стаж 8 лет",
-      profileUrl: "/team/kalabekov",
-      photo: kalabekovImg,
-      specializations: [
-        "Жилищное и гражданское право",
-        "Споры с управляющими компаниями",
-        "Защита прав потребителей",
-        "Обязательственное право и взыскания"
-      ],
+      name: "Рыженко Дмитрий Петрович",
+      role: "Юрист",
+      experience: "Стаж 23 года",
+      profileUrl: "/team/ryzhenko",
+      photo: ryzhenkoImg,
+      specializations: ["Жилищные споры", "Договорное право", "Имущественные споры", "Взыскание задолженностей"],
       description: [
-        "Сфокусирован на жилищных вопросах и спорах с организациями: управляющими компаниями, подрядчиками и контрагентами. Внимателен к документам, переписке и доказательствам, помогает вернуть деньги и зафиксировать ответственность.",
-        "Работает с доказательствами, готовит претензии, сопровождает в суде и контролирует исполнение решений."
+        "Глубоко погружается в документы и финансовую картину, чтобы построить доказательную базу и удержать позицию клиента в суде и на переговорах.",
+        "Сопровождает претензионную работу, готовит документы и выстраивает стратегию взыскания и защиты интересов клиента."
       ]
     },
     {
-      name: "Васьковский Михаил Михайлович",
+      name: "Сотников Дмитрий Валерьевич",
       role: "Адвокат",
       experience: "Стаж 15 лет",
-      profileUrl: "/team/vaskovsky",
-      photo: vaskovskyImg,
-      specializations: ["Жилищные споры и право собственности", "Наследственные дела", "Административные дела", "Страховые споры"],
+      profileUrl: "/team/sotnikov",
+      photo: sotnikovImg,
+      specializations: ["Имущественные споры", "Досудебные переговоры", "Медиация", "Защита интересов в судах"],
       description: [
-        "Работает с конфликтами, где важны документы на недвижимость, регистрационные действия и чувствительный контекст. Выстраивает стратегию так, чтобы сохранить баланс интересов, снизить риски и избежать эскалации.",
-        "Ведет переговоры, готовит документы, сопровождает клиента в судах и на внесудебных этапах."
+        "Работает на стыке уголовного и гражданского права, помогает снизить риски и защищает интересы в сложных конфликтах.",
+        "Ведет переговоры, готовит процессуальные документы и сопровождает клиентов на всех стадиях разбирательств."
       ]
     }
   ];
@@ -695,7 +690,8 @@ const VyseleniePage = () => {
               ))}
             </div>
             <p className="mt-8 text-center text-small text-muted-foreground">
-              Все наши юристы проходят ежегодную аттестацию и имеют доступ к базе судебной практики
+              Сопровождение осуществляется командой специалистов. В зависимости от ситуации к сопровождению
+              подключаются профильные специалисты.
             </p>
           </div>
         </section>
@@ -858,7 +854,9 @@ const VyseleniePage = () => {
               ))}
             </Accordion>
             <div className="mt-8 text-center space-y-4">
-              <p className="text-muted-foreground">Не нашли свой вопрос? Оставьте заявку и мы оценим вашу ситуацию</p>
+              <p className="text-muted-foreground">
+                Не нашли свой вопрос? Позвоните нам — подскажем, как действовать дальше.
+              </p>
               <Button
                 size="lg"
                 className="w-full sm:w-auto border border-[#b8911f] bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
@@ -880,7 +878,7 @@ const VyseleniePage = () => {
                     Получите оценку перспектив по жилищному спору
                   </h2>
                   <p className="text-muted-foreground">
-                    Оставьте контакты — адвокат по жилищным вопросам свяжется и расскажет, как действовать дальше.
+                    Позвоните нам — адвокат по жилищным вопросам расскажет, как действовать дальше.
                   </p>
                 </div>
                 <div className="space-y-3">
@@ -910,12 +908,19 @@ const VyseleniePage = () => {
               </div>
               <Card className="w-full rounded-[16px] border border-[#E5E7EB] bg-[#F8FAFC] shadow-[0_18px_40px_rgba(15,23,42,0.08)] lg:max-w-[520px] lg:justify-self-end">
                 <CardContent className="p-7 md:p-8">
-                  <LeadForm
-                    formId="lead-final"
-                    submitLabel="Оценить перспективы"
-                    placeholder="Например: «Нужно снять с регистрации бывшего родственника и закрепить порядок пользования квартирой»"
-                    footerNote="Перезвоним в течение 15–20 минут в рабочее время"
-                  />
+                  <div className="space-y-4">
+                    <div className="text-sm text-muted-foreground">Телефон для консультации:</div>
+                    <a href={`tel:${SITE.phoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
+                      {SITE.phone}
+                    </a>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                    >
+                      <a href={`tel:${SITE.phoneRaw}`}>Свяжитесь с нами</a>
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </div>

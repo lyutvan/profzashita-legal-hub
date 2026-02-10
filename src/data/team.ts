@@ -157,6 +157,7 @@ export const teamMembers: TeamMember[] = [
     name: "Сотников Дмитрий Валерьевич",
     slug: "sotnikov",
     role: "Адвокат",
+    reesterNumber: "77/13795",
     experienceText: "Стаж 15 лет",
     specializations: [
       "Уголовные дела экономической направленности",
@@ -297,6 +298,7 @@ export const teamMembers: TeamMember[] = [
     name: "Васьковский Михаил Михайлович",
     slug: "vaskovsky",
     role: "Адвокат",
+    reesterNumber: "50/10209",
     experienceText: "Стаж — более 15 лет",
     specializations: [
       "Семейные и наследственные споры",
@@ -409,6 +411,7 @@ export const teamMembers: TeamMember[] = [
     name: "Калабеков Эльдар Султан-Муратович",
     slug: "kalabekov",
     role: "Адвокат",
+    reesterNumber: "77/17095",
     experienceText: "Стаж 8 лет",
     specializations: [
       "Защита прав потребителей",
@@ -452,6 +455,7 @@ export const teamMembers: TeamMember[] = [
     seoDescription:
       "Адвокат Лядова Юлия Сергеевна — 18 лет практики. Договорные и имущественные споры, семейные дела, интеллектуальная собственность. Консультация в Москве.",
     role: "Адвокат",
+    reesterNumber: "50/11592",
     affiliation: "Член Ассоциации юристов России",
     experienceText: "Стаж — 18 лет",
     specializations: [

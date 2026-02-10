@@ -700,7 +700,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
       return ["ryzhenko", "vaskovsky", "sotnikov"];
     }
     return null;
-  }, [isBankrotstvoMerged, isConsumerProtectionCategory]);
+  }, [isBankrotstvoMerged, isConsumerProtectionCategory, isTrudovyeCategory]);
 
   const resolvedTeam = useMemo(() => {
     if (teamOverrideSlugs) {
@@ -1553,7 +1553,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-6 text-center text-small text-muted-foreground">
                 <p>Конкретный порядок работы и условия определяются после анализа ситуации.</p>
-                <p>Оставьте заявку на консультацию, адвокат свяжется с вами и подробно ответит на ваши вопросы.</p>
+                <p>Позвоните нам — адвокат подробно ответит на ваши вопросы и подскажет, как действовать.</p>
               </div>
               <div className="mt-6 flex justify-center">
                 <Button
@@ -1961,9 +1961,10 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   подключаются профильные специалисты.
                 </p>
               ) : (
-                <p className="mt-8 text-center text-small text-muted-foreground">
-                  Все наши юристы проходят ежегодную аттестацию и имеют доступ к базе судебной практики
-                </p>
+            <p className="mt-8 text-center text-small text-muted-foreground">
+              Сопровождение осуществляется командой специалистов. В зависимости от ситуации к сопровождению
+              подключаются профильные специалисты.
+            </p>
               )}
             </div>
           </section>
@@ -2181,7 +2182,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               ))}
             </Accordion>
             <div className="mt-8 text-center space-y-4">
-              <p className="text-muted-foreground">Не нашли свой вопрос? Оставьте заявку и мы оценим вашу ситуацию</p>
+              <p className="text-muted-foreground">
+                Не нашли свой вопрос? Позвоните нам — подскажем, как действовать дальше.
+              </p>
               <Button
                 size="lg"
                 className={`w-full sm:w-auto border border-[#b8911f] bg-accent ${
@@ -2207,8 +2210,8 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                         Обсудите вашу ситуацию с адвокатом по трудовым спорам
                       </h2>
                       <p className="text-muted-foreground">
-                        Оставьте контакты — адвокат по трудовым спорам свяжется с вами, уточнит детали ситуации и
-                        подскажет возможные варианты действий
+                        Позвоните нам — адвокат по трудовым спорам уточнит детали ситуации и подскажет возможные
+                        варианты действий
                       </p>
                     </>
                   ) : (

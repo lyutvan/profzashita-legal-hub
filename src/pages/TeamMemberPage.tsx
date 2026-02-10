@@ -7,7 +7,6 @@ import Breadcrumbs from "@/components/Breadcrumbs";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@/components/ui/dialog";
-import LeadForm from "@/components/LeadForm";
 import { getTeamMemberBySlug } from "@/data/team";
 import { cases } from "@/data/cases";
 import { SITE } from "@/config/site";
@@ -480,14 +479,6 @@ const TeamMemberPage = () => {
                 </CardContent>
               </Card>
 
-              <Card className="border-border shadow-elegant">
-                <CardHeader>
-                  <CardTitle className="text-h3-mobile md:text-h3">Получить консультацию</CardTitle>
-                </CardHeader>
-                <CardContent className="pt-2">
-                  <LeadForm variant="compact" />
-                </CardContent>
-              </Card>
             </div>
           </div>
         </section>

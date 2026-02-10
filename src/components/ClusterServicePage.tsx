@@ -350,7 +350,7 @@ const ClusterServicePage = ({
                         Получите план действий за 15 минут
                       </h2>
                       <p className="text-primary-foreground/80 text-body-mobile md:text-body">
-                        Оставьте заявку — мы перезвоним в течение 10 минут и составим индивидуальный план защиты
+                        Свяжитесь с нами — подскажем первые шаги и составим индивидуальный план защиты
                       </p>
                     </div>
                     <div className="max-w-xl mx-auto">

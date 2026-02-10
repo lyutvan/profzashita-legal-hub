@@ -312,10 +312,50 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
     };
   };
 
+  const baseLyutikov = buildTeamMember("lyutikov");
+  const baseRyzhenko = buildTeamMember("ryzhenko");
+  const baseLyadova = buildTeamMember("yulia-lyadova");
+
   const teamMembers = [
-    buildTeamMember("lyutikov"),
-    buildTeamMember("ryzhenko"),
-    buildTeamMember("yulia-lyadova")
+    baseLyutikov && {
+      ...baseLyutikov,
+      specializations: [
+        "Семейные споры и раздел имущества",
+        "Споры о детях и порядке общения",
+        "Судебная стратегия и переговоры",
+        "Защита интересов в суде"
+      ],
+      description: [
+        "Контролирует стратегию ведения семейных дел и участвует в сложных переговорах.",
+        "Представляет интересы клиентов в судах и добивается закрепления позиции по детям и имуществу."
+      ]
+    },
+    baseRyzhenko && {
+      ...baseRyzhenko,
+      specializations: [
+        "Подготовка исков и документов",
+        "Переговоры и медиация",
+        "Раздел имущества супругов",
+        "Досудебное урегулирование"
+      ],
+      description: [
+        "Готовит процессуальные документы и выстраивает правовую позицию в семейных спорах.",
+        "Сопровождает переговоры и помогает закрепить условия соглашений."
+      ]
+    },
+    baseLyadova && {
+      ...baseLyadova,
+      specializations: [
+        "Семейные споры и алименты",
+        "Раздел имущества и долей",
+        "Имущественные требования",
+        "Судебное сопровождение"
+      ],
+      description: [
+        "Сопровождает семейные конфликты: от алиментов до раздела имущества и долей.",
+        "Фокус на доказательствах и понятной стратегии для клиента."
+      ]
+    }
   ].filter(Boolean) as PageTeamMember[];
 
   const steps = [
@@ -721,11 +761,6 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                           ))}
                         </ul>
                       </div>
-                      <div className="text-[13px] text-slate-600 leading-relaxed space-y-2">
-                        {member.description.map((paragraph, index) => (
-                          <p key={`${member.name}-${index}`}>{paragraph}</p>
-                        ))}
-                      </div>
                     </div>
                     <div className="mt-auto w-full pt-5 flex justify-center">
                       <Button
@@ -741,7 +776,8 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               ))}
             </div>
             <p className="mt-8 text-center text-small text-muted-foreground">
-              Все наши юристы проходят ежегодную аттестацию и имеют доступ к базе судебной практики
+              Сопровождение осуществляется командой специалистов. В зависимости от ситуации к сопровождению
+              подключаются профильные специалисты.
             </p>
           </div>
         </section>
@@ -1028,7 +1064,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
             </Accordion>
             <div className="mt-8 text-center space-y-4">
               <p className="text-muted-foreground">
-                Не нашли свой вопрос? Оставьте заявку и мы оценим вашу ситуацию
+                Не нашли свой вопрос? Позвоните нам — подскажем, как действовать дальше.
               </p>
               <Button
                 size="lg"
@@ -1051,8 +1087,8 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                     Получите оценку перспектив по вашей ситуации
                   </h2>
                   <p className="text-muted-foreground">
-                    Оставьте контакты — адвокат по семейным спорам свяжется с вами, задаст уточняющие вопросы и
-                    предложит варианты действий.
+                    Позвоните нам — адвокат по семейным спорам уточнит детали ситуации и предложит варианты
+                    действий.
                   </p>
                 </div>
                 <div className="space-y-3">
@@ -1082,12 +1118,19 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               </div>
               <Card className="w-full rounded-[16px] border border-[#E5E7EB] bg-[#F8FAFC] shadow-[0_18px_40px_rgba(15,23,42,0.08)] lg:max-w-[520px] lg:justify-self-end">
                 <CardContent className="p-7 md:p-8">
-                  <LeadForm
-                    formId="lead-final"
-                    submitLabel="Получить консультацию"
-                    placeholder="Например: «Хочу расторгнуть брак, есть ребенок 5 лет, спор о квартире»"
-                    footerNote="Перезвоним в течение 15–20 минут в рабочее время"
-                  />
+                  <div className="space-y-4">
+                    <div className="text-sm text-muted-foreground">Телефон для консультации:</div>
+                    <a href={`tel:${SITE.phoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
+                      {SITE.phone}
+                    </a>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                    >
+                      <a href={`tel:${SITE.phoneRaw}`}>Свяжитесь с нами</a>
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </div>

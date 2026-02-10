@@ -29,11 +29,14 @@ const Thanks = () => {
               Спасибо за обращение!
             </h1>
             <p className="text-muted-foreground">
-              Ваша заявка успешно отправлена. Мы свяжемся с вами в ближайшее время.
+              Мы на связи. Позвоните нам, и мы подскажем ближайшие шаги по вашей ситуации.
             </p>
           </div>
 
           <div className="space-y-4 pt-4">
+            <Button asChild className="w-full bg-accent text-white hover:bg-accent/90">
+              <a href="tel:+74950040196">Позвонить сейчас</a>
+            </Button>
             <Button 
               onClick={() => navigate('/')} 
               className="w-full"

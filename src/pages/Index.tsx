@@ -151,10 +151,10 @@ const Index = () => {
   ];
 
   const featuredCaseSlugs = [
-    "vzyskanie-zadolzhennosti-dkp-kvartiry-vologda-apellyaciya-33-5318-2024",
     "kompensaciya-moralnogo-vreda-oskorblenie-neprilichnyj-zhest-vologda-2024",
+    "vzyskanie-zadolzhennosti-dkp-kvartiry-vologda-apellyaciya-33-5318-2024",
     "razdel-imushchestva-nedeistv-sdelki-perovo-2-2621-2025",
-    "sem-razvod-strogino-426-2-331-2025"
+    "zpp-nikulinsky-mirovoe-tehno-lab-2-4243-2025"
   ];
   const featuredCases = featuredCaseSlugs
     .map((slug) => cases.find((caseItem) => caseItem.slug === slug))
