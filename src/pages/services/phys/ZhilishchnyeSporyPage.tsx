@@ -345,10 +345,38 @@ const ZhilishchnyeSporyPage = () => {
     };
   };
 
+  const baseLyadova = buildTeamMember("yulia-lyadova");
+  const baseRyzhenko = buildTeamMember("ryzhenko");
+  const baseSotnikov = buildTeamMember("sotnikov");
+
   const teamMembers = [
-    buildTeamMember("yulia-lyadova"),
-    buildTeamMember("ryzhenko"),
-    buildTeamMember("sotnikov")
+    baseLyadova && {
+      ...baseLyadova,
+      specializations: [
+        "Выселение и снятие с регистрационного учета",
+        "Признание права пользования",
+        "Споры по долям и раздел жилья",
+        "Имущественные споры"
+      ]
+    },
+    baseRyzhenko && {
+      ...baseRyzhenko,
+      specializations: [
+        "Порядок пользования жилым помещением",
+        "Споры с УК/ТСЖ/ЖСК",
+        "Взыскание ущерба по жилью",
+        "Досудебные переговоры"
+      ]
+    },
+    baseSotnikov && {
+      ...baseSotnikov,
+      specializations: [
+        "Оспаривание сделок с жильем",
+        "Защита права собственности",
+        "Судебное сопровождение",
+        "Переговоры и медиация"
+      ]
+    }
   ].filter(Boolean) as PageTeamMember[];
 
   const steps = [
@@ -735,11 +763,6 @@ const ZhilishchnyeSporyPage = () => {
                           ))}
                         </ul>
                       </div>
-                      <div className="text-[13px] text-slate-600 leading-relaxed space-y-2">
-                        {member.description.map((paragraph, index) => (
-                          <p key={`${member.name}-${index}`}>{paragraph}</p>
-                        ))}
-                      </div>
                     </div>
                     <div className="mt-auto w-full pt-5 flex justify-center">
                       <Button
@@ -755,7 +778,8 @@ const ZhilishchnyeSporyPage = () => {
               ))}
             </div>
             <p className="mt-8 text-center text-small text-muted-foreground">
-              Все наши юристы проходят ежегодную аттестацию и имеют доступ к базе судебной практики
+              Сопровождение осуществляется командой специалистов. В зависимости от ситуации к сопровождению
+              подключаются профильные специалисты.
             </p>
           </div>
         </section>

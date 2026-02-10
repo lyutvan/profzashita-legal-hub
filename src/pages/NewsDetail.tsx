@@ -334,11 +334,6 @@ const NewsDetail = () => {
                   <Button size="lg" onClick={() => openQuickQuestionModal({ topic: newsItem.title })}>
                     Записаться
                   </Button>
-                  <Button size="lg" variant="outline" asChild>
-                    <a href={`https://wa.me/${SITE.phoneRaw.replace("+", "")}`} target="_blank" rel="noopener noreferrer">
-                      Связаться
-                    </a>
-                  </Button>
                 </div>
               </div>
             </div>
