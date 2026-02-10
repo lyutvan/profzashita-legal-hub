@@ -2020,8 +2020,8 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                     Получите консультацию по банкротству физических лиц
                   </h2>
                   <p className="text-muted-foreground">
-                    Оставьте контакты — адвокат по банкротству физических лиц свяжется с вами, задаст уточняющие
-                    вопросы и предложит варианты действий
+                    Позвоните нам — адвокат по банкротству физических лиц ответит на вопросы, уточнит детали и
+                    предложит варианты действий
                   </p>
                 </div>
                 <div className="space-y-3">
@@ -2051,16 +2051,21 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <Card className="w-full rounded-[16px] border border-[#E5E7EB] bg-[#F8FAFC] shadow-[0_18px_40px_rgba(15,23,42,0.08)] lg:max-w-[520px] lg:justify-self-end">
                 <CardContent className="p-7 md:p-8">
-                  <LeadForm
-                    formId="lead-final"
-                    submitLabel="Оценить перспективы"
-                    placeholder={`Например: «${data.heroBenefits[0] ?? "Нужна помощь по моей ситуации"}»`}
-                    footerNote="Перезвоним в течение 15–20 минут в рабочее время"
-                    topic={data.entry.title}
-                    submitTextClassName={
-                      isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-slate-900"
-                    }
-                  />
+                  <div className="space-y-4">
+                    <div className="text-sm text-muted-foreground">
+                      Телефон для консультации:
+                    </div>
+                    <a href={`tel:${SITE.phoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
+                      {SITE.phone}
+                    </a>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                    >
+                      <a href={`tel:${SITE.phoneRaw}`}>Свяжитесь с нами</a>
+                    </Button>
+                  </div>
                 </CardContent>
               </Card>
             </div>
