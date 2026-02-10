@@ -681,13 +681,13 @@ const UslugiNew = () => {
             <div className="mt-10">
               <Card className="bg-gradient-to-br from-primary to-primary/90 text-white border-0">
                 <CardContent className="pt-6 pb-6">
-                  <div className="grid grid-cols-4 lg:grid-cols-12 gap-6 items-start">
-                    <div className="col-span-4 lg:col-span-5">
+                  <div className="grid grid-cols-1 gap-6 items-start">
+                    <div>
                       <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-3">
                         Получите оценку и план действий
                       </h3>
                       <p className="text-white/80 text-small">
-                        Заполните форму — мы уточним детали и предложим следующий шаг.
+                        Свяжитесь с нами или запишитесь на консультацию по телефону.
                       </p>
                       <div className="mt-4 flex flex-wrap gap-3">
                         <Button
@@ -698,16 +698,6 @@ const UslugiNew = () => {
                           <a href={`tel:${SITE.phoneRaw}`}>Позвонить</a>
                         </Button>
                       </div>
-                    </div>
-                    <div className="col-span-4 lg:col-span-7">
-                      <Card className="bg-white text-foreground border-0">
-                        <CardContent className="pt-6">
-                          <LeadForm variant="compact" />
-                          <p className="text-small text-muted-foreground mt-4">
-                            Первичная оценка — после уточняющих вопросов и документов.
-                          </p>
-                        </CardContent>
-                      </Card>
                     </div>
                   </div>
                 </CardContent>

@@ -1,11 +1,11 @@
 import { useParams, Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ContactForm from "@/components/ContactForm";
 import { practices } from "@/data/practices";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { CheckCircle, ArrowLeft } from "lucide-react";
+import { SITE } from "@/config/site";
 
 const PracticeDetail = () => {
   const { slug } = useParams();
@@ -108,9 +108,13 @@ const PracticeDetail = () => {
                       Получить консультацию
                     </h3>
                     <p className="text-small text-muted-foreground mb-6 text-center">
-                      Заполните форму, и мы свяжемся с вами в течение 15 минут
+                      Свяжитесь с нами или запишитесь на консультацию по телефону.
                     </p>
-                    <ContactForm />
+                    <div className="flex justify-center">
+                      <Button asChild size="lg" className="rounded-full px-6">
+                        <a href={`tel:${SITE.phoneRaw}`}>Позвонить</a>
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               </div>

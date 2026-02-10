@@ -1,6 +1,5 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import ContactForm from "@/components/ContactForm";
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
@@ -53,10 +52,10 @@ const Contacts = () => {
           </div>
         </section>
 
-        {/* Contact Info & Form Section */}
+        {/* Contact Info Section */}
         <section className="relative section overflow-hidden">
           <div className="container">
-            <div className="section__content grid grid-cols-1 lg:grid-cols-2 gap-12 max-w-6xl mx-auto">
+            <div className="section__content max-w-4xl mx-auto">
               {/* Contact Information */}
               <div className="space-y-6">
                 <div>
@@ -141,22 +140,6 @@ const Contacts = () => {
                   </CardContent>
                 </Card>
 
-              </div>
-
-              {/* Contact Form */}
-              <div>
-                <Card className="border-border shadow-elegant sticky top-24">
-                  <CardContent className="pt-6">
-                    <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-4">
-                      Оставьте заявку
-                    </h3>
-                    <p className="text-muted-foreground mb-6">
-                      Заполните форму, и мы свяжемся с вами в течение 15 минут 
-                      для бесплатной консультации.
-                    </p>
-                    <ContactForm />
-                  </CardContent>
-                </Card>
               </div>
             </div>
           </div>

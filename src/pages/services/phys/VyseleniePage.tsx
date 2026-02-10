@@ -131,6 +131,8 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
     }
   };
 
+  return null;
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <input

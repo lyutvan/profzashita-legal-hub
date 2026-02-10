@@ -17,6 +17,7 @@ import PhoneInput from "@/components/PhoneInput";
 import { toast } from "@/hooks/use-toast";
 import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
+import { SITE } from "@/config/site";
 
 type OpenQuickQuestionOptions = {
   topic?: string;
@@ -28,6 +29,7 @@ type QuickQuestionModalContextValue = {
 };
 
 const QuickQuestionModalContext = createContext<QuickQuestionModalContextValue | null>(null);
+const FORMS_DISABLED = true;
 
 const CASE_RU: Record<string, string> = {
   criminal: "Уголовное право",
@@ -84,6 +86,12 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
   }, []);
 
   const openQuickQuestionModal = useCallback((options?: OpenQuickQuestionOptions) => {
+    if (FORMS_DISABLED) {
+      if (typeof window !== "undefined") {
+        window.location.href = `tel:${SITE.phoneRaw}`;
+      }
+      return;
+    }
     setTopicOverride(options?.topic ?? null);
     resetForm();
     setIsOpen(true);
@@ -161,91 +169,93 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
     <QuickQuestionModalContext.Provider value={contextValue}>
       {children}
 
-      <Dialog open={isOpen} onOpenChange={(open) => (!open ? closeQuickQuestionModal() : setIsOpen(true))}>
-        <DialogContent className={dialogClassName}>
-          <DialogHeader className="space-y-2 text-center">
-            <DialogTitle className="font-serif text-h3-mobile md:text-h3">Быстрый вопрос юристу</DialogTitle>
-            <DialogDescription>
-              Оставьте свои контакты, и мы свяжемся с вами в ближайшее время
-            </DialogDescription>
-          </DialogHeader>
+      {!FORMS_DISABLED && (
+        <Dialog open={isOpen} onOpenChange={(open) => (!open ? closeQuickQuestionModal() : setIsOpen(true))}>
+          <DialogContent className={dialogClassName}>
+            <DialogHeader className="space-y-2 text-center">
+              <DialogTitle className="font-serif text-h3-mobile md:text-h3">Быстрый вопрос юристу</DialogTitle>
+              <DialogDescription>
+                Оставьте свои контакты, и мы свяжемся с вами в ближайшее время
+              </DialogDescription>
+            </DialogHeader>
 
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <input
-              type="text"
-              name="website"
-              value={honeypot}
-              onChange={(e) => setHoneypot(e.target.value)}
-              className="absolute opacity-0 pointer-events-none"
-              tabIndex={-1}
-              autoComplete="off"
-              aria-hidden="true"
-            />
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <input
+                type="text"
+                name="website"
+                value={honeypot}
+                onChange={(e) => setHoneypot(e.target.value)}
+                className="absolute opacity-0 pointer-events-none"
+                tabIndex={-1}
+                autoComplete="off"
+                aria-hidden="true"
+              />
 
-            <div className="space-y-2">
-              <Label htmlFor="quick-question-name">
-                Ваше имя <span className="text-destructive">*</span>
-              </Label>
-              <Input
-                id="quick-question-name"
-                value={formData.name}
-                onChange={(event) => setFormData((prev) => ({ ...prev, name: event.target.value }))}
-                placeholder="Ваше имя*"
+              <div className="space-y-2">
+                <Label htmlFor="quick-question-name">
+                  Ваше имя <span className="text-destructive">*</span>
+                </Label>
+                <Input
+                  id="quick-question-name"
+                  value={formData.name}
+                  onChange={(event) => setFormData((prev) => ({ ...prev, name: event.target.value }))}
+                  placeholder="Ваше имя*"
+                  disabled={isSubmitting}
+                />
+                {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="quick-question-phone">
+                  Ваш номер телефона <span className="text-destructive">*</span>
+                </Label>
+                <PhoneInput
+                  id="quick-question-phone"
+                  value={formData.phone}
+                  onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
+                  placeholder="Ваш номер телефона*"
+                  disabled={isSubmitting}
+                  required
+                />
+                {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Checkbox
+                  id="quick-question-consent"
+                  checked={consent}
+                  onCheckedChange={(value) => setConsent(Boolean(value))}
+                />
+                <Label htmlFor="quick-question-consent" className="text-small text-muted-foreground leading-relaxed">
+                  Я даю свое согласие на обработку персональных данных и принимаю условия{" "}
+                  <Link to="/privacy" className="text-accent hover:underline">
+                    политики конфиденциальности
+                  </Link>{" "}
+                  и{" "}
+                  <Link to="/disclaimer" className="text-accent hover:underline">
+                    пользовательского соглашения
+                  </Link>
+                  .
+                </Label>
+              </div>
+              {errors.consent && <p className="text-xs text-destructive">{errors.consent}</p>}
+
+              <Button
+                type="submit"
+                size="lg"
+                className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[15px] font-semibold text-slate-900 shadow-[0_6px_16px_rgba(111,83,15,0.28)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                 disabled={isSubmitting}
-              />
-              {errors.name && <p className="text-xs text-destructive">{errors.name}</p>}
-            </div>
+              >
+                Получить консультацию
+              </Button>
 
-            <div className="space-y-2">
-              <Label htmlFor="quick-question-phone">
-                Ваш номер телефона <span className="text-destructive">*</span>
-              </Label>
-              <PhoneInput
-                id="quick-question-phone"
-                value={formData.phone}
-                onChange={(value) => setFormData((prev) => ({ ...prev, phone: value }))}
-                placeholder="Ваш номер телефона*"
-                disabled={isSubmitting}
-                required
-              />
-              {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
-            </div>
-
-            <div className="flex items-start gap-3">
-              <Checkbox
-                id="quick-question-consent"
-                checked={consent}
-                onCheckedChange={(value) => setConsent(Boolean(value))}
-              />
-              <Label htmlFor="quick-question-consent" className="text-small text-muted-foreground leading-relaxed">
-                Я даю свое согласие на обработку персональных данных и принимаю условия{" "}
-                <Link to="/privacy" className="text-accent hover:underline">
-                  политики конфиденциальности
-                </Link>{" "}
-                и{" "}
-                <Link to="/disclaimer" className="text-accent hover:underline">
-                  пользовательского соглашения
-                </Link>
-                .
-              </Label>
-            </div>
-            {errors.consent && <p className="text-xs text-destructive">{errors.consent}</p>}
-
-            <Button
-              type="submit"
-              size="lg"
-              className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[15px] font-semibold text-slate-900 shadow-[0_6px_16px_rgba(111,83,15,0.28)] hover:border-[#a8831a] hover:bg-[#b8911f]"
-              disabled={isSubmitting}
-            >
-              Получить консультацию
-            </Button>
-
-            <p className="text-small text-muted-foreground text-center">
-              Перезвоним в течение 15–20 минут в рабочее время
-            </p>
-          </form>
-        </DialogContent>
-      </Dialog>
+              <p className="text-small text-muted-foreground text-center">
+                Перезвоним в течение 15–20 минут в рабочее время
+              </p>
+            </form>
+          </DialogContent>
+        </Dialog>
+      )}
     </QuickQuestionModalContext.Provider>
   );
 };

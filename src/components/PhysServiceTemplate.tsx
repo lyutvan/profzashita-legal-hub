@@ -212,6 +212,8 @@ const FamilyShortForm = ({ topic, onSuccess }: FamilyShortFormProps) => {
     }
   };
 
+  return null;
+
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <input
@@ -999,45 +1001,34 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 <Card className="bg-white border border-[#C9A227]/60 rounded-2xl shadow-elegant">
                   <CardContent className="pt-6">
                     <h2 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2">
-                      Оставьте свой номер телефона — адвокат свяжется с вами в течение 15 минут
+                      Свяжитесь с нами или запишитесь на консультацию по телефону
                     </h2>
                     <p className="text-small text-muted-foreground mb-6">
                       Перезвоним в течение 15–20 минут в рабочее время
                     </p>
-                    <FamilyShortForm topic={data.entry.title} />
+                    <div className="flex justify-center">
+                      <Button asChild size="lg" className="rounded-full px-6">
+                        <a href={`tel:${SITE.phoneRaw}`}>Позвонить</a>
+                      </Button>
+                    </div>
                   </CardContent>
                 </Card>
               </div>
             ) : (
-              <div className="section__content grid gap-8 lg:grid-cols-[1.1fr_0.9fr]">
+              <div className="section__content max-w-3xl">
                 <div>
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                     Получите оценку перспектив и план действий
                   </h2>
                   <p className="text-white/80 mb-6">
-                    Заполните форму — мы уточним детали и вернемся с конкретными шагами.
+                    Свяжитесь с нами или запишитесь на консультацию по телефону.
                   </p>
+                  <div className="flex flex-wrap gap-3">
+                    <Button asChild size="lg" className="rounded-full px-6">
+                      <a href={`tel:${SITE.phoneRaw}`}>Позвонить</a>
+                    </Button>
+                  </div>
                 </div>
-                <Card className="bg-white text-foreground border-0">
-                  <CardContent className="pt-6">
-                    <PhysServiceLeadForm
-                      serviceTitle={data.entry.title}
-                      situationOptions={data.scenarios.map((item) => item.title)}
-                      desiredResults={data.desiredResults}
-                    />
-                    <div className="text-small text-muted-foreground mt-4">
-                      Первичная оценка — после уточняющих вопросов и документов. Бесплатные консультации не обещаем.
-                      В срочных случаях — приоритетная связь.
-                    </div>
-                    <p className="text-small text-muted-foreground mt-3">
-                      Нажимая кнопку, вы соглашаетесь с{" "}
-                      <a href="/privacy" className="text-accent hover:underline">
-                        политикой конфиденциальности
-                      </a>
-                      .
-                    </p>
-                  </CardContent>
-                </Card>
               </div>
             )}
           </div>
