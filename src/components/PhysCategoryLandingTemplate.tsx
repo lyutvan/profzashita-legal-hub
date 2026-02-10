@@ -483,9 +483,14 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         };
       }));
 
+  const bankrotstvoMatchedCases = useMemo(() => {
+    if (!isBankrotstvoMerged) return [];
+    return matchedCases.filter((caseItem) => /банкрот/i.test(caseItem.category) || /банкрот/i.test(caseItem.title));
+  }, [isBankrotstvoMerged, matchedCases]);
+
   const bankrotstvoShowcaseCases = useMemo(() => {
     if (!isBankrotstvoMerged) return [];
-    return matchedCases.slice(0, 3).map((caseItem) => ({
+    return bankrotstvoMatchedCases.slice(0, 3).map((caseItem) => ({
       title: caseItem.title,
       caseNumber: extractCaseNumber(caseItem.task, caseItem.result),
       debtAmount: extractDebtAmount(caseItem.task, caseItem.result),
@@ -493,7 +498,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
       scanUrl: caseItem.decisionPreview ?? caseItem.documents?.[0],
       caseUrl: caseItem.slug ? `/cases/${caseItem.slug}` : "/keisy"
     }));
-  }, [isBankrotstvoMerged, matchedCases]);
+  }, [isBankrotstvoMerged, bankrotstvoMatchedCases]);
   const bankrotstvoCasesLayout =
     bankrotstvoShowcaseCases.length >= 3
       ? "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
@@ -592,14 +597,42 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
       )
     }
   ];
-  const bankrotstvoFaqQuestions = [
-    "Можно ли сохранить единственное жильё?",
-    "Сколько длится процедура банкротства?",
-    "С чего начать обращение?",
-    "Можно ли решить вопрос без суда?",
-    "Сколько времени занимает работа юристов по делу?",
-    "Как формируется стоимость услуг?",
-    "Нужно ли личное присутствие в суде?"
+  const bankrotstvoFaqItems = [
+    {
+      question: "Можно ли сохранить единственное жильё?",
+      answer:
+        "В большинстве случаев единственное жильё сохраняется, однако всё зависит от конкретной ситуации. На консультации мы оцениваем риски и сразу объясняем, какие варианты возможны именно в вашем случае."
+    },
+    {
+      question: "Сколько длится процедура банкротства?",
+      answer:
+        "Сроки процедуры зависят от конкретной ситуации, объёма долгов и особенностей дела. В среднем процесс занимает от 6 месяцев и проходит в установленном законом порядке. На консультации мы даём оценку по срокам и объясняем, от чего они зависят."
+    },
+    {
+      question: "С чего начать обращение?",
+      answer:
+        "Первый шаг — консультация, на которой мы изучаем вашу ситуацию: долги, доходы, имущество, ограничения. После этого объясняем возможные варианты, риски и порядок дальнейших действий."
+    },
+    {
+      question: "Можно ли решить вопрос без суда?",
+      answer:
+        "Процедура банкротства физического лица проводится в судебном порядке. Однако ваше личное участие в процессе, как правило, минимально — основные действия и взаимодействие с судом мы берём на себя. Все шаги заранее объясняются."
+    },
+    {
+      question: "Сколько времени занимает работа юристов по делу?",
+      answer:
+        "Юристы сопровождают дело на всех этапах процедуры — от первичной консультации до её завершения. Сроки работы зависят от сложности ситуации, но клиент всегда понимает, на каком этапе находится его дело. Мы поддерживаем связь и информируем о ходе процесса."
+    },
+    {
+      question: "Как формируется стоимость услуг?",
+      answer:
+        "Стоимость зависит от объёма работы, сложности ситуации и выбранного формата сопровождения. После анализа вашей ситуации мы озвучиваем условия и фиксируем их в договоре."
+    },
+    {
+      question: "Нужно ли личное присутствие в суде?",
+      answer:
+        "В большинстве случаев личное присутствие клиента не требуется. Мы представляем ваши интересы по доверенности и берём на себя участие в судебных заседаниях. Если потребуется ваше участие, об этом заранее сообщается и объясняется причина."
+    }
   ];
   const trudovyeFaqQuestions = [
     "Можно ли сохранить работу, если увольнение незаконное?",
@@ -610,25 +643,18 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     "Как формируется стоимость услуг?",
     "Что делать, если я не уверен(а), нарушены ли мои права?"
   ];
-  const faqItems = useMemo(() => {
-    const items = data.faqs.slice(0, 7);
-    if (!isBankrotstvoMerged) return items;
-    return items.map((item, index) => ({
-      ...item,
-      question: bankrotstvoFaqQuestions[index] ?? item.question
-    }));
-  }, [data.faqs, isBankrotstvoMerged]);
+  const faqItems = useMemo(() => data.faqs.slice(0, 7), [data.faqs]);
   const resolvedFaqItems = useMemo(() => {
-    if (isBankrotstvoMerged) return faqItems;
+    if (isBankrotstvoMerged) return bankrotstvoFaqItems;
     if (!isTrudovyeCategory) return faqItems;
     return faqItems.map((item, index) => ({
       ...item,
       question: trudovyeFaqQuestions[index] ?? item.question
     }));
-  }, [faqItems, isBankrotstvoMerged, isTrudovyeCategory]);
+  }, [bankrotstvoFaqItems, faqItems, isBankrotstvoMerged, isTrudovyeCategory]);
   const teamOverrideSlugs = useMemo(() => {
     if (isBankrotstvoMerged) {
-      return ["lyutikov", "ryzhenko", "vaskovsky"];
+      return ["lyutikov", "ryzhenko"];
     }
     if (isConsumerProtectionCategory) {
       return ["ryzhenko", "vaskovsky", "sotnikov"];
@@ -685,6 +711,58 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     ].slice(0, 3);
   }, [data.team, isConsumerProtectionCategory, isDebtContractsCategory, teamOverrideSlugs]);
 
+  const bankrotstvoTeamCards = useMemo(() => {
+    if (!isBankrotstvoMerged) return [];
+    const membersBySlug = new Map(teamMembers.map((member) => [member.slug, member]));
+    const cards = [
+      {
+        slug: "lyutikov",
+        badge: "Адвокат",
+        roleTitle: "Председатель коллегии",
+        experience: "Стаж 26 лет",
+        bullets: [
+          "Контролирует стратегию ведения дел о банкротстве физических лиц",
+          "Участвует в сложных и спорных ситуациях",
+          "Представляет интересы клиентов в судах"
+        ],
+        cta: "Подробнее об адвокате"
+      },
+      {
+        slug: "ryzhenko",
+        badge: "Юрист",
+        roleTitle: "Помощник председателя коллегии",
+        experience: "Стаж 23 года",
+        bullets: [
+          "Подготавливает документы для процедуры банкротства",
+          "Формирует правовую позицию клиента",
+          "Сопровождает дело на всех этапах процедуры"
+        ],
+        cta: "Подробнее о юристе"
+      }
+    ];
+
+    return cards
+      .map((card) => {
+        const member = membersBySlug.get(card.slug);
+        if (!member) return null;
+        return {
+          ...card,
+          name: member.name,
+          photo: member.photo
+        };
+      })
+      .filter(Boolean) as Array<{
+      slug: string;
+      badge: string;
+      roleTitle: string;
+      experience: string;
+      bullets: string[];
+      cta: string;
+      name: string;
+      photo: string;
+    }>;
+  }, [isBankrotstvoMerged]);
+
   const isTwoTeamLayout = resolvedTeam.length === 2;
   const teamGridClassName = isTwoTeamLayout
     ? "section__content grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr max-w-4xl mx-auto justify-items-center"
@@ -694,7 +772,55 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     ? "h-full w-full max-w-[360px] rounded-[12px] border border-[#C9A227] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
     : "h-full rounded-[12px] border border-[#C9A227] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)]";
 
-  const reviews = (data.reviews.length > 0 ? data.reviews : sharedReviews).slice(0, 6);
+  const bankrotstvoReviews = [
+    {
+      id: "br-1",
+      name: "Алексей К.",
+      rating: 5,
+      date: "",
+      text: "Долги по кредитам стали неподъемными, постоянно звонили банки и коллекторы. На консультации все объяснили, рассказали про риски и последствия. Процедуру адвокат сопровождал полностью, мне было понятно, что происходит на каждом этапе."
+    },
+    {
+      id: "br-2",
+      name: "Елена М.",
+      rating: 5,
+      date: "",
+      text: "Обратилась после потери работы — платить по займам было просто нечем. Адвокат помог разобраться, объяснил какие варианты есть, и честно рассказал о последствиях банкротства."
+    },
+    {
+      id: "br-3",
+      name: "Дмитрий С.",
+      rating: 5,
+      date: "",
+      text: "Было несколько кредитов и микрозаймов, ситуация получилась запутанная. Очень переживал за свое имущество. На консультации все объяснили простым языком, сопровождали до завершения процедуры. Остался доволен."
+    },
+    {
+      id: "br-4",
+      name: "Мария Л.",
+      rating: 5,
+      date: "",
+      text: "Долго думала и сомневалась, стоит ли начинать банкротство, было много страхов. В Профзащите адвокат ничего не скрывал, сразу рассказал и про плюсы, и про ограничения. Работали спокойно и профессионально, всегда были на связи."
+    },
+    {
+      id: "br-5",
+      name: "Сергей В.",
+      rating: 5,
+      date: "",
+      text: "Обратился из-за долгов после неудачного бизнеса. Быстро и честно оценили ситуацию. Процедуру сопровождали до самого конца, документы подготовили быстро. Спасибо!"
+    },
+    {
+      id: "br-6",
+      name: "Наталья Г.",
+      rating: 5,
+      date: "",
+      text: "У меня была сложная ситуация с кредитами и просрочками, даже уже были исполнительные производства. Состояние было ужасное, не понимала что делать. Юрист взял все на себя, объяснил порядок действий и дальнейшие шаги. Были всегда на связи, поэтому вся процедура прошла спокойно и без нервов."
+    }
+  ];
+  const reviews = (isBankrotstvoMerged
+    ? bankrotstvoReviews
+    : data.reviews.length > 0
+      ? data.reviews
+      : sharedReviews).slice(0, 6);
 
   const shouldShowCases = cases.length > 0 && !isBankrotstvoMerged && !isTrudovyeCategory;
 
@@ -1538,62 +1664,112 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   </>
                 )}
               </div>
-              <div className={teamGridClassName}>
-                {resolvedTeam.map((member) => (
-                  <Card
-                    key={member.slug}
-                    className={teamCardClassName}
-                  >
-                    <CardContent className="p-6 h-full flex flex-col items-center text-center">
-                      <div className="flex w-full flex-col items-center text-center gap-4">
-                        {member.photo && (
-                          <div className="w-full overflow-hidden rounded-[10px] border border-[#E6DDCC] bg-white">
-                            <img
-                              src={member.photo}
-                              alt={member.name}
-                              className="h-[320px] w-full object-cover object-center md:h-[340px] lg:h-[360px]"
-                              loading="lazy"
-                            />
-                          </div>
-                        )}
-                        <h3 className="font-semibold text-[16px] md:text-[18px] text-slate-900">{member.name}</h3>
-                        <span className="inline-flex items-center rounded-full bg-[#C9A227] px-4 py-1 text-[12px] font-semibold text-white">
-                          {member.role}
-                        </span>
-                        {member.experience && (
-                          <div className="text-[13px] font-semibold text-slate-800">{member.experience}</div>
-                        )}
-                        <div className="w-full">
-                          <div className="text-[12px] font-semibold text-slate-700">Специализации:</div>
-                          <ul className="mt-2 space-y-1 text-[13px] text-slate-700 list-disc list-inside text-center">
-                            {member.bullets.map((item) => (
-                              <li key={item}>{item}</li>
-                            ))}
-                          </ul>
-                        </div>
-                        <div className="text-[13px] text-slate-600 leading-relaxed space-y-2">
-                          <p>
-                            Ведет дела по направлению «{data.categoryLabel}», помогает зафиксировать позицию,
-                            подготовить документы и защитить интересы в переговорах и суде.
-                          </p>
-                          <p>Работает системно: от диагностики ситуации до исполнения решения.</p>
-                        </div>
-                      </div>
-                      <div className="mt-auto w-full pt-5 flex justify-center">
-                <Button
-                  asChild
-                  size="lg"
-                  className={`w-full md:w-auto h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] ${
-                    isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-slate-900"
-                  } shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]`}
+              {isBankrotstvoMerged ? (
+                <div
+                  className={
+                    bankrotstvoTeamCards.length > 2
+                      ? "section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr"
+                      : "section__content grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr justify-items-center max-w-[760px] mx-auto"
+                  }
                 >
-                  <Link to={`/team/${member.slug}`}>Подробнее об адвокате</Link>
-                </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+                  {bankrotstvoTeamCards.map((card) => (
+                    <Card
+                      key={card.slug}
+                      className="h-full rounded-[14px] border border-[#D8C08B] bg-white shadow-[0_10px_24px_rgba(60,52,31,0.08)]"
+                    >
+                      <CardContent className="p-6 h-full flex flex-col items-center text-center">
+                        <div className="w-full overflow-hidden rounded-[12px] border border-[#E6DDCC] bg-white">
+                          <img
+                            src={card.photo}
+                            alt={card.name}
+                            className="h-[320px] w-full object-cover object-center md:h-[340px] lg:h-[360px]"
+                            loading="lazy"
+                          />
+                        </div>
+                        <h3 className="mt-5 text-[16px] md:text-[18px] font-semibold text-slate-900">
+                          {card.name}
+                        </h3>
+                        <span className="mt-2 inline-flex items-center rounded-full bg-[#C9A227] px-4 py-1 text-[12px] font-semibold text-white">
+                          {card.badge}
+                        </span>
+                        <div className="mt-3 text-[13px] font-semibold text-slate-800">{card.roleTitle}</div>
+                        <div className="mt-2 text-[13px] text-slate-700">{card.experience}</div>
+                        <ul className="mt-4 space-y-2 text-[13px] text-slate-700 text-left list-disc list-inside">
+                          {card.bullets.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                        <div className="mt-auto w-full pt-6 flex justify-center">
+                          <Button
+                            asChild
+                            size="lg"
+                            className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                          >
+                            <Link to={`/team/${card.slug}`}>{card.cta}</Link>
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : (
+                <div className={teamGridClassName}>
+                  {resolvedTeam.map((member) => (
+                    <Card
+                      key={member.slug}
+                      className={teamCardClassName}
+                    >
+                      <CardContent className="p-6 h-full flex flex-col items-center text-center">
+                        <div className="flex w-full flex-col items-center text-center gap-4">
+                          {member.photo && (
+                            <div className="w-full overflow-hidden rounded-[10px] border border-[#E6DDCC] bg-white">
+                              <img
+                                src={member.photo}
+                                alt={member.name}
+                                className="h-[320px] w-full object-cover object-center md:h-[340px] lg:h-[360px]"
+                                loading="lazy"
+                              />
+                            </div>
+                          )}
+                          <h3 className="font-semibold text-[16px] md:text-[18px] text-slate-900">{member.name}</h3>
+                          <span className="inline-flex items-center rounded-full bg-[#C9A227] px-4 py-1 text-[12px] font-semibold text-white">
+                            {member.role}
+                          </span>
+                          {member.experience && (
+                            <div className="text-[13px] font-semibold text-slate-800">{member.experience}</div>
+                          )}
+                          <div className="w-full">
+                            <div className="text-[12px] font-semibold text-slate-700">Специализации:</div>
+                            <ul className="mt-2 space-y-1 text-[13px] text-slate-700 list-disc list-inside text-center">
+                              {member.bullets.map((item) => (
+                                <li key={item}>{item}</li>
+                              ))}
+                            </ul>
+                          </div>
+                          <div className="text-[13px] text-slate-600 leading-relaxed space-y-2">
+                            <p>
+                              Ведет дела по направлению «{data.categoryLabel}», помогает зафиксировать позицию,
+                              подготовить документы и защитить интересы в переговорах и суде.
+                            </p>
+                            <p>Работает системно: от диагностики ситуации до исполнения решения.</p>
+                          </div>
+                        </div>
+                        <div className="mt-auto w-full pt-5 flex justify-center">
+                          <Button
+                            asChild
+                            size="lg"
+                            className={`w-full md:w-auto h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] ${
+                              isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-slate-900"
+                            } shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]`}
+                          >
+                            <Link to={`/team/${member.slug}`}>Подробнее об адвокате</Link>
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              )}
               {isBankrotstvoMerged || isTrudovyeCategory ? (
                 <p className="mt-8 text-center text-small text-muted-foreground">
                   Сопровождение осуществляется командой специалистов. В зависимости от ситуации к сопровождению
@@ -1841,10 +2017,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <div className="max-w-2xl space-y-6">
                 <div className="section__header max-w-2xl !mb-0">
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                    Получите оценку перспектив по вашей ситуации
+                    Получите консультацию по банкротству физических лиц
                   </h2>
                   <p className="text-muted-foreground">
-                    Оставьте контакты — адвокат свяжется и расскажет, как действовать дальше.
+                    Оставьте контакты — адвокат по банкротству физических лиц свяжется с вами, задаст уточняющие
+                    вопросы и предложит варианты действий
                   </p>
                 </div>
                 <div className="space-y-3">
