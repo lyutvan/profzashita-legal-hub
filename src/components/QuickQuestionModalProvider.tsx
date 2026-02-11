@@ -88,7 +88,14 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
   const openQuickQuestionModal = useCallback((options?: OpenQuickQuestionOptions) => {
     if (FORMS_DISABLED) {
       if (typeof window !== "undefined") {
-        window.location.href = `tel:${SITE.phoneRaw}`;
+        const userActivationState = (
+          window.navigator as Navigator & { userActivation?: { isActive: boolean } }
+        ).userActivation;
+        const hasUserGesture = userActivationState ? userActivationState.isActive : true;
+
+        if (hasUserGesture) {
+          window.location.href = `tel:${SITE.phoneRaw}`;
+        }
       }
       return;
     }
