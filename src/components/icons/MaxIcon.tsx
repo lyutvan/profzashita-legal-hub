@@ -1,12 +1,12 @@
-interface WhatsAppIconProps {
+interface MaxIconProps {
   className?: string;
   size?: number;
 }
 
-const WhatsAppIcon = ({ className = "", size = 24 }: WhatsAppIconProps) => {
+const MaxIcon = ({ className = "", size = 24 }: MaxIconProps) => {
   return (
     <img
-      src="/whatsapp-logo.svg"
+      src="/max-logo.png"
       alt=""
       width={size}
       height={size}
@@ -16,4 +16,4 @@ const WhatsAppIcon = ({ className = "", size = 24 }: WhatsAppIconProps) => {
   );
 };
 
-export default WhatsAppIcon;
+export default MaxIcon;

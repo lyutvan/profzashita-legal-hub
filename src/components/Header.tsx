@@ -1,17 +1,17 @@
 import { Link, useLocation } from "react-router-dom";
 import { Menu, X, Mail, Phone } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Button } from "./ui/button";
 import Logo from "./Logo";
-import { useQuickQuestionModal } from "./QuickQuestionModalProvider";
 import TelegramIcon from "./icons/TelegramIcon";
+import WhatsAppIcon from "./icons/WhatsAppIcon";
+import MaxIcon from "./icons/MaxIcon";
 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const { openQuickQuestionModal } = useQuickQuestionModal();
+  const whatsappUrl = "https://wa.me/74950040196";
 
   useEffect(() => {
     const handleScroll = () => {
@@ -50,11 +50,6 @@ const Header = () => {
       return location.pathname === "/" && location.hash === "#team";
     }
     return location.pathname === path;
-  };
-
-  const handleConsultationClick = () => {
-    setIsMenuOpen(false);
-    openQuickQuestionModal();
   };
 
   return (
@@ -112,14 +107,6 @@ const Header = () => {
 
           {/* Desktop CTA */}
           <div className="header-actions hidden xl:flex items-center flex-shrink-0 ml-auto">
-            <Button 
-              variant="default" 
-              size="sm" 
-              className="transition-colors duration-150 bg-accent text-white hover:bg-accent/90 h-10 px-3 text-[13px]"
-              onClick={handleConsultationClick}
-            >
-              Консультация
-            </Button>
             <div className="header-contacts flex items-center gap-3 text-white/90">
               <div className="flex flex-col items-start gap-1.5 whitespace-nowrap">
                 <a
@@ -150,6 +137,24 @@ const Header = () => {
                   className="h-[28px] w-[28px] translate-y-[-1px]"
                 />
               </a>
+              <a
+                href={whatsappUrl}
+                className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full shadow-sm transition-opacity duration-150 hover:opacity-90 md:h-[44px] md:w-[44px]"
+                aria-label="Написать в WhatsApp"
+                target="_blank"
+                rel="noopener noreferrer"
+                title="WhatsApp"
+              >
+                <WhatsAppIcon size={40} className="h-[40px] w-[40px] md:h-[44px] md:w-[44px]" />
+              </a>
+              <button
+                type="button"
+                className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full shadow-sm transition-opacity duration-150 hover:opacity-90 md:h-[44px] md:w-[44px]"
+                aria-label="MAX"
+                title="MAX"
+              >
+                <MaxIcon size={40} className="h-[40px] w-[40px] md:h-[44px] md:w-[44px]" />
+              </button>
             </div>
           </div>
 
@@ -216,14 +221,6 @@ const Header = () => {
               ))}
 
               <div className="flex flex-col gap-4 pt-6 mt-4 border-t border-white/10">
-                <Button 
-                  variant="default" 
-                  size="sm" 
-                  className="bg-accent text-white hover:bg-accent/90 w-full h-11 px-4 text-small"
-                  onClick={handleConsultationClick}
-                >
-                  Консультация
-                </Button>
                 <div className="header-contacts flex items-center gap-3 text-white/90 pt-3 border-t border-white/10">
                   <div className="flex flex-col items-start gap-2 whitespace-nowrap">
                     <a
@@ -254,6 +251,24 @@ const Header = () => {
                       className="h-[28px] w-[28px] translate-y-[-1px]"
                     />
                   </a>
+                  <a
+                    href={whatsappUrl}
+                    className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full shadow-sm transition-opacity duration-150 hover:opacity-90"
+                    aria-label="Написать в WhatsApp"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    title="WhatsApp"
+                  >
+                    <WhatsAppIcon size={40} className="h-[40px] w-[40px]" />
+                  </a>
+                  <button
+                    type="button"
+                    className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full shadow-sm transition-opacity duration-150 hover:opacity-90"
+                    aria-label="MAX"
+                    title="MAX"
+                  >
+                    <MaxIcon size={40} className="h-[40px] w-[40px]" />
+                  </button>
                 </div>
               </div>
             </div>

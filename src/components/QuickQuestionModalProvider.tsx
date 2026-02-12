@@ -21,6 +21,7 @@ import { SITE } from "@/config/site";
 
 type OpenQuickQuestionOptions = {
   topic?: string;
+  forceForm?: boolean;
 };
 
 type QuickQuestionModalContextValue = {
@@ -60,6 +61,7 @@ type ProviderProps = {
 export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
   const location = useLocation();
   const [isOpen, setIsOpen] = useState(false);
+  const [isForcedFormOpen, setIsForcedFormOpen] = useState(false);
   const [topicOverride, setTopicOverride] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: "", phone: "" });
   const [consent, setConsent] = useState(false);
@@ -83,10 +85,13 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
 
   const closeQuickQuestionModal = useCallback(() => {
     setIsOpen(false);
+    setIsForcedFormOpen(false);
   }, []);
 
   const openQuickQuestionModal = useCallback((options?: OpenQuickQuestionOptions) => {
-    if (FORMS_DISABLED) {
+    const shouldForceForm = Boolean(options?.forceForm);
+
+    if (FORMS_DISABLED && !shouldForceForm) {
       if (typeof window !== "undefined") {
         const userActivationState = (
           window.navigator as Navigator & { userActivation?: { isActive: boolean } }
@@ -99,6 +104,7 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
       }
       return;
     }
+    setIsForcedFormOpen(shouldForceForm);
     setTopicOverride(options?.topic ?? null);
     resetForm();
     setIsOpen(true);
@@ -176,7 +182,7 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
     <QuickQuestionModalContext.Provider value={contextValue}>
       {children}
 
-      {!FORMS_DISABLED && (
+      {(!FORMS_DISABLED || isForcedFormOpen) && (
         <Dialog open={isOpen} onOpenChange={(open) => (!open ? closeQuickQuestionModal() : setIsOpen(true))}>
           <DialogContent className={dialogClassName}>
             <DialogHeader className="space-y-2 text-center">

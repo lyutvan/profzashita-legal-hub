@@ -57,6 +57,8 @@ import { teamMembers } from "@/data/team";
 import { getServiceHeroImage } from "@/lib/serviceCardImages";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import TelegramIcon from "@/components/icons/TelegramIcon";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
+import MaxIcon from "@/components/icons/MaxIcon";
 import type { PhysServicePageData } from "@/data/phys-service-content";
 
 type LeadFormProps = {
@@ -84,13 +86,20 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const isNasledstvennyeCategory = data.categoryLabel === "Наследственные дела";
   const isBankrotstvoMerged = data.entry.slug === "bankrotstvo-fiz-lits";
   const isTrudovyeCategory = data.entry.slug === "trudovye-spory";
-  const isCallOnlyCta = isDebtContractsCategory || isConsumerProtectionCategory || isNasledstvennyeCategory;
+  const isContactsFlowCategory =
+    isConsumerProtectionCategory || isNasledstvennyeCategory || isBankrotstvoMerged || isTrudovyeCategory;
+  const isCallOnlyCta = isDebtContractsCategory;
   const callHref = "tel:+74950040196";
+  const contactsHref = "/kontakty";
+  const whatsappUrl = "https://wa.me/74950040196";
   const handleCallClick = () => {
     window.location.href = callHref;
   };
+  const openConsultationForm = (topic?: string) => {
+    openQuickQuestionModal({ topic, forceForm: isContactsFlowCategory });
+  };
   const handleCallLinkClick = (event: React.MouseEvent<HTMLAnchorElement>) => {
-    if (isConsumerProtectionCategory) {
+    if (isConsumerProtectionCategory || isContactsFlowCategory) {
       event.stopPropagation();
     }
   };
@@ -1042,11 +1051,16 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   <span className="text-accent font-semibold">при первом звонке</span>
                 </p>
                 <Button
+                  asChild={isContactsFlowCategory}
                   size="lg"
                   className="w-full sm:w-auto bg-accent text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
-                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                  onClick={isContactsFlowCategory ? undefined : () => openConsultationForm(data.heroTitle)}
                 >
-                  Получить консультацию по банкротству
+                  {isContactsFlowCategory ? (
+                    <Link to={contactsHref}>Получить консультацию по банкротству</Link>
+                  ) : (
+                    "Получить консультацию по банкротству"
+                  )}
                 </Button>
                 <p className="text-small text-white/70 md:whitespace-nowrap">
                   <span className="text-accent font-semibold">ФЗ-№127</span> • Работаем в Москве и Московской области •{" "}
@@ -1075,11 +1089,16 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   <span className="text-accent font-semibold">при первом звонке</span>
                 </p>
                 <Button
+                  asChild={isContactsFlowCategory}
                   size="lg"
                   className="w-full sm:w-auto bg-accent text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
-                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                  onClick={isContactsFlowCategory ? undefined : () => openConsultationForm(data.heroTitle)}
                 >
-                  Получить консультацию по трудовому спору
+                  {isContactsFlowCategory ? (
+                    <Link to={contactsHref}>Получить консультацию по трудовому спору</Link>
+                  ) : (
+                    "Получить консультацию по трудовому спору"
+                  )}
                 </Button>
                 <p className="text-small text-white/70 md:whitespace-nowrap">
                   <span className="text-accent font-semibold">Конфиденциально</span> • Работаем в Москве и Московской
@@ -1099,11 +1118,18 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 </ul>
                 <p className="lead text-white/90">{data.heroSubtitle}</p>
                 <Button
+                  asChild={isContactsFlowCategory}
                   size="lg"
                   className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
-                  onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
+                  onClick={
+                    isContactsFlowCategory
+                      ? undefined
+                      : isCallOnlyCta
+                      ? handleCallClick
+                      : () => openConsultationForm(data.heroTitle)
+                  }
                 >
-                  Получить консультацию
+                  {isContactsFlowCategory ? <Link to={contactsHref}>Получить консультацию</Link> : "Получить консультацию"}
                 </Button>
                 <div className="category-hero-trust flex flex-nowrap items-center gap-y-2 text-small text-white/80 overflow-x-auto md:overflow-visible">
                   {trustItems.map((item, index) => (
@@ -1179,7 +1205,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                             size="lg"
                             className="mt-auto h-10 rounded-[10px] border border-[#b8911f] bg-[#C9A227] px-5 text-[13px] text-white shadow-[0_4px_10px_rgba(111,83,15,0.2)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                           >
-                            <a href={callHref}>Получить консультацию</a>
+                            {isContactsFlowCategory ? (
+                              <Link to={contactsHref}>Получить консультацию</Link>
+                            ) : (
+                              <a href={callHref}>Получить консультацию</a>
+                            )}
                           </Button>
                         </CardContent>
                       </Card>
@@ -1224,7 +1254,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                             size="lg"
                             className="mt-auto h-10 rounded-[10px] border border-[#b8911f] bg-[#C9A227] px-5 text-[13px] text-white shadow-[0_4px_10px_rgba(111,83,15,0.2)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                           >
-                            <a href={callHref}>Получить консультацию</a>
+                            {isContactsFlowCategory ? (
+                              <Link to={contactsHref}>Получить консультацию</Link>
+                            ) : (
+                              <a href={callHref}>Получить консультацию</a>
+                            )}
                           </Button>
                         </CardContent>
                       </Card>
@@ -1243,13 +1277,17 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                     <Card
                       key={card.title}
                       className={`h-full rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)] ${
-                        isNasledstvennyeCategory || isConsumerProtectionCategory ? "cursor-pointer" : ""
+                        !isContactsFlowCategory && (isNasledstvennyeCategory || isConsumerProtectionCategory)
+                          ? "cursor-pointer"
+                          : ""
                       }`}
                       onClick={
-                        isNasledstvennyeCategory
+                        isContactsFlowCategory
+                          ? undefined
+                          : isNasledstvennyeCategory
                           ? handleCallClick
                           : isConsumerProtectionCategory
-                          ? () => openQuickQuestionModal({ topic: `${data.categoryLabel}: ${card.title}` })
+                          ? () => openConsultationForm(`${data.categoryLabel}: ${card.title}`)
                           : undefined
                       }
                     >
@@ -1260,18 +1298,20 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                           {card.description ?? "Подготовим документы и защитим позицию в переговорах и суде"}
                         </p>
                         <Button
-                          asChild={isCallOnlyCta}
+                          asChild={isCallOnlyCta || isContactsFlowCategory}
                           size="lg"
                           className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
                           onClick={
-                            isCallOnlyCta
+                            isCallOnlyCta || isContactsFlowCategory
                               ? undefined
                               : isNasledstvennyeCategory
-                              ? () => openQuickQuestionModal({ topic: `${data.categoryLabel}: ${card.title}` })
+                              ? () => openConsultationForm(`${data.categoryLabel}: ${card.title}`)
                               : undefined
                           }
                         >
-                          {isCallOnlyCta ? (
+                          {isContactsFlowCategory ? (
+                            <Link to={contactsHref}>Получить консультацию</Link>
+                          ) : isCallOnlyCta ? (
                             <a href={callHref} onClick={handleCallLinkClick}>
                               Получить консультацию
                             </a>
@@ -1355,11 +1395,18 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-6 flex justify-center">
                 <Button
+                  asChild={isContactsFlowCategory}
                   size="lg"
                   className="w-full sm:w-auto border border-[#b8911f] bg-[#C9A227] text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
+                  onClick={
+                    isContactsFlowCategory
+                      ? undefined
+                      : isCallOnlyCta
+                      ? handleCallClick
+                      : () => openConsultationForm(data.heroTitle)
+                  }
                 >
-                  Обсудить свою ситуацию
+                  {isContactsFlowCategory ? <Link to={contactsHref}>Обсудить свою ситуацию</Link> : "Обсудить свою ситуацию"}
                 </Button>
               </div>
             </div>
@@ -1436,11 +1483,22 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-6 flex justify-center">
                 <Button
+                  asChild={isContactsFlowCategory}
                   size="lg"
                   className="w-full sm:w-auto border border-[#b8911f] bg-[#C9A227] text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
-                  onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
+                  onClick={
+                    isContactsFlowCategory
+                      ? undefined
+                      : isCallOnlyCta
+                      ? handleCallClick
+                      : () => openConsultationForm(data.heroTitle)
+                  }
                 >
-                  Обсудить мою ситуацию с адвокатом
+                  {isContactsFlowCategory ? (
+                    <Link to={contactsHref}>Обсудить мою ситуацию с адвокатом</Link>
+                  ) : (
+                    "Обсудить мою ситуацию с адвокатом"
+                  )}
                 </Button>
               </div>
             </div>
@@ -1510,11 +1568,18 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-6 flex justify-center">
                 <Button
+                  asChild={isContactsFlowCategory}
                   size="lg"
                   className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                  onClick={
+                    isContactsFlowCategory ? undefined : () => openConsultationForm(data.heroTitle)
+                  }
                 >
-                  Получить консультацию по трудовому спору
+                  {isContactsFlowCategory ? (
+                    <Link to={contactsHref}>Получить консультацию по трудовому спору</Link>
+                  ) : (
+                    "Получить консультацию по трудовому спору"
+                  )}
                 </Button>
               </div>
             </div>
@@ -1559,7 +1624,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 <Button
                   size="lg"
                   className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                  onClick={() => openConsultationForm(data.heroTitle)}
                 >
                   Получить консультацию по банкротству
                 </Button>
@@ -1645,11 +1710,14 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-6 flex justify-center">
                 <Button
+                  asChild={isContactsFlowCategory}
                   size="lg"
                   className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                  onClick={
+                    isContactsFlowCategory ? undefined : () => openConsultationForm(data.heroTitle)
+                  }
                 >
-                  Оценить мою ситуацию
+                  {isContactsFlowCategory ? <Link to={contactsHref}>Оценить мою ситуацию</Link> : "Оценить мою ситуацию"}
                 </Button>
               </div>
             </div>
@@ -1688,11 +1756,18 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-6 flex justify-center">
                 <Button
+                  asChild={isContactsFlowCategory}
                   size="lg"
                   className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                  onClick={
+                    isContactsFlowCategory ? undefined : () => openConsultationForm(data.heroTitle)
+                  }
                 >
-                  Получить консультацию по банкротству
+                  {isContactsFlowCategory ? (
+                    <Link to={contactsHref}>Получить консультацию по банкротству</Link>
+                  ) : (
+                    "Получить консультацию по банкротству"
+                  )}
                 </Button>
               </div>
             </div>
@@ -1766,11 +1841,18 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-6 flex justify-center">
                 <Button
+                  asChild={isContactsFlowCategory}
                   size="lg"
                   className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                  onClick={() => openQuickQuestionModal({ topic: data.heroTitle })}
+                  onClick={
+                    isContactsFlowCategory ? undefined : () => openConsultationForm(data.heroTitle)
+                  }
                 >
-                  Получить консультацию по банкротству
+                  {isContactsFlowCategory ? (
+                    <Link to={contactsHref}>Получить консультацию по банкротству</Link>
+                  ) : (
+                    "Получить консультацию по банкротству"
+                  )}
                 </Button>
               </div>
             </div>
@@ -2105,13 +2187,32 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-8 flex justify-center">
                 <Button
+                  asChild={isContactsFlowCategory}
                   size="lg"
                   className={`w-full sm:w-auto bg-accent ${
                     isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-primary"
                   } shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white`}
-                  onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.categoryLabel })}
+                  onClick={
+                    isContactsFlowCategory
+                      ? undefined
+                      : isCallOnlyCta
+                      ? handleCallClick
+                      : () => openConsultationForm(data.categoryLabel)
+                  }
                 >
-                  {isBankrotstvoMerged ? "Получить консультацию по банкротству" : "Обсудить с адвокатом свою ситуацию"}
+                  {isContactsFlowCategory ? (
+                    <Link to={contactsHref}>
+                      {isBankrotstvoMerged
+                        ? "Получить консультацию по банкротству"
+                        : "Обсудить с адвокатом свою ситуацию"}
+                    </Link>
+                  ) : (
+                    <>
+                      {isBankrotstvoMerged
+                        ? "Получить консультацию по банкротству"
+                        : "Обсудить с адвокатом свою ситуацию"}
+                    </>
+                  )}
                 </Button>
               </div>
             </div>
@@ -2186,13 +2287,20 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 Не нашли свой вопрос? Позвоните нам — подскажем, как действовать дальше.
               </p>
               <Button
+                asChild={isContactsFlowCategory}
                 size="lg"
                 className={`w-full sm:w-auto border border-[#b8911f] bg-accent ${
                   isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-primary"
                 } shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
-                onClick={isCallOnlyCta ? handleCallClick : () => openQuickQuestionModal({ topic: data.heroTitle })}
+                onClick={
+                  isContactsFlowCategory
+                    ? undefined
+                    : isCallOnlyCta
+                    ? handleCallClick
+                    : () => openConsultationForm(data.heroTitle)
+                }
               >
-                Получить оценку перспектив
+                {isContactsFlowCategory ? <Link to={contactsHref}>Получить оценку перспектив</Link> : "Получить оценку перспектив"}
               </Button>
             </div>
           </div>
@@ -2242,6 +2350,22 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                       />
                     </a>
                     <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Написать в WhatsApp"
+                      className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full shadow-sm transition-all hover:-translate-y-0.5 hover:opacity-90 md:h-[56px] md:w-[56px]"
+                    >
+                      <WhatsAppIcon size={56} className="h-[52px] w-[52px] md:h-[56px] md:w-[56px]" />
+                    </a>
+                    <button
+                      type="button"
+                      aria-label="MAX"
+                      className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full shadow-sm transition-all hover:-translate-y-0.5 hover:opacity-90 md:h-[56px] md:w-[56px]"
+                    >
+                      <MaxIcon size={56} className="h-[52px] w-[52px] md:h-[56px] md:w-[56px]" />
+                    </button>
+                    <a
                       href={`mailto:${SITE.email}`}
                       aria-label="Написать на email"
                       className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-accent shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] hover:text-[#b8911f] md:h-14 md:w-14"
@@ -2265,7 +2389,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                       size="lg"
                       className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
                     >
-                      <a href={`tel:${SITE.phoneRaw}`}>Свяжитесь с нами</a>
+                      {isContactsFlowCategory ? (
+                        <Link to={contactsHref}>Свяжитесь с нами</Link>
+                      ) : (
+                        <a href={`tel:${SITE.phoneRaw}`}>Свяжитесь с нами</a>
+                      )}
                     </Button>
                   </div>
                 </CardContent>
