@@ -89,7 +89,6 @@ const BANKROTSTVO_QUIZ_QUESTIONS: Array<{
     key: "debt",
     title: "Общая сумма долгов",
     options: [
-      { value: "lt500", label: "До 500 тыс. ₽" },
       { value: "500to1", label: "500 тыс. – 1 млн ₽" },
       { value: "1to3", label: "1 – 3 млн ₽" },
       { value: "gt3", label: "Более 3 млн ₽" }
@@ -258,6 +257,22 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
       payment
     };
   }, [bankrotstvoQuiz, bankrotstvoQuizScore]);
+
+  const bankrotstvoQuizMessage = useMemo(() => {
+    if (!isBankrotstvoMerged) return "";
+    return [
+      "Квиз-калькулятор по банкротству:",
+      `Сумма долга: ${getBankrotstvoQuizOptionLabel("debt", bankrotstvoQuiz.debt)}`,
+      `Просрочка: ${getBankrotstvoQuizOptionLabel("overdue", bankrotstvoQuiz.overdue)}`,
+      `Доход: ${getBankrotstvoQuizOptionLabel("income", bankrotstvoQuiz.income)}`,
+      `Имущество: ${getBankrotstvoQuizOptionLabel("assets", bankrotstvoQuiz.assets)}`,
+      `Исполнительные производства: ${getBankrotstvoQuizOptionLabel("enforcement", bankrotstvoQuiz.enforcement)}`,
+      `Результат: ${bankrotstvoQuizResult.status}`,
+      `Комментарий: ${bankrotstvoQuizResult.comment}`,
+      `Ориентировочный срок: ${bankrotstvoQuizResult.timeline}`,
+      `Формат оплаты: ${bankrotstvoQuizResult.payment}`
+    ].join("\n");
+  }, [bankrotstvoQuiz, bankrotstvoQuizResult, isBankrotstvoMerged]);
 
   const heroImage = getServiceHeroImage(data.entry.path, "phys");
   const ogImage = heroImage.startsWith("http") ? heroImage : `${SITE.url}${heroImage.replace(/^\//, "")}`;
@@ -2446,16 +2461,17 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                     </div>
                     <div className="mt-6">
                       <Button
-                        asChild={isContactsFlowCategory}
                         size="lg"
                         className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                        onClick={isContactsFlowCategory ? undefined : () => openConsultationForm(data.heroTitle)}
+                        onClick={() =>
+                          openQuickQuestionModal({
+                            topic: `${data.heroTitle} — персональный разбор квиза`,
+                            forceForm: true,
+                            message: bankrotstvoQuizMessage
+                          })
+                        }
                       >
-                        {isContactsFlowCategory ? (
-                          <Link to={contactsHref}>Получить персональный разбор</Link>
-                        ) : (
-                          "Получить персональный разбор"
-                        )}
+                        Получить персональный разбор
                       </Button>
                     </div>
                   </CardContent>
@@ -3084,7 +3100,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   asChild={isContactsFlowCategory || isConsumerProtectionCategory || isCallOnlyCta}
                   size="lg"
                   className={`w-full sm:w-auto bg-accent ${
-                    isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-primary"
+                    isBankrotstvoMerged || isTrudovyeCategory || isConsumerProtectionCategory ? "text-white" : "text-primary"
                   } shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-white`}
                   onClick={
                     isContactsFlowCategory
@@ -3196,7 +3212,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   asChild={isContactsFlowCategory || isConsumerProtectionCategory || isCallOnlyCta}
                   size="lg"
                   className={`w-full sm:w-auto border border-[#b8911f] bg-accent ${
-                    isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-primary"
+                    isBankrotstvoMerged || isTrudovyeCategory || isConsumerProtectionCategory ? "text-white" : "text-primary"
                   } shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
                   onClick={
                     isContactsFlowCategory

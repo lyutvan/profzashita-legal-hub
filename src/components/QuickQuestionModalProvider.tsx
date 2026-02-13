@@ -22,6 +22,7 @@ import { SITE } from "@/config/site";
 type OpenQuickQuestionOptions = {
   topic?: string;
   forceForm?: boolean;
+  message?: string;
 };
 
 type QuickQuestionModalContextValue = {
@@ -63,6 +64,7 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
   const [isOpen, setIsOpen] = useState(false);
   const [isForcedFormOpen, setIsForcedFormOpen] = useState(false);
   const [topicOverride, setTopicOverride] = useState<string | null>(null);
+  const [messageOverride, setMessageOverride] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: "", phone: "" });
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
@@ -86,6 +88,8 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
   const closeQuickQuestionModal = useCallback(() => {
     setIsOpen(false);
     setIsForcedFormOpen(false);
+    setTopicOverride(null);
+    setMessageOverride(null);
   }, []);
 
   const openQuickQuestionModal = useCallback((options?: OpenQuickQuestionOptions) => {
@@ -106,6 +110,7 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
     }
     setIsForcedFormOpen(shouldForceForm);
     setTopicOverride(options?.topic ?? null);
+    setMessageOverride(options?.message ?? null);
     resetForm();
     setIsOpen(true);
   }, [resetForm]);
@@ -150,7 +155,8 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
       await submitToWebhook({
         name: formData.name.trim(),
         phone: formData.phone,
-        topic
+        topic,
+        message: messageOverride ?? undefined
       });
       toast({
         title: "Заявка отправлена",
