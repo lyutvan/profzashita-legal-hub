@@ -71,7 +71,7 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
   const [submitTime, setSubmitTime] = useState<number>(Date.now());
 
   const dialogClassName =
-    "!w-[calc(100%-32px)] !max-w-[640px] !rounded-[20px] border border-slate-200 bg-white p-8 shadow-[0_24px_80px_rgba(15,23,42,0.18)]";
+    "!w-[calc(100%-24px)] !max-w-[640px] !rounded-[20px] border border-slate-200 bg-white p-5 md:p-8 shadow-[0_24px_80px_rgba(15,23,42,0.18)] max-h-[calc(100dvh-24px)] overflow-y-auto !top-3 !translate-y-0 sm:!top-1/2 sm:!translate-y-[-50%]";
 
   const topic = topicOverride ?? deriveTopicFromPath(location.pathname);
 

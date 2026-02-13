@@ -77,6 +77,67 @@ type PhysCategoryLandingTemplateProps = {
   data: PhysServicePageData;
 };
 
+type BankrotstvoQuizKey = "debt" | "overdue" | "income" | "assets" | "enforcement";
+type BankrotstvoQuizState = Record<BankrotstvoQuizKey, string>;
+
+const BANKROTSTVO_QUIZ_QUESTIONS: Array<{
+  key: BankrotstvoQuizKey;
+  title: string;
+  options: Array<{ value: string; label: string }>;
+}> = [
+  {
+    key: "debt",
+    title: "Общая сумма долгов",
+    options: [
+      { value: "lt500", label: "До 500 тыс. ₽" },
+      { value: "500to1", label: "500 тыс. – 1 млн ₽" },
+      { value: "1to3", label: "1 – 3 млн ₽" },
+      { value: "gt3", label: "Более 3 млн ₽" }
+    ]
+  },
+  {
+    key: "overdue",
+    title: "Срок просрочки",
+    options: [
+      { value: "lt3", label: "До 3 месяцев" },
+      { value: "3to6", label: "3 – 6 месяцев" },
+      { value: "gt6", label: "Более 6 месяцев" }
+    ]
+  },
+  {
+    key: "income",
+    title: "Текущий доход",
+    options: [
+      { value: "stable", label: "Стабильный" },
+      { value: "unstable", label: "Нестабильный" },
+      { value: "none", label: "Дохода нет" }
+    ]
+  },
+  {
+    key: "assets",
+    title: "Имущество кроме единственного жилья",
+    options: [
+      { value: "none", label: "Нет" },
+      { value: "car", label: "Авто / ликвидное имущество" },
+      { value: "realty", label: "Есть доп. недвижимость" }
+    ]
+  },
+  {
+    key: "enforcement",
+    title: "Есть исполнительные производства / аресты",
+    options: [
+      { value: "yes", label: "Да" },
+      { value: "no", label: "Нет" }
+    ]
+  }
+];
+
+const getBankrotstvoQuizOptionLabel = (key: BankrotstvoQuizKey, value: string) => {
+  const question = BANKROTSTVO_QUIZ_QUESTIONS.find((item) => item.key === key);
+  const selected = question?.options.find((option) => option.value === value);
+  return selected?.label ?? "—";
+};
+
 const CATEGORY_ICONS = [Scale, Home, Building2, Users, MessageCircle, Shield, FileSearch, Landmark, HelpCircle] as const;
 
 const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps) => {
@@ -89,9 +150,13 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const isContactsFlowCategory =
     isConsumerProtectionCategory || isNasledstvennyeCategory || isBankrotstvoMerged || isTrudovyeCategory;
   const isCallOnlyCta = isDebtContractsCategory;
+  const shouldUseContactsLink = isContactsFlowCategory && !isConsumerProtectionCategory;
   const callHref = "tel:+74950040196";
   const contactsHref = "/kontakty";
   const whatsappUrl = "https://wa.me/74950040196";
+  const consumerPhoneCtaLabel = "Позвонить и обсудить ситуацию";
+  const consumerPhoneCtaShortLabel = "Позвонить и получить ориентир";
+  const consumerPhoneNote = "Разговор по телефону не обязывает к заключению договора.";
   const handleCallClick = () => {
     window.location.href = callHref;
   };
@@ -106,6 +171,93 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const yandexOrgId = "244880896695";
   const isFamilyOrHousing =
     data.categoryLabel === "Семейные споры" || data.categoryLabel === "Жилищные споры";
+  const finalCtaContent = useMemo(() => {
+    if (isTrudovyeCategory) {
+      return {
+        title: "Обсудите вашу ситуацию с адвокатом по трудовым спорам",
+        description:
+          "Позвоните нам — адвокат по трудовым спорам уточнит детали ситуации и подскажет возможные варианты действий."
+      };
+    }
+    if (isBankrotstvoMerged) {
+      return {
+        title: "Получите консультацию по банкротству физических лиц",
+        description:
+          "Позвоните нам — адвокат по банкротству физических лиц ответит на вопросы, уточнит детали и предложит варианты действий."
+      };
+    }
+    if (isConsumerProtectionCategory) {
+      return {
+        title: "Обсудите вашу ситуацию с адвокатом по защите прав потребителей",
+        description:
+          "Позвоните нам — при обращении уточним детали и подскажем, есть ли перспектива и что можно взыскать в вашей ситуации."
+      };
+    }
+    return {
+      title: "Обсудите вашу ситуацию с адвокатом",
+      description:
+        "Позвоните нам — уточним детали, объясним перспективы и подскажем оптимальный формат дальнейших действий."
+    };
+  }, [isBankrotstvoMerged, isConsumerProtectionCategory, isTrudovyeCategory]);
+  const [bankrotstvoQuiz, setBankrotstvoQuiz] = useState<BankrotstvoQuizState>({
+    debt: "500to1",
+    overdue: "3to6",
+    income: "unstable",
+    assets: "none",
+    enforcement: "yes"
+  });
+  const bankrotstvoQuizScore = useMemo(() => {
+    let score = 0;
+
+    if (bankrotstvoQuiz.debt === "500to1") score += 2;
+    if (bankrotstvoQuiz.debt === "1to3") score += 3;
+    if (bankrotstvoQuiz.debt === "gt3") score += 4;
+
+    if (bankrotstvoQuiz.overdue === "3to6") score += 2;
+    if (bankrotstvoQuiz.overdue === "gt6") score += 3;
+
+    if (bankrotstvoQuiz.income === "unstable") score += 2;
+    if (bankrotstvoQuiz.income === "none") score += 3;
+
+    if (bankrotstvoQuiz.assets === "none") score += 2;
+    if (bankrotstvoQuiz.assets === "car") score += 1;
+
+    if (bankrotstvoQuiz.enforcement === "yes") score += 2;
+
+    return score;
+  }, [bankrotstvoQuiz]);
+  const bankrotstvoQuizResult = useMemo(() => {
+    const hasRealtyRisk = bankrotstvoQuiz.assets === "realty";
+    const hasEnforcement = bankrotstvoQuiz.enforcement === "yes";
+    const prolongedDelay = bankrotstvoQuiz.overdue === "gt6";
+    const highDebt = bankrotstvoQuiz.debt === "1to3" || bankrotstvoQuiz.debt === "gt3";
+
+    let status = "Нужна точечная правовая оценка";
+    let comment =
+      "Процедура возможна, но важно заранее проверить структуру долгов, сделки за последние годы и имущественные риски.";
+
+    if (bankrotstvoQuizScore >= 11) {
+      status = "Высокая готовность к процедуре банкротства";
+      comment =
+        "По вашим ответам можно быстро перейти к подготовке документов и запуску процедуры в законном порядке.";
+    } else if (bankrotstvoQuizScore >= 8) {
+      status = "Хорошая перспектива списания долгов";
+      comment =
+        "Сценарий рабочий, ключевая задача — правильно оформить документы и зафиксировать позицию по имуществу.";
+    }
+
+    const timeline = hasRealtyRisk ? "8–12 месяцев" : prolongedDelay || hasEnforcement ? "6–10 месяцев" : "6–9 месяцев";
+    const payment = highDebt
+      ? "Рассрочка или поэтапная оплата"
+      : "Фиксированные этапы без скрытых доплат";
+
+    return {
+      status,
+      comment,
+      timeline,
+      payment
+    };
+  }, [bankrotstvoQuiz, bankrotstvoQuizScore]);
 
   const heroImage = getServiceHeroImage(data.entry.path, "phys");
   const ogImage = heroImage.startsWith("http") ? heroImage : `${SITE.url}${heroImage.replace(/^\//, "")}`;
@@ -149,6 +301,53 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     { title: "Неустойка и штраф по ЗоЗПП", description: "Рассчитаем и взыщем по закону", path: data.entry.path },
     { title: "Компенсация морального вреда", description: "Соберем доказательства и обоснуем сумму", path: data.entry.path },
     { title: "Возврат оплаты за услуги", description: "Расторжение и возврат средств", path: data.entry.path }
+  ];
+  const consumerProblemsCards = [
+    {
+      title: "Некачественные товары и услуги",
+      description: "Брак, несоответствие описанию, нарушение сроков, отказ в ремонте, замене или возврате средств",
+      icon: FileSearch
+    },
+    {
+      title: "Отказ в возврате денег",
+      description:
+        "Компания ссылается на внутренние правила, формальные основания или полностью игнорирует обращения",
+      icon: Wallet
+    },
+    {
+      title: "Навязанные услуги и скрытые платежи",
+      description:
+        "Дополнительные услуги при покупке, кредите или договоре, о которых не сообщили заранее",
+      icon: FileWarning
+    },
+    {
+      title: "Споры с маркетплейсами",
+      description:
+        "Отказы в возврате денег, игнорирование претензий, перекладывание ответственности между продавцом (селлером) и площадкой",
+      icon: MessageSquare
+    },
+    {
+      title: "Срыв сроков и гарантийные споры",
+      description:
+        "Задержка ремонта, доставки, оказания услуги или отказ в гарантийном обслуживании",
+      icon: Timer
+    },
+    {
+      title: "Неустойки и штрафы по ЗоЗПП",
+      description:
+        "Рассчитываем и взыскиваем неустойку, штрафы и иные суммы, предусмотренные законом",
+      icon: Scale
+    },
+    {
+      title: "Взыскание компенсаций и морального вреда",
+      description: "Собираем доказательства, обосновываем сумму и заявляем требования в суде",
+      icon: Check
+    },
+    {
+      title: "Другие споры с компаниями",
+      description: "Ситуации, где ваши права нарушены, но компания отказывается нести ответственность",
+      icon: HelpCircle
+    }
   ];
   const bankrotstvoSituations = [
     {
@@ -393,6 +592,71 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
       icon: Timer
     }
   ];
+  const consumerWhyUs = [
+    {
+      title: "Работаем против сильной стороны",
+      description:
+        "Беремся за дела, где ответчик это крупная компания с юристами и ресурсами. Знаем, как ломать формальные отказы и давление со стороны бизнеса",
+      icon: Shield
+    },
+    {
+      title: "Судебная практика по конфликтам высокой сложности",
+      description:
+        "Ведем споры с доказательственными рисками и активным сопротивлением со стороны ответчика. Готовим позицию так, чтобы она выдерживала проверку в суде",
+      icon: Scale
+    },
+    {
+      title: "Опыт в резонансных делах",
+      description:
+        "Участвовали в конфликтах, которые доходили до суда и имели последствия. Добиваемся реальных выплат и компенсаций, а не формальных решений на бумаге",
+      icon: ScrollText
+    },
+    {
+      title: "Индивидуальная стратегия",
+      description:
+        "Позиция выстраивается под вашу ситуацию, факты и слабые места ответчика. Не используем универсальные схемы и шаблоны",
+      icon: UserCheck
+    },
+    {
+      title: "Команда коллегии под задачу",
+      description:
+        "Над делом работает команда адвокатов и юристов с разной специализацией. Это усиливает позицию в переговорах и суде",
+      icon: Users
+    },
+    {
+      title: "Быстрый старт без потери времени",
+      description:
+        "Подключаемся на раннем этапе, фиксируем нарушения сразу и не даем компании перехватить инициативу",
+      icon: Timer
+    }
+  ];
+  const consumerProcessSteps = [
+    {
+      title: "Консультация и анализ ситуации",
+      description:
+        "Мы изучаем договоры, чеки, переписку и действия компании. Сразу оцениваем перспективы, риски и возможный результат по делу"
+    },
+    {
+      title: "Фиксация нарушений и доказательств",
+      description:
+        "Формируем доказательственную базу так, чтобы позиция выдержала проверку в суде. Закрываем слабые места до того, как компания начнет защищаться"
+    },
+    {
+      title: "Претензия и переговоры с компанией",
+      description:
+        "Берем общение с ответчиком на себя. Пресекаем формальные отказы, давление и затягивание сроков"
+    },
+    {
+      title: "Судебная защита и взыскание",
+      description:
+        "При необходимости выходим в суд и доводим дело до решения. Работаем не ради формального иска, а ради денег и компенсаций"
+    },
+    {
+      title: "Контроль исполнения и получение выплат",
+      description:
+        "Контролируем исполнение решения и фактического получения выплат, компенсаций или иных результатов, предусмотренных законом"
+    }
+  ];
   const extractCaseNumber = (...sources: Array<string | undefined>) => {
     for (const source of sources) {
       if (!source) continue;
@@ -461,7 +725,31 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     return matcher(caseItem.category, caseItem.title);
   });
 
-  const resolvedCases = (matchedCases.length > 0 ? matchedCases : []).slice(0, 2).map((caseItem) => ({
+  const filteredMatchedCases = useMemo(() => {
+    if (!isConsumerProtectionCategory) return matchedCases;
+
+    const withoutCharter = matchedCases.filter((caseItem) => {
+      const text = `${caseItem.title} ${caseItem.task} ${caseItem.actions} ${caseItem.result}`.toLowerCase();
+      return !/чартер|авиабилет|авиабилет|перелет|перелёт/.test(text);
+    });
+
+    const prioritized = withoutCharter.sort((a, b) => {
+      const score = (caseItem: typeof withoutCharter[number]) => {
+        const text = `${caseItem.title} ${caseItem.task} ${caseItem.actions}`.toLowerCase();
+        let value = 0;
+        if (/услуг|товар|возврат|ремонт/.test(text)) value += 4;
+        if (/аванс|неустойк|штраф/.test(text)) value += 2;
+        if (/дду|застройщ|квартир/.test(text)) value += 1;
+        if (/ооо|каско|страх/.test(text)) value -= 2;
+        return value;
+      };
+      return score(b) - score(a);
+    });
+
+    return prioritized.slice(0, 1);
+  }, [isConsumerProtectionCategory, matchedCases]);
+
+  const resolvedCases = (filteredMatchedCases.length > 0 ? filteredMatchedCases : []).slice(0, 2).map((caseItem) => ({
     title: caseItem.title,
     situation: caseItem.task,
     task: "Добиться результата и защитить интересы клиента.",
@@ -474,7 +762,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
 
   const cases = (resolvedCases.length > 0
     ? resolvedCases
-    : data.cases.slice(0, 2).map((item, index) => {
+    : data.cases.slice(0, isConsumerProtectionCategory ? 1 : 2).map((item, index) => {
         const withDecision = item as PhysServicePageData["cases"][number] & {
           decisionPreview?: string;
           decisionUrl?: string;
@@ -690,14 +978,60 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     "Что делать, если я не уверен(а), нарушены ли мои права?"
   ];
   const faqItems = useMemo(() => data.faqs.slice(0, 7), [data.faqs]);
+  const consumerFaqItems = [
+    {
+      question: "Можно ли взыскать штраф по ЗоЗПП?",
+      answer:
+        "Да. Если компания нарушила ваши права и добровольно не исполнила требования, суд может взыскать штраф в размере 50% от присужденной суммы. Мы оцениваем перспективы штрафа еще до подачи иска."
+    },
+    {
+      question: "Нужна ли экспертиза?",
+      answer:
+        "Не всегда. В ряде споров достаточно документов, переписки и претензии. Если экспертиза необходима, мы организуем ее и включаем расходы в требования к ответчику."
+    },
+    {
+      question: "Что происходит во время первого звонка?",
+      answer:
+        "Вы описываете ситуацию, мы задаем уточняющие вопросы и объясняем, есть ли правовая перспектива и какие варианты возможны. Звонок не обязывает к заключению договора."
+    },
+    {
+      question: "Можно ли решить вопрос без суда?",
+      answer:
+        "Да, во многих случаях. Мы начинаем с досудебной претензии и переговоров. Если компания отказывается исполнять требования, переходим к судебной защите."
+    },
+    {
+      question: "Сколько времени занимает работа по делу?",
+      answer:
+        "Зависит от ситуации. Досудебное урегулирование может занять от нескольких недель. Судебный процесс — от 2–3 месяцев и более. Сроки обсуждаем заранее."
+    },
+    {
+      question: "Как формируется стоимость услуг?",
+      answer:
+        "Стоимость зависит от сложности дела, объема работы и стадии спора. Мы озвучиваем условия после анализа ситуации, без скрытых платежей и неожиданных доплат."
+    },
+    {
+      question: "Нужно ли мое личное присутствие?",
+      answer:
+        "В большинстве случаев нет. Мы представляем ваши интересы по доверенности и берем процесс на себя. Личное участие требуется только в исключительных ситуациях."
+    }
+  ];
   const resolvedFaqItems = useMemo(() => {
     if (isBankrotstvoMerged) return bankrotstvoFaqItems;
     if (isTrudovyeCategory) return trudovyeFaqItems;
+    if (isConsumerProtectionCategory) return consumerFaqItems;
     return faqItems.map((item, index) => ({
       ...item,
       question: trudovyeFaqQuestions[index] ?? item.question
     }));
-  }, [bankrotstvoFaqItems, faqItems, isBankrotstvoMerged, isTrudovyeCategory, trudovyeFaqItems]);
+  }, [
+    bankrotstvoFaqItems,
+    consumerFaqItems,
+    faqItems,
+    isBankrotstvoMerged,
+    isConsumerProtectionCategory,
+    isTrudovyeCategory,
+    trudovyeFaqItems
+  ]);
   const teamOverrideSlugs = useMemo(() => {
     if (isBankrotstvoMerged) {
       return ["lyutikov", "ryzhenko"];
@@ -863,6 +1197,73 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     }>;
   }, [isTrudovyeCategory]);
 
+  const consumerTeamCards = useMemo(() => {
+    if (!isConsumerProtectionCategory) return [];
+    const membersBySlug = new Map(teamMembers.map((member) => [member.slug, member]));
+    const cards = [
+      {
+        slug: "ryzhenko",
+        badge: "Юрист",
+        roleTitle: "Помощник председателя коллегии",
+        experience: "Стаж 23 года",
+        bullets: [
+          "Ведет дела по защите прав потребителей, где ответчик — крупная компания с юридической службой и внутренними регламентами.",
+          "Подключается на этапе, когда бизнес отказывает в возврате денег и ссылается на формальные основания.",
+          "Формирует правовую позицию, фиксирует нарушения, выстраивает доказательственную базу и сопровождает дело до фактического взыскания средств.",
+          "Работает системно: от анализа документов и договоров до переговоров и суда."
+        ],
+        cta: "Подробнее о юристе"
+      },
+      {
+        slug: "vaskovsky",
+        badge: "Адвокат",
+        roleTitle: "",
+        experience: "Стаж 15 лет",
+        bullets: [
+          "Специализируется на потребительских спорах с банками, страховыми компаниями, автосалонами и сервисными организациями.",
+          "Часто подключается в ситуациях, где компания затягивает процесс или полностью игнорирует требования клиента.",
+          "Готовит претензии, иски и процессуальные документы, ведет переговоры и защищает интересы клиента в суде.",
+          "Сопровождает дело от первичной оценки перспектив до исполнения решения."
+        ],
+        cta: "Подробнее об адвокате"
+      },
+      {
+        slug: "sotnikov",
+        badge: "Адвокат",
+        roleTitle: "",
+        experience: "Стаж 15 лет",
+        bullets: [
+          "Ведет сложные потребительские споры, в том числе с активным сопротивлением со стороны ответчика.",
+          "Помогает зафиксировать нарушения, обосновать требования и добиться реальных выплат, а не формальных решений на бумаге.",
+          "Участвует в переговорах, досудебном урегулировании и судебной защите интересов клиента.",
+          "Работает на результат — от диагностики ситуации до исполнения судебного решения."
+        ],
+        cta: "Подробнее об адвокате"
+      }
+    ];
+
+    return cards
+      .map((card) => {
+        const member = membersBySlug.get(card.slug);
+        if (!member) return null;
+        return {
+          ...card,
+          name: member.name,
+          photo: member.photo
+        };
+      })
+      .filter(Boolean) as Array<{
+      slug: string;
+      badge: string;
+      roleTitle: string;
+      experience: string;
+      bullets: string[];
+      cta: string;
+      name: string;
+      photo: string;
+    }>;
+  }, [isConsumerProtectionCategory]);
+
   const isTwoTeamLayout = resolvedTeam.length === 2;
   const teamGridClassName = isTwoTeamLayout
     ? "section__content grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr max-w-4xl mx-auto justify-items-center"
@@ -966,10 +1367,62 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         "Обратилась сначала просто за консультацией, долго думала, но в итоге решила вести дело с юристами. Все объяснили понятным языком. Сопровождали до конца, всегда были на связи. Спасибо за поддержку в сложной ситуации."
     }
   ];
+  const consumerReviews = [
+    {
+      id: "cp-1",
+      name: "Лилия В.",
+      rating: 5,
+      date: "",
+      text:
+        "Нужно было расторгнуть договор услуг и вернуть деньги. Получила пошаговый план и результат без лишних нервов."
+    },
+    {
+      id: "cp-2",
+      name: "Евгений С.",
+      rating: 5,
+      date: "",
+      text:
+        "Взыскали компенсацию за залив квартиры. Адвокат заранее объяснил риски и сроки, все этапы были прозрачными."
+    },
+    {
+      id: "cp-3",
+      name: "Андрей П.",
+      rating: 5,
+      date: "",
+      text:
+        "Страховая занижала выплату по ДТП. С юристом собрали экспертизу, подали претензию и получили доплату."
+    },
+    {
+      id: "cp-4",
+      name: "Елена Г.",
+      rating: 5,
+      date: "",
+      text:
+        "Продавец отказался возвращать деньги за товар, ссылаясь на свои правила. В коллегии сразу предупредили, что добровольно они не заплатят. Дело дошло до суда, решение исполнено, деньги получены."
+    },
+    {
+      id: "cp-5",
+      name: "Александр К.",
+      rating: 5,
+      date: "",
+      text:
+        "До обращения получал только формальные ответы и отказы. Адвокаты зафиксировали нарушения, рассчитали сумму требований и довели дело до результата. Получил возврат средств и компенсацию."
+    },
+    {
+      id: "cp-6",
+      name: "Марина З.",
+      rating: 5,
+      date: "",
+      text:
+        "Обратилась после отказа банка возвращать деньги за дополнительные услуги по кредиту. Адвокат подробно объяснил перспективы, подготовил претензию и иск. В итоге деньги вернули полностью, без затягивания процесса."
+    }
+  ];
   const reviews = (isBankrotstvoMerged
     ? bankrotstvoReviews
     : isTrudovyeCategory
       ? trudovyeReviews
+      : isConsumerProtectionCategory
+        ? consumerReviews
       : data.reviews.length > 0
         ? data.reviews
         : sharedReviews).slice(0, 6);
@@ -995,7 +1448,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
 
       <BreadcrumbSchema items={data.breadcrumbSchema} />
       <LegalServiceSchema serviceType={data.heroTitle} url={data.canonical} />
-      {data.faqs.length > 0 && <FAQPageSchema items={data.faqs} url={data.canonical} />}
+      {resolvedFaqItems.length > 0 && <FAQPageSchema items={resolvedFaqItems} url={data.canonical} />}
       {reviews.length > 0 && (
         <ReviewsSchema
           reviews={reviews.map((review) => ({
@@ -1046,6 +1499,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   <li>Сопровождаем процедуру от консультации до решения суда</li>
                   <li>Берем на себя общение с кредиторами и коллекторами</li>
                 </ul>
+                <p className="text-small md:text-[15px] text-accent font-semibold">
+                  Работаем с долгами от 500 тыс. ₽
+                </p>
                 <p className="text-small md:text-[15px] text-white/80">
                   Разберем ситуацию и сориентируем по стоимости{" "}
                   <span className="text-accent font-semibold">при первом звонке</span>
@@ -1106,6 +1562,42 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   трудовым спорам
                 </p>
               </div>
+            ) : isConsumerProtectionCategory ? (
+              <div className="mt-6 max-w-[980px] md:max-w-[1120px] space-y-5 text-left">
+                <h1 className="category-hero-title font-bold text-accent text-[clamp(34px,3.8vw,56px)] leading-[1.08]">
+                  Адвокаты по защите прав потребителей
+                </h1>
+                <p className="text-white/95 text-base md:text-[22px] leading-relaxed font-semibold max-w-[1100px]">
+                  Работаем против банков, застройщиков, автосалонов, маркетплейсов, магазинов и сервисных компаний.
+                  <br />
+                  Беремся за споры, где компания отказывается признавать нарушения и идти на возврат
+                </p>
+                <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white">
+                  <li>Навязанные услуги и скрытые платежи</li>
+                  <li>Отказ в возврате денег и компенсаций</li>
+                  <li>Некачественные товары и услуги</li>
+                </ul>
+                <p className="text-small md:text-[15px] text-white/80">
+                  Коротко разберем вашу ситуацию по телефону и подскажем, есть ли перспектива
+                </p>
+                <Button
+                  asChild
+                  size="lg"
+                  className="w-full sm:w-auto bg-accent text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
+                >
+                  <Link to={contactsHref}>{consumerPhoneCtaLabel}</Link>
+                </Button>
+                <p className="text-small text-white/75">{consumerPhoneNote}</p>
+                <div className="category-hero-trust flex flex-wrap items-center gap-x-2 gap-y-2 text-small text-white/80">
+                  <span className="text-accent font-semibold">98% выигранных дел</span>
+                  <span className="text-white/50">•</span>
+                  <span>Работаем в Москве и Московской области</span>
+                  <span className="text-white/50">•</span>
+                  <span className="text-accent font-semibold">Судебная практика по спорам высокой сложности</span>
+                  <span className="text-white/50">•</span>
+                  <span>Командная работа коллегии</span>
+                </div>
+              </div>
             ) : (
               <div className="max-w-4xl mt-6 space-y-5">
                 <h1 className="category-hero-title font-serif text-h1-mobile md:text-h1 font-bold text-accent">
@@ -1118,7 +1610,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 </ul>
                 <p className="lead text-white/90">{data.heroSubtitle}</p>
                 <Button
-                  asChild={isContactsFlowCategory}
+                  asChild={isContactsFlowCategory || isCallOnlyCta || isConsumerProtectionCategory}
                   size="lg"
                   className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-primary/40"
                   onClick={
@@ -1129,8 +1621,19 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                       : () => openConsultationForm(data.heroTitle)
                   }
                 >
-                  {isContactsFlowCategory ? <Link to={contactsHref}>Получить консультацию</Link> : "Получить консультацию"}
+                  {isConsumerProtectionCategory ? (
+                    <Link to={contactsHref}>{consumerPhoneCtaLabel}</Link>
+                  ) : isContactsFlowCategory ? (
+                    <Link to={contactsHref}>Получить консультацию</Link>
+                  ) : isCallOnlyCta ? (
+                    <a href={callHref}>Получить консультацию</a>
+                  ) : (
+                    "Получить консультацию"
+                  )}
                 </Button>
+                {isConsumerProtectionCategory && (
+                  <p className="text-small text-white/80">{consumerPhoneNote}</p>
+                )}
                 <div className="category-hero-trust flex flex-nowrap items-center gap-y-2 text-small text-white/80 overflow-x-auto md:overflow-visible">
                   {trustItems.map((item, index) => (
                     <span
@@ -1160,7 +1663,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         {/* Экран 2: Каталог услуг */}
         <section className="section">
           <div className="container">
-            {!isBankrotstvoMerged && !isTrudovyeCategory && (
+            {!isBankrotstvoMerged && !isTrudovyeCategory && !isConsumerProtectionCategory && (
               <div className="section__header max-w-3xl mx-auto text-center pt-2 md:pt-4 mb-6 md:mb-7">
                 <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
                   {data.categoryLabel === "Наследственные дела"
@@ -1269,6 +1772,55 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   Если ваша ситуация отличается — мы разберем ее на консультации и ответим на все ваши вопросы
                 </p>
               </div>
+            ) : isConsumerProtectionCategory ? (
+              <div className="section__content">
+                <div className="section__header max-w-4xl mx-auto text-center">
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                    С какими ситуациями по защите прав потребителей
+                    <br className="hidden md:block" /> мы работаем
+                  </h2>
+                  <p className="text-body-mobile md:text-body text-muted-foreground">
+                    Берем споры против компаний, которые отказываются признавать нарушения и добровольно возвращать
+                    деньги
+                  </p>
+                </div>
+                <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-6 mt-8">
+                  {consumerProblemsCards.map((item) => {
+                    const Icon = item.icon;
+                    return (
+                      <Card
+                        key={item.title}
+                        className="h-full rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_14px_rgba(60,52,31,0.08)]"
+                      >
+                        <CardContent className="p-6 h-full flex flex-col items-center text-center gap-3">
+                          <div className="h-14 w-14 rounded-full border border-[#D8C08B] bg-white flex items-center justify-center">
+                            <Icon className="h-7 w-7 text-accent" strokeWidth={1.8} />
+                          </div>
+                          <h3 className="text-[15px] md:text-[16px] font-semibold text-slate-900">
+                            {item.title}
+                          </h3>
+                          <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed">
+                            {item.description}
+                          </p>
+                          <Button
+                            asChild
+                            size="lg"
+                            className="mt-auto h-10 rounded-[10px] border border-[#b8911f] bg-[#C9A227] px-5 text-[13px] text-white shadow-[0_4px_10px_rgba(111,83,15,0.2)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                          >
+                            <Link to={contactsHref}>Позвонить и обсудить ситуацию</Link>
+                          </Button>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+                <p className="mt-8 text-center text-small text-muted-foreground">
+                  Если ваша ситуация отличается — мы разберем ее на консультации и подскажем законный путь защиты.
+                </p>
+                <p className="mt-1 text-center text-small text-muted-foreground">
+                  Позвоните нам и мы коротко разберем вашу ситуацию по телефону и подскажем, есть ли перспектива
+                </p>
+              </div>
             ) : (
               <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-fr">
                 {renderedSituationCards.map((card, index) => {
@@ -1309,7 +1861,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                               : undefined
                           }
                         >
-                          {isContactsFlowCategory ? (
+                          {isConsumerProtectionCategory ? (
+                            <Link to={contactsHref}>{consumerPhoneCtaShortLabel}</Link>
+                          ) : isContactsFlowCategory ? (
                             <Link to={contactsHref}>Получить консультацию</Link>
                           ) : isCallOnlyCta ? (
                             <a href={callHref} onClick={handleCallLinkClick}>
@@ -1327,7 +1881,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 })}
               </div>
             )}
-            {!isBankrotstvoMerged && !isTrudovyeCategory && (
+            {!isBankrotstvoMerged && !isTrudovyeCategory && !isConsumerProtectionCategory && (
               <div className="mt-7 md:mt-8 rounded-[12px] border border-[#D8C08B] bg-[#F7F2E8] p-6 text-center shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
                 <p className="font-semibold text-body-mobile md:text-body text-slate-900">
                   Каждая неделя без четкой позиции — это риск потерять время, деньги и сильную переговорную позицию.
@@ -1339,6 +1893,94 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
             )}
           </div>
         </section>
+
+        {isConsumerProtectionCategory && (
+          <section className="section">
+            <div className="container">
+              <div className="section__header max-w-4xl mx-auto text-center">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                  Почему нам доверяют в потребительских спорах
+                </h2>
+                <p className="text-body-mobile md:text-body text-muted-foreground">
+                  Работаем системно: стратегия, доказательства, переговоры и суд.
+                  <br />
+                  Подключаем команду коллегии под вашу задачу
+                </p>
+              </div>
+              <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+                {consumerWhyUs.map((item) => {
+                  const Icon = item.icon;
+                  return (
+                    <div key={item.title} className="text-center px-4 md:px-5">
+                      <div className="mx-auto h-14 w-14 flex items-center justify-center">
+                        <Icon className="h-10 w-10 text-accent" strokeWidth={1.6} />
+                      </div>
+                      <h3 className="mt-4 text-[15px] leading-tight md:text-[16px] font-semibold text-slate-900">
+                        {item.title}
+                      </h3>
+                      <p className="mt-2 text-[13px] md:text-[14px] text-slate-600 leading-relaxed">
+                        {item.description}
+                      </p>
+                    </div>
+                  );
+                })}
+              </div>
+              <div className="mt-10 text-center text-body-mobile md:text-body text-muted-foreground">
+                <p>Сначала анализируем ситуацию и перспективы, затем предлагаем варианты.</p>
+                <p>На этапе консультации часто удается избежать лишних действий и расходов.</p>
+              </div>
+              <div className="mt-8 text-center text-body-mobile md:text-body text-muted-foreground">
+                <p>Готовы обсудить вашу ситуацию и оценить перспективы взыскания?</p>
+                <p>Если ваш случай не имеет перспектив — мы скажем об этом сразу.</p>
+              </div>
+              <div className="mt-7 flex justify-center">
+                <a
+                  href={callHref}
+                  className="inline-flex items-center gap-2 text-[20px] font-semibold text-slate-900 hover:text-accent"
+                >
+                  <Phone className="h-6 w-6 text-accent" />
+                  <span>Обсудить ситуацию по телефону: {SITE.phone}</span>
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isConsumerProtectionCategory && (
+          <section className="section">
+            <div className="container">
+              <div className="section__header max-w-4xl mx-auto text-center">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Как мы защищаем права потребителей</h2>
+                <p className="text-body-mobile md:text-body text-muted-foreground">
+                  Каждое дело начинаем с анализа ситуации и выстраиваем защиту с учетом реальных рисков, позиции
+                  компании и судебной практики
+                </p>
+              </div>
+              <div className="mt-8 border-t border-[#D5D5D5]">
+                {consumerProcessSteps.map((step, index) => (
+                  <div
+                    key={step.title}
+                    className="flex items-start gap-4 md:gap-6 py-6 md:py-7 border-b border-[#D5D5D5]"
+                  >
+                    <div className="h-12 w-12 rounded-full border border-[#D8C08B] bg-[#F7F2E8] flex shrink-0 items-center justify-center text-[14px] font-semibold text-accent">
+                      {index + 1}
+                    </div>
+                    <div className="space-y-2">
+                      <h3 className="text-[15px] md:text-[16px] font-semibold text-slate-900">{step.title}</h3>
+                      <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed">{step.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-10 text-center text-body-mobile md:text-body text-muted-foreground">
+                <p>Вы не остаетесь один на один с компанией.</p>
+                <p>
+                  Юридическую часть берем на себя и <span className="font-semibold text-slate-900">ведем дело до результата!</span>
+                </p>
+              </div>
+            </div>
+          </section>
+        )}
 
         {isTrudovyeCategory && (
           <section className="section">
@@ -1728,6 +2370,108 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           <section className="section">
             <div className="container">
               <div className="section__header max-w-3xl mx-auto text-center">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Квиз-калькулятор по банкротству</h2>
+                <p className="text-body-mobile md:text-body text-muted-foreground">
+                  Ответьте на 5 вопросов и получите предварительную оценку перспективы и сроков процедуры.
+                </p>
+              </div>
+              <div className="mt-8 grid grid-cols-1 xl:grid-cols-[1.15fr_0.85fr] gap-6">
+                <Card className="rounded-[14px] border border-[#D8C08B] bg-white shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
+                  <CardContent className="p-6 md:p-7 space-y-6">
+                    {BANKROTSTVO_QUIZ_QUESTIONS.map((question, index) => (
+                      <div key={question.key}>
+                        <p className="text-[14px] md:text-[15px] font-semibold text-slate-900">
+                          {index + 1}. {question.title}
+                        </p>
+                        <div className="mt-3 flex flex-wrap gap-2">
+                          {question.options.map((option) => {
+                            const isActive = bankrotstvoQuiz[question.key] === option.value;
+                            return (
+                              <button
+                                key={option.value}
+                                type="button"
+                                className={`rounded-[10px] border px-3 py-2 text-[13px] transition-colors ${
+                                  isActive
+                                    ? "border-[#b8911f] bg-[#C9A227] text-white"
+                                    : "border-[#D8C08B] bg-[#F8F4EA] text-slate-700 hover:bg-[#f3ecd9]"
+                                }`}
+                                onClick={() =>
+                                  setBankrotstvoQuiz((prev) => ({
+                                    ...prev,
+                                    [question.key]: option.value
+                                  }))
+                                }
+                              >
+                                {option.label}
+                              </button>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
+                  </CardContent>
+                </Card>
+
+                <Card className="rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
+                  <CardContent className="p-6 md:p-7 h-full flex flex-col">
+                    <p className="text-[12px] uppercase tracking-[0.08em] text-slate-500">Предварительный результат</p>
+                    <h3 className="mt-2 text-[18px] md:text-[20px] font-semibold text-slate-900">
+                      {bankrotstvoQuizResult.status}
+                    </h3>
+                    <p className="mt-3 text-[13px] md:text-[14px] text-slate-700 leading-relaxed">
+                      {bankrotstvoQuizResult.comment}
+                    </p>
+                    <div className="mt-5 space-y-2 text-[13px] md:text-[14px] text-slate-700">
+                      <p>
+                        <span className="font-semibold text-slate-900">Ориентировочный срок:</span>{" "}
+                        {bankrotstvoQuizResult.timeline}
+                      </p>
+                      <p>
+                        <span className="font-semibold text-slate-900">Формат оплаты:</span>{" "}
+                        {bankrotstvoQuizResult.payment}
+                      </p>
+                    </div>
+                    <div className="mt-5 rounded-[10px] border border-[#D8C08B] bg-white p-4">
+                      <p className="text-[12px] text-slate-500">Ваши ответы:</p>
+                      <ul className="mt-2 space-y-1 text-[13px] text-slate-700">
+                        <li>Сумма долга: {getBankrotstvoQuizOptionLabel("debt", bankrotstvoQuiz.debt)}</li>
+                        <li>Просрочка: {getBankrotstvoQuizOptionLabel("overdue", bankrotstvoQuiz.overdue)}</li>
+                        <li>Доход: {getBankrotstvoQuizOptionLabel("income", bankrotstvoQuiz.income)}</li>
+                        <li>Имущество: {getBankrotstvoQuizOptionLabel("assets", bankrotstvoQuiz.assets)}</li>
+                        <li>
+                          Исполнительные производства:{" "}
+                          {getBankrotstvoQuizOptionLabel("enforcement", bankrotstvoQuiz.enforcement)}
+                        </li>
+                      </ul>
+                    </div>
+                    <div className="mt-6">
+                      <Button
+                        asChild={isContactsFlowCategory}
+                        size="lg"
+                        className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                        onClick={isContactsFlowCategory ? undefined : () => openConsultationForm(data.heroTitle)}
+                      >
+                        {isContactsFlowCategory ? (
+                          <Link to={contactsHref}>Получить персональный разбор</Link>
+                        ) : (
+                          "Получить персональный разбор"
+                        )}
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              </div>
+              <p className="mt-6 text-center text-[12px] text-muted-foreground">
+                Квиз дает предварительную оценку. Финальные выводы делаем после анализа документов и вашей ситуации.
+              </p>
+            </div>
+          </section>
+        )}
+
+        {isBankrotstvoMerged && (
+          <section className="section">
+            <div className="container">
+              <div className="section__header max-w-3xl mx-auto text-center">
                 <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Почему выбирают нас</h2>
                 <p className="text-body-mobile md:text-body text-muted-foreground">
                   Юридическое сопровождение банкротства с понятными условиями и прозрачной оплатой
@@ -1880,6 +2624,13 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                       Вашу ситуацию рассматривают и сопровождают адвокаты и юристы с опытом ведения трудовых споров
                     </p>
                   </>
+                ) : isConsumerProtectionCategory ? (
+                  <>
+                    <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кто будет заниматься вашим делом</h2>
+                    <p className="text-muted-foreground">
+                      Вашу ситуацию рассматривают и сопровождают адвокаты и юристы с опытом защиты прав потребителей
+                    </p>
+                  </>
                 ) : (
                   <>
                     <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кто ведет ваши дела</h2>
@@ -1930,7 +2681,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                             size="lg"
                             className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
                           >
-                            <Link to={`/team/${card.slug}`}>{card.cta}</Link>
+                            <Link to={contactsHref}>{card.cta}</Link>
                           </Button>
                         </div>
                       </CardContent>
@@ -1960,6 +2711,52 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                           {card.badge}
                         </span>
                         <div className="mt-3 text-[13px] font-semibold text-slate-800">{card.roleTitle}</div>
+                        <div className="mt-2 text-[13px] text-slate-700">{card.experience}</div>
+                        <ul className="mt-4 space-y-2 text-[13px] text-slate-700 text-left list-disc list-inside">
+                          {card.bullets.map((item) => (
+                            <li key={item}>{item}</li>
+                          ))}
+                        </ul>
+                        <div className="mt-auto w-full pt-6 flex justify-center">
+                          <Button
+                            asChild
+                            size="lg"
+                            className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                          >
+                            <Link to={`/team/${card.slug}`}>{card.cta}</Link>
+                          </Button>
+                        </div>
+                      </CardContent>
+                    </Card>
+                  ))}
+                </div>
+              ) : isConsumerProtectionCategory ? (
+                <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+                  {consumerTeamCards.map((card) => (
+                    <Card
+                      key={card.slug}
+                      className="h-full rounded-[14px] border border-[#D8C08B] bg-white shadow-[0_10px_24px_rgba(60,52,31,0.08)]"
+                    >
+                      <CardContent className="p-6 h-full flex flex-col items-center text-center">
+                        <div className="w-full overflow-hidden rounded-[12px] border border-[#E6DDCC] bg-white">
+                          <img
+                            src={card.photo}
+                            alt={card.name}
+                            className="h-[320px] w-full object-cover object-center md:h-[340px] lg:h-[360px]"
+                            loading="lazy"
+                          />
+                        </div>
+                        <h3 className="mt-5 text-[16px] md:text-[18px] font-semibold text-slate-900">
+                          {card.name}
+                        </h3>
+                        <span className="mt-2 inline-flex items-center rounded-full bg-[#C9A227] px-4 py-1 text-[12px] font-semibold text-white">
+                          {card.badge}
+                        </span>
+                        {card.roleTitle ? (
+                          <div className="mt-3 text-[13px] font-semibold text-slate-800">{card.roleTitle}</div>
+                        ) : (
+                          <div className="mt-3 h-[20px]" aria-hidden="true" />
+                        )}
                         <div className="mt-2 text-[13px] text-slate-700">{card.experience}</div>
                         <ul className="mt-4 space-y-2 text-[13px] text-slate-700 text-left list-disc list-inside">
                           {card.bullets.map((item) => (
@@ -2037,7 +2834,17 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   ))}
                 </div>
               )}
-              {isBankrotstvoMerged || isTrudovyeCategory ? (
+              {isConsumerProtectionCategory ? (
+                <>
+                  <p className="mt-8 text-center text-small text-muted-foreground">
+                    Сопровождение осуществляется командой специалистов. В зависимости от ситуации к сопровождению
+                    подключаются профильные специалисты.
+                  </p>
+                  <p className="mt-6 text-center text-[16px] md:text-[18px] font-semibold text-slate-900">
+                    При обращении по телефону вы общаетесь напрямую с юристом, без менеджеров и колл-центров
+                  </p>
+                </>
+              ) : isBankrotstvoMerged || isTrudovyeCategory ? (
                 <p className="mt-8 text-center text-small text-muted-foreground">
                   Сопровождение осуществляется командой специалистов. В зависимости от ситуации к сопровождению
                   подключаются профильные специалисты.
@@ -2057,72 +2864,130 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         <section className="section bg-muted/30">
           <div className="container">
             {shouldShowCases && (
-              <>
-                <div className="section__header max-w-3xl">
-                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кейсы</h2>
-                  <p className="text-muted-foreground">
-                    Мы не раскрываем персональные данные клиентов — примеры основаны на реальных делах
-                  </p>
-                </div>
-                <div className="section__content grid grid-cols-1 lg:grid-cols-2 gap-6">
-                  {cases.map((caseItem) => {
-                    const decisionPreview = caseItem.decisionPreview;
-                    const hasDecision = Boolean(decisionPreview);
-                    return (
-                      <Card
-                        key={caseItem.title}
-                        className="h-full border border-slate-200 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.06)] transition-all hover:border-[#C9A227] hover:shadow-[0_16px_40px_rgba(201,162,39,0.18)]"
-                      >
-                        <CardContent className="pt-6 h-full">
-                          <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
-                            <div className="flex-1">
-                              <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">{caseItem.title}</h3>
-                              <div className="mt-4 space-y-3 text-small text-muted-foreground leading-relaxed">
-                                <div>
-                                  <span className="font-semibold text-foreground">Ситуация: </span>
-                                  {caseItem.situation}
-                                </div>
-                                <div>
-                                  <span className="font-semibold text-foreground">Задача: </span>
-                                  {caseItem.task}
-                                </div>
-                                <div>
-                                  <span className="font-semibold text-foreground">Что сделали: </span>
-                                  {caseItem.actions}
-                                </div>
-                                <div>
-                                  <span className="font-semibold text-foreground">Результат: </span>
-                                  {caseItem.result}
+              isConsumerProtectionCategory ? (
+                <>
+                  <div className="section__header max-w-3xl mx-auto text-center">
+                    <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кейсы по защите прав потребителей</h2>
+                    <p className="text-muted-foreground">
+                      Мы не раскрываем персональные данные клиентов. Публикация осуществляется с согласия клиентов
+                    </p>
+                  </div>
+                  {cases[0] && (
+                    <>
+                      <div className="section__content max-w-[760px] mx-auto">
+                        <Card className="rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
+                          <CardContent className="p-6 md:p-8">
+                            <div className="flex items-start justify-between gap-4">
+                              <div className="text-[13px] md:text-[14px] text-slate-600">
+                                <div>Сумма взыскания:</div>
+                                <div className="font-semibold text-slate-900">
+                                  {extractDebtAmount(
+                                    cases[0].title,
+                                    cases[0].situation,
+                                    cases[0].actions,
+                                    cases[0].result
+                                  ) ?? "Не раскрывается"}
                                 </div>
                               </div>
-                              {!hasDecision && (
-                                <div className="mt-6">
-                                  <Button
-                                    asChild
-                                    size="lg"
-                                    variant="outline"
-                                    className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
-                                  >
-                                    <Link to={caseItem.slug ? `/cases/${caseItem.slug}` : "/keisy"}>
-                                      Смотреть кейсы
-                                    </Link>
-                                  </Button>
-                                </div>
-                              )}
+                              <div className="h-24 w-24 md:h-28 md:w-28 border border-[#D8C08B] bg-white text-[11px] text-slate-500 flex items-center justify-center text-center leading-tight overflow-hidden shrink-0">
+                                {cases[0].decisionPreview ? (
+                                  <img
+                                    src={cases[0].decisionPreview}
+                                    alt={`Скан решения: ${cases[0].title}`}
+                                    className="h-full w-full object-contain"
+                                    loading="lazy"
+                                  />
+                                ) : (
+                                  <>
+                                    Скан
+                                    <br />
+                                    решения
+                                  </>
+                                )}
+                              </div>
                             </div>
-                            {hasDecision && (
-                              <div className="w-full lg:w-[52%] lg:max-w-[600px]">
-                                <div className="rounded-[12px] border border-[#E6DDCC] bg-[#F8F4EA] p-4">
-                                  <div className="text-sm font-semibold text-slate-900">Решение суда</div>
-                                  <div className="mt-3 rounded-[10px] border border-[#E6DDCC] bg-white p-2">
-                                    <img
-                                      src={decisionPreview}
-                                      alt={`Решение суда: ${caseItem.title}`}
-                                      className="max-h-[640px] w-full object-contain"
-                                      loading="lazy"
-                                    />
+
+                            <h3 className="mt-5 text-[16px] md:text-[18px] font-semibold text-slate-900">{cases[0].title}</h3>
+
+                            <div className="mt-5 text-[14px] text-slate-600 leading-relaxed">
+                              <div className="font-semibold text-slate-900">Ситуация:</div>
+                              <div>{cases[0].situation}</div>
+                            </div>
+                            <div className="mt-4 text-[14px] text-slate-600 leading-relaxed">
+                              <div className="font-semibold text-slate-900">Что сделали:</div>
+                              <div>{cases[0].actions}</div>
+                            </div>
+                            <div className="mt-4 text-[14px] text-slate-600 leading-relaxed">
+                              <div className="font-semibold text-slate-900">Результат:</div>
+                              <div>{cases[0].result}</div>
+                            </div>
+                          </CardContent>
+                        </Card>
+                      </div>
+                      <p className="mt-10 text-center text-body-mobile md:text-body text-muted-foreground">
+                        Если у вас похожая ситуация — ее можно обсудить по телефону
+                      </p>
+                      <div className="mt-6 flex justify-center">
+                        <Button
+                          asChild
+                          size="lg"
+                          className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                        >
+                          <Link to={contactsHref}>Позвонить и обсудить ситуацию</Link>
+                        </Button>
+                      </div>
+                    </>
+                  )}
+                </>
+              ) : (
+                <>
+                  <div className="section__header max-w-3xl">
+                    <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                      {cases.length === 1 ? "Кейс" : "Кейсы"}
+                    </h2>
+                    <p className="text-muted-foreground">
+                      Мы не раскрываем персональные данные клиентов — примеры основаны на реальных делах
+                    </p>
+                  </div>
+                  <div
+                    className={`section__content grid grid-cols-1 gap-6 ${
+                      cases.length > 1 ? "lg:grid-cols-2" : "max-w-4xl mx-auto"
+                    }`}
+                  >
+                    {cases.map((caseItem) => {
+                      const decisionPreview = caseItem.decisionPreview;
+                      const hasDecision = Boolean(decisionPreview);
+                      return (
+                        <Card
+                          key={caseItem.title}
+                          className="h-full border border-slate-200 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.06)] transition-all hover:border-[#C9A227] hover:shadow-[0_16px_40px_rgba(201,162,39,0.18)]"
+                        >
+                          <CardContent className="pt-6 h-full">
+                            <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
+                              <div className="flex-1">
+                                <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">
+                                  {caseItem.title}
+                                </h3>
+                                <div className="mt-4 space-y-3 text-small text-muted-foreground leading-relaxed">
+                                  <div>
+                                    <span className="font-semibold text-foreground">Ситуация: </span>
+                                    {caseItem.situation}
                                   </div>
-                                  <div className="mt-4">
+                                  <div>
+                                    <span className="font-semibold text-foreground">Задача: </span>
+                                    {caseItem.task}
+                                  </div>
+                                  <div>
+                                    <span className="font-semibold text-foreground">Что сделали: </span>
+                                    {caseItem.actions}
+                                  </div>
+                                  <div>
+                                    <span className="font-semibold text-foreground">Результат: </span>
+                                    {caseItem.result}
+                                  </div>
+                                </div>
+                                {!hasDecision && (
+                                  <div className="mt-6">
                                     <Button
                                       asChild
                                       size="lg"
@@ -2134,21 +2999,50 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                                       </Link>
                                     </Button>
                                   </div>
-                                </div>
+                                )}
                               </div>
-                            )}
-                          </div>
-                        </CardContent>
-                      </Card>
-                    );
-                  })}
-                </div>
-              </>
+                              {hasDecision && (
+                                <div className="w-full lg:w-[52%] lg:max-w-[600px]">
+                                  <div className="rounded-[12px] border border-[#E6DDCC] bg-[#F8F4EA] p-4">
+                                    <div className="text-sm font-semibold text-slate-900">Решение суда</div>
+                                    <div className="mt-3 rounded-[10px] border border-[#E6DDCC] bg-white p-2">
+                                      <img
+                                        src={decisionPreview}
+                                        alt={`Решение суда: ${caseItem.title}`}
+                                        className="max-h-[640px] w-full object-contain"
+                                        loading="lazy"
+                                      />
+                                    </div>
+                                    <div className="mt-4">
+                                      <Button
+                                        asChild
+                                        size="lg"
+                                        variant="outline"
+                                        className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
+                                      >
+                                        <Link to={caseItem.slug ? `/cases/${caseItem.slug}` : "/keisy"}>
+                                          Смотреть кейсы
+                                        </Link>
+                                      </Button>
+                                    </div>
+                                  </div>
+                                </div>
+                              )}
+                            </div>
+                          </CardContent>
+                        </Card>
+                      );
+                    })}
+                  </div>
+                </>
+              )
             )}
 
             <div className={shouldShowCases ? "mt-12" : undefined}>
               <div className="section__header max-w-3xl text-center mx-auto">
-                <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
+                <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">
+                  {reviews.length === 1 ? "Отзыв клиента" : "Отзывы клиентов"}
+                </h3>
                 {isBankrotstvoMerged && (
                   <p className="mt-2 text-muted-foreground">
                     Мы не раскрываем персональные данные клиентов. Отзывы публикуются с их согласия
@@ -2175,7 +3069,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                             <Star key={`${review.name}-${index}`} className="h-4 w-4 fill-current" />
                           ))}
                         </div>
-                        <span className="text-small text-muted-foreground">{review.date}</span>
+                        {review.date ? <span className="text-small text-muted-foreground">{review.date}</span> : null}
                       </div>
                       <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
                       <div className="border-t border-border mt-4 pt-4">
@@ -2187,7 +3081,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className="mt-8 flex justify-center">
                 <Button
-                  asChild={isContactsFlowCategory}
+                  asChild={isContactsFlowCategory || isConsumerProtectionCategory || isCallOnlyCta}
                   size="lg"
                   className={`w-full sm:w-auto bg-accent ${
                     isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-primary"
@@ -2200,7 +3094,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                       : () => openConsultationForm(data.categoryLabel)
                   }
                 >
-                  {isContactsFlowCategory ? (
+                  {isConsumerProtectionCategory ? (
+                    <Link to={contactsHref}>{consumerPhoneCtaLabel}</Link>
+                  ) : isContactsFlowCategory ? (
                     <Link to={contactsHref}>
                       {isBankrotstvoMerged
                         ? "Получить консультацию по банкротству"
@@ -2219,7 +3115,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           </div>
         </section>
 
-        {!isBankrotstvoMerged && !isTrudovyeCategory && (
+        {!isBankrotstvoMerged && !isTrudovyeCategory && !isConsumerProtectionCategory && (
           <>
             {/* Экран 6: Большой продающий блок + аккордеон */}
             <section className="section">
@@ -2265,44 +3161,64 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         {/* Экран 7: FAQ */}
         <section className="section bg-muted/30">
           <div className="container">
-            <div className="section__header max-w-4xl">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">FAQ — Частые вопросы</h2>
-            </div>
-            <Accordion type="single" collapsible className="section__content space-y-4">
-              {resolvedFaqItems.map((item, index) => (
-                <AccordionItem
-                  key={item.question}
-                  value={`faq-${index}`}
-                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+            <>
+              <div className="section__header max-w-4xl">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                  {isConsumerProtectionCategory
+                    ? "FAQ — Частые вопросы по защите прав потребителей"
+                    : "FAQ — Частые вопросы"}
+                </h2>
+              </div>
+              <Accordion type="single" collapsible className="section__content space-y-4">
+                {resolvedFaqItems.map((item, index) => (
+                  <AccordionItem
+                    key={item.question}
+                    value={`faq-${index}`}
+                    className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+                  >
+                    <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
+                      {item.question}
+                    </AccordionTrigger>
+                    <AccordionContent className="text-muted-foreground pb-4">{item.answer}</AccordionContent>
+                  </AccordionItem>
+                ))}
+              </Accordion>
+              <div className="mt-8 text-center space-y-4">
+                <p className="text-muted-foreground">
+                  {isConsumerProtectionCategory
+                    ? "Если у вас остались вопросы — их можно задать по телефону."
+                    : "Не нашли свой вопрос? Позвоните нам — подскажем, как действовать дальше."}
+                </p>
+                {isConsumerProtectionCategory && (
+                  <p className="text-muted-foreground">Мы подскажем, есть ли смысл двигаться дальше.</p>
+                )}
+                <Button
+                  asChild={isContactsFlowCategory || isConsumerProtectionCategory || isCallOnlyCta}
+                  size="lg"
+                  className={`w-full sm:w-auto border border-[#b8911f] bg-accent ${
+                    isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-primary"
+                  } shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
+                  onClick={
+                    isContactsFlowCategory
+                      ? undefined
+                      : isCallOnlyCta
+                      ? handleCallClick
+                      : () => openConsultationForm(data.heroTitle)
+                  }
                 >
-                  <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
-                    {item.question}
-                  </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-4">{item.answer}</AccordionContent>
-                </AccordionItem>
-              ))}
-            </Accordion>
-            <div className="mt-8 text-center space-y-4">
-              <p className="text-muted-foreground">
-                Не нашли свой вопрос? Позвоните нам — подскажем, как действовать дальше.
-              </p>
-              <Button
-                asChild={isContactsFlowCategory}
-                size="lg"
-                className={`w-full sm:w-auto border border-[#b8911f] bg-accent ${
-                  isBankrotstvoMerged || isTrudovyeCategory ? "text-white" : "text-primary"
-                } shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#c09a23] active:bg-[#a9851d] focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background`}
-                onClick={
-                  isContactsFlowCategory
-                    ? undefined
-                    : isCallOnlyCta
-                    ? handleCallClick
-                    : () => openConsultationForm(data.heroTitle)
-                }
-              >
-                {isContactsFlowCategory ? <Link to={contactsHref}>Получить оценку перспектив</Link> : "Получить оценку перспектив"}
-              </Button>
-            </div>
+                  {isConsumerProtectionCategory ? (
+                    <Link to={contactsHref}>Позвонить и задать вопрос</Link>
+                  ) : isContactsFlowCategory ? (
+                    <Link to={contactsHref}>Получить оценку перспектив</Link>
+                  ) : (
+                    "Получить оценку перспектив"
+                  )}
+                </Button>
+                {isConsumerProtectionCategory && (
+                  <p className="text-small text-muted-foreground">Без обязательств и навязывания услуг</p>
+                )}
+              </div>
+            </>
           </div>
         </section>
 
@@ -2312,27 +3228,8 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
             <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_520px] lg:items-start lg:gap-14">
               <div className="max-w-2xl space-y-6">
                 <div className="section__header max-w-2xl !mb-0">
-                  {isTrudovyeCategory ? (
-                    <>
-                      <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                        Обсудите вашу ситуацию с адвокатом по трудовым спорам
-                      </h2>
-                      <p className="text-muted-foreground">
-                        Позвоните нам — адвокат по трудовым спорам уточнит детали ситуации и подскажет возможные
-                        варианты действий
-                      </p>
-                    </>
-                  ) : (
-                    <>
-                      <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                        Получите консультацию по банкротству физических лиц
-                      </h2>
-                      <p className="text-muted-foreground">
-                        Позвоните нам — адвокат по банкротству физических лиц ответит на вопросы, уточнит детали и
-                        предложит варианты действий
-                      </p>
-                    </>
-                  )}
+                  <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">{finalCtaContent.title}</h2>
+                  <p className="text-muted-foreground">{finalCtaContent.description}</p>
                 </div>
                 <div className="space-y-3">
                   <p className="text-small font-semibold text-slate-900">Или напишите нам напрямую:</p>
@@ -2379,22 +3276,31 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 <CardContent className="p-7 md:p-8">
                   <div className="space-y-4">
                     <div className="text-sm text-muted-foreground">
-                      Телефон для консультации:
+                      Телефон для консультаций:
                     </div>
-                    <a href={`tel:${SITE.phoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
-                      {SITE.phone}
+                    <a
+                      href={`tel:${SITE.phoneRaw}`}
+                      className="inline-flex items-center gap-2 text-[18px] font-semibold text-slate-900 hover:text-accent"
+                    >
+                      <Phone className="h-5 w-5 text-accent" />
+                      <span>{SITE.phone}</span>
                     </a>
                     <Button
                       asChild
                       size="lg"
                       className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
                     >
-                      {isContactsFlowCategory ? (
+                      {isConsumerProtectionCategory ? (
+                        <Link to={contactsHref}>Позвонить адвокату</Link>
+                      ) : shouldUseContactsLink ? (
                         <Link to={contactsHref}>Свяжитесь с нами</Link>
                       ) : (
                         <a href={`tel:${SITE.phoneRaw}`}>Свяжитесь с нами</a>
                       )}
                     </Button>
+                    {isConsumerProtectionCategory && (
+                      <p className="text-small text-muted-foreground">Разговор не обязывает к заключению договора</p>
+                    )}
                   </div>
                 </CardContent>
               </Card>
@@ -2455,6 +3361,18 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                     </div>
                   </CardContent>
                 </Card>
+                {isConsumerProtectionCategory && (
+                  <div className="pt-2">
+                    <iframe
+                      src={`https://yandex.ru/sprav/widget/rating-badge/${yandexOrgId}?type=rating`}
+                      width="150"
+                      height="50"
+                      frameBorder="0"
+                      title="Рейтинг Профзащита в Яндекс.Картах"
+                      className="max-w-full"
+                    ></iframe>
+                  </div>
+                )}
               </div>
               <div className="aspect-video rounded-xl border border-border overflow-hidden">
                 <iframe
