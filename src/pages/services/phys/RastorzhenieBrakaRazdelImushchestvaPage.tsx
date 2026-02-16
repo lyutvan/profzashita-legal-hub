@@ -1132,33 +1132,30 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Написать в Telegram"
-                      className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#229ED9] text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-[#1d8fc6] md:h-[56px] md:w-[56px]"
+                      className="social-icon bg-[#229ED9] text-white shadow-sm transition-colors hover:bg-[#1d8fc6]"
                     >
-                      <TelegramIcon
-                        size={30}
-                        className="h-[30px] w-[30px] translate-y-[-1px]"
-                      />
+                      <TelegramIcon size={26} className="social-icon__svg" />
                     </a>
                     <a
                       href={whatsappUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Написать в WhatsApp"
-                      className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full shadow-sm transition-all hover:-translate-y-0.5 hover:opacity-90 md:h-[56px] md:w-[56px]"
+                      className="social-icon shadow-sm transition-opacity hover:opacity-90"
                     >
-                      <WhatsAppIcon size={56} className="h-[52px] w-[52px] md:h-[56px] md:w-[56px]" />
+                      <WhatsAppIcon size={48} className="social-icon__image" />
                     </a>
                     <button
                       type="button"
                       aria-label="MAX"
-                      className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full shadow-sm transition-all hover:-translate-y-0.5 hover:opacity-90 md:h-[56px] md:w-[56px]"
+                      className="social-icon shadow-sm transition-opacity hover:opacity-90"
                     >
-                      <MaxIcon size={56} className="h-[52px] w-[52px] md:h-[56px] md:w-[56px]" />
+                      <MaxIcon size={48} className="social-icon__image" />
                     </button>
                     <a
                       href={`mailto:${SITE.email}`}
                       aria-label="Написать на email"
-                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-accent shadow-sm transition-all hover:-translate-y-0.5 hover:border-[#C9A227] hover:text-[#b8911f] md:h-14 md:w-14"
+                      className="social-icon border border-slate-200 bg-white text-accent shadow-sm transition-colors hover:border-[#C9A227] hover:text-[#b8911f]"
                     >
                       <Mail className="h-6 w-6" />
                     </a>

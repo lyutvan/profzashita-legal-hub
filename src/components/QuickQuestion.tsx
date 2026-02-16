@@ -1,29 +1,14 @@
 import { MessageSquare } from "lucide-react";
-import { useLocation } from "react-router-dom";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const QuickQuestion = () => {
-  const location = useLocation();
   const { openQuickQuestionModal } = useQuickQuestionModal();
-  const forceFormPaths = new Set([
-    "/services/phys/semeynye-spory",
-    "/services/phys/vyselenie",
-    "/services/phys/nasledstvo",
-    "/services/phys/zashchita-prav-potrebitelya",
-    "/services/phys/trudovye-spory",
-    "/services/phys/bankrotstvo-fiz-lits"
-  ]);
-  const isForceFormPage = forceFormPaths.has(location.pathname);
 
   return (
     <>
       {/* Floating Button */}
       <button
-        onClick={() =>
-          openQuickQuestionModal(
-            isForceFormPage ? { topic: "Консультация", forceForm: true } : undefined
-          )
-        }
+        onClick={() => openQuickQuestionModal({ forceForm: true })}
         className="fixed bottom-[18px] right-[18px] z-40 h-14 w-14 rounded-full bg-accent text-accent-foreground shadow-elegant hover:scale-110 transition-transform duration-200 flex items-center justify-center group"
         aria-label="Задать вопрос"
       >

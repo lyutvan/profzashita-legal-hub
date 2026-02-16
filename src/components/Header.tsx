@@ -126,34 +126,34 @@ const Header = () => {
               </div>
               <a
                 href="https://t.me/profzashita_consult_bot"
-                className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#229ED9] text-white shadow-sm transition-colors duration-150 hover:bg-[#1d8fc6] md:h-[44px] md:w-[44px]"
+                className="social-icon bg-[#229ED9] text-white shadow-sm transition-colors duration-150 hover:bg-[#1d8fc6]"
                 aria-label="Написать в Telegram"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="Telegram"
               >
                 <TelegramIcon
-                  size={28}
-                  className="h-[28px] w-[28px] translate-y-[-1px]"
+                  size={26}
+                  className="social-icon__svg"
                 />
               </a>
               <a
                 href={whatsappUrl}
-                className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full shadow-sm transition-opacity duration-150 hover:opacity-90 md:h-[44px] md:w-[44px]"
+                className="social-icon shadow-sm transition-opacity duration-150 hover:opacity-90"
                 aria-label="Написать в WhatsApp"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="WhatsApp"
               >
-                <WhatsAppIcon size={40} className="h-[40px] w-[40px] md:h-[44px] md:w-[44px]" />
+                <WhatsAppIcon size={48} className="social-icon__image" />
               </a>
               <button
                 type="button"
-                className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full shadow-sm transition-opacity duration-150 hover:opacity-90 md:h-[44px] md:w-[44px]"
+                className="social-icon shadow-sm transition-opacity duration-150 hover:opacity-90"
                 aria-label="MAX"
                 title="MAX"
               >
-                <MaxIcon size={40} className="h-[40px] w-[40px] md:h-[44px] md:w-[44px]" />
+                <MaxIcon size={48} className="social-icon__image" />
               </button>
             </div>
           </div>
@@ -240,34 +240,34 @@ const Header = () => {
                   </div>
                   <a
                     href="https://t.me/profzashita_consult_bot"
-                    className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full bg-[#229ED9] text-white shadow-sm transition-colors duration-150 hover:bg-[#1d8fc6]"
+                    className="social-icon bg-[#229ED9] text-white shadow-sm transition-colors duration-150 hover:bg-[#1d8fc6]"
                     aria-label="Написать в Telegram"
                     target="_blank"
                     rel="noopener noreferrer"
                     title="Telegram"
                   >
                     <TelegramIcon
-                      size={28}
-                      className="h-[28px] w-[28px] translate-y-[-1px]"
+                      size={26}
+                      className="social-icon__svg"
                     />
                   </a>
                   <a
                     href={whatsappUrl}
-                    className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full shadow-sm transition-opacity duration-150 hover:opacity-90"
+                    className="social-icon shadow-sm transition-opacity duration-150 hover:opacity-90"
                     aria-label="Написать в WhatsApp"
                     target="_blank"
                     rel="noopener noreferrer"
                     title="WhatsApp"
                   >
-                    <WhatsAppIcon size={40} className="h-[40px] w-[40px]" />
+                    <WhatsAppIcon size={48} className="social-icon__image" />
                   </a>
                   <button
                     type="button"
-                    className="inline-flex h-[40px] w-[40px] items-center justify-center rounded-full shadow-sm transition-opacity duration-150 hover:opacity-90"
+                    className="social-icon shadow-sm transition-opacity duration-150 hover:opacity-90"
                     aria-label="MAX"
                     title="MAX"
                   >
-                    <MaxIcon size={40} className="h-[40px] w-[40px]" />
+                    <MaxIcon size={48} className="social-icon__image" />
                   </button>
                 </div>
               </div>

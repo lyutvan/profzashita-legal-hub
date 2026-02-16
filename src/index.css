@@ -470,6 +470,31 @@ All colors MUST be HSL.
     line-height: 1.2;
   }
 
+  .social-icon {
+    width: 48px;
+    height: 48px;
+    min-width: 48px;
+    min-height: 48px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 9999px;
+    flex-shrink: 0;
+    overflow: hidden;
+  }
+
+  .social-icon__svg {
+    width: 26px;
+    height: 26px;
+    display: block;
+  }
+
+  .social-icon__image {
+    width: 48px;
+    height: 48px;
+    display: block;
+  }
+
   .logo {
     gap: 16px;
   }
