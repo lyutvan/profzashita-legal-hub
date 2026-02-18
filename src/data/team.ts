@@ -190,6 +190,20 @@ export const teamMembers: TeamMember[] = [
     ],
     achievements: [
       {
+        title: "Сертификат — Сотников Д.В.",
+        org: "Федеральная палата адвокатов РФ",
+        previewImage: "/certs/sotnikov/sotnikov-dv-preview.png",
+        fileUrl: "/certs/sotnikov/sotnikov-dv.pdf",
+        type: "pdf"
+      },
+      {
+        title: "Сертификат о повышении квалификации",
+        org: "Федеральная палата адвокатов РФ",
+        previewImage: "/certs/sotnikov/certificate-preview.png",
+        fileUrl: "/certs/sotnikov/certificate.pdf",
+        type: "pdf"
+      },
+      {
         title: "Удостоверение о повышении квалификации (2011)",
         previewImage: "/certificates/files/sotnikov-qualification-2011.jpg",
         fileUrl: "/certificates/files/sotnikov-qualification-2011.jpg",
