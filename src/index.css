@@ -253,6 +253,22 @@ All colors MUST be HSL.
     }
   }
 
+  .criminal-compact .section:not(.section--hero) {
+    padding-block: 18px;
+  }
+
+  @media (min-width: 768px) {
+    .criminal-compact .section:not(.section--hero) {
+      padding-block: 22px;
+    }
+  }
+
+  @media (min-width: 1024px) {
+    .criminal-compact .section:not(.section--hero) {
+      padding-block: 26px;
+    }
+  }
+
   .services-page {
     --section-y: 40px;
     --section-inner-gap: 20px;
