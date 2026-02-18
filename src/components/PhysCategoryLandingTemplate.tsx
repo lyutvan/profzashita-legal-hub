@@ -3374,18 +3374,6 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                     </div>
                   </CardContent>
                 </Card>
-                {isConsumerProtectionCategory && (
-                  <div className="pt-2">
-                    <iframe
-                      src={`https://yandex.ru/sprav/widget/rating-badge/${yandexOrgId}?type=rating`}
-                      width="150"
-                      height="50"
-                      frameBorder="0"
-                      title="Рейтинг Профзащита в Яндекс.Картах"
-                      className="max-w-full"
-                    ></iframe>
-                  </div>
-                )}
               </div>
               <div className="aspect-video rounded-xl border border-border overflow-hidden">
                 <iframe

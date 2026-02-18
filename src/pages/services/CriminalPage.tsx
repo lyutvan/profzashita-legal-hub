@@ -41,6 +41,7 @@ const truncateText = (value: string, maxLength: number) =>
 const CriminalPage = () => {
   const canonical = new URL("/services/criminal", SITE.url).toString();
   const callHref = `tel:${SITE.phoneRaw}`;
+  const contactsHref = "/kontakty";
   const whatsappUrl = "https://wa.me/74950040196";
   const telegramUrl = "https://t.me/profzashita_consult_bot";
   const maxUrl = "https://max.ru";
@@ -419,7 +420,7 @@ const CriminalPage = () => {
 
                 <div className="space-y-2 pt-3">
                   <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} w-full sm:w-auto`}>
-                    <a href={callHref}>Позвонить адвокату сейчас</a>
+                    <Link to={contactsHref}>Позвонить адвокату сейчас</Link>
                   </Button>
                   <p className="text-sm text-white/90 md:text-base">Подключимся к делу немедленно</p>
                 </div>
@@ -502,7 +503,7 @@ const CriminalPage = () => {
                       <h3 className="text-xl font-semibold leading-snug text-slate-900">{item.title}</h3>
                       <p className="mt-4 text-base leading-relaxed text-slate-700 flex-1">{item.description}</p>
                       <Button asChild size="lg" className={`${CARD_BUTTON_CLASS} mt-6 w-full`}>
-                        <a href={callHref}>Позвонить адвокату</a>
+                        <Link to={contactsHref}>Позвонить адвокату</Link>
                       </Button>
                     </CardContent>
                   </Card>
@@ -517,7 +518,7 @@ const CriminalPage = () => {
                 Позвоните — оценим риски по телефону.
               </p>
               <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} mt-6 w-full sm:w-auto`}>
-                <a href={callHref}>Позвонить адвокату</a>
+                <Link to={contactsHref}>Позвонить адвокату</Link>
               </Button>
               <p className="mt-8 text-xl font-semibold text-slate-900">
                 Ошибка на первых этапах может стать решающей!
@@ -655,7 +656,7 @@ const CriminalPage = () => {
               </p>
               <p className="mt-3 text-xl font-semibold text-slate-900">Не принимайте решения без консультации адвоката</p>
               <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} mt-6 w-full sm:w-auto`}>
-                <a href={callHref}>Позвонить адвокату сейчас</a>
+                <Link to={contactsHref}>Позвонить адвокату сейчас</Link>
               </Button>
               <p className="mt-2 text-sm text-slate-600">Консультация по телефону. Строго конфиденциально</p>
             </div>
@@ -741,7 +742,7 @@ const CriminalPage = () => {
                 Не принимайте решений и не подписывайте документы без консультации адвоката.
               </p>
               <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} mt-6 w-full sm:w-auto`}>
-                <a href={callHref}>Позвонить адвокату сейчас</a>
+                <Link to={contactsHref}>Позвонить адвокату сейчас</Link>
               </Button>
             </div>
           </div>
@@ -773,7 +774,7 @@ const CriminalPage = () => {
                 Если вы не нашли ответа на свой вопрос — позвоните адвокату и опишите ситуацию.
               </p>
               <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} mt-6 w-full sm:w-auto`}>
-                <a href={callHref}>Позвонить сейчас</a>
+                <Link to={contactsHref}>Позвонить сейчас</Link>
               </Button>
             </div>
           </div>
@@ -845,7 +846,7 @@ const CriminalPage = () => {
                       {SITE.phone}
                     </a>
                     <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} w-full`}>
-                      <a href={callHref}>Позвонить адвокату</a>
+                      <Link to={contactsHref}>Позвонить адвокату</Link>
                     </Button>
                     <p className="text-sm text-slate-600">Если дело уже возбуждено — не откладывайте звонок</p>
                   </div>

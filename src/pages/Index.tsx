@@ -39,7 +39,10 @@ const Index = () => {
       if (!path) return null;
       const slug = path.replace("/services/phys/", "");
       const entry = getPhysServiceEntryBySlug(slug);
-      const label = category.title === "Жилищные споры" ? "Жилищные споры" : (entry?.title ?? category.title);
+      const label =
+        category.title === "Жилищные споры"
+          ? "Жилищные спорам и возмещение ущерба"
+          : (entry?.title ?? category.title);
       return {
         label,
         path
