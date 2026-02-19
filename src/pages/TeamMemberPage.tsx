@@ -68,6 +68,30 @@ const TeamMemberPage = () => {
   const competencies = member.competencies ?? [];
   const practice = member.practice ?? [];
   const publications = member.publications ?? [];
+  const groupedAchievements = achievements.reduce(
+    (acc, item) => {
+      const title = item.title.toLowerCase();
+      if (title.includes("удостовер")) {
+        acc.credentials.push(item);
+      } else if (title.includes("сертификат")) {
+        acc.certificates.push(item);
+      } else {
+        acc.other.push(item);
+      }
+
+      return acc;
+    },
+    {
+      certificates: [] as typeof achievements,
+      credentials: [] as typeof achievements,
+      other: [] as typeof achievements
+    }
+  );
+  const achievementSections = [
+    { key: "certificates", title: "Сертификаты", items: groupedAchievements.certificates },
+    { key: "credentials", title: "Удостоверения", items: groupedAchievements.credentials },
+    { key: "other", title: "Прочие документы", items: groupedAchievements.other }
+  ].filter((section) => section.items.length > 0);
   const specializationItems = Array.from(new Set([...(member.specializations || []), ...(practice || [])]));
 
   return (
@@ -336,74 +360,79 @@ const TeamMemberPage = () => {
                       Достижения и повышение квалификации
                     </CardTitle>
                   </CardHeader>
-                  <CardContent>
-                    <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                      {achievements.map((item) => {
-                        const fileUrl = item.fileUrl ?? "";
-                        const previewImage = item.previewImage ?? "";
-                        const resolvedFileUrl = fileUrl ? encodeURI(fileUrl) : "";
-                        const resolvedPreviewUrl = previewImage ? encodeURI(previewImage) : "";
-                        const isPdf = fileUrl.toLowerCase().endsWith(".pdf");
-                        const rotation = item.rotation ?? 0;
-                        const previewClassName =
-                          rotation !== 0
-                            ? "w-full aspect-[4/3] object-contain bg-white"
-                            : "w-full aspect-[3/4] object-contain bg-white";
-                        const cardClassName = "rounded-xl border border-border/70 bg-background p-4 flex flex-col gap-4 h-full";
-                        const previewSrc = resolvedPreviewUrl || (!isPdf ? resolvedFileUrl : "");
-                        const rotationStyle = rotation
-                          ? { transform: `rotate(${rotation}deg) scale(0.9)`, transformOrigin: "center" as const }
-                          : undefined;
+                  <CardContent className="space-y-6">
+                    {achievementSections.map((section) => (
+                      <div key={section.key} className="space-y-3">
+                        <h3 className="text-body-mobile md:text-body font-semibold text-foreground">{section.title}</h3>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                          {section.items.map((item) => {
+                            const fileUrl = item.fileUrl ?? "";
+                            const previewImage = item.previewImage ?? "";
+                            const resolvedFileUrl = fileUrl ? encodeURI(fileUrl) : "";
+                            const resolvedPreviewUrl = previewImage ? encodeURI(previewImage) : "";
+                            const isPdf = fileUrl.toLowerCase().endsWith(".pdf");
+                            const rotation = item.rotation ?? 0;
+                            const previewClassName =
+                              rotation !== 0
+                                ? "w-full aspect-[4/3] object-contain bg-white"
+                                : "w-full aspect-[3/4] object-contain bg-white";
+                            const cardClassName = "rounded-xl border border-border/70 bg-background p-4 flex flex-col gap-4 h-full";
+                            const previewSrc = resolvedPreviewUrl || (!isPdf ? resolvedFileUrl : "");
+                            const rotationStyle = rotation
+                              ? { transform: `rotate(${rotation}deg) scale(0.9)`, transformOrigin: "center" as const }
+                              : undefined;
 
-                        return (
-                          <div
-                            key={item.fileUrl ?? item.title}
-                            className={cardClassName}
-                          >
-                            {previewSrc && (
-                              <div className="rounded-lg border border-border/60 bg-muted/30 overflow-hidden">
-                                <div className="w-full h-full flex items-center justify-center">
-                                  <img
-                                    src={previewSrc}
-                                    alt={`Сертификат: ${item.title}`}
-                                    className={previewClassName}
-                                    style={rotationStyle}
-                                    loading="lazy"
-                                  />
+                            return (
+                              <div
+                                key={item.fileUrl ?? item.title}
+                                className={cardClassName}
+                              >
+                                {previewSrc && (
+                                  <div className="rounded-lg border border-border/60 bg-muted/30 overflow-hidden">
+                                    <div className="w-full h-full flex items-center justify-center">
+                                      <img
+                                        src={previewSrc}
+                                        alt={`Документ: ${item.title}`}
+                                        className={previewClassName}
+                                        style={rotationStyle}
+                                        loading="lazy"
+                                      />
+                                    </div>
+                                  </div>
+                                )}
+                                <div>
+                                  <p className="font-medium">{item.title}</p>
+                                  {(item.org || item.date) && (
+                                    <p className="text-small text-muted-foreground">
+                                      {[item.org, item.date].filter(Boolean).join(" · ")}
+                                    </p>
+                                  )}
                                 </div>
+                                {item.fileUrl && previewSrc && (
+                                  <div className="mt-auto">
+                                    <Button
+                                      variant="outline"
+                                      size="sm"
+                                      className="h-10 px-4 text-small"
+                                      onClick={() =>
+                                        setCertificatePreview({
+                                          src: previewSrc,
+                                          title: item.title,
+                                          rotation,
+                                          fileUrl: resolvedFileUrl
+                                        })
+                                      }
+                                    >
+                                      Открыть
+                                    </Button>
+                                  </div>
+                                )}
                               </div>
-                            )}
-                            <div>
-                              <p className="font-medium">{item.title}</p>
-                              {(item.org || item.date) && (
-                                <p className="text-small text-muted-foreground">
-                                  {[item.org, item.date].filter(Boolean).join(" · ")}
-                                </p>
-                              )}
-                            </div>
-                            {item.fileUrl && previewSrc && (
-                              <div className="mt-auto">
-                                <Button
-                                  variant="outline"
-                                  size="sm"
-                                  className="h-10 px-4 text-small"
-                                  onClick={() =>
-                                    setCertificatePreview({
-                                      src: previewSrc,
-                                      title: item.title,
-                                      rotation,
-                                      fileUrl: resolvedFileUrl
-                                    })
-                                  }
-                                >
-                                  Открыть
-                                </Button>
-                              </div>
-                            )}
-                          </div>
-                        );
-                      })}
-                    </div>
+                            );
+                          })}
+                        </div>
+                      </div>
+                    ))}
                   </CardContent>
                 </Card>
               )}
@@ -487,7 +516,7 @@ const TeamMemberPage = () => {
       <Footer />
 
       <Dialog open={Boolean(certificatePreview)} onOpenChange={(open) => !open && setCertificatePreview(null)}>
-        <DialogContent className="max-w-4xl bg-white p-5 md:p-6">
+        <DialogContent hideCloseButton className="max-w-4xl bg-white p-5 md:p-6">
           <DialogClose
             aria-label="Закрыть"
             className="absolute right-4 top-4 z-20 inline-flex h-11 w-11 items-center justify-center rounded-full border border-slate-200 bg-white text-[#0b1320] shadow-[0_6px_16px_rgba(15,23,42,0.18)] transition hover:bg-slate-50 hover:shadow-[0_8px_18px_rgba(15,23,42,0.22)]"
