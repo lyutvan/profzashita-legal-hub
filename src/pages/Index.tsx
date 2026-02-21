@@ -68,16 +68,16 @@ const Index = () => {
       href: "/uslugi/fiz-lica"
     },
     {
-      title: "Юридическим лицам",
-      description: "Сопровождение бизнеса, защита интересов и снижение рисков.",
-      items: bizCategoryItems,
-      href: "/uslugi/yur-lica"
-    },
-    {
       title: "Уголовные дела",
       description: "Защита на всех стадиях: проверка, следствие, суд.",
       items: criminalCategoryItems,
       href: "/uslugi/ugolovnye"
+    },
+    {
+      title: "Юридическим лицам",
+      description: "Сопровождение бизнеса, защита интересов и снижение рисков.",
+      items: bizCategoryItems,
+      href: "/uslugi/yur-lica"
     }
   ];
 
