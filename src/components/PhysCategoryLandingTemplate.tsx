@@ -79,6 +79,15 @@ type PhysCategoryLandingTemplateProps = {
 
 type BankrotstvoQuizKey = "debt" | "overdue" | "income" | "assets" | "enforcement";
 type BankrotstvoQuizState = Record<BankrotstvoQuizKey, string>;
+const BANKROTSTVO_DEBT_TYPE_OPTIONS = [
+  { value: "consumer", label: "Потребительские кредиты" },
+  { value: "cards", label: "Кредитные карты" },
+  { value: "mfo", label: "Долги по микрозаймам (МФО)" },
+  { value: "zhkh", label: "Долги по ЖКХ" },
+  { value: "taxes", label: "Долги по налогам" },
+  { value: "fines", label: "Штрафы" },
+  { value: "other", label: "Другое" }
+] as const;
 
 const BANKROTSTVO_QUIZ_QUESTIONS: Array<{
   key: BankrotstvoQuizKey;
@@ -98,6 +107,7 @@ const BANKROTSTVO_QUIZ_QUESTIONS: Array<{
     key: "overdue",
     title: "Срок просрочки",
     options: [
+      { value: "none", label: "Не было просрочки" },
       { value: "lt3", label: "До 3 месяцев" },
       { value: "3to6", label: "3 – 6 месяцев" },
       { value: "gt6", label: "Более 6 месяцев" }
@@ -205,6 +215,14 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     assets: "none",
     enforcement: "yes"
   });
+  const [bankrotstvoDebtTypes, setBankrotstvoDebtTypes] = useState<string[]>(["consumer"]);
+  const selectedBankrotstvoDebtTypesLabel = useMemo(() => {
+    const selectedLabels = BANKROTSTVO_DEBT_TYPE_OPTIONS.filter((option) =>
+      bankrotstvoDebtTypes.includes(option.value)
+    ).map((option) => option.label);
+
+    return selectedLabels.length > 0 ? selectedLabels.join(", ") : "Не выбрано";
+  }, [bankrotstvoDebtTypes]);
   const bankrotstvoQuizScore = useMemo(() => {
     let score = 0;
 
@@ -267,12 +285,13 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
       `Доход: ${getBankrotstvoQuizOptionLabel("income", bankrotstvoQuiz.income)}`,
       `Имущество: ${getBankrotstvoQuizOptionLabel("assets", bankrotstvoQuiz.assets)}`,
       `Исполнительные производства: ${getBankrotstvoQuizOptionLabel("enforcement", bankrotstvoQuiz.enforcement)}`,
+      `Какие долги хотите списать: ${selectedBankrotstvoDebtTypesLabel}`,
       `Результат: ${bankrotstvoQuizResult.status}`,
       `Комментарий: ${bankrotstvoQuizResult.comment}`,
       `Ориентировочный срок: ${bankrotstvoQuizResult.timeline}`,
       `Формат оплаты: ${bankrotstvoQuizResult.payment}`
     ].join("\n");
-  }, [bankrotstvoQuiz, bankrotstvoQuizResult, isBankrotstvoMerged]);
+  }, [bankrotstvoQuiz, bankrotstvoQuizResult, isBankrotstvoMerged, selectedBankrotstvoDebtTypesLabel]);
 
   const heroImage = getServiceHeroImage(data.entry.path, "phys");
   const ogImage = heroImage.startsWith("http") ? heroImage : `${SITE.url}${heroImage.replace(/^\//, "")}`;
@@ -1514,7 +1533,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   <li>Сопровождаем процедуру от консультации до решения суда</li>
                   <li>Берем на себя общение с кредиторами и коллекторами</li>
                 </ul>
-                <p className="text-small md:text-[15px] text-accent font-semibold">
+                <p className="text-[18px] md:text-[26px] leading-[1.15] text-accent font-bold">
                   Работаем с долгами от 500 тыс. ₽
                 </p>
                 <p className="text-small md:text-[15px] text-white/80">
@@ -2385,9 +2404,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           <section className="section">
             <div className="container">
               <div className="section__header max-w-3xl mx-auto text-center">
-                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Квиз-калькулятор по банкротству</h2>
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                  Ответьте на 6 вопросов и получите предварительную оценку перспективы и сроков процедуры.
+                </h2>
                 <p className="text-body-mobile md:text-body text-muted-foreground">
-                  Ответьте на 5 вопросов и получите предварительную оценку перспективы и сроков процедуры.
+                  Квиз-калькулятор по банкротству физических лиц
                 </p>
               </div>
               <div className="mt-8 grid grid-cols-1 xl:grid-cols-[1.15fr_0.85fr] gap-6">
@@ -2424,6 +2445,49 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                         </div>
                       </div>
                     ))}
+                    <div>
+                      <p className="text-[14px] md:text-[15px] font-semibold text-slate-900">
+                        6. Укажите, какие долги хотите списать?
+                      </p>
+                      <div className="mt-3 grid grid-cols-1 md:grid-cols-2 gap-2">
+                        {BANKROTSTVO_DEBT_TYPE_OPTIONS.map((option) => {
+                          const isSelected = bankrotstvoDebtTypes.includes(option.value);
+
+                          return (
+                            <button
+                              key={option.value}
+                              type="button"
+                              className={`rounded-[10px] border px-3 py-2.5 text-left text-[13px] transition-colors ${
+                                isSelected
+                                  ? "border-[#b8911f] bg-[#f4e5b7] text-slate-900"
+                                  : "border-[#D8C08B] bg-[#F8F4EA] text-slate-700 hover:bg-[#f3ecd9]"
+                              }`}
+                              onClick={() =>
+                                setBankrotstvoDebtTypes((prev) =>
+                                  prev.includes(option.value)
+                                    ? prev.filter((value) => value !== option.value)
+                                    : [...prev, option.value]
+                                )
+                              }
+                            >
+                              <span className="inline-flex items-center gap-2">
+                                <span
+                                  className={`flex h-5 w-5 items-center justify-center rounded border ${
+                                    isSelected
+                                      ? "border-[#b8911f] bg-[#C9A227] text-white"
+                                      : "border-[#D8C08B] bg-white text-transparent"
+                                  }`}
+                                >
+                                  <Check className="h-3.5 w-3.5" />
+                                </span>
+                                {option.label}
+                              </span>
+                            </button>
+                          );
+                        })}
+                      </div>
+                      <p className="mt-2 text-[12px] text-slate-500">Отметьте один или несколько вариантов</p>
+                    </div>
                   </CardContent>
                 </Card>
 
@@ -2457,6 +2521,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                           Исполнительные производства:{" "}
                           {getBankrotstvoQuizOptionLabel("enforcement", bankrotstvoQuiz.enforcement)}
                         </li>
+                        <li>Типы долгов: {selectedBankrotstvoDebtTypesLabel}</li>
                       </ul>
                     </div>
                     <div className="mt-6">
@@ -2547,53 +2612,59 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               </div>
               <div className={`mt-8 ${bankrotstvoCasesLayout}`}>
                 {bankrotstvoShowcaseCases.map((caseItem, index) => (
-                  <Link
+                  <Card
                     key={caseItem.title ?? caseItem.fallbackId ?? index}
-                    to={caseItem.caseUrl}
-                    className={`block h-full text-inherit no-underline ${
+                    className={`h-full rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_16px_rgba(60,52,31,0.08)] ${
                       bankrotstvoShowcaseCases.length < 3 ? "w-full max-w-[360px]" : ""
                     }`}
                   >
-                    <Card className="h-full rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_16px_rgba(60,52,31,0.08)] transition-transform hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(60,52,31,0.12)]">
-                      <CardContent className="p-6 h-full flex flex-col">
-                        <div className="flex items-start justify-between gap-4">
-                          <div className="text-xs text-slate-500">
-                            № дела
-                            <div className="mt-1 text-[13px] font-semibold text-slate-900">
-                              {caseItem.caseNumber ?? "Не раскрывается"}
-                            </div>
-                          </div>
-                          <div className="h-24 w-24 md:h-28 md:w-28 border border-[#D8C08B] bg-white text-[11px] text-slate-500 flex items-center justify-center text-center leading-tight overflow-hidden">
-                            {caseItem.scanUrl ? (
-                              <img
-                                src={caseItem.scanUrl}
-                                alt={`Скан решения: ${caseItem.title}`}
-                                className="h-full w-full object-contain"
-                                loading="lazy"
-                              />
-                            ) : (
-                              <>
-                                Скан
-                                <br />
-                                решения
-                              </>
-                            )}
+                    <CardContent className="p-6 h-full flex flex-col">
+                      <div className="flex items-start justify-between gap-4">
+                        <div className="text-xs text-slate-500">
+                          № дела
+                          <div className="mt-1 text-[13px] font-semibold text-slate-900">
+                            {caseItem.caseNumber ?? "Не раскрывается"}
                           </div>
                         </div>
-                        <h3 className="mt-4 text-[15px] font-semibold text-slate-900">{caseItem.title}</h3>
-                        <div className="mt-4 text-[13px] text-slate-700">
-                          <div className="text-slate-500">Сумма долга:</div>
-                          <div className="font-semibold text-slate-900">
-                            {caseItem.debtAmount ?? "Не раскрывается"}
-                          </div>
+                        <div className="h-24 w-24 md:h-28 md:w-28 border border-[#D8C08B] bg-white text-[11px] text-slate-500 flex items-center justify-center text-center leading-tight overflow-hidden">
+                          {caseItem.scanUrl ? (
+                            <img
+                              src={caseItem.scanUrl}
+                              alt={`Скан решения: ${caseItem.title}`}
+                              className="h-full w-full object-contain"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <>
+                              Скан
+                              <br />
+                              решения
+                            </>
+                          )}
                         </div>
-                        <div className="mt-3 text-[13px] text-slate-700">
-                          <div className="text-slate-500">Результат:</div>
-                          <div className="font-semibold text-slate-900">{caseItem.result}</div>
+                      </div>
+                      <h3 className="mt-4 text-[15px] font-semibold text-slate-900">{caseItem.title}</h3>
+                      <div className="mt-4 text-[13px] text-slate-700">
+                        <div className="text-slate-500">Сумма долга:</div>
+                        <div className="font-semibold text-slate-900">
+                          {caseItem.debtAmount ?? "Не раскрывается"}
                         </div>
-                      </CardContent>
-                    </Card>
-                  </Link>
+                      </div>
+                      <div className="mt-3 text-[13px] text-slate-700">
+                        <div className="text-slate-500">Результат:</div>
+                        <div className="font-semibold text-slate-900">{caseItem.result}</div>
+                      </div>
+                      <div className="mt-auto pt-5">
+                        <Button
+                          asChild
+                          size="sm"
+                          className="h-10 w-full rounded-[10px] border border-[#b8911f] bg-[#C9A227] px-4 text-[13px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.2)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                        >
+                          <Link to={caseItem.caseUrl}>Подробнее о кейсе</Link>
+                        </Button>
+                      </div>
+                    </CardContent>
+                  </Card>
                 ))}
               </div>
               <div className="mt-8 text-center text-small text-muted-foreground">
