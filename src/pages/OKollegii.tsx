@@ -2,9 +2,7 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
-import { Award, Target, TrendingUp } from "lucide-react";
-import office1Img from "@/assets/office-1.jpg";
-import office2Img from "@/assets/office-2.jpg";
+import { Award, Target, TrendingUp, CheckCircle2 } from "lucide-react";
 import { PersonSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import { Helmet } from "react-helmet";
@@ -77,30 +75,46 @@ const About = () => {
           </div>
         </section>
 
-        {/* Mission Section with Library Image */}
+        {/* Mission Section */}
         <section className="section">
           <div className="container">
             <div className="max-w-6xl mx-auto">
-              {/* Office images + Mission side by side */}
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8 items-center">
-                {/* Office images */}
+              {/* Mission + Working standards */}
+              <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-8 items-start">
                 <div className="space-y-6">
-                  <div className="rounded-xl overflow-hidden shadow-elegant">
-                    <img 
-                      src={office1Img} 
-                      alt="Офис коллегии адвокатов Профзащита" 
-                      className="w-full h-[300px] object-cover"
-                      loading="lazy"
-                    />
-                  </div>
-                  <div className="rounded-xl overflow-hidden shadow-elegant">
-                    <img 
-                      src={office2Img} 
-                      alt="Кабинет адвоката в коллегии Профзащита" 
-                      className="w-full h-[300px] object-cover"
-                      loading="lazy"
-                    />
-                  </div>
+                  <Card className="border-border">
+                    <CardContent className="pt-6">
+                      <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-3">Как строим работу по делу</h3>
+                      <p className="text-muted-foreground leading-relaxed mb-4">
+                        Мы ведем дело как проект: с четкой диагностикой, этапами и контролем результата.
+                      </p>
+                      <ul className="space-y-3 text-small text-muted-foreground">
+                        {[
+                          "Первичный анализ документов и рисков",
+                          "Письменный план действий с приоритетами",
+                          "Регулярная отчетность по статусу дела",
+                          "Контроль исполнения решения после суда"
+                        ].map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <CheckCircle2 className="h-4 w-4 text-accent mt-0.5 shrink-0" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-border bg-muted/30">
+                    <CardContent className="pt-6">
+                      <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-3">Что получает клиент</h3>
+                      <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 text-small">
+                        <div className="rounded-lg border border-border bg-background p-3">Четкие сроки и этапы</div>
+                        <div className="rounded-lg border border-border bg-background p-3">Фиксированный объем работ</div>
+                        <div className="rounded-lg border border-border bg-background p-3">Прозрачную коммуникацию</div>
+                        <div className="rounded-lg border border-border bg-background p-3">Юридическую стратегию под задачу</div>
+                      </div>
+                    </CardContent>
+                  </Card>
                 </div>
 
                 {/* Mission cards */}
@@ -127,6 +141,19 @@ const About = () => {
                       <p className="text-muted-foreground leading-relaxed">
                         Профессионализм, честность, конфиденциальность и неизменная ответственность 
                         перед каждым клиентом — основа нашей работы.
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-border">
+                    <CardContent className="pt-6">
+                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
+                        <Award className="h-6 w-6 text-accent" />
+                      </div>
+                      <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-3">Стандарт качества</h3>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Каждое дело сопровождается профильным специалистом и проходит внутреннюю проверку правовой
+                        позиции перед ключевыми процессуальными шагами.
                       </p>
                     </CardContent>
                   </Card>

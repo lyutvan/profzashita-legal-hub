@@ -432,9 +432,9 @@ const CriminalPage = () => {
                 </p>
               </div>
 
-              <Card className="hidden w-full overflow-hidden rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] text-slate-900 md:block md:max-w-[340px] md:justify-self-end">
+              <Card className="w-full max-w-[360px] mx-auto overflow-hidden rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] text-slate-900 md:mx-0 md:max-w-[340px] md:justify-self-end">
                 <CardContent className="p-0">
-                  <div className="h-[320px] w-full overflow-hidden">
+                  <div className="h-[300px] w-full overflow-hidden md:h-[320px]">
                     <img
                       src={lyutikov?.photo ?? "/images/team/lyutikov-ivan.jpg"}
                       alt={lyutikov?.name ?? "Лютиков Иван Иванович"}
