@@ -34,6 +34,7 @@ import MaxIcon from "@/components/icons/MaxIcon";
 const NasledstvoPage = () => {
   const canonical = new URL("/services/phys/nasledstvo", SITE.url).toString();
   const callHref = "tel:+74950040196";
+  const contactsHref = "/kontakty";
   const heroImage = getServiceHeroImage("/services/phys/nasledstvo", "phys");
   const yandexOrgId = "244880896695";
   const whatsappUrl = "https://wa.me/74950040196";
@@ -437,7 +438,7 @@ const NasledstvoPage = () => {
                 size="lg"
                 className="w-full sm:w-auto bg-accent text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23]"
               >
-                <a href={callHref}>Позвонить адвокату</a>
+                <a href={contactsHref}>Позвонить адвокату</a>
               </Button>
               <p className="text-small text-white/85 whitespace-nowrap overflow-x-auto">
                 Обсудим ситуацию и бесплатно оценим перспективу спора
@@ -492,7 +493,7 @@ const NasledstvoPage = () => {
                         size="lg"
                         className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                       >
-                        <a href={callHref}>Позвонить адвокату</a>
+                        <a href={contactsHref}>Позвонить адвокату</a>
                       </Button>
                     </CardContent>
                   </Card>
@@ -560,7 +561,7 @@ const NasledstvoPage = () => {
                   size="lg"
                   className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                 >
-                  <a href={callHref}>Обсудить ситуацию с адвокатом</a>
+                  <a href={contactsHref}>Обсудить ситуацию с адвокатом</a>
                 </Button>
                 <p className="mt-2 text-small text-muted-foreground">
                   Коротко разберем ситуацию и оценим перспективы спора
@@ -684,7 +685,7 @@ const NasledstvoPage = () => {
                   size="lg"
                   className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                 >
-                  <a href={callHref}>Позвонить адвокату</a>
+                  <a href={contactsHref}>Позвонить адвокату</a>
                 </Button>
                 <p className="mt-2 text-small text-muted-foreground">Обсудим ситуацию и бесплатно оценим перспективу дела</p>
               </div>
@@ -760,7 +761,7 @@ const NasledstvoPage = () => {
                   size="lg"
                   className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                 >
-                  <a href={callHref}>Позвонить адвокату</a>
+                  <a href={contactsHref}>Позвонить адвокату</a>
                 </Button>
               </div>
               <p className="mt-2 text-small text-muted-foreground text-center">Коротко разберем вашу ситуацию и оценим перспективы защиты</p>
@@ -855,7 +856,7 @@ const NasledstvoPage = () => {
                 size="lg"
                 className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
               >
-                <a href={callHref}>Позвонить адвокату</a>
+                <a href={contactsHref}>Позвонить адвокату</a>
               </Button>
             </div>
             <p className="mt-2 text-small text-muted-foreground text-center">Коротко разберем вашу ситуацию и оценим перспективы</p>
@@ -892,7 +893,7 @@ const NasledstvoPage = () => {
                 size="lg"
                 className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
               >
-                <a href={callHref}>Позвонить и задать вопрос</a>
+                <a href={contactsHref}>Позвонить и задать вопрос</a>
               </Button>
               <p className="text-small text-muted-foreground">Поможем понять перспективы спора до обращения в суд.</p>
             </div>
@@ -967,7 +968,7 @@ const NasledstvoPage = () => {
                       size="lg"
                       className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[16px] font-semibold text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                     >
-                      <a href={callHref}>Позвонить адвокату</a>
+                      <a href={contactsHref}>Позвонить адвокату</a>
                     </Button>
                     <p className="text-sm text-slate-600">Разговор не обязывает к заключению договора</p>
                   </div>

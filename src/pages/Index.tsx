@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
@@ -10,7 +11,6 @@ import {
   Target,
   Award,
   Users,
-  CheckCircle,
   Phone,
   Mail,
   MapPin,
@@ -80,6 +80,17 @@ const Index = () => {
       href: "/uslugi/yur-lica"
     }
   ];
+  const [activeNavigationTitle, setActiveNavigationTitle] = useState(navigationSections[0]?.title ?? "");
+  const activeNavigationSection =
+    navigationSections.find((section) => section.title === activeNavigationTitle) ?? navigationSections[0];
+  const activeNavigationItems = activeNavigationSection.items.map((item) =>
+    typeof item === "string" ? { label: item, path: activeNavigationSection.href } : item
+  );
+  const activeColumnSplitIndex = Math.ceil(activeNavigationItems.length / 2);
+  const activeNavigationColumns = [
+    activeNavigationItems.slice(0, activeColumnSplitIndex),
+    activeNavigationItems.slice(activeColumnSplitIndex)
+  ].filter((column) => column.length > 0);
 
   const advantages = [
     {
@@ -192,7 +203,7 @@ const Index = () => {
     return `${text.slice(0, max).trim()}…`;
   };
 
-  const heroBadge = "Коллегия адвокатов города Москвы «Профзащита»";
+  const heroBadge = "Коллегия адвокатов города Москвы";
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -237,23 +248,31 @@ const Index = () => {
           overlayOpacity={0.6}
           className="home-hero"
         >
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-white mb-4 leading-tight -mt-2">
-              Юридическая помощь по делам любой сложности
+          <div className="max-w-4xl mx-auto text-center">
+            <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-accent mb-6 leading-tight">
+              Решаем сложные юридические споры
             </h1>
-            <p className="lead text-white/90 mb-5">
-              Москва и Московская область · консультация в день обращения
-            </p>
-            <div className="inline-flex max-w-[90%] mx-auto items-center justify-center rounded-xl border border-accent/70 bg-black/30 px-5 py-2.5 text-small md:text-[15px] font-medium tracking-[0.06em] text-white/90 text-center leading-snug mb-8">
+            <p className="text-white text-[20px] sm:text-[24px] md:text-[32px] font-semibold leading-[1.15] mb-8">
+              В интересах физических и юридических лиц
+              <br />
               {heroBadge}
-            </div>
+            </p>
+            <p className="lead text-white/90 mb-8">
+              Стратегическая защита в судах и на переговорах
+              <br />
+              Работаем по делам, где важен результат
+            </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/kontakty#contacts">
                 <Button size="lg" className="bg-accent text-white hover:bg-accent/90 px-8">
-                  Получить консультацию
+                  Обсудить ситуацию по телефону
                 </Button>
               </Link>
             </div>
+            <p className="text-small text-white/85 mt-3">Оценка перспектив до начала работы</p>
+            <p className="text-body-mobile md:text-body text-white/90 mt-8">
+              Работаем в Москве и Московской области • Консультация в день обращения
+            </p>
           </div>
         </LegalBackground>
 
@@ -261,75 +280,77 @@ const Index = () => {
         <section className="section home-navigation">
           <div className="container">
             <div className="section__header max-w-3xl mx-auto text-center">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
-                Выберите направление
-              </h2>
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">Выберите направление работы</h2>
               <p className="text-body-mobile md:text-body text-muted-foreground">
-                Главная страница помогает быстро перейти в нужный раздел услуг.
+                Главная страница помогает быстро перейти в нужный раздел услуг
               </p>
             </div>
 
-            <div className="section__content grid grid-cols-1 lg:grid-cols-3 gap-8">
-              {navigationSections.map((section) => (
-                <Link key={section.title} to={section.href} className="group block h-full">
-                  <Card className="border-border hover:shadow-elegant transition-all h-full">
-                    <CardContent className="pt-6 flex flex-col h-full">
-                      <div className="flex-1">
-                        <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2 text-foreground">
-                          {section.title}
-                        </h3>
-                        <p className="text-small text-muted-foreground mb-4">
-                          {section.description}
-                        </p>
-                        <ul className="space-y-2">
-                          {section.items.map((item) => {
-                            const label = typeof item === "string" ? item : item.label;
-                            const targetPath = typeof item === "string" ? undefined : item.path;
-                            return (
-                            <li
-                              key={label}
-                              className={`flex items-start gap-2 text-small text-muted-foreground ${
-                                targetPath
-                                  ? "cursor-pointer rounded-md px-2 py-1 -mx-2 transition-colors hover:text-foreground hover:bg-accent/10 focus-visible:bg-accent/10 focus-visible:text-foreground focus-visible:outline-none"
-                                  : ""
-                              }`}
-                              onClick={
-                                targetPath
-                                  ? (event) => {
-                                      event.preventDefault();
-                                      event.stopPropagation();
-                                      navigate(targetPath);
-                                    }
-                                  : undefined
-                              }
-                              onKeyDown={
-                                targetPath
-                                  ? (event) => {
-                                      if (event.key === "Enter" || event.key === " ") {
-                                        event.preventDefault();
-                                        event.stopPropagation();
-                                        navigate(targetPath);
-                                      }
-                                    }
-                                  : undefined
-                              }
-                              role={targetPath ? "link" : undefined}
-                              tabIndex={targetPath ? 0 : undefined}
-                            >
-                              <CheckCircle className="h-4 w-4 text-accent mt-0.5 flex-shrink-0" />
-                              <span>{label}</span>
-                            </li>
-                          )})}
-                        </ul>
-                      </div>
-                      <span className="mt-6 inline-flex items-center gap-2 text-small font-semibold text-accent group-hover:underline">
-                        Все услуги раздела →
-                      </span>
-                    </CardContent>
-                  </Card>
-                </Link>
-              ))}
+            <div className="section__content max-w-6xl mx-auto">
+              <div className="flex flex-wrap items-end gap-2">
+                {navigationSections.map((section) => {
+                  const isActive = section.title === activeNavigationSection.title;
+                  return (
+                    <button
+                      key={section.title}
+                      type="button"
+                      onClick={() => setActiveNavigationTitle(section.title)}
+                      className={`rounded-t-[10px] border border-[#C9A227] px-4 md:px-5 py-2 text-[20px] md:text-[30px] font-semibold leading-none transition-colors ${
+                        isActive
+                          ? "bg-[#C9A227] text-slate-900"
+                          : "bg-transparent text-slate-900 hover:bg-[#f6efdb]"
+                      }`}
+                    >
+                      {section.title}
+                    </button>
+                  );
+                })}
+              </div>
+
+              <div className="rounded-b-[12px] rounded-tr-[12px] border border-[#C9A227] bg-[#F8F6EE] p-6 md:p-8">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
+                  {activeNavigationColumns.map((column, columnIndex) => (
+                    <ul key={columnIndex} className="space-y-4 md:space-y-5">
+                      {column.map((item) => (
+                        <li key={item.label} className="relative pl-6 text-[16px] sm:text-[18px] md:text-[20px] text-slate-900">
+                          <span
+                            aria-hidden="true"
+                            className="absolute left-0 top-[0.52em] h-2 w-2 rounded-full bg-slate-900"
+                          />
+                          <button
+                            type="button"
+                            onClick={() => navigate(item.path)}
+                            className="inline text-left leading-[1.35] hover:text-[#b8911f] transition-colors"
+                          >
+                            {item.label}
+                          </button>
+                        </li>
+                      ))}
+                    </ul>
+                  ))}
+                </div>
+                <div className="mt-8">
+                  <Link
+                    to={activeNavigationSection.href}
+                    className="text-[18px] sm:text-[20px] md:text-[24px] font-semibold text-[#C9A227] hover:underline"
+                  >
+                    Все услуги раздела →
+                  </Link>
+                </div>
+              </div>
             </div>
+
+            <div className="mt-12 text-center text-body-mobile md:text-body text-muted-foreground">
+              Если ситуация требует отдельного анализа — обсудите ее с адвокатом по телефону
+            </div>
+            <div className="mt-8 flex justify-center">
+              <Link to="/kontakty#contacts">
+                <Button size="lg" className="bg-accent text-white hover:bg-accent/90 px-8">
+                  Обсудить ситуацию по телефону
+                </Button>
+              </Link>
+            </div>
+            <p className="mt-3 text-small text-center text-muted-foreground">Коротко разберем ситуацию и оценим перспективы дела</p>
           </div>
         </section>
 
