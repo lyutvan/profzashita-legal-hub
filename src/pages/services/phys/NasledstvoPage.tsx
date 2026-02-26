@@ -8,6 +8,8 @@ import {
   Gavel,
   HelpCircle,
   Landmark,
+  Mail,
+  MapPin,
   Phone,
   Scale,
   Search,
@@ -24,14 +26,19 @@ import { Card, CardContent } from "@/components/ui/card";
 import { BreadcrumbSchema, FAQPageSchema, LegalServiceSchema, ReviewsSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import { getServiceHeroImage } from "@/lib/serviceCardImages";
-import { cases as casesData } from "@/data/cases";
 import { teamMembers } from "@/data/team";
+import TelegramIcon from "@/components/icons/TelegramIcon";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
+import MaxIcon from "@/components/icons/MaxIcon";
 
 const NasledstvoPage = () => {
   const canonical = new URL("/services/phys/nasledstvo", SITE.url).toString();
   const callHref = "tel:+74950040196";
   const heroImage = getServiceHeroImage("/services/phys/nasledstvo", "phys");
   const yandexOrgId = "244880896695";
+  const whatsappUrl = "https://wa.me/74950040196";
+  const telegramUrl = "https://t.me/profzashita_consult_bot";
+  const maxUrl = "https://max.ru";
 
   const situations = [
     {
@@ -121,32 +128,32 @@ const NasledstvoPage = () => {
     {
       title: "Анализ ситуации и документов",
       description:
-        "Изучаем документы, состав наследственной массы и позицию других участников спора. Оцениваем перспективы и риски."
+        "Изучаем имеющиеся документы, обстоятельства дела и позицию других участников спора. Определяем правовые основания и оцениваем перспективы"
     },
     {
       title: "Формирование правовой позиции",
       description:
-        "Определяем стратегию: восстановление срока, оспаривание завещания, признание права собственности и иные требования."
+        "Определяем стратегию защиты: восстановление срока, оспаривание завещания, признание права собственности или иные требования. Подготавливаем юридическое обоснование"
     },
     {
       title: "Сбор доказательств и подготовка процессуальных документов",
       description:
-        "Формируем доказательственную базу, при необходимости инициируем экспертизы, готовим иски и ходатайства."
+        "Формируем доказательственную базу, при необходимости инициируем проведение экспертиз. Подготавливаем исковые заявления, возражения и иные процессуальные документы"
     },
     {
       title: "Представительство в суде",
       description:
-        "Представляем интересы доверителя, участвуем в заседаниях, заявляем ходатайства и защищаем правовую позицию."
+        "Представляем интересы доверителя в суде, участвуем в заседаниях, заявляем ходатайства и защищаем правовую позицию"
     },
     {
       title: "Обжалование при необходимости",
       description:
-        "Подготавливаем апелляционные и кассационные жалобы и сопровождаем рассмотрение дела в вышестоящих инстанциях."
+        "При необходимости подготавливаем апелляционные и кассационные жалобы и сопровождаем рассмотрение дела в вышестоящих инстанциях"
     },
     {
       title: "Исполнение решения суда",
       description:
-        "Контролируем исполнение судебного решения и сопровождаем последующие юридические действия."
+        "Контролируем исполнение судебного решения и сопровождаем последующие юридические действия"
     }
   ];
 
@@ -154,71 +161,71 @@ const NasledstvoPage = () => {
     {
       question: "Можно ли восстановить срок принятия наследства?",
       answer:
-        "Да. При наличии уважительных причин срок можно восстановить в судебном порядке. Важно подготовить доказательства и корректно сформулировать требования."
+        "Да, если срок пропущен по уважительной причине. Восстановление возможно в судебном порядке при наличии доказательств того, что наследник не знал и не должен был знать об открытии наследства либо не мог обратиться к нотариусу по объективным причинам. Каждая ситуация оценивается индивидуально после анализа документов."
     },
     {
       question: "Обязательно ли обращаться в суд при споре между наследниками?",
       answer:
-        "Не всегда. Если возможно договориться, спор можно урегулировать соглашением. При отсутствии согласия защита прав осуществляется через суд."
+        "Если между наследниками нет согласия, спор о долях, завещании или порядке раздела имущества решается в судебном порядке. В ряде случаев возможно досудебное урегулирование — если стороны готовы к переговорам. Мы оцениваем возможность мирного решения до подачи иска."
     },
     {
       question: "Можно ли оспорить завещание?",
       answer:
-        "Да, если есть законные основания: нарушения формы, давление, недееспособность завещателя или иные существенные обстоятельства."
+        "Да, если имеются основания полагать, что завещание составлено с нарушением закона. Это может быть недееспособность наследодателя, давление, введение в заблуждение или несоблюдение установленной формы документа. Оспаривание требует серьезной доказательственной базы, включая медицинские документы и, при необходимости, проведение экспертиз."
     },
     {
       question: "Что делать, если имущество уже оформлено на другого наследника?",
       answer:
-        "Нужно оперативно зафиксировать обстоятельства и подготовить требования о признании права, разделе имущества или оспаривании регистрационных действий."
+        "Даже если право собственности зарегистрировано, это не исключает возможности судебного оспаривания. В зависимости от ситуации может быть заявлено требование о восстановлении срока, признании права собственности, признании наследника недостойным либо перераспределении долей."
     },
     {
       question: "Сколько длится наследственный спор?",
       answer:
-        "Срок зависит от сложности дела, числа участников и объема доказательств. В среднем судебное разбирательство занимает от нескольких месяцев."
+        "Срок рассмотрения зависит от сложности дела, количества участников и объема доказательств. Как правило, рассмотрение дела в суде первой инстанции занимает несколько месяцев. При подаче апелляции или кассации процесс может увеличиться. Точный прогноз сроков возможен только после анализа документов и позиции других участников спора."
     },
     {
       question: "Сколько стоит ведение наследственного дела?",
       answer:
-        "Стоимость зависит от стадии спора, объема документов и процессуальных действий. После анализа ситуации фиксируем условия в договоре."
+        "Стоимость зависит от характера спора, объема документов и стадии процесса. На консультации мы анализируем ситуацию и предлагаем формат сопровождения с понятными условиями и объемом работы."
     }
   ];
 
   const reviews = [
     {
-      name: "Светлана Р.",
+      name: "Светлана М.",
       rating: 5,
       text:
-        "Обращалась по наследственному вопросу. Получила четкие разъяснения и рабочий план действий. Дело вели спокойно и профессионально."
+        "Обращалась по наследственному вопросу. Ранее, консультаций было получено около 8 (8 профессиональных адвокатов). Но лишь, Михаил Васковский вник в проблему, ознакомился с материалами и предложил вариант защиты. Спасибо за внимательный и профессиональный подход!"
     },
     {
       name: "Сергей М.",
       rating: 5,
       text:
-        "Нужно было восстановить срок принятия наследства. Подготовили документы, объяснили этапы, сопровождали до результата."
+        "Обращался по вопросу восстановления срока принятия наследства. Нотариус отказал в оформлении прав. Адвокат подробно разъяснил порядок действий, подготовил иск и представлял интересы в суде. Срок восстановлен, право на долю признано. Работа выполнена профессионально и без затягивания"
     },
     {
       name: "Михаил В.",
       rating: 5,
       text:
-        "Возник спор между наследниками по разделу квартиры. Адвокат организовал правовую позицию и довел процесс до решения."
+        "Возник спор между наследниками по разделу квартиры. Договориться не удалось. Адвокат подготовил позицию, организовал оценку имущества и сопровождал процесс до вынесения решения. Суд определил доли. Результатом доволен"
     },
     {
       name: "Екатерина С.",
       rating: 5,
       text:
-        "Оспаривали завещание. Дело было сложное, но команда тщательно собрала доказательства и выстроила стратегию защиты."
+        "Оспаривали завещание. Дело было сложным и эмоционально тяжелым. Получила четкое объяснение перспектив и возможных рисков. В суде проведена экспертиза, завещание признано недействительным. Отмечаю внимательное отношение и грамотную позицию"
     },
     {
       name: "Олег А.",
       rating: 5,
       text:
-        "Потребовалось признать наследника недостойным. Получил понятный план и сопровождение на всех этапах процесса."
+        "Необходимо было признать наследника недостойным. Ситуация конфликтная. Адвокат сформировал доказательственную базу и представлял интересы в суде. Решение принято в нашу пользу. Работа проведена аккуратно и профессионально"
     },
     {
       name: "Ольга Б.",
       rating: 5,
       text:
-        "Был спор о разделе имущества между родственниками. Помогли провести переговоры и подготовить документы для суда."
+        "Спор о разделе имущества между родственниками. Получила поддержку на всех этапах процесса. Позиция была выстроена четко, документы подготовлены грамотно. Судебное решение соответствует заявленным требованиям"
     }
   ];
 
@@ -226,37 +233,37 @@ const NasledstvoPage = () => {
     {
       title: "Стратегия под конкретную ситуацию",
       description:
-        "Каждое дело отличается составом имущества, количеством наследников и позицией сторон. Выстраиваем правовую позицию под ваши цели.",
+        "Каждое дело отличается составом имущества, количеством наследников и позицией сторон. Мы выстраиваем правовую позицию с учетом ваших целей и возможных рисков",
       icon: FileSearch
     },
     {
       title: "Судебная практика по спорам высокой сложности",
       description:
-        "Ведем дела о восстановлении сроков, оспаривании завещаний, разделе имущества и признании наследников недостойными.",
+        "Ведем дела о восстановлении сроков, оспаривании завещаний, разделе имущества и признании наследников недостойными. Готовим позицию так, чтобы она выдерживала проверку в суде",
       icon: Scale
     },
     {
       title: "Работа с доказательственной базой",
       description:
-        "Собираем и оформляем документы, формируем доказательства, при необходимости инициируем экспертизы.",
+        "Собираем и оформляем документы, формируем доказательства, при необходимости инициируем экспертизы. Позиция строится на юридически значимых фактах",
       icon: Search
     },
     {
       title: "Представительство в судах всех инстанций",
       description:
-        "Сопровождаем дело от подготовки иска до получения решения. При необходимости готовим апелляционные и кассационные жалобы.",
+        "Сопровождаем дело от подготовки иска до получения решения и его исполнения. При необходимости готовим апелляционные и кассационные жалобы",
       icon: Gavel
     },
     {
       title: "Команда коллегии под вашу задачу",
       description:
-        "Над делом работает не один адвокат, а команда коллегии. В сложных ситуациях подключаются профильные специалисты.",
+        "Над делом работает не один адвокат, а команда коллегии. При сложной ситуации подключаются профильные специалисты",
       icon: Users
     },
     {
       title: "Честная оценка перспектив",
       description:
-        "До начала судебного спора оцениваем риски и возможный результат. Если перспектива слабая — говорим об этом сразу.",
+        "До начала судебного спора оцениваем риски и возможный результат. Если перспектив недостаточно — прямо сообщаем об этом",
       icon: AlertTriangle
     }
   ];
@@ -275,7 +282,7 @@ const NasledstvoPage = () => {
         ]
       },
       {
-        slug: "sotnikov",
+        slug: "kalabekov",
         roleBadge: "Адвокат",
         cta: "Подробнее об адвокате",
         title: "Специализация по наследственным спорам:",
@@ -311,65 +318,41 @@ const NasledstvoPage = () => {
       );
   }, []);
 
-  const inheritanceCases = useMemo(() => {
-    const matched = casesData
-      .filter((caseItem) => {
-        const haystack = `${caseItem.category} ${caseItem.title} ${caseItem.slug ?? ""} ${caseItem.task ?? ""} ${caseItem.actions ?? ""} ${caseItem.result ?? ""}`.toLowerCase();
-        return /наслед|завещ|наследник|nasled|zavesh/.test(haystack);
-      })
-      .sort((a, b) => {
-        const left = a.datePublished ? Date.parse(a.datePublished) : 0;
-        const right = b.datePublished ? Date.parse(b.datePublished) : 0;
-        return right - left;
-      })
-      .slice(0, 3)
-      .map((caseItem) => ({
-        title: caseItem.title,
-        situation: caseItem.task,
-        actions: caseItem.actions,
-        result: caseItem.result,
-        scanUrl: caseItem.decisionPreview ?? caseItem.documents?.[0],
-        caseUrl: caseItem.slug ? `/cases/${caseItem.slug}` : "/keisy"
-      }));
-
-    if (matched.length > 0) return matched;
-
-    return [
-      {
-        title: "Восстановление срока принятия наследства",
-        situation:
-          "Доверитель пропустил шестимесячный срок принятия наследства, нотариус отказал в оформлении прав.",
-        actions:
-          "Подготовили иск о восстановлении срока, собрали подтверждения уважительных причин и представили позицию в суде.",
-        result:
-          "Срок принятия наследства восстановлен, право доверителя на наследственную долю признано судом.",
-        scanUrl: "",
-        caseUrl: "/keisy"
-      },
-      {
-        title: "Оспаривание завещания",
-        situation:
-          "Наследственное имущество было передано по завещанию третьему лицу, возник спор о действительности документа.",
-        actions:
-          "Проанализировали медицинские документы, подготовили иск и инициировали судебную экспертизу.",
-        result:
-          "Завещание признано недействительным, доверитель включен в состав наследников по закону.",
-        scanUrl: "",
-        caseUrl: "/keisy"
-      },
-      {
-        title: "Раздел имущества между наследниками",
-        situation:
-          "Между наследниками возник спор о разделе квартиры и иного имущества, соглашение не достигнуто.",
-        actions:
-          "Подготовили иск о разделе наследственного имущества, сформировали расчеты и представили интересы доверителя.",
-        result:
-          "Определены доли наследников и порядок раздела имущества в судебном порядке.",
-        scanUrl: "",
-        caseUrl: "/keisy"
-      }
-    ];
-  }, []);
+  const inheritanceCases = [
+    {
+      title: "Восстановление срока принятия наследства",
+      situation:
+        "Доверитель пропустил шестимесячный срок принятия наследства. Нотариус отказал в оформлении прав, имущество было зарегистрировано на другого наследника",
+      actions:
+        "Мы проанализировали обстоятельства пропуска срока, собрали документы, подтверждающие уважительные причины, подготовили исковое заявление о восстановлении срока и признании права на наследственную долю, представили интересы доверителя в суде",
+      result:
+        "Срок принятия наследства восстановлен\nПраво доверителя на наследственную долю признано судом",
+      scanUrl: "",
+      caseUrl: "/keisy"
+    },
+    {
+      title: "Оспаривание завещания",
+      situation:
+        "Все имущество было передано по завещанию третьему лицу. Наследник по закону поставил под сомнение дееспособность наследодателя на момент составления завещания",
+      actions:
+        "Мы изучили медицинские документы, подготовили правовую позицию и иск о признании завещания недействительным, инициировали проведение судебной экспертизы и представили доказательства в ходе судебного разбирательства",
+      result:
+        "Завещание признано недействительным\nНаследование произведено по закону\nДоверитель включен в состав наследников",
+      scanUrl: "",
+      caseUrl: "/keisy"
+    },
+    {
+      title: "Раздел имущества между наследниками",
+      situation:
+        "Между несколькими наследниками возник спор о разделе квартиры и иного имущества, соглашение достигнуто не было",
+      actions:
+        "Мы подготовили иск о разделе наследственного имущества, сформировали позицию с учетом фактического пользования и интересов сторон, обеспечили проведение оценки имущества и представили интересы доверителя в суде",
+      result:
+        "Определены доли наследников\nУстановлен порядок раздела имущества\nПрава доверителя на долю в наследстве подтверждены судом",
+      scanUrl: "",
+      caseUrl: "/keisy"
+    }
+  ];
 
   return (
     <div className="min-h-screen flex flex-col category-landing-page family-landing-page">
@@ -452,7 +435,7 @@ const NasledstvoPage = () => {
               <Button
                 asChild
                 size="lg"
-                className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23]"
+                className="w-full sm:w-auto bg-accent text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23]"
               >
                 <a href={callHref}>Позвонить адвокату</a>
               </Button>
@@ -507,7 +490,7 @@ const NasledstvoPage = () => {
                       <Button
                         asChild
                         size="lg"
-                        className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                        className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                       >
                         <a href={callHref}>Позвонить адвокату</a>
                       </Button>
@@ -575,7 +558,7 @@ const NasledstvoPage = () => {
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                 >
                   <a href={callHref}>Обсудить ситуацию с адвокатом</a>
                 </Button>
@@ -595,7 +578,7 @@ const NasledstvoPage = () => {
               </h2>
               <p className="text-muted-foreground">
                 Защита строится поэтапно — от анализа ситуации до получения судебного решения и сопровождения его
-                исполнения.
+                исполнения
               </p>
             </div>
 
@@ -618,7 +601,7 @@ const NasledstvoPage = () => {
                 Понимание порядка действий позволяет выстроить защиту последовательно и снизить процессуальные риски.
               </p>
               <p>
-                Первый шаг — <span className="text-slate-900 font-semibold">профессиональная оценка вашей ситуации.</span>
+                Первый шаг — <span className="text-slate-900 font-semibold">профессиональная оценка вашей ситуации</span>
               </p>
             </div>
             <div className="mt-7 flex justify-center">
@@ -641,7 +624,7 @@ const NasledstvoPage = () => {
               </h2>
               <p className="text-muted-foreground">
                 За годы работы мы представляли интересы доверителей в спорах о восстановлении сроков, оспаривании
-                завещаний и разделе наследственного имущества.
+                завещаний и разделе наследственного имущества
               </p>
             </div>
 
@@ -652,25 +635,21 @@ const NasledstvoPage = () => {
                   className="h-full rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_16px_rgba(60,52,31,0.08)]"
                 >
                   <CardContent className="p-6 h-full flex flex-col">
-                    <div className="flex justify-center">
-                      <div className="h-24 w-24 md:h-28 md:w-28 border border-[#D8C08B] bg-white text-[11px] text-slate-500 flex items-center justify-center text-center leading-tight overflow-hidden">
-                        {caseItem.scanUrl ? (
+                    {caseItem.scanUrl ? (
+                      <div className="flex justify-center">
+                        <div className="h-24 w-24 md:h-28 md:w-28 border border-[#D8C08B] bg-white text-[11px] text-slate-500 flex items-center justify-center text-center leading-tight overflow-hidden">
                           <img
                             src={caseItem.scanUrl}
                             alt={`Скан решения: ${caseItem.title}`}
                             className="h-full w-full object-contain"
                             loading="lazy"
                           />
-                        ) : (
-                          <>
-                            Скан
-                            <br />
-                            решения
-                          </>
-                        )}
+                        </div>
                       </div>
-                    </div>
-                    <h3 className="mt-4 text-[15px] font-semibold text-slate-900">{caseItem.title}</h3>
+                    ) : null}
+                    <h3 className={`${caseItem.scanUrl ? "mt-4 " : ""}text-[15px] font-semibold text-slate-900`}>
+                      {caseItem.title}
+                    </h3>
                     <div className="mt-4 text-[13px] text-slate-700">
                       <div className="text-slate-500">Ситуация:</div>
                       <div className="font-semibold text-slate-900">{caseItem.situation}</div>
@@ -681,13 +660,13 @@ const NasledstvoPage = () => {
                     </div>
                     <div className="mt-3 text-[13px] text-slate-700">
                       <div className="text-slate-500">Результат:</div>
-                      <div className="font-semibold text-slate-900">{caseItem.result}</div>
+                      <div className="font-semibold text-slate-900 whitespace-pre-line">{caseItem.result}</div>
                     </div>
                     <div className="mt-auto pt-5">
                       <Button
                         asChild
                         size="sm"
-                        className="h-10 w-full rounded-[10px] border border-[#b8911f] bg-[#C9A227] px-4 text-[13px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.2)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                        className="h-10 w-full rounded-[10px] border border-[#b8911f] bg-[#C9A227] px-4 text-[13px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.2)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                       >
                         <Link to={caseItem.caseUrl}>Подробнее о кейсе</Link>
                       </Button>
@@ -698,12 +677,12 @@ const NasledstvoPage = () => {
             </div>
 
             <div className="mt-10 text-center text-muted-foreground space-y-2">
-              <p>Каждое дело имеет свои особенности. Перспективы можно оценить только после анализа документов.</p>
+              <p>Каждое дело имеет свои особенности. Перспективы можно оценить только после анализа документов</p>
               <div className="pt-2">
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                 >
                   <a href={callHref}>Позвонить адвокату</a>
                 </Button>
@@ -755,7 +734,7 @@ const NasledstvoPage = () => {
                         <Button
                           asChild
                           size="lg"
-                          className="w-full h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                          className="w-full h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                         >
                           <Link to={`/team/${member.slug}`}>{member.cta}</Link>
                         </Button>
@@ -779,7 +758,7 @@ const NasledstvoPage = () => {
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                 >
                   <a href={callHref}>Позвонить адвокату</a>
                 </Button>
@@ -795,7 +774,8 @@ const NasledstvoPage = () => {
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Отзывы клиентов</h2>
               <p className="text-muted-foreground">
                 Мы понимаем, что наследственные споры часто связаны с семейными конфликтами и сильным эмоциональным
-                напряжением. Ниже — мнения доверителей, которые прошли этот процесс вместе с нами.
+                напряжением. Ниже — мнения доверителей, которые прошли этот процесс вместе с нами. Персональные данные
+                не раскрываются
               </p>
             </div>
             <div className="mt-6 flex justify-center">
@@ -826,7 +806,7 @@ const NasledstvoPage = () => {
               ))}
             </div>
             <div className="mt-8 text-center text-muted-foreground">
-              Вы можете задать свой вопрос по телефону и понять перспективы именно по вашей ситуации.
+              Вы можете задать свой вопрос по телефону и понять перспективы именно по вашей ситуации
             </div>
             <div className="mt-6 flex justify-center">
               <a
@@ -848,7 +828,7 @@ const NasledstvoPage = () => {
               </h2>
               <p className="text-muted-foreground">
                 Наследственные споры требуют точной правовой позиции и аккуратной работы с доказательствами. Мы
-                выстраиваем защиту системно — от анализа документов до исполнения судебного решения.
+                выстраиваем защиту системно — от анализа документов до исполнения судебного решения
               </p>
             </div>
             <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
@@ -867,15 +847,13 @@ const NasledstvoPage = () => {
             </div>
             <div className="mt-10 text-center text-muted-foreground space-y-2">
               <p>Перед началом работы важно проанализировать документы и фактические обстоятельства дела.</p>
-              <p>
-                Первый шаг — <span className="text-slate-900 font-semibold">консультация и оценка перспектив.</span>
-              </p>
+              <p>Первый шаг — консультация и оценка перспектив</p>
             </div>
             <div className="mt-7 flex justify-center">
               <Button
                 asChild
                 size="lg"
-                className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
               >
                 <a href={callHref}>Позвонить адвокату</a>
               </Button>
@@ -912,11 +890,166 @@ const NasledstvoPage = () => {
               <Button
                 asChild
                 size="lg"
-                className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
               >
                 <a href={callHref}>Позвонить и задать вопрос</a>
               </Button>
               <p className="text-small text-muted-foreground">Поможем понять перспективы спора до обращения в суд.</p>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start lg:gap-14">
+              <div className="max-w-2xl space-y-5">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                  Получите профессиональную оценку перспектив по вашему наследственному спору
+                </h2>
+                <p className="text-base leading-relaxed text-slate-700 md:text-lg">
+                  Позвоните нам — адвокат по наследственным спорам разберёт вашу ситуацию и прямо скажет, какие есть
+                  варианты защиты и стоит ли обращаться в суд.
+                </p>
+                <p className="text-base leading-relaxed text-slate-700 md:text-lg">
+                  Если перспектив нет, вы узнаете об этом сразу — без навязывания услуг и лишних расходов.
+                </p>
+                <div className="pt-2">
+                  <p className="text-lg md:text-xl font-semibold text-slate-900">Или напишите нам напрямую:</p>
+                  <div className="mt-3 flex items-center gap-4">
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Написать в WhatsApp"
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full shadow-sm transition-opacity hover:opacity-90"
+                    >
+                      <WhatsAppIcon size={48} />
+                    </a>
+                    <a
+                      href={telegramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Написать в Telegram"
+                      className="inline-flex h-[52px] w-[52px] items-center justify-center rounded-full bg-[#229ED9] text-white shadow-sm transition-all hover:-translate-y-0.5 hover:bg-[#1d8fc6]"
+                    >
+                      <TelegramIcon size={30} className="h-[30px] w-[30px] -translate-y-px" />
+                    </a>
+                    <a
+                      href={maxUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="MAX"
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full shadow-sm transition-opacity hover:opacity-90"
+                    >
+                      <MaxIcon size={48} />
+                    </a>
+                    <a
+                      href={`mailto:${SITE.email}`}
+                      aria-label="Написать на email"
+                      className="inline-flex h-12 w-12 items-center justify-center rounded-full border border-slate-200 bg-white text-accent shadow-sm transition-colors hover:border-[#C9A227] hover:text-[#b8911f]"
+                    >
+                      <Mail className="h-6 w-6" />
+                    </a>
+                  </div>
+                </div>
+              </div>
+
+              <Card className="w-full rounded-[16px] border border-[#E5E7EB] bg-[#F8FAFC] shadow-[0_18px_40px_rgba(15,23,42,0.08)] lg:max-w-[420px]">
+                <CardContent className="p-7 md:p-8">
+                  <div className="space-y-4">
+                    <div className="text-sm text-muted-foreground">Телефон для консультаций:</div>
+                    <a href={callHref} className="inline-flex items-center gap-3 text-base font-semibold text-slate-900 hover:text-[#b8911f]">
+                      <Phone className="h-6 w-6 text-[#C9A227]" />
+                      {SITE.phone}
+                    </a>
+                    <Button
+                      asChild
+                      size="lg"
+                      className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[16px] font-semibold text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                    >
+                      <a href={callHref}>Позвонить адвокату</a>
+                    </Button>
+                    <p className="text-sm text-slate-600">Разговор не обязывает к заключению договора</p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+          </div>
+        </section>
+
+        <section className="section bg-muted/30">
+          <div className="container">
+            <div className="section__header max-w-3xl">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Контакты</h2>
+            </div>
+            <div className="section__content grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)] gap-8">
+              <div className="space-y-4">
+                <Card className="border-border">
+                  <CardContent className="pt-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                        <Phone className="h-6 w-6 text-accent" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold mb-1">Телефон</h3>
+                        <a href={callHref} className="text-accent hover:underline">
+                          {SITE.phone}
+                        </a>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="border-border">
+                  <CardContent className="pt-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                        <Mail className="h-6 w-6 text-accent" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold mb-1">Почта</h3>
+                        <a href={`mailto:${SITE.email}`} className="text-accent hover:underline">
+                          {SITE.email}
+                        </a>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <Card className="border-border">
+                  <CardContent className="pt-6">
+                    <div className="flex items-start gap-4">
+                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
+                        <MapPin className="h-6 w-6 text-accent" />
+                      </div>
+                      <div>
+                        <h3 className="font-semibold mb-1">Адрес</h3>
+                        <p className="text-accent">
+                          {SITE.address.city}, {SITE.address.street}
+                        </p>
+                      </div>
+                    </div>
+                  </CardContent>
+                </Card>
+                <div className="pt-1">
+                  <iframe
+                    src={`https://yandex.ru/sprav/widget/rating-badge/${yandexOrgId}?type=rating`}
+                    width="150"
+                    height="50"
+                    frameBorder="0"
+                    title="Рейтинг Профзащита в Яндекс.Картах"
+                    className="max-w-full"
+                  ></iframe>
+                </div>
+              </div>
+              <div className="aspect-video rounded-xl border border-border overflow-hidden">
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=244880896695"
+                  width="100%"
+                  height="100%"
+                  frameBorder="0"
+                  title="Карта офиса Профзащита"
+                  className="w-full h-full"
+                ></iframe>
+              </div>
             </div>
           </div>
         </section>
