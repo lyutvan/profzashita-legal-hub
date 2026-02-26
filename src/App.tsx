@@ -24,6 +24,7 @@ import PhysServiceDetailPage from "./pages/services/phys/PhysServiceDetailPage";
 import RastorzhenieBrakaRazdelImushchestvaPage from "./pages/services/phys/RastorzhenieBrakaRazdelImushchestvaPage";
 import VyseleniePage from "./pages/services/phys/VyseleniePage";
 import ZhilishchnyeSporyPage from "./pages/services/phys/ZhilishchnyeSporyPage";
+import NasledstvoPage from "./pages/services/phys/NasledstvoPage";
 import BizPage from "./pages/services/BizPage";
 import CriminalPage from "./pages/services/CriminalPage";
 import CriminalServiceDetailPage from "./pages/services/criminal/CriminalServiceDetailPage";
@@ -118,6 +119,11 @@ const App = () => (
           <Route
             path="/services/phys/ushcherb-imushchestvu"
             element={<Navigate to="/services/phys/zhilishchnye-spory" replace />}
+          />
+          <Route path="/services/phys/nasledstvo" element={<NasledstvoPage />} />
+          <Route
+            path="/services/phys/nasledstvennye-dela"
+            element={<Navigate to="/services/phys/nasledstvo" replace />}
           />
           <Route
             path="/services/phys/bankovskie-i-kreditnye-spory"

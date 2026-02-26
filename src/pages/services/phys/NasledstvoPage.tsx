@@ -1,264 +1,929 @@
+import { useMemo } from "react";
 import { Link } from "react-router-dom";
-import ServiceTemplate from "@/components/ServiceTemplate";
+import { Helmet } from "react-helmet";
+import {
+  AlertTriangle,
+  Clock3,
+  FileSearch,
+  Gavel,
+  HelpCircle,
+  Landmark,
+  Phone,
+  Scale,
+  Search,
+  UserCheck,
+  Users
+} from "lucide-react";
+
+import Header from "@/components/Header";
+import Footer from "@/components/Footer";
+import Breadcrumbs from "@/components/Breadcrumbs";
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
+import { BreadcrumbSchema, FAQPageSchema, LegalServiceSchema, ReviewsSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
+import { getServiceHeroImage } from "@/lib/serviceCardImages";
 import { cases as casesData } from "@/data/cases";
 import { teamMembers } from "@/data/team";
 
 const NasledstvoPage = () => {
-  const inheritanceCases = casesData.filter((item) => {
-    const haystack = `${item.category} ${item.title} ${item.slug ?? ""} ${item.task ?? ""} ${item.actions ?? ""} ${item.result ?? ""}`.toLowerCase();
-    return /наслед|завещ|обязательн|vstupl|nasled|zavesh/.test(haystack);
-  });
-  const shouldShowCases = inheritanceCases.length > 0;
+  const canonical = new URL("/services/phys/nasledstvo", SITE.url).toString();
+  const callHref = "tel:+74950040196";
+  const heroImage = getServiceHeroImage("/services/phys/nasledstvo", "phys");
+  const yandexOrgId = "244880896695";
 
-  const inheritanceTeam = teamMembers.filter((member) => {
-    const fields = [
-      ...(member.specializations ?? []),
-      ...(member.practice ?? []),
-      ...(member.competencies ?? []),
-      member.about ?? ""
+  const situations = [
+    {
+      title: "Пропущен срок вступления в наследство",
+      description:
+        "Если срок в 6 месяцев пропущен, это не означает утрату прав. При наличии уважительных причин его можно восстановить через суд. Оценим перспективы и подготовим правовую позицию.",
+      icon: Clock3
+    },
+    {
+      title: "Оспаривание завещания",
+      description:
+        "Завещание можно оспорить в судебном порядке при наличии законных оснований. Проанализируем документы и оценим перспективы признания его недействительным.",
+      icon: FileSearch
+    },
+    {
+      title: "Спор о наследстве между наследниками",
+      description:
+        "Если между наследниками возник конфликт по поводу состава имущества или долей, мы представим ваши интересы и обеспечим защиту прав в переговорах или суде.",
+      icon: Scale
+    },
+    {
+      title: "Раздел имущества между наследниками",
+      description:
+        "Когда наследников несколько и отсутствует соглашение, раздел имущества осуществляется в судебном порядке. Мы подготовим необходимые документы и добьемся справедливого распределения долей.",
+      icon: Landmark
+    },
+    {
+      title: "Оформление наследства через суд",
+      description:
+        "Если нотариальное оформление невозможно или имеются правовые споры, право собственности устанавливается через суд. Сопроводим процесс от подготовки иска до получения судебного решения.",
+      icon: Gavel
+    },
+    {
+      title: "Вступление в наследство",
+      description:
+        "Поможем оформить наследство в установленном порядке, подготовить документы и взаимодействовать с нотариусом. При необходимости защитим ваши интересы в суде.",
+      icon: Users
+    },
+    {
+      title: "Признание наследника недостойным",
+      description:
+        "В случаях противоправных действий или уклонения от обязанностей возможно признание наследника недостойным через суд. Проанализируем доказательства и выстроим правовую позицию.",
+      icon: UserCheck
+    },
+    {
+      title: "Другая сложная ситуация по наследству",
+      description:
+        "Если ваш случай нестандартный или связан с несколькими спорами одновременно, мы проведем правовой анализ и предложим законный способ защиты ваших интересов.",
+      icon: HelpCircle
+    }
+  ];
+
+  const riskItems = [
+    {
+      title: "Срок вступления в наследство",
+      description:
+        "Срок принятия наследства составляет 6 месяцев со дня его открытия. Пропуск этого срока не лишает права автоматически, однако требует обращения в суд и подтверждения уважительных причин."
+    },
+    {
+      title: "Судебное восстановление срока",
+      description:
+        "Восстановление срока возможно только в судебном порядке. Суд оценивает причины пропуска и представленные доказательства. Без грамотно выстроенной позиции риск отказа возрастает."
+    },
+    {
+      title: "Регистрация и распоряжение имуществом",
+      description:
+        "Имущество может быть зарегистрировано на другого наследника или отчуждено третьим лицам. Это усложняет дальнейшее восстановление прав и увеличивает объем судебной работы."
+    },
+    {
+      title: "Сложность доказательственной базы",
+      description:
+        "Со временем труднее подтвердить обстоятельства дела, собрать документы и получить необходимые сведения. Ранняя подготовка доказательств укрепляет позицию в суде."
+    },
+    {
+      title: "Увеличение числа участников спора",
+      description:
+        "При затягивании процесса к делу могут быть привлечены новые наследники, представители, кредиторы или иные заинтересованные лица. Это увеличивает срок и сложность разбирательства."
+    },
+    {
+      title: "Рост процессуальных затрат",
+      description:
+        "Длительный спор может потребовать проведения экспертиз, дополнительных заявлений и встречных требований. Чем позже начинается работа по делу, тем выше риск увеличения объема процессуальных действий."
+    }
+  ];
+
+  const processSteps = [
+    {
+      title: "Анализ ситуации и документов",
+      description:
+        "Изучаем документы, состав наследственной массы и позицию других участников спора. Оцениваем перспективы и риски."
+    },
+    {
+      title: "Формирование правовой позиции",
+      description:
+        "Определяем стратегию: восстановление срока, оспаривание завещания, признание права собственности и иные требования."
+    },
+    {
+      title: "Сбор доказательств и подготовка процессуальных документов",
+      description:
+        "Формируем доказательственную базу, при необходимости инициируем экспертизы, готовим иски и ходатайства."
+    },
+    {
+      title: "Представительство в суде",
+      description:
+        "Представляем интересы доверителя, участвуем в заседаниях, заявляем ходатайства и защищаем правовую позицию."
+    },
+    {
+      title: "Обжалование при необходимости",
+      description:
+        "Подготавливаем апелляционные и кассационные жалобы и сопровождаем рассмотрение дела в вышестоящих инстанциях."
+    },
+    {
+      title: "Исполнение решения суда",
+      description:
+        "Контролируем исполнение судебного решения и сопровождаем последующие юридические действия."
+    }
+  ];
+
+  const faqItems = [
+    {
+      question: "Можно ли восстановить срок принятия наследства?",
+      answer:
+        "Да. При наличии уважительных причин срок можно восстановить в судебном порядке. Важно подготовить доказательства и корректно сформулировать требования."
+    },
+    {
+      question: "Обязательно ли обращаться в суд при споре между наследниками?",
+      answer:
+        "Не всегда. Если возможно договориться, спор можно урегулировать соглашением. При отсутствии согласия защита прав осуществляется через суд."
+    },
+    {
+      question: "Можно ли оспорить завещание?",
+      answer:
+        "Да, если есть законные основания: нарушения формы, давление, недееспособность завещателя или иные существенные обстоятельства."
+    },
+    {
+      question: "Что делать, если имущество уже оформлено на другого наследника?",
+      answer:
+        "Нужно оперативно зафиксировать обстоятельства и подготовить требования о признании права, разделе имущества или оспаривании регистрационных действий."
+    },
+    {
+      question: "Сколько длится наследственный спор?",
+      answer:
+        "Срок зависит от сложности дела, числа участников и объема доказательств. В среднем судебное разбирательство занимает от нескольких месяцев."
+    },
+    {
+      question: "Сколько стоит ведение наследственного дела?",
+      answer:
+        "Стоимость зависит от стадии спора, объема документов и процессуальных действий. После анализа ситуации фиксируем условия в договоре."
+    }
+  ];
+
+  const reviews = [
+    {
+      name: "Светлана Р.",
+      rating: 5,
+      text:
+        "Обращалась по наследственному вопросу. Получила четкие разъяснения и рабочий план действий. Дело вели спокойно и профессионально."
+    },
+    {
+      name: "Сергей М.",
+      rating: 5,
+      text:
+        "Нужно было восстановить срок принятия наследства. Подготовили документы, объяснили этапы, сопровождали до результата."
+    },
+    {
+      name: "Михаил В.",
+      rating: 5,
+      text:
+        "Возник спор между наследниками по разделу квартиры. Адвокат организовал правовую позицию и довел процесс до решения."
+    },
+    {
+      name: "Екатерина С.",
+      rating: 5,
+      text:
+        "Оспаривали завещание. Дело было сложное, но команда тщательно собрала доказательства и выстроила стратегию защиты."
+    },
+    {
+      name: "Олег А.",
+      rating: 5,
+      text:
+        "Потребовалось признать наследника недостойным. Получил понятный план и сопровождение на всех этапах процесса."
+    },
+    {
+      name: "Ольга Б.",
+      rating: 5,
+      text:
+        "Был спор о разделе имущества между родственниками. Помогли провести переговоры и подготовить документы для суда."
+    }
+  ];
+
+  const whyTrustItems = [
+    {
+      title: "Стратегия под конкретную ситуацию",
+      description:
+        "Каждое дело отличается составом имущества, количеством наследников и позицией сторон. Выстраиваем правовую позицию под ваши цели.",
+      icon: FileSearch
+    },
+    {
+      title: "Судебная практика по спорам высокой сложности",
+      description:
+        "Ведем дела о восстановлении сроков, оспаривании завещаний, разделе имущества и признании наследников недостойными.",
+      icon: Scale
+    },
+    {
+      title: "Работа с доказательственной базой",
+      description:
+        "Собираем и оформляем документы, формируем доказательства, при необходимости инициируем экспертизы.",
+      icon: Search
+    },
+    {
+      title: "Представительство в судах всех инстанций",
+      description:
+        "Сопровождаем дело от подготовки иска до получения решения. При необходимости готовим апелляционные и кассационные жалобы.",
+      icon: Gavel
+    },
+    {
+      title: "Команда коллегии под вашу задачу",
+      description:
+        "Над делом работает не один адвокат, а команда коллегии. В сложных ситуациях подключаются профильные специалисты.",
+      icon: Users
+    },
+    {
+      title: "Честная оценка перспектив",
+      description:
+        "До начала судебного спора оцениваем риски и возможный результат. Если перспектива слабая — говорим об этом сразу.",
+      icon: AlertTriangle
+    }
+  ];
+
+  const teamCards = useMemo(() => {
+    const membersBySlug = new Map(teamMembers.map((member) => [member.slug, member]));
+    return [
+      {
+        slug: "vaskovsky",
+        roleBadge: "Адвокат",
+        cta: "Подробнее о юристе",
+        title: "Специализация по наследственным делам:",
+        bullets: [
+          "Оспаривание завещаний, восстановление сроков принятия наследства, признание прав собственности и раздел наследственного имущества.",
+          "Лично формирует правовую позицию по делу и представляет интересы доверителей в судах всех инстанций."
+        ]
+      },
+      {
+        slug: "sotnikov",
+        roleBadge: "Адвокат",
+        cta: "Подробнее об адвокате",
+        title: "Специализация по наследственным спорам:",
+        bullets: [
+          "Судебная защита прав наследников, признание наследника недостойным, сопровождение раздела имущества, защита интересов в конфликтах между наследниками.",
+          "Участвует в судебных заседаниях, готовит процессуальные документы и сопровождает дело до исполнения решения суда."
+        ]
+      }
     ]
-      .join(" ")
-      .toLowerCase();
-    return /наслед/.test(fields);
-  });
-  const featuredTeam = inheritanceTeam.slice(0, 3);
-  const teamGridClass =
-    featuredTeam.length === 2
-      ? "grid grid-cols-1 md:grid-cols-2 gap-6 max-w-4xl mx-auto"
-      : "grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6";
+      .map((card) => {
+        const member = membersBySlug.get(card.slug);
+        if (!member) return null;
+        return {
+          ...card,
+          name: member.name,
+          experience: member.experienceText ?? "Стаж 15 лет",
+          photo: member.photo
+        };
+      })
+      .filter(
+        (
+          member
+        ): member is {
+          slug: string;
+          roleBadge: string;
+          cta: string;
+          title: string;
+          bullets: string[];
+          name: string;
+          experience: string;
+          photo: string;
+        } => Boolean(member)
+      );
+  }, []);
+
+  const inheritanceCases = useMemo(() => {
+    const matched = casesData
+      .filter((caseItem) => {
+        const haystack = `${caseItem.category} ${caseItem.title} ${caseItem.slug ?? ""} ${caseItem.task ?? ""} ${caseItem.actions ?? ""} ${caseItem.result ?? ""}`.toLowerCase();
+        return /наслед|завещ|наследник|nasled|zavesh/.test(haystack);
+      })
+      .sort((a, b) => {
+        const left = a.datePublished ? Date.parse(a.datePublished) : 0;
+        const right = b.datePublished ? Date.parse(b.datePublished) : 0;
+        return right - left;
+      })
+      .slice(0, 3)
+      .map((caseItem) => ({
+        title: caseItem.title,
+        situation: caseItem.task,
+        actions: caseItem.actions,
+        result: caseItem.result,
+        scanUrl: caseItem.decisionPreview ?? caseItem.documents?.[0],
+        caseUrl: caseItem.slug ? `/cases/${caseItem.slug}` : "/keisy"
+      }));
+
+    if (matched.length > 0) return matched;
+
+    return [
+      {
+        title: "Восстановление срока принятия наследства",
+        situation:
+          "Доверитель пропустил шестимесячный срок принятия наследства, нотариус отказал в оформлении прав.",
+        actions:
+          "Подготовили иск о восстановлении срока, собрали подтверждения уважительных причин и представили позицию в суде.",
+        result:
+          "Срок принятия наследства восстановлен, право доверителя на наследственную долю признано судом.",
+        scanUrl: "",
+        caseUrl: "/keisy"
+      },
+      {
+        title: "Оспаривание завещания",
+        situation:
+          "Наследственное имущество было передано по завещанию третьему лицу, возник спор о действительности документа.",
+        actions:
+          "Проанализировали медицинские документы, подготовили иск и инициировали судебную экспертизу.",
+        result:
+          "Завещание признано недействительным, доверитель включен в состав наследников по закону.",
+        scanUrl: "",
+        caseUrl: "/keisy"
+      },
+      {
+        title: "Раздел имущества между наследниками",
+        situation:
+          "Между наследниками возник спор о разделе квартиры и иного имущества, соглашение не достигнуто.",
+        actions:
+          "Подготовили иск о разделе наследственного имущества, сформировали расчеты и представили интересы доверителя.",
+        result:
+          "Определены доли наследников и порядок раздела имущества в судебном порядке.",
+        scanUrl: "",
+        caseUrl: "/keisy"
+      }
+    ];
+  }, []);
 
   return (
-    <ServiceTemplate
-      title="Наследственные споры — помощь юриста в Москве"
-      metaDescription="Юридическая помощь в наследственных делах: оформление наследства, оспаривание завещания, восстановление сроков, раздел наследства. Опыт 15+ лет."
-      canonical={`${SITE.url}/services/phys/nasledstvo`}
-      breadcrumbLabel="Наследство"
-      h1="Наследственные споры"
-      leadParagraph="Помогаем оформить наследство, защитить право на обязательную долю, оспорить незаконное завещание и разделить наследственное имущество между наследниками."
-      whenToContact={[
-        "Нужно вступить в наследство или восстановить пропущенный срок",
-        "Необходимо оспорить завещание или доказать недействительность сделок наследодателя",
-        "Вы имеете право на обязательную долю, но вас не включили в наследство",
-        "Возникли споры между наследниками о разделе имущества",
-        "Нотариус отказывает в выдаче свидетельства о праве на наследство",
-        "Нужно признать наследника недостойным или отстранить от наследства"
-      ]}
-      whatWeDo={[
-        "Консультируем по порядку наследования, срокам и правам наследников",
-        "Помогаем собрать документы и оформить наследство у нотариуса",
-        "Восстанавливаем пропущенный срок принятия наследства через суд",
-        "Оспариваем завещания, договоры дарения и другие сделки наследодателя",
-        "Добиваемся выделения обязательной доли и признания недостойных наследников",
-        "Представляем интересы в спорах о разделе наследственного имущества"
-      ]}
-      steps={[
-        {
-          number: 1,
-          title: "Первичная консультация",
-          description: "Выясняем круг наследников, состав наследственного имущества, наличие завещания, оцениваем ваши шансы и возможные риски."
-        },
-        {
-          number: 2,
-          title: "Сбор документов",
-          description: "Запрашиваем свидетельства о смерти, рождении, браке, выписки ЕГРН, банковские справки, ищем завещание, собираем доказательства родства."
-        },
-        {
-          number: 3,
-          title: "Обращение к нотариусу или в суд",
-          description: "Подаём заявление о принятии наследства нотариусу либо иск в суд (о восстановлении срока, признании права, оспаривании завещания)."
-        },
-        {
-          number: 4,
-          title: "Судебное разбирательство (при необходимости)",
-          description: "Участвуем в заседаниях, представляем доказательства родства или недостойности других наследников, оспариваем незаконные сделки."
-        },
-        {
-          number: 5,
-          title: "Получение свидетельства и раздел имущества",
-          description: "Получаем свидетельство о праве на наследство, помогаем переоформить имущество на ваше имя, делим наследство между наследниками."
-        }
-      ]}
-      documentsAndTiming="Нужны: свидетельство о смерти, документы о родстве (свидетельства о рождении, браке), паспорт, правоустанавливающие документы на имущество, справки о месте жительства наследодателя. Сроки: принятие наследства — 6 месяцев со дня смерти; рассмотрение иска о восстановлении срока или оспаривании завещания — от 2 до 6 месяцев."
-      faqs={[
-        {
-          question: "Что делать, если пропущен срок вступления в наследство?",
-          answer: "Срок можно восстановить через суд, если пропуск произошёл по уважительной причине (тяжёлая болезнь, незнание о смерти наследодателя, длительная командировка). Нужно обратиться в суд в течение 6 месяцев после того, как причины пропуска отпали. Если другие наследники согласны включить вас — можно оформить у нотариуса без суда."
-        },
-        {
-          question: "Можно ли оспорить завещание?",
-          answer: "Да, если докажете, что завещание составлено под влиянием обмана, угрозы, насилия, или наследодатель не понимал значения своих действий (например, из-за психического расстройства). Для этого чаще всего назначается посмертная психиатрическая экспертиза. Также завещание оспаривается по формальным нарушениям (неправильное удостоверение, отсутствие свидетелей)."
-        },
-        {
-          question: "Кто имеет право на обязательную долю в наследстве?",
-          answer: "Несовершеннолетние или нетрудоспособные дети наследодателя, нетрудоспособные супруг и родители, а также нетрудоспособные иждивенцы. Обязательная доля составляет не менее половины от того, что они получили бы при наследовании по закону, даже если завещание исключает их из числа наследников."
-        },
-        {
-          question: "Как делится наследство между наследниками?",
-          answer: "Если нет завещания, наследство делится по закону: наследники первой очереди (дети, супруг, родители) получают равные доли. При наличии завещания — в соответствии с волей наследодателя, но с учётом обязательной доли. Раздел конкретных вещей (квартира, дача, автомобиль) происходит по соглашению или через суд."
-        },
-        {
-          question: "Можно ли отказаться от наследства?",
-          answer: "Да, в течение 6 месяцев можно подать нотариусу заявление об отказе. Отказ можно сделать в пользу других наследников или без указания лиц. После принятия наследства отказаться уже нельзя. Учтите: вместе с имуществом наследуются и долги наследодателя."
-        }
-      ]}
-      relatedLinks={[
-        { title: "Жилищные споры", url: "/services/phys/zhilishchnye-spory" },
-        { title: "Расторжение брака и раздел имущества", url: "/services/phys/razvod-razdel-imushchestva" }
-      ]}
-      extraSections={
-        <>
-          {featuredTeam.length > 0 && (
-            <div>
-              <h2 className="font-serif font-bold mb-6">Кто ведёт наследственные дела</h2>
-              <p className="text-muted-foreground mb-6">
-                Вашим делом занимаются практикующие адвокаты с опытом в наследственных спорах
+    <div className="min-h-screen flex flex-col category-landing-page family-landing-page">
+      <Helmet>
+        <title>Наследственные дела — адвокат в Москве | Профзащита</title>
+        <meta
+          name="description"
+          content="Адвокаты по наследственным делам в Москве: восстановление срока, оспаривание завещания, раздел наследства, представительство в суде."
+        />
+        <link rel="canonical" href={canonical} />
+      </Helmet>
+
+      <BreadcrumbSchema
+        items={[
+          { name: "Главная", url: SITE.url },
+          { name: "Услуги", url: new URL("/uslugi", SITE.url).toString() },
+          { name: "Физическим лицам", url: new URL("/services/phys", SITE.url).toString() },
+          { name: "Наследственные дела", url: canonical }
+        ]}
+      />
+      <LegalServiceSchema serviceType="Наследственные дела" url={canonical} />
+      <FAQPageSchema items={faqItems} url={canonical} />
+      <ReviewsSchema
+        reviews={reviews.map((review) => ({
+          author: review.name,
+          rating: review.rating,
+          reviewBody: review.text,
+          datePublished: "2026-01-01"
+        }))}
+        url={canonical}
+      />
+
+      <Header />
+
+      <main className="flex-1 services-page">
+        <section
+          className="relative text-white section section--hero"
+          style={{
+            backgroundImage: `url(${heroImage})`,
+            backgroundSize: "cover",
+            backgroundPosition: "center"
+          }}
+        >
+          <div
+            className="absolute inset-0 pointer-events-none"
+            style={{
+              background:
+                "linear-gradient(180deg, rgba(5,12,28,0.92) 0%, rgba(11,31,58,0.76) 55%, rgba(11,31,58,0.44) 100%)"
+            }}
+          />
+          <div className="container relative z-10">
+            <Breadcrumbs
+              items={[
+                { label: "Услуги", path: "/uslugi" },
+                { label: "Физическим лицам", path: "/services/phys" },
+                { label: "Наследственные дела" }
+              ]}
+            />
+
+            <div className="mt-6 max-w-none space-y-5">
+              <h1 className="category-hero-title font-serif text-h1-mobile md:text-h1 font-bold text-accent">
+                Адвокаты по наследственным делам
+              </h1>
+              <h2 className="text-white text-[24px] leading-tight font-semibold md:text-[28px] lg:text-[30px] lg:whitespace-nowrap">
+                Наследственный спор или пропущен срок вступления? Защитим ваши права и имущество
+              </h2>
+              <p className="text-white/90 text-[18px] md:text-[26px] leading-[1.2]">
+                Ведем наследственные споры любой сложности
               </p>
-              <div className={teamGridClass}>
-                {featuredTeam.map((member) => (
-                  <Card
-                    key={member.slug}
-                    className="h-full rounded-[12px] border border-[#C9A227] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+              <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
+                <li>Восстановим срок принятия наследства</li>
+                <li>Оспорим незаконное завещание</li>
+                <li>Защитим от недобросовестных наследников</li>
+                <li>Представим ваши интересы в суде</li>
+              </ul>
+              <p className="text-white/90 text-[16px] md:text-[20px] lg:whitespace-nowrap">
+                Срок вступления в наследство — <span className="font-semibold">6 месяцев.</span> После его пропуска
+                защитить права возможно только через суд.
+              </p>
+              <Button
+                asChild
+                size="lg"
+                className="w-full sm:w-auto bg-accent text-primary shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:bg-[#c09a23]"
+              >
+                <a href={callHref}>Позвонить адвокату</a>
+              </Button>
+              <p className="text-small text-white/85 whitespace-nowrap overflow-x-auto">
+                Обсудим ситуацию и бесплатно оценим перспективу спора
+              </p>
+              <div className="category-hero-trust flex flex-nowrap items-center gap-y-2 text-small overflow-x-auto md:overflow-visible">
+                {[
+                  { label: "Работаем в Москве и Московской области", tone: "text-accent" },
+                  { label: "Судебная практика по спорам высокой сложности", tone: "text-white" },
+                  { label: "Командная работа коллегии", tone: "text-accent" }
+                ].map((item, index) => (
+                  <span
+                    key={item.label}
+                    className={`category-hero-trust-item flex items-center whitespace-nowrap ${
+                      index > 0 ? "before:content-['•'] before:mx-2 before:text-white/50" : ""
+                    } ${item.tone}`}
                   >
-                    <CardContent className="p-6 h-full flex flex-col items-center text-center">
-                      <div className="flex w-full flex-col items-center text-center gap-4">
-                        <div className="w-full overflow-hidden rounded-[10px] border border-[#E6DDCC] bg-white">
+                    {item.label}
+                  </span>
+                ))}
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <div className="section__header max-w-4xl mx-auto text-center">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                В каких ситуациях мы помогаем по наследственным делам
+              </h2>
+              <p className="text-muted-foreground">
+                Мы ведем наследственные споры и сопровождаем оформление наследства как в досудебном порядке, так и в
+                судах всех инстанций
+              </p>
+            </div>
+            <div className="section__content grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-4 md:gap-6 auto-rows-fr">
+              {situations.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <Card
+                    key={item.title}
+                    className="h-full rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+                  >
+                    <CardContent className="p-5 md:p-6 pt-5 md:pt-6 h-full flex flex-col items-center text-center gap-3">
+                      <Icon className="h-12 w-12 text-accent" strokeWidth={1.8} />
+                      <h3 className="font-semibold text-[16px] md:text-[17px] text-slate-900">{item.title}</h3>
+                      <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed flex-1">
+                        {item.description}
+                      </p>
+                      <Button
+                        asChild
+                        size="lg"
+                        className="mt-2 h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-6 text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                      >
+                        <a href={callHref}>Позвонить адвокату</a>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+            <div className="mt-8 text-center text-muted-foreground">
+              <p>
+                За годы практики мы сформировали устойчивую судебную позицию по вопросам восстановления срока,
+                оспаривания завещаний и раздела имущества.
+              </p>
+              <p>На консультации оценим перспективы именно по вашей ситуации.</p>
+            </div>
+            <div className="mt-6 flex justify-center">
+              <a
+                href={callHref}
+                className="inline-flex items-center gap-2 text-[20px] font-semibold text-slate-900 hover:text-accent"
+              >
+                <Phone className="h-6 w-6 text-accent" />
+                <span>Обсудить ситуацию по телефону: {SITE.phone}</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="section bg-muted/30">
+          <div className="container">
+            <div className="section__header max-w-4xl mx-auto text-center">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Сроки и риски в наследственных спорах</h2>
+              <p className="text-muted-foreground">
+                Наследственные дела требуют своевременных действий. Позднее обращение может существенно осложнить
+                защиту прав и увеличить срок судебного разбирательства.
+              </p>
+            </div>
+
+            <div className="mt-8 max-w-5xl mx-auto space-y-6">
+              {riskItems.map((item) => (
+                <div key={item.title} className="flex items-start gap-4">
+                  <AlertTriangle className="h-6 w-6 text-accent mt-1 shrink-0" />
+                  <div>
+                    <h3 className="text-[24px] md:text-[32px] font-semibold text-slate-900 leading-tight">{item.title}</h3>
+                    <p className="mt-2 text-[14px] md:text-[16px] text-slate-600 leading-relaxed">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-12 max-w-3xl mx-auto text-center">
+              <h3 className="text-[26px] md:text-[34px] font-semibold text-slate-900">
+                Что дает своевременное обращение к адвокату:
+              </h3>
+              <ul className="mt-5 space-y-2 text-left list-disc list-inside text-[15px] md:text-[18px] text-slate-700">
+                <li>Оценку перспектив спора до обращения в суд</li>
+                <li>Формирование правовой позиции на ранней стадии</li>
+                <li>Сохранность доказательственной базы</li>
+                <li>Возможность урегулировать конфликт в досудебном порядке</li>
+                <li>Снижение процессуальных рисков</li>
+              </ul>
+              <p className="mt-8 text-[18px] md:text-[24px] font-semibold text-slate-900">
+                Чем раньше вы подключите адвоката, тем больше возможностей сохранить ваши права и имущество
+              </p>
+              <div className="mt-6">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                >
+                  <a href={callHref}>Обсудить ситуацию с адвокатом</a>
+                </Button>
+                <p className="mt-2 text-small text-muted-foreground">
+                  Коротко разберем ситуацию и оценим перспективы спора
+                </p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <div className="section__header max-w-4xl mx-auto text-center">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                Как мы защищаем ваши интересы по наследственным делам
+              </h2>
+              <p className="text-muted-foreground">
+                Защита строится поэтапно — от анализа ситуации до получения судебного решения и сопровождения его
+                исполнения.
+              </p>
+            </div>
+
+            <div className="mt-8 border-t border-[#D5D5D5] max-w-6xl mx-auto">
+              {processSteps.map((step, index) => (
+                <div key={step.title} className="flex items-start gap-4 md:gap-6 py-6 md:py-7 border-b border-[#D5D5D5]">
+                  <div className="h-12 w-12 rounded-full border border-[#D8C08B] bg-[#F7F2E8] flex shrink-0 items-center justify-center text-[14px] font-semibold text-accent">
+                    {index + 1}
+                  </div>
+                  <div className="space-y-2">
+                    <h3 className="text-[15px] md:text-[16px] font-semibold text-slate-900">{step.title}</h3>
+                    <p className="text-[13px] md:text-[14px] text-slate-600 leading-relaxed">{step.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center text-muted-foreground space-y-2">
+              <p>
+                Понимание порядка действий позволяет выстроить защиту последовательно и снизить процессуальные риски.
+              </p>
+              <p>
+                Первый шаг — <span className="text-slate-900 font-semibold">профессиональная оценка вашей ситуации.</span>
+              </p>
+            </div>
+            <div className="mt-7 flex justify-center">
+              <a
+                href={callHref}
+                className="inline-flex items-center gap-2 text-[20px] font-semibold text-slate-900 hover:text-accent"
+              >
+                <Phone className="h-6 w-6 text-accent" />
+                <span>Обсудить ситуацию по телефону: {SITE.phone}</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="section bg-muted/30">
+          <div className="container">
+            <div className="section__header max-w-4xl mx-auto text-center">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                Примеры судебной практики по наследственным делам
+              </h2>
+              <p className="text-muted-foreground">
+                За годы работы мы представляли интересы доверителей в спорах о восстановлении сроков, оспаривании
+                завещаний и разделе наследственного имущества.
+              </p>
+            </div>
+
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
+              {inheritanceCases.map((caseItem, index) => (
+                <Card
+                  key={`${caseItem.title}-${index}`}
+                  className="h-full rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_16px_rgba(60,52,31,0.08)]"
+                >
+                  <CardContent className="p-6 h-full flex flex-col">
+                    <div className="flex justify-center">
+                      <div className="h-24 w-24 md:h-28 md:w-28 border border-[#D8C08B] bg-white text-[11px] text-slate-500 flex items-center justify-center text-center leading-tight overflow-hidden">
+                        {caseItem.scanUrl ? (
                           <img
-                            src={member.photo}
-                            alt={member.name}
-                            className="h-[320px] w-full object-cover object-center md:h-[340px] lg:h-[360px]"
+                            src={caseItem.scanUrl}
+                            alt={`Скан решения: ${caseItem.title}`}
+                            className="h-full w-full object-contain"
                             loading="lazy"
                           />
-                        </div>
-                        <h3 className="font-semibold text-[16px] md:text-[18px] text-slate-900">
-                          {member.name}
-                        </h3>
-                        <span className="inline-flex items-center rounded-full bg-[#C9A227] px-4 py-1 text-[12px] font-semibold text-slate-900">
-                          {member.role}
-                        </span>
-                        {member.experienceText && (
-                          <div className="text-[13px] font-semibold text-slate-800">{member.experienceText}</div>
-                        )}
-                        {member.specializations && member.specializations.length > 0 && (
-                          <div className="w-full">
-                            <div className="text-[12px] font-semibold text-slate-700">Специализации:</div>
-                            <ul className="mt-2 space-y-1 text-[13px] text-slate-700 list-disc list-inside text-center">
-                              {member.specializations.map((item) => (
-                                <li key={item}>{item}</li>
-                              ))}
-                            </ul>
-                          </div>
-                        )}
-                        {member.about && (
-                          <div className="text-[13px] text-slate-600 leading-relaxed space-y-2">
-                            {member.about.split("\n\n").map((paragraph, index) => (
-                              <p key={`${member.slug}-about-${index}`}>{paragraph}</p>
-                            ))}
-                          </div>
+                        ) : (
+                          <>
+                            Скан
+                            <br />
+                            решения
+                          </>
                         )}
                       </div>
-                      <div className="mt-auto w-full pt-5 flex justify-center">
+                    </div>
+                    <h3 className="mt-4 text-[15px] font-semibold text-slate-900">{caseItem.title}</h3>
+                    <div className="mt-4 text-[13px] text-slate-700">
+                      <div className="text-slate-500">Ситуация:</div>
+                      <div className="font-semibold text-slate-900">{caseItem.situation}</div>
+                    </div>
+                    <div className="mt-3 text-[13px] text-slate-700">
+                      <div className="text-slate-500">Что сделали:</div>
+                      <div className="font-semibold text-slate-900">{caseItem.actions}</div>
+                    </div>
+                    <div className="mt-3 text-[13px] text-slate-700">
+                      <div className="text-slate-500">Результат:</div>
+                      <div className="font-semibold text-slate-900">{caseItem.result}</div>
+                    </div>
+                    <div className="mt-auto pt-5">
+                      <Button
+                        asChild
+                        size="sm"
+                        className="h-10 w-full rounded-[10px] border border-[#b8911f] bg-[#C9A227] px-4 text-[13px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.2)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                      >
+                        <Link to={caseItem.caseUrl}>Подробнее о кейсе</Link>
+                      </Button>
+                    </div>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+
+            <div className="mt-10 text-center text-muted-foreground space-y-2">
+              <p>Каждое дело имеет свои особенности. Перспективы можно оценить только после анализа документов.</p>
+              <div className="pt-2">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                >
+                  <a href={callHref}>Позвонить адвокату</a>
+                </Button>
+                <p className="mt-2 text-small text-muted-foreground">Обсудим ситуацию и бесплатно оценим перспективу дела</p>
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {teamCards.length > 0 && (
+          <section className="section">
+            <div className="container">
+              <div className="section__header max-w-4xl mx-auto text-center">
+                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кто будет вести ваше дело</h2>
+                <p className="text-muted-foreground">
+                  Наследственные дела сопровождают практикующие адвокаты с опытом судебной защиты в данной категории
+                  споров.
+                </p>
+              </div>
+              <div className="section__content grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr justify-items-center max-w-5xl mx-auto">
+                {teamCards.map((member) => (
+                  <Card
+                    key={member.slug}
+                    className="h-full w-full max-w-[460px] rounded-[12px] border border-[#C9A227] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+                  >
+                    <CardContent className="p-6 h-full flex flex-col items-center text-center">
+                      <div className="w-full overflow-hidden rounded-[10px] border border-[#E6DDCC] bg-white">
+                        <img
+                          src={member.photo}
+                          alt={member.name}
+                          className="h-[300px] w-full object-cover object-top md:h-[340px]"
+                          loading="lazy"
+                        />
+                      </div>
+                      <h3 className="mt-5 font-semibold text-[20px] text-slate-900">{member.name}</h3>
+                      <span className="mt-3 inline-flex items-center rounded-full bg-[#C9A227] px-4 py-1 text-[12px] font-semibold text-slate-900">
+                        {member.roleBadge}
+                      </span>
+                      <div className="mt-4 text-[15px] text-slate-700">{member.experience}</div>
+                      <div className="mt-5 w-full text-left">
+                        <div className="text-[16px] font-semibold text-slate-900">{member.title}</div>
+                        <ul className="mt-3 space-y-3 text-[14px] text-slate-700 leading-relaxed list-disc list-inside">
+                          {member.bullets.map((bullet) => (
+                            <li key={bullet}>{bullet}</li>
+                          ))}
+                        </ul>
+                      </div>
+                      <div className="mt-auto w-full pt-6">
                         <Button
                           asChild
                           size="lg"
-                          className="w-full md:w-auto h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
+                          className="w-full h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
                         >
-                          <Link to={`/team/${member.slug}`}>Подробнее об адвокате</Link>
+                          <Link to={`/team/${member.slug}`}>{member.cta}</Link>
                         </Button>
                       </div>
                     </CardContent>
                   </Card>
                 ))}
               </div>
-            </div>
-          )}
-
-          {shouldShowCases && (
-            <div>
-              <h2 className="font-serif font-bold mb-6">Кейсы</h2>
-              <p className="text-muted-foreground mb-6">
-                Мы не раскрываем персональные данные клиентов — примеры основаны на реальных делах
-              </p>
-              <div className="grid grid-cols-1 lg:grid-cols-2 gap-6">
-                {inheritanceCases.map((caseItem) => {
-                  const decisionPreview = caseItem.decisionPreview ?? caseItem.documents?.[0];
-                  const hasDecision = Boolean(decisionPreview);
-                  return (
-                    <Card
-                      key={caseItem.slug ?? caseItem.title}
-                      className="h-full border border-slate-200 bg-white shadow-[0_10px_25px_rgba(15,23,42,0.06)] transition-all hover:border-[#C9A227] hover:shadow-[0_16px_40px_rgba(201,162,39,0.18)]"
-                    >
-                      <CardContent className="pt-6 h-full">
-                        <div className="flex flex-col gap-6 lg:flex-row lg:items-start lg:gap-8">
-                          <div className="flex-1">
-                            <h3 className="font-semibold text-body-mobile md:text-body text-slate-900">
-                              {caseItem.title}
-                            </h3>
-                            <div className="mt-4 space-y-3 text-small text-muted-foreground leading-relaxed">
-                              <div>
-                                <span className="font-semibold text-foreground">Задача: </span>
-                                {caseItem.task}
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">Что сделали: </span>
-                                {caseItem.actions}
-                              </div>
-                              <div>
-                                <span className="font-semibold text-foreground">Результат: </span>
-                                {caseItem.result}
-                              </div>
-                            </div>
-                            {!hasDecision && (
-                              <div className="mt-6">
-                                <Button
-                                  asChild
-                                  size="lg"
-                                  variant="outline"
-                                  className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
-                                >
-                                  <Link to={`/cases/${caseItem.slug}`}>Подробнее о кейсе</Link>
-                                </Button>
-                              </div>
-                            )}
-                          </div>
-                          {hasDecision && (
-                            <div className="w-full lg:w-[52%] lg:max-w-[600px]">
-                              <div className="rounded-[12px] border border-[#E6DDCC] bg-[#F8F4EA] p-4">
-                                <div className="text-sm font-semibold text-slate-900">Решение суда</div>
-                                <div className="mt-3 rounded-[10px] border border-[#E6DDCC] bg-white p-2">
-                                  <img
-                                    src={decisionPreview}
-                                    alt={`Решение суда: ${caseItem.title}`}
-                                    className="max-h-[640px] w-full object-contain"
-                                    loading="lazy"
-                                  />
-                                </div>
-                                <div className="mt-4">
-                                  <Button
-                                    asChild
-                                    size="lg"
-                                    variant="outline"
-                                    className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
-                                  >
-                                    <Link to={`/cases/${caseItem.slug}`}>Подробнее о кейсе</Link>
-                                  </Button>
-                                </div>
-                              </div>
-                            </div>
-                          )}
-                        </div>
-                      </CardContent>
-                    </Card>
-                  );
-                })}
+              <div className="mt-10 text-center text-muted-foreground space-y-2">
+                <p>Сопровождение осуществляется адвокатами коллегии.</p>
+                <p>В зависимости от сложности дела к работе могут привлекаться профильные специалисты.</p>
+                <p>
+                  Ваше дело ведет конкретный адвокат, лично участвующий в судебных заседаниях и формирующий правовую
+                  позицию.
+                </p>
+                <p>
+                  Первый шаг — <span className="text-slate-900 font-semibold">консультация по телефону.</span>
+                </p>
               </div>
+              <div className="mt-7 flex justify-center">
+                <Button
+                  asChild
+                  size="lg"
+                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                >
+                  <a href={callHref}>Позвонить адвокату</a>
+                </Button>
+              </div>
+              <p className="mt-2 text-small text-muted-foreground text-center">Коротко разберем вашу ситуацию и оценим перспективы защиты</p>
             </div>
-          )}
-        </>
-      }
-    />
+          </section>
+        )}
+
+        <section className="section bg-muted/30">
+          <div className="container">
+            <div className="section__header max-w-4xl mx-auto text-center">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Отзывы клиентов</h2>
+              <p className="text-muted-foreground">
+                Мы понимаем, что наследственные споры часто связаны с семейными конфликтами и сильным эмоциональным
+                напряжением. Ниже — мнения доверителей, которые прошли этот процесс вместе с нами.
+              </p>
+            </div>
+            <div className="mt-6 flex justify-center">
+              <iframe
+                src={`https://yandex.ru/sprav/widget/rating-badge/${yandexOrgId}?type=rating`}
+                width="150"
+                height="50"
+                frameBorder="0"
+                title="Рейтинг Профзащита в Яндекс.Картах"
+                className="max-w-full"
+              ></iframe>
+            </div>
+            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
+              {reviews.map((review) => (
+                <Card key={review.name} className="h-full">
+                  <CardContent className="pt-6 h-full flex flex-col">
+                    <div className="flex items-center justify-between gap-3 mb-4">
+                      <span className="text-[16px] font-semibold text-slate-900">{review.name}</span>
+                      <div className="flex items-center gap-1 text-accent">
+                        {Array.from({ length: review.rating }).map((_, index) => (
+                          <span key={`${review.name}-${index}`}>★</span>
+                        ))}
+                      </div>
+                    </div>
+                    <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
+                  </CardContent>
+                </Card>
+              ))}
+            </div>
+            <div className="mt-8 text-center text-muted-foreground">
+              Вы можете задать свой вопрос по телефону и понять перспективы именно по вашей ситуации.
+            </div>
+            <div className="mt-6 flex justify-center">
+              <a
+                href={callHref}
+                className="inline-flex items-center gap-2 text-[20px] font-semibold text-slate-900 hover:text-accent"
+              >
+                <Phone className="h-6 w-6 text-accent" />
+                <span>Обсудить ситуацию по телефону: {SITE.phone}</span>
+              </a>
+            </div>
+          </div>
+        </section>
+
+        <section className="section">
+          <div className="container">
+            <div className="section__header max-w-4xl mx-auto text-center">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                Почему нам доверяют ведение наследственных споров
+              </h2>
+              <p className="text-muted-foreground">
+                Наследственные споры требуют точной правовой позиции и аккуратной работы с доказательствами. Мы
+                выстраиваем защиту системно — от анализа документов до исполнения судебного решения.
+              </p>
+            </div>
+            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-7">
+              {whyTrustItems.map((item) => {
+                const Icon = item.icon;
+                return (
+                  <div key={item.title} className="text-center px-3">
+                    <div className="mx-auto h-14 w-14 flex items-center justify-center">
+                      <Icon className="h-10 w-10 text-accent" strokeWidth={1.6} />
+                    </div>
+                    <h3 className="mt-4 text-[15px] md:text-[16px] font-semibold text-slate-900">{item.title}</h3>
+                    <p className="mt-2 text-[13px] md:text-[14px] text-slate-600 leading-relaxed">{item.description}</p>
+                  </div>
+                );
+              })}
+            </div>
+            <div className="mt-10 text-center text-muted-foreground space-y-2">
+              <p>Перед началом работы важно проанализировать документы и фактические обстоятельства дела.</p>
+              <p>
+                Первый шаг — <span className="text-slate-900 font-semibold">консультация и оценка перспектив.</span>
+              </p>
+            </div>
+            <div className="mt-7 flex justify-center">
+              <Button
+                asChild
+                size="lg"
+                className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+              >
+                <a href={callHref}>Позвонить адвокату</a>
+              </Button>
+            </div>
+            <p className="mt-2 text-small text-muted-foreground text-center">Коротко разберем вашу ситуацию и оценим перспективы</p>
+          </div>
+        </section>
+
+        <section className="section bg-muted/30">
+          <div className="container">
+            <div className="section__header max-w-4xl mx-auto text-center">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                FAQ — Частые вопросы по наследственным делам
+              </h2>
+            </div>
+            <Accordion type="single" collapsible className="section__content max-w-5xl mx-auto space-y-4">
+              {faqItems.map((item, index) => (
+                <AccordionItem
+                  key={item.question}
+                  value={`faq-${index}`}
+                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+                >
+                  <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-muted-foreground pb-4">{item.answer}</AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+            <div className="mt-8 text-center space-y-4">
+              <p className="text-muted-foreground">
+                Обращение в суд без анализа документов может увеличить сроки и расходы.
+              </p>
+              <Button
+                asChild
+                size="lg"
+                className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-slate-900 shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+              >
+                <a href={callHref}>Позвонить и задать вопрос</a>
+              </Button>
+              <p className="text-small text-muted-foreground">Поможем понять перспективы спора до обращения в суд.</p>
+            </div>
+          </div>
+        </section>
+      </main>
+
+      <Footer />
+    </div>
   );
 };
 
