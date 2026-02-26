@@ -7,16 +7,16 @@ import { OrganizationSchema, WebSiteSchema, ReviewsSchema } from "@/components/J
 import { cases } from "@/data/cases";
 import { teamMembers } from "@/data/team";
 import {
-  Shield,
-  Target,
-  Award,
   Users,
   Phone,
   Mail,
   MapPin,
   Scale,
   Clock,
-  Star
+  Star,
+  FileText,
+  FileCheck,
+  FolderCheck
 } from "lucide-react";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Card, CardContent } from "@/components/ui/card";
@@ -95,32 +95,38 @@ const Index = () => {
   const advantages = [
     {
       title: "Стратегия под задачу",
-      description: "Не обещаем невозможного — вы получаете честную оценку перспектив.",
-      icon: Target
+      description:
+        "Каждое дело анализируется до начала активной стадии. Правовая позиция формируется с учетом судебной практики и процессуальных рисков.",
+      icon: FileText
     },
     {
       title: "Сильная судебная практика",
-      description: "Готовим позицию так, чтобы выдержать проверку в суде.",
+      description:
+        "Практика представительства в судах различных юрисдикций и инстанций. Опыт ведения дел повышенной сложности.",
       icon: Scale
     },
     {
-      title: "Ответственный подход",
-      description: "Фиксируем сроки, этапы и держим в курсе каждого решения.",
-      icon: Shield
-    },
-    {
-      title: "Опыт в сложных делах",
-      description: "Работаем с конфликтами высокой сложности и ставки.",
-      icon: Award
-    },
-    {
       title: "Команда, а не один адвокат",
-      description: "К делу подключаются профильные специалисты.",
+      description:
+        "По сложным делам формируется рабочая группа профильных специалистов. Коллегиальный формат позволяет учитывать все существенные аспекты правовой позиции.",
       icon: Users
     },
     {
-      title: "Быстрый старт",
-      description: "Срочные консультации и подключение к делу в сжатые сроки.",
+      title: "Внутренний стандарт качества",
+      description:
+        "Каждая правовая позиция проходит внутреннюю проверку перед совершением ключевых процессуальных действий.",
+      icon: FileCheck
+    },
+    {
+      title: "Ответственный подход",
+      description:
+        "Фиксируем этапы работы, сроки и стратегию защиты. Клиент информирован о ходе дела и возможных процессуальных сценариях.",
+      icon: FolderCheck
+    },
+    {
+      title: "Быстрое подключение к делу",
+      description:
+        "Оперативное подключение к делу — от первичной консультации до судебного представительства и последующего сопровождения исполнения решения.",
       icon: Clock
     }
   ];
@@ -165,36 +171,64 @@ const Index = () => {
   ];
 
   const featuredCaseSlugs = [
-    "kompensaciya-moralnogo-vreda-oskorblenie-neprilichnyj-zhest-vologda-2024",
-    "vzyskanie-zadolzhennosti-dkp-kvartiry-vologda-apellyaciya-33-5318-2024",
+    "prekrashhenie-ugolovnogo-dela-moshennichestvo-primirenie-159-uk-rf",
+    "izmenenie-mery-111-domashnij-arest",
+    "zpp-tushinskiy-sk-soglasie-2-1636-2019",
     "razdel-imushchestva-nedeistv-sdelki-perovo-2-2621-2025",
-    "zpp-nikulinsky-mirovoe-tehno-lab-2-4243-2025"
+    "a40-76521-2017-reshenie-20171003",
+    "arbitrazh-povarova-isklyuchenie-zhilya-iz-konkursnoj-massy"
   ];
   const featuredCases = featuredCaseSlugs
     .map((slug) => cases.find((caseItem) => caseItem.slug === slug))
     .filter((caseItem): caseItem is (typeof cases)[number] => Boolean(caseItem));
   const featuredTeam = teamMembers.slice(0, 4);
 
+  const workflowSteps = [
+    {
+      title: "Анализ ситуации",
+      description: "Изучаем документы, обстоятельства дела и позиции сторон. Оцениваем правовые основания и перспективы"
+    },
+    {
+      title: "Формирование стратегии",
+      description: "Определяем правовую позицию и тактику защиты. Согласовываем план действий"
+    },
+    {
+      title: "Подготовка доказательств",
+      description: "Формируем доказательственную базу, готовим процессуальные документы, при необходимости инициируем экспертизы"
+    },
+    {
+      title: "Представительство в суде",
+      description: "Представляем интересы клиента в суде, участвуем в заседаниях и заявляем необходимые процессуальные ходатайства"
+    },
+    {
+      title: "Обжалование",
+      description: "При необходимости подготавливаем апелляционные и кассационные жалобы и сопровождаем рассмотрение дела"
+    },
+    {
+      title: "Контроль исполнения",
+      description: "Сопровождаем исполнение судебного решения и дальнейшие юридические действия"
+    }
+  ];
   const faqItems = [
     {
       question: "С чего начинается работа с адвокатом?",
-      answer: "С короткой консультации: оцениваем ситуацию, документы и предлагаем план действий."
+      answer: "С первичной консультации: анализируем документы и формируем понятный план действий по вашему вопросу."
     },
     {
       question: "Можно ли получить консультацию в день обращения?",
-      answer: "Да, мы организуем консультацию в день обращения, особенно по срочным вопросам."
+      answer: "Да. По большинству запросов организуем консультацию в день обращения."
     },
     {
-      question: "Какие документы нужны для старта?",
-      answer: "Базовые материалы по делу, переписка, договоры, судебные документы — всё, что есть у вас на руках."
+      question: "Какие документы нужны для начала работы?",
+      answer: "Базовый набор: договоры, переписка, судебные документы и иные материалы по делу. Точный список уточняем на консультации."
     },
     {
       question: "Работаете ли вы по Московской области?",
-      answer: "Да, ведём дела в Москве и Московской области, при необходимости выезжаем в другие регионы."
+      answer: "Да, ведем дела в Москве и Московской области."
     },
     {
-      question: "Сколько времени занимает анализ дела?",
-      answer: "Как правило, первичный анализ занимает 1–2 дня после получения документов."
+      question: "Сколько длится наследственный спор?",
+      answer: "Срок зависит от сложности и позиции сторон. После анализа документов даем реалистичный прогноз по этапам и срокам."
     }
   ];
 
@@ -202,6 +236,12 @@ const Index = () => {
     if (text.length <= max) return text;
     return `${text.slice(0, max).trim()}…`;
   };
+  const formatCaseDate = (isoDate: string) =>
+    new Intl.DateTimeFormat("ru-RU", {
+      day: "numeric",
+      month: "long",
+      year: "numeric"
+    }).format(new Date(isoDate));
 
   const heroBadge = "Коллегия адвокатов города Москвы";
 
@@ -252,7 +292,7 @@ const Index = () => {
             <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-accent mb-6 leading-tight">
               Решаем сложные юридические споры
             </h1>
-            <p className="text-white text-[20px] sm:text-[24px] md:text-[32px] font-semibold leading-[1.15] mb-8">
+            <p className="text-white text-[18px] sm:text-[22px] md:text-[26px] font-semibold leading-[1.2] mb-8">
               В интересах физических и юридических лиц
               <br />
               {heroBadge}
@@ -295,7 +335,7 @@ const Index = () => {
                       key={section.title}
                       type="button"
                       onClick={() => setActiveNavigationTitle(section.title)}
-                      className={`rounded-t-[10px] border border-[#C9A227] px-4 md:px-5 py-2 text-[20px] md:text-[30px] font-semibold leading-none transition-colors ${
+                      className={`rounded-t-[10px] border border-[#C9A227] px-4 md:px-5 py-2 text-[18px] md:text-[22px] font-semibold leading-none transition-colors ${
                         isActive
                           ? "bg-[#C9A227] text-slate-900"
                           : "bg-transparent text-slate-900 hover:bg-[#f6efdb]"
@@ -312,7 +352,7 @@ const Index = () => {
                   {activeNavigationColumns.map((column, columnIndex) => (
                     <ul key={columnIndex} className="space-y-4 md:space-y-5">
                       {column.map((item) => (
-                        <li key={item.label} className="relative pl-6 text-[16px] sm:text-[18px] md:text-[20px] text-slate-900">
+                        <li key={item.label} className="relative pl-6 text-[16px] sm:text-[17px] md:text-[18px] text-slate-900">
                           <span
                             aria-hidden="true"
                             className="absolute left-0 top-[0.52em] h-2 w-2 rounded-full bg-slate-900"
@@ -355,87 +395,110 @@ const Index = () => {
         </section>
 
         {/* Advantages Section */}
-        <section className="section bg-muted/30">
-          <div className="container">
-            <div className="section__header max-w-3xl mx-auto text-center">
+        <section className="section bg-background">
+          <div className="container max-w-[1180px]">
+            <div className="section__header max-w-4xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
-                Почему выбирают нас
+                Почему коллегии доверяют сложные дела
               </h2>
               <p className="text-body-mobile md:text-body text-muted-foreground">
-                Коротко о том, что получает клиент на старте и в процессе работы.
+                Работаем системно, стратегически и с пониманием процессуальных рисков
               </p>
             </div>
 
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="section__content mt-14 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-y-16 gap-x-12">
               {advantages.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <Card key={item.title} className="border-border hover:shadow-elegant transition-all">
-                    <CardContent className="pt-6">
-                      <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-4">
-                        <Icon className="h-6 w-6 text-accent" />
-                      </div>
-                      <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">
-                        {item.title}
-                      </h3>
-                      <p className="text-small text-muted-foreground">
-                        {item.description}
-                      </p>
-                    </CardContent>
-                  </Card>
+                  <div key={item.title} className="px-2 md:px-3 text-center">
+                    <div className="mx-auto mb-6 flex h-16 w-16 items-center justify-center">
+                      <Icon className="h-11 w-11 text-accent" strokeWidth={1.6} />
+                    </div>
+                    <h3 className="text-[20px] md:text-[22px] leading-tight font-semibold text-foreground mb-4">
+                      {item.title}
+                    </h3>
+                    <p className="mx-auto max-w-[330px] text-left text-body-mobile md:text-body leading-relaxed text-muted-foreground">
+                      {item.description}
+                    </p>
+                  </div>
                 );
               })}
             </div>
+            <div className="mt-20 text-center text-[20px] md:text-[26px] font-semibold text-foreground">
+              Если ситуация требует взвешенного правового решения — обсудите ее с адвокатом
+            </div>
+            <div className="mt-8 flex justify-center">
+              <Link to="/kontakty#contacts">
+                <Button
+                  size="lg"
+                  className="h-auto min-h-14 w-[280px] whitespace-normal px-8 py-3 leading-tight bg-accent text-white hover:bg-accent/90"
+                >
+                  Обсудить ситуацию по телефону
+                </Button>
+              </Link>
+            </div>
+            <p className="mt-3 text-small text-center text-muted-foreground">Кратко разберем вашу ситуацию и оценим перспективы</p>
           </div>
         </section>
 
         {/* Practice / Results */}
         <section className="section">
-          <div className="container">
+          <div className="container max-w-[1280px]">
             <div className="section__header max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
-                Практика / Результаты
+                Судебная практика коллегии
               </h2>
               <p className="text-body-mobile md:text-body text-muted-foreground">
-                Реальные судебные дела из нашей практики с подтверждёнными результатами.
+                Результаты по уголовным, гражданским и арбитражным делам
               </p>
             </div>
 
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="section__content mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
               {featuredCases.map((caseItem) => {
                 const decisionPreview = caseItem.documents?.[0];
 
                 return (
-                  <Card key={caseItem.id} className="border-border hover:shadow-elegant transition-all h-full flex flex-col">
-                    <CardContent className="pt-6 flex flex-col h-full">
-                      <div className="text-small text-muted-foreground mb-2">
+                  <Card
+                    key={caseItem.id}
+                    className="relative border-[#C9A227] bg-[#f3efe4] hover:shadow-elegant transition-all h-full flex flex-col overflow-visible"
+                  >
+                    <CardContent className="pt-10 px-7 pb-7 flex flex-col h-full">
+                      <div className="text-[18px] font-semibold leading-snug text-foreground">
                         {caseItem.category}
                       </div>
-                      <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-3">
+                      <div className="text-[16px] text-foreground/80 mb-5">{formatCaseDate(caseItem.datePublished)} г.</div>
+                      <h3 className="text-[20px] md:text-[22px] leading-tight font-semibold mb-5 text-foreground">
                         {caseItem.title}
                       </h3>
 
-                      {decisionPreview ? (
-                        <div className="mb-4 overflow-hidden rounded-xl border border-border bg-white">
+                      <p className="text-[16px] leading-relaxed text-foreground/90">
+                        <span className="font-semibold text-foreground">Ситуация:</span>
+                        <br />
+                        {truncateText(caseItem.task, 220)}
+                      </p>
+                      <p className="mt-4 text-[16px] leading-relaxed text-foreground/90">
+                        <span className="font-semibold text-foreground">Результат:</span>
+                        <br />
+                        {truncateText(caseItem.result, 210)}
+                      </p>
+
+                      <div className="absolute -top-5 right-6 h-[140px] w-[118px] overflow-hidden border border-[#bfbfbf] bg-white shadow-sm">
+                        {decisionPreview ? (
                           <img
                             src={decisionPreview}
                             alt={`Скан решения по делу: ${caseItem.title}`}
-                            className="h-[200px] w-full object-contain"
+                            className="h-full w-full object-cover"
                             loading="lazy"
                           />
-                        </div>
-                      ) : (
-                        <div className="mb-4 h-[200px] w-full rounded-xl border border-border bg-muted/30 flex items-center justify-center text-small text-muted-foreground">
-                          Скан решения скоро будет добавлен
-                        </div>
-                      )}
+                        ) : (
+                          <div className="h-full w-full flex items-center justify-center text-center text-[14px] text-muted-foreground px-3">
+                            Скан решения
+                          </div>
+                        )}
+                      </div>
 
-                      <p className="text-small text-muted-foreground leading-relaxed">
-                        {truncateText(caseItem.result)}
-                      </p>
-
-                      <div className="mt-auto pt-5">
-                        <Button size="sm" asChild>
+                      <div className="mt-auto pt-8 flex justify-center">
+                        <Button size="lg" className="min-w-[190px] bg-accent text-white hover:bg-accent/90" asChild>
                           <Link to={`/keisy#${caseItem.slug}`}>Перейти к кейсу</Link>
                         </Button>
                       </div>
@@ -445,87 +508,107 @@ const Index = () => {
               })}
             </div>
 
-            <div className="text-center mt-10">
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/keisy">Все кейсы →</Link>
-              </Button>
+            <div className="mt-14 text-center text-body-mobile md:text-body text-muted-foreground">
+              Если вы столкнулись с похожей проблемой — проанализируем обстоятельства и выстроим стратегию защиты
             </div>
+            <div className="mt-8 flex justify-center">
+              <Link to="/kontakty#contacts">
+                <Button
+                  size="lg"
+                  className="h-auto min-h-14 w-[280px] whitespace-normal px-8 py-3 leading-tight bg-accent text-white hover:bg-accent/90"
+                >
+                  Обсудить ситуацию по телефону
+                </Button>
+              </Link>
+            </div>
+            <p className="mt-10 text-center text-body-mobile md:text-body text-muted-foreground">
+              Результаты подтверждаются не только судебными актами, но и отзывами клиентов
+            </p>
           </div>
         </section>
 
         {/* Testimonials Section */}
-        <section id="reviews" className="section bg-muted/30">
-          <div className="container">
-            <div className="section__header max-w-3xl mx-auto text-center">
-              <div className="flex flex-col items-center gap-4 md:flex-row md:justify-center md:gap-6">
-                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold text-center">
-                  Отзывы клиентов
-                </h2>
+        <section id="reviews" className="section bg-background">
+          <div className="container max-w-[1280px]">
+            <div className="section__header max-w-4xl mx-auto text-center">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
+                Отзывы клиентов о работе коллегии
+              </h2>
+              <p className="text-body-mobile md:text-body text-muted-foreground">
+                Мы не раскрываем персональные данные клиентов. Отзывы публикуются с их согласия
+              </p>
+              <div className="mt-6 flex justify-center">
                 <div className="max-w-full overflow-hidden">
                   <iframe src="https://yandex.ru/sprav/widget/rating-badge/244880896695?type=rating" width="150" height="50" frameborder="0"></iframe>
                 </div>
               </div>
-              <p className="text-body-mobile md:text-body text-muted-foreground mt-4">
-                Реальные отзывы клиентов о качестве нашей юридической помощи.
-              </p>
             </div>
 
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            <div className="section__content mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-8">
               {testimonials.map((testimonial, index) => (
-                <Card key={`${testimonial.nameShort}-${index}`} className="border-border h-full">
-                  <CardContent className="pt-6 h-full flex flex-col">
-                    <div className="flex items-start justify-between gap-4 mb-4">
+                <Card
+                  key={`${testimonial.nameShort}-${index}`}
+                  className="h-full border-[#c7ccd4] rounded-none bg-background shadow-none"
+                >
+                  <CardContent className="pt-6 px-5 pb-5 h-full flex flex-col">
+                    <div className="flex items-center justify-between gap-4">
                       <div className="flex items-center gap-1 text-accent">
                         {[...Array(testimonial.rating)].map((_, starIndex) => (
-                          <Star key={starIndex} className="h-4 w-4 fill-current" />
+                          <Star key={starIndex} className="h-5 w-5 fill-current" />
                         ))}
                       </div>
-                      <p className="text-small text-muted-foreground">
+                      <p className="text-[16px] text-muted-foreground whitespace-nowrap">
                         {testimonial.dateText}
                       </p>
                     </div>
-                    <blockquote className="text-small text-muted-foreground italic mb-4 leading-relaxed">
-                      “{testimonial.text}”
-                    </blockquote>
-                    <div className="border-t border-border pt-4 mt-auto">
-                      <p className="text-small font-semibold">{testimonial.nameShort}</p>
+
+                    <p className="mt-4 text-[16px] leading-relaxed text-foreground/90">
+                      {testimonial.text}
+                    </p>
+
+                    <div className="border-t border-[#c7ccd4] pt-4 mt-auto">
+                      <p className="text-[16px] font-semibold text-foreground">{testimonial.nameShort}</p>
                     </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
 
-            <div className="text-center mt-10">
-              <Button asChild size="lg" className="px-6">
-                <a
-                  href="https://yandex.ru/maps/org/244880896695/reviews/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  Смотреть все отзывы на Яндекс.Картах
-                </a>
-              </Button>
+            <p className="mt-16 text-center text-body-mobile md:text-body text-foreground">
+              Обсудите вашу ситуацию напрямую с адвокатом коллегии
+            </p>
+            <div className="mt-6 flex justify-center">
+              <Link
+                to="/kontakty#contacts"
+                className="inline-flex items-center gap-3 text-[20px] md:text-[26px] font-semibold text-foreground hover:text-accent transition-colors"
+              >
+                <Phone className="h-8 w-8 md:h-10 md:w-10 text-accent" />
+                +7 (495) 004-01-96
+              </Link>
             </div>
           </div>
         </section>
 
         {/* Team Section */}
         <section id="team" className="section">
-          <div className="container">
-            <div className="section__header max-w-3xl mx-auto text-center">
+          <div className="container max-w-[1380px]">
+            <div className="section__header max-w-5xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
-                Команда
+                Команда коллегии адвокатов
               </h2>
               <p className="text-body-mobile md:text-body text-muted-foreground">
-                Профессионалы, которые ведут дела доверителей по ключевым направлениям.
+                Коллегиальный формат работы позволяет формировать стратегию с учетом разных правовых позиций и судебной практики
               </p>
             </div>
 
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            <div className="section__content mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-7">
               {featuredTeam.map((member) => (
-                <Card key={member.slug} className="border-border hover:shadow-elegant transition-all h-full">
-                  <CardContent className="pt-6 flex flex-col h-full">
-                    <div className="w-24 h-24 rounded-xl overflow-hidden mb-4 border border-border">
+                <Card
+                  key={member.slug}
+                  className="h-full border-[#C9A227] bg-[#f3f4f6] hover:shadow-elegant transition-all overflow-hidden"
+                >
+                  <CardContent className="p-0 flex flex-col h-full">
+                    <div className="h-[345px] w-full overflow-hidden border-b border-[#C9A227]">
                       <img
                         src={member.photo}
                         alt={member.name}
@@ -533,53 +616,137 @@ const Index = () => {
                         loading="lazy"
                       />
                     </div>
-                    <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2">
-                      {member.name}
-                    </h3>
-                    <p className="text-small text-muted-foreground mb-3">{member.role}</p>
-                    {member.experienceText && (
-                      <p className="text-small text-muted-foreground mb-4">{member.experienceText}</p>
-                    )}
-                    <ul className="space-y-2 text-small text-muted-foreground">
-                      {(member.specializations ?? []).slice(0, 2).map((spec) => (
-                        <li key={spec}>• {spec}</li>
-                      ))}
-                    </ul>
+                    <div className="px-6 pt-7 pb-6 flex flex-col h-full">
+                      <h3 className="font-serif text-[20px] leading-tight font-semibold text-center min-h-[62px] mb-4">
+                        {member.name}
+                      </h3>
+
+                      <div className="mx-auto mb-4 rounded-full bg-accent px-5 py-1 text-[17px] font-semibold text-white leading-none">
+                        {member.role.toLowerCase().includes("юрист") ? "Юрист" : "Адвокат"}
+                      </div>
+
+                      <p className="text-[16px] text-center text-foreground mb-2">
+                        {member.role}
+                      </p>
+                      {member.experienceText && (
+                        <p className="text-[16px] text-center text-muted-foreground mb-5">{member.experienceText}</p>
+                      )}
+
+                      <ul className="space-y-2.5 text-[16px] leading-relaxed text-foreground/90">
+                        {(member.specializations ?? []).slice(0, 3).map((spec) => (
+                          <li key={spec} className="flex items-start gap-2">
+                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/90 shrink-0" />
+                            <span>{spec}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </CardContent>
                 </Card>
               ))}
             </div>
 
-            <div className="text-center mt-10">
-              <Button variant="outline" size="lg" asChild>
-                <Link to="/o-kollegii#team">Смотреть всю команду →</Link>
+            <p className="mt-14 text-center text-body-mobile md:text-body text-muted-foreground">
+              Сложные дела ведутся командой профильных адвокатов с учетом судебной практики и процессуальных рисков
+            </p>
+
+            <div className="text-center mt-8">
+              <Button size="lg" className="h-auto min-h-14 w-[290px] whitespace-normal px-8 py-3 leading-tight bg-accent text-white hover:bg-accent/90" asChild>
+                <Link to="/o-kollegii#team">Посмотреть всю команду</Link>
               </Button>
             </div>
           </div>
         </section>
 
-        {/* FAQ Section */}
+        {/* Workflow Section */}
         <section className="section">
-          <div className="container">
-            <div className="max-w-3xl mx-auto">
-              <div className="section__header text-center">
-                <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
-                  Короткий FAQ
-                </h2>
-              </div>
+          <div className="container max-w-[1280px]">
+            <div className="section__header max-w-4xl mx-auto text-center">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
+                Как организована работа по вашему делу
+              </h2>
+              <p className="text-body-mobile md:text-body text-muted-foreground">
+                Каждое дело ведется системно — с анализом, стратегией и контролем ключевых этапов
+              </p>
+            </div>
 
-              <Accordion type="single" collapsible className="section__content space-y-4">
-                {faqItems.map((item, index) => (
-                  <AccordionItem key={item.question} value={`faq-${index}`} className="bg-card border border-border rounded-xl px-6">
-                    <AccordionTrigger className="faq-question text-left hover:text-accent">
-                      {item.question}
-                    </AccordionTrigger>
-                    <AccordionContent className="text-muted-foreground">
-                      {item.answer}
-                    </AccordionContent>
-                  </AccordionItem>
-                ))}
-              </Accordion>
+            <div className="section__content mt-12 space-y-6">
+              {workflowSteps.map((step, index) => (
+                <div key={step.title} className="border-y border-border/90 px-2 py-4 md:px-10 md:py-5">
+                  <div className="flex items-start gap-4 md:gap-6">
+                    <div className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#d7d2c6] bg-[#f2efe8] text-[24px] font-semibold leading-none text-accent md:h-14 md:w-14">
+                      {index + 1}
+                    </div>
+                    <div className="pt-1">
+                      <h3 className="text-[20px] md:text-[24px] font-semibold leading-tight text-foreground">
+                        {step.title}
+                      </h3>
+                      <p className="mt-2 text-body-mobile md:text-body leading-relaxed text-muted-foreground">
+                        {step.description}
+                      </p>
+                    </div>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <p className="mt-14 text-center text-[18px] md:text-[22px] font-medium text-foreground">
+              Понимание последовательности действий позволяет выстроить защиту системно и снизить процессуальные риски.
+              <br />
+              Первый шаг — профессиональная оценка вашей ситуации
+            </p>
+
+            <div className="mt-10 flex justify-center">
+              <Link
+                to="/kontakty#contacts"
+                className="inline-flex items-center gap-3 text-[20px] md:text-[24px] font-semibold text-foreground hover:text-accent transition-colors"
+              >
+                <Phone className="h-8 w-8 md:h-10 md:w-10 text-accent" />
+                Обсудить ситуацию по телефону: +7 (495) 004-01-96
+              </Link>
+            </div>
+          </div>
+        </section>
+
+        {/* FAQ Section */}
+        <section className="section bg-background">
+          <div className="container max-w-[1120px]">
+            <div className="section__header max-w-3xl mx-auto text-center">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">Короткий FAQ</h2>
+            </div>
+
+            <Accordion type="single" collapsible className="section__content mt-8 space-y-2.5">
+              {faqItems.map((item, index) => (
+                <AccordionItem
+                  key={item.question}
+                  value={`faq-${index}`}
+                  className="rounded-none border border-[#d4d8de] bg-muted/30 px-6"
+                >
+                  <AccordionTrigger className="faq-question text-left text-[18px] md:text-[22px] font-semibold hover:text-accent [&>svg]:text-accent">
+                    {item.question}
+                  </AccordionTrigger>
+                  <AccordionContent className="text-body-mobile md:text-body leading-relaxed text-muted-foreground">
+                    {item.answer}
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
+
+            <div className="mt-20 text-center">
+              <p className="text-[20px] md:text-[26px] text-foreground">Остались вопросы?</p>
+              <p className="mt-2 text-body-mobile md:text-body text-muted-foreground">
+                Обсудите вашу ситуацию напрямую с адвокатом коллегии
+              </p>
+              <div className="mt-8">
+                <Button
+                  size="lg"
+                  className="h-auto min-h-14 w-[300px] whitespace-normal px-8 py-3 leading-tight bg-accent text-white hover:bg-accent/90"
+                  asChild
+                >
+                  <Link to="/kontakty#contacts">Обсудить ситуацию по телефону</Link>
+                </Button>
+              </div>
+              <p className="mt-3 text-small text-muted-foreground">Разговор не обязывает к заключению договора</p>
             </div>
           </div>
         </section>
