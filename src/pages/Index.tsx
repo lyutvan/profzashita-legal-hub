@@ -852,12 +852,13 @@ const Index = () => {
                     </div>
                     <div className="pt-3">
                       <iframe
-                        src="https://yandex.ru/sprav/widget/rating-badge/244880896695?type=rating"
-                        width="150"
-                        height="50"
+                        src="https://yandex.ru/map-widget/v1/?ll=37.540000%2C55.870000&z=16&mode=search&text=Москва%2C%20ул.%20Дегунинская%2C%20д.1%2C%20к.2"
+                        width="100%"
+                        height="300"
                         frameBorder="0"
-                        title="Рейтинг Профзащита в Яндекс.Картах"
-                        className="max-w-full"
+                        allowFullScreen
+                        title="Мы на карте Яндекс"
+                        className="w-full rounded-xl border border-[#e6d8ab]"
                       ></iframe>
                     </div>
                   </div>
