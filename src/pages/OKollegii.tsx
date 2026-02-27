@@ -182,7 +182,7 @@ const About = () => {
 
         {/* Team Section */}
         <TeamSection 
-          id="team"
+          id="about-team"
           title="Наша команда" 
           subtitle="Профессионалы с многолетним опытом в различных областях права"
         />

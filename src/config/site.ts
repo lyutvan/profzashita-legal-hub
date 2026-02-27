@@ -6,6 +6,11 @@ export const SITE = {
   ogImage: "https://prof-zashita.ru/og-cover.jpg",
   phone: "+7 (495) 004-01-96",
   phoneRaw: "+74950040196",
+  messengerPhone: "+7 (916) 859-76-54",
+  messengerPhoneRaw: "79168597654",
+  whatsappUrl: "https://wa.me/79168597654",
+  telegramUrl: "https://t.me/+79168597654",
+  maxUrl: "https://max.ru/+79168597654",
   email: "profzashchita@internet.ru",
   address: {
     country: "RU",

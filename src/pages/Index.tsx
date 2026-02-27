@@ -25,13 +25,16 @@ import courtColumnsImg from "@/assets/legal/court-columns.jpg";
 import { Helmet } from "react-helmet";
 import { SITE } from "@/config/site";
 import TelegramIcon from "@/components/icons/TelegramIcon";
-import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
+import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
+import MaxIcon from "@/components/icons/MaxIcon";
 import { getCategoriesForAudience } from "@/data/services-audiences";
 import { getPhysCategoryPagePath, getPhysServiceEntryBySlug } from "@/data/phys-service-content";
 
 const Index = () => {
   const navigate = useNavigate();
-  const { openQuickQuestionModal } = useQuickQuestionModal();
+  const whatsappUrl = SITE.whatsappUrl;
+  const telegramUrl = SITE.telegramUrl;
+  const maxUrl = SITE.maxUrl;
   const physCategoryItems = getCategoriesForAudience("phys")
     .filter((category) => category.title !== "Ущерб имуществу")
     .map((category) => {
@@ -181,7 +184,60 @@ const Index = () => {
   const featuredCases = featuredCaseSlugs
     .map((slug) => cases.find((caseItem) => caseItem.slug === slug))
     .filter((caseItem): caseItem is (typeof cases)[number] => Boolean(caseItem));
-  const featuredTeam = teamMembers.slice(0, 4);
+  const featuredTeamOverrides: Record<
+    string,
+    {
+      badge: string;
+      subtitle: string;
+      experience: string;
+      specializations: string[];
+    }
+  > = {
+    lyutikov: {
+      badge: "Адвокат",
+      subtitle: "Председатель коллегии",
+      experience: "Стаж 26 лет",
+      specializations: [
+        "Уголовные дела общей и экономической направленности",
+        "Представительство в арбитражных судах",
+        "Корпоративные споры и субсидиарная ответственность"
+      ]
+    },
+    ryzhenko: {
+      badge: "Юрист",
+      subtitle: "Помощник председателя коллегии",
+      experience: "Стаж 23 года",
+      specializations: [
+        "Корпоративные и договорные споры",
+        "Сопровождение наследственных дел",
+        "Подготовка правовых позиций по сложным категориям споров"
+      ]
+    },
+    sotnikov: {
+      badge: "Адвокат",
+      subtitle: "Адвокат",
+      experience: "Стаж 15 лет",
+      specializations: [
+        "Уголовные дела экономической направленности",
+        "Защита на стадии следствия и суда",
+        "Досудебное урегулирование и переговоры"
+      ]
+    },
+    vaskovsky: {
+      badge: "Адвокат",
+      subtitle: "Адвокат",
+      experience: "Стаж 15 лет",
+      specializations: [
+        "Семейные и наследственные споры",
+        "Административные дела",
+        "Представительство в судах различных инстанций"
+      ]
+    }
+  };
+
+  const featuredTeam = ["lyutikov", "ryzhenko", "sotnikov", "vaskovsky"]
+    .map((slug) => teamMembers.find((member) => member.slug === slug))
+    .filter((member): member is (typeof teamMembers)[number] => Boolean(member));
 
   const workflowSteps = [
     {
@@ -212,23 +268,23 @@ const Index = () => {
   const faqItems = [
     {
       question: "С чего начинается работа с адвокатом?",
-      answer: "С первичной консультации: анализируем документы и формируем понятный план действий по вашему вопросу."
+      answer: "Работа начинается с краткой консультации. Мы оцениваем ситуацию, изучаем документы и предлагаем возможный план действий."
     },
     {
       question: "Можно ли получить консультацию в день обращения?",
-      answer: "Да. По большинству запросов организуем консультацию в день обращения."
+      answer: "Да, мы организуем консультацию в день обращения, особенно по срочным вопросам."
     },
     {
       question: "Какие документы нужны для начала работы?",
-      answer: "Базовый набор: договоры, переписка, судебные документы и иные материалы по делу. Точный список уточняем на консультации."
+      answer: "Базовые материалы по делу: переписка, договоры, судебные документы — всё, что есть у вас на руках."
     },
     {
       question: "Работаете ли вы по Московской области?",
-      answer: "Да, ведем дела в Москве и Московской области."
+      answer: "Да, ведем дела в Москве и Московской области, при необходимости выезжаем в другие регионы."
     },
     {
       question: "Сколько длится наследственный спор?",
-      answer: "Срок зависит от сложности и позиции сторон. После анализа документов даем реалистичный прогноз по этапам и срокам."
+      answer: "Как правило, первичный анализ занимает 1–2 дня после получения документов."
     }
   ];
 
@@ -303,7 +359,7 @@ const Index = () => {
               Работаем по делам, где важен результат
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/kontakty#contacts">
+              <Link to="/kontakty">
                 <Button size="lg" className="bg-accent text-white hover:bg-accent/90 px-8">
                   Обсудить ситуацию по телефону
                 </Button>
@@ -384,7 +440,7 @@ const Index = () => {
               Если ситуация требует отдельного анализа — обсудите ее с адвокатом по телефону
             </div>
             <div className="mt-8 flex justify-center">
-              <Link to="/kontakty#contacts">
+              <Link to="/kontakty">
                 <Button size="lg" className="bg-accent text-white hover:bg-accent/90 px-8">
                   Обсудить ситуацию по телефону
                 </Button>
@@ -424,11 +480,11 @@ const Index = () => {
                 );
               })}
             </div>
-            <div className="mt-20 text-center text-[20px] md:text-[26px] font-semibold text-foreground">
+            <div className="mt-20 text-center text-[18px] md:text-[22px] font-semibold text-foreground">
               Если ситуация требует взвешенного правового решения — обсудите ее с адвокатом
             </div>
             <div className="mt-8 flex justify-center">
-              <Link to="/kontakty#contacts">
+              <Link to="/kontakty">
                 <Button
                   size="lg"
                   className="h-auto min-h-14 w-[280px] whitespace-normal px-8 py-3 leading-tight bg-accent text-white hover:bg-accent/90"
@@ -460,9 +516,26 @@ const Index = () => {
                 return (
                   <Card
                     key={caseItem.id}
-                    className="relative border-[#C9A227] bg-[#f3efe4] hover:shadow-elegant transition-all h-full flex flex-col overflow-visible"
+                    className="border-[#C9A227] bg-[#f3efe4] hover:shadow-elegant transition-all h-full flex flex-col overflow-hidden"
                   >
-                    <CardContent className="pt-10 px-7 pb-7 flex flex-col h-full">
+                    <CardContent className="pt-7 px-7 pb-7 flex flex-col h-full">
+                      <div className="mb-6 flex justify-end">
+                        <div className="h-[156px] w-[128px] overflow-hidden border border-[#bfbfbf] bg-white shadow-sm">
+                          {decisionPreview ? (
+                            <img
+                              src={decisionPreview}
+                              alt={`Скан решения по делу: ${caseItem.title}`}
+                              className="h-full w-full object-contain p-1"
+                              loading="lazy"
+                            />
+                          ) : (
+                            <div className="h-full w-full flex items-center justify-center text-center text-[14px] text-muted-foreground px-3">
+                              Скан решения
+                            </div>
+                          )}
+                        </div>
+                      </div>
+
                       <div className="text-[18px] font-semibold leading-snug text-foreground">
                         {caseItem.category}
                       </div>
@@ -482,21 +555,6 @@ const Index = () => {
                         {truncateText(caseItem.result, 210)}
                       </p>
 
-                      <div className="absolute -top-5 right-6 h-[140px] w-[118px] overflow-hidden border border-[#bfbfbf] bg-white shadow-sm">
-                        {decisionPreview ? (
-                          <img
-                            src={decisionPreview}
-                            alt={`Скан решения по делу: ${caseItem.title}`}
-                            className="h-full w-full object-cover"
-                            loading="lazy"
-                          />
-                        ) : (
-                          <div className="h-full w-full flex items-center justify-center text-center text-[14px] text-muted-foreground px-3">
-                            Скан решения
-                          </div>
-                        )}
-                      </div>
-
                       <div className="mt-auto pt-8 flex justify-center">
                         <Button size="lg" className="min-w-[190px] bg-accent text-white hover:bg-accent/90" asChild>
                           <Link to={`/keisy#${caseItem.slug}`}>Перейти к кейсу</Link>
@@ -512,7 +570,7 @@ const Index = () => {
               Если вы столкнулись с похожей проблемой — проанализируем обстоятельства и выстроим стратегию защиты
             </div>
             <div className="mt-8 flex justify-center">
-              <Link to="/kontakty#contacts">
+              <Link to="/kontakty">
                 <Button
                   size="lg"
                   className="h-auto min-h-14 w-[280px] whitespace-normal px-8 py-3 leading-tight bg-accent text-white hover:bg-accent/90"
@@ -528,7 +586,7 @@ const Index = () => {
         </section>
 
         {/* Testimonials Section */}
-        <section id="reviews" className="section bg-background">
+        <section id="reviews" className="section bg-[#F8FAFC]">
           <div className="container max-w-[1280px]">
             <div className="section__header max-w-4xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
@@ -548,16 +606,16 @@ const Index = () => {
               {testimonials.map((testimonial, index) => (
                 <Card
                   key={`${testimonial.nameShort}-${index}`}
-                  className="h-full border-[#c7ccd4] rounded-none bg-background shadow-none"
+                  className="h-full rounded-[14px] border border-[#C9A227] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
                 >
-                  <CardContent className="pt-6 px-5 pb-5 h-full flex flex-col">
+                  <CardContent className="pt-6 px-6 pb-6 h-full flex flex-col">
                     <div className="flex items-center justify-between gap-4">
                       <div className="flex items-center gap-1 text-accent">
                         {[...Array(testimonial.rating)].map((_, starIndex) => (
                           <Star key={starIndex} className="h-5 w-5 fill-current" />
                         ))}
                       </div>
-                      <p className="text-[16px] text-muted-foreground whitespace-nowrap">
+                      <p className="text-[15px] text-foreground/70 whitespace-nowrap">
                         {testimonial.dateText}
                       </p>
                     </div>
@@ -566,7 +624,7 @@ const Index = () => {
                       {testimonial.text}
                     </p>
 
-                    <div className="border-t border-[#c7ccd4] pt-4 mt-auto">
+                    <div className="border-t border-[#dccda5] pt-4 mt-auto">
                       <p className="text-[16px] font-semibold text-foreground">{testimonial.nameShort}</p>
                     </div>
                   </CardContent>
@@ -579,10 +637,10 @@ const Index = () => {
             </p>
             <div className="mt-6 flex justify-center">
               <Link
-                to="/kontakty#contacts"
-                className="inline-flex items-center gap-3 text-[20px] md:text-[26px] font-semibold text-foreground hover:text-accent transition-colors"
+                to="/kontakty"
+                className="inline-flex items-center gap-3 text-[17px] md:text-[20px] font-semibold text-foreground hover:text-accent transition-colors"
               >
-                <Phone className="h-8 w-8 md:h-10 md:w-10 text-accent" />
+                <Phone className="h-7 w-7 md:h-8 md:w-8 text-accent" />
                 +7 (495) 004-01-96
               </Link>
             </div>
@@ -596,54 +654,58 @@ const Index = () => {
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
                 Команда коллегии адвокатов
               </h2>
-              <p className="text-body-mobile md:text-body text-muted-foreground">
+              <p className="text-[14px] md:text-[18px] text-muted-foreground lg:whitespace-nowrap">
                 Коллегиальный формат работы позволяет формировать стратегию с учетом разных правовых позиций и судебной практики
               </p>
             </div>
 
             <div className="section__content mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-7">
-              {featuredTeam.map((member) => (
-                <Card
-                  key={member.slug}
-                  className="h-full border-[#C9A227] bg-[#f3f4f6] hover:shadow-elegant transition-all overflow-hidden"
-                >
-                  <CardContent className="p-0 flex flex-col h-full">
-                    <div className="h-[345px] w-full overflow-hidden border-b border-[#C9A227]">
-                      <img
-                        src={member.photo}
-                        alt={member.name}
-                        className="w-full h-full object-cover"
-                        loading="lazy"
-                      />
-                    </div>
-                    <div className="px-6 pt-7 pb-6 flex flex-col h-full">
-                      <h3 className="font-serif text-[20px] leading-tight font-semibold text-center min-h-[62px] mb-4">
-                        {member.name}
-                      </h3>
+              {featuredTeam.map((member) => {
+                const override = featuredTeamOverrides[member.slug];
+                const badge = override?.badge ?? (member.role.toLowerCase().includes("юрист") ? "Юрист" : "Адвокат");
+                const subtitle = override?.subtitle ?? member.role;
+                const experience = override?.experience ?? member.experienceText;
+                const cardSpecializations = override?.specializations ?? (member.specializations ?? []).slice(0, 3);
 
-                      <div className="mx-auto mb-4 rounded-full bg-accent px-5 py-1 text-[17px] font-semibold text-white leading-none">
-                        {member.role.toLowerCase().includes("юрист") ? "Юрист" : "Адвокат"}
+                return (
+                  <Card
+                    key={member.slug}
+                    className="h-full border-[#C9A227] bg-[#f3f4f6] hover:shadow-elegant transition-all overflow-hidden"
+                  >
+                    <CardContent className="p-0 flex flex-col h-full">
+                      <div className="h-[345px] w-full overflow-hidden border-b border-[#C9A227]">
+                        <img
+                          src={member.photo}
+                          alt={member.name}
+                          className="w-full h-full object-cover"
+                          loading="lazy"
+                        />
                       </div>
+                      <div className="px-6 pt-7 pb-6 flex flex-col h-full">
+                        <h3 className="font-serif text-[20px] leading-tight font-semibold text-center min-h-[62px] mb-4">
+                          {member.name}
+                        </h3>
 
-                      <p className="text-[16px] text-center text-foreground mb-2">
-                        {member.role}
-                      </p>
-                      {member.experienceText && (
-                        <p className="text-[16px] text-center text-muted-foreground mb-5">{member.experienceText}</p>
-                      )}
+                        <div className="mx-auto mb-4 rounded-full bg-accent px-5 py-1 text-[17px] font-semibold text-white leading-none">
+                          {badge}
+                        </div>
 
-                      <ul className="space-y-2.5 text-[16px] leading-relaxed text-foreground/90">
-                        {(member.specializations ?? []).slice(0, 3).map((spec) => (
-                          <li key={spec} className="flex items-start gap-2">
-                            <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/90 shrink-0" />
-                            <span>{spec}</span>
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
+                        <p className="text-[16px] text-center text-foreground mb-2">{subtitle}</p>
+                        {experience && <p className="text-[16px] text-center text-muted-foreground mb-5">{experience}</p>}
+
+                        <ul className="space-y-2.5 text-[16px] leading-relaxed text-foreground/90">
+                          {cardSpecializations.map((spec) => (
+                            <li key={spec} className="flex items-start gap-2">
+                              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/90 shrink-0" />
+                              <span>{spec}</span>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
             </div>
 
             <p className="mt-14 text-center text-body-mobile md:text-body text-muted-foreground">
@@ -652,14 +714,14 @@ const Index = () => {
 
             <div className="text-center mt-8">
               <Button size="lg" className="h-auto min-h-14 w-[290px] whitespace-normal px-8 py-3 leading-tight bg-accent text-white hover:bg-accent/90" asChild>
-                <Link to="/o-kollegii#team">Посмотреть всю команду</Link>
+                <Link to="/o-kollegii#about-team">Посмотреть всю команду</Link>
               </Button>
             </div>
           </div>
         </section>
 
         {/* Workflow Section */}
-        <section className="section">
+        <section className="section bg-[#F8FAFC]">
           <div className="container max-w-[1280px]">
             <div className="section__header max-w-4xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
@@ -670,9 +732,14 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="section__content mt-12 space-y-6">
+            <div className="section__content mt-12 rounded-[16px] border border-[#C9A227] bg-[#F6F1E6] px-4 md:px-8">
               {workflowSteps.map((step, index) => (
-                <div key={step.title} className="border-y border-border/90 px-2 py-4 md:px-10 md:py-5">
+                <div
+                  key={step.title}
+                  className={`px-2 py-5 md:px-4 md:py-6 ${
+                    index > 0 ? "border-t border-[#d7cda9]" : ""
+                  }`}
+                >
                   <div className="flex items-start gap-4 md:gap-6">
                     <div className="mt-1 flex h-12 w-12 shrink-0 items-center justify-center rounded-full border border-[#d7d2c6] bg-[#f2efe8] text-[24px] font-semibold leading-none text-accent md:h-14 md:w-14">
                       {index + 1}
@@ -690,15 +757,17 @@ const Index = () => {
               ))}
             </div>
 
-            <p className="mt-14 text-center text-[18px] md:text-[22px] font-medium text-foreground">
-              Понимание последовательности действий позволяет выстроить защиту системно и снизить процессуальные риски.
+            <p className="mt-14 text-center text-[17px] md:text-[20px] font-medium text-foreground">
+              <span className="block md:whitespace-nowrap">
+                Понимание последовательности действий позволяет выстроить защиту системно и снизить процессуальные риски.
+              </span>
               <br />
               Первый шаг — профессиональная оценка вашей ситуации
             </p>
 
             <div className="mt-10 flex justify-center">
               <Link
-                to="/kontakty#contacts"
+                to="/kontakty"
                 className="inline-flex items-center gap-3 text-[20px] md:text-[24px] font-semibold text-foreground hover:text-accent transition-colors"
               >
                 <Phone className="h-8 w-8 md:h-10 md:w-10 text-accent" />
@@ -709,20 +778,20 @@ const Index = () => {
         </section>
 
         {/* FAQ Section */}
-        <section className="section bg-background">
+        <section className="section bg-[#f8fafc]">
           <div className="container max-w-[1120px]">
             <div className="section__header max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">Короткий FAQ</h2>
             </div>
 
-            <Accordion type="single" collapsible className="section__content mt-8 space-y-2.5">
+            <Accordion type="single" collapsible className="section__content mt-8 space-y-3">
               {faqItems.map((item, index) => (
                 <AccordionItem
                   key={item.question}
                   value={`faq-${index}`}
-                  className="rounded-none border border-[#d4d8de] bg-muted/30 px-6"
+                  className="overflow-hidden rounded-2xl border border-[#d7c28b] bg-white px-6 shadow-[0_8px_20px_rgba(15,23,42,0.06)]"
                 >
-                  <AccordionTrigger className="faq-question text-left text-[18px] md:text-[22px] font-semibold hover:text-accent [&>svg]:text-accent">
+                  <AccordionTrigger className="family-accordion-trigger faq-question text-left text-[18px] md:text-[22px] font-semibold text-foreground hover:no-underline hover:text-[#b8911f] data-[state=open]:text-[#b8911f] [&>svg]:text-[#c9a227]">
                     {item.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-body-mobile md:text-body leading-relaxed text-muted-foreground">
@@ -743,7 +812,7 @@ const Index = () => {
                   className="h-auto min-h-14 w-[300px] whitespace-normal px-8 py-3 leading-tight bg-accent text-white hover:bg-accent/90"
                   asChild
                 >
-                  <Link to="/kontakty#contacts">Обсудить ситуацию по телефону</Link>
+                  <Link to="/kontakty">Обсудить ситуацию по телефону</Link>
                 </Button>
               </div>
               <p className="mt-3 text-small text-muted-foreground">Разговор не обязывает к заключению договора</p>
@@ -752,59 +821,108 @@ const Index = () => {
         </section>
 
         {/* Contacts Section */}
-        <section className="section">
-          <div className="container">
-            <Card className="border-border shadow-elegant">
-              <CardContent className="pt-8 pb-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-center">
-                  <div>
-                    <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
+        <section className="section bg-[#f8fafc]">
+          <div className="container max-w-[1240px]">
+            <Card className="border-[#d7c28b] bg-white shadow-[0_14px_36px_rgba(15,23,42,0.08)]">
+              <CardContent className="p-6 md:p-10">
+                <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-14">
+                  <div className="space-y-6">
+                    <h2 className="font-serif text-h2-mobile md:text-h2 font-bold text-foreground">
                       Контакты
                     </h2>
-                    <p className="text-body-mobile md:text-body text-muted-foreground mb-6">
-                      Напишите или позвоните — мы подскажем, как лучше начать работу с вашим вопросом.
-                    </p>
-                    <div className="space-y-4">
-                      <div className="flex items-center gap-3">
-                        <Phone className="h-5 w-5 text-accent" />
-                        <a href={`tel:${SITE.phoneRaw}`} className="text-body-mobile md:text-body font-medium hover:text-accent transition-colors">
+                    <div className="space-y-5">
+                      <div className="flex items-center gap-4 text-foreground">
+                        <Phone className="h-8 w-8 text-accent" />
+                        <a href={`tel:${SITE.phoneRaw}`} className="text-[22px] leading-tight font-medium hover:text-accent transition-colors md:text-[26px]">
                           {SITE.phone}
                         </a>
                       </div>
-                      <div className="flex items-center gap-3">
-                        <Mail className="h-5 w-5 text-accent" />
-                        <a href={`mailto:${SITE.email}`} className="text-body-mobile md:text-body font-medium hover:text-accent transition-colors">
+                      <div className="flex items-center gap-4 text-foreground">
+                        <Mail className="h-8 w-8 text-accent" />
+                        <a href={`mailto:${SITE.email}`} className="text-[20px] leading-tight font-medium hover:text-accent transition-colors md:text-[24px]">
                           {SITE.email}
                         </a>
                       </div>
-                      <div className="flex items-start gap-3">
-                        <MapPin className="h-5 w-5 text-accent mt-1" />
-                        <p className="text-body-mobile md:text-body font-medium">
+                      <div className="flex items-start gap-4 text-foreground">
+                        <MapPin className="mt-1 h-8 w-8 text-accent" />
+                        <p className="text-[20px] leading-tight font-medium md:text-[24px]">
                           {SITE.address.city}, {SITE.address.street}
                         </p>
                       </div>
                     </div>
+                    <div className="pt-3">
+                      <iframe
+                        src="https://yandex.ru/sprav/widget/rating-badge/244880896695?type=rating"
+                        width="150"
+                        height="50"
+                        frameBorder="0"
+                        title="Рейтинг Профзащита в Яндекс.Картах"
+                        className="max-w-full"
+                      ></iframe>
+                    </div>
                   </div>
 
-                  <div className="flex flex-col gap-4">
-                    <Button
-                      size="lg"
-                      className="bg-accent text-white hover:bg-accent/90"
-                      onClick={() => openQuickQuestionModal()}
-                    >
-                      Получить консультацию
-                    </Button>
-                    <Button
-                      size="lg"
-                      variant="outline"
-                      className="border-border"
-                      asChild
-                    >
-                      <a href="https://t.me/profzashita" target="_blank" rel="noopener noreferrer">
-                        <TelegramIcon size={18} />
-                        Telegram
+                  <div className="border-l border-[#e6d8ab] pl-0 lg:pl-10">
+                    <div className="space-y-6 rounded-2xl border border-[#d7c28b] bg-[#f6f1e6] p-6 md:p-7 shadow-[0_8px_20px_rgba(15,23,42,0.06)]">
+                      <p className="text-[22px] font-semibold leading-tight text-foreground md:text-[26px]">
+                        Телефон для консультаций:
+                      </p>
+                      <a
+                        href={`tel:${SITE.phoneRaw}`}
+                        className="inline-flex items-center gap-3 text-[28px] font-semibold leading-tight text-foreground hover:text-accent md:text-[34px]"
+                      >
+                        <Phone className="h-9 w-9 text-accent md:h-11 md:w-11" />
+                        {SITE.phone}
                       </a>
-                    </Button>
+                      <Button size="lg" className="h-auto w-full bg-accent px-6 py-4 text-[18px] text-white hover:bg-accent/90 md:text-[21px]" asChild>
+                        <Link to="/kontakty">Обсудить ситуацию по телефону</Link>
+                      </Button>
+                      <p className="text-[16px] leading-tight text-muted-foreground md:text-[18px]">
+                        Разговор не обязывает к заключению договора
+                      </p>
+
+                      <div className="pt-3">
+                        <p className="text-[21px] font-medium leading-tight text-foreground md:text-[24px]">
+                          Или напишите нам напрямую:
+                        </p>
+                        <div className="mt-5 flex flex-wrap items-center gap-4">
+                          <a
+                            href={whatsappUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Написать в WhatsApp"
+                            className="social-icon shadow-sm transition-opacity hover:opacity-90"
+                          >
+                            <WhatsAppIcon size={48} className="social-icon__image" />
+                          </a>
+                          <a
+                            href={telegramUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="Написать в Telegram"
+                            className="social-icon bg-[#229ED9] text-white shadow-sm transition-colors hover:bg-[#1d8fc6]"
+                          >
+                            <TelegramIcon size={26} className="social-icon__svg" />
+                          </a>
+                          <a
+                            href={maxUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            aria-label="MAX"
+                            className="social-icon shadow-sm transition-opacity hover:opacity-90"
+                          >
+                            <MaxIcon size={48} className="social-icon__image" />
+                          </a>
+                          <a
+                            href={`mailto:${SITE.email}`}
+                            aria-label="Написать на email"
+                            className="social-icon border border-slate-200 bg-white text-accent shadow-sm transition-colors hover:border-[#C9A227] hover:text-[#b8911f]"
+                          >
+                            <Mail className="h-6 w-6" />
+                          </a>
+                        </div>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </CardContent>

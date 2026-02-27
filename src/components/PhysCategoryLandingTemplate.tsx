@@ -162,7 +162,9 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const shouldUseContactsLink = isContactsFlowCategory && !isConsumerProtectionCategory;
   const callHref = "tel:+74950040196";
   const contactsHref = "/kontakty";
-  const whatsappUrl = "https://wa.me/74950040196";
+  const whatsappUrl = SITE.whatsappUrl;
+  const telegramUrl = SITE.telegramUrl;
+  const maxUrl = SITE.maxUrl;
   const consumerPhoneCtaLabel = "Позвонить и обсудить ситуацию";
   const consumerPhoneCtaShortLabel = "Позвонить и получить ориентир";
   const consumerPhoneNote = "Разговор по телефону не обязывает к заключению договора.";
@@ -3322,7 +3324,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   <p className="text-small font-semibold text-slate-900">Или напишите нам напрямую:</p>
                   <div className="flex items-center gap-4">
                     <a
-                      href="https://t.me/profzashita_consult_bot"
+                      href={telegramUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Написать в Telegram"
@@ -3339,13 +3341,15 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                     >
                       <WhatsAppIcon size={48} className="social-icon__image" />
                     </a>
-                    <button
-                      type="button"
+                    <a
+                      href={maxUrl}
                       aria-label="MAX"
+                      target="_blank"
+                      rel="noopener noreferrer"
                       className="social-icon shadow-sm transition-opacity hover:opacity-90"
                     >
                       <MaxIcon size={48} className="social-icon__image" />
-                    </button>
+                    </a>
                     <a
                       href={`mailto:${SITE.email}`}
                       aria-label="Написать на email"

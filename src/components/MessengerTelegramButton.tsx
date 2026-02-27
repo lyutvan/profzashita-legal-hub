@@ -1,7 +1,8 @@
 import type { CSSProperties } from "react";
 import TelegramIcon from "@/components/icons/TelegramIcon";
+import { SITE } from "@/config/site";
 
-const TELEGRAM_URL = "https://t.me/profzashita_consult_bot";
+const TELEGRAM_URL = SITE.telegramUrl;
 
 const buttonStyle: CSSProperties = {
   right: 18,

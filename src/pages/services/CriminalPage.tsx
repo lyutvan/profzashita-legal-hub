@@ -42,9 +42,9 @@ const CriminalPage = () => {
   const canonical = new URL("/services/criminal", SITE.url).toString();
   const callHref = `tel:${SITE.phoneRaw}`;
   const contactsHref = "/kontakty";
-  const whatsappUrl = "https://wa.me/74950040196";
-  const telegramUrl = "https://t.me/profzashita_consult_bot";
-  const maxUrl = "https://max.ru";
+  const whatsappUrl = SITE.whatsappUrl;
+  const telegramUrl = SITE.telegramUrl;
+  const maxUrl = SITE.maxUrl;
   const lyutikov = teamMembers.find((member) => member.slug === "lyutikov");
 
   const heroFacts = [

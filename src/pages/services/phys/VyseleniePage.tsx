@@ -885,7 +885,7 @@ const VyseleniePage = () => {
                   <p className="text-small font-semibold text-slate-900">Или напишите нам напрямую:</p>
                   <div className="flex items-center gap-4">
                     <a
-                      href="https://t.me/profzashita_consult_bot"
+                      href={SITE.telegramUrl}
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Написать в Telegram"

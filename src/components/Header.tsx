@@ -5,13 +5,16 @@ import Logo from "./Logo";
 import TelegramIcon from "./icons/TelegramIcon";
 import WhatsAppIcon from "./icons/WhatsAppIcon";
 import MaxIcon from "./icons/MaxIcon";
+import { SITE } from "@/config/site";
 
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
   const location = useLocation();
-  const whatsappUrl = "https://wa.me/74950040196";
+  const whatsappUrl = SITE.whatsappUrl;
+  const telegramUrl = SITE.telegramUrl;
+  const maxUrl = SITE.maxUrl;
 
   useEffect(() => {
     const handleScroll = () => {
@@ -125,7 +128,7 @@ const Header = () => {
                 </a>
               </div>
               <a
-                href="https://t.me/profzashita_consult_bot"
+                href={telegramUrl}
                 className="social-icon bg-[#229ED9] text-white shadow-sm transition-colors duration-150 hover:bg-[#1d8fc6]"
                 aria-label="Написать в Telegram"
                 target="_blank"
@@ -147,14 +150,16 @@ const Header = () => {
               >
                 <WhatsAppIcon size={48} className="social-icon__image" />
               </a>
-              <button
-                type="button"
+              <a
+                href={maxUrl}
                 className="social-icon shadow-sm transition-opacity duration-150 hover:opacity-90"
                 aria-label="MAX"
+                target="_blank"
+                rel="noopener noreferrer"
                 title="MAX"
               >
                 <MaxIcon size={48} className="social-icon__image" />
-              </button>
+              </a>
             </div>
           </div>
 
@@ -239,7 +244,7 @@ const Header = () => {
                     </a>
                   </div>
                   <a
-                    href="https://t.me/profzashita_consult_bot"
+                    href={telegramUrl}
                     className="social-icon bg-[#229ED9] text-white shadow-sm transition-colors duration-150 hover:bg-[#1d8fc6]"
                     aria-label="Написать в Telegram"
                     target="_blank"
@@ -261,14 +266,16 @@ const Header = () => {
                   >
                     <WhatsAppIcon size={48} className="social-icon__image" />
                   </a>
-                  <button
-                    type="button"
+                  <a
+                    href={maxUrl}
                     className="social-icon shadow-sm transition-opacity duration-150 hover:opacity-90"
                     aria-label="MAX"
+                    target="_blank"
+                    rel="noopener noreferrer"
                     title="MAX"
                   >
                     <MaxIcon size={48} className="social-icon__image" />
-                  </button>
+                  </a>
                 </div>
               </div>
             </div>

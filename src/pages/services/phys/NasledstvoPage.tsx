@@ -37,9 +37,9 @@ const NasledstvoPage = () => {
   const contactsHref = "/kontakty";
   const heroImage = getServiceHeroImage("/services/phys/nasledstvo", "phys");
   const yandexOrgId = "244880896695";
-  const whatsappUrl = "https://wa.me/74950040196";
-  const telegramUrl = "https://t.me/profzashita_consult_bot";
-  const maxUrl = "https://max.ru";
+  const whatsappUrl = SITE.whatsappUrl;
+  const telegramUrl = SITE.telegramUrl;
+  const maxUrl = SITE.maxUrl;
 
   const situations = [
     {
@@ -356,7 +356,7 @@ const NasledstvoPage = () => {
   ];
 
   return (
-    <div className="min-h-screen flex flex-col category-landing-page family-landing-page">
+    <div className="min-h-screen flex flex-col category-landing-page family-landing-page nasledstvo-compact">
       <Helmet>
         <title>Наследственные дела — адвокат в Москве | Профзащита</title>
         <meta
@@ -388,7 +388,7 @@ const NasledstvoPage = () => {
 
       <Header />
 
-      <main className="flex-1 services-page">
+      <main className="flex-1 services-page nasledstvo-compact">
         <section
           className="relative text-white section section--hero"
           style={{
@@ -401,7 +401,7 @@ const NasledstvoPage = () => {
             className="absolute inset-0 pointer-events-none"
             style={{
               background:
-                "linear-gradient(180deg, rgba(5,12,28,0.92) 0%, rgba(11,31,58,0.76) 55%, rgba(11,31,58,0.44) 100%)"
+                "linear-gradient(180deg, rgba(5,12,28,0.96) 0%, rgba(8,24,46,0.86) 52%, rgba(8,24,46,0.68) 100%)"
             }}
           />
           <div className="container relative z-10">

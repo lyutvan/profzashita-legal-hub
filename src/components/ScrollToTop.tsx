@@ -14,15 +14,30 @@ const ScrollToTop = () => {
       const id = decodeURIComponent(hash.replace("#", ""));
       const target = document.getElementById(id);
       if (target) {
-        target.scrollIntoView({ behavior: "smooth", block: "start" });
-        return;
+        const headerOffset = 110;
+        const targetY = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+        window.scrollTo({ top: Math.max(targetY, 0), behavior: "smooth" });
+        return true;
       }
-      window.scrollTo(0, 0);
+      return false;
     };
 
-    const timer = window.setTimeout(scrollToHash, 80);
+    let attempts = 0;
+    const maxAttempts = 20;
+    const timer = window.setInterval(() => {
+      if (scrollToHash()) {
+        window.clearInterval(timer);
+        return;
+      }
+      attempts += 1;
+      if (attempts >= maxAttempts) {
+        window.clearInterval(timer);
+        window.scrollTo(0, 0);
+      }
+    }, 60);
+
     return () => {
-      window.clearTimeout(timer);
+      window.clearInterval(timer);
     };
   }, [pathname, hash]);
 
