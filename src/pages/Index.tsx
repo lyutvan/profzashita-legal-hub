@@ -869,9 +869,9 @@ const Index = () => {
                       </p>
                       <a
                         href={`tel:${SITE.phoneRaw}`}
-                        className="inline-flex items-center gap-3 text-[28px] font-semibold leading-tight text-foreground hover:text-accent md:text-[34px]"
+                        className="inline-flex items-center gap-3 text-[22px] font-semibold leading-tight text-foreground hover:text-accent md:text-[26px]"
                       >
-                        <Phone className="h-9 w-9 text-accent md:h-11 md:w-11" />
+                        <Phone className="h-7 w-7 text-accent md:h-8 md:w-8" />
                         {SITE.phone}
                       </a>
                       <Button size="lg" className="h-auto w-full bg-accent px-6 py-4 text-[18px] text-white hover:bg-accent/90 md:text-[21px]" asChild>
