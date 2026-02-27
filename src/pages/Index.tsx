@@ -864,7 +864,7 @@ const Index = () => {
 
                   <div className="border-l border-[#e6d8ab] pl-0 lg:pl-10">
                     <div className="space-y-6 rounded-2xl border border-[#d7c28b] bg-[#f6f1e6] p-6 md:p-7 shadow-[0_8px_20px_rgba(15,23,42,0.06)]">
-                      <p className="text-[22px] font-semibold leading-tight text-foreground md:text-[26px]">
+                      <p className="text-[18px] font-semibold leading-tight text-foreground md:text-[20px] whitespace-nowrap">
                         Телефон для консультаций:
                       </p>
                       <a
@@ -874,7 +874,11 @@ const Index = () => {
                         <Phone className="h-7 w-7 text-accent md:h-8 md:w-8" />
                         {SITE.phone}
                       </a>
-                      <Button size="lg" className="h-auto w-full bg-accent px-6 py-4 text-[18px] text-white hover:bg-accent/90 md:text-[21px]" asChild>
+                      <Button
+                        size="lg"
+                        className="h-auto w-full bg-accent px-5 py-3 text-[16px] leading-tight text-white hover:bg-accent/90 md:text-[18px]"
+                        asChild
+                      >
                         <Link to="/kontakty">Обсудить ситуацию по телефону</Link>
                       </Button>
                       <p className="text-[16px] leading-tight text-muted-foreground md:text-[18px]">
