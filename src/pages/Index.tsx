@@ -887,7 +887,7 @@ const Index = () => {
                       </p>
 
                       <div className="pt-3">
-                        <p className="text-[21px] font-medium leading-tight text-foreground md:text-[24px]">
+                        <p className="text-[18px] font-medium leading-tight text-foreground md:text-[20px] whitespace-nowrap">
                           Или напишите нам напрямую:
                         </p>
                         <div className="mt-5 flex flex-wrap items-center gap-4">
