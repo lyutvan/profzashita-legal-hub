@@ -882,7 +882,7 @@ const Index = () => {
                       >
                         <Link to="/kontakty">Обсудить ситуацию по телефону</Link>
                       </Button>
-                      <p className="text-[16px] leading-tight text-muted-foreground md:text-[18px]">
+                      <p className="text-[14px] leading-tight text-muted-foreground md:text-[16px] whitespace-nowrap">
                         Разговор не обязывает к заключению договора
                       </p>
 
