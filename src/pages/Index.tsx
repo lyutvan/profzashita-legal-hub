@@ -636,13 +636,17 @@ const Index = () => {
               Обсудите вашу ситуацию напрямую с адвокатом коллегии
             </p>
             <div className="mt-6 flex justify-center">
-              <Link
-                to="/kontakty"
-                className="inline-flex items-center gap-3 text-[17px] md:text-[20px] font-semibold text-foreground hover:text-accent transition-colors"
-              >
-                <Phone className="h-7 w-7 md:h-8 md:w-8 text-accent" />
-                +7 (495) 004-01-96
-              </Link>
+              <div className="inline-flex items-start gap-3 text-[17px] md:text-[20px] font-semibold text-foreground">
+                <Phone className="h-7 w-7 md:h-8 md:w-8 text-accent mt-0.5" />
+                <div className="flex flex-col items-start">
+                  <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent transition-colors">
+                    {SITE.phone}
+                  </a>
+                  <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent transition-colors">
+                    {SITE.messengerPhone}
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -766,13 +770,18 @@ const Index = () => {
             </p>
 
             <div className="mt-10 flex justify-center">
-              <Link
-                to="/kontakty"
-                className="inline-flex items-center gap-3 text-[20px] md:text-[24px] font-semibold text-foreground hover:text-accent transition-colors"
-              >
-                <Phone className="h-8 w-8 md:h-10 md:w-10 text-accent" />
-                Обсудить ситуацию по телефону: +7 (495) 004-01-96
-              </Link>
+              <div className="inline-flex items-start gap-3 text-[20px] md:text-[24px] font-semibold text-foreground">
+                <Phone className="h-8 w-8 md:h-10 md:w-10 text-accent mt-1" />
+                <div className="flex flex-col items-start">
+                  <span>Обсудить ситуацию по телефону:</span>
+                  <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent transition-colors">
+                    {SITE.phone}
+                  </a>
+                  <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent transition-colors">
+                    {SITE.messengerPhone}
+                  </a>
+                </div>
+              </div>
             </div>
           </div>
         </section>
@@ -831,11 +840,16 @@ const Index = () => {
                       Контакты
                     </h2>
                     <div className="space-y-5">
-                      <div className="flex items-center gap-4 text-foreground">
+                      <div className="flex items-start gap-4 text-foreground">
                         <Phone className="h-8 w-8 text-accent" />
-                        <a href={`tel:${SITE.phoneRaw}`} className="text-[22px] leading-tight font-medium hover:text-accent transition-colors md:text-[26px]">
-                          {SITE.phone}
-                        </a>
+                        <div className="flex flex-col items-start text-[22px] leading-tight font-medium md:text-[26px]">
+                          <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent transition-colors">
+                            {SITE.phone}
+                          </a>
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent transition-colors">
+                            {SITE.messengerPhone}
+                          </a>
+                        </div>
                       </div>
                       <div className="flex items-center gap-4 text-foreground">
                         <Mail className="h-8 w-8 text-accent" />
@@ -868,13 +882,17 @@ const Index = () => {
                       <p className="text-[18px] font-semibold leading-tight text-foreground md:text-[20px] whitespace-nowrap">
                         Телефон для консультаций:
                       </p>
-                      <a
-                        href={`tel:${SITE.phoneRaw}`}
-                        className="inline-flex items-center gap-3 text-[22px] font-semibold leading-tight text-foreground hover:text-accent md:text-[26px]"
-                      >
-                        <Phone className="h-7 w-7 text-accent md:h-8 md:w-8" />
-                        {SITE.phone}
-                      </a>
+                      <div className="inline-flex items-start gap-3 text-[22px] font-semibold leading-tight text-foreground md:text-[26px]">
+                        <Phone className="h-7 w-7 text-accent md:h-8 md:w-8 mt-0.5" />
+                        <div className="flex flex-col items-start">
+                          <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent">
+                            {SITE.phone}
+                          </a>
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
+                            {SITE.messengerPhone}
+                          </a>
+                        </div>
+                      </div>
                       <Button
                         size="lg"
                         className="h-auto w-full bg-accent px-5 py-3 text-[16px] leading-tight text-white hover:bg-accent/90 md:text-[18px]"

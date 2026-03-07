@@ -140,6 +140,8 @@ const ServiceTemplate = ({
   const primaryCtaTo = ctaButtons?.primaryTo ?? "/kontakty";
   const secondaryCtaLabel = ctaButtons?.secondaryLabel ?? SITE.phone;
   const secondaryCtaHref = ctaButtons?.secondaryHref ?? `tel:${SITE.phoneRaw}`;
+  const secondaryPhoneHref = `tel:+${SITE.messengerPhoneRaw}`;
+  const showDualPhoneCta = !ctaButtons?.secondaryLabel && !ctaButtons?.secondaryHref;
   const secondaryCtaNote =
     ctaButtons?.secondaryNote ??
     (secondaryCtaLabel !== SITE.phone ? SITE.phone : undefined);
@@ -377,20 +379,47 @@ const ServiceTemplate = ({
                             {primaryCtaLabel}
                           </Link>
                         </Button>
-                        <Button 
-                          variant="outline" 
-                          className="w-full border-white/20 bg-white/10 hover:bg-white/20 text-white"
-                          asChild
-                        >
-                          <a href={secondaryCtaHref}>
-                            <Phone className="mr-2 h-4 w-4" />
-                            {secondaryCtaLabel}
-                          </a>
-                        </Button>
-                        {secondaryCtaNote && (
-                          <div className="text-white/70 text-small text-center">
-                            {secondaryCtaNote}
+                        {showDualPhoneCta ? (
+                          <div className="space-y-3">
+                            <Button
+                              variant="outline"
+                              className="w-full border-white/20 bg-white/10 hover:bg-white/20 text-white"
+                              asChild
+                            >
+                              <a href={secondaryCtaHref}>
+                                <Phone className="mr-2 h-4 w-4" />
+                                {SITE.phone}
+                              </a>
+                            </Button>
+                            <Button
+                              variant="outline"
+                              className="w-full border-white/20 bg-white/10 hover:bg-white/20 text-white"
+                              asChild
+                            >
+                              <a href={secondaryPhoneHref}>
+                                <Phone className="mr-2 h-4 w-4" />
+                                {SITE.messengerPhone}
+                              </a>
+                            </Button>
                           </div>
+                        ) : (
+                          <>
+                            <Button
+                              variant="outline"
+                              className="w-full border-white/20 bg-white/10 hover:bg-white/20 text-white"
+                              asChild
+                            >
+                              <a href={secondaryCtaHref}>
+                                <Phone className="mr-2 h-4 w-4" />
+                                {secondaryCtaLabel}
+                              </a>
+                            </Button>
+                            {secondaryCtaNote && (
+                              <div className="text-white/70 text-small text-center">
+                                {secondaryCtaNote}
+                              </div>
+                            )}
+                          </>
                         )}
                       </div>
                       <p className="text-white/60 text-small mt-4 text-center">

@@ -593,10 +593,18 @@ const ZhilishchnyeSporyPage = () => {
               <br />
               <span className="font-semibold text-[#7e6220]">Чем раньше формируется позиция, тем больше возможностей повлиять на исход дела.</span>
               <div className="mt-5">
-                <a href={callHref} className="inline-flex items-center gap-3 text-lg font-semibold text-slate-900 hover:text-[#b8911f]">
-                  <Phone className="h-6 w-6 text-[#C9A227]" />
-                  Обсудить ситуацию по телефону: {SITE.phone}
-                </a>
+                <div className="inline-flex items-start gap-3 text-lg font-semibold text-slate-900">
+                  <Phone className="mt-0.5 h-6 w-6 text-[#C9A227]" />
+                  <div className="flex flex-col items-start">
+                    <span>Обсудить ситуацию по телефону:</span>
+                    <a href={callHref} className="hover:text-[#b8911f]">
+                      {SITE.phone}
+                    </a>
+                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
+                      {SITE.messengerPhone}
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -797,10 +805,18 @@ const ZhilishchnyeSporyPage = () => {
                 Если есть шансы — объясним, за счет чего можно выиграть.
               </span>
               <div className="mt-5">
-                <a href={callHref} className="inline-flex items-center gap-3 text-lg font-semibold text-slate-900 hover:text-[#b8911f]">
-                  <Phone className="h-6 w-6 text-[#C9A227]" />
-                  Обсудить ситуацию по телефону: {SITE.phone}
-                </a>
+                <div className="inline-flex items-start gap-3 text-lg font-semibold text-slate-900">
+                  <Phone className="mt-0.5 h-6 w-6 text-[#C9A227]" />
+                  <div className="flex flex-col items-start">
+                    <span>Обсудить ситуацию по телефону:</span>
+                    <a href={callHref} className="hover:text-[#b8911f]">
+                      {SITE.phone}
+                    </a>
+                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
+                      {SITE.messengerPhone}
+                    </a>
+                  </div>
+                </div>
               </div>
             </div>
           </div>
@@ -901,10 +917,17 @@ const ZhilishchnyeSporyPage = () => {
                 <CardContent className="p-7 md:p-8">
                   <div className="space-y-4">
                     <div className="text-sm text-muted-foreground">Телефон для консультаций:</div>
-                    <a href={callHref} className="inline-flex items-center gap-3 text-base font-semibold text-slate-900 hover:text-[#b8911f]">
-                      <Phone className="h-6 w-6 text-[#C9A227]" />
-                      {SITE.phone}
-                    </a>
+                    <div className="inline-flex items-start gap-3 text-base font-semibold text-slate-900">
+                      <Phone className="mt-0.5 h-6 w-6 text-[#C9A227]" />
+                      <div className="flex flex-col items-start">
+                        <a href={callHref} className="hover:text-[#b8911f]">
+                          {SITE.phone}
+                        </a>
+                        <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
+                          {SITE.messengerPhone}
+                        </a>
+                      </div>
+                    </div>
                     <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} w-full`}>
                       <Link to={contactsHref}>Позвонить адвокату</Link>
                     </Button>
@@ -931,9 +954,14 @@ const ZhilishchnyeSporyPage = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">Телефон</h3>
-                        <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
-                          {SITE.phone}
-                        </a>
+                        <div className="flex flex-col items-start">
+                          <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
+                            {SITE.phone}
+                          </a>
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
+                            {SITE.messengerPhone}
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </CardContent>

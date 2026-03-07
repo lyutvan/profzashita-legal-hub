@@ -206,10 +206,17 @@ const Uslugi = () => {
                   <div className="space-y-3 text-small">
                     <p>
                       <strong>Телефон:</strong><br />
-                      <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline flex items-center gap-2">
-                        <Phone className="h-4 w-4" />
-                        {SITE.phone}
-                      </a>
+                      <div className="inline-flex items-start gap-2 text-accent">
+                        <Phone className="h-4 w-4 mt-0.5" />
+                        <div className="flex flex-col items-start">
+                          <a href={`tel:${SITE.phoneRaw}`} className="hover:underline">
+                            {SITE.phone}
+                          </a>
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:underline">
+                            {SITE.messengerPhone}
+                          </a>
+                        </div>
+                      </div>
                     </p>
                     <p>
                       <strong>Email:</strong><br />

@@ -33,7 +33,7 @@ import MaxIcon from "@/components/icons/MaxIcon";
 
 const NasledstvoPage = () => {
   const canonical = new URL("/services/phys/nasledstvo", SITE.url).toString();
-  const callHref = "tel:+74950040196";
+  const callHref = `tel:${SITE.phoneRaw}`;
   const contactsHref = "/kontakty";
   const heroImage = getServiceHeroImage("/services/phys/nasledstvo", "phys");
   const yandexOrgId = "244880896695";
@@ -508,13 +508,18 @@ const NasledstvoPage = () => {
               <p>На консультации оценим перспективы именно по вашей ситуации.</p>
             </div>
             <div className="mt-6 flex justify-center">
-              <a
-                href={callHref}
-                className="inline-flex items-center gap-2 text-[20px] font-semibold text-slate-900 hover:text-accent"
-              >
-                <Phone className="h-6 w-6 text-accent" />
-                <span>Обсудить ситуацию по телефону: {SITE.phone}</span>
-              </a>
+              <div className="inline-flex items-start gap-2 text-[20px] font-semibold text-slate-900">
+                <Phone className="mt-0.5 h-6 w-6 text-accent" />
+                <span className="flex flex-col items-start leading-tight">
+                  <span>Обсудить ситуацию по телефону:</span>
+                  <a href={callHref} className="hover:text-accent">
+                    {SITE.phone}
+                  </a>
+                  <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
+                    {SITE.messengerPhone}
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </section>
@@ -606,13 +611,18 @@ const NasledstvoPage = () => {
               </p>
             </div>
             <div className="mt-7 flex justify-center">
-              <a
-                href={callHref}
-                className="inline-flex items-center gap-2 text-[20px] font-semibold text-slate-900 hover:text-accent"
-              >
-                <Phone className="h-6 w-6 text-accent" />
-                <span>Обсудить ситуацию по телефону: {SITE.phone}</span>
-              </a>
+              <div className="inline-flex items-start gap-2 text-[20px] font-semibold text-slate-900">
+                <Phone className="mt-0.5 h-6 w-6 text-accent" />
+                <span className="flex flex-col items-start leading-tight">
+                  <span>Обсудить ситуацию по телефону:</span>
+                  <a href={callHref} className="hover:text-accent">
+                    {SITE.phone}
+                  </a>
+                  <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
+                    {SITE.messengerPhone}
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </section>
@@ -810,13 +820,18 @@ const NasledstvoPage = () => {
               Вы можете задать свой вопрос по телефону и понять перспективы именно по вашей ситуации
             </div>
             <div className="mt-6 flex justify-center">
-              <a
-                href={callHref}
-                className="inline-flex items-center gap-2 text-[20px] font-semibold text-slate-900 hover:text-accent"
-              >
-                <Phone className="h-6 w-6 text-accent" />
-                <span>Обсудить ситуацию по телефону: {SITE.phone}</span>
-              </a>
+              <div className="inline-flex items-start gap-2 text-[20px] font-semibold text-slate-900">
+                <Phone className="mt-0.5 h-6 w-6 text-accent" />
+                <span className="flex flex-col items-start leading-tight">
+                  <span>Обсудить ситуацию по телефону:</span>
+                  <a href={callHref} className="hover:text-accent">
+                    {SITE.phone}
+                  </a>
+                  <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
+                    {SITE.messengerPhone}
+                  </a>
+                </span>
+              </div>
             </div>
           </div>
         </section>
@@ -959,10 +974,17 @@ const NasledstvoPage = () => {
                 <CardContent className="p-7 md:p-8">
                   <div className="space-y-4">
                     <div className="text-sm text-muted-foreground">Телефон для консультаций:</div>
-                    <a href={callHref} className="inline-flex items-center gap-3 text-base font-semibold text-slate-900 hover:text-[#b8911f]">
-                      <Phone className="h-6 w-6 text-[#C9A227]" />
-                      {SITE.phone}
-                    </a>
+                    <div className="inline-flex items-start gap-3 text-base font-semibold text-slate-900">
+                      <Phone className="mt-0.5 h-6 w-6 text-[#C9A227]" />
+                      <div className="flex flex-col items-start">
+                        <a href={callHref} className="hover:text-[#b8911f]">
+                          {SITE.phone}
+                        </a>
+                        <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
+                          {SITE.messengerPhone}
+                        </a>
+                      </div>
+                    </div>
                     <Button
                       asChild
                       size="lg"
@@ -993,9 +1015,14 @@ const NasledstvoPage = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">Телефон</h3>
-                        <a href={callHref} className="text-accent hover:underline">
-                          {SITE.phone}
-                        </a>
+                        <div className="flex flex-col items-start">
+                          <a href={callHref} className="text-accent hover:underline">
+                            {SITE.phone}
+                          </a>
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
+                            {SITE.messengerPhone}
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </CardContent>

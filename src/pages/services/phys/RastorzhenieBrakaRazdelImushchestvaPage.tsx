@@ -226,7 +226,7 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
 
 const RastorzhenieBrakaRazdelImushchestvaPage = () => {
   const { openQuickQuestionModal } = useQuickQuestionModal();
-  const callHref = "tel:+74950040196";
+  const callHref = `tel:${SITE.phoneRaw}`;
   const contactsHref = "/kontakty";
   const whatsappUrl = SITE.whatsappUrl;
   const telegramUrl = SITE.telegramUrl;
@@ -1170,9 +1170,14 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 <CardContent className="p-7 md:p-8">
                   <div className="space-y-4">
                     <div className="text-sm text-muted-foreground">Телефон для консультации:</div>
-                    <a href={`tel:${SITE.phoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
-                      {SITE.phone}
-                    </a>
+                    <div className="flex flex-col items-start">
+                      <a href={`tel:${SITE.phoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
+                        {SITE.phone}
+                      </a>
+                      <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
+                        {SITE.messengerPhone}
+                      </a>
+                    </div>
                     <Button
                       asChild
                       size="lg"
@@ -1207,9 +1212,14 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">Телефон</h3>
-                        <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
-                          {SITE.phone}
-                        </a>
+                        <div className="flex flex-col items-start">
+                          <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
+                            {SITE.phone}
+                          </a>
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
+                            {SITE.messengerPhone}
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </CardContent>

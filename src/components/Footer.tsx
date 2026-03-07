@@ -25,10 +25,17 @@ const Footer = () => {
             <h3 className="font-serif text-h3-mobile font-semibold mb-4">Контакты</h3>
             <ul className="space-y-3">
               <li>
-                <a href={`tel:${SITE.phoneRaw}`} className="flex items-start gap-2 text-small text-white/80 hover:text-accent transition-colors">
+                <div className="flex items-start gap-2 text-small text-white/80">
                   <Phone className="h-4 w-4 mt-0.5 flex-shrink-0" />
-                  {SITE.phone}
-                </a>
+                  <div className="flex flex-col items-start gap-1">
+                    <a href={`tel:${SITE.phoneRaw}`} className="text-white/80 hover:text-accent transition-colors">
+                      {SITE.phone}
+                    </a>
+                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-white/80 hover:text-accent transition-colors">
+                      {SITE.messengerPhone}
+                    </a>
+                  </div>
+                </div>
               </li>
               <li>
                 <a href={`mailto:${SITE.email}`} className="flex items-start gap-2 text-small text-white/80 hover:text-accent transition-colors">

@@ -44,6 +44,9 @@ const TeamMemberPage = () => {
   const hasPhoto = Boolean(member.photo) && !imageFailed;
   const city = member.city ?? SITE.address.city;
   const phone = member.phone ?? SITE.phone;
+  const phoneHref = `tel:${phone.replace(/[^+\d]/g, "")}`;
+  const showSecondaryPhone = phone === SITE.phone;
+  const secondaryPhoneHref = `tel:+${SITE.messengerPhoneRaw}`;
   const email = member.email ?? SITE.email;
   const about = member.about;
   const memberCaseKeyMap: Record<string, string> = {
@@ -476,9 +479,14 @@ const TeamMemberPage = () => {
                 <CardContent className="space-y-4">
                   <div className="space-y-1">
                     <p className="text-small text-muted-foreground">Телефон</p>
-                    <a href={`tel:${phone.replace(/[^+\d]/g, "")}`} className="text-body-mobile md:text-body font-semibold hover:text-accent transition-colors">
+                    <a href={phoneHref} className="text-body-mobile md:text-body font-semibold hover:text-accent transition-colors">
                       {phone}
                     </a>
+                    {showSecondaryPhone && (
+                      <a href={secondaryPhoneHref} className="text-body-mobile md:text-body font-semibold hover:text-accent transition-colors">
+                        {SITE.messengerPhone}
+                      </a>
+                    )}
                   </div>
                   <div className="space-y-1">
                     <p className="text-small text-muted-foreground">Email</p>
@@ -494,7 +502,7 @@ const TeamMemberPage = () => {
                   )}
                   <div className="flex flex-col gap-3 pt-2">
                     <Button asChild className="bg-accent hover:bg-accent/90 text-white">
-                      <a href={`tel:${phone.replace(/[^+\d]/g, "")}`}>
+                      <a href={phoneHref}>
                         Позвонить сейчас
                       </a>
                     </Button>

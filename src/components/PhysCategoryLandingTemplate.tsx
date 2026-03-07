@@ -160,7 +160,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
     isConsumerProtectionCategory || isNasledstvennyeCategory || isBankrotstvoMerged || isTrudovyeCategory;
   const isCallOnlyCta = isDebtContractsCategory;
   const shouldUseContactsLink = isContactsFlowCategory && !isConsumerProtectionCategory;
-  const callHref = "tel:+74950040196";
+  const callHref = `tel:${SITE.phoneRaw}`;
   const contactsHref = "/kontakty";
   const whatsappUrl = SITE.whatsappUrl;
   const telegramUrl = SITE.telegramUrl;
@@ -1970,13 +1970,18 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                 <p>Если ваш случай не имеет перспектив — мы скажем об этом сразу.</p>
               </div>
               <div className="mt-7 flex justify-center">
-                <a
-                  href={callHref}
-                  className="inline-flex items-center gap-2 text-[20px] font-semibold text-slate-900 hover:text-accent"
-                >
-                  <Phone className="h-6 w-6 text-accent" />
-                  <span>Обсудить ситуацию по телефону: {SITE.phone}</span>
-                </a>
+                <div className="inline-flex items-start gap-2 text-[20px] font-semibold text-slate-900">
+                  <Phone className="mt-0.5 h-6 w-6 text-accent" />
+                  <span className="flex flex-col items-start leading-tight">
+                    <span>Обсудить ситуацию по телефону:</span>
+                    <a href={callHref} className="hover:text-accent">
+                      {SITE.phone}
+                    </a>
+                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
+                      {SITE.messengerPhone}
+                    </a>
+                  </span>
+                </div>
               </div>
             </div>
           </section>
@@ -3366,13 +3371,17 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                     <div className="text-sm text-muted-foreground">
                       Телефон для консультаций:
                     </div>
-                    <a
-                      href={`tel:${SITE.phoneRaw}`}
-                      className="inline-flex items-center gap-2 text-[18px] font-semibold text-slate-900 hover:text-accent"
-                    >
-                      <Phone className="h-5 w-5 text-accent" />
-                      <span>{SITE.phone}</span>
-                    </a>
+                    <div className="inline-flex items-start gap-2 text-[18px] font-semibold text-slate-900">
+                      <Phone className="mt-0.5 h-5 w-5 text-accent" />
+                      <span className="flex flex-col items-start leading-tight">
+                        <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent">
+                          {SITE.phone}
+                        </a>
+                        <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
+                          {SITE.messengerPhone}
+                        </a>
+                      </span>
+                    </div>
                     <Button
                       asChild
                       size="lg"
@@ -3412,9 +3421,14 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                       </div>
                       <div>
                         <h3 className="font-semibold mb-1">Телефон</h3>
-                        <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
-                          {SITE.phone}
-                        </a>
+                        <div className="flex flex-col items-start">
+                          <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
+                            {SITE.phone}
+                          </a>
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
+                            {SITE.messengerPhone}
+                          </a>
+                        </div>
                       </div>
                     </div>
                   </CardContent>

@@ -5,6 +5,7 @@ import { Card } from "@/components/ui/card";
 import { useNavigate } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import { SITE } from "@/config/site";
 
 const Thanks = () => {
   const navigate = useNavigate();
@@ -35,7 +36,7 @@ const Thanks = () => {
 
           <div className="space-y-4 pt-4">
             <Button asChild className="w-full bg-accent text-white hover:bg-accent/90">
-              <a href="tel:+74950040196">Позвонить сейчас</a>
+              <a href={`tel:${SITE.phoneRaw}`}>Позвонить сейчас</a>
             </Button>
             <Button 
               onClick={() => navigate('/')} 

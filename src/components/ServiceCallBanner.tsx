@@ -10,6 +10,7 @@ type ServiceCallBannerProps = {
 
 const ServiceCallBanner = ({ className }: ServiceCallBannerProps) => {
   const telHref = `tel:${SITE.phoneRaw}`;
+  const secondaryTelHref = `tel:+${SITE.messengerPhoneRaw}`;
 
   return (
     <div
@@ -24,13 +25,21 @@ const ServiceCallBanner = ({ className }: ServiceCallBannerProps) => {
             <Phone className="h-5 w-5 text-primary" />
           </div>
           <div className="text-body-mobile md:text-body leading-snug">
-            <span className="text-foreground/90">Не нашли подходящую услугу? Позвоните нам: </span>
-            <a
-              href={telHref}
-              className="font-semibold text-foreground underline-offset-4 hover:underline"
-            >
-              {SITE.phone}
-            </a>
+            <span className="text-foreground/90">Не нашли подходящую услугу? Позвоните нам:</span>
+            <div className="mt-1 flex flex-col items-start">
+              <a
+                href={telHref}
+                className="font-semibold text-foreground underline-offset-4 hover:underline"
+              >
+                {SITE.phone}
+              </a>
+              <a
+                href={secondaryTelHref}
+                className="font-semibold text-foreground underline-offset-4 hover:underline"
+              >
+                {SITE.messengerPhone}
+              </a>
+            </div>
           </div>
         </div>
 

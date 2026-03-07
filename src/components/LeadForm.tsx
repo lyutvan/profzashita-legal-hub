@@ -11,13 +11,19 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
     ? `Позвоните нам — адвокат по направлению «${practiceType}» подскажет следующие шаги.`
     : "Позвоните нам — мы подскажем, как лучше начать работу с вашим вопросом.";
   const buttonLabel = variant === "compact" ? "Позвонить" : "Свяжитесь с нами";
+  const secondaryPhoneHref = `tel:+${SITE.messengerPhoneRaw}`;
 
   return (
     <div className={variant === "compact" ? "space-y-3" : "space-y-4"}>
       <p className="text-sm text-muted-foreground">{message}</p>
-      <a href={`tel:${SITE.phoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
-        {SITE.phone}
-      </a>
+      <div className="flex flex-col items-start gap-1">
+        <a href={`tel:${SITE.phoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
+          {SITE.phone}
+        </a>
+        <a href={secondaryPhoneHref} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
+          {SITE.messengerPhone}
+        </a>
+      </div>
       <Button
         asChild
         size="lg"

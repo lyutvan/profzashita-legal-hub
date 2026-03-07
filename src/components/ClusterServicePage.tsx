@@ -372,12 +372,20 @@ const ClusterServicePage = ({
                       Позвоните нам прямо сейчас или запишитесь на бесплатную консультацию
                     </p>
                     <div className="flex flex-wrap gap-4 justify-center">
-                      <Button size="lg" className="bg-accent hover:bg-accent/90" asChild>
-                        <a href="tel:+74950040196">
-                          <Phone className="mr-2 h-5 w-5" />
-                          +7 (495) 004-01-96
-                        </a>
-                      </Button>
+                      <div className="flex flex-col gap-2">
+                        <Button size="lg" className="h-auto bg-accent hover:bg-accent/90" asChild>
+                          <a href={`tel:${SITE.phoneRaw}`} className="inline-flex items-center gap-2 py-2">
+                            <Phone className="h-5 w-5" />
+                            <span>{SITE.phone}</span>
+                          </a>
+                        </Button>
+                        <Button size="lg" className="h-auto bg-accent hover:bg-accent/90" asChild>
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="inline-flex items-center gap-2 py-2">
+                            <Phone className="h-5 w-5" />
+                            <span>{SITE.messengerPhone}</span>
+                          </a>
+                        </Button>
+                      </div>
                       <Button
                         size="lg"
                         variant="outline"
@@ -414,15 +422,23 @@ const ClusterServicePage = ({
                     <p className="text-small text-muted-foreground mb-4">
                       Работаем 24/7, выезд в течение 2 часов
                     </p>
-                    <a 
-                      href="tel:+74950040196"
-                      className="block text-h3 font-bold text-accent hover:text-accent/90 transition-colors mb-4"
-                    >
-                      +7 (495) 004-01-96
-                    </a>
+                    <div className="mb-4 flex flex-col items-center">
+                      <a 
+                        href={`tel:${SITE.phoneRaw}`}
+                        className="block text-h3 font-bold text-accent hover:text-accent/90 transition-colors"
+                      >
+                        {SITE.phone}
+                      </a>
+                      <a 
+                        href={`tel:+${SITE.messengerPhoneRaw}`}
+                        className="block text-h3 font-bold text-accent hover:text-accent/90 transition-colors"
+                      >
+                        {SITE.messengerPhone}
+                      </a>
+                    </div>
                     <div className="flex gap-2">
                       <Button className="flex-1 bg-accent hover:bg-accent/90" asChild>
-                        <a href="tel:+74950040196">
+                        <a href={`tel:${SITE.phoneRaw}`}>
                           <Phone className="mr-2 h-4 w-4" />
                           Позвонить
                         </a>
@@ -498,7 +514,7 @@ const ClusterServicePage = ({
       <div className="lg:hidden fixed bottom-0 left-0 right-0 z-50 bg-background border-t border-border p-4 shadow-lg">
         <div className="flex gap-2">
           <Button className="flex-1 bg-accent hover:bg-accent/90" asChild>
-            <a href="tel:+74950040196">
+            <a href={`tel:${SITE.phoneRaw}`}>
               <Phone className="mr-2 h-4 w-4" />
               Позвонить
             </a>
