@@ -623,9 +623,9 @@ All colors MUST be HSL.
     padding-top: clamp(20px, 3vh, 40px);
   }
 
-  @keyframes hero-cta-border-sweep {
+  @keyframes hero-cta-border-run {
     to {
-      transform: rotate(1turn);
+      stroke-dashoffset: -100;
     }
   }
 
@@ -634,44 +634,51 @@ All colors MUST be HSL.
     --hero-cta-glow-soft: rgba(255, 255, 255, 0.38);
     position: relative;
     isolation: isolate;
-    overflow: visible;
+    overflow: hidden;
   }
 
-  .hero-cta-glow::before {
-    content: "";
+  .hero-cta-label {
+    position: relative;
+    z-index: 2;
+  }
+
+  .hero-cta-outline {
     position: absolute;
-    inset: -2px;
-    border-radius: inherit;
-    padding: 2px;
+    inset: 0;
+    z-index: 1;
     pointer-events: none;
-    opacity: 0.88;
-    background:
-      conic-gradient(
-        from 0deg,
-        transparent 0deg,
-        var(--hero-cta-glow) 18deg,
-        transparent 42deg,
-        transparent 160deg,
-        var(--hero-cta-glow-soft) 190deg,
-        transparent 220deg,
-        transparent 360deg
-      );
-    filter: drop-shadow(0 0 8px var(--hero-cta-glow-soft));
-    transform-origin: center;
-    animation: hero-cta-border-sweep 5.8s linear infinite;
-    -webkit-mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    -webkit-mask-composite: xor;
-    mask:
-      linear-gradient(#000 0 0) content-box,
-      linear-gradient(#000 0 0);
-    mask-composite: exclude;
+    border-radius: inherit;
   }
 
-  .hero-cta-glow:hover::before,
-  .hero-cta-glow:focus-visible::before {
-    opacity: 1;
+  .hero-cta-outline svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .hero-cta-outline__base {
+    fill: none;
+    stroke: var(--hero-cta-glow-soft);
+    stroke-width: 1.1;
+    opacity: 0.45;
+    vector-effect: non-scaling-stroke;
+  }
+
+  .hero-cta-outline__run {
+    fill: none;
+    stroke: var(--hero-cta-glow);
+    stroke-width: 1.8;
+    stroke-linecap: round;
+    stroke-dasharray: 14 86;
+    stroke-dashoffset: 0;
+    vector-effect: non-scaling-stroke;
+    filter: drop-shadow(0 0 7px var(--hero-cta-glow-soft));
+    animation: hero-cta-border-run 6.4s linear infinite;
+  }
+
+  .hero-cta-glow:hover .hero-cta-outline__run,
+  .hero-cta-glow:focus-visible .hero-cta-outline__run {
+    stroke-dasharray: 18 82;
   }
 
   .hero-cta-glow--urgent {
@@ -685,7 +692,7 @@ All colors MUST be HSL.
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-cta-glow::before {
+    .hero-cta-outline__run {
       animation: none;
     }
   }
