@@ -358,10 +358,21 @@ const Index = () => {
               <br />
               Работаем по делам, где важен результат
             </p>
-            <div className="flex flex-col sm:flex-row gap-4 justify-center">
-              <Link to="/kontakty">
-                <Button size="lg" className="bg-accent text-white hover:bg-accent/90 px-8">
-                  Обсудить ситуацию по телефону
+            <div className="flex flex-col sm:flex-row gap-4 justify-center items-stretch sm:items-center">
+              <Link to="/kontakty" className="w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  className="w-full border border-[#b91c1c] bg-[#dc2626] px-8 text-white shadow-[0_8px_18px_rgba(220,38,38,0.35)] transition-all duration-300 hover:scale-[1.02] hover:bg-[#b91c1c] hover:shadow-[0_10px_24px_rgba(220,38,38,0.45)]"
+                >
+                  Срочная помощь адвоката
+                </Button>
+              </Link>
+              <Link to="/kontakty" className="w-full sm:w-auto">
+                <Button
+                  size="lg"
+                  className="w-full border border-[#b8911f] bg-[#C9A227] px-8 text-slate-900 shadow-[0_8px_18px_rgba(201,162,39,0.35)] transition-all duration-300 hover:scale-[1.02] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_10px_24px_rgba(111,83,15,0.35)]"
+                >
+                  Получить консультацию
                 </Button>
               </Link>
             </div>
