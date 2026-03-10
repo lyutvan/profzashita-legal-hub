@@ -367,8 +367,8 @@ const Index = () => {
                   <span className="hero-cta-label">Срочная помощь адвоката</span>
                   <span className="hero-cta-outline" aria-hidden="true">
                     <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                      <rect className="hero-cta-outline__base" x="1" y="1" width="98" height="38" rx="10" ry="10" pathLength="100" />
-                      <rect className="hero-cta-outline__run" x="1" y="1" width="98" height="38" rx="10" ry="10" pathLength="100" />
+                      <rect className="hero-cta-outline__base" x="1" y="1" width="98" height="38" rx="10" ry="10" />
+                      <rect className="hero-cta-outline__run" x="1" y="1" width="98" height="38" rx="10" ry="10" />
                     </svg>
                   </span>
                 </Button>
@@ -381,8 +381,8 @@ const Index = () => {
                   <span className="hero-cta-label">Получить консультацию</span>
                   <span className="hero-cta-outline" aria-hidden="true">
                     <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                      <rect className="hero-cta-outline__base" x="1" y="1" width="98" height="38" rx="10" ry="10" pathLength="100" />
-                      <rect className="hero-cta-outline__run" x="1" y="1" width="98" height="38" rx="10" ry="10" pathLength="100" />
+                      <rect className="hero-cta-outline__base" x="1" y="1" width="98" height="38" rx="10" ry="10" />
+                      <rect className="hero-cta-outline__run" x="1" y="1" width="98" height="38" rx="10" ry="10" />
                     </svg>
                   </span>
                 </Button>

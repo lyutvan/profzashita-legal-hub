@@ -624,8 +624,11 @@ All colors MUST be HSL.
   }
 
   @keyframes hero-cta-border-run {
+    from {
+      stroke-dashoffset: 0;
+    }
     to {
-      stroke-dashoffset: -100;
+      stroke-dashoffset: -272;
     }
   }
 
@@ -669,16 +672,16 @@ All colors MUST be HSL.
     stroke: var(--hero-cta-glow);
     stroke-width: 1.8;
     stroke-linecap: round;
-    stroke-dasharray: 14 86;
+    stroke-dasharray: 52 220;
     stroke-dashoffset: 0;
     vector-effect: non-scaling-stroke;
     filter: drop-shadow(0 0 7px var(--hero-cta-glow-soft));
-    animation: hero-cta-border-run 6.4s linear infinite;
+    animation: hero-cta-border-run 5.8s linear infinite;
   }
 
   .hero-cta-glow:hover .hero-cta-outline__run,
   .hero-cta-glow:focus-visible .hero-cta-outline__run {
-    stroke-dasharray: 18 82;
+    stroke-dasharray: 62 210;
   }
 
   .hero-cta-glow--urgent {
