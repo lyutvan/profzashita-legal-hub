@@ -364,13 +364,21 @@ const Index = () => {
                   size="lg"
                   className="hero-cta-glow hero-cta-glow--urgent w-full border border-[#b91c1c] bg-[#dc2626] px-8 text-white shadow-[0_8px_18px_rgba(220,38,38,0.35)] transition-all duration-300 hover:scale-[1.02] hover:bg-[#b91c1c] hover:shadow-[0_10px_24px_rgba(220,38,38,0.45)]"
                 >
-                  <span className="hero-cta-label">Срочная помощь адвоката</span>
-                  <span className="hero-cta-outline" aria-hidden="true">
+                  <span className="hero-cta-trace" aria-hidden="true">
                     <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                      <rect className="hero-cta-outline__base" x="1" y="1" width="98" height="38" rx="10" ry="10" />
-                      <rect className="hero-cta-outline__run" x="1" y="1" width="98" height="38" rx="10" ry="10" />
+                      <path
+                        id="hero-cta-path-urgent"
+                        className="hero-cta-trace__path"
+                        d="M12 1.5H88A10.5 10.5 0 0 1 98.5 12V28A10.5 10.5 0 0 1 88 38.5H12A10.5 10.5 0 0 1 1.5 28V12A10.5 10.5 0 0 1 12 1.5Z"
+                      />
+                      <circle className="hero-cta-trace__dot" r="2.25" cx="0" cy="0">
+                        <animateMotion dur="7.5s" repeatCount="indefinite" rotate="auto">
+                          <mpath href="#hero-cta-path-urgent" />
+                        </animateMotion>
+                      </circle>
                     </svg>
                   </span>
+                  <span className="hero-cta-label">Срочная помощь адвоката</span>
                 </Button>
               </Link>
               <Link to="/kontakty" className="w-full sm:w-auto">
@@ -378,13 +386,21 @@ const Index = () => {
                   size="lg"
                   className="hero-cta-glow hero-cta-glow--consult w-full border border-[#b8911f] bg-[#C9A227] px-8 text-slate-900 shadow-[0_8px_18px_rgba(201,162,39,0.35)] transition-all duration-300 hover:scale-[1.02] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_10px_24px_rgba(111,83,15,0.35)]"
                 >
-                  <span className="hero-cta-label">Получить консультацию</span>
-                  <span className="hero-cta-outline" aria-hidden="true">
+                  <span className="hero-cta-trace" aria-hidden="true">
                     <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                      <rect className="hero-cta-outline__base" x="1" y="1" width="98" height="38" rx="10" ry="10" />
-                      <rect className="hero-cta-outline__run" x="1" y="1" width="98" height="38" rx="10" ry="10" />
+                      <path
+                        id="hero-cta-path-consult"
+                        className="hero-cta-trace__path"
+                        d="M12 1.5H88A10.5 10.5 0 0 1 98.5 12V28A10.5 10.5 0 0 1 88 38.5H12A10.5 10.5 0 0 1 1.5 28V12A10.5 10.5 0 0 1 12 1.5Z"
+                      />
+                      <circle className="hero-cta-trace__dot" r="2.25" cx="0" cy="0">
+                        <animateMotion dur="7.5s" repeatCount="indefinite" rotate="auto">
+                          <mpath href="#hero-cta-path-consult" />
+                        </animateMotion>
+                      </circle>
                     </svg>
                   </span>
+                  <span className="hero-cta-label">Получить консультацию</span>
                 </Button>
               </Link>
             </div>

@@ -623,21 +623,50 @@ All colors MUST be HSL.
     padding-top: clamp(20px, 3vh, 40px);
   }
 
-  @keyframes hero-cta-border-run {
-    from {
-      stroke-dashoffset: 0;
-    }
-    to {
-      stroke-dashoffset: -272;
-    }
-  }
-
   .hero-cta-glow {
     --hero-cta-glow: rgba(255, 255, 255, 0.9);
     --hero-cta-glow-soft: rgba(255, 255, 255, 0.38);
+    --hero-cta-halo: rgba(255, 255, 255, 0.32);
     position: relative;
     isolation: isolate;
     overflow: hidden;
+    box-shadow:
+      0 12px 26px -14px var(--hero-cta-halo),
+      0 0 0 1px var(--hero-cta-glow-soft);
+    transition:
+      box-shadow 0.28s ease,
+      transform 0.28s ease;
+  }
+
+  .hero-cta-glow::before {
+    content: "";
+    position: absolute;
+    inset: -22%;
+    z-index: 0;
+    pointer-events: none;
+    border-radius: inherit;
+    background: radial-gradient(circle, var(--hero-cta-halo) 0%, transparent 68%);
+    filter: blur(16px);
+    opacity: 0.72;
+    transition: opacity 0.28s ease;
+  }
+
+  .hero-cta-glow::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    pointer-events: none;
+    border-radius: inherit;
+    border: 1.5px solid var(--hero-cta-glow);
+    box-shadow:
+      inset 0 0 0 1px var(--hero-cta-glow-soft),
+      0 0 16px -2px var(--hero-cta-halo);
+    opacity: 0.82;
+    transition:
+      opacity 0.28s ease,
+      box-shadow 0.28s ease,
+      border-color 0.28s ease;
   }
 
   .hero-cta-label {
@@ -645,7 +674,7 @@ All colors MUST be HSL.
     z-index: 2;
   }
 
-  .hero-cta-outline {
+  .hero-cta-trace {
     position: absolute;
     inset: 0;
     z-index: 1;
@@ -653,50 +682,64 @@ All colors MUST be HSL.
     border-radius: inherit;
   }
 
-  .hero-cta-outline svg {
+  .hero-cta-trace svg {
     display: block;
     width: 100%;
     height: 100%;
+    overflow: visible;
   }
 
-  .hero-cta-outline__base {
+  .hero-cta-trace__path {
     fill: none;
-    stroke: var(--hero-cta-glow-soft);
-    stroke-width: 1.1;
-    opacity: 0.45;
-    vector-effect: non-scaling-stroke;
+    stroke: none;
   }
 
-  .hero-cta-outline__run {
-    fill: none;
-    stroke: var(--hero-cta-glow);
-    stroke-width: 1.8;
-    stroke-linecap: round;
-    stroke-dasharray: 52 220;
-    stroke-dashoffset: 0;
-    vector-effect: non-scaling-stroke;
-    filter: drop-shadow(0 0 7px var(--hero-cta-glow-soft));
-    animation: hero-cta-border-run 5.8s linear infinite;
+  .hero-cta-trace__dot {
+    fill: var(--hero-cta-glow);
+    filter: drop-shadow(0 0 4px var(--hero-cta-halo));
   }
 
-  .hero-cta-glow:hover .hero-cta-outline__run,
-  .hero-cta-glow:focus-visible .hero-cta-outline__run {
-    stroke-dasharray: 62 210;
+  .hero-cta-glow:hover,
+  .hero-cta-glow:focus-visible {
+    transform: translateY(-1px);
+    box-shadow:
+      0 18px 32px -14px var(--hero-cta-halo),
+      0 0 0 1px var(--hero-cta-glow);
+  }
+
+  .hero-cta-glow:hover::before,
+  .hero-cta-glow:focus-visible::before {
+    opacity: 1;
+  }
+
+  .hero-cta-glow:hover::after,
+  .hero-cta-glow:focus-visible::after {
+    opacity: 1;
+    box-shadow:
+      inset 0 0 0 1px var(--hero-cta-glow),
+      0 0 22px -2px var(--hero-cta-halo);
+  }
+
+  .hero-cta-glow:hover .hero-cta-trace__dot,
+  .hero-cta-glow:focus-visible .hero-cta-trace__dot {
+    filter: drop-shadow(0 0 6px var(--hero-cta-halo));
   }
 
   .hero-cta-glow--urgent {
     --hero-cta-glow: rgba(254, 202, 202, 0.95);
     --hero-cta-glow-soft: rgba(248, 113, 113, 0.45);
+    --hero-cta-halo: rgba(248, 113, 113, 0.48);
   }
 
   .hero-cta-glow--consult {
     --hero-cta-glow: rgba(254, 240, 138, 0.95);
     --hero-cta-glow-soft: rgba(201, 162, 39, 0.45);
+    --hero-cta-halo: rgba(201, 162, 39, 0.48);
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .hero-cta-outline__run {
-      animation: none;
+    .hero-cta-trace animateMotion {
+      display: none;
     }
   }
 
