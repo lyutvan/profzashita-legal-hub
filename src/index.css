@@ -623,6 +623,73 @@ All colors MUST be HSL.
     padding-top: clamp(20px, 3vh, 40px);
   }
 
+  @keyframes hero-cta-border-sweep {
+    to {
+      transform: rotate(1turn);
+    }
+  }
+
+  .hero-cta-glow {
+    --hero-cta-glow: rgba(255, 255, 255, 0.9);
+    --hero-cta-glow-soft: rgba(255, 255, 255, 0.38);
+    position: relative;
+    isolation: isolate;
+    overflow: visible;
+  }
+
+  .hero-cta-glow::before {
+    content: "";
+    position: absolute;
+    inset: -2px;
+    border-radius: inherit;
+    padding: 2px;
+    pointer-events: none;
+    opacity: 0.88;
+    background:
+      conic-gradient(
+        from 0deg,
+        transparent 0deg,
+        var(--hero-cta-glow) 18deg,
+        transparent 42deg,
+        transparent 160deg,
+        var(--hero-cta-glow-soft) 190deg,
+        transparent 220deg,
+        transparent 360deg
+      );
+    filter: drop-shadow(0 0 8px var(--hero-cta-glow-soft));
+    transform-origin: center;
+    animation: hero-cta-border-sweep 5.8s linear infinite;
+    -webkit-mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    -webkit-mask-composite: xor;
+    mask:
+      linear-gradient(#000 0 0) content-box,
+      linear-gradient(#000 0 0);
+    mask-composite: exclude;
+  }
+
+  .hero-cta-glow:hover::before,
+  .hero-cta-glow:focus-visible::before {
+    opacity: 1;
+  }
+
+  .hero-cta-glow--urgent {
+    --hero-cta-glow: rgba(254, 202, 202, 0.95);
+    --hero-cta-glow-soft: rgba(248, 113, 113, 0.45);
+  }
+
+  .hero-cta-glow--consult {
+    --hero-cta-glow: rgba(254, 240, 138, 0.95);
+    --hero-cta-glow-soft: rgba(201, 162, 39, 0.45);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .hero-cta-glow::before {
+      animation: none;
+    }
+  }
+
   .h1 {
     font-family: var(--font-heading);
     font-size: var(--h1);
