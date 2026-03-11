@@ -3087,7 +3087,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                                       variant="outline"
                                       className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
                                     >
-                                      <Link to={caseItem.slug ? `/cases/${caseItem.slug}` : "/keisy"}>
+                                      <Link to={"/keisy"}>
                                         Смотреть кейсы
                                       </Link>
                                     </Button>
