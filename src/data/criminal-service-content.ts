@@ -366,7 +366,9 @@ export const criminalServicesList = audienceServices.filter(
 );
 
 export const getCriminalServiceEntryBySlug = (slug: string): CriminalServiceEntry | undefined => {
-  return criminalServicesList.find((service) => service.slug === slug);
+  const service = criminalServicesList.find((service) => service.slug === slug);
+  if (!service || !service.category) return undefined;
+  return service as CriminalServiceEntry;
 };
 
 export const getCriminalServicePageData = (entry: CriminalServiceEntry): CriminalServicePageData => {
