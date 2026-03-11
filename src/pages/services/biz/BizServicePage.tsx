@@ -12,9 +12,9 @@ const BizServicePage = () => {
     (item) => item.audience === "biz" && item.path === pathname
   );
 
-  if (!service) return <NotFound />;
+  if (!service || !service.category) return <NotFound />;
 
-  const pageData = getBizServicePageData(service);
+  const pageData = getBizServicePageData(service as import("@/data/biz-service-content").BizServiceEntry);
   return <BizServiceTemplate data={pageData} />;
 };
 

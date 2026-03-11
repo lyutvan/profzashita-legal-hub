@@ -383,7 +383,6 @@ const NasledstvoPage = () => {
           reviewBody: review.text,
           datePublished: "2026-01-01"
         }))}
-        url={canonical}
       />
 
       <Header />

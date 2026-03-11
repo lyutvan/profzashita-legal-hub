@@ -1493,7 +1493,6 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
             reviewBody: review.text,
             datePublished: review.date
           }))}
-          url={data.canonical}
         />
       )}
 
@@ -2620,7 +2619,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <div className={`mt-8 ${bankrotstvoCasesLayout}`}>
                 {bankrotstvoShowcaseCases.map((caseItem, index) => (
                   <Card
-                    key={caseItem.title ?? caseItem.fallbackId ?? index}
+                    key={caseItem.title ?? index}
                     className={`h-full rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_16px_rgba(60,52,31,0.08)] ${
                       bankrotstvoShowcaseCases.length < 3 ? "w-full max-w-[360px]" : ""
                     }`}
@@ -3088,7 +3087,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                                       variant="outline"
                                       className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
                                     >
-                                      <Link to={caseItem.slug ? `/cases/${caseItem.slug}` : "/keisy"}>
+                                      <Link to={"/keisy"}>
                                         Смотреть кейсы
                                       </Link>
                                     </Button>
@@ -3114,7 +3113,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                                         variant="outline"
                                         className="h-11 w-full rounded-[12px] border-[#C9A227] text-slate-900 hover:border-[#b8911f] hover:bg-[#F4E7C2]"
                                       >
-                                        <Link to={caseItem.slug ? `/cases/${caseItem.slug}` : "/keisy"}>
+                                        <Link to={"/keisy"}>
                                           Смотреть кейсы
                                         </Link>
                                       </Button>

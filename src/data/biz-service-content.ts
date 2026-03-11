@@ -347,7 +347,9 @@ export const bizServicesList = audienceServices.filter(
 );
 
 export const getBizServiceEntryBySlug = (slug: string): BizServiceEntry | undefined => {
-  return bizServicesList.find((service) => service.slug === slug);
+  const service = bizServicesList.find((service) => service.slug === slug);
+  if (!service || !service.category) return undefined;
+  return service as BizServiceEntry;
 };
 
 const getTeamByCategory = (category: string): BizTeamCard[] => {
@@ -395,7 +397,7 @@ export const getBizServicePageData = (entry: BizServiceEntry): BizServicePageDat
   if (categoryAnchor) {
     breadcrumbs.push({ label: entry.category, path: `/services/biz#${categoryAnchor}` });
   }
-  breadcrumbs.push({ label: entry.title });
+  breadcrumbs.push({ label: entry.title, path: entry.path });
 
   const breadcrumbSchema = [
     { name: "Главная", url: SITE.url },

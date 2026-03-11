@@ -366,7 +366,9 @@ export const criminalServicesList = audienceServices.filter(
 );
 
 export const getCriminalServiceEntryBySlug = (slug: string): CriminalServiceEntry | undefined => {
-  return criminalServicesList.find((service) => service.slug === slug);
+  const service = criminalServicesList.find((service) => service.slug === slug);
+  if (!service || !service.category) return undefined;
+  return service as CriminalServiceEntry;
 };
 
 export const getCriminalServicePageData = (entry: CriminalServiceEntry): CriminalServicePageData => {
@@ -395,7 +397,7 @@ export const getCriminalServicePageData = (entry: CriminalServiceEntry): Crimina
   if (categoryAnchor) {
     breadcrumbs.push({ label: categoryLabel, path: `/services/criminal#${categoryAnchor}` });
   }
-  breadcrumbs.push({ label: entry.title });
+  breadcrumbs.push({ label: entry.title, path: entry.path });
 
   const breadcrumbSchema = [
     { name: "Главная", url: SITE.url },
