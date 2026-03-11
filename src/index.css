@@ -689,14 +689,19 @@ All colors MUST be HSL.
     overflow: visible;
   }
 
-  .hero-cta-trace__path {
+  .hero-cta-trace__stroke {
     fill: none;
-    stroke: none;
+    stroke: var(--hero-cta-glow);
+    stroke-width: 2;
+    stroke-dasharray: 60 208;
+    filter: drop-shadow(0 0 6px var(--hero-cta-halo));
+    animation: hero-trace-spin 3s linear infinite;
   }
 
-  .hero-cta-trace__dot {
-    fill: var(--hero-cta-glow);
-    filter: drop-shadow(0 0 4px var(--hero-cta-halo));
+  @keyframes hero-trace-spin {
+    to {
+      stroke-dashoffset: -268;
+    }
   }
 
   .hero-cta-glow:hover,
@@ -720,9 +725,10 @@ All colors MUST be HSL.
       0 0 22px -2px var(--hero-cta-halo);
   }
 
-  .hero-cta-glow:hover .hero-cta-trace__dot,
-  .hero-cta-glow:focus-visible .hero-cta-trace__dot {
-    filter: drop-shadow(0 0 6px var(--hero-cta-halo));
+  .hero-cta-glow:hover .hero-cta-trace__stroke,
+  .hero-cta-glow:focus-visible .hero-cta-trace__stroke {
+    filter: drop-shadow(0 0 10px var(--hero-cta-halo));
+    stroke-width: 2.5;
   }
 
   .hero-cta-glow--urgent {
