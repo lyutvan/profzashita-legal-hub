@@ -1493,7 +1493,6 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
             reviewBody: review.text,
             datePublished: review.date
           }))}
-          url={data.canonical}
         />
       )}
 
