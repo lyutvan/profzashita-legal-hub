@@ -626,7 +626,7 @@ const Index = () => {
               </p>
               <div className="mt-6 flex justify-center">
                 <div className="max-w-full overflow-hidden">
-                  <iframe src="https://yandex.ru/sprav/widget/rating-badge/244880896695?type=rating" width="150" height="50" frameborder="0"></iframe>
+                  <iframe src="https://yandex.ru/sprav/widget/rating-badge/244880896695?type=rating" width="150" height="50" frameBorder="0"></iframe>
                 </div>
               </div>
             </div>

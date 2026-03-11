@@ -397,7 +397,7 @@ export const getCriminalServicePageData = (entry: CriminalServiceEntry): Crimina
   if (categoryAnchor) {
     breadcrumbs.push({ label: categoryLabel, path: `/services/criminal#${categoryAnchor}` });
   }
-  breadcrumbs.push({ label: entry.title });
+  breadcrumbs.push({ label: entry.title, path: entry.path });
 
   const breadcrumbSchema = [
     { name: "Главная", url: SITE.url },

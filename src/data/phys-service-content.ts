@@ -1171,7 +1171,7 @@ export const getPhysServicePageData = (entry: PhysServiceEntry): PhysServicePage
   if (!entry.isCategory && categoryPath) {
     breadcrumbs.push({ label: entry.category, path: categoryPath });
   }
-  breadcrumbs.push({ label: entry.title });
+  breadcrumbs.push({ label: entry.title, path: entry.path });
 
   const breadcrumbSchema = [
     { name: "Главная", url: SITE.url },

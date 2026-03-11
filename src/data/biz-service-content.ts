@@ -397,7 +397,7 @@ export const getBizServicePageData = (entry: BizServiceEntry): BizServicePageDat
   if (categoryAnchor) {
     breadcrumbs.push({ label: entry.category, path: `/services/biz#${categoryAnchor}` });
   }
-  breadcrumbs.push({ label: entry.title });
+  breadcrumbs.push({ label: entry.title, path: entry.path });
 
   const breadcrumbSchema = [
     { name: "Главная", url: SITE.url },
