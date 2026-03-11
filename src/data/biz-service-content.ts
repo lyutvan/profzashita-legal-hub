@@ -347,7 +347,9 @@ export const bizServicesList = audienceServices.filter(
 );
 
 export const getBizServiceEntryBySlug = (slug: string): BizServiceEntry | undefined => {
-  return bizServicesList.find((service) => service.slug === slug);
+  const service = bizServicesList.find((service) => service.slug === slug);
+  if (!service || !service.category) return undefined;
+  return service as BizServiceEntry;
 };
 
 const getTeamByCategory = (category: string): BizTeamCard[] => {
