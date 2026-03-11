@@ -2619,7 +2619,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
               <div className={`mt-8 ${bankrotstvoCasesLayout}`}>
                 {bankrotstvoShowcaseCases.map((caseItem, index) => (
                   <Card
-                    key={caseItem.title ?? caseItem.fallbackId ?? index}
+                    key={caseItem.title ?? index}
                     className={`h-full rounded-[14px] border border-[#D8C08B] bg-[#F8F4EA] shadow-[0_6px_16px_rgba(60,52,31,0.08)] ${
                       bankrotstvoShowcaseCases.length < 3 ? "w-full max-w-[360px]" : ""
                     }`}
