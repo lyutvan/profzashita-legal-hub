@@ -46,7 +46,7 @@ const CASE_RU: Record<string, string> = {
 const deriveTopicFromPath = (pathname: string) => {
   const normalizedPath = pathname.replace(/\/+$/, "") || "/";
   const parts = normalizedPath.split("/").filter(Boolean);
-  const slug = parts.at(-1);
+  const slug = parts[parts.length - 1];
   if (!slug) return "Консультация";
   const readable = decodeURIComponent(slug).replace(/[-_]/g, " ");
   if (normalizedPath.startsWith("/services/phys/")) return `Физические лица — ${readable}`;

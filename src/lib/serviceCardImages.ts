@@ -29,7 +29,7 @@ export function getServiceCardImage(key: string, seed = "") {
 export function getServiceSlugFromPath(pathname: string) {
   const normalized = pathname.replace(/\/+$/, "") || "/";
   const parts = normalized.split("/").filter(Boolean);
-  return parts.at(-1) ?? "";
+  return parts[parts.length - 1] ?? "";
 }
 
 export function getServiceCardImageForPath(pathname: string, seed = "") {
