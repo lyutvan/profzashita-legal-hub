@@ -366,16 +366,11 @@ const Index = () => {
                 >
                   <span className="hero-cta-trace" aria-hidden="true">
                     <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                      <path
-                        id="hero-cta-path-urgent"
-                        className="hero-cta-trace__path"
-                        d="M12 1.5H88A10.5 10.5 0 0 1 98.5 12V28A10.5 10.5 0 0 1 88 38.5H12A10.5 10.5 0 0 1 1.5 28V12A10.5 10.5 0 0 1 12 1.5Z"
+                      <rect
+                        className="hero-cta-trace__stroke"
+                        x="1.5" y="1.5" width="97" height="37"
+                        rx="10.5" ry="10.5"
                       />
-                      <circle className="hero-cta-trace__dot" r="2.25" cx="0" cy="0">
-                        <animateMotion dur="7.5s" repeatCount="indefinite" rotate="auto">
-                          <mpath href="#hero-cta-path-urgent" />
-                        </animateMotion>
-                      </circle>
                     </svg>
                   </span>
                   <span className="hero-cta-label">Срочная помощь адвоката</span>
