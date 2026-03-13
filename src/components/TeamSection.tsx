@@ -28,9 +28,9 @@ const TeamSection = ({
 
     return (
       <Card className="border-border hover:shadow-elegant transition-all h-full flex flex-col">
-        <CardContent className="pt-6 flex flex-col h-full">
+        <CardContent className="flex h-full flex-col p-6 sm:p-7">
           <div
-            className={`w-[150px] h-[150px] sm:w-[170px] sm:h-[170px] lg:w-[200px] lg:h-[200px] rounded-xl overflow-hidden mx-auto mb-4 ${
+            className={`mx-auto mb-5 h-[150px] w-[150px] overflow-hidden rounded-xl sm:h-[170px] sm:w-[170px] lg:h-[200px] lg:w-[200px] ${
               hasPhoto ? "border-2 border-accent/20" : "bg-muted/40"
             }`}
           >
@@ -48,23 +48,23 @@ const TeamSection = ({
               </div>
             )}
           </div>
-          <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold mb-2 text-center">
+          <h3 className="mb-3 text-center font-serif text-h3-mobile font-semibold md:text-h3">
             {member.name}
           </h3>
-          <p className="text-accent text-body-mobile md:text-body font-medium mb-2 text-center">
+          <p className="mb-3 text-center text-body-mobile font-medium text-accent md:text-body">
             {member.role}
           </p>
           {member.experienceText && (
-            <p className="text-small text-muted-foreground mb-4 text-center">{member.experienceText}</p>
+            <p className="mb-5 text-center text-small leading-7 text-muted-foreground">{member.experienceText}</p>
           )}
-          <ul className="space-y-2 text-small text-muted-foreground text-center mb-4">
+          <ul className="mb-5 space-y-3 text-center text-small leading-7 text-muted-foreground">
             {specs.map((spec) => (
-              <li key={spec} className="leading-relaxed">
+              <li key={spec}>
                 • {spec}
               </li>
             ))}
           </ul>
-          <div className="mt-auto flex justify-center">
+          <div className="mt-auto flex justify-center pt-2">
             <Button
               asChild
               className="bg-accent text-white hover:bg-accent/90 min-w-[160px]"
@@ -102,13 +102,13 @@ const TeamSection = ({
             {title}
           </h2>
           {subtitle && (
-            <p className="text-body-mobile md:text-body text-muted-foreground">
+            <p className="text-body-mobile md:text-body text-muted-foreground leading-relaxed">
               {subtitle}
             </p>
           )}
         </div>
 
-        <div className="section__content grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8 max-w-6xl mx-auto">
+        <div className="section__content grid grid-cols-1 gap-6 sm:grid-cols-2 lg:grid-cols-3 lg:gap-8 max-w-6xl mx-auto">
           {teamMembers.map((member) => (
             <TeamCard key={member.slug} member={member} />
           ))}

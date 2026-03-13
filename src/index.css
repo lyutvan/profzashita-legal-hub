@@ -58,15 +58,15 @@ All colors MUST be HSL.
     /* Spacing tokens */
     --container-max: 1240px;
     --container-pad: 16px;
-    --section-y-mobile: 16px;
-    --section-y-tablet: 24px;
-    --section-y-desktop: 32px;
+    --section-y-mobile: 20px;
+    --section-y-tablet: 28px;
+    --section-y-desktop: 36px;
     --section-y-sm: 12px;
-    --gap: 16px;
-    --gap-sm: 12px;
-    --section-inner-gap-mobile: 16px;
-    --section-inner-gap-tablet: 20px;
-    --section-inner-gap-desktop: 24px;
+    --gap: 18px;
+    --gap-sm: 14px;
+    --section-inner-gap-mobile: 20px;
+    --section-inner-gap-tablet: 24px;
+    --section-inner-gap-desktop: 28px;
     --section-y: var(--section-y-mobile);
     --section-inner-gap: var(--section-inner-gap-mobile);
 
@@ -81,8 +81,8 @@ All colors MUST be HSL.
     --text-small: 0.875rem;
     --btn-text: 1rem;
     --lh-heading: 1.15;
-    --lh-lead: 1.6;
-    --lh-body: 1.7;
+    --lh-lead: 1.65;
+    --lh-body: 1.75;
     --ls-heading: -0.01em;
     --ls-body: 0em;
 
@@ -141,8 +141,8 @@ All colors MUST be HSL.
     --container-pad: 20px;
     --section-y: var(--section-y-tablet);
     --section-y-sm: 16px;
-    --gap: 20px;
-    --gap-sm: 16px;
+    --gap: 22px;
+    --gap-sm: 18px;
     --section-inner-gap: var(--section-inner-gap-tablet);
     --h1: 3rem;
     --h2: 2rem;
@@ -157,8 +157,8 @@ All colors MUST be HSL.
     --container-pad: 24px;
     --section-y: var(--section-y-desktop);
     --section-y-sm: 24px;
-    --gap: 24px;
-    --gap-sm: 16px;
+    --gap: 26px;
+    --gap-sm: 18px;
     --section-inner-gap: var(--section-inner-gap-desktop);
     --h1: 3.5rem;
     --h2: 2.25rem;
@@ -421,7 +421,7 @@ All colors MUST be HSL.
   .section__header {
     margin-bottom: var(--section-inner-gap);
     display: grid;
-    gap: calc(var(--gap) * 0.5);
+    gap: calc(var(--gap) * 0.6);
   }
 
   .section__header > * {
@@ -621,132 +621,6 @@ All colors MUST be HSL.
 
   .home-navigation {
     padding-top: clamp(20px, 3vh, 40px);
-  }
-
-  .hero-cta-glow {
-    --hero-cta-glow: rgba(255, 255, 255, 0.9);
-    --hero-cta-glow-soft: rgba(255, 255, 255, 0.38);
-    --hero-cta-halo: rgba(255, 255, 255, 0.32);
-    position: relative;
-    isolation: isolate;
-    overflow: hidden;
-    box-shadow:
-      0 12px 26px -14px var(--hero-cta-halo),
-      0 0 0 1px var(--hero-cta-glow-soft);
-    transition:
-      box-shadow 0.28s ease,
-      transform 0.28s ease;
-  }
-
-  .hero-cta-glow::before {
-    content: "";
-    position: absolute;
-    inset: -22%;
-    z-index: 0;
-    pointer-events: none;
-    border-radius: inherit;
-    background: radial-gradient(circle, var(--hero-cta-halo) 0%, transparent 68%);
-    filter: blur(16px);
-    opacity: 0.72;
-    transition: opacity 0.28s ease;
-  }
-
-  .hero-cta-glow::after {
-    content: "";
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    border-radius: inherit;
-    border: 1.5px solid var(--hero-cta-glow);
-    box-shadow:
-      inset 0 0 0 1px var(--hero-cta-glow-soft),
-      0 0 16px -2px var(--hero-cta-halo);
-    opacity: 0.82;
-    transition:
-      opacity 0.28s ease,
-      box-shadow 0.28s ease,
-      border-color 0.28s ease;
-  }
-
-  .hero-cta-label {
-    position: relative;
-    z-index: 2;
-  }
-
-  .hero-cta-trace {
-    position: absolute;
-    inset: 0;
-    z-index: 1;
-    pointer-events: none;
-    border-radius: inherit;
-  }
-
-  .hero-cta-trace svg {
-    display: block;
-    width: 100%;
-    height: 100%;
-    overflow: visible;
-  }
-
-  .hero-cta-trace__stroke {
-    fill: none;
-    stroke: var(--hero-cta-glow);
-    stroke-width: 2;
-    stroke-dasharray: 60 208;
-    filter: drop-shadow(0 0 6px var(--hero-cta-halo));
-    animation: hero-trace-spin 3s linear infinite;
-  }
-
-  @keyframes hero-trace-spin {
-    to {
-      stroke-dashoffset: -268;
-    }
-  }
-
-  .hero-cta-glow:hover,
-  .hero-cta-glow:focus-visible {
-    transform: translateY(-1px);
-    box-shadow:
-      0 18px 32px -14px var(--hero-cta-halo),
-      0 0 0 1px var(--hero-cta-glow);
-  }
-
-  .hero-cta-glow:hover::before,
-  .hero-cta-glow:focus-visible::before {
-    opacity: 1;
-  }
-
-  .hero-cta-glow:hover::after,
-  .hero-cta-glow:focus-visible::after {
-    opacity: 1;
-    box-shadow:
-      inset 0 0 0 1px var(--hero-cta-glow),
-      0 0 22px -2px var(--hero-cta-halo);
-  }
-
-  .hero-cta-glow:hover .hero-cta-trace__stroke,
-  .hero-cta-glow:focus-visible .hero-cta-trace__stroke {
-    filter: drop-shadow(0 0 10px var(--hero-cta-halo));
-    stroke-width: 2.5;
-  }
-
-  .hero-cta-glow--urgent {
-    --hero-cta-glow: rgba(254, 202, 202, 0.95);
-    --hero-cta-glow-soft: rgba(248, 113, 113, 0.45);
-    --hero-cta-halo: rgba(248, 113, 113, 0.48);
-  }
-
-  .hero-cta-glow--consult {
-    --hero-cta-glow: rgba(254, 240, 138, 0.95);
-    --hero-cta-glow-soft: rgba(201, 162, 39, 0.45);
-    --hero-cta-halo: rgba(201, 162, 39, 0.48);
-  }
-
-  @media (prefers-reduced-motion: reduce) {
-    .hero-cta-trace animateMotion {
-      display: none;
-    }
   }
 
   .h1 {

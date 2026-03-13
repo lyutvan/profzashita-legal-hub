@@ -205,14 +205,14 @@ const ServiceTemplate = ({
             
             <div className="mt-8 max-w-4xl">
               {subtitle && (
-                <div className="text-accent text-small font-semibold tracking-wide uppercase mb-3">
+                <div className="mb-4 text-small font-semibold uppercase tracking-wide text-accent">
                   {subtitle}
                 </div>
               )}
-              <h1 className="font-serif font-bold mb-6 leading-tight">
+              <h1 className="mb-7 font-serif font-bold leading-tight">
                 {h1}
               </h1>
-              <div className="space-y-5 lead text-white/90 leading-relaxed">
+              <div className="space-y-6 lead text-white/90 leading-relaxed">
                 <p>{leadParagraph}</p>
                 {introParagraphs?.map((paragraph, index) => (
                   <p key={index}>{paragraph}</p>
@@ -225,19 +225,19 @@ const ServiceTemplate = ({
         {/* Main Content */}
         <section className="section">
           <div className="container">
-            <div className="section__content grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="section__content grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-12">
               {/* Main Content Column */}
-              <div className="lg:col-span-2 space-y-6">
+              <div className="space-y-8 lg:col-span-2">
                 {/* When to Contact */}
                 <div>
                   <h2 className="font-serif font-bold mb-6">
                     {whenToContactTitle}
                   </h2>
-                  <ul className="space-y-3">
+                  <ul className="space-y-4">
                     {whenToContact.map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                        <span className="text-muted-foreground">{item}</span>
+                        <span className="leading-relaxed text-muted-foreground">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -248,11 +248,11 @@ const ServiceTemplate = ({
                   <h2 className="font-serif font-bold mb-6">
                     {whatWeDoTitle}
                   </h2>
-                  <ul className="space-y-3">
+                  <ul className="space-y-4">
                     {whatWeDo.map((item, index) => (
                       <li key={index} className="flex items-start gap-3">
                         <CheckCircle2 className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
-                        <span className="text-muted-foreground">{item}</span>
+                        <span className="leading-relaxed text-muted-foreground">{item}</span>
                       </li>
                     ))}
                   </ul>
@@ -263,17 +263,17 @@ const ServiceTemplate = ({
                   <h2 className="font-serif font-bold mb-6">
                     {stepsTitle}
                   </h2>
-                  <div className="space-y-4">
+                  <div className="space-y-5">
                     {steps.map((step) => (
                       <Card key={step.number} className="border-l-4 border-l-accent">
-                        <CardContent className="pt-6">
-                          <div className="flex gap-4">
+                        <CardContent className="p-6 pt-6 md:p-7 md:pt-7">
+                          <div className="flex gap-5">
                             <div className="flex-shrink-0 w-10 h-10 rounded-full bg-accent/10 flex items-center justify-center">
                               <span className="font-bold text-accent">{step.number}</span>
                             </div>
                             <div>
-                              <h3 className="font-semibold text-body-mobile md:text-body mb-2">{step.title}</h3>
-                              <p className="text-small text-muted-foreground">{step.description}</p>
+                              <h3 className="mb-3 text-body-mobile font-semibold md:text-body">{step.title}</h3>
+                              <p className="text-small leading-7 text-muted-foreground">{step.description}</p>
                             </div>
                           </div>
                         </CardContent>
@@ -290,17 +290,17 @@ const ServiceTemplate = ({
                     {documentsAndTimingTitle}
                   </h2>
                   <Card>
-                    <CardContent className="pt-6">
-                      <div className="flex flex-col gap-4">
+                    <CardContent className="p-6 pt-6 md:p-7 md:pt-7">
+                      <div className="flex flex-col gap-5">
                         <div className="flex items-start gap-4">
                           <FileText className="h-6 w-6 text-accent flex-shrink-0" />
                           <div className="text-muted-foreground leading-relaxed space-y-4">
                             {documentsList && documentsList.length > 0 && (
-                              <ul className="space-y-2">
+                              <ul className="space-y-3">
                                 {documentsList.map((item, index) => (
-                                  <li key={index} className="flex items-start gap-2">
+                                  <li key={index} className="flex items-start gap-3">
                                     <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
-                                    <span>{item}</span>
+                                    <span className="leading-relaxed">{item}</span>
                                   </li>
                                 ))}
                               </ul>
@@ -322,8 +322,8 @@ const ServiceTemplate = ({
                       {ctaBlock.title}
                     </h2>
                     <Card className="bg-gradient-to-br from-primary to-primary/90 text-white border-0">
-                      <CardContent className="pt-6 pb-6">
-                        <p className="text-white/80 leading-relaxed">
+                      <CardContent className="p-6 md:p-7">
+                        <p className="leading-relaxed text-white/80">
                           {ctaBlock.description}
                         </p>
                       </CardContent>
@@ -343,13 +343,13 @@ const ServiceTemplate = ({
                   <h2 className="font-serif font-bold mb-6">
                     Частые вопросы
                   </h2>
-                  <Accordion type="single" collapsible className="space-y-4">
+                  <Accordion type="single" collapsible className="space-y-5">
                     {faqs.map((faq, index) => (
-                      <AccordionItem key={index} value={`item-${index}`} className="border rounded-xl px-6">
-                        <AccordionTrigger className="text-left hover:no-underline py-4">
+                      <AccordionItem key={index} value={`item-${index}`} className="rounded-xl border px-6 md:px-7">
+                        <AccordionTrigger className="py-5 text-left hover:no-underline">
                           <span className="font-semibold">{faq.question}</span>
                         </AccordionTrigger>
-                        <AccordionContent className="text-muted-foreground pb-4">
+                        <AccordionContent className="pb-5 pt-1 leading-7 text-muted-foreground">
                           {faq.answer}
                         </AccordionContent>
                       </AccordionItem>
@@ -360,14 +360,14 @@ const ServiceTemplate = ({
 
               {/* Sidebar */}
               <div className="lg:col-span-1">
-                <div className="sticky top-24 space-y-6">
+                <div className="sticky top-24 space-y-7">
                   {/* CTA Card */}
                   <Card className="bg-gradient-to-br from-primary to-primary/90 text-white border-0">
-                    <CardContent className="pt-6 pb-6">
-                      <h3 className="font-serif font-bold mb-4">
+                    <CardContent className="p-6 md:p-7">
+                      <h3 className="mb-5 font-serif font-bold">
                         Нужна консультация?
                       </h3>
-                      <p className="text-white/80 text-small mb-6">
+                      <p className="mb-7 text-small leading-7 text-white/80">
                         Свяжитесь с нами для получения профессиональной юридической помощи
                       </p>
                       <div className="space-y-3">
@@ -422,7 +422,7 @@ const ServiceTemplate = ({
                           </>
                         )}
                       </div>
-                      <p className="text-white/60 text-small mt-4 text-center">
+                      <p className="mt-5 text-center text-small leading-7 text-white/60">
                         Работаем круглосуточно
                       </p>
                     </CardContent>
@@ -430,8 +430,8 @@ const ServiceTemplate = ({
 
                   {/* Quick Info */}
                   <Card>
-                    <CardContent className="pt-6 pb-6">
-                      <div className="space-y-4">
+                    <CardContent className="p-6 md:p-7">
+                      <div className="space-y-5">
                         <div className="flex items-start gap-3">
                           <Clock className="h-5 w-5 text-accent flex-shrink-0 mt-0.5" />
                           <div>
@@ -453,9 +453,9 @@ const ServiceTemplate = ({
                   {/* Related Links */}
                   {relatedLinks && relatedLinks.length > 0 && (
                     <Card>
-                      <CardContent className="pt-6 pb-6">
+                      <CardContent className="p-6 md:p-7">
                         <h3 className="font-semibold mb-4">Смежные услуги</h3>
-                        <ul className="space-y-2">
+                        <ul className="space-y-3">
                           {relatedLinks.map((link, index) => (
                             <li key={index}>
                               <Link 

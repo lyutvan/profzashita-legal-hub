@@ -16,11 +16,11 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+        <div className="section__content grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-7 lg:grid-cols-3 lg:gap-8 max-w-6xl mx-auto">
           {testimonials.map((testimonial) => (
             <Card key={testimonial.id} className="border-border hover:shadow-elegant transition-all">
-              <CardContent className="pt-6 h-full flex flex-col">
-                <div className="flex items-start justify-between gap-4 mb-4">
+              <CardContent className="flex h-full flex-col p-6 sm:p-7">
+                <div className="mb-5 flex items-start justify-between gap-4">
                   <div className="flex items-center gap-1 text-accent">
                     {[...Array(testimonial.rating)].map((_, i) => (
                       <Star key={i} className="h-4 w-4 fill-current" />
@@ -29,11 +29,11 @@ const Testimonials = () => {
                   <p className="text-small text-muted-foreground text-right leading-tight">{testimonial.date}</p>
                 </div>
                 
-                <blockquote className="text-small text-muted-foreground italic mb-4 leading-relaxed">
+                <blockquote className="mb-5 text-small italic leading-7 text-muted-foreground">
                   “{testimonial.text}”
                 </blockquote>
                 
-                <div className="border-t border-border pt-4 mt-auto">
+                <div className="mt-auto border-t border-border pt-5">
                   <div className="flex items-center justify-between gap-4">
                     <p className="font-semibold text-small">{testimonial.name}</p>
                     {testimonial.source && (
@@ -46,7 +46,7 @@ const Testimonials = () => {
           ))}
         </div>
 
-        <div className="flex justify-center mt-8">
+        <div className="mt-10 flex justify-center">
           <Button asChild size="lg" className="px-6">
             <a
               href="https://yandex.ru/maps/org/244880896695/reviews/"
@@ -63,7 +63,7 @@ const Testimonials = () => {
           <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold text-center mb-8">
             Нас рекомендуют
           </h3>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-6">
+          <div className="grid grid-cols-2 gap-5 md:grid-cols-4 md:gap-6">
             {[
               "Адвокатская палата Москвы",
               "РБК",
@@ -72,7 +72,7 @@ const Testimonials = () => {
             ].map((badge, index) => (
               <div
                 key={index}
-                className="bg-card border border-border rounded-xl p-6 flex items-center justify-center text-center hover:shadow-elegant transition-all"
+                className="flex items-center justify-center rounded-xl border border-border bg-card p-6 text-center transition-all hover:shadow-elegant sm:p-7"
               >
                 <span className="text-small font-medium text-muted-foreground">
                   {badge}

@@ -362,35 +362,17 @@ const Index = () => {
               <Link to="/kontakty" className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="hero-cta-glow hero-cta-glow--urgent w-full border border-[#b91c1c] bg-[#dc2626] px-8 text-white shadow-[0_8px_18px_rgba(220,38,38,0.35)] transition-all duration-300 hover:scale-[1.02] hover:bg-[#b91c1c] hover:shadow-[0_10px_24px_rgba(220,38,38,0.45)]"
+                  className="w-full border border-[#b91c1c] bg-[#dc2626] px-8 text-white shadow-[0_8px_18px_rgba(220,38,38,0.35)] hover:bg-[#b91c1c]"
                 >
-                  <span className="hero-cta-trace" aria-hidden="true">
-                    <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                      <rect
-                        className="hero-cta-trace__stroke"
-                        x="1.5" y="1.5" width="97" height="37"
-                        rx="10.5" ry="10.5"
-                      />
-                    </svg>
-                  </span>
-                  <span className="hero-cta-label">Срочная помощь адвоката</span>
+                  Срочная помощь адвоката
                 </Button>
               </Link>
               <Link to="/kontakty" className="w-full sm:w-auto">
                 <Button
                   size="lg"
-                  className="hero-cta-glow hero-cta-glow--consult w-full border border-[#b8911f] bg-[#C9A227] px-8 text-slate-900 shadow-[0_8px_18px_rgba(201,162,39,0.35)] transition-all duration-300 hover:scale-[1.02] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_10px_24px_rgba(111,83,15,0.35)]"
+                  className="w-full border border-[#b8911f] bg-[#C9A227] px-8 text-white shadow-[0_8px_18px_rgba(201,162,39,0.35)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:text-white"
                 >
-                  <span className="hero-cta-trace" aria-hidden="true">
-                    <svg viewBox="0 0 100 40" preserveAspectRatio="none">
-                      <rect
-                        className="hero-cta-trace__stroke"
-                        x="1.5" y="1.5" width="97" height="37"
-                        rx="10.5" ry="10.5"
-                      />
-                    </svg>
-                  </span>
-                  <span className="hero-cta-label">Получить консультацию</span>
+                  Получить консультацию
                 </Button>
               </Link>
             </div>

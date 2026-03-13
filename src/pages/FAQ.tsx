@@ -158,25 +158,25 @@ const FAQ = () => {
         {/* FAQ Content */}
         <section className="section">
           <div className="container">
-            <div className="section__content grid grid-cols-1 lg:grid-cols-3 gap-8">
+            <div className="section__content grid grid-cols-1 gap-10 lg:grid-cols-3 lg:gap-12">
               {/* FAQ List */}
-              <div className="lg:col-span-2 space-y-8">
+              <div className="space-y-10 lg:col-span-2">
                 {faqCategories.map((category, catIndex) => (
                   <div key={catIndex}>
-                    <h2 className="font-serif text-h3-mobile md:text-h3 font-bold mb-6">
+                    <h2 className="mb-7 font-serif text-h3-mobile font-bold md:text-h3">
                       {category.category}
                     </h2>
-                    <Accordion type="single" collapsible className="space-y-4">
+                    <Accordion type="single" collapsible className="space-y-5">
                       {category.questions.map((faq, faqIndex) => (
                         <AccordionItem 
                           key={faqIndex} 
                           value={`${catIndex}-${faqIndex}`}
-                          className="border border-border rounded-xl px-6 bg-card"
+                          className="rounded-xl border border-border bg-card px-6 md:px-7"
                         >
-                          <AccordionTrigger className="hover:text-accent hover:no-underline text-left">
+                          <AccordionTrigger className="py-5 text-left hover:text-accent hover:no-underline">
                             <span className="font-semibold">{faq.q}</span>
                           </AccordionTrigger>
-                          <AccordionContent className="text-muted-foreground pt-4">
+                          <AccordionContent className="pt-5 leading-7 text-muted-foreground">
                             {faq.a}
                           </AccordionContent>
                         </AccordionItem>
@@ -186,26 +186,26 @@ const FAQ = () => {
                 ))}
 
                 {/* CTA */}
-                <div className="bg-muted/50 rounded-xl p-8 mt-8">
-                  <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-2">
+                <div className="mt-10 rounded-xl bg-muted/50 p-7 md:p-8">
+                  <h3 className="mb-3 font-serif text-h3-mobile font-bold md:text-h3">
                     Не нашли ответ на свой вопрос?
                   </h3>
-                  <p className="text-muted-foreground mb-4">
+                  <p className="mb-5 leading-relaxed text-muted-foreground">
                     Свяжитесь с нами, и мы ответим на все ваши вопросы в индивидуальном порядке
                   </p>
                 </div>
               </div>
 
               {/* Sidebar */}
-              <div className="lg:sticky lg:top-24 h-fit space-y-6">
-                <div className="bg-card border border-border rounded-xl p-6">
-                  <h3 className="font-semibold text-h3-mobile md:text-h3 mb-4">Задать вопрос</h3>
+              <div className="h-fit space-y-7 lg:sticky lg:top-24">
+                <div className="rounded-xl border border-border bg-card p-6 md:p-7">
+                  <h3 className="mb-5 font-semibold text-h3-mobile md:text-h3">Задать вопрос</h3>
                   <LeadForm variant="compact" />
                 </div>
 
-                <div className="bg-muted/50 rounded-xl p-6">
-                  <h3 className="font-semibold text-h3-mobile md:text-h3 mb-4">Контакты</h3>
-                  <div className="space-y-4 text-small">
+                <div className="rounded-xl bg-muted/50 p-6 md:p-7">
+                  <h3 className="mb-5 font-semibold text-h3-mobile md:text-h3">Контакты</h3>
+                  <div className="space-y-5 text-small leading-7">
                     <p>
                       <strong>Телефон:</strong><br />
                       <span className="inline-flex flex-col items-start">

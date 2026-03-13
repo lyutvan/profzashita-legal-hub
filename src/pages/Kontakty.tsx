@@ -57,7 +57,7 @@ const Contacts = () => {
           <div className="container">
             <div className="section__content max-w-4xl mx-auto">
               {/* Contact Information */}
-              <div className="space-y-6">
+              <div className="space-y-7">
                 <div>
                   <h2 className="section__header font-serif text-h2-mobile md:text-h2 font-bold">
                     Как с нами связаться
@@ -65,22 +65,22 @@ const Contacts = () => {
                 </div>
 
                 <Card className="border-border">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start gap-4">
+                  <CardContent className="p-6 pt-6 md:p-7 md:pt-7">
+                    <div className="flex items-start gap-4 md:gap-5">
                       <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                         <Phone className="h-6 w-6 text-accent" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-2">Телефон</h3>
+                        <h3 className="mb-3 font-semibold">Телефон</h3>
                         <a href={`tel:${SITE.phoneRaw}`} className="text-body-mobile md:text-body text-accent hover:underline">
                           {SITE.phone}
                         </a>
-                        <div className="mt-1">
+                        <div className="mt-2">
                           <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-body-mobile md:text-body text-accent hover:underline">
                             {SITE.messengerPhone}
                           </a>
                         </div>
-                        <p className="text-small text-muted-foreground mt-1">
+                        <p className="mt-2 text-small leading-7 text-muted-foreground">
                           Звоните в любое время
                         </p>
                       </div>
@@ -89,17 +89,17 @@ const Contacts = () => {
                 </Card>
 
                 <Card className="border-border">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start gap-4">
+                  <CardContent className="p-6 pt-6 md:p-7 md:pt-7">
+                    <div className="flex items-start gap-4 md:gap-5">
                       <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                         <Mail className="h-6 w-6 text-accent" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-2">Email</h3>
+                        <h3 className="mb-3 font-semibold">Email</h3>
                         <a href="mailto:profzashchita@internet.ru" className="text-body-mobile md:text-body text-accent hover:underline">
                           profzashchita@internet.ru
                         </a>
-                        <p className="text-small text-muted-foreground mt-1">
+                        <p className="mt-2 text-small leading-7 text-muted-foreground">
                           Ответим в течение часа
                         </p>
                       </div>
@@ -108,14 +108,14 @@ const Contacts = () => {
                 </Card>
 
                 <Card className="border-border">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start gap-4">
+                  <CardContent className="p-6 pt-6 md:p-7 md:pt-7">
+                    <div className="flex items-start gap-4 md:gap-5">
                       <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                         <MapPin className="h-6 w-6 text-accent" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-2">Адрес</h3>
-                        <p className="text-muted-foreground">
+                        <h3 className="mb-3 font-semibold">Адрес</h3>
+                        <p className="leading-relaxed text-muted-foreground">
                           Москва, ул. Дегунинская 1к2, офис 303
                         </p>
                       </div>
@@ -124,14 +124,14 @@ const Contacts = () => {
                 </Card>
 
                 <Card className="border-border">
-                  <CardContent className="pt-6">
-                    <div className="flex items-start gap-4">
+                  <CardContent className="p-6 pt-6 md:p-7 md:pt-7">
+                    <div className="flex items-start gap-4 md:gap-5">
                       <div className="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center flex-shrink-0">
                         <Clock className="h-6 w-6 text-accent" />
                       </div>
                       <div>
-                        <h3 className="font-semibold mb-2">Режим работы</h3>
-                        <p className="text-muted-foreground">
+                        <h3 className="mb-3 font-semibold">Режим работы</h3>
+                        <p className="leading-7 text-muted-foreground">
                           Пн-Сб: 10:00 - 19:00<br />
                           Вс: по предварительной записи
                         </p>
@@ -174,8 +174,8 @@ const Contacts = () => {
                 Реквизиты
               </h2>
               <Card className="border-border">
-                <CardContent className="pt-6">
-                  <div className="space-y-3 text-small text-muted-foreground">
+                <CardContent className="p-6 pt-6 md:p-7 md:pt-7">
+                  <div className="space-y-4 text-small leading-7 text-muted-foreground">
                     <p><span className="font-semibold text-foreground">Полное наименование:</span> Коллегия адвокатов города Москвы «ПРОФЗАЩИТА»</p>
                     <p><span className="font-semibold text-foreground">Адрес:</span> 127486, Москва, ул. Дегунинская 1к2, офис 303</p>
                     <p><span className="font-semibold text-foreground">ИНН:</span> 7743478583</p>

@@ -13,7 +13,7 @@ const Logo = ({
     ? "h-[38px] md:h-[48px]" 
     : variant === "header" 
       ? "h-[38px] md:h-[48px]" 
-      : "h-10";
+      : "h-[38px] md:h-[48px]";
   
   return (
     <div className="logo flex items-center min-w-0">
