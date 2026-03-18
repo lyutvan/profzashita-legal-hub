@@ -67,6 +67,7 @@ const TeamMemberPage = () => {
   const shouldShowCertificateTitle = member.slug !== "yulia-lyadova";
   const caseList = member.cases ?? [];
   const education = member.education ?? [];
+  const listCheckIconClassName = "h-4 w-4 shrink-0 text-accent mt-1";
   const educationIconClassName = "h-5 w-5 shrink-0 text-accent mt-0.5";
   const competencies = member.competencies ?? [];
   const practice = member.practice ?? [];
@@ -208,7 +209,7 @@ const TeamMemberPage = () => {
                         <ul className="space-y-2 text-small text-muted-foreground">
                           {group.items.map((item) => (
                             <li key={item} className="flex items-start gap-2">
-                              <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
+                              <CheckCircle2 className={listCheckIconClassName} />
                               <span>{item}</span>
                             </li>
                           ))}
@@ -229,7 +230,7 @@ const TeamMemberPage = () => {
                     <ul className="grid grid-cols-1 md:grid-cols-2 gap-3">
                       {specializationItems.map((spec) => (
                         <li key={spec} className="flex items-start gap-2 text-small">
-                          <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
+                          <CheckCircle2 className={listCheckIconClassName} />
                           <span>{spec}</span>
                         </li>
                       ))}
@@ -278,7 +279,7 @@ const TeamMemberPage = () => {
                     <ul className="space-y-2 text-small">
                       {competencies.map((item, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
+                          <CheckCircle2 className={listCheckIconClassName} />
                           <span>{item}</span>
                         </li>
                       ))}
@@ -452,7 +453,7 @@ const TeamMemberPage = () => {
                     <ul className="space-y-2 text-small">
                       {publications.map((pub, idx) => (
                         <li key={idx} className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-accent mt-1" />
+                          <CheckCircle2 className={listCheckIconClassName} />
                           {pub.url ? (
                             <a href={pub.url} className="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
                               {pub.title}

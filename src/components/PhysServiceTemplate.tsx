@@ -4,6 +4,7 @@ import { Helmet } from "react-helmet";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import PriceBlock from "@/components/PriceBlock";
 import PhysServiceLeadForm from "@/components/PhysServiceLeadForm";
 import PhoneInput from "@/components/PhoneInput";
 import { Button } from "@/components/ui/button";
@@ -30,6 +31,7 @@ import {
 import { BreadcrumbSchema, LegalServiceSchema, FAQPageSchema, ReviewsSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import { teamMembers } from "@/data/team";
+import { getPriceBySlug } from "@/data/pricing";
 import { getServiceHeroImage } from "@/lib/serviceCardImages";
 import { submitToWebhook } from "@/lib/webhook";
 import { toast } from "@/hooks/use-toast";
@@ -306,6 +308,11 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
   const ogImage = heroImage.startsWith("http")
     ? heroImage
     : `${SITE.url}${heroImage.replace(/^\//, "")}`;
+  const pricingData = getPriceBySlug(data.entry.path) ?? getPriceBySlug(data.canonical);
+  const priceFrom = pricingData?.priceFrom;
+  const priceNote =
+    pricingData?.priceNote ??
+    "Окончательная стоимость зависит от объема документов, сложности ситуации и стадии спора.";
 
   const familyTeamMembers = isFamilyLanding
     ? FAMILY_TEAM_ORDER.map((slug) => {
@@ -350,7 +357,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
       </Helmet>
 
       <BreadcrumbSchema items={data.breadcrumbSchema} />
-      <LegalServiceSchema serviceType={data.heroTitle} url={data.canonical} />
+      <LegalServiceSchema serviceType={data.heroTitle} url={data.canonical} priceFrom={priceFrom?.toString()} />
       {data.faqs.length > 0 && <FAQPageSchema items={data.faqs} url={data.canonical} />}
       {data.reviews.length > 0 && (
         <ReviewsSchema
@@ -640,9 +647,17 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Стоимость
               </h2>
               <p className="text-muted-foreground">
-                Стоимость определяется после анализа документов и стадии дела.
+                Стоимость фиксируем после анализа документов, объема работ и выбранного формата сопровождения.
               </p>
             </div>
+            <PriceBlock
+              showTitle={false}
+              priceFrom={priceFrom}
+              priceNote={priceNote}
+              fallbackTitle="По договоренности"
+              fallbackNote="Точную стоимость назовем после изучения документов и деталей спора."
+              className="section__content mb-6 max-w-3xl"
+            />
             <div className="section__content grid gap-6 lg:grid-cols-2">
               <Card>
                 <CardContent className="pt-6">

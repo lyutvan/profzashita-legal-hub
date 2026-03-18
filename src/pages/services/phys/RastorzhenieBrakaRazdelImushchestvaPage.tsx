@@ -19,6 +19,7 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import PriceBlock from "@/components/PriceBlock";
 import PhoneInput from "@/components/PhoneInput";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -33,6 +34,7 @@ import { submitToWebhook } from "@/lib/webhook";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 import { cases as casesData } from "@/data/cases";
+import { getPriceBySlug } from "@/data/pricing";
 import { teamMembers as allTeamMembers } from "@/data/team";
 import { useLocation } from "react-router-dom";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
@@ -235,6 +237,11 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
   const isFamilyCategory = location.pathname.includes("/services/phys/semeynye-spory");
   const pageBreadcrumbLabel = isFamilyCategory ? "Семейные споры" : "Расторжение брака и раздел имущества";
   const canonical = new URL("/services/phys/razvod-razdel-imushchestva", SITE.url).toString();
+  const pricingData = getPriceBySlug(location.pathname) ?? getPriceBySlug(canonical);
+  const priceFrom = pricingData?.priceFrom;
+  const priceNote =
+    pricingData?.priceNote ??
+    "Точная стоимость зависит от объема спора, наличия вопросов о детях и состава имущества.";
 
   const trustItems = [
     { id: "confidential", label: "Конфиденциально" },
@@ -1045,6 +1052,16 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 </p>
               </CardContent>
             </Card>
+
+            <div className="mt-8 max-w-3xl">
+              <PriceBlock
+                showTitle={false}
+                priceFrom={priceFrom}
+                priceNote={priceNote}
+                fallbackTitle="По договоренности"
+                fallbackNote="Точную стоимость назовем после изучения документов и деталей семейного спора."
+              />
+            </div>
 
             <Accordion type="single" collapsible className="section__content mt-8 space-y-4">
               {salesAccordion.map((item, index) => (

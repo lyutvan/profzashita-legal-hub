@@ -124,10 +124,9 @@ const ServiceTemplate = ({
     getServiceCardImageForPath(pathname, resolvedAudience);
 
   // Get price from pricing.ts if not provided directly
-  const pricingData = getPriceBySlug(canonical);
-  const shouldHidePrice = resolvedAudience === "criminal";
-  const priceFrom = shouldHidePrice ? undefined : providedPriceFrom ?? pricingData?.priceFrom;
-  const priceNote = shouldHidePrice ? undefined : providedPriceNote ?? pricingData?.priceNote;
+  const pricingData = getPriceBySlug(pathname) ?? getPriceBySlug(canonical);
+  const priceFrom = providedPriceFrom ?? pricingData?.priceFrom;
+  const priceNote = providedPriceNote ?? pricingData?.priceNote;
 
   const audienceCrumb =
     resolvedAudience === "biz"

@@ -151,6 +151,13 @@ const buildSitemap = () => {
   const bizUrls = Array.from(bizUrlSet).sort();
   const newsUrlSet = new Set([newsIndex, ...newsPaths]);
   const newsUrls = Array.from(newsUrlSet).sort();
+  const staticItems = [
+    {
+      loc: `${SITE_URL}/tseny`,
+      priority: "0.75",
+      changefreq: "monthly"
+    }
+  ];
 
   const physItems = physUrls.map((pathItem) => {
     const loc = `${SITE_URL}${pathItem}`;
@@ -193,7 +200,7 @@ const buildSitemap = () => {
     };
   });
 
-  const items = [...preserved, ...physItems, ...criminalItems, ...bizItems, ...newsItems];
+  const items = [...preserved, ...staticItems, ...physItems, ...criminalItems, ...bizItems, ...newsItems];
   const uniqueItems = [];
   const seen = new Set();
   for (const item of items) {

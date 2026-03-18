@@ -20,11 +20,13 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import PriceBlock from "@/components/PriceBlock";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { BreadcrumbSchema, FAQPageSchema, LegalServiceSchema, ReviewsSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
+import { getPriceBySlug } from "@/data/pricing";
 import { getServiceHeroImage } from "@/lib/serviceCardImages";
 import { teamMembers } from "@/data/team";
 import TelegramIcon from "@/components/icons/TelegramIcon";
@@ -36,6 +38,11 @@ const NasledstvoPage = () => {
   const callHref = `tel:${SITE.phoneRaw}`;
   const contactsHref = "/kontakty";
   const heroImage = getServiceHeroImage("/services/phys/nasledstvo", "phys");
+  const pricingData = getPriceBySlug(canonical);
+  const priceFrom = pricingData?.priceFrom;
+  const priceNote =
+    pricingData?.priceNote ??
+    "Точная стоимость зависит от характера наследственного спора, числа участников и объема документов.";
   const yandexOrgId = "244880896695";
   const whatsappUrl = SITE.whatsappUrl;
   const telegramUrl = SITE.telegramUrl;
@@ -374,7 +381,7 @@ const NasledstvoPage = () => {
           { name: "Наследственные дела", url: canonical }
         ]}
       />
-      <LegalServiceSchema serviceType="Наследственные дела" url={canonical} />
+      <LegalServiceSchema serviceType="Наследственные дела" url={canonical} priceFrom={priceFrom?.toString()} />
       <FAQPageSchema items={faqItems} url={canonical} />
       <ReviewsSchema
         reviews={reviews.map((review) => ({
@@ -622,6 +629,24 @@ const NasledstvoPage = () => {
                   </a>
                 </span>
               </div>
+            </div>
+
+            <div className="mt-12 max-w-3xl mx-auto">
+              <div className="mb-4 text-center">
+                <h3 className="font-serif text-h3-mobile md:text-h3 font-bold text-slate-900">
+                  Стоимость сопровождения
+                </h3>
+                <p className="mt-2 text-muted-foreground">
+                  {priceNote}
+                </p>
+              </div>
+              <PriceBlock
+                showTitle={false}
+                priceFrom={priceFrom}
+                priceNote={priceNote}
+                fallbackTitle="По договоренности"
+                fallbackNote="Точную стоимость назовем после изучения документов и оценки наследственного спора."
+              />
             </div>
           </div>
         </section>

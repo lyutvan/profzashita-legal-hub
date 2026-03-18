@@ -18,12 +18,14 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import PriceBlock from "@/components/PriceBlock";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
 import { BreadcrumbSchema, FAQPageSchema, JsonLd } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import { cases as allCases, type Case } from "@/data/cases";
+import { getPriceBySlug } from "@/data/pricing";
 import { teamMembers as allTeamMembers, type TeamMember } from "@/data/team";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
@@ -52,6 +54,11 @@ const ZhilishchnyeSporyPage = () => {
   const telegramUrl = SITE.telegramUrl;
   const maxUrl = SITE.maxUrl;
   const canonical = new URL("/services/phys/vyselenie", SITE.url).toString();
+  const pricingData = getPriceBySlug(canonical);
+  const priceFrom = pricingData?.priceFrom;
+  const priceNote =
+    pricingData?.priceNote ??
+    "Точная стоимость зависит от сложности жилищного спора, объема документов и стадии процесса.";
   const yandexOrgId = "244880896695";
 
   const heroTrustItems = [
@@ -606,6 +613,24 @@ const ZhilishchnyeSporyPage = () => {
                   </div>
                 </div>
               </div>
+            </div>
+
+            <div className="mx-auto mt-12 max-w-3xl">
+              <div className="mb-4 text-center">
+                <h3 className="font-serif text-h3-mobile md:text-h3 font-bold text-slate-900">
+                  Стоимость сопровождения
+                </h3>
+                <p className="mt-2 text-sm md:text-base text-slate-600">
+                  {priceNote}
+                </p>
+              </div>
+              <PriceBlock
+                showTitle={false}
+                priceFrom={priceFrom}
+                priceNote={priceNote}
+                fallbackTitle="По договоренности"
+                fallbackNote="Точную стоимость назовем после изучения документов и фактической ситуации."
+              />
             </div>
           </div>
         </section>

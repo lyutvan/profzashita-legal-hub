@@ -41,6 +41,7 @@ const Header = () => {
   }, [location.pathname]);
 
   const navigation = [
+    { name: "Цены", path: "/tseny" },
     { name: "Кейсы", path: "/keisy" },
     { name: "Новости", path: "/novosti" },
     { name: "Вопросы и ответы", path: "/faq" },

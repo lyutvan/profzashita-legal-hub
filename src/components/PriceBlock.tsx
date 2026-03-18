@@ -7,6 +7,7 @@ interface PriceBlockProps {
   fallbackTitle?: string;
   fallbackNote?: string;
   className?: string;
+  showTitle?: boolean;
 }
 
 /**
@@ -18,7 +19,8 @@ const PriceBlock = ({
   priceNote,
   fallbackTitle = "По договоренности",
   fallbackNote = "Стоимость определяется индивидуально после анализа вашей ситуации",
-  className = ""
+  className = "",
+  showTitle = true
 }: PriceBlockProps) => {
   const formatPrice = (price: number): string => {
     return price.toLocaleString('ru-RU');
@@ -26,9 +28,11 @@ const PriceBlock = ({
 
   return (
     <div className={className}>
-      <h2 className="font-serif font-bold mb-6">
-        Цена
-      </h2>
+      {showTitle && (
+        <h2 className="font-serif font-bold mb-6">
+          Цена
+        </h2>
+      )}
       
       <Card className="border-accent/20 bg-gradient-to-br from-background to-muted/20">
         <CardContent className="pt-6 pb-6">

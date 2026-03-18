@@ -198,9 +198,9 @@ const Index = () => {
       subtitle: "Председатель коллегии",
       experience: "Стаж 26 лет",
       specializations: [
-        "Уголовные дела общей и экономической направленности",
-        "Представительство в арбитражных судах",
-        "Корпоративные споры и субсидиарная ответственность"
+        "Уголовное право",
+        "Арбитражное право",
+        "Административное судопроизводство"
       ]
     },
     ryzhenko: {
@@ -674,7 +674,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="section__content mt-12 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-4 gap-7">
+            <div className="section__content mt-12 grid grid-cols-1 items-start gap-7 md:grid-cols-2 xl:grid-cols-4">
               {featuredTeam.map((member) => {
                 const override = featuredTeamOverrides[member.slug];
                 const badge = override?.badge ?? (member.role.toLowerCase().includes("юрист") ? "Юрист" : "Адвокат");
@@ -685,9 +685,9 @@ const Index = () => {
                 return (
                   <Card
                     key={member.slug}
-                    className="h-full border-[#C9A227] bg-[#f3f4f6] hover:shadow-elegant transition-all overflow-hidden"
+                    className="self-start border-[#C9A227] bg-[#f3f4f6] hover:shadow-elegant transition-all overflow-hidden"
                   >
-                    <CardContent className="p-0 flex flex-col h-full">
+                    <CardContent className="p-0 flex flex-col">
                       <div className="h-[345px] w-full overflow-hidden border-b border-[#C9A227]">
                         <img
                           src={member.photo}
@@ -696,7 +696,7 @@ const Index = () => {
                           loading="lazy"
                         />
                       </div>
-                      <div className="px-6 pt-7 pb-6 flex flex-col h-full">
+                      <div className="px-6 pt-7 pb-6 flex flex-col">
                         <h3 className="font-serif text-[20px] leading-tight font-semibold text-center min-h-[62px] mb-4">
                           {member.name}
                         </h3>
@@ -705,12 +705,18 @@ const Index = () => {
                           {badge}
                         </div>
 
-                        <p className="text-[16px] text-center text-foreground mb-2">{subtitle}</p>
-                        {experience && <p className="text-[16px] text-center text-muted-foreground mb-5">{experience}</p>}
+                        <div className="mb-2 flex min-h-[84px] items-start justify-center">
+                          <p className="text-[16px] text-center text-foreground">{subtitle}</p>
+                        </div>
+                        {experience && (
+                          <p className="mb-5 min-h-[32px] text-[16px] text-center text-muted-foreground">
+                            {experience}
+                          </p>
+                        )}
 
-                        <ul className="space-y-2.5 text-[16px] leading-relaxed text-foreground/90">
+                        <ul className="grid gap-3 text-[16px] leading-relaxed text-foreground/90">
                           {cardSpecializations.map((spec) => (
-                            <li key={spec} className="flex items-start gap-2">
+                            <li key={spec} className="flex min-h-[86px] items-start gap-2">
                               <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/90 shrink-0" />
                               <span>{spec}</span>
                             </li>

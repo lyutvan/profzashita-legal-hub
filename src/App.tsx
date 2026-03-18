@@ -33,6 +33,7 @@ import { audienceServices } from "@/data/services-audiences";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 import QuickQuestion from "./components/QuickQuestion";
+import Tseny from "./pages/Tseny";
 
 const queryClient = new QueryClient();
 
@@ -70,6 +71,7 @@ const App = () => (
           <Route path="/uslugi/:clusterSlug/:situationSlug" element={<ClusterServiceRouter />} />
           <Route path="/uslugi/:categorySlug/:serviceSlug/old" element={<ServiceDetail />} />
           <Route path="/o-kollegii" element={<OKollegii />} />
+          <Route path="/tseny" element={<Tseny />} />
           <Route path="/keisy" element={<Keisy />} />
           <Route path="/faq" element={<FAQ />} />
           <Route path="/novosti" element={<Novosti />} />
@@ -159,6 +161,7 @@ const App = () => (
           <Route path="/services/biz/vzyskanie/*" element={<Navigate to="/services/biz" replace />} />
           <Route path="/services/biz/bankrotstvo/*" element={<Navigate to="/services/biz" replace />} />
           <Route path="/about" element={<Navigate to="/o-kollegii" replace />} />
+          <Route path="/prices" element={<Navigate to="/tseny" replace />} />
           <Route path="/cases" element={<Keisy />} />
           <Route path="/cases/:slug" element={<Keisy />} />
           <Route path="/contacts" element={<Navigate to="/kontakty" replace />} />

@@ -4,6 +4,7 @@ import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import LeadForm from "@/components/LeadForm";
+import PriceBlock from "@/components/PriceBlock";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -19,6 +20,7 @@ import {
 } from "lucide-react";
 import { BreadcrumbSchema, FAQPageSchema, LegalServiceSchema, ReviewsSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
+import { getPriceBySlug } from "@/data/pricing";
 import { getServiceHeroImage } from "@/lib/serviceCardImages";
 import type { BizServicePageData, BizWhyUsItem } from "@/data/biz-service-content";
 
@@ -41,6 +43,9 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
   const ogImage = heroImage.startsWith("http")
     ? heroImage
     : `${SITE.url}${heroImage.replace(/^\//, "")}`;
+  const pricingData = getPriceBySlug(data.entry.path) ?? getPriceBySlug(data.canonical);
+  const priceFrom = pricingData?.priceFrom;
+  const priceNote = pricingData?.priceNote ?? data.priceNote;
 
   return (
     <div className="min-h-screen flex flex-col">
@@ -65,7 +70,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
       </Helmet>
 
       <BreadcrumbSchema items={data.breadcrumbSchema} />
-      <LegalServiceSchema serviceType={data.heroTitle} url={data.canonical} />
+      <LegalServiceSchema serviceType={data.heroTitle} url={data.canonical} priceFrom={priceFrom?.toString()} />
       {data.faqs.length > 0 && <FAQPageSchema items={data.faqs} url={data.canonical} />}
       {data.reviews.length > 0 && (
         <ReviewsSchema
@@ -277,8 +282,18 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-3">
                 Стоимость
               </h2>
-              <p className="text-muted-foreground">{data.priceNote}</p>
+              <p className="text-muted-foreground">
+                Ориентир по стоимости зависит от объема работ, срочности и стадии спора.
+              </p>
             </div>
+            <PriceBlock
+              showTitle={false}
+              priceFrom={priceFrom}
+              priceNote={priceNote}
+              fallbackTitle="По договоренности"
+              fallbackNote="Точную стоимость определим после анализа документов и задач бизнеса."
+              className="mb-6 max-w-3xl"
+            />
           </div>
         </section>
 

@@ -6,6 +6,7 @@ import { SITE } from "@/config/site";
 const mainLinks = [
   { to: "/", label: "Главная" },
   { to: "/uslugi", label: "Услуги" },
+  { to: "/tseny", label: "Цены" },
   { to: "/keisy", label: "Кейсы" },
   { to: "/novosti", label: "Новости" },
   { to: "/o-kollegii", label: "О коллегии" },
