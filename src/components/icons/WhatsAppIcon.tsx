@@ -3,9 +3,14 @@ import type { CSSProperties } from "react";
 interface WhatsAppIconProps {
   className?: string;
   size?: number;
+  variant?: "tight" | "original";
 }
 
-const WhatsAppIcon = ({ className = "", size = 24 }: WhatsAppIconProps) => {
+const WhatsAppIcon = ({
+  className = "",
+  size = 24,
+  variant = "original",
+}: WhatsAppIconProps) => {
   const renderStyle = {
     imageRendering: "crisp-edges",
     WebkitImageRendering: "-webkit-optimize-contrast"
@@ -13,7 +18,7 @@ const WhatsAppIcon = ({ className = "", size = 24 }: WhatsAppIconProps) => {
 
   return (
     <img
-      src="/whatsapp-macos-tight.png"
+      src={variant === "original" ? "/whatsapp-macos-256.png" : "/whatsapp-macos-tight.png"}
       alt=""
       aria-hidden="true"
       draggable={false}

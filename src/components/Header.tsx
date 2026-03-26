@@ -150,17 +150,17 @@ const Header = () => {
               </a>
               <a
                 href={whatsappUrl}
-                className="social-icon shadow-sm transition-opacity duration-150 hover:opacity-90"
+                className="social-icon social-icon--whatsapp shadow-sm transition-opacity duration-150 hover:opacity-90"
                 aria-label="Написать в WhatsApp"
                 target="_blank"
                 rel="noopener noreferrer"
                 title="WhatsApp"
               >
-                <WhatsAppIcon size={48} className="social-icon__image" />
+                <WhatsAppIcon size={48} variant="original" className="social-icon__image" />
               </a>
               <a
                 href={maxUrl}
-                className="social-icon shadow-sm transition-opacity duration-150 hover:opacity-90"
+                className="social-icon social-icon--max shadow-sm transition-opacity duration-150 hover:opacity-90"
                 aria-label="MAX"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -273,17 +273,17 @@ const Header = () => {
                   </a>
                   <a
                     href={whatsappUrl}
-                    className="social-icon shadow-sm transition-opacity duration-150 hover:opacity-90"
+                    className="social-icon social-icon--whatsapp shadow-sm transition-opacity duration-150 hover:opacity-90"
                     aria-label="Написать в WhatsApp"
                     target="_blank"
                     rel="noopener noreferrer"
                     title="WhatsApp"
                   >
-                    <WhatsAppIcon size={48} className="social-icon__image" />
+                    <WhatsAppIcon size={48} variant="original" className="social-icon__image" />
                   </a>
                   <a
                     href={maxUrl}
-                    className="social-icon shadow-sm transition-opacity duration-150 hover:opacity-90"
+                    className="social-icon social-icon--max shadow-sm transition-opacity duration-150 hover:opacity-90"
                     aria-label="MAX"
                     target="_blank"
                     rel="noopener noreferrer"

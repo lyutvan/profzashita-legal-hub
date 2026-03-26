@@ -905,9 +905,9 @@ const ZhilishchnyeSporyPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Написать в WhatsApp"
-                      className="social-icon shadow-sm transition-opacity hover:opacity-90"
+                      className="social-icon social-icon--whatsapp shadow-sm transition-opacity hover:opacity-90"
                     >
-                      <WhatsAppIcon size={48} className="social-icon__image" />
+                      <WhatsAppIcon size={48} variant="original" className="social-icon__image" />
                     </a>
                     <a
                       href={telegramUrl}
@@ -923,7 +923,7 @@ const ZhilishchnyeSporyPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="MAX"
-                      className="social-icon shadow-sm transition-opacity hover:opacity-90"
+                      className="social-icon social-icon--max shadow-sm transition-opacity hover:opacity-90"
                     >
                       <MaxIcon size={48} className="social-icon__image" />
                     </a>

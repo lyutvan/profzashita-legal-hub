@@ -961,9 +961,9 @@ const NasledstvoPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="Написать в WhatsApp"
-                      className="inline-flex h-12 w-12 items-center justify-center rounded-full shadow-sm transition-opacity hover:opacity-90"
+                      className="social-icon social-icon--whatsapp shadow-sm transition-opacity hover:opacity-90"
                     >
-                      <WhatsAppIcon size={48} />
+                      <WhatsAppIcon size={48} variant="original" className="social-icon__image" />
                     </a>
                     <a
                       href={telegramUrl}
@@ -979,9 +979,9 @@ const NasledstvoPage = () => {
                       target="_blank"
                       rel="noopener noreferrer"
                       aria-label="MAX"
-                      className="inline-flex h-12 w-12 items-center justify-center rounded-full shadow-sm transition-opacity hover:opacity-90"
+                      className="social-icon social-icon--max shadow-sm transition-opacity hover:opacity-90"
                     >
-                      <MaxIcon size={48} />
+                      <MaxIcon size={48} className="social-icon__image" />
                     </a>
                     <a
                       href={`mailto:${SITE.email}`}

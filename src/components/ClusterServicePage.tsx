@@ -141,7 +141,7 @@ const ClusterServicePage = ({
                   asChild
                 >
                   <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer">
-                    <WhatsAppIcon className="mr-2 h-5 w-5" />
+                    <WhatsAppIcon variant="original" className="mr-2 h-5 w-5" />
                     Написать в WhatsApp
                   </a>
                 </Button>
@@ -445,7 +445,7 @@ const ClusterServicePage = ({
                       </Button>
                       <Button variant="outline" className="flex-1" asChild>
                         <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer">
-                          <WhatsAppIcon className="mr-2 h-4 w-4" />
+                          <WhatsAppIcon variant="original" className="mr-2 h-4 w-4" />
                           WhatsApp
                         </a>
                       </Button>
@@ -521,7 +521,7 @@ const ClusterServicePage = ({
           </Button>
           <Button variant="outline" className="flex-1" asChild>
             <a href={SITE.whatsappUrl} target="_blank" rel="noopener noreferrer">
-              <WhatsAppIcon className="mr-2 h-4 w-4" />
+              <WhatsAppIcon variant="original" className="mr-2 h-4 w-4" />
               WhatsApp
             </a>
           </Button>
