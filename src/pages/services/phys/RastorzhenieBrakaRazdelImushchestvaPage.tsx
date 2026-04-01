@@ -327,7 +327,6 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
 
   const baseLyutikov = buildTeamMember("lyutikov");
   const baseRyzhenko = buildTeamMember("ryzhenko");
-  const baseLyadova = buildTeamMember("yulia-lyadova");
 
   const teamMembers = [
     baseLyutikov && {
@@ -354,19 +353,6 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
       description: [
         "Готовит процессуальные документы и выстраивает правовую позицию в семейных спорах.",
         "Сопровождает переговоры и помогает закрепить условия соглашений."
-      ]
-    },
-    baseLyadova && {
-      ...baseLyadova,
-      specializations: [
-        "Семейные споры и алименты",
-        "Раздел имущества и долей",
-        "Имущественные требования",
-        "Судебное сопровождение"
-      ],
-      description: [
-        "Сопровождает семейные конфликты: от алиментов до раздела имущества и долей.",
-        "Фокус на доказательствах и понятной стратегии для клиента."
       ]
     }
   ].filter(Boolean) as PageTeamMember[];

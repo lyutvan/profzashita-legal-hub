@@ -50,21 +50,13 @@ const TeamMemberPage = () => {
   const email = member.email ?? SITE.email;
   const about = member.about;
   const memberCaseKeyMap: Record<string, string> = {
-    "yulia-lyadova": "lyadova",
     vaskovsky: "vaskovskiy"
   };
   const memberCaseKey = memberCaseKeyMap[member.slug] ?? member.slug;
   const relatedCases = cases.filter((caseItem) => caseItem.lawyers?.includes(memberCaseKey));
-  const sortedRelatedCases =
-    member.slug === "yulia-lyadova"
-      ? [...relatedCases].sort((a, b) => {
-          const aTime = a.datePublished ? new Date(a.datePublished).getTime() : 0;
-          const bTime = b.datePublished ? new Date(b.datePublished).getTime() : 0;
-          return bTime - aTime;
-        })
-      : relatedCases;
-  const shouldShowCasesCard = member.slug !== "yulia-lyadova" || sortedRelatedCases.length > 0;
-  const shouldShowCertificateTitle = member.slug !== "yulia-lyadova";
+  const sortedRelatedCases = relatedCases;
+  const shouldShowCasesCard = true;
+  const shouldShowCertificateTitle = true;
   const caseList = member.cases ?? [];
   const education = member.education ?? [];
   const listCheckIconClassName = "h-4 w-4 shrink-0 text-accent mt-1";

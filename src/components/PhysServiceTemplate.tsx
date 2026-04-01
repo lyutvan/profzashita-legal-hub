@@ -82,19 +82,9 @@ const FAMILY_ISSUES = [
   }
 ];
 
-const FAMILY_TEAM_ORDER = ["yulia-lyadova", "kalabekov", "vaskovsky"] as const;
+const FAMILY_TEAM_ORDER = ["kalabekov", "vaskovsky"] as const;
 
 const FAMILY_TEAM_CONTENT: Record<string, { name: string; role: string; experience: string; specializations: string[] }> = {
-  "yulia-lyadova": {
-    name: "Лядова Юлия Сергеевна",
-    role: "Адвокат",
-    experience: "Стаж 18 лет",
-    specializations: [
-      "Семейные споры",
-      "Договорные и имущественные споры",
-      "Интеллектуальная собственность"
-    ]
-  },
   kalabekov: {
     name: "Калабеков Эльдар Султан-Муратович",
     role: "Адвокат",

@@ -566,7 +566,7 @@ export const teamMembers: TeamMember[] = [
       }
     ]
   }
-];
+].filter((member) => member.slug !== "yulia-lyadova");
 
 export const getTeamMemberBySlug = (slug: string) =>
   teamMembers.find((member) => member.slug === slug);

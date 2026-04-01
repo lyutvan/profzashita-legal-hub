@@ -196,17 +196,6 @@ const ZhilishchnyeSporyPage = () => {
 
   const teamCardConfigs: TeamCardConfig[] = [
     {
-      slug: "yulia-lyadova",
-      roleBadge: "Адвокат",
-      buttonLabel: "Подробнее об адвокате",
-      specializations: [
-        "Выселение и защита права проживания",
-        "Снятие с регистрационного учета",
-        "Споры о долях и разделе квартиры",
-        "Имущественные споры между собственниками"
-      ]
-    },
-    {
       slug: "ryzhenko",
       roleBadge: "Юрист",
       subtitle: "Помощник председателя коллегии",

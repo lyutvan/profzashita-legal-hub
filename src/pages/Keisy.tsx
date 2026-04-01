@@ -17,7 +17,6 @@ import { CheckCircle2, Scale, Gavel } from "lucide-react";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const caseLawyerSlugAliases: Record<string, string> = {
-  lyadova: "yulia-lyadova",
   vaskovskiy: "vaskovsky",
 };
 
@@ -100,6 +99,12 @@ const Cases = () => {
   const location = useLocation();
   const { slug } = useParams<{ slug?: string }>();
   const { openQuickQuestionModal } = useQuickQuestionModal();
+  const visibleCases = cases
+    .map((caseItem) => ({
+      caseItem,
+      caseTeamMembers: getCaseTeamMembers(caseItem),
+    }))
+    .filter(({ caseTeamMembers }) => caseTeamMembers.length > 0);
 
   useEffect(() => {
     const targetId = slug
@@ -145,7 +150,7 @@ const Cases = () => {
       ]} />
 
       {/* Article schema for each case */}
-      {cases.map(caseItem => (
+      {visibleCases.map(({ caseItem }) => (
         <ArticleSchema
           key={caseItem.id}
           headline={caseItem.title}
@@ -182,9 +187,7 @@ const Cases = () => {
         <section className="section">
           <div className="container">
             <div className="mx-auto max-w-5xl space-y-10">
-              {cases.map((caseItem, index) => {
-                const caseTeamMembers = getCaseTeamMembers(caseItem);
-
+              {visibleCases.map(({ caseItem, caseTeamMembers }, index) => {
                 return (
                 <Card 
                   key={caseItem.id} 
@@ -219,53 +222,44 @@ const Cases = () => {
                         </h2>
                       </div>
 
-                      {caseTeamMembers.length > 0 ? (
-                        <div className="min-w-0 md:col-start-2 lg:col-start-3 lg:justify-self-end lg:w-full lg:max-w-[320px]">
-                          <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground lg:text-right">
-                            {caseTeamMembers.length > 1 ? "Команда по делу" : "Адвокат по делу"}
-                          </p>
-                          <div className="grid gap-3">
-                            {caseTeamMembers.map((member) => (
-                              <Link
-                                key={member.slug}
-                                to={`/team/${member.slug}`}
-                                className="grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-4 rounded-xl border border-border bg-muted/20 p-4 transition-colors hover:border-accent/40 hover:bg-accent/5 md:p-5"
-                              >
-                                <div className="h-[5.5rem] w-[5.5rem] overflow-hidden rounded-2xl bg-muted">
-                                  {member.photo ? (
-                                    <img
-                                      src={member.photo}
-                                      alt={member.name}
-                                      className="h-full w-full object-cover"
-                                      loading="lazy"
-                                    />
-                                  ) : null}
+                      <div className="min-w-0 md:col-start-2 lg:col-start-3 lg:justify-self-end lg:w-full lg:max-w-[320px]">
+                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground lg:text-right">
+                          {caseTeamMembers.length > 1 ? "Команда по делу" : "Адвокат по делу"}
+                        </p>
+                        <div className="grid gap-3">
+                          {caseTeamMembers.map((member) => (
+                            <Link
+                              key={member.slug}
+                              to={`/team/${member.slug}`}
+                              className="grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-4 rounded-xl border border-border bg-muted/20 p-4 transition-colors hover:border-accent/40 hover:bg-accent/5 md:p-5"
+                            >
+                              <div className="h-[5.5rem] w-[5.5rem] overflow-hidden rounded-2xl bg-muted">
+                                {member.photo ? (
+                                  <img
+                                    src={member.photo}
+                                    alt={member.name}
+                                    className="h-full w-full object-cover"
+                                    loading="lazy"
+                                  />
+                                ) : null}
+                              </div>
+                              <div className="min-w-0 space-y-1">
+                                <div className="text-body-mobile font-semibold leading-snug text-foreground break-words">
+                                  {member.name}
                                 </div>
-                                <div className="min-w-0 space-y-1">
-                                  <div className="text-body-mobile font-semibold leading-snug text-foreground break-words">
-                                    {member.name}
-                                  </div>
-                                  <div className="text-small leading-6 text-muted-foreground">
-                                    {member.role}
-                                  </div>
-                                  {member.experienceText ? (
-                                    <div className="text-small leading-6 text-muted-foreground/90">
-                                      {member.experienceText}
-                                    </div>
-                                  ) : null}
+                                <div className="text-small leading-6 text-muted-foreground">
+                                  {member.role}
                                 </div>
-                              </Link>
-                            ))}
-                          </div>
+                                {member.experienceText ? (
+                                  <div className="text-small leading-6 text-muted-foreground/90">
+                                    {member.experienceText}
+                                  </div>
+                                ) : null}
+                              </div>
+                            </Link>
+                          ))}
                         </div>
-                      ) : (
-                        <div className="min-w-0 md:col-start-2 lg:col-start-3 lg:justify-self-end lg:w-full lg:max-w-[320px]">
-                          <div className="inline-flex max-w-full rounded-xl border border-border bg-muted/20 px-4 py-3 text-small leading-7 text-muted-foreground lg:w-full">
-                            <span className="mr-2 font-semibold text-foreground">Автор кейса:</span>
-                            <span className="break-words">{caseItem.author}</span>
-                          </div>
-                        </div>
-                      )}
+                      </div>
                     </div>
 
                     <div className="space-y-8">

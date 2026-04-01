@@ -129,10 +129,10 @@ const CATEGORY_MARKETING_SUBTITLES: Record<string, string> = {
 };
 
 const CATEGORY_TEAM: Record<string, string[]> = {
-  "Семейные споры": ["vaskovsky", "kalabekov", "yulia-lyadova"],
+  "Семейные споры": ["vaskovsky", "kalabekov"],
   "Жилищные споры": ["vaskovsky", "ryzhenko"],
   "Ущерб имуществу": ["kalabekov", "ryzhenko"],
-  "Наследственные дела": ["vaskovsky", "kalabekov", "lyadova"],
+  "Наследственные дела": ["vaskovsky", "kalabekov"],
   "Взыскание долгов и договорные споры": ["sotnikov", "ryzhenko"],
   "Защита прав потребителей": ["kalabekov", "vaskovsky"],
   "ДТП, страхование, вред здоровью": ["vaskovsky", "ryzhenko"],
