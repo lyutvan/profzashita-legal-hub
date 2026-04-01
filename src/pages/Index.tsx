@@ -607,9 +607,38 @@ const Index = () => {
                 Мы не раскрываем персональные данные клиентов. Отзывы публикуются с их согласия
               </p>
               <div className="mt-6 flex justify-center">
-                <div className="max-w-full overflow-hidden">
-                  <iframe src="https://yandex.ru/sprav/widget/rating-badge/244880896695?type=rating" width="150" height="50" frameBorder="0"></iframe>
-                </div>
+                <a
+                  href="https://yandex.ru/maps/org/244880896695/reviews/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="w-full max-w-[300px] rounded-[16px] bg-[#f3f4f6] px-5 py-4 text-left shadow-[0_6px_18px_rgba(15,23,42,0.08)] transition-all hover:-translate-y-0.5 hover:shadow-[0_10px_24px_rgba(15,23,42,0.12)]"
+                  aria-label="Отзывы Профзащита на Яндекс.Картах"
+                >
+                  <div className="flex items-center gap-3">
+                    <svg
+                      viewBox="0 0 32 32"
+                      className="h-8 w-8 shrink-0"
+                      aria-hidden="true"
+                    >
+                      <path
+                        fill="#ff5a1f"
+                        d="M16 2C10.477 2 6 6.477 6 12c0 7.338 10 18 10 18s10-10.662 10-18c0-5.523-4.477-10-10-10Z"
+                      />
+                      <circle cx="16" cy="12" r="4.2" fill="#fff" />
+                    </svg>
+                    <span className="text-[22px] font-bold leading-none tracking-[-0.02em] text-[#111827]">
+                      5,0
+                    </span>
+                    <div className="ml-1 flex items-center gap-1 text-[#FFC107]">
+                      {Array.from({ length: 5 }).map((_, starIndex) => (
+                        <Star key={starIndex} className="h-5 w-5 fill-current stroke-none" />
+                      ))}
+                    </div>
+                  </div>
+                  <div className="mt-3 text-[15px] leading-snug text-[#5f6368]">
+                    Рейтинг организации в Яндексе
+                  </div>
+                </a>
               </div>
             </div>
 
