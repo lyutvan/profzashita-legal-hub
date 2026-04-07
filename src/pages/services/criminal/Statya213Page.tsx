@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya213Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 213 УК РФ — Хулиганство | Адвокатская коллегия Сотникова"
+      title="Защита по статье 213 УК РФ — Хулиганство | Профзащита"
       metaDescription="Профессиональная защита по статье 213 УК РФ (хулиганство). Опытные адвокаты по уголовным делам. Консультация и ведение дела."
       canonical="/services/criminal/statya-213"
       breadcrumbLabel="Статья 213 УК РФ"

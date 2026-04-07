@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya291Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 291 УК РФ — Дача взятки | Адвокатская коллегия Сотникова"
+      title="Защита по статье 291 УК РФ — Дача взятки | Профзащита"
       metaDescription="Профессиональная защита по статье 291 УК РФ (дача взятки). Опытные адвокаты по коррупционным преступлениям. Консультация и ведение дела."
       canonical="/services/criminal/statya-291"
       breadcrumbLabel="Статья 291 УК РФ"

@@ -1097,10 +1097,10 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
       return ["lyutikov", "ryzhenko"];
     }
     if (isTrudovyeCategory) {
-      return ["ryzhenko", "sotnikov"];
+      return ["ryzhenko", "vaskovsky"];
     }
     if (isConsumerProtectionCategory) {
-      return ["ryzhenko", "vaskovsky", "sotnikov"];
+      return ["ryzhenko", "vaskovsky"];
     }
     return null;
   }, [isBankrotstvoMerged, isConsumerProtectionCategory, isTrudovyeCategory]);
@@ -1223,13 +1223,13 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         cta: "Подробнее о юристе"
       },
       {
-        slug: "sotnikov",
+        slug: "vaskovsky",
         badge: "Адвокат",
         roleTitle: "Адвокат коллегии",
         experience: "Стаж 15 лет",
         bullets: [
-          "Представляет интересы работников в трудовых спорах",
-          "Участвует в переговорах с работодателями и судебных разбирательствах"
+          "Подключается к трудовым спорам, где важны процессуальная точность и сильная доказательная база",
+          "Ведет переговоры с работодателем, готовит документы и представляет интересы доверителя в суде"
         ],
         cta: "Подробнее об адвокате"
       }
@@ -1287,19 +1287,6 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         ],
         cta: "Подробнее об адвокате"
       },
-      {
-        slug: "sotnikov",
-        badge: "Адвокат",
-        roleTitle: "",
-        experience: "Стаж 15 лет",
-        bullets: [
-          "Ведет сложные потребительские споры, в том числе с активным сопротивлением со стороны ответчика.",
-          "Помогает зафиксировать нарушения, обосновать требования и добиться реальных выплат, а не формальных решений на бумаге.",
-          "Участвует в переговорах, досудебном урегулировании и судебной защите интересов клиента.",
-          "Работает на результат — от диагностики ситуации до исполнения судебного решения."
-        ],
-        cta: "Подробнее об адвокате"
-      }
     ];
 
     return cards

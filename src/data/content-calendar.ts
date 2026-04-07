@@ -18,7 +18,7 @@ export const contentCalendar: ContentCalendarItem[] = [
     goal: "Обучить клиентов правам при обыске, сформировать запросы 'что делать при обыске', 'права при обыске дома'",
     keywords: ["обыск", "следственные действия", "права", "понятые", "протокол обыска"],
     targetServicePage: "/uslugi/ugolovnye/",
-    author: "Сотников Д.В.",
+    author: "Команда коллегии",
     status: "planned"
   },
   {
@@ -47,7 +47,7 @@ export const contentCalendar: ContentCalendarItem[] = [
     goal: "Объяснить механизм залога, когда его можно получить, какие суммы, процедура",
     keywords: ["залог", "мера пресечения", "освобождение под залог", "залог по уголовному делу"],
     targetServicePage: "/uslugi/ugolovnye/mera-presecheniya/",
-    author: "Сотников Д.В.",
+    author: "Команда коллегии",
     status: "planned"
   },
   

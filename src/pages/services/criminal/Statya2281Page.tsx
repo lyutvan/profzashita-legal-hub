@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya2281Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 228.1 УК РФ — Незаконные производство и сбыт наркотиков | Адвокатская коллегия Сотникова"
+      title="Защита по статье 228.1 УК РФ — Незаконные производство и сбыт наркотиков | Профзащита"
       metaDescription="Профессиональная защита по статье 228.1 УК РФ (незаконные производство, сбыт или пересылка наркотических средств). Опытные адвокаты."
       canonical="/services/criminal/statya-228-1"
       breadcrumbLabel="Статья 228.1 УК РФ"

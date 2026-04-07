@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya293Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 293 УК РФ — Халатность | Адвокатская коллегия Сотникова"
+      title="Защита по статье 293 УК РФ — Халатность | Профзащита"
       metaDescription="Профессиональная защита по статье 293 УК РФ (халатность). Опытные адвокаты по должностным преступлениям. Консультация и ведение дела."
       canonical="/services/criminal/statya-293"
       breadcrumbLabel="Статья 293 УК РФ"

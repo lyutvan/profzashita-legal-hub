@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya228Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 228 УК РФ — Незаконный оборот наркотиков | Адвокатская коллегия Сотникова"
+      title="Защита по статье 228 УК РФ — Незаконный оборот наркотиков | Профзащита"
       metaDescription="Профессиональная защита по статье 228 УК РФ (незаконные приобретение, хранение, перевозка наркотических средств). Опытные адвокаты."
       canonical="/services/criminal/statya-228"
       breadcrumbLabel="Статья 228 УК РФ"

@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya327Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 327 УК РФ — Подделка документов | Адвокатская коллегия Сотникова"
+      title="Защита по статье 327 УК РФ — Подделка документов | Профзащита"
       metaDescription="Профессиональная защита по статье 327 УК РФ (подделка, изготовление или сбыт поддельных документов). Опытные адвокаты."
       canonical="/services/criminal/statya-327"
       breadcrumbLabel="Статья 327 УК РФ"

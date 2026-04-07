@@ -213,16 +213,6 @@ const Index = () => {
         "Подготовка правовых позиций по сложным категориям споров"
       ]
     },
-    sotnikov: {
-      badge: "Адвокат",
-      subtitle: "Адвокат",
-      experience: "Стаж 15 лет",
-      specializations: [
-        "Уголовные дела экономической направленности",
-        "Защита на стадии следствия и суда",
-        "Досудебное урегулирование и переговоры"
-      ]
-    },
     vaskovsky: {
       badge: "Адвокат",
       subtitle: "Адвокат",
@@ -235,7 +225,7 @@ const Index = () => {
     }
   };
 
-  const featuredTeam = ["lyutikov", "ryzhenko", "sotnikov", "vaskovsky"]
+  const featuredTeam = ["lyutikov", "ryzhenko", "vaskovsky"]
     .map((slug) => teamMembers.find((member) => member.slug === slug))
     .filter((member): member is (typeof teamMembers)[number] => Boolean(member));
 

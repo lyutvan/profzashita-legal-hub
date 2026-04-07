@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya174Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 174 УК РФ — Легализация (отмывание) денежных средств | Адвокатская коллегия Сотникова"
+      title="Защита по статье 174 УК РФ — Легализация (отмывание) денежных средств | Профзащита"
       metaDescription="Профессиональная защита по статье 174 УК РФ (легализация, отмывание денежных средств). Опытные адвокаты по уголовным делам. Консультация и ведение дела."
       canonical="/services/criminal/statya-174"
       breadcrumbLabel="Статья 174 УК РФ"

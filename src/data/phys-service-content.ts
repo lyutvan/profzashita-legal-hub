@@ -133,16 +133,16 @@ const CATEGORY_TEAM: Record<string, string[]> = {
   "Жилищные споры": ["vaskovsky", "ryzhenko"],
   "Ущерб имуществу": ["kalabekov", "ryzhenko"],
   "Наследственные дела": ["vaskovsky", "kalabekov"],
-  "Взыскание долгов и договорные споры": ["sotnikov", "ryzhenko"],
+  "Взыскание долгов и договорные споры": ["ryzhenko", "vaskovsky"],
   "Защита прав потребителей": ["kalabekov", "vaskovsky"],
   "ДТП, страхование, вред здоровью": ["vaskovsky", "ryzhenko"],
-  "Трудовые споры": ["ryzhenko", "sotnikov"],
-  "Банковские и кредитные споры": ["lyutikov", "sotnikov"],
+  "Трудовые споры": ["ryzhenko", "vaskovsky"],
+  "Банковские и кредитные споры": ["lyutikov", "ryzhenko"],
   "Исполнительное производство": ["ryzhenko", "vaskovsky"],
-  "Земельные споры": ["sotnikov", "ryzhenko"],
+  "Земельные споры": ["ryzhenko", "vaskovsky"],
   "Административные споры": ["vaskovsky", "ryzhenko"],
   "Банкротство": ["lyutikov", "ryzhenko"],
-  "Документы и судебное сопровождение": ["lyutikov", "sotnikov"]
+  "Документы и судебное сопровождение": ["lyutikov", "ryzhenko"]
 };
 
 const baseHeroBenefits = [

@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya3221Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 322.1 УК РФ — Организация незаконной миграции | Адвокатская коллегия Сотникова"
+      title="Защита по статье 322.1 УК РФ — Организация незаконной миграции | Профзащита"
       metaDescription="Профессиональная защита по статье 322.1 УК РФ (организация незаконной миграции). Опытные адвокаты по миграционным делам."
       canonical="/services/criminal/statya-322-1"
       breadcrumbLabel="Статья 322.1 УК РФ"

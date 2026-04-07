@@ -39,7 +39,7 @@ import TelegramIcon from "@/components/icons/TelegramIcon";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 import ryzhenkoImg from "@/assets/team/ryzhenko.jpg";
-import sotnikovImg from "@/assets/team/sotnikov.jpg";
+import vaskovskyImg from "@/assets/team/vaskovsky.jpg";
 
 type LeadFormProps = {
   formId: string;
@@ -299,15 +299,15 @@ const VyseleniePage = () => {
       ]
     },
     {
-      name: "Сотников Дмитрий Валерьевич",
+      name: "Васьковский Михаил Михайлович",
       role: "Адвокат",
       experience: "Стаж 15 лет",
-      profileUrl: "/team/sotnikov",
-      photo: sotnikovImg,
-      specializations: ["Имущественные споры", "Досудебные переговоры", "Медиация", "Защита интересов в судах"],
+      profileUrl: "/team/vaskovsky",
+      photo: vaskovskyImg,
+      specializations: ["Жилищные споры", "Семейные и наследственные споры", "Административные дела", "Защита интересов в судах"],
       description: [
-        "Работает на стыке уголовного и гражданского права, помогает снизить риски и защищает интересы в сложных конфликтах.",
-        "Ведет переговоры, готовит процессуальные документы и сопровождает клиентов на всех стадиях разбирательств."
+        "Подключается к спорам о выселении, вселении и пользовании жилым помещением, где важны точная процессуальная позиция и работа с доказательствами.",
+        "Готовит правовую стратегию, ведет переговоры и сопровождает клиента на всех стадиях судебного разбирательства."
       ]
     }
   ];

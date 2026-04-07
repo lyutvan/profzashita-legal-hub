@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya212Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 212 УК РФ — Массовые беспорядки | Адвокатская коллегия Сотникова"
+      title="Защита по статье 212 УК РФ — Массовые беспорядки | Профзащита"
       metaDescription="Профессиональная защита по статье 212 УК РФ (массовые беспорядки). Опытные адвокаты по уголовным делам. Консультация и ведение дела."
       canonical="/services/criminal/statya-212"
       breadcrumbLabel="Статья 212 УК РФ"

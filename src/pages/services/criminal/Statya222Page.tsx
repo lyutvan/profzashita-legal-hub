@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya222Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 222 УК РФ — Незаконный оборот оружия | Адвокатская коллегия Сотникова"
+      title="Защита по статье 222 УК РФ — Незаконный оборот оружия | Профзащита"
       metaDescription="Профессиональная защита по статье 222 УК РФ (незаконные приобретение, хранение, перевозка оружия). Опытные адвокаты по уголовным делам."
       canonical="/services/criminal/statya-222"
       breadcrumbLabel="Статья 222 УК РФ"

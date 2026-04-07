@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya290Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 290 УК РФ — Получение взятки | Адвокатская коллегия Сотникова"
+      title="Защита по статье 290 УК РФ — Получение взятки | Профзащита"
       metaDescription="Профессиональная защита по статье 290 УК РФ (получение взятки). Опытные адвокаты по коррупционным преступлениям. Консультация и ведение дела."
       canonical="/services/criminal/statya-290"
       breadcrumbLabel="Статья 290 УК РФ"

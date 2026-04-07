@@ -326,15 +326,15 @@ const CATEGORY_CONTENT: Record<string, BizCategoryContent> = {
 
 const CATEGORY_TEAM: Record<string, string[]> = {
   "Арбитражные споры (B2B)": ["lyutikov", "ryzhenko"],
-  "Налоговые споры и проверки": ["lyutikov", "sotnikov"],
+  "Налоговые споры и проверки": ["lyutikov", "ryzhenko"],
   "Банкротство и субсидиарная ответственность": ["lyutikov", "ryzhenko"],
-  "Абонентское юридическое сопровождение бизнеса": ["ryzhenko", "sotnikov"],
-  "Договоры и сделки": ["ryzhenko", "sotnikov"],
-  "Разблокировка счёта и 115‑ФЗ": ["lyutikov", "sotnikov"],
+  "Абонентское юридическое сопровождение бизнеса": ["ryzhenko", "lyutikov"],
+  "Договоры и сделки": ["ryzhenko", "lyutikov"],
+  "Разблокировка счёта и 115‑ФЗ": ["lyutikov", "ryzhenko"],
   "Корпоративное право и конфликты собственников": ["lyutikov", "ryzhenko"],
-  "Исполнительное производство и приставы": ["ryzhenko", "sotnikov"],
+  "Исполнительное производство и приставы": ["ryzhenko", "vaskovsky"],
   "Госзакупки и ФАС": ["ryzhenko", "lyutikov"],
-  "Интеллектуальная собственность и защита бренда": ["sotnikov", "ryzhenko"],
+  "Интеллектуальная собственность и защита бренда": ["ryzhenko", "lyutikov"],
   "Трудовое право для работодателя": ["ryzhenko", "lyutikov"]
 };
 

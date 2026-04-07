@@ -286,7 +286,7 @@ const buildFaqs = (serviceName: string, articleNumber: string): CriminalFaqItem[
 
 const defaultDisclaimer = "Результат зависит от фактических обстоятельств дела, позиции следствия и суда, а также полноты предоставленных материалов.";
 
-const DEFAULT_TEAM_SLUGS = ["lyutikov", "sotnikov"];
+const DEFAULT_TEAM_SLUGS = ["lyutikov", "kalabekov"];
 
 const getTeamByCategory = (): CriminalTeamCard[] => {
   return DEFAULT_TEAM_SLUGS

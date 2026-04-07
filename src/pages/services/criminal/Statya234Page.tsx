@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya234Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 234 УК РФ — Незаконный оборот сильнодействующих веществ | Адвокатская коллегия Сотникова"
+      title="Защита по статье 234 УК РФ — Незаконный оборот сильнодействующих веществ | Профзащита"
       metaDescription="Профессиональная защита по статье 234 УК РФ (незаконный оборот сильнодействующих или ядовитых веществ). Опытные адвокаты."
       canonical="/services/criminal/statya-234"
       breadcrumbLabel="Статья 234 УК РФ"

@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya330Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 330 УК РФ — Самоуправство | Адвокатская коллегия Сотникова"
+      title="Защита по статье 330 УК РФ — Самоуправство | Профзащита"
       metaDescription="Профессиональная защита по статье 330 УК РФ (самоуправство). Опытные адвокаты по уголовным делам. Консультация и ведение дела."
       canonical="/services/criminal/statya-330"
       breadcrumbLabel="Статья 330 УК РФ"

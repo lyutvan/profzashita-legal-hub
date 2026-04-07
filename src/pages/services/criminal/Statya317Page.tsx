@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya317Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 317 УК РФ — Посягательство на жизнь сотрудника правоохранительного органа | Адвокатская коллегия Сотникова"
+      title="Защита по статье 317 УК РФ — Посягательство на жизнь сотрудника правоохранительного органа | Профзащита"
       metaDescription="Профессиональная защита по статье 317 УК РФ (посягательство на жизнь сотрудника правоохранительного органа). Опытные адвокаты."
       canonical="/services/criminal/statya-317"
       breadcrumbLabel="Статья 317 УК РФ"

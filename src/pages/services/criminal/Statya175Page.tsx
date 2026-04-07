@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya175Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 175 УК РФ — Приобретение или сбыт имущества, добытого преступным путем | Адвокатская коллегия Сотникова"
+      title="Защита по статье 175 УК РФ — Приобретение или сбыт имущества, добытого преступным путем | Профзащита"
       metaDescription="Профессиональная защита по статье 175 УК РФ (приобретение или сбыт имущества, добытого преступным путем). Опытные адвокаты по уголовным делам."
       canonical="/services/criminal/statya-175"
       breadcrumbLabel="Статья 175 УК РФ"

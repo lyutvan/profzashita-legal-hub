@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya2054Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 205.4 УК РФ — Организация террористического сообщества | Адвокатская коллегия Сотникова"
+      title="Защита по статье 205.4 УК РФ — Организация террористического сообщества | Профзащита"
       metaDescription="Профессиональная защита по статье 205.4 УК РФ (организация террористического сообщества и участие в нем). Опытные адвокаты."
       canonical="/services/criminal/statya-205-4"
       breadcrumbLabel="Статья 205.4 УК РФ"

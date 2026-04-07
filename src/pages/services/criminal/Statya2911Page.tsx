@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya2911Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 291.1 УК РФ — Посредничество во взяточничестве | Адвокатская коллегия Сотникова"
+      title="Защита по статье 291.1 УК РФ — Посредничество во взяточничестве | Профзащита"
       metaDescription="Профессиональная защита по статье 291.1 УК РФ (посредничество во взяточничестве). Опытные адвокаты по коррупционным преступлениям."
       canonical="/services/criminal/statya-291-1"
       breadcrumbLabel="Статья 291.1 УК РФ"

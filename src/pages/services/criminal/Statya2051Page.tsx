@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya2051Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 205.1 УК РФ — Содействие террористической деятельности | Адвокатская коллегия Сотникова"
+      title="Защита по статье 205.1 УК РФ — Содействие террористической деятельности | Профзащита"
       metaDescription="Профессиональная защита по статье 205.1 УК РФ (содействие террористической деятельности). Опытные адвокаты по уголовным делам."
       canonical="/services/criminal/statya-205-1"
       breadcrumbLabel="Статья 205.1 УК РФ"

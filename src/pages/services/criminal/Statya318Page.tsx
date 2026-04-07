@@ -3,7 +3,7 @@ import ServiceTemplate from '@/components/ServiceTemplate';
 export default function Statya318Page() {
   return (
     <ServiceTemplate
-      title="Защита по статье 318 УК РФ — Применение насилия в отношении представителя власти | Адвокатская коллегия Сотникова"
+      title="Защита по статье 318 УК РФ — Применение насилия в отношении представителя власти | Профзащита"
       metaDescription="Профессиональная защита по статье 318 УК РФ (применение насилия в отношении представителя власти). Опытные адвокаты."
       canonical="/services/criminal/statya-318"
       breadcrumbLabel="Статья 318 УК РФ"
