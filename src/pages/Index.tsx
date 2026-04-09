@@ -174,12 +174,9 @@ const Index = () => {
   ];
 
   const featuredCaseSlugs = [
-    "prekrashhenie-ugolovnogo-dela-moshennichestvo-primirenie-159-uk-rf",
     "izmenenie-mery-111-domashnij-arest",
-    "zpp-tushinskiy-sk-soglasie-2-1636-2019",
     "razdel-imushchestva-nedeistv-sdelki-perovo-2-2621-2025",
-    "a40-76521-2017-reshenie-20171003",
-    "arbitrazh-povarova-isklyuchenie-zhilya-iz-konkursnoj-massy"
+    "a40-76521-2017-reshenie-20171003"
   ];
   const featuredCases = featuredCaseSlugs
     .map((slug) => cases.find((caseItem) => caseItem.slug === slug))
@@ -571,12 +568,12 @@ const Index = () => {
               Если вы столкнулись с похожей проблемой — проанализируем обстоятельства и выстроим стратегию защиты
             </div>
             <div className="mt-8 flex justify-center">
-              <Link to="/kontakty">
+              <Link to="/keisy">
                 <Button
                   size="lg"
                   className="h-auto min-h-14 w-[280px] whitespace-normal px-8 py-3 leading-tight bg-accent text-white hover:bg-accent/90"
                 >
-                  Обсудить ситуацию по телефону
+                  Посмотреть все кейсы
                 </Button>
               </Link>
             </div>
@@ -693,7 +690,7 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="section__content mt-12 grid grid-cols-1 items-start gap-7 md:grid-cols-2 xl:grid-cols-4">
+            <div className="section__content mx-auto mt-12 grid max-w-[1180px] grid-cols-1 items-start gap-7 md:grid-cols-2 lg:grid-cols-3">
               {featuredTeam.map((member) => {
                 const override = featuredTeamOverrides[member.slug];
                 const badge = override?.badge ?? (member.role.toLowerCase().includes("юрист") ? "Юрист" : "Адвокат");
