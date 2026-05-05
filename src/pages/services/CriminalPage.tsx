@@ -395,7 +395,7 @@ const CriminalPage = () => {
               <span className="text-white font-medium">Уголовные дела</span>
             </div>
 
-            <div className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_320px] md:items-start lg:grid-cols-[minmax(0,1fr)_340px]">
+            <div className="mt-6 grid grid-cols-1 gap-8 md:grid-cols-[minmax(0,1fr)_300px] md:items-start lg:grid-cols-[minmax(0,1fr)_320px]">
               <div className="max-w-5xl space-y-6">
                 <h1 className="category-hero-title text-[clamp(2.1rem,3.4vw,3.05rem)] leading-[1.08] font-bold text-[#C9A227]">
                   Адвокат по уголовным делам
@@ -430,30 +430,43 @@ const CriminalPage = () => {
                   <br />
                   <span className="text-white/90">Ошибки на первых этапах могут стать решающими.</span>
                 </p>
+
+                <div className="flex flex-wrap items-center gap-y-2 pt-1 text-sm text-white/90 md:text-base">
+                  {heroTrustItems.map((item, index) => (
+                    <span
+                      key={item.text}
+                      className={`whitespace-nowrap ${index > 0 ? "before:content-['•'] before:mx-3 before:text-white/70" : ""}`}
+                    >
+                      <span className={item.accent ? "text-[#C9A227]" : "text-white"}>
+                        {item.text}
+                      </span>
+                    </span>
+                  ))}
+                </div>
               </div>
 
-              <Card className="w-full max-w-[360px] mx-auto overflow-hidden rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] text-slate-900 md:mx-0 md:max-w-[340px] md:justify-self-end">
+              <Card className="w-full max-w-[320px] mx-auto overflow-hidden rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] text-slate-900 md:mx-0 md:max-w-[300px] md:justify-self-end lg:max-w-[320px]">
                 <CardContent className="p-0">
-                  <div className="h-[300px] w-full overflow-hidden md:h-[320px]">
+                  <div className="h-[240px] w-full overflow-hidden md:h-[260px]">
                     <img
                       src={lyutikov?.photo ?? "/images/team/lyutikov-ivan.jpg"}
                       alt={lyutikov?.name ?? "Лютиков Иван Иванович"}
                       className="h-full w-full object-cover object-top"
                     />
                   </div>
-                  <div className="px-5 py-5 text-center md:px-6">
-                    <h3 className="text-[2rem] font-semibold leading-[1.1] tracking-[-0.01em]">
+                  <div className="px-5 py-4 text-center">
+                    <h3 className="text-[1.65rem] font-semibold leading-[1.1] tracking-[-0.01em] md:text-[1.75rem]">
                       {lyutikov?.name ?? "Лютиков Иван Иванович"}
                     </h3>
-                    <p className="mt-3 text-[1.05rem] leading-[1.28] text-slate-700">
+                    <p className="mt-2 text-[0.98rem] leading-[1.28] text-slate-700">
                       Адвокат, Председатель коллегии
                     </p>
-                    <div className="mt-5 space-y-1 text-[1.03rem] font-semibold leading-[1.26]">
+                    <div className="mt-4 space-y-1 text-[0.96rem] font-semibold leading-[1.26]">
                       <p>18 лет службы в следственных органах</p>
                       <p>8 лет адвокатской практики</p>
                       <p>170+ с положительным результатом</p>
                     </div>
-                    <p className="mt-5 text-base leading-[1.3] text-slate-700">
+                    <p className="mt-4 text-[0.95rem] leading-[1.3] text-slate-700">
                       Регистрационный номер в реестре
                       <br />
                       адвокатов г. Москвы № 77/17732
@@ -461,19 +474,6 @@ const CriminalPage = () => {
                   </div>
                 </CardContent>
               </Card>
-            </div>
-
-            <div className="mt-7 flex flex-wrap items-center gap-y-2 text-sm text-white/90 md:text-base">
-              {heroTrustItems.map((item, index) => (
-                <span
-                  key={item.text}
-                  className={`whitespace-nowrap ${index > 0 ? "before:content-['•'] before:mx-3 before:text-white/70" : ""}`}
-                >
-                  <span className={item.accent ? "text-[#C9A227]" : "text-white"}>
-                    {item.text}
-                  </span>
-                </span>
-              ))}
             </div>
           </div>
         </section>
