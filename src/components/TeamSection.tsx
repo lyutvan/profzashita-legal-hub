@@ -68,9 +68,9 @@ const TeamSection = ({
               {member.experienceText}
             </p>
           )}
-          <ul className="mb-5 space-y-3 text-center text-small leading-7 text-muted-foreground">
+          <ul className="mb-5 space-y-2 text-center text-small leading-6 text-muted-foreground">
             {specs.map((spec) => (
-              <li key={spec} className="min-h-[72px]">
+              <li key={spec}>
                 • {spec}
               </li>
             ))}
