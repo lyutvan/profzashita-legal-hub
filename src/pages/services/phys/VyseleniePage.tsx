@@ -131,8 +131,6 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
     }
   };
 
-  return null;
-
   return (
     <form onSubmit={handleSubmit} className="space-y-4">
       <input
@@ -221,6 +219,7 @@ const VyseleniePage = () => {
   const callHref = `tel:${SITE.phoneRaw}`;
   const canonical = new URL("/services/phys/vyselenie", SITE.url).toString();
   const yandexOrgId = "244880896695";
+  const hasSecondaryPhone = Boolean(SITE.messengerPhone && SITE.messengerPhoneRaw);
 
   const YandexRatingWidget = () => (
     <div className="mt-8 flex justify-center">
@@ -286,6 +285,18 @@ const VyseleniePage = () => {
   ];
 
   const teamMembers = [
+    {
+      name: "Лютиков Иван Иванович",
+      role: "Адвокат",
+      experience: "Стаж 26 лет",
+      profileUrl: "/team/lyutikov",
+      photo: "/images/team/lyutikov-ivan.jpg",
+      specializations: ["Жилищные споры высокой сложности", "Имущественные конфликты", "Судебная стратегия", "Переговоры и защита позиции"],
+      description: [
+        "Контролирует стратегию в сложных жилищных делах, где важны доказательства, сроки и точная процессуальная позиция.",
+        "Подключается к переговорам и судебному сопровождению, чтобы удержать сильную линию защиты интересов клиента."
+      ]
+    },
     {
       name: "Рыженко Дмитрий Петрович",
       role: "Юрист",
@@ -902,9 +913,11 @@ const VyseleniePage = () => {
                       <a href={`tel:${SITE.phoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
                         {SITE.phone}
                       </a>
-                      <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
-                        {SITE.messengerPhone}
-                      </a>
+                      {hasSecondaryPhone && (
+                        <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
+                          {SITE.messengerPhone}
+                        </a>
+                      )}
                     </div>
                     <Button
                       asChild
@@ -940,9 +953,11 @@ const VyseleniePage = () => {
                           <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
                             {SITE.phone}
                           </a>
-                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
-                            {SITE.messengerPhone}
-                          </a>
+                          {hasSecondaryPhone && (
+                            <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
+                              {SITE.messengerPhone}
+                            </a>
+                          )}
                         </div>
                       </div>
                     </div>

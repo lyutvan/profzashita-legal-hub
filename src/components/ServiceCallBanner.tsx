@@ -11,6 +11,7 @@ type ServiceCallBannerProps = {
 const ServiceCallBanner = ({ className }: ServiceCallBannerProps) => {
   const telHref = `tel:${SITE.phoneRaw}`;
   const secondaryTelHref = `tel:+${SITE.messengerPhoneRaw}`;
+  const hasSecondaryPhone = Boolean(SITE.messengerPhone && SITE.messengerPhoneRaw);
 
   return (
     <div
@@ -33,12 +34,14 @@ const ServiceCallBanner = ({ className }: ServiceCallBannerProps) => {
               >
                 {SITE.phone}
               </a>
-              <a
-                href={secondaryTelHref}
-                className="font-semibold text-foreground underline-offset-4 hover:underline"
-              >
-                {SITE.messengerPhone}
-              </a>
+              {hasSecondaryPhone && (
+                <a
+                  href={secondaryTelHref}
+                  className="font-semibold text-foreground underline-offset-4 hover:underline"
+                >
+                  {SITE.messengerPhone}
+                </a>
+              )}
             </div>
           </div>
         </div>

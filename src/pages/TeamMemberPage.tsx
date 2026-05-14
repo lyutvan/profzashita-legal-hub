@@ -10,7 +10,7 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogClose } from "@
 import { getTeamMemberBySlug } from "@/data/team";
 import { cases } from "@/data/cases";
 import { SITE } from "@/config/site";
-import { Phone, MapPin, Briefcase, CheckCircle2, BookOpen, FileText } from "lucide-react";
+import { Phone, MapPin, Briefcase, CheckCircle2, BookOpen, FileText, Video } from "lucide-react";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const TeamMemberPage = () => {
@@ -47,6 +47,7 @@ const TeamMemberPage = () => {
   const phoneHref = `tel:${phone.replace(/[^+\d]/g, "")}`;
   const showSecondaryPhone = phone === SITE.phone;
   const secondaryPhoneHref = `tel:+${SITE.messengerPhoneRaw}`;
+  const hasSecondaryPhone = Boolean(SITE.messengerPhone && SITE.messengerPhoneRaw);
   const email = member.email ?? SITE.email;
   const about = member.about;
   const memberCaseKeyMap: Record<string, string> = {
@@ -59,6 +60,14 @@ const TeamMemberPage = () => {
   const shouldShowCertificateTitle = true;
   const caseList = member.cases ?? [];
   const education = member.education ?? [];
+  const profileVideo =
+    member.slug === "lyutikov"
+      ? {
+          src: "/videos/lyutikov-profile.mp4",
+          poster: "/images/team/lyutikov-video-cover.jpeg",
+          title: "Видео с Иваном Лютиковым"
+        }
+      : null;
   const listCheckIconClassName = "h-4 w-4 shrink-0 text-accent mt-1";
   const educationIconClassName = "h-5 w-5 shrink-0 text-accent mt-0.5";
   const competencies = member.competencies ?? [];
@@ -182,6 +191,35 @@ const TeamMemberPage = () => {
                     {shortBio.split("\n").filter(Boolean).map((paragraph, index) => (
                       <p key={index}>{paragraph}</p>
                     ))}
+                  </CardContent>
+                </Card>
+              )}
+
+              {profileVideo && (
+                <Card className="overflow-hidden border-border">
+                  <CardHeader>
+                    <CardTitle className="flex items-center gap-2 text-h3-mobile md:text-h3">
+                      <Video className="h-5 w-5 text-accent" />
+                      Видеообращение
+                    </CardTitle>
+                  </CardHeader>
+                  <CardContent>
+                    <div className="mx-auto aspect-[3/4] w-full max-w-[620px] overflow-hidden rounded-xl border border-border bg-black shadow-[0_10px_28px_rgba(15,23,42,0.12)]">
+                      <video
+                        className="block h-full w-full bg-black object-cover"
+                        controls
+                        preload="metadata"
+                        playsInline
+                        poster={profileVideo.poster}
+                        title={profileVideo.title}
+                      >
+                        <source src={profileVideo.src} type="video/mp4" />
+                        Ваш браузер не поддерживает воспроизведение видео.
+                      </video>
+                    </div>
+                    <p className="mt-3 text-small leading-7 text-muted-foreground">
+                      Видео размещено для знакомства с адвокатом и подходом к работе.
+                    </p>
                   </CardContent>
                 </Card>
               )}
@@ -475,7 +513,7 @@ const TeamMemberPage = () => {
                     <a href={phoneHref} className="text-body-mobile md:text-body font-semibold hover:text-accent transition-colors">
                       {phone}
                     </a>
-                    {showSecondaryPhone && (
+                    {showSecondaryPhone && hasSecondaryPhone && (
                       <a href={secondaryPhoneHref} className="text-body-mobile md:text-body font-semibold hover:text-accent transition-colors">
                         {SITE.messengerPhone}
                       </a>

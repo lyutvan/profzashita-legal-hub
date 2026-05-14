@@ -82,7 +82,7 @@ const FAMILY_ISSUES = [
   }
 ];
 
-const FAMILY_TEAM_ORDER = ["kalabekov", "vaskovsky"] as const;
+const FAMILY_TEAM_ORDER = ["kalabekov", "vaskovsky", "lyutikov"] as const;
 
 const FAMILY_TEAM_CONTENT: Record<string, { name: string; role: string; experience: string; specializations: string[] }> = {
   kalabekov: {
@@ -105,6 +105,17 @@ const FAMILY_TEAM_CONTENT: Record<string, { name: string; role: string; experien
       "Наследственные дела",
       "Административные дела",
       "Страховые споры"
+    ]
+  },
+  lyutikov: {
+    name: "Лютиков Иван Иванович",
+    role: "Адвокат",
+    experience: "Стаж 26 лет",
+    specializations: [
+      "Семейные споры высокой сложности",
+      "Судебная стратегия",
+      "Переговоры и защита позиции",
+      "Гражданские и административные дела"
     ]
   }
 };
@@ -203,8 +214,6 @@ const FamilyShortForm = ({ topic, onSuccess }: FamilyShortFormProps) => {
       setIsSubmitting(false);
     }
   };
-
-  return null;
 
   return (
     <form onSubmit={handleSubmit} className="space-y-4">

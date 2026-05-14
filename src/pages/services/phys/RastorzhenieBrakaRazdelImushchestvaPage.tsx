@@ -134,8 +134,6 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
     }
   };
 
-  return null;
-
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
       <input
@@ -233,6 +231,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
   const whatsappUrl = SITE.whatsappUrl;
   const telegramUrl = SITE.telegramUrl;
   const maxUrl = SITE.maxUrl;
+  const hasSecondaryPhone = Boolean(SITE.messengerPhone && SITE.messengerPhoneRaw);
   const location = useLocation();
   const isFamilyCategory = location.pathname.includes("/services/phys/semeynye-spory");
   const pageBreadcrumbLabel = isFamilyCategory ? "Семейные споры" : "Расторжение брака и раздел имущества";
@@ -327,6 +326,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
 
   const baseLyutikov = buildTeamMember("lyutikov");
   const baseRyzhenko = buildTeamMember("ryzhenko");
+  const baseVaskovsky = buildTeamMember("vaskovsky");
 
   const teamMembers = [
     baseLyutikov && {
@@ -353,6 +353,19 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
       description: [
         "Готовит процессуальные документы и выстраивает правовую позицию в семейных спорах.",
         "Сопровождает переговоры и помогает закрепить условия соглашений."
+      ]
+    },
+    baseVaskovsky && {
+      ...baseVaskovsky,
+      specializations: [
+        "Расторжение брака и раздел имущества",
+        "Споры о детях и алиментах",
+        "Наследственные и семейные конфликты",
+        "Представительство в суде"
+      ],
+      description: [
+        "Ведет семейные дела с учетом судебной практики и фактической ситуации семьи.",
+        "Помогает выстроить позицию по детям, имуществу и алиментным обязательствам."
       ]
     }
   ].filter(Boolean) as PageTeamMember[];
@@ -1177,9 +1190,11 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                       <a href={`tel:${SITE.phoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
                         {SITE.phone}
                       </a>
-                      <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
-                        {SITE.messengerPhone}
-                      </a>
+                      {hasSecondaryPhone && (
+                        <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-[18px] font-semibold text-slate-900 hover:text-accent">
+                          {SITE.messengerPhone}
+                        </a>
+                      )}
                     </div>
                     <Button
                       asChild
@@ -1219,9 +1234,11 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                           <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
                             {SITE.phone}
                           </a>
-                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
-                            {SITE.messengerPhone}
-                          </a>
+                          {hasSecondaryPhone && (
+                            <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
+                              {SITE.messengerPhone}
+                            </a>
+                          )}
                         </div>
                       </div>
                     </div>

@@ -212,9 +212,11 @@ const Uslugi = () => {
                           <a href={`tel:${SITE.phoneRaw}`} className="hover:underline">
                             {SITE.phone}
                           </a>
-                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:underline">
-                            {SITE.messengerPhone}
-                          </a>
+                          {SITE.messengerPhone && SITE.messengerPhoneRaw && (
+                            <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:underline">
+                              {SITE.messengerPhone}
+                            </a>
+                          )}
                         </div>
                       </div>
                     </p>

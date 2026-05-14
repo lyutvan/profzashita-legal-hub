@@ -60,12 +60,14 @@ const Footer = () => {
                     >
                       {SITE.phone}
                     </a>
-                    <a
-                      href={`tel:+${SITE.messengerPhoneRaw}`}
-                      className="break-words text-white/88 transition-colors hover:text-accent"
-                    >
-                      {SITE.messengerPhone}
-                    </a>
+                    {SITE.messengerPhone && SITE.messengerPhoneRaw && (
+                      <a
+                        href={`tel:+${SITE.messengerPhoneRaw}`}
+                        className="break-words text-white/88 transition-colors hover:text-accent"
+                      >
+                        {SITE.messengerPhone}
+                      </a>
+                    )}
                   </div>
                 </li>
                 <li>

@@ -476,7 +476,7 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
               ))}
             </div>
             <div className="mt-8">
-              <Button asChild className="bg-primary text-white hover:bg-primary/90">
+              <Button asChild className="h-auto min-h-12 w-full max-w-[288px] whitespace-normal bg-primary px-4 py-3 leading-tight text-white hover:bg-primary/90 sm:w-auto sm:max-w-none">
                 <a
                   href="https://yandex.ru/maps/org/244880896695/reviews/"
                   target="_blank"

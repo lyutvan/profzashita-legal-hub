@@ -53,6 +53,7 @@ const ZhilishchnyeSporyPage = () => {
   const whatsappUrl = SITE.whatsappUrl;
   const telegramUrl = SITE.telegramUrl;
   const maxUrl = SITE.maxUrl;
+  const hasSecondaryPhone = Boolean(SITE.messengerPhone && SITE.messengerPhoneRaw);
   const canonical = new URL("/services/phys/vyselenie", SITE.url).toString();
   const pricingData = getPriceBySlug(canonical);
   const priceFrom = pricingData?.priceFrom;
@@ -195,6 +196,18 @@ const ZhilishchnyeSporyPage = () => {
     .filter((item): item is { id: string; label: string; caseItem: Case } => Boolean(item));
 
   const teamCardConfigs: TeamCardConfig[] = [
+    {
+      slug: "lyutikov",
+      roleBadge: "Адвокат",
+      subtitle: "Председатель коллегии",
+      buttonLabel: "Подробнее об адвокате",
+      specializations: [
+        "Стратегия ведения сложных жилищных споров",
+        "Представительство в судах по имущественным конфликтам",
+        "Защита права собственности и пользования жильём",
+        "Переговоры и контроль судебной позиции"
+      ]
+    },
     {
       slug: "ryzhenko",
       roleBadge: "Юрист",
@@ -596,9 +609,11 @@ const ZhilishchnyeSporyPage = () => {
                     <a href={callHref} className="hover:text-[#b8911f]">
                       {SITE.phone}
                     </a>
-                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
-                      {SITE.messengerPhone}
-                    </a>
+                    {hasSecondaryPhone && (
+                      <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
+                        {SITE.messengerPhone}
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -826,9 +841,11 @@ const ZhilishchnyeSporyPage = () => {
                     <a href={callHref} className="hover:text-[#b8911f]">
                       {SITE.phone}
                     </a>
-                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
-                      {SITE.messengerPhone}
-                    </a>
+                    {hasSecondaryPhone && (
+                      <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
+                        {SITE.messengerPhone}
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -937,9 +954,11 @@ const ZhilishchnyeSporyPage = () => {
                         <a href={callHref} className="hover:text-[#b8911f]">
                           {SITE.phone}
                         </a>
-                        <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
-                          {SITE.messengerPhone}
-                        </a>
+                        {hasSecondaryPhone && (
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
+                            {SITE.messengerPhone}
+                          </a>
+                        )}
                       </div>
                     </div>
                     <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} w-full`}>
@@ -972,9 +991,11 @@ const ZhilishchnyeSporyPage = () => {
                           <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
                             {SITE.phone}
                           </a>
-                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
-                            {SITE.messengerPhone}
-                          </a>
+                          {hasSecondaryPhone && (
+                            <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
+                              {SITE.messengerPhone}
+                            </a>
+                          )}
                         </div>
                       </div>
                     </div>

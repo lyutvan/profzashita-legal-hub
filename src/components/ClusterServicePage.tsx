@@ -43,6 +43,7 @@ const ClusterServicePage = ({
   const ogImage = situation.ogImage || `${SITE.url}og-cover.jpg`;
   const ogImageAbsolute = ogImage.startsWith('http') ? ogImage : `${SITE.url}${ogImage.replace(/^\//, '')}`;
   const { openQuickQuestionModal } = useQuickQuestionModal();
+  const hasSecondaryPhone = Boolean(SITE.messengerPhone && SITE.messengerPhoneRaw);
   
   return (
     <div className="min-h-screen flex flex-col bg-background">
@@ -379,12 +380,14 @@ const ClusterServicePage = ({
                             <span>{SITE.phone}</span>
                           </a>
                         </Button>
-                        <Button size="lg" className="h-auto bg-accent hover:bg-accent/90" asChild>
-                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="inline-flex items-center gap-2 py-2">
-                            <Phone className="h-5 w-5" />
-                            <span>{SITE.messengerPhone}</span>
-                          </a>
-                        </Button>
+                        {hasSecondaryPhone && (
+                          <Button size="lg" className="h-auto bg-accent hover:bg-accent/90" asChild>
+                            <a href={`tel:+${SITE.messengerPhoneRaw}`} className="inline-flex items-center gap-2 py-2">
+                              <Phone className="h-5 w-5" />
+                              <span>{SITE.messengerPhone}</span>
+                            </a>
+                          </Button>
+                        )}
                       </div>
                       <Button
                         size="lg"
@@ -429,12 +432,14 @@ const ClusterServicePage = ({
                       >
                         {SITE.phone}
                       </a>
-                      <a 
-                        href={`tel:+${SITE.messengerPhoneRaw}`}
-                        className="block text-h3 font-bold text-accent hover:text-accent/90 transition-colors"
-                      >
-                        {SITE.messengerPhone}
-                      </a>
+                      {hasSecondaryPhone && (
+                        <a 
+                          href={`tel:+${SITE.messengerPhoneRaw}`}
+                          className="block text-h3 font-bold text-accent hover:text-accent/90 transition-colors"
+                        >
+                          {SITE.messengerPhone}
+                        </a>
+                      )}
                     </div>
                     <div className="flex gap-2">
                       <Button className="flex-1 bg-accent hover:bg-accent/90" asChild>

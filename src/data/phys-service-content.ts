@@ -129,20 +129,20 @@ const CATEGORY_MARKETING_SUBTITLES: Record<string, string> = {
 };
 
 const CATEGORY_TEAM: Record<string, string[]> = {
-  "Семейные споры": ["vaskovsky", "kalabekov"],
-  "Жилищные споры": ["vaskovsky", "ryzhenko"],
-  "Ущерб имуществу": ["kalabekov", "ryzhenko"],
-  "Наследственные дела": ["vaskovsky", "kalabekov"],
-  "Взыскание долгов и договорные споры": ["ryzhenko", "vaskovsky"],
-  "Защита прав потребителей": ["kalabekov", "vaskovsky"],
-  "ДТП, страхование, вред здоровью": ["vaskovsky", "ryzhenko"],
-  "Трудовые споры": ["ryzhenko", "vaskovsky"],
-  "Банковские и кредитные споры": ["lyutikov", "ryzhenko"],
-  "Исполнительное производство": ["ryzhenko", "vaskovsky"],
-  "Земельные споры": ["ryzhenko", "vaskovsky"],
-  "Административные споры": ["vaskovsky", "ryzhenko"],
-  "Банкротство": ["lyutikov", "ryzhenko"],
-  "Документы и судебное сопровождение": ["lyutikov", "ryzhenko"]
+  "Семейные споры": ["vaskovsky", "kalabekov", "lyutikov"],
+  "Жилищные споры": ["vaskovsky", "ryzhenko", "lyutikov"],
+  "Ущерб имуществу": ["kalabekov", "ryzhenko", "vaskovsky"],
+  "Наследственные дела": ["vaskovsky", "kalabekov", "ryzhenko"],
+  "Взыскание долгов и договорные споры": ["ryzhenko", "vaskovsky", "lyutikov"],
+  "Защита прав потребителей": ["kalabekov", "vaskovsky", "ryzhenko"],
+  "ДТП, страхование, вред здоровью": ["vaskovsky", "ryzhenko", "kalabekov"],
+  "Трудовые споры": ["ryzhenko", "vaskovsky", "lyutikov"],
+  "Банковские и кредитные споры": ["lyutikov", "ryzhenko", "vaskovsky"],
+  "Исполнительное производство": ["ryzhenko", "vaskovsky", "lyutikov"],
+  "Земельные споры": ["ryzhenko", "vaskovsky", "lyutikov"],
+  "Административные споры": ["vaskovsky", "ryzhenko", "lyutikov"],
+  "Банкротство": ["lyutikov", "ryzhenko", "vaskovsky"],
+  "Документы и судебное сопровождение": ["lyutikov", "ryzhenko", "vaskovsky"]
 };
 
 const baseHeroBenefits = [

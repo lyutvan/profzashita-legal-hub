@@ -45,6 +45,7 @@ const CriminalPage = () => {
   const whatsappUrl = SITE.whatsappUrl;
   const telegramUrl = SITE.telegramUrl;
   const maxUrl = SITE.maxUrl;
+  const hasSecondaryPhone = Boolean(SITE.messengerPhone && SITE.messengerPhoneRaw);
   const lyutikov = teamMembers.find((member) => member.slug === "lyutikov");
 
   const heroFacts = [
@@ -573,9 +574,11 @@ const CriminalPage = () => {
                     <a href={callHref} className="hover:text-[#b8911f]">
                       {SITE.phone}
                     </a>
-                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
-                      {SITE.messengerPhone}
-                    </a>
+                    {hasSecondaryPhone && (
+                      <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
+                        {SITE.messengerPhone}
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -707,9 +710,11 @@ const CriminalPage = () => {
                     <a href={callHref} className="hover:text-[#b8911f]">
                       {SITE.phone}
                     </a>
-                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
-                      {SITE.messengerPhone}
-                    </a>
+                    {hasSecondaryPhone && (
+                      <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
+                        {SITE.messengerPhone}
+                      </a>
+                    )}
                   </div>
                 </div>
               </div>
@@ -854,9 +859,11 @@ const CriminalPage = () => {
                         <a href={callHref} className="hover:text-[#b8911f]">
                           {SITE.phone}
                         </a>
-                        <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
-                          {SITE.messengerPhone}
-                        </a>
+                        {hasSecondaryPhone && (
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
+                            {SITE.messengerPhone}
+                          </a>
+                        )}
                       </div>
                     </div>
                     <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} w-full`}>
@@ -889,9 +896,11 @@ const CriminalPage = () => {
                           <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
                             {SITE.phone}
                           </a>
-                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
-                            {SITE.messengerPhone}
-                          </a>
+                          {hasSecondaryPhone && (
+                            <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
+                              {SITE.messengerPhone}
+                            </a>
+                          )}
                         </div>
                       </div>
                     </div>

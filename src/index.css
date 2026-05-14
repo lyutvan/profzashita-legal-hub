@@ -179,10 +179,12 @@ All colors MUST be HSL.
     font-size: var(--text-body);
     line-height: var(--lh-body);
     letter-spacing: var(--ls-body);
+    overflow-x: hidden;
   }
 
   html {
     scroll-behavior: smooth;
+    overflow-x: hidden;
   }
 
   @media (prefers-reduced-motion: reduce) {
@@ -462,6 +464,10 @@ All colors MUST be HSL.
     width: 100%;
   }
 
+  .header-logo-link {
+    transform: translateX(0);
+  }
+
   .header-nav {
     gap: 20px;
     flex-wrap: nowrap;
@@ -575,6 +581,10 @@ All colors MUST be HSL.
   }
 
   @media (max-width: 768px) {
+    .header-logo-link {
+      transform: translateX(-14px);
+    }
+
     .logo {
       gap: 14px;
     }

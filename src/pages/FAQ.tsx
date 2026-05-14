@@ -15,7 +15,7 @@ const faqCategories = [
     questions: [
       {
         q: "Как записаться на консультацию?",
-        a: "Вы можете записаться на консультацию по телефону +7 (495) 004-01-96 или +7 (916) 859-76-54, либо через раздел «Контакты». Мы подскажем ближайшие шаги и удобное время."
+        a: "Вы можете записаться на консультацию по телефону +7 (495) 004-01-96 либо через раздел «Контакты». Мы подскажем ближайшие шаги и удобное время."
       },
       {
         q: "Сколько стоит первичная консультация?",
@@ -212,9 +212,11 @@ const FAQ = () => {
                         <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
                           {SITE.phone}
                         </a>
-                        <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
-                          {SITE.messengerPhone}
-                        </a>
+                        {SITE.messengerPhone && SITE.messengerPhoneRaw && (
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
+                            {SITE.messengerPhone}
+                          </a>
+                        )}
                       </span>
                     </p>
                     <p>

@@ -1,0 +1,377 @@
+- generic [ref=e2]:
+  - region "Notifications (F8)":
+    - list
+  - region "Notifications alt+T"
+  - button "Задать вопрос" [ref=e3] [cursor=pointer]:
+    - img [ref=e4]
+    - generic: Задать вопрос
+  - generic [ref=e6]:
+    - banner [ref=e7]:
+      - generic [ref=e9]:
+        - link "Профзащита — Коллегия адвокатов" [ref=e10] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e11]:
+            - img "Профзащита logo" [ref=e12]
+            - generic [ref=e13]:
+              - generic [ref=e14]: Профзащита
+              - generic [ref=e15]:
+                - generic [ref=e16]: коллегия
+                - generic [ref=e17]: адвокатов
+        - navigation [ref=e18]:
+          - link "Главная" [ref=e19] [cursor=pointer]:
+            - /url: /
+          - link "Услуги" [ref=e20] [cursor=pointer]:
+            - /url: /uslugi
+          - link "Цены" [ref=e21] [cursor=pointer]:
+            - /url: /tseny
+          - link "Кейсы" [ref=e22] [cursor=pointer]:
+            - /url: /keisy
+          - link "Новости" [ref=e23] [cursor=pointer]:
+            - /url: /novosti
+          - link "Вопросы и ответы" [ref=e24] [cursor=pointer]:
+            - /url: /faq
+          - link "О коллегии" [ref=e25] [cursor=pointer]:
+            - /url: /o-kollegii
+          - link "Контакты" [ref=e26] [cursor=pointer]:
+            - /url: /kontakty
+        - generic [ref=e28]:
+          - generic [ref=e29]:
+            - link "+7 (495) 004-01-96" [ref=e30] [cursor=pointer]:
+              - /url: tel:+74950040196
+              - img [ref=e31]
+              - text: +7 (495) 004-01-96
+            - link "profzashchita@internet.ru" [ref=e33] [cursor=pointer]:
+              - /url: mailto:profzashchita@internet.ru
+              - img [ref=e34]
+              - text: profzashchita@internet.ru
+          - link "Написать в Telegram" [ref=e37] [cursor=pointer]:
+            - /url: /kontakty
+            - img [ref=e38]
+          - link "Написать в WhatsApp" [ref=e40] [cursor=pointer]:
+            - /url: /kontakty
+            - img [ref=e41]
+          - link "MAX" [ref=e42] [cursor=pointer]:
+            - /url: /kontakty
+            - img [ref=e43]
+    - main [ref=e44]:
+      - generic [ref=e49]:
+        - heading "Контакты" [level=1] [ref=e50]
+        - paragraph [ref=e51]: Свяжитесь с нами удобным способом. Мы всегда готовы помочь вам решить любые юридические вопросы.
+      - generic [ref=e55]:
+        - heading "Как с нами связаться" [level=2] [ref=e57]
+        - generic [ref=e60]:
+          - img [ref=e62]
+          - generic [ref=e64]:
+            - heading "Телефон" [level=3] [ref=e65]
+            - link "+7 (495) 004-01-96" [ref=e66] [cursor=pointer]:
+              - /url: tel:+74950040196
+            - paragraph [ref=e67]: Звоните в любое время
+        - generic [ref=e70]:
+          - img [ref=e72]
+          - generic [ref=e75]:
+            - heading "Email" [level=3] [ref=e76]
+            - link "profzashchita@internet.ru" [ref=e77] [cursor=pointer]:
+              - /url: mailto:profzashchita@internet.ru
+            - paragraph [ref=e78]: Ответим в течение часа
+        - generic [ref=e81]:
+          - img [ref=e83]
+          - generic [ref=e86]:
+            - heading "Адрес" [level=3] [ref=e87]
+            - paragraph [ref=e88]: Москва, ул. Дегунинская 1к2, офис 303
+        - generic [ref=e91]:
+          - img [ref=e93]
+          - generic [ref=e96]:
+            - heading "Режим работы" [level=3] [ref=e97]
+            - paragraph [ref=e98]:
+              - text: "Пн-Сб: 10:00 - 19:00"
+              - text: "Вс: по предварительной записи"
+      - generic [ref=e101]:
+        - generic [ref=e102]:
+          - paragraph [ref=e103]: Заявка на консультацию
+          - heading "Оставьте контакты, и мы свяжемся с вами" [level=2] [ref=e104]
+          - paragraph [ref=e105]: Коротко опишите ситуацию в комментарии. Адвокат уточнит детали, оценит срочность вопроса и предложит ближайший формат консультации.
+          - generic [ref=e106]:
+            - text: Если вопрос срочный, лучше сразу позвонить по номеру
+            - link "+7 (495) 004-01-96" [ref=e107] [cursor=pointer]:
+              - /url: tel:+74950040196
+            - text: . Форма подходит для заявок, документов и вопросов, которые можно разобрать после первичного изучения.
+        - generic [ref=e110]:
+          - textbox
+          - generic [ref=e111]:
+            - generic [ref=e112]: Ваше имя *
+            - textbox "Ваше имя *" [ref=e113]:
+              - /placeholder: Ваше имя
+          - generic [ref=e114]:
+            - generic [ref=e115]: Телефон *
+            - textbox "Телефон *" [ref=e116]:
+              - /placeholder: +7 (999) 999-99-99
+          - generic [ref=e117]:
+            - text: Комментарий
+            - textbox "Комментарий" [ref=e118]:
+              - /placeholder: Коротко опишите вопрос
+          - generic [ref=e119]:
+            - checkbox "Я согласен на обработку персональных данных и принимаю условия политики конфиденциальности." [ref=e120] [cursor=pointer]
+            - checkbox
+            - generic [ref=e121]:
+              - text: Я согласен на обработку персональных данных и принимаю условия
+              - link "политики конфиденциальности" [ref=e122] [cursor=pointer]:
+                - /url: /privacy
+              - text: .
+          - button "Получить консультацию" [ref=e123] [cursor=pointer]
+      - generic [ref=e126]:
+        - heading "Как нас найти" [level=2] [ref=e127]
+        - iframe [ref=e129]:
+          - generic [active] [ref=f1e1]:
+            - link "Профзащита" [ref=f1e2] [cursor=pointer]:
+              - /url: https://yandex.ru/maps/org/profzashchita/244880896695/
+            - link "Адвокаты" [ref=f1e3] [cursor=pointer]:
+              - /url: https://yandex.ru/maps/213/moscow/category/attorney/184105616/
+            - generic [ref=f1e4]:
+              - generic:
+                - generic:
+                  - generic:
+                    - generic:
+                      - generic:
+                        - generic [ref=f1e9]:
+                          - generic [ref=f1e10]:
+                            - button [ref=f1e13] [cursor=pointer]:
+                              - generic:
+                                - generic:
+                                  - img
+                            - button "Пробки" [ref=f1e15] [cursor=pointer]:
+                              - generic [ref=f1e16]:
+                                - generic:
+                                  - img
+                              - generic [ref=f1e18]: Пробки
+                          - iframe [ref=f1e19]:
+                            
+                        - generic [ref=f1e20]:
+                          - generic [ref=f1e23]:
+                            - button "Приблизить" [ref=f1e25] [cursor=pointer]:
+                              - generic:
+                                - generic:
+                                  - img
+                            - button "Отдалить" [ref=f1e27] [cursor=pointer]:
+                              - generic:
+                                - generic:
+                                  - img
+                          - iframe [ref=f1e28]:
+                            
+                        - generic [ref=f1e29]:
+                          - button "Моё местоположение" [ref=f1e32] [cursor=pointer]:
+                            - generic:
+                              - generic:
+                                - img
+                          - iframe [ref=f1e33]:
+                            
+                        - generic [ref=f1e34]:
+                          - button "Открыть в Яндекс Картах" [ref=f1e37] [cursor=pointer]:
+                            - generic:
+                              - generic:
+                                - img
+                            - generic [ref=f1e38]: Открыть в Яндекс Картах
+                          - iframe [ref=f1e39]:
+                            
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button "Открыть в Картах":
+                                - generic:
+                                  - generic:
+                                    - img
+                                - generic: Открыть в Картах
+                          - iframe [ref=f1e40]:
+                            
+                        - generic:
+                          - generic:
+                            - generic:
+                              - button:
+                                - generic:
+                                  - generic:
+                                    - img
+                          - iframe [ref=f1e41]:
+                            
+                      - generic:
+                        - generic:
+                          - contentinfo:
+                            - generic [ref=f1e43]:
+                              - generic [ref=f1e44]: © Яндекс
+                              - link "Условия использования" [ref=f1e45] [cursor=pointer]:
+                                - /url: https://yandex.ru/legal/maps_termsofuse/?lang=ru
+                        - generic:
+                          - generic:
+                            - generic:
+                              - generic: 2 км
+                      - iframe [ref=f1e46]:
+                        
+                  - iframe [ref=f1e47]:
+                    
+            - dialog "Открылось всплывающее окно" [ref=f1e48]:
+              - generic [ref=f1e49]: Открылось всплывающее окно
+              - generic [ref=f1e52]:
+                - button "Закрыть" [ref=f1e53] [cursor=pointer]:
+                  - img [ref=f1e55]
+                - generic [ref=f1e59]:
+                  - generic [ref=f1e60]:
+                    - generic [ref=f1e62]:
+                      - link "Профзащита" [ref=f1e63] [cursor=pointer]:
+                        - /url: https://yandex.ru/maps/org/profzashchita/244880896695/?from=mapframe
+                      - generic [ref=f1e64]: Адвокаты, юридические услуги
+                      - generic [ref=f1e66]:
+                        - link "Оценка 5 Из 5 Рейтинг 5,0" [ref=f1e68] [cursor=pointer]:
+                          - /url: https://yandex.ru/maps/org/profzashchita/244880896695/reviews/?add-review=&from=mapframe
+                          - generic [ref=f1e69]:
+                            - generic "Оценка 5 Из 5" [ref=f1e70]:
+                              - img [ref=f1e72]
+                              - img [ref=f1e75]
+                              - img [ref=f1e78]
+                              - img [ref=f1e81]
+                              - img [ref=f1e84]
+                            - generic [ref=f1e86]:
+                              - generic [ref=f1e87]: Рейтинг
+                              - text: 5,0
+                        - generic [ref=f1e88] [cursor=pointer]:
+                          - generic [ref=f1e89]: Открыто до 19:00
+                          - img [ref=f1e92]
+                      - generic [ref=f1e94]:
+                        - generic [ref=f1e95]:
+                          - img [ref=f1e97]
+                          - text: Москва, Дегунинская улица, 1, корп. 2
+                        - generic [ref=f1e101]:
+                          - link "+7 (983) 060-20-43" [ref=f1e102] [cursor=pointer]:
+                            - /url: tel:+79830602043
+                            - img [ref=f1e104]
+                            - text: +7 (983) 060-20-43
+                          - generic [ref=f1e106] [cursor=pointer]:
+                            - text: "1"
+                            - img [ref=f1e108]
+                        - generic [ref=f1e110]:
+                          - img [ref=f1e112]
+                          - link "www.prof-zashita.ru" [ref=f1e114] [cursor=pointer]:
+                            - /url: https://www.prof-zashita.ru/
+                      - generic [ref=f1e115]:
+                        - generic [ref=f1e116]:
+                          - img [ref=f1e118]
+                          - generic [ref=f1e121]: Селигерская
+                          - link "520 м" [ref=f1e122] [cursor=pointer]:
+                            - /url: https://yandex.ru/maps/?rtd=0&rtext=55.865232%2C37.546304~55.863246%2C37.540275&rtt=pd&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D244880896695&start_navigation=true&from=mapframe
+                            - img [ref=f1e125]
+                            - generic [ref=f1e130]: 520 м
+                        - generic [ref=f1e131]:
+                          - img [ref=f1e133]
+                          - generic [ref=f1e136]: Верхние Лихоборы
+                          - link "1,64 км" [ref=f1e137] [cursor=pointer]:
+                            - /url: https://yandex.ru/maps/?rtd=0&rtext=55.857501%2C37.559386~55.863246%2C37.540275&rtt=pd&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D244880896695&start_navigation=true&from=mapframe
+                            - img [ref=f1e140]
+                            - generic [ref=f1e145]: 1,64 км
+                        - generic [ref=f1e146]:
+                          - img [ref=f1e148]
+                          - generic [ref=f1e151]: Яхромская
+                          - link "2,1 км" [ref=f1e152] [cursor=pointer]:
+                            - /url: https://yandex.ru/maps/?rtd=0&rtext=55.878861%2C37.545321~55.863246%2C37.540275&rtt=pd&ruri=~ymapsbm1%3A%2F%2Forg%3Foid%3D244880896695&start_navigation=true&from=mapframe
+                            - img [ref=f1e155]
+                            - generic [ref=f1e160]: 2,1 км
+                      - generic [ref=f1e162]:
+                        - button "Как добраться" [ref=f1e164] [cursor=pointer]:
+                          - generic [ref=f1e165]: Как добраться
+                        - button "Об организации" [ref=f1e167] [cursor=pointer]:
+                          - generic [ref=f1e168]: Об организации
+                      - generic [ref=f1e169]:
+                        - generic [ref=f1e170]:
+                          - img [ref=f1e172]
+                          - link "Вызвать такси" [ref=f1e173] [cursor=pointer]:
+                            - /url: //taxi.yandex.ru/order?gfrom=,&gto=55.863246,37.540275&tariff=&lang=ru
+                        - link "Сообщить об ошибке" [ref=f1e174] [cursor=pointer]:
+                          - /url: https://yandex.ru/maps/?oid=244880896695&ol=biz&feedback=organization%2Fedit&from=mapframe
+                    - iframe [ref=f1e175]:
+                      
+                  - iframe [ref=f1e176]:
+                    
+      - generic [ref=e132]:
+        - heading "Реквизиты" [level=2] [ref=e133]
+        - generic [ref=e136]:
+          - paragraph [ref=e137]: "Полное наименование: Коллегия адвокатов города Москвы «ПРОФЗАЩИТА»"
+          - paragraph [ref=e138]: "Адрес: 127486, Москва, ул. Дегунинская 1к2, офис 303"
+          - paragraph [ref=e139]: "ИНН: 7743478583"
+          - paragraph [ref=e140]: "ОГРН: 1257700439303"
+          - paragraph [ref=e141]: "Регистрация: Адвокатская палата города Москвы"
+    - contentinfo [ref=e142]:
+      - generic [ref=e143]:
+        - generic [ref=e144]:
+          - generic [ref=e146]:
+            - link "Профзащита logo Профзащита коллегия адвокатов" [ref=e147] [cursor=pointer]:
+              - /url: /
+              - generic [ref=e148]:
+                - img "Профзащита logo" [ref=e149]
+                - generic [ref=e150]:
+                  - generic [ref=e151]: Профзащита
+                  - generic [ref=e152]:
+                    - generic [ref=e153]: коллегия
+                    - generic [ref=e154]: адвокатов
+            - generic [ref=e155]:
+              - paragraph [ref=e156]: Опыт. Ответственность. Результат.
+              - paragraph [ref=e157]: Коллегия адвокатов с многолетним опытом работы в различных областях права.
+            - generic [ref=e158]:
+              - generic [ref=e159]: "ИНН: 7743478583"
+              - generic [ref=e161]: Москва
+          - generic [ref=e163]:
+            - heading "Контакты" [level=3] [ref=e164]
+            - list [ref=e165]:
+              - listitem [ref=e166]:
+                - img [ref=e167]
+                - link "+7 (495) 004-01-96" [ref=e170] [cursor=pointer]:
+                  - /url: tel:+74950040196
+              - listitem [ref=e171]:
+                - link "profzashchita@internet.ru" [ref=e172] [cursor=pointer]:
+                  - /url: mailto:profzashchita@internet.ru
+                  - img [ref=e173]
+                  - generic [ref=e176]: profzashchita@internet.ru
+              - listitem [ref=e177]:
+                - img [ref=e178]
+                - generic [ref=e181]: Москва, ул. Дегунинская, д.1, к.2, офис 303
+          - generic [ref=e183]:
+            - heading "Навигация" [level=3] [ref=e184]
+            - list [ref=e185]:
+              - listitem [ref=e186]:
+                - link "Главная" [ref=e187] [cursor=pointer]:
+                  - /url: /
+              - listitem [ref=e188]:
+                - link "Услуги" [ref=e189] [cursor=pointer]:
+                  - /url: /uslugi
+              - listitem [ref=e190]:
+                - link "Цены" [ref=e191] [cursor=pointer]:
+                  - /url: /tseny
+              - listitem [ref=e192]:
+                - link "Кейсы" [ref=e193] [cursor=pointer]:
+                  - /url: /keisy
+              - listitem [ref=e194]:
+                - link "Новости" [ref=e195] [cursor=pointer]:
+                  - /url: /novosti
+              - listitem [ref=e196]:
+                - link "О коллегии" [ref=e197] [cursor=pointer]:
+                  - /url: /o-kollegii
+              - listitem [ref=e198]:
+                - link "Контакты" [ref=e199] [cursor=pointer]:
+                  - /url: /kontakty
+          - generic [ref=e201]:
+            - heading "Документы" [level=3] [ref=e202]
+            - list [ref=e203]:
+              - listitem [ref=e204]:
+                - link "Политика конфиденциальности" [ref=e205] [cursor=pointer]:
+                  - /url: /privacy
+                  - generic [ref=e206]: Политика конфиденциальности
+              - listitem [ref=e207]:
+                - link "Политика обработки персональных данных" [ref=e208] [cursor=pointer]:
+                  - /url: /privacy#personal-data
+                  - generic [ref=e209]: Политика обработки персональных данных
+              - listitem [ref=e210]:
+                - link "Отказ от ответственности" [ref=e211] [cursor=pointer]:
+                  - /url: /disclaimer
+                  - generic [ref=e212]: Отказ от ответственности
+        - generic [ref=e214]:
+          - paragraph [ref=e216]: 2026 © Коллегия адвокатов города Москвы «ПРОФЗАЩИТА»
+          - paragraph [ref=e218]: Размещенные на сайте материалы носят исключительно информационный характер и не являются рекламой.
+          - paragraph [ref=e219]:
+            - text: Все права на сайт принадлежат Коллегии адвокатов города Москвы «ПРОФЗАЩИТА», любое использование или копирование текстов и материалов, элементов дизайна и оформления допускается только с разрешения правообладателя и только с открытой ссылкой на источник
+            - link "prof-zashita.ru" [ref=e220] [cursor=pointer]:
+              - /url: https://prof-zashita.ru

@@ -118,6 +118,16 @@ const Novosti = () => {
                     key={item.id} 
                     className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden h-full flex flex-col"
                   >
+                    {item.image && (
+                      <Link to={`/news/${item.id}`} className="block overflow-hidden bg-muted">
+                        <img
+                          src={item.image}
+                          alt={item.title}
+                          loading="lazy"
+                          className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                        />
+                      </Link>
+                    )}
                     <CardHeader className="flex-1">
                       <div className="flex items-center gap-2 mb-2">
                         <Badge className={getCategoryColor(item.category)}>

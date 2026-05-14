@@ -5,6 +5,7 @@ import { Phone, Mail, MapPin, Clock } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet";
 import { SITE } from "@/config/site";
+import LeadForm from "@/components/LeadForm";
 
 const Contacts = () => {
   return (
@@ -16,7 +17,7 @@ const Contacts = () => {
         
         {/* OpenGraph */}
         <meta property="og:title" content="Контакты — Коллегия адвокатов Профзащита" />
-        <meta property="og:description" content="Свяжитесь с нами: +7 (495) 004-01-96, +7 (916) 859-76-54. Офис в Москве. Бесплатная консультация." />
+        <meta property="og:description" content="Свяжитесь с нами: +7 (495) 004-01-96. Офис в Москве. Бесплатная консультация." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${SITE.url}kontakty/`} />
         <meta property="og:image" content={SITE.ogImage} />
@@ -28,7 +29,7 @@ const Contacts = () => {
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Контакты — Профзащита" />
-        <meta name="twitter:description" content="Свяжитесь с нами: +7 (495) 004-01-96, +7 (916) 859-76-54. Бесплатная консультация." />
+        <meta name="twitter:description" content="Свяжитесь с нами: +7 (495) 004-01-96. Бесплатная консультация." />
         <meta name="twitter:image" content={SITE.ogImage} />
       </Helmet>
       
@@ -75,11 +76,13 @@ const Contacts = () => {
                         <a href={`tel:${SITE.phoneRaw}`} className="text-body-mobile md:text-body text-accent hover:underline">
                           {SITE.phone}
                         </a>
-                        <div className="mt-2">
-                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-body-mobile md:text-body text-accent hover:underline">
-                            {SITE.messengerPhone}
-                          </a>
-                        </div>
+                        {SITE.messengerPhone && SITE.messengerPhoneRaw && (
+                          <div className="mt-2">
+                            <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-body-mobile md:text-body text-accent hover:underline">
+                              {SITE.messengerPhone}
+                            </a>
+                          </div>
+                        )}
                         <p className="mt-2 text-small leading-7 text-muted-foreground">
                           Звоните в любое время
                         </p>
@@ -141,6 +144,40 @@ const Contacts = () => {
                 </Card>
 
               </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Lead Form Section */}
+        <section className="relative section bg-muted/30 overflow-hidden">
+          <div className="container">
+            <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:items-start">
+              <div className="max-w-2xl">
+                <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                  Заявка на консультацию
+                </p>
+                <h2 className="font-serif text-h2-mobile font-bold md:text-h2">
+                  Оставьте контакты, и мы свяжемся с вами
+                </h2>
+                <p className="mt-4 text-body-mobile leading-8 text-muted-foreground md:text-body">
+                  Коротко опишите ситуацию в комментарии. Адвокат уточнит детали, оценит срочность
+                  вопроса и предложит ближайший формат консультации.
+                </p>
+                <div className="mt-6 rounded-xl border border-border/80 bg-white p-5 text-small leading-7 text-muted-foreground">
+                  Если вопрос срочный, лучше сразу позвонить по номеру{" "}
+                  <a href={`tel:${SITE.phoneRaw}`} className="font-semibold text-accent hover:underline">
+                    {SITE.phone}
+                  </a>
+                  . Форма подходит для заявок, документов и вопросов, которые можно разобрать после
+                  первичного изучения.
+                </div>
+              </div>
+
+              <Card className="border-border bg-white shadow-[0_14px_36px_rgba(15,23,42,0.08)]">
+                <CardContent className="p-6 pt-6 md:p-7 md:pt-7">
+                  <LeadForm practiceType="Контактная форма" />
+                </CardContent>
+              </Card>
             </div>
           </div>
         </section>

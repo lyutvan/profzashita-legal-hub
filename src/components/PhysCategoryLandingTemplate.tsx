@@ -167,6 +167,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   const whatsappUrl = SITE.whatsappUrl;
   const telegramUrl = SITE.telegramUrl;
   const maxUrl = SITE.maxUrl;
+  const hasSecondaryPhone = Boolean(SITE.messengerPhone && SITE.messengerPhoneRaw);
   const pricingData = getPriceBySlug(data.entry.path) ?? getPriceBySlug(data.canonical);
   const priceFrom = pricingData?.priceFrom;
   const priceNote =
@@ -1094,13 +1095,13 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
   ]);
   const teamOverrideSlugs = useMemo(() => {
     if (isBankrotstvoMerged) {
-      return ["lyutikov", "ryzhenko"];
+      return ["lyutikov", "ryzhenko", "vaskovsky"];
     }
     if (isTrudovyeCategory) {
-      return ["ryzhenko", "vaskovsky"];
+      return ["ryzhenko", "vaskovsky", "lyutikov"];
     }
     if (isConsumerProtectionCategory) {
-      return ["ryzhenko", "vaskovsky"];
+      return ["ryzhenko", "vaskovsky", "kalabekov"];
     }
     return null;
   }, [isBankrotstvoMerged, isConsumerProtectionCategory, isTrudovyeCategory]);
@@ -1181,6 +1182,18 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           "Сопровождает дело на всех этапах процедуры"
         ],
         cta: "Подробнее о юристе"
+      },
+      {
+        slug: "vaskovsky",
+        badge: "Адвокат",
+        roleTitle: "Адвокат коллегии",
+        experience: "Стаж 15 лет",
+        bullets: [
+          "Подключается к делам о банкротстве, где есть спорное имущество или судебные риски",
+          "Помогает оценить последствия процедуры и защитить позицию клиента",
+          "Сопровождает судебные вопросы и взаимодействие с участниками дела"
+        ],
+        cta: "Подробнее об адвокате"
       }
     ];
 
@@ -1230,6 +1243,18 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         bullets: [
           "Подключается к трудовым спорам, где важны процессуальная точность и сильная доказательная база",
           "Ведет переговоры с работодателем, готовит документы и представляет интересы доверителя в суде"
+        ],
+        cta: "Подробнее об адвокате"
+      },
+      {
+        slug: "lyutikov",
+        badge: "Адвокат",
+        roleTitle: "Председатель коллегии",
+        experience: "Стаж 26 лет",
+        bullets: [
+          "Контролирует стратегию по сложным трудовым спорам",
+          "Подключается к делам, где важны переговоры, судебная тактика и защита репутации клиента",
+          "Оценивает риски и помогает выбрать процессуально сильный сценарий"
         ],
         cta: "Подробнее об адвокате"
       }
@@ -1284,6 +1309,19 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
           "Часто подключается в ситуациях, где компания затягивает процесс или полностью игнорирует требования клиента.",
           "Готовит претензии, иски и процессуальные документы, ведет переговоры и защищает интересы клиента в суде.",
           "Сопровождает дело от первичной оценки перспектив до исполнения решения."
+        ],
+        cta: "Подробнее об адвокате"
+      },
+      {
+        slug: "kalabekov",
+        badge: "Адвокат",
+        roleTitle: "Адвокат коллегии",
+        experience: "Стаж 8 лет",
+        bullets: [
+          "Сопровождает споры о возврате денежных средств, взыскании ущерба и компенсаций.",
+          "Готовит претензии, иски и доказательственную базу для суда.",
+          "Работает с ситуациями, где нужно быстро зафиксировать нарушения и рассчитать требования.",
+          "Доводит дело до понятного результата и фактического взыскания."
         ],
         cta: "Подробнее об адвокате"
       },
@@ -1987,9 +2025,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                     <a href={callHref} className="hover:text-accent">
                       {SITE.phone}
                     </a>
-                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
-                      {SITE.messengerPhone}
-                    </a>
+                    {hasSecondaryPhone && (
+                      <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
+                        {SITE.messengerPhone}
+                      </a>
+                    )}
                   </span>
                 </div>
               </div>
@@ -2843,7 +2883,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   ))}
                 </div>
               ) : isTrudovyeCategory ? (
-                <div className="section__content grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr justify-items-center max-w-[760px] mx-auto">
+                <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
                   {trudovyeTeamCards.map((card) => (
                     <Card
                       key={card.slug}
@@ -3437,9 +3477,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                         <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent">
                           {SITE.phone}
                         </a>
-                        <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
-                          {SITE.messengerPhone}
-                        </a>
+                        {hasSecondaryPhone && (
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
+                            {SITE.messengerPhone}
+                          </a>
+                        )}
                       </span>
                     </div>
                     <Button
@@ -3485,9 +3527,11 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                           <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
                             {SITE.phone}
                           </a>
-                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
-                            {SITE.messengerPhone}
-                          </a>
+                          {hasSecondaryPhone && (
+                            <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
+                              {SITE.messengerPhone}
+                            </a>
+                          )}
                         </div>
                       </div>
                     </div>

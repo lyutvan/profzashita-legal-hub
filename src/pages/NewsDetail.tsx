@@ -303,6 +303,20 @@ const NewsDetail = () => {
                       </div>
                     ))}
 
+                    {newsItem.sourceUrl && (
+                      <div>
+                        <a
+                          href={newsItem.sourceUrl}
+                          target="_blank"
+                          rel="noreferrer"
+                        >
+                          <Button className="w-full sm:w-auto">
+                            {newsItem.sourceLabel ?? 'Открыть источник'}
+                          </Button>
+                        </a>
+                      </div>
+                    )}
+
                     {newsItem.closing && (
                       <p className="text-body-mobile md:text-body text-muted-foreground leading-relaxed">
                         {newsItem.closing}

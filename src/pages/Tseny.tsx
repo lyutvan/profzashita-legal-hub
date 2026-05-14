@@ -32,6 +32,7 @@ import {
 const factorIcons = [Calculator, FileText, Clock3, WalletCards];
 const primaryPhoneHref = `tel:${SITE.phoneRaw}`;
 const secondaryPhoneHref = `tel:+${SITE.messengerPhoneRaw}`;
+const hasSecondaryPhone = Boolean(SITE.messengerPhone && SITE.messengerPhoneRaw);
 
 const PriceCtaBanner = ({ cta }: { cta: PriceCta }) => {
   const primaryIsPhone = cta.primaryAction === "phone";
@@ -40,15 +41,15 @@ const PriceCtaBanner = ({ cta }: { cta: PriceCta }) => {
   return (
     <div className="rounded-2xl border border-border bg-gradient-to-br from-primary to-primary/95 p-7 text-white shadow-[0_20px_50px_rgba(6,16,31,0.16)] md:p-8">
       <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
-        <div className="max-w-2xl">
+        <div className="min-w-0 max-w-2xl">
           <p className="mb-2 text-[11px] font-semibold uppercase tracking-[0.18em] text-white/65">
             Стоимость и консультация
           </p>
           <h2 className="font-serif text-h3-mobile font-semibold md:text-h3">{cta.title}</h2>
           <p className="mt-3 text-body-mobile leading-7 text-white/82 md:text-body">{cta.description}</p>
         </div>
-        <div className="flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
-          <Button asChild size="lg" className="bg-accent px-7 text-white hover:bg-accent/90">
+        <div className="min-w-0 flex flex-col gap-3 sm:flex-row lg:flex-col xl:flex-row">
+          <Button asChild size="lg" className="h-auto min-h-12 whitespace-normal bg-accent px-5 py-3 leading-tight text-white hover:bg-accent/90">
             {primaryIsPhone ? (
               <a href={primaryPhoneHref}>{cta.primaryLabel}</a>
             ) : (
@@ -59,7 +60,7 @@ const PriceCtaBanner = ({ cta }: { cta: PriceCta }) => {
             asChild
             size="lg"
             variant="outline"
-            className="border-white/20 bg-white/6 px-7 text-white hover:bg-white/12 hover:text-white"
+            className="h-auto min-h-12 whitespace-normal border-white/20 bg-white/6 px-5 py-3 leading-tight text-white hover:bg-white/12 hover:text-white"
           >
             {secondaryIsPhone ? (
               <a href={secondaryPhoneHref}>{cta.secondaryLabel}</a>
@@ -255,8 +256,8 @@ const Prices = () => {
 
             <Card className="mt-8 border-border">
               <CardContent className="p-6 pt-6 md:p-7 md:pt-7">
-                <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:items-start">
-                  <div>
+                <div className="grid min-w-0 gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(280px,360px)] lg:items-start">
+                  <div className="min-w-0">
                     <h2 className="font-serif text-h3-mobile font-semibold md:text-h3">
                       Если услуга не указана в прайсе
                     </h2>
@@ -269,7 +270,7 @@ const Prices = () => {
                       отдельную судебную стадию или полное сопровождение дела.
                     </div>
                   </div>
-                  <div className="rounded-xl border border-border/80 bg-muted/20 p-5">
+                  <div className="min-w-0 rounded-xl border border-border/80 bg-muted/20 p-5">
                     <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                       Контакты для быстрого уточнения
                     </p>
@@ -277,9 +278,11 @@ const Prices = () => {
                       <a href={primaryPhoneHref} className="text-[18px] font-semibold text-foreground hover:text-accent">
                         {SITE.phone}
                       </a>
-                      <a href={secondaryPhoneHref} className="text-[18px] font-semibold text-foreground hover:text-accent">
-                        {SITE.messengerPhone}
-                      </a>
+                      {hasSecondaryPhone && (
+                        <a href={secondaryPhoneHref} className="text-[18px] font-semibold text-foreground hover:text-accent">
+                          {SITE.messengerPhone}
+                        </a>
+                      )}
                     </div>
                     <div className="mt-5 flex flex-col gap-3">
                       <Button asChild className="bg-accent text-white hover:bg-accent/90">

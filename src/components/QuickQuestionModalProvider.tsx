@@ -31,7 +31,7 @@ type QuickQuestionModalContextValue = {
 };
 
 const QuickQuestionModalContext = createContext<QuickQuestionModalContextValue | null>(null);
-const FORMS_DISABLED = true;
+const FORMS_DISABLED = false;
 
 const CASE_RU: Record<string, string> = {
   criminal: "Уголовное право",

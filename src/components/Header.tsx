@@ -64,7 +64,7 @@ const Header = () => {
         <div className={`header-row flex items-center transition-all duration-200 ${isScrolled ? 'h-16' : 'h-20'}`}>
           <Link 
             to="/" 
-            className="flex items-center gap-2 flex-shrink-0"
+            className="header-logo-link flex items-center gap-2 flex-shrink-0"
             aria-label="Профзащита — Коллегия адвокатов"
           >
             <Logo shrink={isScrolled} variant="header" />
@@ -120,13 +120,15 @@ const Header = () => {
                   <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />
                   {SITE.phone}
                 </a>
-                <a
-                  href={`tel:+${SITE.messengerPhoneRaw}`}
-                  className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
-                >
-                  <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />
-                  {SITE.messengerPhone}
-                </a>
+                {SITE.messengerPhone && SITE.messengerPhoneRaw && (
+                  <a
+                    href={`tel:+${SITE.messengerPhoneRaw}`}
+                    className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
+                  >
+                    <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />
+                    {SITE.messengerPhone}
+                  </a>
+                )}
                 <a
                   href="mailto:profzashchita@internet.ru"
                   className="hidden items-center gap-2 transition-colors duration-150 hover:text-white xl:inline-flex"
@@ -243,13 +245,15 @@ const Header = () => {
                       <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />
                       {SITE.phone}
                     </a>
-                    <a
-                      href={`tel:+${SITE.messengerPhoneRaw}`}
-                      className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
-                    >
-                      <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />
-                      {SITE.messengerPhone}
-                    </a>
+                    {SITE.messengerPhone && SITE.messengerPhoneRaw && (
+                      <a
+                        href={`tel:+${SITE.messengerPhoneRaw}`}
+                        className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
+                      >
+                        <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />
+                        {SITE.messengerPhone}
+                      </a>
+                    )}
                     <a
                       href="mailto:profzashchita@internet.ru"
                       className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"

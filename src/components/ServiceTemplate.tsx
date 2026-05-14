@@ -139,6 +139,7 @@ const ServiceTemplate = ({
   const primaryCtaTo = ctaButtons?.primaryTo ?? "/kontakty";
   const secondaryCtaLabel = ctaButtons?.secondaryLabel ?? SITE.phone;
   const secondaryCtaHref = ctaButtons?.secondaryHref ?? `tel:${SITE.phoneRaw}`;
+  const hasSecondaryPhone = Boolean(SITE.messengerPhone && SITE.messengerPhoneRaw);
   const secondaryPhoneHref = `tel:+${SITE.messengerPhoneRaw}`;
   const showDualPhoneCta = !ctaButtons?.secondaryLabel && !ctaButtons?.secondaryHref;
   const secondaryCtaNote =
@@ -390,16 +391,18 @@ const ServiceTemplate = ({
                                 {SITE.phone}
                               </a>
                             </Button>
-                            <Button
-                              variant="outline"
-                              className="w-full border-white/20 bg-white/10 hover:bg-white/20 text-white"
-                              asChild
-                            >
-                              <a href={secondaryPhoneHref}>
-                                <Phone className="mr-2 h-4 w-4" />
-                                {SITE.messengerPhone}
-                              </a>
-                            </Button>
+                            {hasSecondaryPhone && (
+                              <Button
+                                variant="outline"
+                                className="w-full border-white/20 bg-white/10 hover:bg-white/20 text-white"
+                                asChild
+                              >
+                                <a href={secondaryPhoneHref}>
+                                  <Phone className="mr-2 h-4 w-4" />
+                                  {SITE.messengerPhone}
+                                </a>
+                              </Button>
+                            )}
                           </div>
                         ) : (
                           <>

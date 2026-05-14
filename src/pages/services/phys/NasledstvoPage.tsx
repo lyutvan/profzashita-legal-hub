@@ -47,6 +47,7 @@ const NasledstvoPage = () => {
   const whatsappUrl = SITE.whatsappUrl;
   const telegramUrl = SITE.telegramUrl;
   const maxUrl = SITE.maxUrl;
+  const hasSecondaryPhone = Boolean(SITE.messengerPhone && SITE.messengerPhoneRaw);
 
   const situations = [
     {
@@ -298,6 +299,16 @@ const NasledstvoPage = () => {
           "Судебная защита прав наследников, признание наследника недостойным, сопровождение раздела имущества, защита интересов в конфликтах между наследниками.",
           "Участвует в судебных заседаниях, готовит процессуальные документы и сопровождает дело до исполнения решения суда."
         ]
+      },
+      {
+        slug: "ryzhenko",
+        roleBadge: "Юрист",
+        cta: "Подробнее о юристе",
+        title: "Специализация по наследственным конфликтам:",
+        bullets: [
+          "Готовит документы, анализирует доказательства и помогает выстроить позицию по имущественным требованиям наследников.",
+          "Сопровождает переговоры, досудебную подготовку и судебные этапы по наследственным спорам."
+        ]
       }
     ]
       .map((card) => {
@@ -446,10 +457,10 @@ const NasledstvoPage = () => {
               >
                 <a href={contactsHref}>Позвонить адвокату</a>
               </Button>
-              <p className="text-small text-white/85 whitespace-nowrap overflow-x-auto">
+              <p className="text-small text-white/85">
                 Обсудим ситуацию и бесплатно оценим перспективу спора
               </p>
-              <div className="category-hero-trust flex flex-nowrap items-center gap-y-2 text-small overflow-x-auto md:overflow-visible">
+              <div className="category-hero-trust flex flex-wrap items-center gap-x-3 gap-y-2 text-small">
                 {[
                   { label: "Работаем в Москве и Московской области", tone: "text-accent" },
                   { label: "Судебная практика по спорам высокой сложности", tone: "text-white" },
@@ -457,8 +468,8 @@ const NasledstvoPage = () => {
                 ].map((item, index) => (
                   <span
                     key={item.label}
-                    className={`category-hero-trust-item flex items-center whitespace-nowrap ${
-                      index > 0 ? "before:content-['•'] before:mx-2 before:text-white/50" : ""
+                    className={`category-hero-trust-item flex items-center ${
+                      index > 0 ? "before:content-['•'] before:mr-3 before:text-white/50" : ""
                     } ${item.tone}`}
                   >
                     {item.label}
@@ -521,9 +532,11 @@ const NasledstvoPage = () => {
                   <a href={callHref} className="hover:text-accent">
                     {SITE.phone}
                   </a>
-                  <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
-                    {SITE.messengerPhone}
-                  </a>
+                  {hasSecondaryPhone && (
+                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
+                      {SITE.messengerPhone}
+                    </a>
+                  )}
                 </span>
               </div>
             </div>
@@ -570,7 +583,7 @@ const NasledstvoPage = () => {
                 <Button
                   asChild
                   size="lg"
-                  className="h-12 rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-7 text-[16px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                  className="h-auto min-h-12 w-full max-w-[288px] whitespace-normal rounded-[12px] border border-[#b8911f] bg-[#C9A227] px-5 py-3 text-[16px] leading-tight text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] sm:w-auto sm:max-w-none"
                 >
                   <a href={contactsHref}>Обсудить ситуацию с адвокатом</a>
                 </Button>
@@ -624,9 +637,11 @@ const NasledstvoPage = () => {
                   <a href={callHref} className="hover:text-accent">
                     {SITE.phone}
                   </a>
-                  <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
-                    {SITE.messengerPhone}
-                  </a>
+                  {hasSecondaryPhone && (
+                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
+                      {SITE.messengerPhone}
+                    </a>
+                  )}
                 </span>
               </div>
             </div>
@@ -737,11 +752,11 @@ const NasledstvoPage = () => {
                   споров.
                 </p>
               </div>
-              <div className="section__content grid grid-cols-1 md:grid-cols-2 gap-6 auto-rows-fr justify-items-center max-w-5xl mx-auto">
+              <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 auto-rows-fr">
                 {teamCards.map((member) => (
                   <Card
                     key={member.slug}
-                    className="h-full w-full max-w-[460px] rounded-[12px] border border-[#C9A227] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+                    className="h-full w-full rounded-[12px] border border-[#C9A227] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
                   >
                     <CardContent className="p-6 h-full flex flex-col items-center text-center">
                       <div className="w-full overflow-hidden rounded-[10px] border border-[#E6DDCC] bg-white">
@@ -851,9 +866,11 @@ const NasledstvoPage = () => {
                   <a href={callHref} className="hover:text-accent">
                     {SITE.phone}
                   </a>
-                  <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
-                    {SITE.messengerPhone}
-                  </a>
+                  {hasSecondaryPhone && (
+                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
+                      {SITE.messengerPhone}
+                    </a>
+                  )}
                 </span>
               </div>
             </div>
@@ -1004,9 +1021,11 @@ const NasledstvoPage = () => {
                         <a href={callHref} className="hover:text-[#b8911f]">
                           {SITE.phone}
                         </a>
-                        <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
-                          {SITE.messengerPhone}
-                        </a>
+                        {hasSecondaryPhone && (
+                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
+                            {SITE.messengerPhone}
+                          </a>
+                        )}
                       </div>
                     </div>
                     <Button
@@ -1043,9 +1062,11 @@ const NasledstvoPage = () => {
                           <a href={callHref} className="text-accent hover:underline">
                             {SITE.phone}
                           </a>
-                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
-                            {SITE.messengerPhone}
-                          </a>
+                          {hasSecondaryPhone && (
+                            <a href={`tel:+${SITE.messengerPhoneRaw}`} className="text-accent hover:underline">
+                              {SITE.messengerPhone}
+                            </a>
+                          )}
                         </div>
                       </div>
                     </div>
