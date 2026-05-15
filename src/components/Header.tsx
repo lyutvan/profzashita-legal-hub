@@ -57,8 +57,9 @@ const Header = () => {
   };
 
   return (
+    <>
     <header 
-      className="sticky top-0 z-[1000] transition-all duration-200 bg-primary shadow-sm border-b border-white/10"
+      className="fixed left-0 right-0 top-0 z-[1000] transition-all duration-200 bg-primary shadow-sm border-b border-white/10"
     >
       <div className="container header-container header-container--full">
         <div className={`header-row flex items-center transition-all duration-200 ${isScrolled ? 'h-16' : 'h-20'}`}>
@@ -302,6 +303,8 @@ const Header = () => {
         )}
       </div>
     </header>
+    <div aria-hidden="true" className={isScrolled ? "h-16" : "h-20"} />
+    </>
   );
 };
 

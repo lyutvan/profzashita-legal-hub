@@ -18,6 +18,8 @@ export interface NewsItem {
   images?: { src: string; alt: string }[];
   sourceUrl?: string;
   sourceLabel?: string;
+  profileUrl?: string;
+  profileLabel?: string;
 }
 
 export const newsItems: NewsItem[] = [
@@ -31,6 +33,8 @@ export const newsItems: NewsItem[] = [
     image: '/news/vaskovskiy-ntv-2026.jpg',
     sourceUrl: 'https://www.ntv.ru/video/2552402',
     sourceLabel: 'Смотреть передачу на НТВ',
+    profileUrl: '/team/vaskovsky',
+    profileLabel: 'Страница Михаила Васьковского',
     images: [
       {
         src: '/news/vaskovskiy-ntv-2026.jpg',
@@ -58,7 +62,7 @@ export const newsItems: NewsItem[] = [
         items: [
           {
             text:
-              'Михаил Васьковский ведёт дела по семейным, наследственным, жилищным, административным и иным гражданско-правовым спорам.'
+              'Михаил Васьковский ведёт дела по семейным, наследственным, жилищным, административным и иным гражданско-правовым спорам. Подробнее о его практике можно узнать на персональной странице адвоката.'
           },
           {
             text:

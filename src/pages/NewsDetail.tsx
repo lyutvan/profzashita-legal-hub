@@ -8,12 +8,10 @@ import { Button } from "@/components/ui/button";
 import { ArticleSchema } from "@/components/JsonLd";
 import { Calendar, ArrowLeft, Clock, MapPin, Users } from "lucide-react";
 import { SITE } from "@/config/site";
-import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const NewsDetail = () => {
   const { id } = useParams();
   const newsItem = newsItems.find(item => item.id === id);
-  const { openQuickQuestionModal } = useQuickQuestionModal();
 
   if (!newsItem) {
     return <Navigate to="/novosti" replace />;
@@ -303,17 +301,26 @@ const NewsDetail = () => {
                       </div>
                     ))}
 
-                    {newsItem.sourceUrl && (
-                      <div>
-                        <a
-                          href={newsItem.sourceUrl}
-                          target="_blank"
-                          rel="noreferrer"
-                        >
-                          <Button className="w-full sm:w-auto">
-                            {newsItem.sourceLabel ?? 'Открыть источник'}
-                          </Button>
-                        </a>
+                    {(newsItem.sourceUrl || newsItem.profileUrl) && (
+                      <div className="flex flex-col gap-3 sm:flex-row sm:flex-wrap">
+                        {newsItem.profileUrl && (
+                          <Link to={newsItem.profileUrl}>
+                            <Button variant="outline" className="w-full sm:w-auto">
+                              {newsItem.profileLabel ?? 'Страница адвоката'}
+                            </Button>
+                          </Link>
+                        )}
+                        {newsItem.sourceUrl && (
+                          <a
+                            href={newsItem.sourceUrl}
+                            target="_blank"
+                            rel="noreferrer"
+                          >
+                            <Button className="w-full sm:w-auto">
+                              {newsItem.sourceLabel ?? 'Открыть источник'}
+                            </Button>
+                          </a>
+                        )}
                       </div>
                     )}
 
@@ -345,9 +352,9 @@ const NewsDetail = () => {
                   Поможем оценить ситуацию и предложим следующий шаг.
                 </p>
                 <div className="flex flex-wrap gap-4 justify-center">
-                  <Button size="lg" onClick={() => openQuickQuestionModal({ topic: newsItem.title })}>
-                    Записаться
-                  </Button>
+                  <Link to="/kontakty">
+                    <Button size="lg">Записаться</Button>
+                  </Link>
                 </div>
               </div>
             </div>

@@ -958,7 +958,7 @@ const NasledstvoPage = () => {
 
         <section className="section">
           <div className="container">
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:items-start lg:gap-14">
+            <div className="grid grid-cols-1 gap-10">
               <div className="max-w-2xl space-y-5">
                 <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
                   Получите профессиональную оценку перспектив по вашему наследственному спору
@@ -1011,34 +1011,6 @@ const NasledstvoPage = () => {
                 </div>
               </div>
 
-              <Card className="w-full rounded-[16px] border border-[#E5E7EB] bg-[#F8FAFC] shadow-[0_18px_40px_rgba(15,23,42,0.08)] lg:max-w-[420px]">
-                <CardContent className="p-7 md:p-8">
-                  <div className="space-y-4">
-                    <div className="text-sm text-muted-foreground">Телефон для консультаций:</div>
-                    <div className="inline-flex items-start gap-3 text-base font-semibold text-slate-900">
-                      <Phone className="mt-0.5 h-6 w-6 text-[#C9A227]" />
-                      <div className="flex flex-col items-start">
-                        <a href={callHref} className="hover:text-[#b8911f]">
-                          {SITE.phone}
-                        </a>
-                        {hasSecondaryPhone && (
-                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-[#b8911f]">
-                            {SITE.messengerPhone}
-                          </a>
-                        )}
-                      </div>
-                    </div>
-                    <Button
-                      asChild
-                      size="lg"
-                      className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[16px] font-semibold text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f]"
-                    >
-                      <a href={contactsHref}>Позвонить адвокату</a>
-                    </Button>
-                    <p className="text-sm text-slate-600">Разговор не обязывает к заключению договора</p>
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </section>

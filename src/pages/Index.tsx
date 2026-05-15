@@ -797,28 +797,22 @@ const Index = () => {
               ))}
             </div>
 
-            <p className="mt-14 text-center text-[17px] md:text-[20px] font-medium text-foreground">
-              <span className="block md:whitespace-nowrap">
-                Понимание последовательности действий позволяет выстроить защиту системно и снизить процессуальные риски.
-              </span>
-              <br />
-              Первый шаг — профессиональная оценка вашей ситуации
-            </p>
-
-            <div className="mt-10 flex justify-center">
-              <div className="inline-flex items-start gap-3 text-[20px] md:text-[24px] font-semibold text-foreground">
-                <Phone className="h-8 w-8 md:h-10 md:w-10 text-accent mt-1" />
-                <div className="flex flex-col items-start">
-                  <span>Обсудить ситуацию по телефону:</span>
-                  <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent transition-colors">
-                    {SITE.phone}
-                  </a>
-                  {hasSecondaryPhone && (
-                    <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent transition-colors">
-                      {SITE.messengerPhone}
-                    </a>
-                  )}
-                </div>
+            <div className="mx-auto mt-10 max-w-3xl rounded-2xl bg-white px-5 py-7 text-center shadow-[0_10px_28px_rgba(15,23,42,0.06)] md:px-8">
+              <p className="text-body-mobile leading-relaxed text-muted-foreground md:text-body">
+                Понимание последовательности действий позволяет выстроить защиту системно
+                и снизить процессуальные риски.
+              </p>
+              <p className="mt-3 text-body-mobile font-semibold text-foreground md:text-body">
+                Первый шаг — профессиональная оценка вашей ситуации
+              </p>
+              <div className="mt-5 flex justify-center">
+                <a
+                  href={`tel:${SITE.phoneRaw}`}
+                  className="inline-flex items-center gap-3 rounded-xl border border-[#d7c28b] px-5 py-3 text-body-mobile font-semibold text-foreground transition-colors hover:border-accent hover:text-accent md:text-body"
+                >
+                  <Phone className="h-5 w-5 text-accent" />
+                  <span>{SITE.phone}</span>
+                </a>
               </div>
             </div>
           </div>
@@ -872,7 +866,7 @@ const Index = () => {
           <div className="container max-w-[1240px]">
             <Card className="border-[#d7c28b] bg-white shadow-[0_14px_36px_rgba(15,23,42,0.08)]">
               <CardContent className="p-6 md:p-10">
-                <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_420px] lg:gap-14">
+                <div className="grid grid-cols-1 gap-10">
                   <div className="space-y-6">
                     <h2 className="font-serif text-[30px] font-bold leading-tight text-foreground md:text-[36px]">
                       Контакты
@@ -904,6 +898,47 @@ const Index = () => {
                         </p>
                       </div>
                     </div>
+                    <div className="pt-2">
+                      <p className="text-[17px] font-medium leading-tight text-foreground md:text-[18px]">
+                        Или напишите нам напрямую:
+                      </p>
+                      <div className="mt-5 flex flex-wrap items-center gap-4">
+                        <a
+                          href={whatsappUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Написать в WhatsApp"
+                          className="social-icon social-icon--whatsapp shadow-sm transition-opacity hover:opacity-90"
+                        >
+                          <WhatsAppIcon size={48} variant="original" className="social-icon__image" />
+                        </a>
+                        <a
+                          href={telegramUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="Написать в Telegram"
+                          className="social-icon bg-[#229ED9] text-white shadow-sm transition-colors hover:bg-[#1d8fc6]"
+                        >
+                          <TelegramIcon size={26} className="social-icon__svg" />
+                        </a>
+                        <a
+                          href={maxUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          aria-label="MAX"
+                          className="social-icon social-icon--max shadow-sm transition-opacity hover:opacity-90"
+                        >
+                          <MaxIcon size={48} className="social-icon__image" />
+                        </a>
+                        <a
+                          href={`mailto:${SITE.email}`}
+                          aria-label="Написать на email"
+                          className="social-icon border border-slate-200 bg-white text-accent shadow-sm transition-colors hover:border-[#C9A227] hover:text-[#b8911f]"
+                        >
+                          <Mail className="h-6 w-6" />
+                        </a>
+                      </div>
+                    </div>
                     <div className="pt-3">
                       <iframe
                         src="https://yandex.ru/map-widget/v1/?ll=37.540000%2C55.870000&z=16&mode=search&text=Москва%2C%20ул.%20Дегунинская%2C%20д.1%2C%20к.2"
@@ -914,79 +949,6 @@ const Index = () => {
                         title="Мы на карте Яндекс"
                         className="w-full rounded-xl border border-[#e6d8ab]"
                       ></iframe>
-                    </div>
-                  </div>
-
-                  <div className="border-l border-[#e6d8ab] pl-0 lg:pl-10">
-                    <div className="space-y-5 rounded-2xl border border-[#d7c28b] bg-[#f6f1e6] p-6 md:p-7 shadow-[0_8px_20px_rgba(15,23,42,0.06)]">
-                      <p className="text-[17px] font-semibold leading-tight text-foreground md:text-[18px] whitespace-nowrap">
-                        Телефон для консультаций:
-                      </p>
-                      <div className="inline-flex items-start gap-3 text-[18px] font-semibold leading-snug text-foreground md:text-[21px]">
-                        <Phone className="h-6 w-6 text-accent md:h-7 md:w-7 mt-0.5" />
-                        <div className="flex flex-col items-start">
-                          <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent">
-                            {SITE.phone}
-                          </a>
-                          {hasSecondaryPhone && (
-                            <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
-                              {SITE.messengerPhone}
-                            </a>
-                          )}
-                        </div>
-                      </div>
-                      <Button
-                        size="lg"
-                        className="h-auto w-full bg-accent px-5 py-3 text-[16px] leading-tight text-white hover:bg-accent/90 md:text-[18px]"
-                        asChild
-                      >
-                        <Link to="/kontakty">Обсудить ситуацию по телефону</Link>
-                      </Button>
-                      <p className="text-[13px] leading-snug text-muted-foreground md:text-[15px] whitespace-nowrap">
-                        Разговор не обязывает к заключению договора
-                      </p>
-
-                      <div className="pt-3">
-                        <p className="text-[17px] font-medium leading-tight text-foreground md:text-[18px] whitespace-nowrap">
-                          Или напишите нам напрямую:
-                        </p>
-                        <div className="mt-5 flex flex-wrap items-center gap-4">
-                          <a
-                            href={whatsappUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Написать в WhatsApp"
-                            className="social-icon social-icon--whatsapp shadow-sm transition-opacity hover:opacity-90"
-                          >
-                            <WhatsAppIcon size={48} variant="original" className="social-icon__image" />
-                          </a>
-                          <a
-                            href={telegramUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="Написать в Telegram"
-                            className="social-icon bg-[#229ED9] text-white shadow-sm transition-colors hover:bg-[#1d8fc6]"
-                          >
-                            <TelegramIcon size={26} className="social-icon__svg" />
-                          </a>
-                          <a
-                            href={maxUrl}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            aria-label="MAX"
-                            className="social-icon social-icon--max shadow-sm transition-opacity hover:opacity-90"
-                          >
-                            <MaxIcon size={48} className="social-icon__image" />
-                          </a>
-                          <a
-                            href={`mailto:${SITE.email}`}
-                            aria-label="Написать на email"
-                            className="social-icon border border-slate-200 bg-white text-accent shadow-sm transition-colors hover:border-[#C9A227] hover:text-[#b8911f]"
-                          >
-                            <Mail className="h-6 w-6" />
-                          </a>
-                        </div>
-                      </div>
                     </div>
                   </div>
                 </div>

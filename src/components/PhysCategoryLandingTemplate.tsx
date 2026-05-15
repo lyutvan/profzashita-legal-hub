@@ -3419,7 +3419,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
         {/* Экран 8: Финальная форма */}
         <section className="section" id="final-cta">
           <div className="container">
-            <div className="grid grid-cols-1 gap-10 lg:grid-cols-[minmax(0,1fr)_520px] lg:items-start lg:gap-14">
+            <div className="grid grid-cols-1 gap-10">
               <div className="max-w-2xl space-y-6">
                 <div className="section__header max-w-2xl !mb-0">
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">{finalCtaContent.title}</h2>
@@ -3465,44 +3465,6 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   </div>
                 </div>
               </div>
-              <Card className="w-full rounded-[16px] border border-[#E5E7EB] bg-[#F8FAFC] shadow-[0_18px_40px_rgba(15,23,42,0.08)] lg:max-w-[520px] lg:justify-self-end">
-                <CardContent className="p-7 md:p-8">
-                  <div className="space-y-4">
-                    <div className="text-sm text-muted-foreground">
-                      Телефон для консультаций:
-                    </div>
-                    <div className="inline-flex items-start gap-2 text-[18px] font-semibold text-slate-900">
-                      <Phone className="mt-0.5 h-5 w-5 text-accent" />
-                      <span className="flex flex-col items-start leading-tight">
-                        <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent">
-                          {SITE.phone}
-                        </a>
-                        {hasSecondaryPhone && (
-                          <a href={`tel:+${SITE.messengerPhoneRaw}`} className="hover:text-accent">
-                            {SITE.messengerPhone}
-                          </a>
-                        )}
-                      </span>
-                    </div>
-                    <Button
-                      asChild
-                      size="lg"
-                      className="h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] text-white shadow-[0_6px_14px_rgba(111,83,15,0.25)] hover:border-[#a8831a] hover:bg-[#b8911f] hover:shadow-[0_4px_12px_rgba(111,83,15,0.2)]"
-                    >
-                      {isConsumerProtectionCategory ? (
-                        <Link to={contactsHref}>Позвонить адвокату</Link>
-                      ) : shouldUseContactsLink ? (
-                        <Link to={contactsHref}>Свяжитесь с нами</Link>
-                      ) : (
-                        <a href={`tel:${SITE.phoneRaw}`}>Свяжитесь с нами</a>
-                      )}
-                    </Button>
-                    {isConsumerProtectionCategory && (
-                      <p className="text-small text-muted-foreground">Разговор не обязывает к заключению договора</p>
-                    )}
-                  </div>
-                </CardContent>
-              </Card>
             </div>
           </div>
         </section>
