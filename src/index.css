@@ -646,6 +646,86 @@ All colors MUST be HSL.
     padding-top: clamp(20px, 3vh, 40px);
   }
 
+  @media (max-width: 767px) {
+    .services-mobile-compact {
+      --section-y: 32px;
+      --section-inner-gap: 18px;
+    }
+
+    .services-mobile-compact .section:not(.section--hero) {
+      padding-block: 32px;
+    }
+
+    .services-mobile-compact .section--hero {
+      padding-block: 34px 30px;
+    }
+
+    .services-mobile-compact .section__header {
+      margin-bottom: 16px;
+    }
+
+    .services-mobile-compact .section__content {
+      margin-top: 18px;
+    }
+
+    .services-mobile-compact .category-hero-title {
+      font-size: clamp(30px, 9.5vw, 42px);
+      line-height: 1.05;
+    }
+
+    .services-mobile-compact .category-hero-benefits {
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .services-mobile-compact .category-hero-benefits li:nth-child(n + 4),
+    .services-mobile-compact .category-hero-trust-item:nth-child(n + 3) {
+      display: none;
+    }
+
+    .services-mobile-compact .lead {
+      font-size: 16px;
+      line-height: 1.45;
+    }
+
+    .services-mobile-compact .section__content.grid > *:nth-child(n + 5) {
+      display: none;
+    }
+
+    .services-mobile-compact .section__content.grid.lg\:grid-cols-3 > *:nth-child(n + 4) {
+      display: none;
+    }
+
+    .services-mobile-compact img[class*="h-\\[320px\\]"] {
+      height: 240px;
+    }
+
+    .services-mobile-compact iframe {
+      max-height: 240px;
+    }
+
+    .home-mobile-compact .section {
+      padding-block: 34px;
+    }
+
+    .home-mobile-compact .section__header {
+      margin-bottom: 18px;
+    }
+
+    .home-mobile-compact .section__content {
+      margin-top: 18px;
+    }
+
+    .home-mobile-compact .home-hero {
+      padding-top: 54px;
+      padding-bottom: 28px;
+    }
+
+    .home-mobile-compact .home-navigation {
+      padding-top: 30px;
+    }
+  }
+
   .h1 {
     font-family: var(--font-heading);
     font-size: var(--h1);

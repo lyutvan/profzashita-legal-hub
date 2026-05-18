@@ -522,7 +522,7 @@ const VyseleniePage = () => {
 
       <Header />
 
-      <main className="flex-1 services-page">
+      <main className="flex-1 services-page services-mobile-compact">
         {/* Экран 1: Hero */}
         <section
           className="relative text-white section section--hero"

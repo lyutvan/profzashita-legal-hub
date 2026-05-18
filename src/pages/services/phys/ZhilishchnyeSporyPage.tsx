@@ -418,7 +418,7 @@ const ZhilishchnyeSporyPage = () => {
 
       <Header />
 
-      <main className="flex-1 services-page">
+      <main className="flex-1 services-page services-mobile-compact">
         <section
           className="section section--hero relative text-white"
           style={{

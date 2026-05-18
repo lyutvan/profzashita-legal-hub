@@ -405,7 +405,7 @@ const NasledstvoPage = () => {
 
       <Header />
 
-      <main className="flex-1 services-page nasledstvo-compact">
+      <main className="flex-1 services-page services-mobile-compact nasledstvo-compact">
         <section
           className="relative text-white section section--hero"
           style={{
