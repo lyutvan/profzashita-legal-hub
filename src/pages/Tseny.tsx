@@ -115,7 +115,7 @@ const Prices = () => {
   const bottomSections = priceSections.slice(6);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="top-page-mobile-compact min-h-screen flex flex-col">
       <Helmet>
         <title>Цены на юридические услуги в Москве — Профзащита</title>
         <meta

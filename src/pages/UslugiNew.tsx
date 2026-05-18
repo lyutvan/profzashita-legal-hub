@@ -287,7 +287,7 @@ const UslugiNew = () => {
   };
 
   return (
-    <div className="services-page min-h-screen flex flex-col">
+    <div className="top-page-mobile-compact services-page min-h-screen flex flex-col">
       <Helmet>
         <title>Юридические услуги в Москве — Профзащита</title>
         <meta

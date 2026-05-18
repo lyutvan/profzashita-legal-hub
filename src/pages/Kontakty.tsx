@@ -9,7 +9,7 @@ import LeadForm from "@/components/LeadForm";
 
 const Contacts = () => {
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="top-page-mobile-compact min-h-screen flex flex-col">
       <Helmet>
         <title>Контакты — Профзащита</title>
         <meta name="description" content="Контакты коллегии адвокатов Профзащита: телефон, email, адрес офиса в Москве. Бесплатная консультация по телефону." />

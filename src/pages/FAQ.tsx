@@ -102,7 +102,7 @@ const FAQ = () => {
   );
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="top-page-mobile-compact min-h-screen flex flex-col">
       <Helmet>
         <title>Часто задаваемые вопросы — Профзащита</title>
         <meta name="description" content="Ответы на популярные вопросы о работе коллегии адвокатов Профзащита: консультации, стоимость, процесс работы, гарантии." />

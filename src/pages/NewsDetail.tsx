@@ -68,7 +68,7 @@ const NewsDetail = () => {
         image={ogImage}
       />
       
-      <div className="min-h-screen flex flex-col bg-background">
+      <div className="top-page-mobile-compact min-h-screen flex flex-col bg-background">
         <Header />
         
         <main className="flex-1">

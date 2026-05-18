@@ -15,7 +15,7 @@ const About = () => {
   const topBizServices = getServicesByAudience("biz").slice(0, 6);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="top-page-mobile-compact min-h-screen flex flex-col">
       <Helmet>
         <title>О коллегии — Профзащита</title>
         <meta name="description" content="Команда опытных адвокатов Профзащита: 15+ лет опыта, 500+ выигранных дел, 98% довольных клиентов. Профессиональная юридическая помощь в Москве." />

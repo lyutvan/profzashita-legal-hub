@@ -120,7 +120,7 @@ const Cases = () => {
   }, [slug, location.hash]);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="top-page-mobile-compact min-h-screen flex flex-col">
       <Helmet>
         <title>Наши кейсы — Профзащита</title>
         <meta name="description" content="Реальные дела и результаты коллегии адвокатов Профзащита. Примеры успешного решения уголовных, гражданских, арбитражных и семейных споров." />

@@ -51,7 +51,7 @@ const Novosti = () => {
         <meta property="og:description" content="Актуальные новости, статьи и информация о мероприятиях коллегии адвокатов Профзащита" />
       </Helmet>
       
-      <div className="min-h-screen flex flex-col bg-background">
+      <div className="top-page-mobile-compact min-h-screen flex flex-col bg-background">
         <Header />
         
         <main className="flex-1">
