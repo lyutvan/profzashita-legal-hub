@@ -181,8 +181,9 @@ const About = () => {
         </section>
 
         {/* Team Section */}
+        <div id="about-team" className="anchor-offset" aria-hidden="true" />
         <TeamSection 
-          id="about-team"
+          id="nasha-komanda"
           title="Наша команда" 
           subtitle="Профессионалы с многолетним опытом в различных областях права"
         />

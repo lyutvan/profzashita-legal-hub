@@ -674,10 +674,10 @@ const Index = () => {
             </div>
 
             <div className="section__content mt-8 grid grid-cols-1 gap-5 md:mt-12 md:grid-cols-3 md:gap-8">
-              {testimonials.slice(0, 3).map((testimonial, index) => (
+              {testimonials.map((testimonial, index) => (
                 <Card
                   key={`${testimonial.nameShort}-${index}`}
-                  className="h-full rounded-[14px] border border-[#C9A227] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+                  className={`${index > 2 ? "hidden md:flex" : "flex"} h-full rounded-[14px] border border-[#C9A227] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]`}
                 >
                   <CardContent className="pt-6 px-6 pb-6 h-full flex flex-col">
                     <div className="flex items-center justify-between gap-4">
@@ -842,14 +842,14 @@ const Index = () => {
 
             <div className="text-center mt-8">
               <Button size="lg" className="h-auto min-h-14 w-[290px] whitespace-normal px-8 py-3 leading-tight bg-accent text-white hover:bg-accent/90" asChild>
-                <Link to="/o-kollegii#about-team">Посмотреть всю команду</Link>
+                <Link to="/o-kollegii#nasha-komanda">Посмотреть всю команду</Link>
               </Button>
             </div>
           </div>
         </section>
 
         {/* Workflow Section */}
-        <section className="section bg-[#F8FAFC]">
+        <section id="etapy-raboty" className="section bg-[#F8FAFC]">
           <div className="container max-w-[1280px]">
             <div className="section__header max-w-4xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
