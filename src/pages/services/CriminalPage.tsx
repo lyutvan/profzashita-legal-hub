@@ -61,6 +61,12 @@ const CriminalPage = () => {
     "Опыт защиты по делам любой сложности"
   ];
 
+  const heroTrustItems = [
+    { text: "Работаем в Москве и Московской области", accent: true },
+    { text: "Защита по делам высокой сложности", accent: false },
+    { text: "Командная работа коллегии", accent: true }
+  ];
+
   const emergencySituations = [
     {
       title: "Задержание и первый допрос",
@@ -106,28 +112,16 @@ const CriminalPage = () => {
 
   const trustCards = [
     {
-      title: "Опыт следственной работы",
-      description: "Понимаем, как формируется обвинительная версия и какие документы становятся ключевыми.",
-      points: ["Логика следствия", "Слабые места обвинения"],
-      icon: FileSearch
-    },
-    {
       title: "Срочное подключение",
       description: "Подключаемся при задержании, обыске, вызове на допрос или риске ареста.",
       points: ["Выезд к задержанному", "Первичная позиция"],
       icon: AlertTriangle
     },
     {
-      title: "Доследственная проверка",
-      description: "Помогаем до возбуждения дела, когда ещё можно снизить часть процессуальных рисков.",
-      points: ["Объяснения", "Проверочные материалы"],
-      icon: Scale
-    },
-    {
-      title: "Следствие и обвинение",
-      description: "Выстраиваем защиту с учетом тактики следователя, прокуратуры и позиции потерпевших.",
-      points: ["Тактика обвинения", "Контраргументы"],
-      icon: Landmark
+      title: "Опыт следственной работы",
+      description: "Понимаем, как формируется обвинительная версия и какие документы становятся ключевыми.",
+      points: ["Логика следствия", "Слабые места обвинения"],
+      icon: FileSearch
     },
     {
       title: "Работа с доказательствами",
@@ -142,20 +136,8 @@ const CriminalPage = () => {
       icon: Shield
     },
     {
-      title: "Адвокатская тайна",
-      description: "Информация о деле, документах и позиции клиента остается в рамках защиты.",
-      points: ["Конфиденциально", "Без лишнего раскрытия"],
-      icon: Shield
-    },
-    {
-      title: "Командная работа",
-      description: "При необходимости подключаем адвокатов по смежным вопросам: имущество, бизнес, гражданские последствия.",
-      points: ["Профильные специалисты", "Смежные риски"],
-      icon: Users
-    },
-    {
-      title: "Стратегия под дело",
-      description: "Выбираем тактику по материалам: оспаривание, переквалификация или смягчение последствий.",
+      title: "Конфиденциальная стратегия",
+      description: "Информация о деле остается в рамках защиты, а тактика выбирается под конкретные материалы.",
       points: ["Анализ материалов", "План защиты"],
       icon: Gavel
     }
@@ -390,7 +372,7 @@ const CriminalPage = () => {
               <span className="text-white font-medium">Уголовные дела</span>
             </div>
 
-            <div className="criminal-hero-layout mt-6">
+            <div className="criminal-hero-layout mt-6 md:hidden">
               <div className="criminal-hero-content mx-auto max-w-4xl space-y-5 text-center">
                 <h1 className="category-hero-title text-[clamp(2.1rem,3.4vw,3.2rem)] leading-[1.05] font-bold text-[#C9A227]">
                   Адвокат по уголовным делам
@@ -441,6 +423,86 @@ const CriminalPage = () => {
 
               </div>
             </div>
+
+            <div className="mt-6 hidden grid-cols-1 gap-8 md:grid md:grid-cols-[minmax(0,1fr)_300px] md:items-start lg:grid-cols-[minmax(0,1fr)_320px]">
+              <div className="max-w-5xl space-y-6">
+                <h1 className="category-hero-title text-[clamp(2.1rem,3.4vw,3.05rem)] font-bold leading-[1.08] text-[#C9A227]">
+                  Адвокат по уголовным делам
+                </h1>
+                <p className="text-xl font-semibold leading-tight text-white md:text-3xl lg:text-[2rem]">
+                  Срочная защита при задержании, обыске и возбуждении дела
+                </p>
+                <p className="max-w-4xl text-base leading-relaxed text-white/95 md:text-lg">
+                  Защищаем подозреваемых и обвиняемых на всех стадиях:
+                  <br />
+                  от доследственной проверки и задержания до суда и апелляции.
+                </p>
+
+                <div className="space-y-3 pt-2">
+                  <p className="text-xl font-semibold text-white md:text-2xl">Строго конфиденциально</p>
+                  <ul className="list-disc space-y-1 pl-8 text-base leading-relaxed text-white/95 md:text-lg marker:text-white">
+                    {heroFacts.map((fact) => (
+                      <li key={fact}>{fact}</li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="space-y-2 pt-3">
+                  <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} w-full sm:w-auto`}>
+                    <a href={callHref}>Позвонить адвокату сейчас</a>
+                  </Button>
+                  <p className="text-sm text-white/90 md:text-base">Подключимся к делу немедленно</p>
+                </div>
+
+                <p className="pt-2 text-xl font-medium text-white md:text-3xl">
+                  Не давайте показания без адвоката!
+                  <br />
+                  <span className="text-white/90">Ошибки на первых этапах могут стать решающими.</span>
+                </p>
+
+                <div className="flex flex-wrap items-center gap-y-2 pt-1 text-sm text-white/90 md:text-base">
+                  {heroTrustItems.map((item, index) => (
+                    <span
+                      key={item.text}
+                      className={`whitespace-nowrap ${index > 0 ? "before:mx-3 before:text-white/70 before:content-['•']" : ""}`}
+                    >
+                      <span className={item.accent ? "text-[#C9A227]" : "text-white"}>{item.text}</span>
+                    </span>
+                  ))}
+                </div>
+              </div>
+
+              <Card className="mx-auto w-full max-w-[320px] overflow-hidden rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] text-slate-900 md:mx-0 md:max-w-[300px] md:justify-self-end lg:max-w-[320px]">
+                <CardContent className="p-0">
+                  <div className="h-[240px] w-full overflow-hidden md:h-[260px]">
+                    <img
+                      src={lyutikov?.photo ?? "/images/team/lyutikov-ivan.jpg"}
+                      alt={lyutikov?.name ?? "Лютиков Иван Иванович"}
+                      className="h-full w-full object-cover object-top"
+                    />
+                  </div>
+                  <div className="px-5 py-4 text-center">
+                    <h3 className="text-[1.65rem] font-semibold leading-[1.1] tracking-[-0.01em] md:text-[1.75rem]">
+                      {lyutikov?.name ?? "Лютиков Иван Иванович"}
+                    </h3>
+                    <p className="mt-2 text-[0.98rem] leading-[1.28] text-slate-700">
+                      Адвокат, Председатель коллегии
+                    </p>
+                    <div className="mt-4 space-y-1 text-[0.96rem] font-semibold leading-[1.26]">
+                      <p>18 лет службы в следственных органах</p>
+                      <p>8 лет адвокатской практики</p>
+                      <p>170+ с положительным результатом</p>
+                    </div>
+                    <p className="mt-4 text-[0.95rem] leading-[1.3] text-slate-700">
+                      Регистрационный номер в реестре
+                      <br />
+                      адвокатов г. Москвы № 77/17732
+                    </p>
+                  </div>
+                </CardContent>
+              </Card>
+            </div>
+
           </div>
         </section>
 
