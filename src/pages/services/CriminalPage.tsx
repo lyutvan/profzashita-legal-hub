@@ -484,11 +484,11 @@ const CriminalPage = () => {
                   <span className="text-white/90">Ошибки на первых этапах могут стать решающими.</span>
                 </p>
 
-                <div className="flex flex-wrap items-center gap-y-2 pt-1 text-sm text-white/90 md:flex-nowrap md:text-[15px] lg:text-base xl:text-[17px]">
+                <div className="flex max-w-full flex-wrap items-center gap-y-2 overflow-hidden pt-1 text-sm text-white/90 md:flex-nowrap md:text-[13px] lg:text-[14px] xl:text-[15px]">
                   {heroTrustItems.map((item, index) => (
                     <span
                       key={item.text}
-                      className={`whitespace-nowrap ${index > 0 ? "before:mx-3 before:text-white/70 before:content-['•'] lg:before:mx-4" : ""}`}
+                      className={`min-w-0 whitespace-nowrap ${index > 0 ? "before:mx-2 before:text-white/70 before:content-['•'] lg:before:mx-3" : ""}`}
                     >
                       <span className={item.accent ? "text-[#C9A227]" : "text-white"}>{item.text}</span>
                     </span>
@@ -620,13 +620,16 @@ const CriminalPage = () => {
               <p className="text-[17px] font-medium leading-relaxed text-slate-600 md:text-[18px]">
                 Не откладывайте защиту. Ошибки на ранних этапах могут повлиять на исход дела.
               </p>
-              <div className="mt-6 inline-flex items-center gap-3 text-[20px] font-bold text-slate-950">
+              <div className="mt-6 hidden items-center gap-3 text-[20px] font-bold text-slate-950 md:inline-flex">
                 <Phone className="h-7 w-7 text-[#C9A227]" />
                 <span>Позвонить адвокату сейчас:</span>
                 <a href={callHref} className="mango-phone transition-colors hover:text-[#b8911f]">
                   {SITE.phone}
                 </a>
               </div>
+              <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} mt-6 w-full md:hidden`}>
+                <a href={callHref}>Позвонить адвокату сейчас</a>
+              </Button>
             </div>
           </div>
         </section>
@@ -651,7 +654,7 @@ const CriminalPage = () => {
                 return (
                   <Card
                     key={id}
-                    className="relative flex h-full min-h-[420px] flex-col overflow-visible rounded-[12px] border border-[#C9A227] bg-[#F6F1E6] transition-all hover:shadow-elegant"
+                    className="criminal-case-card relative flex h-full min-h-[420px] flex-col overflow-visible rounded-[12px] border border-[#C9A227] bg-[#F6F1E6] transition-all hover:shadow-elegant"
                   >
                     <CardContent className="flex h-full flex-col px-5 pb-6 pt-20 md:px-7 md:pb-7">
                       <div className="absolute right-6 top-[-28px] hidden sm:flex">
@@ -693,6 +696,12 @@ const CriminalPage = () => {
                           <br />
                           <span className="font-semibold text-slate-950">{truncateText(caseItem.result, 180)}</span>
                         </p>
+                      </div>
+
+                      <div className="mt-auto flex justify-center pt-6">
+                        <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} w-full md:w-auto`}>
+                          <Link to={`/keisy#${caseItem.slug}`}>Посмотреть кейс</Link>
+                        </Button>
                       </div>
                     </CardContent>
                   </Card>

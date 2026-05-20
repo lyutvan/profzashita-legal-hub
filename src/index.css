@@ -1007,6 +1007,10 @@ All colors MUST be HSL.
       display: none;
     }
 
+    .criminal-mobile-compact .criminal-cases-grid .criminal-case-card:nth-child(n + 4) {
+      display: none;
+    }
+
     .criminal-mobile-compact .criminal-cases-grid .p-5 {
       padding: 14px;
     }
