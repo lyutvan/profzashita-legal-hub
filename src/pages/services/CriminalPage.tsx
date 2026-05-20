@@ -124,6 +124,12 @@ const CriminalPage = () => {
       icon: FileSearch
     },
     {
+      title: "Защита на всех стадиях",
+      description: "Подключаемся от доследственной проверки и задержания до суда и апелляции.",
+      points: ["Проверка", "Суд"],
+      icon: Scale
+    },
+    {
       title: "Работа с доказательствами",
       description: "Проверяем протоколы, заключения экспертов, показания и порядок их получения.",
       points: ["Допустимость", "Нарушения"],
@@ -157,10 +163,28 @@ const CriminalPage = () => {
       court: "Люблинский районный суд г. Москвы"
     },
     {
+      id: "21",
+      title: "Незаконные действия следствия — имущество возвращено",
+      article: "ст. 158 УК РФ",
+      court: "Тупинский районный суд г. Москвы"
+    },
+    {
       id: "33",
       title: "Прекращение дела по краже",
       article: "ст. 158 УК РФ",
       court: "Реутовский городской суд Московской области"
+    },
+    {
+      id: "35",
+      title: "Прекращение дела о грабеже с судебным штрафом",
+      article: "ч. 1 ст. 161 УК РФ",
+      court: "Дорогомиловский районный суд г. Москвы"
+    },
+    {
+      id: "30",
+      title: "Дело по краже товаров Wildberries прекращено",
+      article: "п. «а» ч. 2 ст. 158 УК РФ",
+      court: "Подольский городской суд Московской области"
     }
   ];
 
@@ -460,11 +484,11 @@ const CriminalPage = () => {
                   <span className="text-white/90">Ошибки на первых этапах могут стать решающими.</span>
                 </p>
 
-                <div className="flex flex-wrap items-center gap-y-2 pt-1 text-sm text-white/90 md:text-base">
+                <div className="flex flex-wrap items-center gap-y-2 pt-1 text-sm text-white/90 md:flex-nowrap md:text-[15px] lg:text-base xl:text-[17px]">
                   {heroTrustItems.map((item, index) => (
                     <span
                       key={item.text}
-                      className={`whitespace-nowrap ${index > 0 ? "before:mx-3 before:text-white/70 before:content-['•']" : ""}`}
+                      className={`whitespace-nowrap ${index > 0 ? "before:mx-3 before:text-white/70 before:content-['•'] lg:before:mx-4" : ""}`}
                     >
                       <span className={item.accent ? "text-[#C9A227]" : "text-white"}>{item.text}</span>
                     </span>
@@ -510,30 +534,52 @@ const CriminalPage = () => {
           <div className="container">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
-                Когда нужен адвокат немедленно
+                Ситуации, в которых нельзя оставаться без адвоката
               </h2>
-              <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-lg">
-                Не ждите, пока следствие закрепит обвинительную версию. В этих ситуациях лучше звонить сразу.
+              <p className="mt-3 text-base leading-relaxed text-muted-foreground md:text-[18px]">
+                Подключаемся на любой стадии — от проверки и задержания до суда и апелляции.
+                <br className="hidden md:block" />
+                Каждая минута может повлиять на исход дела.
               </p>
             </div>
 
-            <div className="criminal-emergency-grid mt-8 grid gap-3 md:grid-cols-2 xl:grid-cols-4">
+            <div className="criminal-emergency-grid mx-auto mt-10 grid max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-4">
               {emergencySituations.map((item) => {
                 const Icon = item.icon;
                 return (
-                  <Card key={item.title} className="rounded-[14px] border border-[#D8C08B] bg-white">
-                    <CardContent className="flex h-full gap-3 p-4">
-                      <div className="mt-0.5 flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#F6F1E6] text-[#C9A227]">
-                        <Icon className="h-5 w-5" />
+                  <Card key={item.title} className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_18px_rgba(15,23,42,0.06)]">
+                    <CardContent className="flex h-full flex-col items-center p-6 text-center">
+                      <div className="mb-5 flex h-16 w-16 shrink-0 items-center justify-center text-[#C9A227]">
+                        <Icon className="h-12 w-12" strokeWidth={1.8} />
                       </div>
-                      <div>
-                        <h3 className="text-base font-semibold leading-snug text-slate-900">{item.title}</h3>
-                        <p className="mt-1 text-sm leading-relaxed text-slate-600">{item.description}</p>
-                      </div>
+                      <h3 className="text-[17px] font-bold leading-snug text-slate-900">{item.title}</h3>
+                      <p className="mt-4 min-h-[72px] text-[15px] leading-relaxed text-slate-600">{item.description}</p>
+                      <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} mt-auto hidden w-full md:inline-flex`}>
+                        <a href={callHref}>Позвонить адвокату</a>
+                      </Button>
                     </CardContent>
                   </Card>
                 );
               })}
+            </div>
+
+            <div className="mx-auto mt-12 max-w-3xl text-center">
+              <p className="text-base font-medium leading-relaxed text-slate-600 md:text-[18px]">
+                Не уверены, к какой ситуации относится ваш случай?
+                <br />
+                Позвоните — оценим риски по телефону.
+              </p>
+              <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} mt-6 w-full sm:w-auto`}>
+                <a href={callHref}>Позвонить адвокату</a>
+              </Button>
+              <p className="mt-12 text-[20px] font-bold leading-tight text-slate-950">
+                Ошибка на первых этапах может стать решающей!
+              </p>
+              <p className="mx-auto mt-4 max-w-4xl text-[15px] leading-relaxed text-slate-600 md:text-[17px]">
+                Протокол допроса, объяснение, согласие с формулировками — всё это может повлиять на дальнейший ход дела.
+                <br className="hidden md:block" />
+                Не принимайте решений без консультации защитника.
+              </p>
             </div>
           </div>
         </section>
@@ -544,24 +590,24 @@ const CriminalPage = () => {
               <h2 className="font-serif text-h2-mobile font-bold leading-tight text-slate-950 md:text-h2">
                 Почему нам доверяют в сложных уголовных делах
               </h2>
-              <p className="mt-4 text-base font-semibold leading-relaxed text-slate-500 md:text-xl">
+              <p className="mt-4 text-base font-medium leading-relaxed text-slate-500 md:text-[18px]">
                 Коллегия адвокатов г. Москвы
                 <br />
                 Работаем системно: стратегия, доказательства, защита в суде.
               </p>
             </div>
 
-            <div className="criminal-trust-grid mt-12 grid gap-x-12 gap-y-14 md:grid-cols-2 xl:grid-cols-3">
+            <div className="criminal-trust-grid mx-auto mt-14 grid max-w-6xl gap-x-14 gap-y-16 md:grid-cols-2 xl:grid-cols-3">
               {trustCards.map((item) => {
                 const Icon = item.icon;
                 return (
                   <div key={item.title} className="criminal-trust-item text-center">
-                    <Icon className="criminal-trust-icon mx-auto h-12 w-12 text-[#C9A227]" strokeWidth={2.4} />
+                    <Icon className="criminal-trust-icon mx-auto h-14 w-14 text-[#C9A227]" strokeWidth={1.8} />
                     <div className="criminal-trust-copy">
-                      <h3 className="mx-auto mt-7 max-w-[360px] font-serif text-[28px] font-bold leading-tight text-slate-950 md:text-[34px]">
+                      <h3 className="mx-auto mt-8 max-w-[340px] text-[21px] font-bold leading-tight text-slate-950 md:text-[23px]">
                         {item.title}
                       </h3>
-                      <p className="mx-auto mt-5 max-w-[390px] text-base font-medium leading-relaxed text-slate-600 md:text-lg">
+                      <p className="mx-auto mt-5 max-w-[340px] text-[15px] font-medium leading-relaxed text-slate-600 md:text-[16px]">
                         {item.description}
                       </p>
                     </div>
@@ -569,32 +615,47 @@ const CriminalPage = () => {
                 );
               })}
             </div>
+
+            <div className="mt-16 text-center">
+              <p className="text-[17px] font-medium leading-relaxed text-slate-600 md:text-[18px]">
+                Не откладывайте защиту. Ошибки на ранних этапах могут повлиять на исход дела.
+              </p>
+              <div className="mt-6 inline-flex items-center gap-3 text-[20px] font-bold text-slate-950">
+                <Phone className="h-7 w-7 text-[#C9A227]" />
+                <span>Позвонить адвокату сейчас:</span>
+                <a href={callHref} className="mango-phone transition-colors hover:text-[#b8911f]">
+                  {SITE.phone}
+                </a>
+              </div>
+            </div>
           </div>
         </section>
 
         <section id="criminal-cases" className="section">
           <div className="container max-w-[1280px]">
-            <div className="section__header mx-auto max-w-3xl text-center">
+            <div className="section__header mx-auto max-w-4xl text-center">
               <h2 className="mb-4 font-serif text-h2-mobile font-bold md:text-h2">
-                Судебная практика по уголовным делам
+                Реальные результаты по уголовным делам
               </h2>
               <p className="text-body-mobile text-muted-foreground md:text-body">
-                Реальные результаты защиты по уголовным делам с подтверждающими судебными актами
+                Прекращение дел, изменение меры пресечения, возврат дел прокурору, освобождение из-под стражи.
+                <br className="hidden md:block" />
+                Публикуем фрагменты судебных актов без раскрытия персональных данных доверителей.
               </p>
             </div>
 
-            <div className="criminal-cases-grid section__content mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
-              {criminalCases.map(({ id, caseItem }) => {
+            <div className="criminal-cases-grid section__content mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-2 xl:grid-cols-3">
+              {criminalCases.map(({ id, title, article, court, caseItem }) => {
                 const decisionPreview = caseItem.documents?.[0] ?? caseItem.decisionPreview;
 
                 return (
                   <Card
                     key={id}
-                    className="flex h-full flex-col overflow-hidden border-[#C9A227] bg-[#f3efe4] transition-all hover:shadow-elegant"
+                    className="relative flex h-full min-h-[420px] flex-col overflow-visible rounded-[12px] border border-[#C9A227] bg-[#F6F1E6] transition-all hover:shadow-elegant"
                   >
-                    <CardContent className="flex h-full flex-col px-5 pb-5 pt-5 md:px-7 md:pb-7 md:pt-7">
-                      <div className="mb-6 hidden justify-end sm:flex">
-                        <div className="h-[156px] w-[128px] overflow-hidden border border-[#bfbfbf] bg-white shadow-sm">
+                    <CardContent className="flex h-full flex-col px-5 pb-6 pt-20 md:px-7 md:pb-7">
+                      <div className="absolute right-6 top-[-28px] hidden sm:flex">
+                        <div className="flex h-[132px] w-[94px] overflow-hidden border border-[#bfbfbf] bg-white shadow-sm">
                           {decisionPreview ? (
                             <img
                               src={decisionPreview}
@@ -610,31 +671,28 @@ const CriminalPage = () => {
                         </div>
                       </div>
 
-                      <div className="text-[15px] font-semibold leading-snug text-accent md:text-[18px] md:text-foreground">
-                        {caseItem.category}
-                      </div>
-                      <div className="mb-3 text-[14px] text-foreground/70 md:mb-5 md:text-[16px]">
-                        {formatCaseDate(caseItem.datePublished)} г.
-                      </div>
-                      <h3 className="mb-3 text-[18px] font-semibold leading-tight text-foreground md:mb-5 md:text-[22px]">
-                        {caseItem.title}
+                      <h3 className="max-w-[70%] text-[18px] font-bold leading-tight text-slate-950 md:text-[19px]">
+                        <Link to={`/keisy#${caseItem.slug}`} className="transition-colors hover:text-[#b8911f]">
+                          {title}
+                        </Link>
                       </h3>
 
-                      <p className="hidden text-[16px] leading-relaxed text-foreground/90 sm:block">
-                        <span className="font-semibold text-foreground">Ситуация:</span>
-                        <br />
-                        {truncateText(caseItem.task, 220)}
-                      </p>
-                      <p className="text-[15px] leading-relaxed text-foreground/90 md:mt-4 md:text-[16px]">
-                        <span className="font-semibold text-foreground">Результат:</span>
-                        <br />
-                        {truncateText(caseItem.result, 120)}
-                      </p>
-
-                      <div className="mt-auto flex justify-center pt-5 md:pt-8">
-                        <Button size="lg" className="min-w-[170px] bg-accent text-white hover:bg-accent/90 md:min-w-[190px]" asChild>
-                          <Link to={`/keisy#${caseItem.slug}`}>Перейти к кейсу</Link>
-                        </Button>
+                      <div className="mt-6 space-y-4 text-[14px] leading-relaxed text-slate-700 md:text-[15px]">
+                        <p>
+                          <span className="font-bold text-slate-950">Статья:</span> {article}
+                          <br />
+                          <span className="font-bold text-slate-950">Суд:</span> {court}
+                        </p>
+                        <p>
+                          <span className="font-bold text-slate-950">Что сделали:</span>
+                          <br />
+                          {truncateText(caseItem.actions, 180)}
+                        </p>
+                        <p>
+                          <span className="font-bold text-slate-950">Результат:</span>
+                          <br />
+                          <span className="font-semibold text-slate-950">{truncateText(caseItem.result, 180)}</span>
+                        </p>
                       </div>
                     </CardContent>
                   </Card>
@@ -642,65 +700,68 @@ const CriminalPage = () => {
               })}
             </div>
 
-            <div className="mt-8 text-center text-body-mobile text-muted-foreground md:mt-14 md:text-body">
-              Если вы столкнулись с похожей ситуацией — разберем материалы и выстроим позицию защиты
-            </div>
-            <div className="mt-8 flex justify-center">
-              <Link to="/keisy">
-                <Button
-                  size="lg"
-                  className="h-auto min-h-14 w-[280px] whitespace-normal bg-accent px-8 py-3 leading-tight text-white hover:bg-accent/90"
-                >
-                  Посмотреть все кейсы
-                </Button>
-              </Link>
+            <div className="mt-14 text-center">
+              <p className="text-[20px] font-bold leading-tight text-slate-950">
+                Ваша ситуация может быть похожей
+              </p>
+              <p className="mx-auto mt-5 max-w-3xl text-[15px] leading-relaxed text-slate-600 md:text-[17px]">
+                Ошибки следствия, нарушения процедуры, неточности в обвинении — это основания для защиты.
+              </p>
+              <p className="mt-5 text-[17px] font-bold text-slate-950">Не принимайте решения без консультации адвоката</p>
+              <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} mt-7 w-full sm:w-auto`}>
+                <a href={callHref}>Позвонить адвокату сейчас</a>
+              </Button>
+              <p className="mt-3 text-sm text-slate-500">Консультация по телефону. Строго конфиденциально</p>
             </div>
           </div>
         </section>
 
         <section id="criminal-process" className="section bg-[#F8FAFC]">
-          <div className="container max-w-[1280px]">
+          <div className="container max-w-[1120px]">
             <div className="mx-auto max-w-4xl text-center">
               <h2 className="font-serif text-h2-mobile font-bold md:text-h2">
-                Как мы работаем
+                Как выстраивается защита по уголовному делу
               </h2>
               <p className="mt-4 text-body-mobile leading-relaxed text-muted-foreground md:text-body">
-                Сначала быстро оцениваем риски, затем фиксируем позицию и сопровождаем каждое процессуальное действие.
+                Работаем на всех стадиях: от доследственной проверки до суда и апелляции.
               </p>
             </div>
 
-            <div className="criminal-process-grid mt-8 grid gap-4 md:mt-12 md:grid-cols-2 xl:grid-cols-4">
+            <div className="criminal-process-grid mx-auto mt-12 max-w-5xl">
               {processSteps.map((step) => (
-                <Card key={step.number} className="rounded-[18px] border border-[#D8C08B] bg-white shadow-[0_10px_28px_rgba(15,23,42,0.06)]">
-                  <CardContent className="p-5 md:p-6">
-                    <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-full bg-[#C9A227] text-xl font-bold text-white">
+                <div key={step.number} className="border-t border-slate-300 py-5 last:border-b">
+                  <div className="flex gap-5">
+                    <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#D8C08B] bg-[#F6F1E6] text-base font-semibold text-[#C9A227]">
                       {step.number}
                     </div>
-                    <h3 className="text-[20px] font-semibold leading-tight text-slate-900 md:text-[22px]">{step.title}</h3>
-                    <p className="mt-3 text-[15px] leading-relaxed text-slate-600 md:text-[16px]">{step.description}</p>
-                  </CardContent>
-                </Card>
+                    <div>
+                      <h3 className="text-[17px] font-bold leading-tight text-slate-950">{step.title}</h3>
+                      <p className="mt-1 text-[15px] leading-relaxed text-slate-600">{step.description}</p>
+                    </div>
+                  </div>
+                </div>
               ))}
             </div>
 
-            <div className="mx-auto mt-8 max-w-4xl rounded-2xl border border-[#D8C08B] bg-[#F6F1E6] p-5 md:mt-10 md:p-6">
-              <div className="flex gap-3">
-                <AlertTriangle className="mt-1 h-6 w-6 shrink-0 text-[#C9A227]" />
-                <div>
-                  <p className="font-semibold text-slate-900">Главное правило</p>
-                  <ul className="criminal-risk-list mt-2 grid gap-2 text-sm leading-relaxed text-slate-700 md:grid-cols-2 md:text-base">
-                    {riskItems.map((item) => (
-                      <li key={item}>• {item}</li>
-                    ))}
-                  </ul>
-                </div>
+            <div className="mx-auto mt-10 max-w-4xl text-center">
+              <p className="text-[17px] leading-relaxed text-slate-700">
+                Стратегия защиты определяется <span className="font-bold text-slate-950">индивидуально</span>. В уголовном процессе решают детали.
+                        <br />
+                Ошибки, допущенные на первых этапах, могут определить исход дела.
+              </p>
+              <div className="mt-8 inline-flex items-center gap-3 text-[18px] font-bold text-slate-950">
+                <Phone className="h-7 w-7 text-[#C9A227]" />
+                <span>Получить оценку ситуации по телефону:</span>
+                <a href={callHref} className="mango-phone transition-colors hover:text-[#b8911f]">
+                  {SITE.phone}
+                </a>
               </div>
             </div>
           </div>
         </section>
 
         <section id="criminal-risks" className="criminal-delayed-risks section bg-white">
-          <div className="container max-w-[1280px]">
+          <div className="container max-w-[1120px]">
             <div className="criminal-delayed-risks__header mx-auto max-w-5xl text-center">
               <h2 className="font-serif text-h2-mobile font-bold leading-tight text-slate-950 md:text-h2">
                 Что происходит, если не подключить адвоката вовремя
@@ -712,15 +773,15 @@ const CriminalPage = () => {
               </p>
             </div>
 
-            <div className="criminal-delayed-risks__list mx-auto mt-10 grid max-w-6xl gap-7 md:mt-12 md:gap-9">
+            <div className="criminal-delayed-risks__list mx-auto mt-12 grid max-w-5xl gap-4">
               {delayedLawyerRisks.map((item) => (
-                <div key={item.title} className="criminal-delayed-risks__item flex gap-5 md:gap-7">
-                  <AlertTriangle className="criminal-delayed-risks__icon mt-1 h-8 w-8 shrink-0 text-[#C9A227]" strokeWidth={2.2} />
+                <div key={item.title} className="criminal-delayed-risks__item flex gap-6">
+                  <AlertTriangle className="criminal-delayed-risks__icon mt-1 h-7 w-7 shrink-0 text-[#C9A227]" strokeWidth={2.2} />
                   <div>
-                    <h3 className="font-serif text-[24px] font-bold leading-tight text-slate-950 md:text-[30px]">
+                    <h3 className="text-[17px] font-bold leading-tight text-slate-950">
                       {item.title}
                     </h3>
-                    <p className="mt-3 text-[17px] font-medium leading-relaxed text-slate-600 md:text-[21px]">
+                    <p className="mt-1 text-[15px] font-medium leading-relaxed text-slate-600">
                       {item.description}
                     </p>
                   </div>
@@ -728,13 +789,13 @@ const CriminalPage = () => {
               ))}
             </div>
 
-            <div className="criminal-delayed-risks__summary mx-auto mt-12 max-w-4xl text-center md:mt-16">
-              <p className="text-[24px] font-bold leading-tight text-slate-950 md:text-[34px]">
+            <div className="criminal-delayed-risks__summary mx-auto mt-12 max-w-4xl text-center">
+              <p className="text-[20px] font-bold leading-tight text-slate-950">
                 Каждый процессуальный шаг влияет на дальнейший ход дела.
               </p>
-              <p className="mt-5 text-[17px] font-medium leading-relaxed text-slate-600 md:text-[22px]">
+              <p className="mt-4 text-[15px] font-medium leading-relaxed text-slate-600 md:text-[17px]">
                 Не принимайте решений и не подписывайте документы без консультации адвоката.
-              </p>
+                      </p>
               <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} mt-7 w-full sm:w-auto`}>
                 <a href={callHref}>Позвонить адвокату сейчас</a>
               </Button>
@@ -756,7 +817,7 @@ const CriminalPage = () => {
                   value={`faq-${index}`}
                   className="overflow-hidden rounded-2xl border border-[#d7c28b] bg-white px-5 shadow-[0_8px_20px_rgba(15,23,42,0.06)] md:px-6"
                 >
-                  <AccordionTrigger className="family-accordion-trigger faq-question text-left text-[16px] font-semibold text-foreground hover:no-underline hover:text-[#b8911f] data-[state=open]:text-[#b8911f] md:text-[22px] [&>svg]:text-[#c9a227]">
+                  <AccordionTrigger className="family-accordion-trigger faq-question text-left text-[16px] font-semibold text-foreground hover:no-underline hover:text-[#b8911f] data-[state=open]:text-[#b8911f] md:text-[20px] [&>svg]:text-[#c9a227]">
                     {item.question}
                   </AccordionTrigger>
                   <AccordionContent className="text-body-mobile leading-relaxed text-muted-foreground md:text-body">
