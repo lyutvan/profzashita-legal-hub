@@ -73,7 +73,7 @@ const Contacts = () => {
                       </div>
                       <div>
                         <h3 className="mb-3 font-semibold">Телефон</h3>
-                        <a href={`tel:${SITE.phoneRaw}`} className="text-body-mobile md:text-body text-accent hover:underline">
+                        <a href={`tel:${SITE.phoneRaw}`} className="mango-phone text-body-mobile md:text-body text-accent hover:underline">
                           {SITE.phone}
                         </a>
                         {SITE.messengerPhone && SITE.messengerPhoneRaw && (
@@ -165,7 +165,7 @@ const Contacts = () => {
                 </p>
                 <div className="mt-6 rounded-xl border border-border/80 bg-white p-5 text-small leading-7 text-muted-foreground">
                   Если вопрос срочный, лучше сразу позвонить по номеру{" "}
-                  <a href={`tel:${SITE.phoneRaw}`} className="font-semibold text-accent hover:underline">
+                  <a href={`tel:${SITE.phoneRaw}`} className="mango-phone font-semibold text-accent hover:underline">
                     {SITE.phone}
                   </a>
                   . Форма подходит для заявок, документов и вопросов, которые можно разобрать после

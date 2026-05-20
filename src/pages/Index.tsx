@@ -726,7 +726,7 @@ const Index = () => {
               <div className="inline-flex items-start gap-3 text-[17px] md:text-[20px] font-semibold text-foreground">
                 <Phone className="h-7 w-7 md:h-8 md:w-8 text-accent mt-0.5" />
                 <div className="flex flex-col items-start">
-                  <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent transition-colors">
+                  <a href={`tel:${SITE.phoneRaw}`} className="mango-phone hover:text-accent transition-colors">
                     {SITE.phone}
                   </a>
                   {hasSecondaryPhone && (
@@ -803,27 +803,27 @@ const Index = () => {
                           loading="lazy"
                         />
                       </div>
-                      <div className="px-6 pt-7 pb-6 flex flex-col">
-                        <h3 className="font-serif text-[20px] leading-tight font-semibold text-center min-h-[62px] mb-4">
+                      <div className="px-6 pt-6 pb-6 flex flex-col">
+                        <h3 className="font-serif text-[20px] leading-tight font-semibold text-center min-h-[54px] mb-3">
                           {member.name}
                         </h3>
 
-                        <div className="mx-auto mb-4 rounded-full bg-accent px-5 py-1 text-[17px] font-semibold text-white leading-none">
+                        <div className="mx-auto mb-3 rounded-full bg-accent px-5 py-1 text-[17px] font-semibold text-white leading-none">
                           {badge}
                         </div>
 
-                        <div className="mb-2 flex min-h-[84px] items-start justify-center">
+                        <div className="mb-2 flex min-h-[56px] items-start justify-center">
                           <p className="text-[16px] text-center text-foreground">{subtitle}</p>
                         </div>
                         {experience && (
-                          <p className="mb-5 min-h-[32px] text-[16px] text-center text-muted-foreground">
+                          <p className="mb-4 min-h-[28px] text-[16px] text-center text-muted-foreground">
                             {experience}
                           </p>
                         )}
 
                         <ul className="grid gap-3 text-[16px] leading-relaxed text-foreground/90">
                           {cardSpecializations.map((spec) => (
-                            <li key={spec} className="flex min-h-[86px] items-start gap-2">
+                            <li key={spec} className="flex min-h-[54px] items-start gap-2">
                               <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/90 shrink-0" />
                               <span>{spec}</span>
                             </li>
@@ -899,7 +899,7 @@ const Index = () => {
                   className="inline-flex items-center gap-3 rounded-xl border border-[#d7c28b] px-5 py-3 text-body-mobile font-semibold text-foreground transition-colors hover:border-accent hover:text-accent md:text-body"
                 >
                   <Phone className="h-5 w-5 text-accent" />
-                  <span>{SITE.phone}</span>
+                  <span className="mango-phone">{SITE.phone}</span>
                 </a>
               </div>
             </div>
@@ -963,7 +963,7 @@ const Index = () => {
                       <div className="flex items-start gap-4 text-foreground">
                         <Phone className="h-7 w-7 text-accent" />
                         <div className="flex flex-col items-start text-[18px] leading-snug font-medium md:text-[21px]">
-                          <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent transition-colors">
+                          <a href={`tel:${SITE.phoneRaw}`} className="mango-phone hover:text-accent transition-colors">
                             {SITE.phone}
                           </a>
                           {hasSecondaryPhone && (
@@ -1037,7 +1037,7 @@ const Index = () => {
                         Открыть в Яндекс.Картах
                       </a>
                       <iframe
-                        src="https://yandex.ru/map-widget/v1/?ll=37.540000%2C55.870000&z=16&mode=search&text=Москва%2C%20ул.%20Дегунинская%2C%20д.1%2C%20к.2"
+                        src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=244880896695"
                         width="100%"
                         height="300"
                         frameBorder="0"

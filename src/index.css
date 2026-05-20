@@ -646,6 +646,53 @@ All colors MUST be HSL.
     padding-top: clamp(20px, 3vh, 40px);
   }
 
+  .criminal-hero-lawyer-mobile {
+    display: flex;
+    width: min(100%, 640px);
+    align-items: center;
+    gap: 18px;
+    border: 1px solid rgba(216, 192, 139, 0.75);
+    border-radius: 20px;
+    background: rgba(246, 241, 230, 0.08);
+    padding: 14px;
+    box-shadow: 0 18px 38px rgba(0, 0, 0, 0.18);
+    backdrop-filter: blur(6px);
+  }
+
+  .criminal-hero-lawyer-mobile__photo {
+    width: 112px;
+    height: 132px;
+    flex: 0 0 112px;
+    overflow: hidden;
+    border-radius: 16px;
+    border: 1px solid rgba(216, 192, 139, 0.9);
+    background: #f6f1e6;
+  }
+
+  @media (min-width: 768px) {
+    .criminal-hero-facts {
+      max-width: none;
+      text-align: center;
+    }
+
+    .criminal-hero-facts-list {
+      display: flex;
+      flex-wrap: nowrap;
+      align-items: center;
+      justify-content: center;
+      gap: 28px;
+      padding-left: 0;
+      list-style: none;
+      white-space: nowrap;
+    }
+
+    .criminal-hero-facts-list li + li::before {
+      content: "•";
+      margin-right: 28px;
+      color: rgba(255, 255, 255, 0.72);
+    }
+  }
+
   @media (max-width: 767px) {
     .top-page-mobile-compact {
       --section-y: 34px;
@@ -842,6 +889,324 @@ All colors MUST be HSL.
 
     .services-mobile-compact iframe {
       max-height: 240px;
+    }
+
+    .criminal-mobile-compact .section:not(.section--hero) {
+      padding-block: 28px;
+    }
+
+    .criminal-mobile-compact .criminal-hero {
+      padding-top: 10px;
+      padding-bottom: 22px;
+    }
+
+    .criminal-mobile-compact .criminal-breadcrumb {
+      display: none;
+    }
+
+    .criminal-mobile-compact .criminal-hero .container > .inline-flex {
+      max-width: 100%;
+      font-size: 12px;
+      line-height: 1.3;
+    }
+
+    .criminal-mobile-compact .criminal-hero-content {
+      gap: 14px;
+    }
+
+    .criminal-mobile-compact .criminal-hero-layout {
+      margin-top: 0;
+    }
+
+    .criminal-mobile-compact .criminal-hero-content > :not([hidden]) ~ :not([hidden]) {
+      margin-top: 12px;
+    }
+
+    .criminal-mobile-compact .criminal-hero-content h1 {
+      font-size: clamp(31px, 9vw, 38px);
+      line-height: 1.04;
+    }
+
+    .criminal-mobile-compact .criminal-hero-content p {
+      line-height: 1.42;
+    }
+
+    .criminal-mobile-compact .criminal-hero-content ul {
+      padding-left: 22px;
+      font-size: 15px;
+      line-height: 1.35;
+    }
+
+    .criminal-mobile-compact .criminal-hero-facts {
+      gap: 8px;
+    }
+
+    .criminal-mobile-compact .criminal-hero-facts p {
+      font-size: 18px;
+    }
+
+    .criminal-mobile-compact .criminal-hero-lawyer-mobile {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      border: 1px solid rgba(216, 192, 139, 0.75);
+      border-radius: 16px;
+      background: rgba(246, 241, 230, 0.08);
+      padding: 10px;
+      box-shadow: 0 16px 34px rgba(0, 0, 0, 0.18);
+      backdrop-filter: blur(6px);
+    }
+
+    .criminal-mobile-compact .criminal-hero-lawyer-mobile__photo {
+      width: 74px;
+      height: 88px;
+      flex: 0 0 74px;
+      overflow: hidden;
+      border-radius: 12px;
+      border: 1px solid rgba(216, 192, 139, 0.9);
+      background: #f6f1e6;
+    }
+
+    .criminal-mobile-compact .criminal-hero-lawyer-mobile .text-lg {
+      font-size: 16px;
+    }
+
+    .criminal-mobile-compact .criminal-hero-lawyer-mobile .text-sm {
+      font-size: 12px;
+    }
+
+    .criminal-mobile-compact .criminal-hero-lawyer {
+      display: none;
+    }
+
+    .criminal-mobile-compact .criminal-emergency-grid > *:nth-child(n + 5),
+    .criminal-mobile-compact .criminal-faq-list > *:nth-child(n + 4),
+    .criminal-mobile-compact .criminal-risk-list > *:nth-child(n + 3) {
+      display: none;
+    }
+
+    .criminal-mobile-compact .criminal-emergency-grid,
+    .criminal-mobile-compact .criminal-process-grid,
+    .criminal-mobile-compact .criminal-cases-grid,
+    .criminal-mobile-compact .criminal-trust-grid {
+      margin-top: 18px;
+    }
+
+    .criminal-mobile-compact .criminal-emergency-grid .p-4,
+    .criminal-mobile-compact .criminal-process-grid .p-5,
+    .criminal-mobile-compact .criminal-trust-grid .p-5 {
+      padding: 14px;
+    }
+
+    .criminal-mobile-compact .criminal-cases-grid .h-32 {
+      height: 92px;
+    }
+
+    .criminal-mobile-compact .criminal-cases-grid a[aria-label^="Открыть кейс"],
+    .criminal-mobile-compact .criminal-case-result {
+      display: none;
+    }
+
+    .criminal-mobile-compact .criminal-cases-grid .p-5 {
+      padding: 14px;
+    }
+
+    .criminal-mobile-compact .criminal-trust-section {
+      padding-block: 30px;
+    }
+
+    .criminal-mobile-compact .criminal-trust-header {
+      text-align: left;
+    }
+
+    .criminal-mobile-compact .criminal-trust-header h2 {
+      font-size: 30px;
+      line-height: 1.08;
+    }
+
+    .criminal-mobile-compact .criminal-trust-header p {
+      margin-top: 12px;
+      font-size: 15px;
+      line-height: 1.45;
+      font-weight: 600;
+    }
+
+    .criminal-mobile-compact .criminal-trust-grid {
+      margin-top: 22px;
+      display: grid;
+      gap: 10px;
+    }
+
+    .criminal-mobile-compact .criminal-trust-item {
+      display: grid;
+      grid-template-columns: 40px minmax(0, 1fr);
+      gap: 12px;
+      align-items: start;
+      border: 1px solid #e6d8ab;
+      border-radius: 16px;
+      background: #fff;
+      padding: 14px;
+      text-align: left;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .criminal-mobile-compact .criminal-trust-icon {
+      width: 34px;
+      height: 34px;
+      margin: 2px 0 0;
+    }
+
+    .criminal-mobile-compact .criminal-trust-copy h3 {
+      margin-top: 0;
+      font-size: 20px;
+      line-height: 1.12;
+    }
+
+    .criminal-mobile-compact .criminal-trust-copy p {
+      margin-top: 7px;
+      font-size: 14px;
+      line-height: 1.45;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks {
+      padding-block: 30px;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__header {
+      text-align: left;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__header h2 {
+      font-size: 30px;
+      line-height: 1.08;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__header p {
+      margin-top: 12px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__list {
+      margin-top: 22px;
+      gap: 10px;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__item {
+      gap: 12px;
+      border: 1px solid #e6d8ab;
+      border-radius: 16px;
+      background: #fff;
+      padding: 14px;
+      box-shadow: 0 10px 24px rgba(15, 23, 42, 0.06);
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__item:nth-child(n + 5) {
+      display: none;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__icon {
+      width: 28px;
+      height: 28px;
+      margin-top: 1px;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__item h3 {
+      font-size: 18px;
+      line-height: 1.18;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__item p {
+      margin-top: 6px;
+      font-size: 14px;
+      line-height: 1.42;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__summary {
+      margin-top: 24px;
+      text-align: left;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__summary p:first-child {
+      font-size: 20px;
+      line-height: 1.18;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__summary p:nth-child(2) {
+      margin-top: 10px;
+      font-size: 15px;
+      line-height: 1.45;
+    }
+
+    .criminal-mobile-compact .criminal-delayed-risks__summary .inline-flex {
+      margin-top: 18px;
+      width: 100%;
+    }
+
+    .criminal-mobile-compact .criminal-hero-lawyer .h-\[240px\] {
+      height: 150px;
+    }
+
+    .criminal-mobile-compact .criminal-hero-lawyer .px-5 {
+      padding-left: 16px;
+      padding-right: 16px;
+    }
+
+    .criminal-mobile-compact .criminal-hero-lawyer .py-4 {
+      padding-top: 14px;
+      padding-bottom: 14px;
+    }
+
+    .criminal-mobile-compact .criminal-hero-lawyer h3 {
+      font-size: 24px;
+    }
+
+    .criminal-mobile-compact .criminal-hero-lawyer p {
+      font-size: 14px;
+    }
+
+    .criminal-mobile-compact .section__header {
+      margin-bottom: 16px;
+    }
+
+    .criminal-mobile-compact .section__content {
+      gap: 14px;
+    }
+
+    .criminal-mobile-compact .section__content .p-6 {
+      padding: 18px;
+    }
+
+    .criminal-mobile-compact h2 {
+      line-height: 1.1;
+    }
+
+    .criminal-mobile-compact h3 {
+      line-height: 1.2;
+    }
+
+    .criminal-mobile-compact .text-xl {
+      font-size: 18px;
+    }
+
+    .criminal-mobile-compact .text-base {
+      font-size: 15px;
+    }
+
+    .criminal-mobile-compact [class*="h-28"] {
+      height: 88px;
+    }
+
+    .criminal-mobile-compact [class*="w-24"] {
+      width: 76px;
+    }
+
+    .criminal-mobile-compact [class*="min-h-\\[420px\\]"] {
+      min-height: 260px;
+    }
+
+    .criminal-mobile-compact iframe {
+      min-height: 260px;
     }
 
     .home-mobile-compact .section {

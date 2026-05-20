@@ -1203,7 +1203,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                       <div>
                         <h3 className="font-semibold mb-1">Телефон</h3>
                         <div className="flex flex-col items-start">
-                          <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
+                          <a href={`tel:`} className="mango-phone text-accent hover:underline">
                             {SITE.phone}
                           </a>
                           {hasSecondaryPhone && (

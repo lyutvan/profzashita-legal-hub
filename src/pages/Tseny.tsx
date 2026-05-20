@@ -275,7 +275,7 @@ const Prices = () => {
                       Контакты для быстрого уточнения
                     </p>
                     <div className="mt-4 flex flex-col gap-1.5">
-                      <a href={primaryPhoneHref} className="text-[18px] font-semibold text-foreground hover:text-accent">
+                      <a href={primaryPhoneHref} className="mango-phone text-[18px] font-semibold text-foreground hover:text-accent">
                         {SITE.phone}
                       </a>
                       {hasSecondaryPhone && (

@@ -386,7 +386,7 @@ const ServiceTemplate = ({
                               className="w-full border-white/20 bg-white/10 hover:bg-white/20 text-white"
                               asChild
                             >
-                              <a href={secondaryCtaHref}>
+                              <a href={secondaryCtaHref} className="mango-phone">
                                 <Phone className="mr-2 h-4 w-4" />
                                 {SITE.phone}
                               </a>

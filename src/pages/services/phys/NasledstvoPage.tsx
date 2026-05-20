@@ -529,7 +529,7 @@ const NasledstvoPage = () => {
                 <Phone className="mt-0.5 h-6 w-6 text-accent" />
                 <span className="flex flex-col items-start leading-tight">
                   <span>Обсудить ситуацию по телефону:</span>
-                  <a href={callHref} className="hover:text-accent">
+                  <a href={callHref} className="mango-phone hover:text-accent">
                     {SITE.phone}
                   </a>
                   {hasSecondaryPhone && (
@@ -634,7 +634,7 @@ const NasledstvoPage = () => {
                 <Phone className="mt-0.5 h-6 w-6 text-accent" />
                 <span className="flex flex-col items-start leading-tight">
                   <span>Обсудить ситуацию по телефону:</span>
-                  <a href={callHref} className="hover:text-accent">
+                  <a href={callHref} className="mango-phone hover:text-accent">
                     {SITE.phone}
                   </a>
                   {hasSecondaryPhone && (
@@ -863,7 +863,7 @@ const NasledstvoPage = () => {
                 <Phone className="mt-0.5 h-6 w-6 text-accent" />
                 <span className="flex flex-col items-start leading-tight">
                   <span>Обсудить ситуацию по телефону:</span>
-                  <a href={callHref} className="hover:text-accent">
+                  <a href={callHref} className="mango-phone hover:text-accent">
                     {SITE.phone}
                   </a>
                   {hasSecondaryPhone && (
@@ -1031,7 +1031,7 @@ const NasledstvoPage = () => {
                       <div>
                         <h3 className="font-semibold mb-1">Телефон</h3>
                         <div className="flex flex-col items-start">
-                          <a href={callHref} className="text-accent hover:underline">
+                          <a href={callHref} className="mango-phone text-accent hover:underline">
                             {SITE.phone}
                           </a>
                           {hasSecondaryPhone && (

@@ -5,8 +5,27 @@ const ScrollToTop = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    if ("scrollRestoration" in window.history) {
+      window.history.scrollRestoration = "manual";
+    }
+  }, []);
+
+  useEffect(() => {
     if (!hash) {
-      window.scrollTo(0, 0);
+      window.requestAnimationFrame(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      });
+      const timer = window.setTimeout(() => {
+        window.scrollTo({ top: 0, left: 0, behavior: "auto" });
+      }, 80);
+
+      return () => {
+        window.clearTimeout(timer);
+      };
+    }
+
+    if (hash === "#") {
+      window.scrollTo({ top: 0, left: 0, behavior: "auto" });
       return;
     }
 

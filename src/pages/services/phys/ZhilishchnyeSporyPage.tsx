@@ -606,7 +606,7 @@ const ZhilishchnyeSporyPage = () => {
                   <Phone className="mt-0.5 h-6 w-6 text-[#C9A227]" />
                   <div className="flex flex-col items-start">
                     <span>Обсудить ситуацию по телефону:</span>
-                    <a href={callHref} className="hover:text-[#b8911f]">
+                    <a href={callHref} className="mango-phone hover:text-[#b8911f]">
                       {SITE.phone}
                     </a>
                     {hasSecondaryPhone && (
@@ -838,7 +838,7 @@ const ZhilishchnyeSporyPage = () => {
                   <Phone className="mt-0.5 h-6 w-6 text-[#C9A227]" />
                   <div className="flex flex-col items-start">
                     <span>Обсудить ситуацию по телефону:</span>
-                    <a href={callHref} className="hover:text-[#b8911f]">
+                    <a href={callHref} className="mango-phone hover:text-[#b8911f]">
                       {SITE.phone}
                     </a>
                     {hasSecondaryPhone && (
@@ -964,7 +964,7 @@ const ZhilishchnyeSporyPage = () => {
                       <div>
                         <h3 className="font-semibold mb-1">Телефон</h3>
                         <div className="flex flex-col items-start">
-                          <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
+                          <a href={`tel:`} className="mango-phone text-accent hover:underline">
                             {SITE.phone}
                           </a>
                           {hasSecondaryPhone && (

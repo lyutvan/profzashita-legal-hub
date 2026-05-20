@@ -116,7 +116,7 @@ const Header = () => {
               <div className="flex flex-col items-start gap-1.5 whitespace-nowrap">
                 <a
                   href={`tel:${SITE.phoneRaw}`}
-                  className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
+                  className="mango-phone inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
                 >
                   <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />
                   {SITE.phone}
@@ -241,7 +241,7 @@ const Header = () => {
                   <div className="flex flex-col items-start gap-2 whitespace-nowrap">
                     <a
                       href={`tel:${SITE.phoneRaw}`}
-                      className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
+                      className="mango-phone inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
                     >
                       <Phone className="h-3.5 w-3.5" strokeWidth={1.8} />
                       {SITE.phone}
