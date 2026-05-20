@@ -61,27 +61,25 @@ const Index = () => {
     label: category.title,
     path: `/services/biz#${category.slug}`
   }));
-  const criminalCategoryItems = getCategoriesForAudience("criminal").map((category) => ({
-    label: category.title,
-    path: `/services/criminal#${category.slug}`
-  }));
+  const criminalPhysNavigationItem = {
+    label: "Уголовная защита физических лиц",
+    path: "/services/criminal"
+  };
+  const criminalBizNavigationItem = {
+    label: "Экономические уголовные дела",
+    path: "/services/criminal#economic"
+  };
   const navigationSections = [
     {
       title: "Физическим лицам",
       description: "Личные, семейные и имущественные споры с понятной стратегией.",
-      items: uniquePhysCategoryItems,
+      items: [...uniquePhysCategoryItems, criminalPhysNavigationItem],
       href: "/uslugi/fiz-lica"
-    },
-    {
-      title: "Уголовные дела",
-      description: "Защита на всех стадиях: проверка, следствие, суд.",
-      items: criminalCategoryItems,
-      href: "/uslugi/ugolovnye"
     },
     {
       title: "Юридическим лицам",
       description: "Сопровождение бизнеса, защита интересов и снижение рисков.",
-      items: bizCategoryItems,
+      items: [...bizCategoryItems, criminalBizNavigationItem],
       href: "/uslugi/yur-lica"
     }
   ];

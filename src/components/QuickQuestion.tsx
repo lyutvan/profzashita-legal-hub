@@ -6,15 +6,20 @@ const QuickQuestion = () => {
 
   return (
     <>
-      {/* Floating Button */}
       <button
         onClick={() => openQuickQuestionModal({ forceForm: true })}
-        className="fixed bottom-[18px] right-[18px] z-40 h-14 w-14 rounded-full bg-accent text-accent-foreground shadow-elegant hover:scale-110 transition-transform duration-200 flex items-center justify-center group"
-        aria-label="Задать вопрос"
+        className="group fixed bottom-[18px] right-[18px] z-40 flex max-w-[calc(100vw-32px)] items-center gap-3 rounded-full border border-accent/60 bg-primary px-3 py-2.5 pr-4 text-primary-foreground shadow-[0_18px_48px_rgba(5,24,44,0.32)] transition duration-200 hover:-translate-y-1 hover:border-accent hover:shadow-[0_22px_56px_rgba(5,24,44,0.42)] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+        aria-label="Задать быстрый вопрос юристу"
       >
-        <MessageSquare className="h-6 w-6" />
-        <span className="absolute right-full mr-3 min-w-[140px] px-3 py-2 bg-background border border-border rounded-xl text-small font-medium leading-[1.2] text-foreground whitespace-nowrap opacity-0 group-hover:opacity-100 group-focus-visible:opacity-100 transition-opacity duration-200 pointer-events-none shadow-lg z-50">
-          Задать вопрос
+        <span className="relative flex h-12 w-12 shrink-0 items-center justify-center rounded-full bg-accent text-accent-foreground shadow-[0_10px_24px_rgba(203,161,34,0.34)]">
+          <span className="absolute inset-0 rounded-full bg-accent/35 opacity-70 motion-safe:animate-ping" aria-hidden="true" />
+          <MessageSquare className="relative h-6 w-6" />
+        </span>
+        <span className="flex min-w-0 flex-col text-left leading-tight">
+          <span className="text-[15px] font-bold sm:text-[17px]">Есть вопрос?</span>
+          <span className="hidden text-[12px] font-medium text-white/72 sm:block">
+            Напишите нам — ответим быстро
+          </span>
         </span>
       </button>
     </>

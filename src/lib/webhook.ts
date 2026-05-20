@@ -6,22 +6,57 @@ type Payload = {
   message?: string;
 };
 
-export const WEB_APP_URL = "https://script.google.com/macros/s/AKfycbzj56HWgKtfCfDf5i0CINNJTqCUTQbTYEoLyIk8PxGzNfPqNjf0y0XnarKiwi_MRZofIw/exec";
+const DEFAULT_WEB_APP_URL =
+  "https://script.google.com/macros/s/AKfycbyTB6e7U6RFPEWrcJAK_4skG8TagYIIt8GNzoTmI3fhbZZw3GbD0PWbNA0qQ4bB2Fxvlw/exec";
+
+export const WEB_APP_URL = import.meta.env.VITE_LEAD_WEBHOOK_URL || DEFAULT_WEB_APP_URL;
+
+const getUrlParam = (name: string) => {
+  if (typeof window === "undefined") return "";
+
+  try {
+    return new URL(window.location.href).searchParams.get(name) || "";
+  } catch {
+    return "";
+  }
+};
 
 export async function submitToWebhook(data: Payload) {
-  const body = new URLSearchParams();
-  body.append("name",  data.name  || "");
-  body.append("phone", data.phone || "");
-  if (data.email)   body.append("email",   data.email);
-  if (data.topic)   body.append("topic",   data.topic);
-  if (data.message) body.append("message", data.message);
+  if (!WEB_APP_URL) {
+    throw new Error("Lead webhook URL is not configured");
+  }
 
-  // Google Apps Script requires no-cors mode for cross-origin requests
-  await fetch(WEB_APP_URL, {
+  const body = new URLSearchParams();
+  const payload: Record<string, string> = {
+    name: data.name || "",
+    phone: data.phone || "",
+    email: data.email || "",
+    topic: data.topic || "",
+    message: data.message || "",
+    type: "form",
+    page_url: typeof window !== "undefined" ? window.location.href : "",
+    referrer: typeof document !== "undefined" ? document.referrer : "",
+    utm_source: getUrlParam("utm_source"),
+    utm_medium: getUrlParam("utm_medium"),
+    utm_campaign: getUrlParam("utm_campaign"),
+    utm_term: getUrlParam("utm_term"),
+    utm_content: getUrlParam("utm_content"),
+    submitted_at: new Date().toISOString()
+  };
+
+  Object.entries(payload).forEach(([key, value]) => {
+    if (value) body.append(key, value);
+  });
+
+  const response = await fetch(WEB_APP_URL, {
     method: "POST",
     mode: "no-cors",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body,
     keepalive: true
   });
+
+  if (response.type !== "opaque" && !response.ok) {
+    throw new Error(`Lead webhook error: ${response.status}`);
+  }
 }
