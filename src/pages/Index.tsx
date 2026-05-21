@@ -73,13 +73,13 @@ const Index = () => {
     {
       title: "Физическим лицам",
       description: "Личные, семейные и имущественные споры с понятной стратегией.",
-      items: [...uniquePhysCategoryItems, criminalPhysNavigationItem],
+      items: [criminalPhysNavigationItem, ...uniquePhysCategoryItems],
       href: "/uslugi/fiz-lica"
     },
     {
       title: "Юридическим лицам",
       description: "Сопровождение бизнеса, защита интересов и снижение рисков.",
-      items: [...bizCategoryItems, criminalBizNavigationItem],
+      items: [criminalBizNavigationItem, ...bizCategoryItems],
       href: "/uslugi/yur-lica"
     }
   ];
