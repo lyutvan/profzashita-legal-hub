@@ -14,9 +14,9 @@ const mainLinks = [
 ];
 
 const documentLinks = [
-  { to: "/privacy", label: "Политика конфиденциальности" },
-  { to: "/privacy#personal-data", label: "Политика обработки персональных данных" },
-  { to: "/disclaimer", label: "Отказ от ответственности" }
+  { to: "/politika-konfidentsialnosti", label: "Политика конфиденциальности" },
+  { to: "/politika-konfidentsialnosti#personal-data", label: "Политика обработки персональных данных" },
+  { to: "/otkaz-ot-otvetstvennosti", label: "Отказ от ответственности" }
 ];
 
 const Footer = () => {

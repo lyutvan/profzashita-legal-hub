@@ -106,14 +106,14 @@ const Index = () => {
     "Административные споры"
   ];
   const mobileQuickServices = [
-    ...mobileQuickServiceCategories
-      .map((categoryTitle) => uniquePhysCategoryItems.find((item) => item.categoryTitle === categoryTitle))
-      .filter((item): item is (typeof uniquePhysCategoryItems)[number] => Boolean(item)),
     {
       categoryTitle: "Уголовные дела",
       label: "Уголовные дела",
       path: "/uslugi/ugolovnye"
-    }
+    },
+    ...mobileQuickServiceCategories
+      .map((categoryTitle) => uniquePhysCategoryItems.find((item) => item.categoryTitle === categoryTitle))
+      .filter((item): item is (typeof uniquePhysCategoryItems)[number] => Boolean(item))
   ];
 
   const advantages = [

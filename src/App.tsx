@@ -34,6 +34,7 @@ import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 import QuickQuestion from "./components/QuickQuestion";
 import Tseny from "./pages/Tseny";
+import CookieBanner from "./components/CookieBanner";
 
 const queryClient = new QueryClient();
 
@@ -61,6 +62,7 @@ const App = () => (
         <QuickQuestionModalProvider>
           <ScrollToTop />
           <QuickQuestion />
+          <CookieBanner />
           <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/uslugi-old" element={<Uslugi />} />
@@ -79,7 +81,9 @@ const App = () => (
           <Route path="/news/:id" element={<NewsDetail />} />
           <Route path="/kontakty" element={<Kontakty />} />
           <Route path="/privacy" element={<Privacy />} />
+          <Route path="/politika-konfidentsialnosti" element={<Privacy />} />
           <Route path="/disclaimer" element={<Disclaimer />} />
+          <Route path="/otkaz-ot-otvetstvennosti" element={<Disclaimer />} />
           <Route path="/thanks" element={<Thanks />} />
           <Route path="/team" element={<Navigate to="/#team" replace />} />
           <Route path="/team/:slug" element={<TeamMemberPage />} />

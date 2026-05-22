@@ -198,13 +198,9 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
           onCheckedChange={(value) => setConsent(Boolean(value))}
         />
         <Label htmlFor={`${formId}-consent`} className="text-small text-muted-foreground leading-relaxed">
-          Я даю свое согласие на обработку персональных данных и принимаю условия{" "}
-          <Link to="/privacy" className="text-accent hover:underline">
+          Я даю согласие на обработку персональных данных и принимаю условия{" "}
+          <Link to="/politika-konfidentsialnosti" className="text-accent hover:underline">
             политики конфиденциальности
-          </Link>{" "}
-          и{" "}
-          <Link to="/disclaimer" className="text-accent hover:underline">
-            пользовательского соглашения
           </Link>
           .
         </Label>

@@ -141,8 +141,8 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
           disabled={isSubmitting}
         />
         <Label htmlFor={consentId} className="text-small leading-relaxed text-muted-foreground">
-          Я согласен на обработку персональных данных и принимаю условия{" "}
-          <Link to="/privacy" className="text-accent hover:underline">
+          Я даю согласие на обработку персональных данных и принимаю условия{" "}
+          <Link to="/politika-konfidentsialnosti" className="text-accent hover:underline">
             политики конфиденциальности
           </Link>
           .

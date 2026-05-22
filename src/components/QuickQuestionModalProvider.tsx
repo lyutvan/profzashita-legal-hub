@@ -190,7 +190,10 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
 
       {(!FORMS_DISABLED || isForcedFormOpen) && (
         <Dialog open={isOpen} onOpenChange={(open) => (!open ? closeQuickQuestionModal() : setIsOpen(true))}>
-          <DialogContent className={dialogClassName}>
+          <DialogContent
+            className={dialogClassName}
+            onOpenAutoFocus={(event) => event.preventDefault()}
+          >
             <DialogHeader className="space-y-2 text-center">
               <DialogTitle className="font-serif text-h3-mobile md:text-h3">Быстрый вопрос юристу</DialogTitle>
               <DialogDescription>
@@ -246,13 +249,9 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
                   onCheckedChange={(value) => setConsent(Boolean(value))}
                 />
                 <Label htmlFor="quick-question-consent" className="text-small text-muted-foreground leading-relaxed">
-                  Я даю свое согласие на обработку персональных данных и принимаю условия{" "}
-                  <Link to="/privacy" className="text-accent hover:underline">
+                  Я даю согласие на обработку персональных данных и принимаю условия{" "}
+                  <Link to="/politika-konfidentsialnosti" className="text-accent hover:underline">
                     политики конфиденциальности
-                  </Link>{" "}
-                  и{" "}
-                  <Link to="/disclaimer" className="text-accent hover:underline">
-                    пользовательского соглашения
                   </Link>
                   .
                 </Label>

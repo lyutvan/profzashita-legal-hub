@@ -30,7 +30,7 @@ const Privacy = () => {
                   </p>
                 </section>
 
-                <section>
+                <section id="personal-data">
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-semibold mb-4">2. Персональная информация пользователей</h2>
                   <p className="text-muted-foreground leading-relaxed mb-4">
                     Под персональной информацией в настоящей Политике понимается:

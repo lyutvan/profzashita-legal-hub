@@ -434,6 +434,8 @@ const CriminalPage = () => {
                       18 лет службы в следствии
                       <br />
                       8 лет адвокатской практики
+                      <br />
+                      170+ дел с положительным результатом
                     </p>
                   </div>
                 </div>
@@ -515,7 +517,7 @@ const CriminalPage = () => {
                     <div className="mt-4 space-y-1 text-[0.96rem] font-semibold leading-[1.26]">
                       <p>18 лет службы в следственных органах</p>
                       <p>8 лет адвокатской практики</p>
-                      <p>170+ с положительным результатом</p>
+                      <p>170+ дел с положительным результатом</p>
                     </div>
                     <p className="mt-4 text-[0.95rem] leading-[1.3] text-slate-700">
                       Регистрационный номер в реестре
@@ -543,17 +545,19 @@ const CriminalPage = () => {
               </p>
             </div>
 
-            <div className="criminal-emergency-grid mx-auto mt-10 grid max-w-6xl gap-6 md:grid-cols-2 xl:grid-cols-4">
+            <div className="criminal-emergency-grid mx-auto mt-6 grid max-w-6xl gap-3 md:mt-10 md:gap-6 md:grid-cols-2 xl:grid-cols-4">
               {emergencySituations.map((item) => {
                 const Icon = item.icon;
                 return (
                   <Card key={item.title} className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_18px_rgba(15,23,42,0.06)]">
-                    <CardContent className="flex h-full flex-col items-center p-6 text-center">
-                      <div className="mb-5 flex h-16 w-16 shrink-0 items-center justify-center text-[#C9A227]">
-                        <Icon className="h-12 w-12" strokeWidth={1.8} />
+                    <CardContent className="flex h-full items-start gap-3 p-4 text-left md:flex-col md:items-center md:p-6 md:text-center">
+                      <div className="flex h-10 w-10 shrink-0 items-center justify-center text-[#C9A227] md:mb-5 md:h-16 md:w-16">
+                        <Icon className="h-8 w-8 md:h-12 md:w-12" strokeWidth={1.8} />
                       </div>
-                      <h3 className="text-[17px] font-bold leading-snug text-slate-900">{item.title}</h3>
-                      <p className="mt-4 min-h-[72px] text-[15px] leading-relaxed text-slate-600">{item.description}</p>
+                      <div className="min-w-0 md:contents">
+                        <h3 className="text-[15px] font-bold leading-snug text-slate-900 md:text-[17px]">{item.title}</h3>
+                        <p className="mt-1 text-[13px] leading-snug text-slate-600 md:mt-4 md:min-h-[72px] md:text-[15px] md:leading-relaxed">{item.description}</p>
+                      </div>
                       <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} mt-auto hidden w-full md:inline-flex`}>
                         <a href={callHref}>Позвонить адвокату</a>
                       </Button>
@@ -753,14 +757,14 @@ const CriminalPage = () => {
             </div>
 
             <div className="mx-auto mt-10 max-w-4xl text-center">
-              <p className="text-[17px] leading-relaxed text-slate-700">
+              <p className="text-[19px] leading-relaxed text-slate-700 md:text-[20px]">
                 Стратегия защиты определяется <span className="font-bold text-slate-950">индивидуально</span>. В уголовном процессе решают детали.
                         <br />
                 Ошибки, допущенные на первых этапах, могут определить исход дела.
               </p>
-              <div className="mt-8 inline-flex items-center gap-3 text-[18px] font-bold text-slate-950">
-                <Phone className="h-7 w-7 text-[#C9A227]" />
-                <span>Получить оценку ситуации по телефону:</span>
+              <div className="mt-8 inline-flex max-w-full items-center gap-2 whitespace-nowrap text-[15px] font-bold text-slate-950 sm:text-[16px] md:gap-3 md:text-[18px]">
+                <Phone className="h-5 w-5 shrink-0 text-[#C9A227] md:h-7 md:w-7" />
+                <span>Оценим по телефону:</span>
                 <a href={callHref} className="mango-phone transition-colors hover:text-[#b8911f]">
                   {SITE.phone}
                 </a>

@@ -269,8 +269,8 @@ const FamilyShortForm = ({ topic, onSuccess }: FamilyShortFormProps) => {
           }
         />
         <label htmlFor="family-consent" className="leading-relaxed">
-          Я даю свое согласие на обработку моих персональных данных в соответствии с{" "}
-          <a href="/privacy" className="text-accent hover:underline">
+          Я даю согласие на обработку персональных данных и принимаю условия{" "}
+          <a href="/politika-konfidentsialnosti" className="text-accent hover:underline">
             политикой конфиденциальности
           </a>
           .
