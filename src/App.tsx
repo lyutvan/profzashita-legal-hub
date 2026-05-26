@@ -33,6 +33,7 @@ import { audienceServices } from "@/data/services-audiences";
 import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 import QuickQuestion from "./components/QuickQuestion";
+import CalltrackingPhoneGuard from "./components/CalltrackingPhoneGuard";
 import Tseny from "./pages/Tseny";
 
 const queryClient = new QueryClient();
@@ -60,6 +61,7 @@ const App = () => (
       <BrowserRouter>
         <QuickQuestionModalProvider>
           <ScrollToTop />
+          <CalltrackingPhoneGuard />
           <QuickQuestion />
           <Routes>
           <Route path="/" element={<Index />} />

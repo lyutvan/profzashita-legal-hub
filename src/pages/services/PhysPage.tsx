@@ -159,6 +159,7 @@ const PhysPage = () => {
                         title={service.title}
                         to={service.path}
                         imageSrc={getServiceCardImage(service.slug, seed)}
+                        compactOnMobile
                       />
                     ))}
                   </div>
@@ -184,9 +185,10 @@ const PhysPage = () => {
                 <Link
                   key={service.path}
                   to={service.path}
-                  className="text-small text-foreground hover:text-accent hover:underline"
+                  className="flex items-center justify-between rounded-2xl border border-[#d7c28b] bg-[#F8F6EE] px-4 py-3 text-[16px] font-semibold leading-tight text-slate-950 shadow-[0_6px_16px_rgba(15,23,42,0.04)] transition-colors hover:border-accent hover:text-accent sm:block sm:rounded-none sm:border-0 sm:bg-transparent sm:p-0 sm:text-small sm:font-normal sm:text-foreground sm:shadow-none sm:hover:underline"
                 >
-                  {service.title}
+                  <span>{service.title}</span>
+                  <span className="text-accent sm:hidden">→</span>
                 </Link>
               ))}
             </div>

@@ -100,9 +100,11 @@ const NewsDetail = () => {
                   {newsItem.title}
                 </h1>
                 
-                <p className="text-body-mobile md:text-body text-muted-foreground">
-                  {newsItem.excerpt}
-                </p>
+                {newsItem.id !== 'free-legal-help-week-2026' && (
+                  <p className="text-body-mobile md:text-body text-muted-foreground">
+                    {newsItem.excerpt}
+                  </p>
+                )}
               </div>
             </div>
           </section>
