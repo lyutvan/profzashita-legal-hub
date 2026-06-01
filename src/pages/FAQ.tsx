@@ -221,8 +221,8 @@ const FAQ = () => {
                     </p>
                     <p>
                       <strong>Email:</strong><br />
-                      <a href="mailto:profzashchita@internet.ru" className="text-accent hover:underline">
-                        profzashchita@internet.ru
+                      <a href="mailto:info@prof-zashita.ru" className="text-accent hover:underline">
+                        info@prof-zashita.ru
                       </a>
                     </p>
                     <p>

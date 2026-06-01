@@ -131,11 +131,11 @@ const Header = () => {
                   </a>
                 )}
                 <a
-                  href="mailto:profzashchita@internet.ru"
+                  href="mailto:info@prof-zashita.ru"
                   className="hidden items-center gap-2 transition-colors duration-150 hover:text-white xl:inline-flex"
                 >
                   <Mail className="h-3.5 w-3.5" strokeWidth={1.8} />
-                  profzashchita@internet.ru
+                  info@prof-zashita.ru
                 </a>
               </div>
               <a
@@ -256,11 +256,11 @@ const Header = () => {
                       </a>
                     )}
                     <a
-                      href="mailto:profzashchita@internet.ru"
+                      href="mailto:info@prof-zashita.ru"
                       className="inline-flex items-center gap-2 transition-colors duration-150 hover:text-white"
                     >
                       <Mail className="h-3.5 w-3.5" strokeWidth={1.8} />
-                      profzashchita@internet.ru
+                      info@prof-zashita.ru
                     </a>
                   </div>
                   <a

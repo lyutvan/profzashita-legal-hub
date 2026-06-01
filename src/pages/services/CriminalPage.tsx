@@ -658,10 +658,10 @@ const CriminalPage = () => {
                 return (
                   <Card
                     key={id}
-                    className="criminal-case-card relative flex h-full min-h-[420px] flex-col overflow-visible rounded-[12px] border border-[#C9A227] bg-[#F6F1E6] transition-all hover:shadow-elegant"
+                    className="criminal-case-card relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[12px] border border-[#C9A227] bg-[#F6F1E6] transition-all hover:shadow-elegant"
                   >
                     <CardContent className="flex h-full flex-col px-5 pb-6 pt-20 md:px-7 md:pb-7">
-                      <div className="absolute right-6 top-[-28px] hidden sm:flex">
+                      <div className="absolute right-6 top-5 hidden sm:flex">
                         <div className="flex h-[132px] w-[94px] overflow-hidden border border-[#bfbfbf] bg-white shadow-sm">
                           {decisionPreview ? (
                             <img

@@ -11,7 +11,7 @@ export const SITE = {
   whatsappUrl: "/kontakty",
   telegramUrl: "/kontakty",
   maxUrl: "/kontakty",
-  email: "profzashchita@internet.ru",
+  email: "info@prof-zashita.ru",
   address: {
     country: "RU",
     city: "Москва",

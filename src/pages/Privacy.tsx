@@ -90,7 +90,7 @@ const Privacy = () => {
                 <section>
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-semibold mb-4">6. Обратная связь</h2>
                   <p className="text-muted-foreground leading-relaxed">
-                    Все предложения или вопросы по поводу настоящей Политики следует направлять на электронный адрес: profzashchita@internet.ru
+                    Все предложения или вопросы по поводу настоящей Политики следует направлять на электронный адрес: info@prof-zashita.ru
                   </p>
                 </section>
 

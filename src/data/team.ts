@@ -65,7 +65,7 @@ export const teamMembers: TeamMember[] = [
     ],
     photo: "/images/team/lyutikov-ivan.jpg",
     phone: "+7 (495) 004-01-96",
-    email: "profzashchita@internet.ru",
+    email: "info@prof-zashita.ru",
     cases: [
       { title: "Отмена ареста активов компании на стадии следствия", result: "Сохранены оборотные средства и оборудование" },
       { title: "Оспаривание предъявленного обвинения по экономической статье", result: "Дело прекращено за отсутствием состава преступления" },
@@ -141,7 +141,7 @@ export const teamMembers: TeamMember[] = [
     ],
     photo: ryzhenkoImg,
     phone: "+7 (495) 004-01-96",
-    email: "profzashchita@internet.ru",
+    email: "info@prof-zashita.ru",
     cases: [
       { title: "Взыскание долга по сложному контракту", result: "Взыскано более 45 млн руб. с контрагента" },
       { title: "Оспаривание штрафных санкций", result: "Снижение неустойки на 70%" },
@@ -217,7 +217,7 @@ export const teamMembers: TeamMember[] = [
     ],
     photo: vaskovskyImg,
     phone: "+7 (495) 004-01-96",
-    email: "profzashchita@internet.ru",
+    email: "info@prof-zashita.ru",
     cases: [
       { title: "Раздел имущества супругов с иностранными активами", result: "Достигнут паритетный раздел и защита интересов детей" },
       { title: "Оспаривание отказа страховой", result: "Взыскано страховое возмещение и неустойка" },
@@ -292,7 +292,7 @@ export const teamMembers: TeamMember[] = [
     ],
     photo: kalabekovImg,
     phone: "+7 (495) 004-01-96",
-    email: "profzashchita@internet.ru",
+    email: "info@prof-zashita.ru",
     cases: [
       { title: "Возврат средств за некачественные услуги", result: "Взыскана полная стоимость и штраф" },
       { title: "Наследственный спор между родственниками", result: "Достигнут судебный порядок раздела имущества" },
