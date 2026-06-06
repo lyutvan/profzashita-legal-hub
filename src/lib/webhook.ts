@@ -1,3 +1,5 @@
+import { SITE } from "@/config/site";
+
 type Payload = {
   name: string;
   phone: string;
@@ -31,6 +33,8 @@ export async function submitToWebhook(data: Payload) {
     name: data.name || "",
     phone: data.phone || "",
     email: data.email || "",
+    recipient_email: SITE.email,
+    to_email: SITE.email,
     topic: data.topic || "",
     message: data.message || "",
     type: "form",

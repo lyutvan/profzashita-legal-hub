@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef, useState } from "react";
 
 interface LegalBackgroundProps {
   imageSrc: string;
@@ -6,7 +6,14 @@ interface LegalBackgroundProps {
   children: ReactNode;
   overlayOpacity?: number; // 0.55 to 0.65 (55% to 65%)
   className?: string;
+  parallax?: boolean;
 }
+
+const shouldDisableParallax = () =>
+  window.innerWidth < 768 ||
+  window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+  window.matchMedia("(hover: none)").matches ||
+  window.matchMedia("(pointer: coarse)").matches;
 
 /**
  * LegalBackground component with dark navy overlay and gradient
@@ -23,17 +30,71 @@ const LegalBackground = ({
   imageAlt, 
   children, 
   overlayOpacity = 0.6,
-  className = "" 
+  className = "",
+  parallax = false
 }: LegalBackgroundProps) => {
+  const sectionRef = useRef<HTMLElement | null>(null);
+  const imageRef = useRef<HTMLImageElement | null>(null);
+  const frameRef = useRef<number | null>(null);
+  const [isParallaxEnabled, setIsParallaxEnabled] = useState(false);
+
+  useEffect(() => {
+    if (!parallax || typeof window === "undefined") {
+      return;
+    }
+
+    const section = sectionRef.current;
+    const image = imageRef.current;
+    if (!section || !image || shouldDisableParallax()) {
+      setIsParallaxEnabled(false);
+      return;
+    }
+
+    setIsParallaxEnabled(true);
+
+    const updateParallax = () => {
+      frameRef.current = null;
+
+      const rect = section.getBoundingClientRect();
+      const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
+      if (rect.bottom < 0 || rect.top > viewportHeight) {
+        return;
+      }
+
+      const progress = (rect.top + rect.height / 2 - viewportHeight / 2) / viewportHeight;
+      const offset = Math.max(-42, Math.min(42, progress * -52));
+      image.style.transform = `translate3d(0, ${offset}px, 0) scale(1.08)`;
+    };
+
+    const scheduleUpdate = () => {
+      if (frameRef.current !== null) return;
+      frameRef.current = window.requestAnimationFrame(updateParallax);
+    };
+
+    updateParallax();
+    window.addEventListener("scroll", scheduleUpdate, { passive: true });
+    window.addEventListener("resize", scheduleUpdate, { passive: true });
+
+    return () => {
+      window.removeEventListener("scroll", scheduleUpdate);
+      window.removeEventListener("resize", scheduleUpdate);
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+      }
+      image.style.transform = "";
+    };
+  }, [parallax]);
+
   return (
-    <section className={`relative w-full section legal-background ${className}`}>
+    <section ref={sectionRef} className={`relative w-full section legal-background ${parallax ? "legal-background--parallax" : ""} ${className}`}>
       {/* Background Image */}
-      <div className="absolute inset-0 w-full h-full">
+      <div className="absolute inset-0 w-full h-full overflow-hidden">
         <img
+          ref={imageRef}
           src={imageSrc}
           alt={imageAlt}
           loading="lazy"
-          className="w-full h-full object-cover object-center"
+          className={`w-full h-full object-cover object-center ${isParallaxEnabled ? "legal-background__image--parallax" : ""}`}
           style={{
             objectPosition: 'center center'
           }}

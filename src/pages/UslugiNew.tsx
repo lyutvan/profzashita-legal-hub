@@ -414,7 +414,7 @@ const UslugiNew = () => {
                               <Link
                                 key={service.id}
                                 to={service.path}
-                                className="rounded-xl border border-border/80 bg-background px-4 py-3 transition-colors hover:border-accent hover:bg-accent/5"
+                                className="service-card block rounded-xl border border-border/80 bg-background px-4 py-3 transition-colors hover:border-accent hover:bg-accent/5"
                               >
                                 <div className="flex items-start justify-between gap-4">
                                   <div>
@@ -466,7 +466,7 @@ const UslugiNew = () => {
             </div>
             <div className="section__content grid grid-cols-1 lg:grid-cols-3 gap-6">
               {audienceOrder.map((audience) => (
-                <Card key={audience} className="border-border/80 h-full">
+                <Card key={audience} className="service-card border-border/80 h-full">
                   <CardContent className="pt-6 pb-6 h-full flex flex-col">
                     <div className="flex items-start justify-between gap-4 mb-4">
                       <div>
@@ -534,7 +534,7 @@ const UslugiNew = () => {
                   to={service.path}
                   className="col-span-4 lg:col-span-4 group"
                 >
-                  <Card className="h-full border-border/80 transition-all hover:border-accent/60 hover:shadow-elegant">
+                  <Card className="service-card h-full border-border/80 transition-all hover:border-accent/60 hover:shadow-elegant">
                     <CardContent className="pt-5 pb-5">
                       <div className="flex items-start justify-between gap-4">
                         <div>

@@ -939,7 +939,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
             </div>
             <div className="section__content grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
               {data.otherServices.map((service) => (
-                <Card key={service.path} className="h-full">
+                <Card key={service.path} className="service-card h-full">
                   <CardContent className="pt-6">
                     <Link
                       to={service.path}

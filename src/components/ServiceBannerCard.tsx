@@ -13,7 +13,7 @@ type ServiceBannerCardProps = {
 const ServiceBannerCard = ({ title, to, imageSrc, compactOnMobile = false }: ServiceBannerCardProps) => {
   return (
     <Card
-      className={`group relative overflow-hidden transition-all duration-300 hover:border-accent/30 hover:shadow-lg ${
+      className={`service-card service-card--image group relative overflow-hidden transition-all duration-300 hover:border-accent/30 hover:shadow-lg ${
         compactOnMobile
           ? "h-auto rounded-2xl border border-[#d7c28b] bg-[#F8F6EE] shadow-[0_6px_16px_rgba(15,23,42,0.04)] md:h-[260px] md:border-2 md:border-border md:bg-transparent"
           : "h-[260px] border-2 border-border"

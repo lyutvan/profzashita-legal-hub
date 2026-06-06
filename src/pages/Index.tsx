@@ -27,6 +27,8 @@ import { SITE } from "@/config/site";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import MaxIcon from "@/components/icons/MaxIcon";
+import AnimatedStats from "@/components/AnimatedStats";
+import WorkTimeline from "@/components/WorkTimeline";
 import { getCategoriesForAudience } from "@/data/services-audiences";
 import { getPhysCategoryPagePath, getPhysServiceEntryBySlug } from "@/data/phys-service-content";
 
@@ -247,32 +249,6 @@ const Index = () => {
     .map((slug) => teamMembers.find((member) => member.slug === slug))
     .filter((member): member is (typeof teamMembers)[number] => Boolean(member));
 
-  const workflowSteps = [
-    {
-      title: "Анализ ситуации",
-      description: "Изучаем документы, обстоятельства дела и позиции сторон. Оцениваем правовые основания и перспективы"
-    },
-    {
-      title: "Формирование стратегии",
-      description: "Определяем правовую позицию и тактику защиты. Согласовываем план действий"
-    },
-    {
-      title: "Подготовка доказательств",
-      description: "Формируем доказательственную базу, готовим процессуальные документы, при необходимости инициируем экспертизы"
-    },
-    {
-      title: "Представительство в суде",
-      description: "Представляем интересы клиента в суде, участвуем в заседаниях и заявляем необходимые процессуальные ходатайства"
-    },
-    {
-      title: "Обжалование",
-      description: "При необходимости подготавливаем апелляционные и кассационные жалобы и сопровождаем рассмотрение дела"
-    },
-    {
-      title: "Контроль исполнения",
-      description: "Сопровождаем исполнение судебного решения и дальнейшие юридические действия"
-    }
-  ];
   const faqItems = [
     {
       question: "С чего начинается работа с адвокатом?",
@@ -349,9 +325,10 @@ const Index = () => {
         <LegalBackground
           imageSrc={courtColumnsImg}
           imageAlt="Классический зал суда с мраморными колоннами"
-          overlayOpacity={0.6}
-          className="home-hero"
-        >
+	          overlayOpacity={0.6}
+	          className="home-hero"
+	          parallax
+	        >
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-serif text-[42px] md:text-h1 font-bold text-accent mb-4 md:mb-6 leading-[0.95] md:leading-tight">
               Решаем сложные юридические споры
@@ -368,10 +345,10 @@ const Index = () => {
             </p>
             <div className="flex flex-col sm:flex-row gap-3 md:gap-4 justify-center items-stretch sm:items-center">
               <a href={`tel:${SITE.phoneRaw}`} className="w-full sm:w-auto">
-                <Button
-                  size="lg"
-                  className="h-12 w-full border border-[#b91c1c] bg-[#dc2626] px-6 text-[15px] text-white shadow-[0_8px_18px_rgba(220,38,38,0.35)] hover:bg-[#b91c1c] md:h-14 md:px-8 md:text-[16px]"
-                >
+	                <Button
+	                  size="lg"
+	                  className="urgent-help-button h-12 w-full border border-[#b91c1c] bg-[#dc2626] px-6 text-[15px] text-white shadow-[0_8px_18px_rgba(220,38,38,0.35)] hover:bg-[#b91c1c] md:h-14 md:px-8 md:text-[16px]"
+	                >
                   Срочная помощь адвоката
                 </Button>
               </a>
@@ -391,6 +368,8 @@ const Index = () => {
           </div>
         </LegalBackground>
 
+        <AnimatedStats />
+
         {/* Navigation Section */}
         <section id="napravleniya" className="section home-navigation">
           <div className="container">
@@ -407,7 +386,7 @@ const Index = () => {
                   <Link
                     key={item.path}
                     to={item.path}
-                    className="flex items-center justify-between rounded-2xl border border-[#d7c28b] bg-[#F8F6EE] px-4 py-3 text-[16px] font-semibold leading-tight text-slate-900 shadow-[0_6px_16px_rgba(15,23,42,0.04)]"
+                    className="service-card flex items-center justify-between rounded-2xl border border-[#d7c28b] bg-[#F8F6EE] px-4 py-3 text-[16px] font-semibold leading-tight text-slate-900 shadow-[0_6px_16px_rgba(15,23,42,0.04)]"
                   >
                     <span>{item.label}</span>
                     <span className="text-accent">→</span>
@@ -536,6 +515,8 @@ const Index = () => {
             <p className="mt-3 hidden text-center text-small text-muted-foreground md:block">Кратко разберем вашу ситуацию и оценим перспективы</p>
           </div>
         </section>
+
+        <WorkTimeline />
 
         {/* Practice / Results */}
         <section className="section">
@@ -842,64 +823,6 @@ const Index = () => {
               <Button size="lg" className="h-auto min-h-14 w-[290px] whitespace-normal px-8 py-3 leading-tight bg-accent text-white hover:bg-accent/90" asChild>
                 <Link to="/o-kollegii#nasha-komanda">Посмотреть всю команду</Link>
               </Button>
-            </div>
-          </div>
-        </section>
-
-        {/* Workflow Section */}
-        <section id="etapy-raboty" className="section bg-[#F8FAFC]">
-          <div className="container max-w-[1280px]">
-            <div className="section__header max-w-4xl mx-auto text-center">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
-                Как организована работа по вашему делу
-              </h2>
-              <p className="text-body-mobile md:text-body text-muted-foreground">
-                Каждое дело ведется системно — с анализом, стратегией и контролем ключевых этапов
-              </p>
-            </div>
-
-            <div className="section__content mt-8 rounded-[16px] border border-[#C9A227] bg-[#F6F1E6] px-4 md:mt-12 md:px-8">
-              {workflowSteps.map((step, index) => (
-                <div
-                  key={step.title}
-                  className={`px-2 py-4 md:px-4 md:py-6 ${
-                    index > 0 ? "border-t border-[#d7cda9]" : ""
-                  }`}
-                >
-                  <div className="flex items-start gap-4 md:gap-6">
-                    <div className="mt-1 flex h-10 w-10 shrink-0 items-center justify-center rounded-full border border-[#d7d2c6] bg-[#f2efe8] text-[18px] font-semibold leading-none text-accent md:h-14 md:w-14 md:text-[24px]">
-                      {index + 1}
-                    </div>
-                    <div className="pt-1">
-                      <h3 className="text-[20px] md:text-[24px] font-semibold leading-tight text-foreground">
-                        {step.title}
-                      </h3>
-                      <p className="mt-2 text-body-mobile md:text-body leading-relaxed text-muted-foreground">
-                        {step.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              ))}
-            </div>
-
-            <div className="mx-auto mt-8 max-w-3xl rounded-2xl bg-white px-5 py-6 text-center shadow-[0_10px_28px_rgba(15,23,42,0.06)] md:mt-10 md:px-8 md:py-7">
-              <p className="text-body-mobile leading-relaxed text-muted-foreground md:text-body">
-                Понимание последовательности действий позволяет выстроить защиту системно
-                и снизить процессуальные риски.
-              </p>
-              <p className="mt-3 text-body-mobile font-semibold text-foreground md:text-body">
-                Первый шаг — профессиональная оценка вашей ситуации
-              </p>
-              <div className="mt-5 flex justify-center">
-                <a
-                  href={`tel:${SITE.phoneRaw}`}
-                  className="inline-flex items-center gap-3 rounded-xl border border-[#d7c28b] px-5 py-3 text-body-mobile font-semibold text-foreground transition-colors hover:border-accent hover:text-accent md:text-body"
-                >
-                  <Phone className="h-5 w-5 text-accent" />
-                  <span className="mango-phone">{SITE.phone}</span>
-                </a>
-              </div>
             </div>
           </div>
         </section>

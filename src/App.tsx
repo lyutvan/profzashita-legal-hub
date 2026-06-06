@@ -34,6 +34,7 @@ import Novosti from "./pages/Novosti";
 import NewsDetail from "./pages/NewsDetail";
 import QuickQuestion from "./components/QuickQuestion";
 import CalltrackingPhoneGuard from "./components/CalltrackingPhoneGuard";
+import ScrollReveal from "./components/ScrollReveal";
 import Tseny from "./pages/Tseny";
 
 const queryClient = new QueryClient();
@@ -61,6 +62,7 @@ const App = () => (
       <BrowserRouter>
         <QuickQuestionModalProvider>
           <ScrollToTop />
+          <ScrollReveal />
           <CalltrackingPhoneGuard />
           <QuickQuestion />
           <Routes>

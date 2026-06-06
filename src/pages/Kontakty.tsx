@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet";
 import { SITE } from "@/config/site";
 import LeadForm from "@/components/LeadForm";
+import WorkScheduleNotice from "@/components/WorkScheduleNotice";
 
 const Contacts = () => {
   return (
@@ -84,7 +85,7 @@ const Contacts = () => {
                           </div>
                         )}
                         <p className="mt-2 text-small leading-7 text-muted-foreground">
-                          Звоните в любое время
+                          Пн-Пт 10:00-19:00
                         </p>
                       </div>
                     </div>
@@ -103,7 +104,7 @@ const Contacts = () => {
                           info@prof-zashita.ru
                         </a>
                         <p className="mt-2 text-small leading-7 text-muted-foreground">
-                          Ответим в течение часа
+                          Ответим в рабочее время
                         </p>
                       </div>
                     </div>
@@ -135,8 +136,8 @@ const Contacts = () => {
                       <div>
                         <h3 className="mb-3 font-semibold">Режим работы</h3>
                         <p className="leading-7 text-muted-foreground">
-                          Пн-Сб: 10:00 - 19:00<br />
-                          Вс: по предварительной записи
+                          Пн-Пт: 10:00 - 19:00<br />
+                          Сб-Вс: консультации только по предварительной записи
                         </p>
                       </div>
                     </div>
@@ -144,6 +145,7 @@ const Contacts = () => {
                 </Card>
 
               </div>
+              <WorkScheduleNotice variant="contact" className="mt-5" />
             </div>
           </div>
         </section>
@@ -164,7 +166,7 @@ const Contacts = () => {
                   вопроса и предложит ближайший формат консультации.
                 </p>
                 <div className="mt-6 rounded-xl border border-border/80 bg-white p-5 text-small leading-7 text-muted-foreground">
-                  Если вопрос срочный, лучше сразу позвонить по номеру{" "}
+                  В рабочее время можно позвонить по номеру{" "}
                   <a href={`tel:${SITE.phoneRaw}`} className="mango-phone font-semibold text-accent hover:underline">
                     {SITE.phone}
                   </a>
