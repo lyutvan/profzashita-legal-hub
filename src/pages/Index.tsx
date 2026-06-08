@@ -1,5 +1,4 @@
-import { useState } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LegalBackground from "@/components/LegalBackground";
@@ -29,94 +28,13 @@ import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import MaxIcon from "@/components/icons/MaxIcon";
 import AnimatedStats from "@/components/AnimatedStats";
 import WorkTimeline from "@/components/WorkTimeline";
-import { getCategoriesForAudience } from "@/data/services-audiences";
-import { getPhysCategoryPagePath, getPhysServiceEntryBySlug } from "@/data/phys-service-content";
+import ServiceDirectionSelector from "@/components/ServiceDirectionSelector";
 
 const Index = () => {
-  const navigate = useNavigate();
   const whatsappUrl = SITE.whatsappUrl;
   const telegramUrl = SITE.telegramUrl;
   const maxUrl = SITE.maxUrl;
   const hasSecondaryPhone = Boolean(SITE.messengerPhone && SITE.messengerPhoneRaw);
-  const physCategoryItems = getCategoriesForAudience("phys")
-    .filter((category) => category.title !== "Ущерб имуществу")
-    .map((category) => {
-      const path = getPhysCategoryPagePath(category.title);
-      if (!path) return null;
-      const slug = path.replace("/services/phys/", "");
-      const entry = getPhysServiceEntryBySlug(slug);
-      const label =
-        category.title === "Жилищные споры"
-          ? "Жилищные спорам и возмещение ущерба"
-          : (entry?.title ?? category.title);
-      return {
-        categoryTitle: category.title,
-        label,
-        path
-      };
-    })
-    .filter((item): item is { categoryTitle: string; label: string; path: string } => Boolean(item));
-  const uniquePhysCategoryItems = physCategoryItems.filter(
-    (item, index, array) => array.findIndex((other) => other.path === item.path) === index
-  );
-  const bizCategoryItems = getCategoriesForAudience("biz").map((category) => ({
-    label: category.title,
-    path: `/services/biz#${category.slug}`
-  }));
-  const criminalPhysNavigationItem = {
-    label: "Уголовная защита физических лиц",
-    path: "/services/criminal"
-  };
-  const criminalBizNavigationItem = {
-    label: "Экономические уголовные дела",
-    path: "/services/criminal#economic"
-  };
-  const navigationSections = [
-    {
-      title: "Физическим лицам",
-      description: "Личные, семейные и имущественные споры с понятной стратегией.",
-      items: [criminalPhysNavigationItem, ...uniquePhysCategoryItems],
-      href: "/uslugi/fiz-lica"
-    },
-    {
-      title: "Юридическим лицам",
-      description: "Сопровождение бизнеса, защита интересов и снижение рисков.",
-      items: [criminalBizNavigationItem, ...bizCategoryItems],
-      href: "/uslugi/yur-lica"
-    }
-  ];
-  const [activeNavigationTitle, setActiveNavigationTitle] = useState(navigationSections[0]?.title ?? "");
-  const activeNavigationSection =
-    navigationSections.find((section) => section.title === activeNavigationTitle) ?? navigationSections[0];
-  const activeNavigationItems = activeNavigationSection.items.map((item) =>
-    typeof item === "string" ? { label: item, path: activeNavigationSection.href } : item
-  );
-  const activeColumnSplitIndex = Math.ceil(activeNavigationItems.length / 2);
-  const activeNavigationColumns = [
-    activeNavigationItems.slice(0, activeColumnSplitIndex),
-    activeNavigationItems.slice(activeColumnSplitIndex)
-  ].filter((column) => column.length > 0);
-  const mobileQuickServiceCategories = [
-    "Семейные споры",
-    "Жилищные споры",
-    "Наследственные дела",
-    "Взыскание долгов и договорные споры",
-    "Защита прав потребителей",
-    "ДТП, страхование, вред здоровью",
-    "Трудовые споры",
-    "Банкротство",
-    "Административные споры"
-  ];
-  const mobileQuickServices = [
-    {
-      categoryTitle: "Уголовные дела",
-      label: "Уголовные дела",
-      path: "/uslugi/ugolovnye"
-    },
-    ...mobileQuickServiceCategories
-      .map((categoryTitle) => uniquePhysCategoryItems.find((item) => item.categoryTitle === categoryTitle))
-      .filter((item): item is (typeof uniquePhysCategoryItems)[number] => Boolean(item))
-  ];
 
   const advantages = [
     {
@@ -370,104 +288,7 @@ const Index = () => {
 
         <AnimatedStats />
 
-        {/* Navigation Section */}
-        <section id="napravleniya" className="section home-navigation">
-          <div className="container">
-            <div className="section__header max-w-3xl mx-auto text-center">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">Выберите направление работы</h2>
-              <p className="text-body-mobile md:text-body text-muted-foreground">
-                Главная страница помогает быстро перейти в нужный раздел услуг
-              </p>
-            </div>
-
-            <div className="section__content mx-auto max-w-xl md:hidden">
-              <div className="grid grid-cols-1 gap-3">
-                {mobileQuickServices.map((item) => (
-                  <Link
-                    key={item.path}
-                    to={item.path}
-                    className="service-card flex items-center justify-between rounded-2xl border border-[#d7c28b] bg-[#F8F6EE] px-4 py-3 text-[16px] font-semibold leading-tight text-slate-900 shadow-[0_6px_16px_rgba(15,23,42,0.04)]"
-                  >
-                    <span>{item.label}</span>
-                    <span className="text-accent">→</span>
-                  </Link>
-                ))}
-              </div>
-              <Link
-                to="/uslugi"
-                className="mt-4 flex items-center justify-center rounded-2xl bg-primary px-5 py-3 text-[16px] font-semibold text-white"
-              >
-                Все услуги
-              </Link>
-            </div>
-
-            <div className="section__content mx-auto hidden max-w-6xl md:block">
-              <div className="flex flex-wrap items-end gap-2">
-                {navigationSections.map((section) => {
-                  const isActive = section.title === activeNavigationSection.title;
-                  return (
-                    <button
-                      key={section.title}
-                      type="button"
-                      onClick={() => setActiveNavigationTitle(section.title)}
-                      className={`rounded-t-[10px] border border-[#C9A227] px-4 md:px-5 py-2 text-[18px] md:text-[22px] font-semibold leading-none transition-colors ${
-                        isActive
-                          ? "bg-[#C9A227] text-slate-900"
-                          : "bg-transparent text-slate-900 hover:bg-[#f6efdb]"
-                      }`}
-                    >
-                      {section.title}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <div className="rounded-b-[12px] rounded-tr-[12px] border border-[#C9A227] bg-[#F8F6EE] p-6 md:p-8">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 md:gap-10">
-                  {activeNavigationColumns.map((column, columnIndex) => (
-                    <ul key={columnIndex} className="space-y-4 md:space-y-5">
-                      {column.map((item) => (
-                        <li key={item.label} className="relative pl-6 text-[16px] sm:text-[17px] md:text-[18px] text-slate-900">
-                          <span
-                            aria-hidden="true"
-                            className="absolute left-0 top-[0.52em] h-2 w-2 rounded-full bg-slate-900"
-                          />
-                          <button
-                            type="button"
-                            onClick={() => navigate(item.path)}
-                            className="inline text-left leading-[1.35] hover:text-[#b8911f] transition-colors"
-                          >
-                            {item.label}
-                          </button>
-                        </li>
-                      ))}
-                    </ul>
-                  ))}
-                </div>
-                <div className="mt-8">
-                  <Link
-                    to={activeNavigationSection.href}
-                    className="text-[18px] sm:text-[20px] md:text-[24px] font-semibold text-[#C9A227] hover:underline"
-                  >
-                    Все услуги раздела →
-                  </Link>
-                </div>
-              </div>
-            </div>
-
-            <div className="mt-8 hidden text-center text-body-mobile text-muted-foreground md:mt-12 md:block md:text-body">
-              Если ситуация требует отдельного анализа — обсудите ее с адвокатом по телефону
-            </div>
-            <div className="mt-8 hidden justify-center md:flex">
-              <Link to="/kontakty">
-                <Button size="lg" className="h-auto min-h-14 w-full max-w-[280px] whitespace-normal bg-accent px-6 py-3 leading-tight text-white hover:bg-accent/90">
-                  Обсудить ситуацию по телефону
-                </Button>
-              </Link>
-            </div>
-            <p className="mt-3 hidden text-center text-small text-muted-foreground md:block">Коротко разберем ситуацию и оценим перспективы дела</p>
-          </div>
-        </section>
+        <ServiceDirectionSelector />
 
         {/* Advantages Section */}
         <section className="section bg-background">
