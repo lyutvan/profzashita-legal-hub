@@ -62,14 +62,7 @@ const WorkTimeline = () => {
 
     const updateProgress = () => {
       frameId = 0;
-      const rect = section.getBoundingClientRect();
       const viewportHeight = window.innerHeight || document.documentElement.clientHeight;
-      const start = viewportHeight * 0.72;
-      // Finish the line before the section leaves the viewport, so the last step is readable.
-      const range = Math.max(rect.height * 0.78, rect.height - viewportHeight * 0.08);
-      const nextProgress = Math.min(1, Math.max(0, (start - rect.top) / range));
-      setProgress(nextProgress);
-
       const timeline = timelineRef.current;
       if (!timeline) return;
 
@@ -78,6 +71,10 @@ const WorkTimeline = () => {
       const lineTop = isMobile ? 26 : 12;
       const lineBottom = isMobile ? 28 : 12;
       const lineLength = Math.max(1, timelineRect.height - lineTop - lineBottom);
+      const scrollGuideY = viewportHeight * (isMobile ? 0.74 : 0.68);
+      const nextProgress = Math.min(1, Math.max(0, (scrollGuideY - timelineRect.top - lineTop) / lineLength));
+      setProgress(nextProgress);
+
       const reachedY = lineTop + lineLength * nextProgress;
 
       const nextVisibleSteps = timelineSteps.map((_, index) => {

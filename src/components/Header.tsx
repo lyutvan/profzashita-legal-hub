@@ -7,6 +7,7 @@ import WhatsAppIcon from "./icons/WhatsAppIcon";
 import MaxIcon from "./icons/MaxIcon";
 import { SITE } from "@/config/site";
 
+const SHOW_SERVICES_NAV_ITEM = false;
 
 const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -84,16 +85,18 @@ const Header = () => {
               Главная
             </Link>
 
-            <Link
-              to="/uslugi"
-              className={`text-small font-medium transition-colors duration-150 py-2 min-h-[44px] flex items-center relative ${
-                isActive("/uslugi") 
-                  ? "text-accent after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent"
-                  : "text-white hover:text-accent"
-              }`}
-            >
-              Услуги
-            </Link>
+            {SHOW_SERVICES_NAV_ITEM && (
+              <Link
+                to="/uslugi"
+                className={`text-small font-medium transition-colors duration-150 py-2 min-h-[44px] flex items-center relative ${
+                  isActive("/uslugi") 
+                    ? "text-accent after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent"
+                    : "text-white hover:text-accent"
+                }`}
+              >
+                Услуги
+              </Link>
+            )}
 
             {navigation.map((item) => (
               <Link
@@ -209,17 +212,19 @@ const Header = () => {
                 Главная
               </Link>
 
-              <Link
-                to="/uslugi"
-                onClick={() => setIsMenuOpen(false)}
-                className={`text-body-mobile font-medium transition-colors duration-150 py-2 px-2 min-h-[44px] flex items-center rounded ${
-                  isActive("/uslugi") 
-                    ? "text-accent bg-accent/10" 
-                    : "text-white hover:text-accent hover:bg-white/5"
-                }`}
-              >
-                Услуги
-              </Link>
+              {SHOW_SERVICES_NAV_ITEM && (
+                <Link
+                  to="/uslugi"
+                  onClick={() => setIsMenuOpen(false)}
+                  className={`text-body-mobile font-medium transition-colors duration-150 py-2 px-2 min-h-[44px] flex items-center rounded ${
+                    isActive("/uslugi") 
+                      ? "text-accent bg-accent/10" 
+                      : "text-white hover:text-accent hover:bg-white/5"
+                  }`}
+                >
+                  Услуги
+                </Link>
+              )}
 
               {navigation.map((item) => (
                 <Link

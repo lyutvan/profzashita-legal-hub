@@ -11,6 +11,7 @@ import { Link, useLocation } from "react-router-dom";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Checkbox } from "@/components/ui/checkbox";
 import PhoneInput from "@/components/PhoneInput";
@@ -65,7 +66,7 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
   const [isForcedFormOpen, setIsForcedFormOpen] = useState(false);
   const [topicOverride, setTopicOverride] = useState<string | null>(null);
   const [messageOverride, setMessageOverride] = useState<string | null>(null);
-  const [formData, setFormData] = useState({ name: "", phone: "" });
+  const [formData, setFormData] = useState({ name: "", phone: "", message: "" });
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [honeypot, setHoneypot] = useState("");
@@ -73,12 +74,12 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
   const [submitTime, setSubmitTime] = useState<number>(Date.now());
 
   const dialogClassName =
-    "!w-[calc(100%-24px)] !max-w-[640px] !rounded-[20px] border border-slate-200 bg-white p-5 md:p-8 shadow-[0_24px_80px_rgba(15,23,42,0.18)] max-h-[calc(100dvh-24px)] overflow-y-auto !top-3 !translate-y-0 sm:!top-1/2 sm:!translate-y-[-50%]";
+    "quick-question-dialog !w-[calc(100%-24px)] !max-w-[640px] !rounded-[20px] border border-slate-200 bg-white p-5 md:p-8 shadow-[0_24px_80px_rgba(15,23,42,0.18)] overflow-y-auto !top-3 !translate-y-0 sm:!top-1/2 sm:!translate-y-[-50%]";
 
   const topic = topicOverride ?? deriveTopicFromPath(location.pathname);
 
   const resetForm = useCallback(() => {
-    setFormData({ name: "", phone: "" });
+    setFormData({ name: "", phone: "", message: "" });
     setConsent(false);
     setErrors({});
     setHoneypot("");
@@ -143,6 +144,12 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
       nextErrors.phone = "Укажите корректный номер телефона";
     }
 
+    if (!formData.message.trim()) {
+      nextErrors.message = "Напишите ваш вопрос";
+    } else if (formData.message.trim().length < 5) {
+      nextErrors.message = "Опишите вопрос чуть подробнее";
+    }
+
     if (!consent) {
       nextErrors.consent = "Подтвердите согласие";
     }
@@ -156,7 +163,7 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
         name: formData.name.trim(),
         phone: formData.phone,
         topic,
-        message: messageOverride ?? undefined
+        message: [messageOverride, formData.message.trim()].filter(Boolean).join("\n\n") || undefined
       });
       toast({
         title: "Заявка отправлена",
@@ -240,6 +247,22 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
                   required
                 />
                 {errors.phone && <p className="text-xs text-destructive">{errors.phone}</p>}
+              </div>
+
+              <div className="space-y-2">
+                <Label htmlFor="quick-question-message">
+                  Ваш вопрос <span className="text-destructive">*</span>
+                </Label>
+                <Textarea
+                  id="quick-question-message"
+                  value={formData.message}
+                  onChange={(event) => setFormData((prev) => ({ ...prev, message: event.target.value }))}
+                  placeholder="Кратко опишите вашу ситуацию*"
+                  className="min-h-[112px] resize-none"
+                  disabled={isSubmitting}
+                  required
+                />
+                {errors.message && <p className="text-xs text-destructive">{errors.message}</p>}
               </div>
 
               <div className="flex items-start gap-3">

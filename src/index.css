@@ -232,7 +232,6 @@ All colors MUST be HSL.
   }
 }
 
-@layer components {
   .container {
     width: 100%;
     max-width: var(--container-max);
@@ -625,6 +624,16 @@ All colors MUST be HSL.
   .faq-question:focus,
   .faq-question:active {
     text-decoration: none !important;
+  }
+
+  .quick-question-dialog {
+    max-height: calc(100vh - 24px);
+  }
+
+  @supports (height: 100dvh) {
+    .quick-question-dialog {
+      max-height: calc(100dvh - 24px);
+    }
   }
 
   .section--tight {
@@ -1502,21 +1511,22 @@ All colors MUST be HSL.
     z-index: 0;
     left: 50%;
     top: 12px;
+    bottom: 12px;
     width: 2px;
     border-radius: 999px;
     transform: translateX(-50%);
   }
 
   .work-timeline::before {
-    bottom: 12px;
     background: rgba(216, 192, 139, 0.2);
   }
 
   .work-timeline::after {
-    height: calc((100% - 24px) * var(--timeline-progress, 0));
     background: linear-gradient(180deg, rgba(255, 232, 163, 0.98), rgba(201, 162, 39, 0.96));
     box-shadow: 0 0 22px rgba(201, 162, 39, 0.32);
-    transition: height 120ms linear;
+    transform: translateX(-50%) scaleY(var(--timeline-progress, 0));
+    transform-origin: top center;
+    transition: transform 90ms linear;
   }
 
   .work-timeline__item {
@@ -1541,6 +1551,7 @@ All colors MUST be HSL.
   .work-timeline__marker {
     position: relative;
     z-index: 2;
+    isolation: isolate;
     grid-column: 2;
     display: flex;
     height: 54px;
@@ -1550,7 +1561,7 @@ All colors MUST be HSL.
     justify-self: center;
     border-radius: 999px;
     border: 1px solid rgba(255, 225, 150, 0.7);
-    background: linear-gradient(135deg, rgba(201, 162, 39, 0.96), rgba(174, 130, 26, 0.98));
+    background: linear-gradient(135deg, #d1a82a 0%, #b8911f 100%);
     color: white;
     font-size: 20px;
     font-weight: 700;
@@ -1560,7 +1571,18 @@ All colors MUST be HSL.
       0 14px 30px rgba(0, 0, 0, 0.24);
   }
 
+  .work-timeline__marker::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    border-radius: inherit;
+    background: linear-gradient(135deg, #d1a82a 0%, #b8911f 100%);
+  }
+
   .work-timeline__marker span {
+    position: relative;
+    z-index: 1;
     transform: translateY(-1px);
   }
 
@@ -1669,7 +1691,8 @@ All colors MUST be HSL.
     }
 
     .work-timeline::after {
-      height: calc((100% - 54px) * var(--timeline-progress, 0));
+      bottom: 28px;
+      transform: scaleY(var(--timeline-progress, 0));
     }
 
     .work-timeline__item {
@@ -1777,6 +1800,7 @@ All colors MUST be HSL.
     position: relative;
     overflow: hidden;
     border: 1px solid transparent;
+    color: #ffffff !important;
     background:
       linear-gradient(135deg, #c9a227 0%, #b8911f 100%) padding-box,
       linear-gradient(
@@ -1802,9 +1826,15 @@ All colors MUST be HSL.
       background-color 180ms ease;
   }
 
+  .btn.bg-accent :where(span, svg),
+  .btn[class*="bg-[#C9A227]"] :where(span, svg) {
+    color: #ffffff !important;
+  }
+
   .btn.bg-accent:hover,
   .btn[class*="bg-[#C9A227]"]:hover {
     transform: translateY(-1px);
+    color: #ffffff !important;
     background:
       linear-gradient(135deg, #c09a23 0%, #a8831a 100%) padding-box,
       linear-gradient(
@@ -1829,8 +1859,6 @@ All colors MUST be HSL.
   .btn[class*="bg-[#C9A227]"]:active {
     transform: translateY(0);
   }
-}
-
 @media (prefers-reduced-motion: no-preference) {
   .urgent-help-button {
     animation: urgent-button-invite 3.8s cubic-bezier(0.42, 0, 0.2, 1) infinite;

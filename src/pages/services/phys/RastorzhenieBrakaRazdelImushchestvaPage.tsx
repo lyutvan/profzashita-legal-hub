@@ -595,7 +595,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
   };
 
   return (
-    <div className="min-h-screen flex flex-col family-landing-page">
+    <div className={`min-h-screen flex flex-col family-landing-page ${isFamilyCategory ? "family-mobile-adapt" : ""}`}>
       <Helmet>
         <title>Расторжение брака и раздел имущества — адвокаты по семейным делам | Профзащита</title>
         <meta
@@ -623,7 +623,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
 
       <Header />
 
-      <main className="flex-1 services-page services-mobile-compact">
+      <main className={`flex-1 services-page services-mobile-compact ${isFamilyCategory ? "family-mobile-compact" : ""}`}>
         {/* Экран 1: Hero */}
         <section
           className="relative text-white section section--hero"
@@ -648,10 +648,13 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               ]}
             />
             <div className="max-w-4xl mt-6 space-y-5">
-              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold text-accent">
-                Адвокаты по семейным делам: берем на себя переговоры, документы и суды
+              <h1 className="category-hero-title font-serif text-h1-mobile md:text-h1 font-bold text-accent">
+                <span className="md:hidden">Адвокат по семейным делам</span>
+                <span className="hidden md:inline">
+                  Адвокаты по семейным делам: берем на себя переговоры, документы и суды
+                </span>
               </h1>
-              <ul className="pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
+              <ul className="category-hero-benefits pl-6 list-disc space-y-2 text-white/90 text-base md:text-lg leading-relaxed marker:text-white/80">
                 <li>Расторжение брака с детьми и споры об опеке</li>
                 <li>Раздел имущества: квартиры, ипотека, бизнес, вклады и долги</li>
                 <li>Представительство в суде и переговоры</li>
@@ -677,11 +680,11 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                   Получить первичную оценку за 15 минут
                 </Button>
               )}
-              <div className="flex flex-wrap items-center gap-y-2 text-small text-white/75 lg:flex-nowrap lg:whitespace-nowrap">
+              <div className="category-hero-trust flex flex-wrap items-center gap-y-2 text-small text-white/75 lg:flex-nowrap lg:whitespace-nowrap">
                 {trustItems.map((item, index) => (
                   <span
                     key={item.id}
-                    className={`flex items-center ${index > 0 ? "before:content-['•'] before:mx-2 before:text-white/50" : ""}`}
+                    className={`category-hero-trust-item flex items-center ${index > 0 ? "before:content-['•'] before:mx-2 before:text-white/50" : ""}`}
                   >
                     {item.label}
                   </span>
@@ -700,7 +703,62 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               </h2>
               <p className="text-muted-foreground">Выберите вашу ситуацию — подскажем, как действовать:</p>
             </div>
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 md:gap-6 auto-rows-fr">
+            <input id="family-mobile-situations-toggle" type="checkbox" className="peer sr-only md:hidden" />
+            <div className="family-mobile-situations mt-5 grid gap-4 md:hidden">
+              {situations.slice(0, 3).map((card) => {
+                const Icon = card.icon;
+                return (
+                  <Card
+                    key={card.title}
+                    className="rounded-[16px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+                  >
+                    <CardContent className="flex items-start gap-4 p-4">
+                      <Icon className="mt-1 h-8 w-8 shrink-0 text-accent" strokeWidth={1.8} />
+                      <div className="min-w-0">
+                        <h3 className="text-[17px] font-semibold leading-snug text-slate-950">{card.title}</h3>
+                        <p className="mt-1 line-clamp-2 text-[13px] leading-snug text-slate-600">
+                          {card.description}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+            <div className="family-mobile-situations mt-4 hidden gap-4 peer-checked:grid md:hidden">
+              {situations.slice(3, 6).map((card) => {
+                const Icon = card.icon;
+                return (
+                  <Card
+                    key={card.title}
+                    className="rounded-[16px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]"
+                  >
+                    <CardContent className="flex items-start gap-4 p-4">
+                      <Icon className="mt-1 h-8 w-8 shrink-0 text-accent" strokeWidth={1.8} />
+                      <div className="min-w-0">
+                        <h3 className="text-[17px] font-semibold leading-snug text-slate-950">{card.title}</h3>
+                        <p className="mt-1 line-clamp-2 text-[13px] leading-snug text-slate-600">
+                          {card.description}
+                        </p>
+                      </div>
+                    </CardContent>
+                  </Card>
+                );
+              })}
+            </div>
+            <label
+              htmlFor="family-mobile-situations-toggle"
+              className="mt-4 flex h-11 w-full cursor-pointer items-center justify-center rounded-[12px] border border-[#D8C08B] bg-white text-[15px] font-semibold text-slate-950 md:hidden peer-checked:hidden"
+            >
+              Показать ещё ситуации
+            </label>
+            <label
+              htmlFor="family-mobile-situations-toggle"
+              className="mt-4 hidden h-11 w-full cursor-pointer items-center justify-center rounded-[12px] border border-[#D8C08B] bg-white text-[15px] font-semibold text-slate-950 peer-checked:flex md:peer-checked:hidden"
+            >
+              Свернуть
+            </label>
+            <div className="section__content hidden auto-rows-fr grid-cols-1 gap-4 md:grid md:grid-cols-2 md:gap-6 lg:grid-cols-4">
               {situations.map((card) => {
                 const Icon = card.icon;
                 return (
@@ -732,7 +790,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 );
               })}
             </div>
-            <div className="mt-7 md:mt-8 rounded-[12px] border border-[#D8C08B] bg-[#F7F2E8] p-6 text-center shadow-[0_6px_16px_rgba(60,52,31,0.08)]">
+            <div className="mt-7 hidden rounded-[12px] border border-[#D8C08B] bg-[#F7F2E8] p-6 text-center shadow-[0_6px_16px_rgba(60,52,31,0.08)] md:mt-8 md:block">
               <p className="font-semibold text-body-mobile md:text-body text-slate-900">
                 Каждая неделя без четкой позиции — это риск потерять квартиру, контакт с ребенком или деньги.
               </p>
@@ -744,7 +802,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
         </section>
 
         {/* Экран 3: Команда */}
-        <section className="section bg-muted/30">
+        <section className="section hidden bg-muted/30 md:block">
           <div className="container">
             <div className="section__header max-w-3xl mx-auto text-center">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Кто ведет ваши дела</h2>
@@ -815,7 +873,12 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
             <div className="section__content">
               <div className="category-steps-list divide-y divide-border/80 rounded-2xl border border-border/80 bg-white/90 shadow-[0_12px_28px_rgba(15,23,42,0.06)] overflow-hidden">
                 {steps.map((step, index) => (
-                  <div key={step.title} className="category-step-item flex gap-4 md:gap-6 px-4 md:px-6 py-5 md:py-6">
+                  <div
+                    key={step.title}
+                    className={`category-step-item flex gap-4 px-4 py-5 md:gap-6 md:px-6 md:py-6 ${
+                      index >= 4 ? "hidden md:flex" : ""
+                    }`}
+                  >
                     <div className="category-step-number h-11 w-11 md:h-12 md:w-12 shrink-0 rounded-full border border-accent/40 bg-accent/10 text-accent flex items-center justify-center font-semibold">
                       {index + 1}
                     </div>
@@ -838,7 +901,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 ))}
               </div>
             </div>
-            <div className="mt-8 grid grid-cols-1 md:grid-cols-2 gap-6">
+            <div className="mt-8 hidden grid-cols-1 gap-6 md:grid md:grid-cols-2">
               <Card className="rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]">
                 <CardContent className="p-6 text-center">
                   <p className="text-body-mobile md:text-body text-slate-900">
@@ -957,7 +1020,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               })}
             </div>
 
-            <div className="mt-12">
+            <div className="mt-12 hidden md:block">
               {isFamilyCategory ? (
                 <>
                   <div className="section__header max-w-3xl text-center mx-auto">
@@ -1026,6 +1089,97 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
           </div>
         </section>
 
+        {isFamilyCategory && (
+          <section className="section md:hidden">
+            <div className="container">
+              <div className="section__header text-center">
+                <h2 className="font-serif text-h2-mobile font-bold">Адвокаты по семейным спорам</h2>
+                <p className="text-muted-foreground">
+                  Вашу ситуацию разбирает профильный специалист: по детям, имуществу, алиментам и суду.
+                </p>
+              </div>
+              <div className="section__content grid gap-4">
+                {teamMembers.slice(0, 3).map((member) => (
+                  <Card
+                    key={member.name}
+                    className="overflow-hidden rounded-[14px] border border-[#D8C08B] bg-white shadow-[0_8px_22px_rgba(60,52,31,0.08)]"
+                  >
+                    <CardContent className="p-4">
+                      <div className="flex gap-4">
+                        <div className="h-[132px] w-[104px] shrink-0 overflow-hidden rounded-[10px] border border-[#E6DDCC] bg-[#F8F4EA]">
+                          <img
+                            src={member.photo}
+                            alt={member.name}
+                            className="h-full w-full object-cover object-top"
+                            loading="lazy"
+                          />
+                        </div>
+                        <div className="min-w-0 flex-1">
+                          <h3 className="font-semibold leading-tight text-slate-950">{member.name}</h3>
+                          <span className="mt-2 inline-flex rounded-full bg-[#C9A227] px-3 py-1 text-[11px] font-semibold text-white">
+                            {member.role}
+                          </span>
+                          <p className="mt-2 text-[13px] font-medium text-slate-700">{member.experience}</p>
+                          <p className="mt-2 line-clamp-3 text-[13px] leading-snug text-slate-600">
+                            {member.specializations[0]}
+                          </p>
+                        </div>
+                      </div>
+                      <Button
+                        asChild
+                        size="lg"
+                        className="mt-4 h-11 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[14px] font-semibold text-white shadow-[0_6px_14px_rgba(111,83,15,0.2)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+                      >
+                        <Link to={member.profileUrl}>Подробнее об адвокате</Link>
+                      </Button>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isFamilyCategory && (
+          <section className="section bg-muted/30 md:hidden">
+            <div className="container">
+              <div className="section__header text-center">
+                <h2 className="font-serif text-h2-mobile font-bold">Отзывы клиентов</h2>
+                <p className="text-muted-foreground">
+                  Клиенты обращаются, когда семейный спор уже требует переговоров, документов или суда.
+                </p>
+              </div>
+              <YandexRatingWidget />
+              <div className="section__content grid gap-4">
+                {familyReviews.slice(0, 3).map((review) => (
+                  <Card key={review.id} className="rounded-[14px] border border-[#D8C08B] bg-white">
+                    <CardContent className="p-5">
+                      <div className="flex items-center justify-between gap-3">
+                        <span className="font-semibold text-slate-950">{review.name}</span>
+                        <div className="flex items-center gap-1 text-accent">
+                          {Array.from({ length: review.rating }).map((_, index) => (
+                            <Star key={`${review.id}-mobile-${index}`} className="h-4 w-4 fill-current" />
+                          ))}
+                        </div>
+                      </div>
+                      <p className="mt-3 line-clamp-5 text-[14px] leading-relaxed text-slate-600">{review.text}</p>
+                    </CardContent>
+                  </Card>
+                ))}
+              </div>
+              <Button
+                asChild
+                size="lg"
+                className="mt-5 h-12 w-full rounded-[12px] border border-[#b8911f] bg-[#C9A227] text-[15px] font-semibold text-white shadow-[0_8px_18px_rgba(201,162,39,0.24)] hover:border-[#a8831a] hover:bg-[#b8911f]"
+              >
+                <a href="https://yandex.ru/maps/org/244880896695/reviews/" target="_blank" rel="noopener noreferrer">
+                  Посмотреть все отзывы
+                </a>
+              </Button>
+            </div>
+          </section>
+        )}
+
         {/* Экран 6: Большой продающий блок + аккордеон */}
         <section className="section">
           <div className="container">
@@ -1034,7 +1188,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 Расторжение брака и раздел имущества: как получить справедливый результат — без потерь и стресса?
               </h2>
             </div>
-            <Card className="border-border">
+            <Card className="hidden border-border md:block">
               <CardContent className="pt-6 space-y-3 text-muted-foreground leading-relaxed">
                 <p>
                   Если вы столкнулись с разводом, спором о детях или разделом имущества — главное сейчас:{" "}
@@ -1063,7 +1217,9 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 <AccordionItem
                   key={item.title}
                   value={`sales-${index}`}
-                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+                  className={`relative overflow-hidden rounded-xl border border-slate-200 px-4 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227] md:px-6 ${
+                    index >= 4 ? "hidden md:block" : ""
+                  }`}
                 >
                   <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
                     {item.title}
@@ -1088,12 +1244,14 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 <AccordionItem
                   key={item.question}
                   value={`faq-${index}`}
-                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+                  className={`relative overflow-hidden rounded-xl border border-slate-200 px-4 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227] md:px-6 ${
+                    index >= 4 ? "hidden md:block" : ""
+                  }`}
                 >
-                  <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
+                  <AccordionTrigger className="family-accordion-trigger py-3 text-left text-[15px] leading-snug hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f] md:py-4 md:text-base">
                     {item.question}
                   </AccordionTrigger>
-                  <AccordionContent className="text-muted-foreground pb-4">
+                  <AccordionContent className="pb-3 text-[14px] leading-relaxed text-muted-foreground md:pb-4 md:text-base">
                     {item.answer}
                   </AccordionContent>
                 </AccordionItem>
@@ -1125,7 +1283,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
         </section>
 
         {/* Экран 8: Финальная форма */}
-        <section className="section">
+        <section className="section hidden md:block">
           <div className="container">
             <div className="grid grid-cols-1 gap-10">
               <div className="max-w-2xl space-y-6">
@@ -1183,7 +1341,102 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
         </section>
 
         {/* Экран 9: Контакты */}
-        <section className="section bg-muted/30">
+        {isFamilyCategory && (
+          <section className="section bg-white md:hidden">
+            <div className="container">
+              <div className="rounded-[16px] border border-[#D8C08B] bg-white p-6 shadow-[0_10px_26px_rgba(60,52,31,0.07)]">
+                <h2 className="font-serif text-[30px] font-bold leading-tight text-slate-950">Контакты</h2>
+
+                <div className="mt-6 space-y-4">
+                  <div className="flex items-start gap-4">
+                    <Phone className="h-7 w-7 shrink-0 text-accent" />
+                    <div className="flex min-w-0 flex-col items-start text-[18px] font-medium leading-snug">
+                      <a href={callHref} className="mango-phone whitespace-nowrap text-slate-950 hover:text-accent">
+                        {SITE.phone}
+                      </a>
+                      {hasSecondaryPhone && (
+                        <a
+                          href={`tel:+${SITE.messengerPhoneRaw}`}
+                          className="whitespace-nowrap text-slate-950 hover:text-accent"
+                        >
+                          {SITE.messengerPhone}
+                        </a>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-4">
+                    <Mail className="h-7 w-7 shrink-0 text-accent" />
+                    <a
+                      href={`mailto:${SITE.email}`}
+                      className="min-w-0 break-words text-[18px] font-medium leading-snug text-slate-950 hover:text-accent"
+                    >
+                      {SITE.email}
+                    </a>
+                  </div>
+
+                  <div className="flex items-start gap-4">
+                    <MapPin className="mt-0.5 h-7 w-7 shrink-0 text-accent" />
+                    <p className="text-[18px] font-medium leading-snug text-slate-950">
+                      {SITE.address.city}, {SITE.address.street}
+                    </p>
+                  </div>
+                </div>
+
+                <div className="mt-8">
+                  <p className="text-[17px] font-medium leading-tight text-slate-950">Или напишите нам напрямую:</p>
+                  <div className="mt-5 flex flex-wrap items-center gap-4">
+                    <a
+                      href={whatsappUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Написать в WhatsApp"
+                      className="social-icon social-icon--whatsapp shadow-sm transition-opacity hover:opacity-90"
+                    >
+                      <WhatsAppIcon size={48} variant="original" className="social-icon__image" />
+                    </a>
+                    <a
+                      href={telegramUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="Написать в Telegram"
+                      className="social-icon bg-[#229ED9] text-white shadow-sm transition-colors hover:bg-[#1d8fc6]"
+                    >
+                      <TelegramIcon size={26} className="social-icon__svg" />
+                    </a>
+                    <a
+                      href={maxUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      aria-label="MAX"
+                      className="social-icon social-icon--max shadow-sm transition-opacity hover:opacity-90"
+                    >
+                      <MaxIcon size={48} className="social-icon__image" />
+                    </a>
+                    <a
+                      href={`mailto:${SITE.email}`}
+                      aria-label="Написать на email"
+                      className="social-icon border border-slate-200 bg-white text-accent shadow-sm transition-colors hover:border-[#C9A227] hover:text-[#b8911f]"
+                    >
+                      <Mail className="h-6 w-6" />
+                    </a>
+                  </div>
+                </div>
+
+                <a
+                  href="https://yandex.ru/maps/-/CHXU5RzE"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-8 flex items-center justify-center whitespace-nowrap rounded-2xl bg-primary px-4 py-3 text-[15px] font-semibold text-white"
+                >
+                  Открыть в Яндекс.Картах
+                </a>
+              </div>
+            </div>
+          </section>
+        )}
+
+        <section className="section hidden bg-muted/30 md:block">
           <div className="container">
             <div className="section__header max-w-3xl">
               <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Контакты</h2>

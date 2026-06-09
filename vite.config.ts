@@ -6,6 +6,10 @@ import { componentTagger } from "lovable-tagger";
 // PROD: сайт на собственном домене => base = "/"
 export default defineConfig(({ mode }) => ({
   base: "/",
+  build: {
+    target: "es2019",
+    cssTarget: "safari13",
+  },
   server: {
     host: "::",
     port: 8080,
