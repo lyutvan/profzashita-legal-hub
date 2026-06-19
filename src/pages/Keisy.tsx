@@ -1,19 +1,18 @@
-import { useEffect } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LegalBackground from "@/components/LegalBackground";
-import { Card, CardContent } from "@/components/ui/card";
-import { Badge } from "@/components/ui/badge";
 import { Helmet } from "react-helmet";
 import columnsImg from "@/assets/legal/court-columns.jpg";
-import scalesIcon from "@/assets/legal/justice-scales-vertical.jpg";
-import gavelIcon from "@/assets/legal/gavel-horizontal.jpg";
 import { cases, type Case } from "@/data/cases";
 import { teamMembers, type TeamMember } from "@/data/team";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
-import { CheckCircle2, Scale, Gavel } from "lucide-react";
+import CaseTrustCard from "@/components/CaseTrustCard";
+import { getCaseCourtLabel, getCasePreview, shortenCaseText } from "@/lib/caseTrust";
+import { Button } from "@/components/ui/button";
+import { ArrowLeft, CheckCircle2, FileText } from "lucide-react";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const caseLawyerSlugAliases: Record<string, string> = {
@@ -95,16 +94,47 @@ const getCaseTeamMembers = (
   return dedupeMembers(mentionedMembers);
 };
 
+const caseFilters = [
+  { id: "all", label: "Все" },
+  { id: "criminal", label: "Уголовные" },
+  { id: "family", label: "Семейные" },
+  { id: "inheritance", label: "Наследственные" },
+  { id: "housing", label: "Жилищные" },
+  { id: "business", label: "Арбитражные" }
+] as const;
+
+type CaseFilter = (typeof caseFilters)[number]["id"];
+
+const caseMatchesFilter = (caseItem: Case, filter: CaseFilter) => {
+  const category = caseItem.category.toLowerCase();
+
+  if (filter === "all") return true;
+  if (filter === "criminal") return category.includes("уголов");
+  if (filter === "family") return category.includes("семейн");
+  if (filter === "inheritance") return category.includes("наслед");
+  if (filter === "housing") return category.includes("жилищ");
+  if (filter === "business") return category.includes("арбитраж");
+
+  return true;
+};
+
 const Cases = () => {
   const location = useLocation();
   const { slug } = useParams<{ slug?: string }>();
+  const [activeFilter, setActiveFilter] = useState<CaseFilter>("all");
   const { openQuickQuestionModal } = useQuickQuestionModal();
-  const visibleCases = cases
-    .map((caseItem) => ({
-      caseItem,
-      caseTeamMembers: getCaseTeamMembers(caseItem),
-    }))
-    .filter(({ caseTeamMembers }) => caseTeamMembers.length > 0);
+  const sortedCases = useMemo(
+    () => [...cases].sort((a, b) => new Date(b.datePublished).getTime() - new Date(a.datePublished).getTime()),
+    []
+  );
+  const visibleCases = useMemo(
+    () => sortedCases.filter((caseItem) => caseMatchesFilter(caseItem, activeFilter)),
+    [activeFilter, sortedCases]
+  );
+  const selectedCase = slug
+    ? sortedCases.find((caseItem) => caseItem.slug === decodeURIComponent(slug))
+    : null;
+  const selectedCaseTeamMembers = selectedCase ? getCaseTeamMembers(selectedCase) : [];
 
   useEffect(() => {
     const targetId = slug
@@ -150,7 +180,7 @@ const Cases = () => {
       ]} />
 
       {/* Article schema for each case */}
-      {visibleCases.map(({ caseItem }) => (
+      {sortedCases.map((caseItem) => (
         <ArticleSchema
           key={caseItem.id}
           headline={caseItem.title}
@@ -174,167 +204,184 @@ const Cases = () => {
         >
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 text-white">
-              Наши <span className="text-accent">кейсы</span>
+              Судебная практика <span className="text-accent">коллегии</span>
             </h1>
             <p className="text-body-mobile md:text-body text-white/90 leading-relaxed">
-              Реальные дела, реальные результаты. Примеры успешного решения 
-              сложных юридических вопросов для наших клиентов.
+              Публикуем фрагменты судебных актов без раскрытия персональных данных доверителей.
             </p>
           </div>
         </LegalBackground>
 
-        {/* Cases Section */}
-        <section className="section">
-          <div className="container">
-            <div className="mx-auto max-w-5xl space-y-10">
-              {visibleCases.map(({ caseItem, caseTeamMembers }, index) => {
-                return (
-                <Card 
-                  key={caseItem.id} 
-                  id={caseItem.slug}
-                  className="overflow-hidden border-border transition-all hover:shadow-elegant"
-                >
-                  <CardContent className="p-6 pt-6 md:p-7 md:pt-7">
-                    <div className="mb-8 grid gap-5 md:grid-cols-[5rem_minmax(0,1fr)] lg:grid-cols-[5rem_minmax(0,1fr)_minmax(260px,320px)] lg:items-start lg:gap-x-6">
-                      {/* Icon */}
-                      <div className="h-20 w-20 overflow-hidden rounded-xl bg-muted/50">
-                        <img 
-                          src={index % 2 === 0 ? scalesIcon : gavelIcon} 
-                          alt="" 
-                          className="w-full h-full object-cover opacity-80"
-                        />
-                      </div>
-                      <div className="min-w-0">
-                        <div className="mb-4 flex flex-wrap items-center gap-3">
-                          <Badge variant="secondary" className="border-accent/20 bg-accent/10 text-accent">
-                            {caseItem.category}
-                          </Badge>
-                          <span className="text-small text-muted-foreground">
-                            {new Date(caseItem.datePublished).toLocaleDateString('ru-RU', {
-                              year: 'numeric',
-                              month: 'long',
-                              day: 'numeric'
-                            })}
-                          </span>
-                        </div>
-                        <h2 className="mb-2 font-serif text-h3-mobile font-bold md:text-h3">
-                          {caseItem.title}
-                        </h2>
-                      </div>
+        {selectedCase ? (
+          <section className="section bg-white">
+            <div className="container">
+              <Button asChild variant="ghost" className="mb-6 px-0 text-slate-600 hover:text-[#9b7518]">
+                <Link to="/keisy">
+                  <ArrowLeft className="mr-2 h-4 w-4" />
+                  Все кейсы
+                </Link>
+              </Button>
 
-                      <div className="min-w-0 md:col-start-2 lg:col-start-3 lg:justify-self-end lg:w-full lg:max-w-[320px]">
-                        <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground lg:text-right">
-                          {caseTeamMembers.length > 1 ? "Команда по делу" : "Адвокат по делу"}
-                        </p>
-                        <div className="grid gap-3">
-                          {caseTeamMembers.map((member) => (
-                            <Link
-                              key={member.slug}
-                              to={`/team/${member.slug}`}
-                              className="grid grid-cols-[5.5rem_minmax(0,1fr)] items-center gap-4 rounded-xl border border-border bg-muted/20 p-4 transition-colors hover:border-accent/40 hover:bg-accent/5 md:p-5"
-                            >
-                              <div className="h-[5.5rem] w-[5.5rem] overflow-hidden rounded-2xl bg-muted">
-                                {member.photo ? (
-                                  <img
-                                    src={member.photo}
-                                    alt={member.name}
-                                    className="h-full w-full object-cover"
-                                    loading="lazy"
-                                  />
-                                ) : null}
-                              </div>
-                              <div className="min-w-0 space-y-1">
-                                <div className="text-body-mobile font-semibold leading-snug text-foreground break-words">
-                                  {member.name}
-                                </div>
-                                <div className="text-small leading-6 text-muted-foreground">
-                                  {member.role}
-                                </div>
-                                {member.experienceText ? (
-                                  <div className="text-small leading-6 text-muted-foreground/90">
-                                    {member.experienceText}
-                                  </div>
-                                ) : null}
-                              </div>
-                            </Link>
-                          ))}
-                        </div>
+              <article id={selectedCase.slug} className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
+                <div className="min-w-0">
+                  <div className="mb-4 flex flex-wrap items-center gap-2">
+                    <span className="rounded-full border border-[#e5d39b] bg-[#fbf7ed] px-3 py-1 text-[12px] font-semibold leading-none text-[#7b5f16]">
+                      {selectedCase.category}
+                    </span>
+                    <span className="text-[13px] text-slate-500">{getCaseCourtLabel(selectedCase)}</span>
+                    <span className="text-[13px] text-slate-500">
+                      {new Intl.DateTimeFormat("ru-RU", {
+                        day: "numeric",
+                        month: "long",
+                        year: "numeric"
+                      }).format(new Date(selectedCase.datePublished))}
+                    </span>
+                  </div>
+
+                  <h2 className="font-serif text-h2-mobile font-bold leading-tight text-slate-950 md:text-h2">
+                    {selectedCase.title}
+                  </h2>
+
+                  <div className="mt-6 rounded-[8px] border-l-4 border-[#C9A227] bg-[#fbf6e8] p-5">
+                    <div className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.08em] text-[#8a6a18]">
+                      <CheckCircle2 className="h-4 w-4" />
+                      Результат
+                    </div>
+                    <p className="mt-2 text-[17px] font-semibold leading-relaxed text-slate-950">
+                      {selectedCase.result}
+                    </p>
+                  </div>
+
+                  <div className="mt-8 grid gap-5 md:grid-cols-2">
+                    <div className="rounded-[8px] border border-slate-200 bg-white p-5">
+                      <div className="text-[12px] font-semibold uppercase tracking-[0.08em] text-slate-500">Задача</div>
+                      <p className="mt-2 text-[15px] leading-relaxed text-slate-700">{selectedCase.task}</p>
+                    </div>
+                    <div className="rounded-[8px] border border-slate-200 bg-white p-5">
+                      <div className="text-[12px] font-semibold uppercase tracking-[0.08em] text-slate-500">Что сделали</div>
+                      <p className="mt-2 text-[15px] leading-relaxed text-slate-700">{selectedCase.actions}</p>
+                    </div>
+                  </div>
+
+                  {selectedCaseTeamMembers.length > 0 ? (
+                    <div className="mt-8">
+                      <div className="mb-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-slate-500">
+                        {selectedCaseTeamMembers.length > 1 ? "Команда по делу" : "Адвокат по делу"}
+                      </div>
+                      <div className="grid gap-3 sm:grid-cols-2">
+                        {selectedCaseTeamMembers.map((member) => (
+                          <Link
+                            key={member.slug}
+                            to={`/team/${member.slug}`}
+                            className="grid grid-cols-[64px_minmax(0,1fr)] items-center gap-4 rounded-[8px] border border-slate-200 bg-white p-3 transition-colors hover:border-[#d8bf72] hover:bg-[#fbf7ed]"
+                          >
+                            <div className="h-16 w-16 overflow-hidden rounded-[8px] bg-slate-100">
+                              {member.photo ? (
+                                <img src={member.photo} alt={member.name} className="h-full w-full object-cover" loading="lazy" />
+                              ) : null}
+                            </div>
+                            <div className="min-w-0">
+                              <div className="text-[15px] font-semibold leading-snug text-slate-950">{member.name}</div>
+                              <div className="text-[13px] leading-snug text-slate-500">{member.role}</div>
+                            </div>
+                          </Link>
+                        ))}
                       </div>
                     </div>
+                  ) : null}
+                </div>
 
-                    <div className="space-y-8">
-                      <div>
-                        <h3 className="font-semibold text-accent mb-3 flex items-center gap-2">
-                          <span className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-small">1</span>
-                          Задача
-                        </h3>
-                        <p className="pl-8 leading-7 text-muted-foreground">
-                          {caseItem.task}
-                        </p>
-                      </div>
-
-                      <div>
-                        <h3 className="font-semibold text-accent mb-3 flex items-center gap-2">
-                          <span className="w-6 h-6 rounded-full bg-accent/10 flex items-center justify-center text-small">2</span>
-                          Наши действия
-                        </h3>
-                        <p className="pl-8 leading-7 text-muted-foreground">
-                          {caseItem.actions}
-                        </p>
-                      </div>
-
-                      <div className="rounded-xl border-l-4 border-accent bg-accent/5 p-7 md:p-8">
-                        <h3 className="font-semibold text-accent mb-3 flex items-center gap-2">
-                          <CheckCircle2 className="h-5 w-5" />
-                          Результат
-                        </h3>
-                        <p className="font-medium leading-7 text-foreground">
-                          {caseItem.result}
-                        </p>
-                      </div>
-
-                      {/* Documents Section */}
-                      {caseItem.documents && caseItem.documents.length > 0 && (
-                        <div className="mt-8 border-t border-border pt-7">
-                          <h3 className="mb-5 flex items-center gap-2 font-semibold text-accent">
-                            <Gavel className="h-5 w-5" />
-                            Документы по делу
-                          </h3>
-                          <div className="grid grid-cols-1 gap-5 sm:grid-cols-2 md:grid-cols-3">
-                            {caseItem.documents.map((doc, docIndex) => (
-                              <a
-                                key={docIndex}
-                                href={doc}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                className="group relative aspect-[3/4] overflow-hidden rounded-xl border border-border hover:border-accent transition-all hover:shadow-md"
-                              >
-                                <img
-                                  src={doc}
-                                  alt={`Документ ${docIndex + 1} по делу: ${caseItem.title}`}
-                                  className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                                  loading="lazy"
-                                />
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity">
-                                  <div className="absolute bottom-0 left-0 right-0 p-3">
-                                    <p className="text-white text-small font-medium">
-                                      Просмотреть документ
-                                    </p>
-                                  </div>
-                                </div>
-                              </a>
-                            ))}
+                <aside className="rounded-[8px] border border-[#eadfbf] bg-[#f8f4eb] p-4">
+                  <div className="mb-3 flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.08em] text-[#8a6a18]">
+                    <FileText className="h-4 w-4" />
+                    Судебные документы
+                  </div>
+                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
+                    {(selectedCase.documents?.length ? selectedCase.documents : [getCasePreview(selectedCase)])
+                      .filter((doc): doc is string => Boolean(doc))
+                      .map((doc, index) => (
+                        <a
+                          key={`${doc}-${index}`}
+                          href={doc}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="group block overflow-hidden rounded-[8px] border border-[#dfc981] bg-white p-2 transition-colors hover:border-[#C9A227]"
+                        >
+                          <div className="aspect-[3/4] overflow-hidden rounded-[6px] bg-slate-50">
+                            <img
+                              src={doc}
+                              alt={`Документ ${index + 1} по делу: ${selectedCase.title}`}
+                              className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.025]"
+                              loading="lazy"
+                            />
                           </div>
-                          <p className="mt-4 text-small italic leading-7 text-muted-foreground">
-                            * Персональные данные на документах скрыты в соответствии с законодательством о защите персональных данных
-                          </p>
-                        </div>
-                      )}
-                    </div>
-                  </CardContent>
-                </Card>
-              )})}
+                        </a>
+                      ))}
+                  </div>
+                  <p className="mt-3 text-[12px] leading-relaxed text-slate-500">
+                    Персональные данные на документах скрыты в соответствии с законодательством.
+                  </p>
+                </aside>
+              </article>
             </div>
+          </section>
+        ) : null}
+
+        <section className="section bg-white">
+          <div className="container">
+            <div className="section__header mx-auto max-w-4xl text-center">
+              <h2 className="font-serif text-h2-mobile font-bold text-slate-950 md:text-h2">
+                {selectedCase ? "Другие кейсы" : "Результат, суть и доказательство"}
+              </h2>
+              <p className="mt-3 text-base leading-relaxed text-slate-600 md:text-lg">
+                Карточки показывают главное: категорию спора, короткую суть, достигнутый результат и фрагмент судебного акта.
+              </p>
+            </div>
+
+            {!selectedCase ? (
+              <div className="mb-7 flex flex-wrap justify-center gap-2 md:mb-9">
+                {caseFilters.map((filter) => (
+                  <button
+                    key={filter.id}
+                    type="button"
+                    onClick={() => setActiveFilter(filter.id)}
+                    className={`min-h-10 rounded-full border px-4 py-2 text-[14px] font-semibold leading-tight transition-colors ${
+                      activeFilter === filter.id
+                        ? "border-[#C9A227] bg-[#C9A227] text-white"
+                        : "border-[#eadfbf] bg-[#fbf7ed] text-slate-800 hover:border-[#d8bf72]"
+                    }`}
+                  >
+                    {filter.label}
+                  </button>
+                ))}
+              </div>
+            ) : null}
+
+            <div className="grid auto-rows-fr grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
+              {(selectedCase
+                ? sortedCases
+                    .filter((caseItem) => caseItem.id !== selectedCase.id && caseItem.category === selectedCase.category)
+                    .slice(0, 3)
+                : visibleCases
+              ).map((caseItem, index) => (
+                <CaseTrustCard key={caseItem.id} caseItem={caseItem} featured={index === 0} />
+              ))}
+            </div>
+
+            {visibleCases.length === 0 ? (
+              <div className="mx-auto max-w-xl rounded-[8px] border border-slate-200 bg-slate-50 p-6 text-center text-slate-600">
+                В этом разделе пока нет опубликованных кейсов.
+              </div>
+            ) : null}
+
+            {!selectedCase ? (
+              <p className="mx-auto mt-6 max-w-3xl text-center text-[13px] leading-relaxed text-slate-500">
+                {shortenCaseText(
+                  "Персональные данные доверителей скрыты. Публикуемые фрагменты нужны, чтобы показать судебную практику и подтверждение результата.",
+                  180
+                )}
+              </p>
+            ) : null}
           </div>
         </section>
 

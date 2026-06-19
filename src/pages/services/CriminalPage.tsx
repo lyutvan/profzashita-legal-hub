@@ -17,6 +17,7 @@ import {
 
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
+import CaseTrustSection from "@/components/CaseTrustSection";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -34,16 +35,6 @@ const CTA_BUTTON_CLASS =
 
 const RED_BUTTON_CLASS =
   "h-12 rounded-[12px] border border-red-700 bg-red-600 px-6 text-[14px] font-semibold text-white shadow-[0_8px_18px_rgba(127,29,29,0.25)] hover:border-red-800 hover:bg-red-700";
-
-const truncateText = (value: string, maxLength: number) =>
-  value.length > maxLength ? `${value.slice(0, maxLength).trim()}...` : value;
-
-const formatCaseDate = (isoDate: string) =>
-  new Intl.DateTimeFormat("ru-RU", {
-    day: "numeric",
-    month: "long",
-    year: "numeric"
-  }).format(new Date(isoDate));
 
 const CriminalPage = () => {
   const canonical = new URL("/services/criminal", SITE.url).toString();
@@ -197,6 +188,7 @@ const CriminalPage = () => {
     .filter(
       (item): item is { id: string; title: string; article: string; court: string; caseItem: Case } => Boolean(item)
     );
+  const criminalCaseItems = criminalCases.map(({ caseItem }) => caseItem).slice(0, 3);
 
   const processSteps = [
     {
@@ -638,82 +630,15 @@ const CriminalPage = () => {
           </div>
         </section>
 
-        <section id="criminal-cases" className="section">
-          <div className="container max-w-[1280px]">
-            <div className="section__header mx-auto max-w-4xl text-center">
-              <h2 className="mb-4 font-serif text-h2-mobile font-bold md:text-h2">
-                Реальные результаты по уголовным делам
-              </h2>
-              <p className="text-body-mobile text-muted-foreground md:text-body">
-                Прекращение дел, изменение меры пресечения, возврат дел прокурору, освобождение из-под стражи.
-                <br className="hidden md:block" />
-                Публикуем фрагменты судебных актов без раскрытия персональных данных доверителей.
-              </p>
-            </div>
-
-            <div className="criminal-cases-grid section__content mt-10 grid grid-cols-1 gap-8 md:mt-14 md:grid-cols-2 xl:grid-cols-3">
-              {criminalCases.map(({ id, title, article, court, caseItem }) => {
-                const decisionPreview = caseItem.documents?.[0] ?? caseItem.decisionPreview;
-
-                return (
-                  <Card
-                    key={id}
-                    className="criminal-case-card relative flex h-full min-h-[420px] flex-col overflow-hidden rounded-[12px] border border-[#C9A227] bg-[#F6F1E6] transition-all hover:shadow-elegant"
-                  >
-                    <CardContent className="flex h-full flex-col px-5 pb-6 pt-20 md:px-7 md:pb-7">
-                      <div className="absolute right-6 top-5 hidden sm:flex">
-                        <div className="flex h-[132px] w-[94px] overflow-hidden border border-[#bfbfbf] bg-white shadow-sm">
-                          {decisionPreview ? (
-                            <img
-                              src={decisionPreview}
-                              alt={`Скан решения по делу: ${caseItem.title}`}
-                              className="h-full w-full object-contain p-1"
-                              loading="lazy"
-                            />
-                          ) : (
-                            <div className="flex h-full w-full items-center justify-center px-3 text-center text-[14px] text-muted-foreground">
-                              Скан решения
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      <h3 className="max-w-[70%] text-[18px] font-bold leading-tight text-slate-950 md:text-[19px]">
-                        <Link to={`/keisy#${caseItem.slug}`} className="transition-colors hover:text-[#b8911f]">
-                          {title}
-                        </Link>
-                      </h3>
-
-                      <div className="mt-6 space-y-4 text-[14px] leading-relaxed text-slate-700 md:text-[15px]">
-                        <p>
-                          <span className="font-bold text-slate-950">Статья:</span> {article}
-                          <br />
-                          <span className="font-bold text-slate-950">Суд:</span> {court}
-                        </p>
-                        <p>
-                          <span className="font-bold text-slate-950">Что сделали:</span>
-                          <br />
-                          {truncateText(caseItem.actions, 180)}
-                        </p>
-                        <p>
-                          <span className="font-bold text-slate-950">Результат:</span>
-                          <br />
-                          <span className="font-semibold text-slate-950">{truncateText(caseItem.result, 180)}</span>
-                        </p>
-                      </div>
-
-                      <div className="mt-auto flex justify-center pt-6">
-                        <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} w-full md:w-auto`}>
-                          <Link to={`/keisy#${caseItem.slug}`}>Посмотреть кейс</Link>
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
-            </div>
-
-            <div className="mt-14 text-center">
+        <div id="criminal-cases">
+          <CaseTrustSection
+            cases={criminalCaseItems}
+            className="bg-white"
+            title="Реальные результаты по уголовным делам"
+            subtitle="Прекращение дел, изменение меры пресечения, возврат дел прокурору. Публикуем фрагменты судебных актов без раскрытия персональных данных доверителей."
+          />
+          <section className="section pt-0">
+            <div className="container text-center">
               <p className="text-[20px] font-bold leading-tight text-slate-950">
                 Ваша ситуация может быть похожей
               </p>
@@ -726,8 +651,8 @@ const CriminalPage = () => {
               </Button>
               <p className="mt-3 text-sm text-slate-500">Консультация по телефону. Строго конфиденциально</p>
             </div>
-          </div>
-        </section>
+          </section>
+        </div>
 
         <section id="criminal-process" className="section bg-[#F8FAFC]">
           <div className="container max-w-[1120px]">

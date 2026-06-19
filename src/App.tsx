@@ -6,7 +6,6 @@ import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Uslugi from "./pages/Uslugi";
-import UslugiNew from "./pages/UslugiNew";
 import ServiceDetail from "./pages/ServiceDetail";
 import ClusterServiceRouter from "./pages/ClusterServiceRouter";
 import OKollegii from "./pages/OKollegii";
@@ -68,7 +67,7 @@ const App = () => (
           <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/uslugi-old" element={<Uslugi />} />
-          <Route path="/uslugi" element={<UslugiNew />} />
+          <Route path="/uslugi" element={<Navigate to="/services/phys" replace />} />
           <Route path="/uslugi/fiz-lica" element={<Navigate to="/services/phys" replace />} />
           <Route path="/uslugi/yur-lica" element={<Navigate to="/services/biz" replace />} />
           <Route path="/uslugi/ugolovnye" element={<Navigate to="/services/criminal" replace />} />
@@ -154,9 +153,9 @@ const App = () => (
           {/* Redirects from old URLs */}
           <Route path="/services/phys/moshennichestvo" element={<Navigate to="/services/phys" replace />} />
           <Route path="/services/phys/narkotiki" element={<Navigate to="/services/phys" replace />} />
-          <Route path="/knowledge/*" element={<Navigate to="/uslugi" replace />} />
-          <Route path="/blog/*" element={<Navigate to="/uslugi" replace />} />
-          <Route path="/articles/*" element={<Navigate to="/uslugi" replace />} />
+          <Route path="/knowledge/*" element={<Navigate to="/services/phys" replace />} />
+          <Route path="/blog/*" element={<Navigate to="/services/phys" replace />} />
+          <Route path="/articles/*" element={<Navigate to="/services/phys" replace />} />
           <Route path="/services/ugolovnye" element={<Navigate to="/services/criminal" replace />} />
           <Route path="/services/phys/ugolovnye" element={<Navigate to="/services/criminal" replace />} />
           <Route path="/services/grazhdanskie" element={<Navigate to="/services/phys" replace />} />
@@ -171,8 +170,8 @@ const App = () => (
           <Route path="/cases" element={<Keisy />} />
           <Route path="/cases/:slug" element={<Keisy />} />
           <Route path="/contacts" element={<Navigate to="/kontakty" replace />} />
-          <Route path="/practices" element={<Navigate to="/uslugi" replace />} />
-          <Route path="/practices/:slug" element={<Navigate to="/uslugi" replace />} />
+          <Route path="/practices" element={<Navigate to="/services/phys" replace />} />
+          <Route path="/practices/:slug" element={<Navigate to="/services/phys" replace />} />
           <Route path="/komanda" element={<Navigate to="/#team" replace />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}

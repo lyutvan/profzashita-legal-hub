@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import LegalBackground from "@/components/LegalBackground";
+import CaseTrustCard from "@/components/CaseTrustCard";
+import AttorneyCard from "@/components/AttorneyCard";
 import { OrganizationSchema, WebSiteSchema, ReviewsSchema } from "@/components/JsonLd";
 import { cases } from "@/data/cases";
 import { teamMembers } from "@/data/team";
@@ -190,17 +192,6 @@ const Index = () => {
     }
   ];
 
-  const truncateText = (text: string, max = 160) => {
-    if (text.length <= max) return text;
-    return `${text.slice(0, max).trim()}…`;
-  };
-  const formatCaseDate = (isoDate: string) =>
-    new Intl.DateTimeFormat("ru-RU", {
-      day: "numeric",
-      month: "long",
-      year: "numeric"
-    }).format(new Date(isoDate));
-
   const heroBadge = "Коллегия адвокатов города Москвы";
 
   return (
@@ -351,61 +342,10 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="section__content mt-8 grid grid-cols-1 gap-4 md:mt-12 md:grid-cols-2 md:gap-8 xl:grid-cols-3">
-              {featuredCases.map((caseItem) => {
-                const decisionPreview = caseItem.documents?.[0];
-
-                return (
-                  <Card
-                    key={caseItem.id}
-                    className="border-[#C9A227] bg-[#f3efe4] hover:shadow-elegant transition-all h-full flex flex-col overflow-hidden"
-                  >
-                    <CardContent className="flex h-full flex-col px-5 pb-5 pt-5 md:px-7 md:pb-7 md:pt-7">
-                      <div className="mb-6 hidden justify-end sm:flex">
-                        <div className="h-[156px] w-[128px] overflow-hidden border border-[#bfbfbf] bg-white shadow-sm">
-                          {decisionPreview ? (
-                            <img
-                              src={decisionPreview}
-                              alt={`Скан решения по делу: ${caseItem.title}`}
-                              className="h-full w-full object-contain p-1"
-                              loading="lazy"
-                            />
-                          ) : (
-                            <div className="h-full w-full flex items-center justify-center text-center text-[14px] text-muted-foreground px-3">
-                              Скан решения
-                            </div>
-                          )}
-                        </div>
-                      </div>
-
-                      <div className="text-[15px] font-semibold leading-snug text-accent md:text-[18px] md:text-foreground">
-                        {caseItem.category}
-                      </div>
-                      <div className="mb-3 text-[14px] text-foreground/70 md:mb-5 md:text-[16px]">{formatCaseDate(caseItem.datePublished)} г.</div>
-                      <h3 className="mb-3 text-[18px] font-semibold leading-tight text-foreground md:mb-5 md:text-[22px]">
-                        {caseItem.title}
-                      </h3>
-
-                      <p className="hidden text-[16px] leading-relaxed text-foreground/90 sm:block">
-                        <span className="font-semibold text-foreground">Ситуация:</span>
-                        <br />
-                        {truncateText(caseItem.task, 220)}
-                      </p>
-                      <p className="text-[15px] leading-relaxed text-foreground/90 md:mt-4 md:text-[16px]">
-                        <span className="font-semibold text-foreground">Результат:</span>
-                        <br />
-                        {truncateText(caseItem.result, 120)}
-                      </p>
-
-                      <div className="mt-auto flex justify-center pt-5 md:pt-8">
-                        <Button size="lg" className="min-w-[170px] bg-accent text-white hover:bg-accent/90 md:min-w-[190px]" asChild>
-                          <Link to={`/keisy#${caseItem.slug}`}>Перейти к кейсу</Link>
-                        </Button>
-                      </div>
-                    </CardContent>
-                  </Card>
-                );
-              })}
+            <div className="section__content mt-8 grid auto-rows-fr grid-cols-1 gap-5 md:mt-12 md:grid-cols-2 xl:grid-cols-3">
+              {featuredCases.map((caseItem, index) => (
+                <CaseTrustCard key={caseItem.id} caseItem={caseItem} featured={index === 0} />
+              ))}
             </div>
 
             <div className="mt-8 text-center text-body-mobile text-muted-foreground md:mt-14 md:text-body">
@@ -552,86 +492,19 @@ const Index = () => {
               </p>
             </div>
 
-            <div className="section__content mx-auto mt-8 grid max-w-[720px] grid-cols-1 gap-3 md:hidden">
+            <div className="section__content mx-auto mt-8 grid max-w-[1180px] grid-cols-1 items-stretch gap-5 md:mt-12 md:grid-cols-2 lg:grid-cols-3 lg:gap-7">
               {featuredTeam.map((member) => {
                 const override = featuredTeamOverrides[member.slug];
-                const badge = override?.badge ?? (member.role.toLowerCase().includes("юрист") ? "Юрист" : "Адвокат");
-                const experience = override?.experience ?? member.experienceText;
 
                 return (
-                  <Link
+                  <AttorneyCard
                     key={member.slug}
-                    to={`/team/${member.slug}`}
-                    className="flex items-center gap-4 rounded-2xl border border-[#d7c28b] bg-[#f3f4f6] p-3 text-left shadow-[0_6px_16px_rgba(15,23,42,0.04)]"
-                  >
-                    <img
-                      src={member.photo}
-                      alt={member.name}
-                      className="h-20 w-20 shrink-0 rounded-xl object-cover"
-                      loading="lazy"
-                    />
-                    <div className="min-w-0">
-                      <p className="font-serif text-[18px] font-semibold leading-tight text-foreground">{member.name}</p>
-                      <p className="mt-1 text-[13px] font-semibold text-accent">{badge}</p>
-                      {experience && <p className="mt-1 text-[13px] text-muted-foreground">{experience}</p>}
-                    </div>
-                    <span className="ml-auto shrink-0 text-accent">→</span>
-                  </Link>
-                );
-              })}
-            </div>
-
-            <div className="section__content mx-auto mt-12 hidden max-w-[1180px] grid-cols-1 items-start gap-7 md:grid md:grid-cols-2 lg:grid-cols-3">
-              {featuredTeam.map((member) => {
-                const override = featuredTeamOverrides[member.slug];
-                const badge = override?.badge ?? (member.role.toLowerCase().includes("юрист") ? "Юрист" : "Адвокат");
-                const subtitle = override?.subtitle ?? member.role;
-                const experience = override?.experience ?? member.experienceText;
-                const cardSpecializations = override?.specializations ?? (member.specializations ?? []).slice(0, 3);
-
-                return (
-                  <Card
-                    key={member.slug}
-                    className="self-start border-[#C9A227] bg-[#f3f4f6] hover:shadow-elegant transition-all overflow-hidden"
-                  >
-                    <CardContent className="p-0 flex flex-col">
-                      <div className="h-[345px] w-full overflow-hidden border-b border-[#C9A227]">
-                        <img
-                          src={member.photo}
-                          alt={member.name}
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div className="px-6 pt-6 pb-6 flex flex-col">
-                        <h3 className="font-serif text-[20px] leading-tight font-semibold text-center min-h-[54px] mb-3">
-                          {member.name}
-                        </h3>
-
-                        <div className="mx-auto mb-3 rounded-full bg-accent px-5 py-1 text-[17px] font-semibold text-white leading-none">
-                          {badge}
-                        </div>
-
-                        <div className="mb-2 flex min-h-[56px] items-start justify-center">
-                          <p className="text-[16px] text-center text-foreground">{subtitle}</p>
-                        </div>
-                        {experience && (
-                          <p className="mb-4 min-h-[28px] text-[16px] text-center text-muted-foreground">
-                            {experience}
-                          </p>
-                        )}
-
-                        <ul className="grid gap-3 text-[16px] leading-relaxed text-foreground/90">
-                          {cardSpecializations.map((spec) => (
-                            <li key={spec} className="flex min-h-[54px] items-start gap-2">
-                              <span className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/90 shrink-0" />
-                              <span>{spec}</span>
-                            </li>
-                          ))}
-                        </ul>
-                      </div>
-                    </CardContent>
-                  </Card>
+                    member={member}
+                    badge={override?.badge}
+                    roleTitle={override?.subtitle}
+                    experience={override?.experience}
+                    points={override?.specializations}
+                  />
                 );
               })}
             </div>

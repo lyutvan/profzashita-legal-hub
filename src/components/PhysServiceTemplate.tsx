@@ -6,6 +6,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import PriceBlock from "@/components/PriceBlock";
 import PhysServiceLeadForm from "@/components/PhysServiceLeadForm";
+import AttorneyCard from "@/components/AttorneyCard";
 import PhoneInput from "@/components/PhoneInput";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -794,40 +795,16 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 </div>
                 <div className="section__content grid gap-6 md:grid-cols-3">
                   {familyTeamMembers.map((member) => (
-                    <Card
+                    <AttorneyCard
                       key={member.slug}
-                      className="h-full border border-[#C9A227] rounded-2xl"
-                    >
-                      <CardContent className="pt-6 pb-6 flex flex-col items-center text-center h-full">
-                        {member.photo && (
-                          <div className="w-full h-[240px] rounded-xl overflow-hidden mb-4 border border-[#C9A227]/30">
-                            <img
-                              src={member.photo}
-                              alt={member.name}
-                              className="w-full h-full object-cover"
-                              loading="lazy"
-                            />
-                          </div>
-                        )}
-                        <div className="font-semibold text-body-mobile md:text-body mb-2">
-                          {member.name}
-                        </div>
-                        <span className="inline-flex items-center justify-center px-3 py-1 text-xs font-semibold bg-[#C9A227] text-white rounded-full mb-2">
-                          {member.role}
-                        </span>
-                        <div className="text-small text-muted-foreground mb-4">{member.experience}</div>
-                        <div className="font-semibold text-small mb-2">Специализации:</div>
-                        <ul className="space-y-1 text-small text-muted-foreground">
-                          {member.specializations.map((item) => (
-                            <li key={item}>• {item}</li>
-                          ))}
-                        </ul>
-                      </CardContent>
-                    </Card>
+                      member={member}
+                      experience={member.experience}
+                      points={member.specializations}
+                    />
                   ))}
                 </div>
                 <p className="text-center text-small text-muted-foreground mt-6">
-                  Все наши юристы проходят ежегодную аттестацию и имеют доступ к базе судебной практики
+                  По сложным делам позиция дополнительно обсуждается внутри коллегии перед ключевыми процессуальными шагами
                 </p>
               </>
             ) : (
@@ -842,43 +819,11 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 </div>
                 <div className="section__content grid gap-6 md:grid-cols-2">
                   {data.team.map((member) => (
-                    <Card key={member.slug} className="h-full">
-                      <CardContent className="pt-6 h-full flex flex-col">
-                        <div className="flex gap-4 mb-4">
-                          {member.photo && (
-                            <div className="w-20 h-20 rounded-lg overflow-hidden border border-border">
-                              <img
-                                src={member.photo}
-                                alt={member.name}
-                                className="w-full h-full object-cover"
-                                loading="lazy"
-                              />
-                            </div>
-                          )}
-                          <div>
-                            <div className="font-semibold text-body-mobile md:text-body">{member.name}</div>
-                            <div className="text-small text-accent">{member.role}</div>
-                            {member.experience && (
-                              <div className="text-small text-muted-foreground mt-1">{member.experience}</div>
-                            )}
-                          </div>
-                        </div>
-                        <ul className="space-y-2 text-small text-muted-foreground mb-4">
-                          {member.bullets.map((item) => (
-                            <li key={item} className="flex items-start gap-2">
-                              <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
-                              <span>{item}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        <Link
-                          to={`/team/${member.slug}`}
-                          className="mt-auto text-small text-accent hover:underline"
-                        >
-                          Смотреть профиль
-                        </Link>
-                      </CardContent>
-                    </Card>
+                    <AttorneyCard
+                      key={member.slug}
+                      member={member}
+                      points={member.bullets}
+                    />
                   ))}
                 </div>
               </>

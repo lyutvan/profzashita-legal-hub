@@ -18,6 +18,7 @@ import {
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
+import CaseTrustCard from "@/components/CaseTrustCard";
 import PriceBlock from "@/components/PriceBlock";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -642,60 +643,16 @@ const ZhilishchnyeSporyPage = () => {
         <section className="section bg-muted/30">
           <div className="container">
             <div className="section__header mx-auto max-w-4xl text-center">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Реальные дела по жилищным спорам</h2>
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">Судебная практика коллегии</h2>
               <p className="text-muted-foreground text-sm md:text-base">
-                Мы публикуем фрагменты судебных решений с соблюдением требований закона о персональных данных.
+                Профильные жилищные дела: результат, короткая суть и фрагмент судебного акта без персональных данных.
               </p>
             </div>
 
-            <div className="section__content mx-auto grid max-w-[980px] grid-cols-1 gap-6 auto-rows-fr md:grid-cols-2">
-              {housingCases.map(({ id, label, caseItem }) => {
-                const previewUrl = caseItem.decisionPreview ?? caseItem.documents?.[0];
-                const caseHref = `/cases/${caseItem.slug}`;
-                return (
-                  <Card key={id} className="h-full rounded-[12px] border border-[#D8C08B] bg-[#F6F1E6]">
-                    <CardContent className="h-full p-6 flex flex-col">
-                      <div className="flex items-start gap-4">
-                        <h3 className="flex-1 text-xl font-semibold leading-tight text-slate-900">
-                          <Link to={caseHref} className="hover:text-[#b8911f] transition-colors">
-                            {label}
-                          </Link>
-                        </h3>
-                        <Link
-                          to={caseHref}
-                          className="flex h-28 w-24 shrink-0 items-center justify-center border border-[#D8C08B] bg-white text-center text-sm text-slate-500 hover:opacity-90"
-                          aria-label={`Открыть кейс: ${label}`}
-                        >
-                          <img
-                            src={previewUrl}
-                            alt={`Скан решения: ${label}`}
-                            className="h-full w-full object-cover"
-                            loading="lazy"
-                          />
-                        </Link>
-                      </div>
-
-                      <div className="mt-5 space-y-3 text-sm md:text-base leading-relaxed text-slate-700 flex-1">
-                        <div>
-                          <div className="font-semibold text-slate-900">Ситуация:</div>
-                          <p>{caseItem.task}</p>
-                        </div>
-                        <div>
-                          <div className="font-semibold text-slate-900">Что сделали:</div>
-                          <p>{caseItem.actions}</p>
-                        </div>
-                        <div>
-                          <div className="font-semibold text-slate-900">Результат:</div>
-                          <p>{caseItem.result}</p>
-                        </div>
-                      </div>
-                      <Button asChild size="lg" className={`${CARD_BUTTON_CLASS} mt-6 w-full`}>
-                        <Link to={caseHref}>Подробнее о кейсе</Link>
-                      </Button>
-                    </CardContent>
-                  </Card>
-                );
-              })}
+            <div className="section__content mx-auto grid max-w-5xl auto-rows-fr grid-cols-1 gap-5 md:grid-cols-2">
+              {housingCases.map(({ id, caseItem }, index) => (
+                <CaseTrustCard key={id} caseItem={caseItem} featured={index === 0} />
+              ))}
             </div>
 
             <div className="mt-10 text-center">
@@ -707,6 +664,11 @@ const ZhilishchnyeSporyPage = () => {
               <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} mt-6 w-full sm:w-auto`}>
                 <Link to={contactsHref}>Позвонить и обсудить ситуацию</Link>
               </Button>
+              <div className="mt-4">
+                <Link to="/keisy" className="text-sm font-semibold text-[#8a6a18] underline underline-offset-4 hover:text-[#6f5513]">
+                  Посмотреть все кейсы
+                </Link>
+              </div>
             </div>
           </div>
         </section>

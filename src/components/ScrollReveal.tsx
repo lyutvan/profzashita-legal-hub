@@ -19,7 +19,6 @@ const ScrollReveal = () => {
     }
 
     let observer: IntersectionObserver | null = null;
-    let setupTimer: number | undefined;
 
     const setupReveal = () => {
       const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
@@ -71,7 +70,7 @@ const ScrollReveal = () => {
       });
     };
 
-    setupTimer = window.setTimeout(() => {
+    const setupTimer = window.setTimeout(() => {
       window.requestAnimationFrame(setupReveal);
     }, 120);
 

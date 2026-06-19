@@ -5,6 +5,7 @@ import Footer from "@/components/Footer";
 import Breadcrumbs from "@/components/Breadcrumbs";
 import LeadForm from "@/components/LeadForm";
 import PriceBlock from "@/components/PriceBlock";
+import AttorneyCard from "@/components/AttorneyCard";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from "@/components/ui/accordion";
@@ -412,40 +413,11 @@ const CriminalServiceTemplate = ({ data }: CriminalServiceTemplateProps) => {
             </div>
             <div className="section__content grid gap-6 md:grid-cols-2">
               {data.team.map((member) => (
-                <Card key={member.slug} className="h-full">
-                  <CardContent className="pt-6 h-full flex flex-col">
-                    <div className="flex gap-4 mb-4">
-                      {member.photo && (
-                        <div className="w-20 h-20 rounded-lg overflow-hidden border border-border">
-                          <img
-                            src={member.photo}
-                            alt={member.name}
-                            className="w-full h-full object-cover"
-                            loading="lazy"
-                          />
-                        </div>
-                      )}
-                      <div>
-                        <div className="font-semibold text-body-mobile md:text-body">{member.name}</div>
-                        <div className="text-small text-accent">{member.role}</div>
-                        {member.experience && (
-                          <div className="text-small text-muted-foreground mt-1">{member.experience}</div>
-                        )}
-                      </div>
-                    </div>
-                    <ul className="space-y-2 text-small text-muted-foreground mb-4">
-                      {member.bullets.map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <CheckCircle2 className="h-4 w-4 text-accent mt-0.5" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                    <Button asChild variant="outline" className="mt-auto">
-                      <Link to={`/team/${member.slug}`}>Подробнее</Link>
-                    </Button>
-                  </CardContent>
-                </Card>
+                <AttorneyCard
+                  key={member.slug}
+                  member={member}
+                  points={member.bullets}
+                />
               ))}
             </div>
           </div>

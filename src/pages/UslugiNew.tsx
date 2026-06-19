@@ -453,7 +453,58 @@ const UslugiNew = () => {
           </div>
         </section>
 
-        {/* C) Catalog */}
+        {/* C) Main directions */}
+        <section className="section pt-0">
+          <div className="container">
+            <div className="section__header max-w-3xl">
+              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold">
+                Основные направления
+              </h2>
+              <p className="text-muted-foreground">
+                Выберите раздел — внутри собраны профильные услуги и быстрые переходы.
+              </p>
+            </div>
+            <div className="section__content grid grid-cols-1 gap-5 lg:grid-cols-3">
+              {directionCards.map((card) => (
+                <Link key={card.audience} to={card.to} className="group block">
+                  <Card className="service-card h-full border-border/80 bg-white transition-all hover:border-accent/60 hover:shadow-elegant">
+                    <CardContent className="flex h-full flex-col p-5 md:p-6">
+                      <div className="mb-4 flex items-start justify-between gap-4">
+                        <div className="flex h-14 w-14 items-center justify-center rounded-xl bg-accent/10">
+                          {card.icon}
+                        </div>
+                        <ArrowUpRight className="h-5 w-5 text-muted-foreground transition-colors group-hover:text-accent" />
+                      </div>
+                      <h3 className="text-[20px] font-semibold leading-tight text-foreground group-hover:text-accent md:text-[22px]">
+                        {card.title}
+                      </h3>
+                      <p className="mt-2 text-small leading-relaxed text-muted-foreground">
+                        {card.subtitle}
+                      </p>
+                      <div className="mt-5 flex flex-wrap gap-2">
+                        {card.items.slice(0, 5).map((item) => (
+                          <span
+                            key={item}
+                            className="rounded-full border border-border bg-background px-3 py-1 text-[12px] leading-tight text-muted-foreground"
+                          >
+                            {item}
+                          </span>
+                        ))}
+                      </div>
+                      <div className="mt-auto pt-5">
+                        <span className="inline-flex min-h-10 items-center justify-center rounded-lg border border-accent/35 bg-accent/5 px-4 text-small font-semibold text-foreground transition-colors group-hover:bg-accent group-hover:text-white">
+                          Смотреть услуги
+                        </span>
+                      </div>
+                    </CardContent>
+                  </Card>
+                </Link>
+              ))}
+            </div>
+          </div>
+        </section>
+
+        {/* D) Catalog */}
         <section className="section">
           <div className="container">
             <div className="section__header max-w-3xl">
