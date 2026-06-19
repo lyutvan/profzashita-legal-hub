@@ -59,6 +59,7 @@ const TeamSection = ({
               key={member.slug}
               member={member as TeamMember}
               points={specializationOverrides[member.slug] ?? member.specializations}
+              mobileEditorial
             />
           ))}
         </div>

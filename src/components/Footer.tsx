@@ -3,15 +3,6 @@ import { Phone, Mail, MapPin } from "lucide-react";
 import Logo from "./Logo";
 import { SITE } from "@/config/site";
 
-const mainLinks = [
-  { to: "/", label: "Главная" },
-  { to: "/tseny", label: "Цены" },
-  { to: "/keisy", label: "Кейсы" },
-  { to: "/novosti", label: "Новости" },
-  { to: "/o-kollegii", label: "О коллегии" },
-  { to: "/kontakty", label: "Контакты" }
-];
-
 const documentLinks = [
   { to: "/politika-konfidentsialnosti", label: "Политика конфиденциальности" },
   { to: "/politika-konfidentsialnosti#personal-data", label: "Политика обработки персональных данных" },
@@ -22,7 +13,7 @@ const Footer = () => {
   return (
     <footer className="relative overflow-hidden bg-primary text-white">
       <div className="w-full px-1 py-8 sm:px-2 sm:py-10 md:px-3 lg:px-4 lg:py-12 xl:px-5 2xl:px-6">
-        <div className="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)_minmax(0,0.85fr)] lg:gap-x-8 xl:grid-cols-[minmax(0,1.5fr)_minmax(0,0.95fr)_minmax(0,0.78fr)_minmax(0,1fr)] xl:gap-x-10 xl:gap-y-8">
+        <div className="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-x-8 xl:grid-cols-[minmax(0,1.55fr)_minmax(0,0.95fr)_minmax(0,1fr)] xl:gap-x-10 xl:gap-y-8">
           <div className="min-w-0">
             <div className="flex h-full flex-col gap-4">
               <Link to="/" className="inline-flex self-start">
@@ -84,24 +75,6 @@ const Footer = () => {
                     {SITE.address.city}, {SITE.address.street}
                   </span>
                 </li>
-              </ul>
-            </div>
-          </div>
-
-          <div className="min-w-0">
-            <div className="flex h-full flex-col gap-5">
-              <h3 className="font-serif text-h3-mobile font-semibold md:text-h3">Навигация</h3>
-              <ul className="grid gap-3.5">
-                {mainLinks.map((link) => (
-                  <li key={link.to}>
-                    <Link
-                      to={link.to}
-                      className="inline-flex leading-7 text-small text-white/82 transition-colors hover:text-accent"
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                ))}
               </ul>
             </div>
           </div>

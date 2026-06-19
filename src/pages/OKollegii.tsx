@@ -7,14 +7,10 @@ import { PersonSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import { Helmet } from "react-helmet";
 import { teamMembers } from "@/data/team";
-import { getServicesByAudience } from "@/data/services-audiences";
 import TeamSection from "@/components/TeamSection";
 import { Button } from "@/components/ui/button";
 
 const About = () => {
-  const topCriminalServices = getServicesByAudience("criminal").slice(0, 6);
-  const topBizServices = getServicesByAudience("biz").slice(0, 6);
-
   return (
     <div className="top-page-mobile-compact min-h-screen flex flex-col">
       <Helmet>
@@ -193,56 +189,6 @@ const About = () => {
           title="Адвокаты и специалисты коллегии" 
           subtitle="Карточки показывают статус, стаж и ключевую практику, чтобы вы быстро понимали, кто может подключиться к вашему делу."
         />
-
-        {/* Criminal Services Links */}
-        <section className="section">
-          <div className="container">
-            <div className="section__header max-w-3xl">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
-                Направления уголовной защиты
-              </h2>
-              <p className="text-muted-foreground">
-                Ключевые направления, по которым мы ведем уголовные дела.
-              </p>
-            </div>
-            <div className="section__content grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {topCriminalServices.map((service) => (
-                <Link
-                  key={service.path}
-                  to={service.path}
-                  className="text-small text-foreground hover:text-accent hover:underline"
-                >
-                  {service.title}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
-
-        {/* Business Services Links */}
-        <section className="section bg-muted/30">
-          <div className="container">
-            <div className="section__header max-w-3xl">
-              <h2 className="font-serif text-h2-mobile md:text-h2 font-bold mb-4">
-                Направления для бизнеса
-              </h2>
-              <p className="text-muted-foreground">
-                Основные услуги для юридических лиц и корпоративного сопровождения.
-              </p>
-            </div>
-            <div className="section__content grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
-              {topBizServices.map((service) => (
-                <Link
-                  key={service.path}
-                  to={service.path}
-                  className="text-small text-foreground hover:text-accent hover:underline"
-                >
-                  {service.title}
-                </Link>
-              ))}
-            </div>
-          </div>
-        </section>
 
         {/* Achievements Section */}
         <section className="section bg-muted/30">
