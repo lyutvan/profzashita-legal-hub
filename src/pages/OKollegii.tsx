@@ -9,6 +9,7 @@ import { Helmet } from "react-helmet";
 import { teamMembers } from "@/data/team";
 import TeamSection from "@/components/TeamSection";
 import { Button } from "@/components/ui/button";
+import legalConsultationEditorial from "@/assets/editorial/legal-consultation-editorial.jpg";
 
 const About = () => {
   return (
@@ -145,38 +146,49 @@ const About = () => {
                 })}
               </div>
 
-              <div className="mt-10 grid gap-6 lg:grid-cols-[1fr_1fr]">
-                <Card className="border-[#d8c08b] bg-[#fbf7ec]">
-                  <CardContent className="p-6 md:p-7">
-                    <div className="mb-4 flex items-center gap-3">
-                      <Target className="h-6 w-6 text-accent" />
-                      <h3 className="font-serif text-h3-mobile md:text-h3 font-bold">Задача коллегии</h3>
-                    </div>
-                    <p className="text-muted-foreground leading-relaxed">
-                      Не обещать невозможное, а быстро отделить сильные аргументы от слабых, выбрать рабочую
-                      стратегию и последовательно защищать интересы доверителя.
-                    </p>
-                  </CardContent>
-                </Card>
+              <div className="mt-10 grid gap-6 lg:grid-cols-[minmax(0,1.08fr)_minmax(0,0.92fr)]">
+                <div className="overflow-hidden rounded-lg border border-[#d8c08b] bg-muted shadow-[0_14px_34px_rgba(15,23,42,0.08)]">
+                  <img
+                    src={legalConsultationEditorial}
+                    alt="Подготовка правовой позиции и анализ документов"
+                    className="h-full min-h-[260px] w-full object-cover md:min-h-[360px]"
+                    loading="lazy"
+                  />
+                </div>
 
-                <Card className="border-[#d8c08b] bg-white">
-                  <CardContent className="p-6 md:p-7">
-                    <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-4">Что получает клиент</h3>
-                    <ul className="grid gap-3 text-small text-muted-foreground sm:grid-cols-2">
-                      {[
-                        "Ответственного адвоката по делу",
-                        "Понятные этапы и сроки",
-                        "Оценку рисков до активных действий",
-                        "Подготовленную позицию для суда или переговоров"
-                      ].map((item) => (
-                        <li key={item} className="flex items-start gap-2">
-                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                          <span>{item}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </CardContent>
-                </Card>
+                <div className="grid gap-6">
+                  <Card className="border-[#d8c08b] bg-[#fbf7ec]">
+                    <CardContent className="p-6 md:p-7">
+                      <div className="mb-4 flex items-center gap-3">
+                        <Target className="h-6 w-6 text-accent" />
+                        <h3 className="font-serif text-h3-mobile md:text-h3 font-bold">Задача коллегии</h3>
+                      </div>
+                      <p className="text-muted-foreground leading-relaxed">
+                        Не обещать невозможное, а быстро отделить сильные аргументы от слабых, выбрать рабочую
+                        стратегию и последовательно защищать интересы доверителя.
+                      </p>
+                    </CardContent>
+                  </Card>
+
+                  <Card className="border-[#d8c08b] bg-white">
+                    <CardContent className="p-6 md:p-7">
+                      <h3 className="font-serif text-h3-mobile md:text-h3 font-bold mb-4">Что получает клиент</h3>
+                      <ul className="grid gap-3 text-small text-muted-foreground sm:grid-cols-2">
+                        {[
+                          "Ответственного адвоката по делу",
+                          "Понятные этапы и сроки",
+                          "Оценку рисков до активных действий",
+                          "Подготовленную позицию для суда или переговоров"
+                        ].map((item) => (
+                          <li key={item} className="flex items-start gap-2">
+                            <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                            <span>{item}</span>
+                          </li>
+                        ))}
+                      </ul>
+                    </CardContent>
+                  </Card>
+                </div>
               </div>
             </div>
           </div>

@@ -8,9 +8,9 @@ export const SITE = {
   phoneRaw: "+79169162310",
   messengerPhone: "",
   messengerPhoneRaw: "",
-  whatsappUrl: "/kontakty",
-  telegramUrl: "/kontakty",
-  maxUrl: "/kontakty",
+  whatsappUrl: "https://wa.me/79168597654",
+  telegramUrl: "tg://resolve?phone=79168597654",
+  maxUrl: "https://web.max.ru/?phone=79168597654",
   email: "info@prof-zashita.ru",
   address: {
     country: "RU",

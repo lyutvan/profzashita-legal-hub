@@ -136,11 +136,7 @@ const FAQ = () => {
       <Header />
       
       <main className="flex-1">
-        {/* Hero with light texture */}
-        <PageHero 
-          backgroundImage={"/images/faq-hero.jpg"}
-          overlay="linear-gradient(180deg, rgba(7,16,31,0.65) 0%, rgba(7,16,31,0.55) 100%)"
-        >
+        <PageHero>
           <Breadcrumbs items={[{ label: "Вопросы и ответы" }]} />
           <div className="max-w-3xl mt-6">
             <div className="flex items-center gap-4 mb-4">

@@ -67,15 +67,15 @@ All colors MUST be HSL.
     /* Spacing tokens */
     --container-max: 1240px;
     --container-pad: 16px;
-    --section-y-mobile: 20px;
-    --section-y-tablet: 28px;
-    --section-y-desktop: 36px;
-    --section-y-sm: 12px;
+    --section-y-mobile: 28px;
+    --section-y-tablet: 40px;
+    --section-y-desktop: 48px;
+    --section-y-sm: 16px;
     --gap: 18px;
     --gap-sm: 14px;
-    --section-inner-gap-mobile: 20px;
-    --section-inner-gap-tablet: 24px;
-    --section-inner-gap-desktop: 28px;
+    --section-inner-gap-mobile: 18px;
+    --section-inner-gap-tablet: 20px;
+    --section-inner-gap-desktop: 24px;
     --section-y: var(--section-y-mobile);
     --section-inner-gap: var(--section-inner-gap-mobile);
 
@@ -280,20 +280,20 @@ All colors MUST be HSL.
   }
 
   .services-page {
-    --section-y: 40px;
+    --section-y: 44px;
     --section-inner-gap: 20px;
   }
 
   @media (min-width: 768px) {
     .services-page {
-      --section-y: 48px;
+      --section-y: 56px;
       --section-inner-gap: 24px;
     }
   }
 
   @media (min-width: 1024px) {
     .services-page {
-      --section-y: 64px;
+      --section-y: 72px;
       --section-inner-gap: 28px;
     }
   }
@@ -444,6 +444,18 @@ All colors MUST be HSL.
 
   .section__content--tight {
     gap: var(--gap-sm);
+  }
+
+  .section [data-card] > [class~="p-8"] {
+    padding: 1.5rem;
+  }
+
+  .section [data-card] > [class~="p-7"] {
+    padding: 1.375rem;
+  }
+
+  .section [data-card] > [class~="p-6"] {
+    padding: 1.25rem;
   }
 
   #reviews {

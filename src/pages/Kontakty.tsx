@@ -9,6 +9,12 @@ import LeadForm from "@/components/LeadForm";
 import WorkScheduleNotice from "@/components/WorkScheduleNotice";
 
 const Contacts = () => {
+  const consultationSteps = [
+    "Оставьте имя и телефон, чтобы мы могли связаться с вами.",
+    "Коротко опишите вопрос или подготовьте документы к разговору.",
+    "Адвокат уточнит детали и предложит дальнейший формат работы."
+  ];
+
   return (
     <div className="top-page-mobile-compact min-h-screen flex flex-col">
       <Helmet>
@@ -154,7 +160,7 @@ const Contacts = () => {
         <section className="relative section bg-muted/30 overflow-hidden">
           <div className="container">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:items-start">
-              <div className="max-w-2xl">
+              <div className="max-w-2xl lg:pr-8">
                 <p className="mb-3 text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                   Заявка на консультацию
                 </p>
@@ -166,12 +172,23 @@ const Contacts = () => {
                   вопроса и предложит ближайший формат консультации.
                 </p>
                 <div className="mt-6 rounded-xl border border-border/80 bg-white p-5 text-small leading-7 text-muted-foreground">
-                  В рабочее время можно позвонить по номеру{" "}
-                  <a href={`tel:${SITE.phoneRaw}`} className="mango-phone font-semibold text-accent hover:underline">
-                    {SITE.phone}
-                  </a>
-                  . Форма подходит для заявок, документов и вопросов, которые можно разобрать после
-                  первичного изучения.
+                  Форма подходит для заявок, документов и вопросов, которые можно разобрать после
+                  первичного изучения. Адвокат свяжется с вами в рабочее время.
+                </div>
+                <div className="mt-7 border-t border-border/80 pt-5">
+                  <p className="text-[11px] font-semibold uppercase tracking-[0.16em] text-muted-foreground">
+                    После заявки
+                  </p>
+                  <ol className="mt-4 grid gap-3">
+                    {consultationSteps.map((step, index) => (
+                      <li key={step} className="flex items-start gap-3 text-small leading-6 text-muted-foreground">
+                        <span className="flex h-6 w-6 shrink-0 items-center justify-center rounded-full bg-accent text-[12px] font-semibold text-white">
+                          {index + 1}
+                        </span>
+                        <span>{step}</span>
+                      </li>
+                    ))}
+                  </ol>
                 </div>
               </div>
 

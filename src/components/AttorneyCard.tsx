@@ -136,18 +136,18 @@ const AttorneyCard = ({
     <Card
       className={`group h-full overflow-hidden border border-[#d8c08b] bg-white shadow-[0_10px_28px_rgba(15,23,42,0.06)] transition-all hover:-translate-y-0.5 hover:border-[#C9A227] hover:shadow-[0_16px_34px_rgba(15,23,42,0.11)] ${className}`}
     >
-      <CardContent className="grid h-full grid-cols-[92px_1fr] gap-4 p-4 sm:flex sm:flex-col sm:p-0">
-        <div className="overflow-hidden rounded-lg border border-[#eadfbd] bg-[#f7f2e6] sm:rounded-none sm:border-x-0 sm:border-t-0">
+      <CardContent className="grid h-full grid-cols-[108px_1fr] gap-4 p-4 sm:flex sm:flex-col sm:p-0">
+        <div className="h-[150px] self-start overflow-hidden rounded-lg border border-[#eadfbd] bg-[#f7f2e6] sm:h-auto sm:self-auto sm:rounded-none sm:border-x-0 sm:border-t-0">
           {hasPhoto ? (
             <img
               src={member.photo}
               alt={member.name}
-              className="h-full min-h-[132px] w-full object-cover object-center transition-transform duration-300 group-hover:scale-[1.03] sm:h-[260px] md:h-[300px]"
+              className="h-full w-full object-cover object-[center_20%] transition-transform duration-300 group-hover:scale-[1.03] sm:h-[260px] sm:object-center md:h-[300px]"
               loading="lazy"
               onError={() => setImageFailed(true)}
             />
           ) : (
-            <div className="flex h-full min-h-[132px] w-full items-center justify-center text-muted-foreground sm:h-[260px] md:h-[300px]">
+            <div className="flex h-full w-full items-center justify-center text-muted-foreground sm:h-[260px] md:h-[300px]">
               <UserCircle className="h-12 w-12" />
             </div>
           )}

@@ -2,14 +2,13 @@ import { useEffect, useMemo, useState } from "react";
 import { Link, useLocation, useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
-import LegalBackground from "@/components/LegalBackground";
 import { Helmet } from "react-helmet";
-import columnsImg from "@/assets/legal/court-columns.jpg";
 import { cases, type Case } from "@/data/cases";
 import { teamMembers, type TeamMember } from "@/data/team";
 import { ArticleSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import CaseTrustCard from "@/components/CaseTrustCard";
+import PageHero from "@/components/PageHero";
 import { getCaseCourtLabel, getCasePreview, shortenCaseText } from "@/lib/caseTrust";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, CheckCircle2, FileText } from "lucide-react";
@@ -196,12 +195,7 @@ const Cases = () => {
       <Header />
       
       <main className="flex-1">
-        {/* Hero with columns background */}
-        <LegalBackground
-          imageSrc={columnsImg}
-          imageAlt="Классические колонны здания правосудия"
-          overlayOpacity={0.65}
-        >
+        <PageHero>
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 text-white">
               Судебная практика <span className="text-accent">коллегии</span>
@@ -210,7 +204,7 @@ const Cases = () => {
               Публикуем фрагменты судебных актов без раскрытия персональных данных доверителей.
             </p>
           </div>
-        </LegalBackground>
+        </PageHero>
 
         {selectedCase ? (
           <section className="section bg-white">

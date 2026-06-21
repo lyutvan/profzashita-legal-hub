@@ -99,29 +99,9 @@ const Footer = () => {
         </div>
 
         <div className="mt-6 border-t border-white/15 pt-5 sm:mt-8 sm:pt-6">
-          <div className="grid grid-cols-1 gap-x-6 gap-y-3 md:grid-cols-2 lg:grid-cols-[minmax(0,0.95fr)_minmax(0,0.95fr)_minmax(0,1.6fr)] lg:gap-x-8">
-            <div className="text-white/65">
-              <p className="text-small leading-7">
-                2026 © Коллегия адвокатов города Москвы «ПРОФЗАЩИТА»
-              </p>
-            </div>
-
-            <div className="text-white/65">
-              <p className="text-small leading-7">
-                Размещенные на сайте материалы носят исключительно информационный характер и не являются рекламой.
-              </p>
-            </div>
-
-            <p className="text-small leading-7 text-white/65 md:col-span-2 lg:col-span-1">
-              Все права на сайт принадлежат Коллегии адвокатов города Москвы «ПРОФЗАЩИТА», любое использование или копирование текстов и материалов, элементов дизайна и оформления допускается только с разрешения правообладателя и только с открытой ссылкой на источник{" "}
-              <a
-                href="https://prof-zashita.ru"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="text-white/85 transition-colors hover:text-accent"
-              >
-                prof-zashita.ru
-              </a>
+          <div className="text-white/65">
+            <p className="text-small leading-7">
+              2026 © Коллегия адвокатов города Москвы «ПРОФЗАЩИТА»
             </p>
           </div>
         </div>
