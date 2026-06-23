@@ -16,7 +16,7 @@ interface CaseTrustSectionProps {
 const CaseTrustSection = ({
   cases,
   title = "Судебная практика коллегии",
-  subtitle = "Публикуем фрагменты судебных актов без раскрытия персональных данных доверителей.",
+  subtitle = "Показываем направления работы и достигнутые результаты по делам.",
   className,
   showAllLink = true,
   gridClassName
@@ -37,8 +37,8 @@ const CaseTrustSection = ({
             gridClassName
           )}
         >
-          {cases.map((caseItem, index) => (
-            <CaseTrustCard key={caseItem.id} caseItem={caseItem} featured={index === 0} />
+          {cases.map((caseItem) => (
+            <CaseTrustCard key={caseItem.id} caseItem={caseItem} />
           ))}
         </div>
 

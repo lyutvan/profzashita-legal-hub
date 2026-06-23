@@ -345,8 +345,8 @@ const Index = () => {
             </div>
 
             <div className="section__content mt-8 grid auto-rows-fr grid-cols-1 gap-5 md:mt-12 md:grid-cols-2 xl:grid-cols-3">
-              {featuredCases.map((caseItem, index) => (
-                <CaseTrustCard key={caseItem.id} caseItem={caseItem} featured={index === 0} />
+              {featuredCases.map((caseItem) => (
+                <CaseTrustCard key={caseItem.id} caseItem={caseItem} />
               ))}
             </div>
 

@@ -6,8 +6,9 @@ import {
   useState,
   type FormEvent
 } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
+import FileAttachmentsField from "@/components/FileAttachmentsField";
 import { Dialog, DialogContent, DialogDescription, DialogHeader, DialogTitle } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
@@ -63,11 +64,13 @@ type ProviderProps = {
 
 export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
   const location = useLocation();
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [isForcedFormOpen, setIsForcedFormOpen] = useState(false);
   const [topicOverride, setTopicOverride] = useState<string | null>(null);
   const [messageOverride, setMessageOverride] = useState<string | null>(null);
   const [formData, setFormData] = useState({ name: "", phone: "", message: "" });
+  const [attachments, setAttachments] = useState<File[]>([]);
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [honeypot, setHoneypot] = useState("");
@@ -81,6 +84,7 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
 
   const resetForm = useCallback(() => {
     setFormData({ name: "", phone: "", message: "" });
+    setAttachments([]);
     setConsent(false);
     setErrors({});
     setHoneypot("");
@@ -164,7 +168,8 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
         name: formData.name.trim(),
         phone: formData.phone,
         topic,
-        message: [messageOverride, formData.message.trim()].filter(Boolean).join("\n\n") || undefined
+        message: [messageOverride, formData.message.trim()].filter(Boolean).join("\n\n") || undefined,
+        attachments
       });
       toast({
         title: "Заявка отправлена",
@@ -173,6 +178,7 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
       trackMetrikaGoal("form_submit", { form_type: "quick_question", topic });
       closeQuickQuestionModal();
       resetForm();
+      navigate("/thanks", { replace: true });
     } catch (error) {
       console.error("Quick question submit error:", error);
       toast({
@@ -266,6 +272,13 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
                 />
                 {errors.message && <p className="text-xs text-destructive">{errors.message}</p>}
               </div>
+
+              <FileAttachmentsField
+                id="quick-question-attachments"
+                files={attachments}
+                onChange={setAttachments}
+                disabled={isSubmitting}
+              />
 
               <div className="flex items-start gap-3">
                 <Checkbox

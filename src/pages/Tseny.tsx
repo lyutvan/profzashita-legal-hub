@@ -546,7 +546,7 @@ const Prices = () => {
                   <AccordionItem
                     key={item.question}
                     value={`price-faq-${index}`}
-                    className="rounded-xl border border-border bg-white px-5 transition-colors hover:border-[#d8bf72] hover:bg-white md:px-6"
+                    className="rounded-xl border border-border bg-white px-5 transition-colors hover:bg-white md:px-6"
                   >
                     <AccordionTrigger className="bg-transparent text-left hover:bg-transparent hover:text-accent hover:no-underline focus:bg-transparent active:bg-transparent">
                       <span className="font-semibold">{item.question}</span>

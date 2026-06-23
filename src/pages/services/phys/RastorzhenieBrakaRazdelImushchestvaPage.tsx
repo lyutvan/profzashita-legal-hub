@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import {
   Phone,
@@ -36,12 +36,12 @@ import { SITE } from "@/config/site";
 import { cases as casesData } from "@/data/cases";
 import { getPriceBySlug } from "@/data/pricing";
 import { teamMembers as allTeamMembers } from "@/data/team";
-import { useLocation } from "react-router-dom";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import MaxIcon from "@/components/icons/MaxIcon";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
+import FileAttachmentsField from "@/components/FileAttachmentsField";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 
@@ -63,6 +63,8 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [submitTime, setSubmitTime] = useState<number>(Date.now());
+  const [attachments, setAttachments] = useState<File[]>([]);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -113,16 +115,19 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
         name: formData.name.trim(),
         phone: formData.phone,
         topic: "Расторжение брака и раздел имущества",
-        message: formData.comment.trim()
+        message: formData.comment.trim(),
+        attachments
       });
       toast({
         title: "Заявка отправлена",
         description: "Мы свяжемся с вами в ближайшее время"
       });
       setFormData({ name: "", phone: "", comment: "" });
+      setAttachments([]);
       setConsent(false);
       setSubmitTime(Date.now());
       if (onSuccess) onSuccess();
+      navigate("/thanks", { replace: true });
     } catch (error) {
       console.error("Form submission error:", error);
       toast({
@@ -191,6 +196,13 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
           disabled={isSubmitting}
         />
       </div>
+
+      <FileAttachmentsField
+        id={`${formId}-attachments`}
+        files={attachments}
+        onChange={setAttachments}
+        disabled={isSubmitting}
+      />
 
       <div className="flex items-start gap-3">
         <Checkbox
@@ -950,8 +962,8 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
               </p>
             </div>
             <div className="section__content grid auto-rows-fr grid-cols-1 gap-5 md:grid-cols-2 xl:grid-cols-3">
-              {cases.slice(0, 3).map((caseItem, index) => (
-                <CaseTrustCard key={caseItem.slug} caseItem={caseItem} featured={index === 0} />
+              {cases.slice(0, 3).map((caseItem) => (
+                <CaseTrustCard key={caseItem.slug} caseItem={caseItem} />
               ))}
             </div>
             <div className="mt-8 text-center">
@@ -1107,7 +1119,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 <AccordionItem
                   key={item.title}
                   value={`sales-${index}`}
-                  className={`relative overflow-hidden rounded-xl border border-slate-200 px-4 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227] md:px-6 ${
+                  className={`relative overflow-hidden rounded-xl border border-slate-200 px-4 transition-all data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors data-[state=open]:before:bg-[#C9A227] md:px-6 ${
                     index >= 4 ? "hidden md:block" : ""
                   }`}
                 >
@@ -1134,7 +1146,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                 <AccordionItem
                   key={item.question}
                   value={`faq-${index}`}
-                  className={`relative overflow-hidden rounded-xl border border-slate-200 px-4 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227] md:px-6 ${
+                  className={`relative overflow-hidden rounded-xl border border-slate-200 px-4 transition-all data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors data-[state=open]:before:bg-[#C9A227] md:px-6 ${
                     index >= 4 ? "hidden md:block" : ""
                   }`}
                 >

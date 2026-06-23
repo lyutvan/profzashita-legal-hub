@@ -86,7 +86,7 @@ const ReviewsCarousel = ({ reviews, ariaLabel = "Отзывы клиентов" 
 
   return (
     <div className="section__content" data-testid="reviews-carousel">
-      <div className="relative">
+      <div className="relative px-14 sm:px-16">
         <div
           ref={scrollerRef}
           role="region"
@@ -127,10 +127,9 @@ const ReviewsCarousel = ({ reviews, ariaLabel = "Отзывы клиентов" 
               type="button"
               variant="outline"
               size="icon"
-              className="absolute left-0 top-1/2 z-10 h-11 w-11 -translate-y-1/2 rounded-full border-[#d8bf72] bg-white text-primary shadow-[0_4px_14px_rgba(60,52,31,0.16)] hover:bg-[#fbf6e8]"
+              className="reviews-carousel__arrow absolute left-0 top-1/2 z-10 h-11 w-11 -translate-y-1/2 rounded-full border-[#d8bf72] bg-white text-primary shadow-[0_4px_14px_rgba(60,52,31,0.16)]"
               onClick={() => scrollReviews(-1)}
               aria-label="Предыдущие отзывы"
-              title="Предыдущие отзывы"
             >
               <ChevronLeft className="h-5 w-5" aria-hidden="true" />
             </Button>
@@ -138,10 +137,9 @@ const ReviewsCarousel = ({ reviews, ariaLabel = "Отзывы клиентов" 
               type="button"
               variant="outline"
               size="icon"
-              className="absolute right-0 top-1/2 z-10 h-11 w-11 -translate-y-1/2 rounded-full border-[#d8bf72] bg-white text-primary shadow-[0_4px_14px_rgba(60,52,31,0.16)] hover:bg-[#fbf6e8]"
+              className="reviews-carousel__arrow absolute right-0 top-1/2 z-10 h-11 w-11 -translate-y-1/2 rounded-full border-[#d8bf72] bg-white text-primary shadow-[0_4px_14px_rgba(60,52,31,0.16)]"
               onClick={() => scrollReviews(1)}
               aria-label="Следующие отзывы"
-              title="Следующие отзывы"
             >
               <ChevronRight className="h-5 w-5" aria-hidden="true" />
             </Button>

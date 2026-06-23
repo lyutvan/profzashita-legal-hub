@@ -2316,3 +2316,21 @@ All colors MUST be HSL.
     font-size: 13px;
   }
 }
+
+/* Review carousel arrows stay fixed so the global button animation cannot move the click target. */
+.reviews-carousel__arrow,
+.reviews-carousel__arrow:hover,
+.reviews-carousel__arrow:active {
+  transform: translate3d(0, -50%, 0) !important;
+  background-color: #ffffff !important;
+  box-shadow: 0 4px 14px rgba(60, 52, 31, 0.16) !important;
+  transition: none !important;
+}
+
+.reviews-carousel__arrow > svg,
+.reviews-carousel__arrow:hover > svg,
+.reviews-carousel__arrow:active > svg {
+  transform: none !important;
+  filter: none !important;
+  transition: none !important;
+}

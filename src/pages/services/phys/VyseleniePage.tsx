@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import {
   Phone,
@@ -36,6 +36,7 @@ import { sharedReviews } from "@/data/shared-reviews";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 import ReviewsCarousel from "@/components/ReviewsCarousel";
+import FileAttachmentsField from "@/components/FileAttachmentsField";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 import ryzhenkoImg from "@/assets/team/ryzhenko.jpg";
@@ -59,6 +60,8 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [honeypot, setHoneypot] = useState("");
   const [submitTime, setSubmitTime] = useState<number>(Date.now());
+  const [attachments, setAttachments] = useState<File[]>([]);
+  const navigate = useNavigate();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -109,16 +112,19 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
         name: formData.name.trim(),
         phone: formData.phone,
         topic: "Жилищные споры",
-        message: formData.comment.trim()
+        message: formData.comment.trim(),
+        attachments
       });
       toast({
         title: "Заявка отправлена",
         description: "Мы свяжемся с вами в ближайшее время"
       });
       setFormData({ name: "", phone: "", comment: "" });
+      setAttachments([]);
       setConsent(false);
       setSubmitTime(Date.now());
       if (onSuccess) onSuccess();
+      navigate("/thanks", { replace: true });
     } catch (error) {
       console.error("Form submission error:", error);
       toast({
@@ -185,6 +191,13 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
           disabled={isSubmitting}
         />
       </div>
+
+      <FileAttachmentsField
+        id={`${formId}-attachments`}
+        files={attachments}
+        onChange={setAttachments}
+        disabled={isSubmitting}
+      />
 
       <div className="flex items-start gap-3">
         <Checkbox
@@ -795,7 +808,7 @@ const VyseleniePage = () => {
                 <AccordionItem
                   key={item.title}
                   value={`sales-${index}`}
-                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors data-[state=open]:before:bg-[#C9A227]"
                 >
                   <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
                     {item.title}
@@ -820,7 +833,7 @@ const VyseleniePage = () => {
                 <AccordionItem
                   key={item.question}
                   value={`faq-${index}`}
-                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227]"
+                  className="relative overflow-hidden rounded-xl border border-slate-200 px-6 transition-all data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors data-[state=open]:before:bg-[#C9A227]"
                 >
                   <AccordionTrigger className="family-accordion-trigger py-4 text-left hover:no-underline hover:text-slate-900 data-[state=open]:text-[#b8911f]">
                     {item.question}

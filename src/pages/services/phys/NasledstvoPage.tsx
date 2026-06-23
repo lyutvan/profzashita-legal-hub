@@ -1068,7 +1068,7 @@ const NasledstvoPage = () => {
                 <AccordionItem
                   key={item.question}
                   value={`faq-${index}`}
-                  className={`relative overflow-hidden rounded-xl border border-slate-200 px-4 transition-all hover:border-[#C9A227]/80 data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors hover:before:bg-[#C9A227]/70 data-[state=open]:before:bg-[#C9A227] md:px-6 ${
+                  className={`relative overflow-hidden rounded-xl border border-slate-200 px-4 transition-all data-[state=open]:border-[#C9A227] before:absolute before:inset-y-3 before:left-0 before:w-1 before:rounded-full before:bg-transparent before:content-[''] before:transition-colors data-[state=open]:before:bg-[#C9A227] md:px-6 ${
                     index >= 4 ? "hidden md:block" : ""
                   }`}
                 >

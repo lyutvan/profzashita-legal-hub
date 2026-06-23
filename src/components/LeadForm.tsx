@@ -1,6 +1,7 @@
 import { useId, useState, type FormEvent } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
+import FileAttachmentsField from "@/components/FileAttachmentsField";
 import PhoneInput from "@/components/PhoneInput";
 import { Button } from "@/components/ui/button";
 import { Checkbox } from "@/components/ui/checkbox";
@@ -19,17 +20,20 @@ interface LeadFormProps {
 
 const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
   const [formData, setFormData] = useState({ name: "", phone: "", message: "" });
+  const [attachments, setAttachments] = useState<File[]>([]);
   const [consent, setConsent] = useState(false);
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [honeypot, setHoneypot] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formId = useId();
+  const navigate = useNavigate();
 
   const isCompact = variant === "compact";
   const topic = practiceType ?? "Консультация";
   const nameId = `${formId}-name`;
   const phoneId = `${formId}-phone`;
   const messageId = `${formId}-message`;
+  const attachmentsId = `${formId}-attachments`;
   const consentId = `${formId}-consent`;
 
   const handleSubmit = async (event: FormEvent<HTMLFormElement>) => {
@@ -58,7 +62,8 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
         name: formData.name.trim(),
         phone: formData.phone,
         topic,
-        message: formData.message.trim() || undefined
+        message: formData.message.trim() || undefined,
+        attachments
       });
       toast({
         title: "Заявка отправлена",
@@ -66,8 +71,10 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
       });
       trackMetrikaGoal("form_submit", { form_type: "lead", topic });
       setFormData({ name: "", phone: "", message: "" });
+      setAttachments([]);
       setConsent(false);
       setErrors({});
+      navigate("/thanks", { replace: true });
     } catch (error) {
       console.error("Lead form submit error:", error);
       toast({
@@ -134,6 +141,13 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
           />
         </div>
       )}
+
+      <FileAttachmentsField
+        id={attachmentsId}
+        files={attachments}
+        onChange={setAttachments}
+        disabled={isSubmitting}
+      />
 
       <div className="flex items-start gap-3">
         <Checkbox

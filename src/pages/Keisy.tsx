@@ -9,9 +9,9 @@ import { ArticleSchema, BreadcrumbSchema } from "@/components/JsonLd";
 import { SITE } from "@/config/site";
 import CaseTrustCard from "@/components/CaseTrustCard";
 import PageHero from "@/components/PageHero";
-import { getCaseCourtLabel, getCasePreview, shortenCaseText } from "@/lib/caseTrust";
+import { getCasePreview, shortenCaseText } from "@/lib/caseTrust";
 import { Button } from "@/components/ui/button";
-import { ArrowLeft, CheckCircle2, FileText } from "lucide-react";
+import { ArrowLeft, ChevronDown, FileText } from "lucide-react";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
 const caseLawyerSlugAliases: Record<string, string> = {
@@ -93,6 +93,19 @@ const getCaseTeamMembers = (
   return dedupeMembers(mentionedMembers);
 };
 
+const getFallbackCaseLawyer = (caseItem: Pick<Case, "category">): TeamMember => {
+  const category = caseItem.category.toLowerCase();
+  const lawyerSlug = category.includes("уголов")
+    ? "lyutikov"
+    : category.includes("арбитраж")
+      ? "ryzhenko"
+      : category.includes("семейн") || category.includes("жилищ") || category.includes("наслед")
+        ? "vaskovsky"
+        : "kalabekov";
+
+  return teamMemberBySlug.get(lawyerSlug) ?? teamMembers[0];
+};
+
 const caseFilters = [
   { id: "all", label: "Все" },
   { id: "criminal", label: "Уголовные" },
@@ -134,6 +147,15 @@ const Cases = () => {
     ? sortedCases.find((caseItem) => caseItem.slug === decodeURIComponent(slug))
     : null;
   const selectedCaseTeamMembers = selectedCase ? getCaseTeamMembers(selectedCase) : [];
+  const selectedCaseLawyer = selectedCase
+    ? selectedCaseTeamMembers[0] ?? getFallbackCaseLawyer(selectedCase)
+    : null;
+  const selectedCaseDocuments = selectedCase
+    ? (selectedCase.documents?.length ? selectedCase.documents : [getCasePreview(selectedCase)]).filter(
+        (document): document is string => Boolean(document)
+      )
+    : [];
+  const [areDocumentsOpen, setAreDocumentsOpen] = useState(false);
   const pageTitle = selectedCase
     ? `${selectedCase.title} — судебная практика | Профзащита`
     : "Наши кейсы — Профзащита";
@@ -154,6 +176,10 @@ const Cases = () => {
       el.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   }, [slug, location.hash]);
+
+  useEffect(() => {
+    setAreDocumentsOpen(false);
+  }, [selectedCase?.slug]);
 
   return (
     <div className="top-page-mobile-compact min-h-screen flex flex-col">
@@ -201,123 +227,151 @@ const Cases = () => {
       <Header />
       
       <main className="flex-1">
-        <PageHero>
-          <div className="max-w-3xl mx-auto text-center">
-            <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 text-white">
-              {selectedCase ? selectedCase.title : <><span>Судебная практика </span><span className="text-accent">коллегии</span></>}
-            </h1>
-            <p className="text-body-mobile md:text-body text-white/90 leading-relaxed">
-              Публикуем фрагменты судебных актов без раскрытия персональных данных доверителей.
-            </p>
-          </div>
-        </PageHero>
+        {!selectedCase ? (
+          <PageHero>
+            <div className="max-w-3xl mx-auto text-center">
+              <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 text-white">
+                <span>Судебная практика </span><span className="text-accent">коллегии</span>
+              </h1>
+              <p className="text-body-mobile md:text-body text-white/90 leading-relaxed">
+                Публикуем результаты судебной практики без раскрытия персональных данных доверителей.
+              </p>
+            </div>
+          </PageHero>
+        ) : null}
 
         {selectedCase ? (
           <section className="section bg-white">
             <div className="container">
-              <Button asChild variant="ghost" className="mb-6 px-0 text-slate-600 hover:text-[#9b7518]">
+              <Button asChild variant="ghost" className="mb-7 px-0 text-slate-600 hover:text-[#9b7518]">
                 <Link to="/keisy">
                   <ArrowLeft className="mr-2 h-4 w-4" />
                   Все кейсы
                 </Link>
               </Button>
 
-              <article id={selectedCase.slug} className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_380px] lg:items-start">
+              <article id={selectedCase.slug} className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
                 <div className="min-w-0">
-                  <div className="mb-4 flex flex-wrap items-center gap-2">
-                    <span className="rounded-full border border-[#e5d39b] bg-[#fbf7ed] px-3 py-1 text-[12px] font-semibold leading-none text-[#7b5f16]">
+                  <div className="flex items-center justify-between gap-4 border-b border-[#e6d6a7] pb-4 text-[13px] font-semibold md:text-sm">
+                    <span className="text-[#8a6a18]">
                       {selectedCase.category}
                     </span>
-                    <span className="text-[13px] text-slate-500">{getCaseCourtLabel(selectedCase)}</span>
-                    <span className="text-[13px] text-slate-500">
+                    <time className="shrink-0 text-slate-500" dateTime={selectedCase.datePublished}>
                       {new Intl.DateTimeFormat("ru-RU", {
                         day: "numeric",
                         month: "long",
                         year: "numeric"
                       }).format(new Date(selectedCase.datePublished))}
-                    </span>
+                    </time>
                   </div>
 
-                  <div className="mt-6 rounded-[8px] border-l-4 border-[#C9A227] bg-[#fbf6e8] p-5">
-                    <div className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.08em] text-[#8a6a18]">
-                      <CheckCircle2 className="h-4 w-4" />
-                      Результат
-                    </div>
-                    <p className="mt-2 text-[17px] font-semibold leading-relaxed text-slate-950">
-                      {selectedCase.result}
-                    </p>
+                  <h1 className="mt-7 max-w-4xl font-serif text-h1-mobile font-bold leading-[1.08] text-slate-950 md:text-h1">
+                    {selectedCase.title}
+                  </h1>
+
+                  <div className="mt-8 space-y-7 text-[17px] leading-[1.75] text-slate-700 md:text-[19px]">
+                    <p>{selectedCase.task}</p>
+                    <p>{selectedCase.actions}</p>
+                    <p>{selectedCase.result}</p>
                   </div>
 
-                  <div className="mt-8 grid gap-5 md:grid-cols-2">
-                    <div className="rounded-[8px] border border-slate-200 bg-white p-5">
-                      <div className="text-[12px] font-semibold uppercase tracking-[0.08em] text-slate-500">Задача</div>
-                      <p className="mt-2 text-[15px] leading-relaxed text-slate-700">{selectedCase.task}</p>
-                    </div>
-                    <div className="rounded-[8px] border border-slate-200 bg-white p-5">
-                      <div className="text-[12px] font-semibold uppercase tracking-[0.08em] text-slate-500">Что сделали</div>
-                      <p className="mt-2 text-[15px] leading-relaxed text-slate-700">{selectedCase.actions}</p>
-                    </div>
-                  </div>
+                  {selectedCaseDocuments.length > 0 ? (
+                    <div className="mt-10">
+                      <button
+                        type="button"
+                        onClick={() => setAreDocumentsOpen((open) => !open)}
+                        aria-expanded={areDocumentsOpen}
+                        aria-controls={`${selectedCase.slug}-documents`}
+                        className="inline-flex min-h-12 items-center gap-3 rounded-[8px] border border-[#c9a227] bg-white px-5 py-3 text-[15px] font-semibold text-[#8a6a18] transition-colors hover:bg-[#fbf7ed]"
+                      >
+                        <FileText className="h-4 w-4" aria-hidden="true" />
+                        {areDocumentsOpen ? "Скрыть сканы по делу" : "Посмотреть сканы по делу"}
+                        <ChevronDown
+                          className={`h-4 w-4 transition-transform ${areDocumentsOpen ? "rotate-180" : ""}`}
+                          aria-hidden="true"
+                        />
+                      </button>
 
-                  {selectedCaseTeamMembers.length > 0 ? (
-                    <div className="mt-8">
-                      <div className="mb-3 text-[12px] font-semibold uppercase tracking-[0.08em] text-slate-500">
-                        {selectedCaseTeamMembers.length > 1 ? "Команда по делу" : "Адвокат по делу"}
-                      </div>
-                      <div className="grid gap-3 sm:grid-cols-2">
-                        {selectedCaseTeamMembers.map((member) => (
-                          <Link
-                            key={member.slug}
-                            to={`/team/${member.slug}`}
-                            className="grid grid-cols-[64px_minmax(0,1fr)] items-center gap-4 rounded-[8px] border border-slate-200 bg-white p-3 transition-colors hover:border-[#d8bf72] hover:bg-[#fbf7ed]"
-                          >
-                            <div className="h-16 w-16 overflow-hidden rounded-[8px] bg-slate-100">
-                              {member.photo ? (
-                                <img src={member.photo} alt={member.name} className="h-full w-full object-cover" loading="lazy" />
-                              ) : null}
-                            </div>
-                            <div className="min-w-0">
-                              <div className="text-[15px] font-semibold leading-snug text-slate-950">{member.name}</div>
-                              <div className="text-[13px] leading-snug text-slate-500">{member.role}</div>
-                            </div>
-                          </Link>
-                        ))}
-                      </div>
+                      {areDocumentsOpen ? (
+                        <div id={`${selectedCase.slug}-documents`} className="mt-5 rounded-[10px] border border-slate-200 bg-slate-50 p-4 md:p-5">
+                          <div className="mb-4 flex items-baseline justify-between gap-4">
+                            <h2 className="font-serif text-h3-mobile font-bold text-slate-950 md:text-h3">Сканы по делу</h2>
+                            <p className="text-right text-xs leading-relaxed text-slate-500">
+                              Персональные данные на документах скрыты.
+                            </p>
+                          </div>
+                          <div className="grid gap-4 sm:grid-cols-2 xl:grid-cols-3">
+                            {selectedCaseDocuments.map((document, index) => (
+                              <a
+                                key={`${document}-${index}`}
+                                href={document}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="group overflow-hidden rounded-[8px] border border-slate-200 bg-white p-3 transition-colors hover:border-[#c9a227]"
+                              >
+                                <div className="aspect-[3/4] overflow-hidden rounded-[5px] bg-slate-100">
+                                  <img
+                                    src={document}
+                                    alt={`Скан документа ${index + 1} по делу: ${selectedCase.title}`}
+                                    className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+                                    loading="lazy"
+                                  />
+                                </div>
+                                <span className="mt-3 inline-flex items-center gap-2 text-sm font-semibold text-[#8a6a18]">
+                                  Открыть документ
+                                  <ArrowLeft className="h-4 w-4 rotate-180" aria-hidden="true" />
+                                </span>
+                              </a>
+                            ))}
+                          </div>
+                        </div>
+                      ) : null}
                     </div>
                   ) : null}
                 </div>
 
-                <aside className="rounded-[8px] border border-[#eadfbf] bg-[#f8f4eb] p-4">
-                  <div className="mb-3 flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.08em] text-[#8a6a18]">
-                    <FileText className="h-4 w-4" />
-                    Судебные документы
-                  </div>
-                  <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-1">
-                    {(selectedCase.documents?.length ? selectedCase.documents : [getCasePreview(selectedCase)])
-                      .filter((doc): doc is string => Boolean(doc))
-                      .map((doc, index) => (
-                        <a
-                          key={`${doc}-${index}`}
-                          href={doc}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="group block overflow-hidden rounded-[8px] border border-[#dfc981] bg-white p-2 transition-colors hover:border-[#C9A227]"
-                        >
-                          <div className="aspect-[3/4] overflow-hidden rounded-[6px] bg-slate-50">
-                            <img
-                              src={doc}
-                              alt={`Документ ${index + 1} по делу: ${selectedCase.title}`}
-                              className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.025]"
-                              loading="lazy"
-                            />
-                          </div>
-                        </a>
-                      ))}
-                  </div>
-                  <p className="mt-3 text-[12px] leading-relaxed text-slate-500">
-                    Персональные данные на документах скрыты в соответствии с законодательством.
-                  </p>
-                </aside>
+                {selectedCaseLawyer ? (
+                  <aside className="rounded-[10px] border border-slate-200 bg-white p-4 shadow-[0_12px_32px_rgba(15,23,42,0.06)] lg:sticky lg:top-28">
+                    <Link to={`/team/${selectedCaseLawyer.slug}`} className="group block">
+                      <div className="aspect-[4/5] overflow-hidden rounded-[7px] bg-slate-100">
+                        {selectedCaseLawyer.photo ? (
+                          <img
+                            src={selectedCaseLawyer.photo}
+                            alt={selectedCaseLawyer.name}
+                            className="h-full w-full object-cover object-top transition-transform duration-300 group-hover:scale-[1.02]"
+                          />
+                        ) : null}
+                      </div>
+                      <h2 className="mt-5 font-serif text-h3-mobile font-bold leading-tight text-slate-950 md:text-h3">
+                        {selectedCaseLawyer.name}
+                      </h2>
+                      <p className="mt-1 text-sm text-slate-500">{selectedCaseLawyer.role}</p>
+                    </Link>
+
+                    <div className="mt-5 space-y-4 border-t border-[#e6d6a7] pt-5 text-sm">
+                      <div>
+                        <div className="font-semibold text-slate-950">Специализация</div>
+                        <p className="mt-1 leading-relaxed text-slate-600">
+                          {selectedCaseLawyer.specializations[0]}
+                        </p>
+                      </div>
+                      {selectedCaseLawyer.experienceText ? (
+                        <div>
+                          <div className="font-semibold text-slate-950">Опыт работы</div>
+                          <p className="mt-1 text-slate-600">{selectedCaseLawyer.experienceText}</p>
+                        </div>
+                      ) : null}
+                    </div>
+
+                    <button
+                      type="button"
+                      onClick={() => openQuickQuestionModal({ topic: `Консультация по кейсу: ${selectedCase.title}` })}
+                      className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-[8px] border border-[#c9a227] px-4 py-3 text-[15px] font-semibold text-[#8a6a18] transition-colors hover:bg-[#fbf7ed]"
+                    >
+                      Получить консультацию
+                    </button>
+                  </aside>
+                ) : null}
               </article>
             </div>
           </section>
@@ -327,10 +381,10 @@ const Cases = () => {
           <div className="container">
             <div className="section__header mx-auto max-w-4xl text-center">
               <h2 className="font-serif text-h2-mobile font-bold text-slate-950 md:text-h2">
-                {selectedCase ? "Другие кейсы" : "Результат, суть и доказательство"}
+                {selectedCase ? "Другие кейсы" : "Практика по категориям"}
               </h2>
               <p className="mt-3 text-base leading-relaxed text-slate-600 md:text-lg">
-                Карточки показывают главное: категорию спора, короткую суть, достигнутый результат и фрагмент судебного акта.
+                Карточки показывают направление, дату, краткий результат и итог дела.
               </p>
             </div>
 
@@ -359,8 +413,8 @@ const Cases = () => {
                     .filter((caseItem) => caseItem.id !== selectedCase.id && caseItem.category === selectedCase.category)
                     .slice(0, 3)
                 : visibleCases
-              ).map((caseItem, index) => (
-                <CaseTrustCard key={caseItem.id} caseItem={caseItem} featured={index === 0} />
+              ).map((caseItem) => (
+                <CaseTrustCard key={caseItem.id} caseItem={caseItem} />
               ))}
             </div>
 

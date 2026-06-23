@@ -1,4 +1,5 @@
 import { SITE } from "@/config/site";
+import { getAttachmentError } from "@/lib/attachments";
 
 type Payload = {
   name: string;
@@ -6,6 +7,14 @@ type Payload = {
   email?: string;
   topic?: string;
   message?: string;
+  attachments?: File[];
+};
+
+type SerializedAttachment = {
+  name: string;
+  type: string;
+  size: number;
+  base64: string;
 };
 
 const DEFAULT_WEB_APP_URL =
@@ -23,11 +32,40 @@ const getUrlParam = (name: string) => {
   }
 };
 
+const serializeAttachment = (file: File) =>
+  new Promise<SerializedAttachment>((resolve, reject) => {
+    const reader = new FileReader();
+
+    reader.onload = () => {
+      const dataUrl = String(reader.result ?? "");
+      const base64 = dataUrl.includes(",") ? dataUrl.split(",")[1] : "";
+      if (!base64) {
+        reject(new Error(`Не удалось прочитать файл ${file.name}`));
+        return;
+      }
+
+      resolve({
+        name: file.name,
+        type: file.type || "application/octet-stream",
+        size: file.size,
+        base64
+      });
+    };
+    reader.onerror = () => reject(new Error(`Не удалось прочитать файл ${file.name}`));
+    reader.readAsDataURL(file);
+  });
+
 export async function submitToWebhook(data: Payload) {
   if (!WEB_APP_URL) {
     throw new Error("Lead webhook URL is not configured");
   }
 
+  const attachmentError = getAttachmentError(data.attachments ?? []);
+  if (attachmentError) {
+    throw new Error(attachmentError);
+  }
+
+  const attachments = await Promise.all((data.attachments ?? []).map(serializeAttachment));
   const body = new URLSearchParams();
   const payload: Record<string, string> = {
     name: data.name || "",
@@ -37,6 +75,8 @@ export async function submitToWebhook(data: Payload) {
     to_email: SITE.email,
     topic: data.topic || "",
     message: data.message || "",
+    attachments: attachments.length > 0 ? JSON.stringify(attachments) : "",
+    attachment_names: attachments.map((attachment) => attachment.name).join(", "),
     type: "form",
     page_url: typeof window !== "undefined" ? window.location.href : "",
     referrer: typeof document !== "undefined" ? document.referrer : "",
@@ -57,7 +97,9 @@ export async function submitToWebhook(data: Payload) {
     mode: "no-cors",
     headers: { "Content-Type": "application/x-www-form-urlencoded" },
     body,
-    keepalive: true
+    // keepalive ограничивает тело запроса примерно 64 КБ в браузерах,
+    // поэтому для заявок с документами его использовать нельзя.
+    keepalive: attachments.length === 0
   });
 
   if (response.type !== "opaque" && !response.ok) {
