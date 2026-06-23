@@ -2,7 +2,6 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import {
-  Star,
   Phone,
   Mail,
   MapPin,
@@ -36,6 +35,7 @@ import { SITE } from "@/config/site";
 import { sharedReviews } from "@/data/shared-reviews";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import TelegramIcon from "@/components/icons/TelegramIcon";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 import ryzhenkoImg from "@/assets/team/ryzhenko.jpg";
@@ -455,7 +455,7 @@ const VyseleniePage = () => {
 
   const breadcrumbItems = [
     { name: "Главная", url: SITE.url },
-    { name: "Услуги", url: new URL("/uslugi", SITE.url).toString() },
+    { name: "Услуги", url: new URL("/services", SITE.url).toString() },
     { name: "Физлицам", url: new URL("/services/phys", SITE.url).toString() },
     { name: "Жилищные споры", url: canonical }
   ];
@@ -538,7 +538,7 @@ const VyseleniePage = () => {
           <div className="container relative z-10">
             <Breadcrumbs
               items={[
-                { label: "Услуги", path: "/uslugi" },
+                { label: "Услуги", path: "/services" },
                 { label: "Физлицам", path: "/services/phys" },
                 { label: "Жилищные споры" }
               ]}
@@ -762,26 +762,7 @@ const VyseleniePage = () => {
               <div className="section__header max-w-3xl">
                 <h3 className="font-serif text-h3-mobile md:text-h3 font-semibold">Отзывы клиентов</h3>
               </div>
-              <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                {sharedReviews.slice(0, 6).map((review) => (
-                  <Card key={review.id} className="h-full">
-                    <CardContent className="pt-6 h-full flex flex-col">
-                      <div className="flex items-start justify-between gap-4 mb-3">
-                        <div className="flex items-center gap-1 text-accent">
-                          {Array.from({ length: review.rating }).map((_, index) => (
-                            <Star key={`${review.id}-${index}`} className="h-4 w-4 fill-current" />
-                          ))}
-                        </div>
-                        <span className="text-small text-muted-foreground">{review.date}</span>
-                      </div>
-                      <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
-                      <div className="border-t border-border mt-4 pt-4">
-                        <span className="text-small font-semibold">{review.name}</span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+              <ReviewsCarousel reviews={sharedReviews.slice(0, 6)} />
               <YandexRatingWidget />
             </div>
           </div>

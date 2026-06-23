@@ -1,46 +1,91 @@
+import { lazy, Suspense, useEffect, type ComponentType } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
 import { StaticRouter } from "react-router-dom/server";
 import ScrollToTop from "./components/ScrollToTop";
-import Index from "./pages/Index";
-import Uslugi from "./pages/Uslugi";
-import ServiceDetail from "./pages/ServiceDetail";
-import ClusterServiceRouter from "./pages/ClusterServiceRouter";
-import OKollegii from "./pages/OKollegii";
-import Keisy from "./pages/Keisy";
-import FAQ from "./pages/FAQ";
-import Kontakty from "./pages/Kontakty";
-import Privacy from "./pages/Privacy";
-import Disclaimer from "./pages/Disclaimer";
-import Thanks from "./pages/Thanks";
-import NotFound from "./pages/NotFound";
 import { QuickQuestionModalProvider } from "./components/QuickQuestionModalProvider";
-import BizServicePage from "./pages/services/biz/BizServicePage";
-import PhysPage from "./pages/services/PhysPage";
-import PhysServiceDetailPage from "./pages/services/phys/PhysServiceDetailPage";
-import RastorzhenieBrakaRazdelImushchestvaPage from "./pages/services/phys/RastorzhenieBrakaRazdelImushchestvaPage";
-import VyseleniePage from "./pages/services/phys/VyseleniePage";
-import ZhilishchnyeSporyPage from "./pages/services/phys/ZhilishchnyeSporyPage";
-import NasledstvoPage from "./pages/services/phys/NasledstvoPage";
-import BizPage from "./pages/services/BizPage";
-import CriminalPage from "./pages/services/CriminalPage";
-import CriminalServiceDetailPage from "./pages/services/criminal/CriminalServiceDetailPage";
-import TeamMemberPage from "./pages/TeamMemberPage";
-import { audienceServices } from "@/data/services-audiences";
-import Novosti from "./pages/Novosti";
-import NewsDetail from "./pages/NewsDetail";
 import QuickQuestion from "./components/QuickQuestion";
 import CalltrackingPhoneGuard from "./components/CalltrackingPhoneGuard";
 import ScrollReveal from "./components/ScrollReveal";
-import Tseny from "./pages/Tseny";
+import { SITE } from "@/config/site";
+
+type PageModule = { default: ComponentType };
+
+type PreloadablePage = ComponentType & {
+  preload: () => Promise<{ default: ComponentType }>;
+};
+
+const pageLoaders: Array<() => Promise<PageModule>> = [];
+
+const lazyPage = (loader: () => Promise<PageModule>) => {
+  let serverModule: PageModule | undefined;
+  const load = async () => {
+    serverModule ??= await loader();
+    return serverModule;
+  };
+  const ClientComponent = lazy(load);
+  const Component = (() => {
+    if (import.meta.env.SSR) {
+      if (!serverModule) {
+        throw new Error("A page module was not preloaded before static rendering.");
+      }
+
+      const ServerComponent = serverModule.default;
+      return <ServerComponent />;
+    }
+
+    return <ClientComponent />;
+  }) as PreloadablePage;
+
+  Component.preload = load;
+  pageLoaders.push(load);
+  return Component;
+};
+
+const Index = lazyPage(() => import("./pages/Index"));
+const Services = lazyPage(() => import("./pages/Services"));
+const Uslugi = lazyPage(() => import("./pages/Uslugi"));
+const ServiceDetail = lazyPage(() => import("./pages/ServiceDetail"));
+const ClusterServiceRouter = lazyPage(() => import("./pages/ClusterServiceRouter"));
+const OKollegii = lazyPage(() => import("./pages/OKollegii"));
+const Keisy = lazyPage(() => import("./pages/Keisy"));
+const FAQ = lazyPage(() => import("./pages/FAQ"));
+const Kontakty = lazyPage(() => import("./pages/Kontakty"));
+const Privacy = lazyPage(() => import("./pages/Privacy"));
+const Disclaimer = lazyPage(() => import("./pages/Disclaimer"));
+const Thanks = lazyPage(() => import("./pages/Thanks"));
+const NotFound = lazyPage(() => import("./pages/NotFound"));
+const BizServicePage = lazyPage(() => import("./pages/services/biz/BizServicePage"));
+const PhysPage = lazyPage(() => import("./pages/services/PhysPage"));
+const PhysServiceDetailPage = lazyPage(() => import("./pages/services/phys/PhysServiceDetailPage"));
+const RastorzhenieBrakaRazdelImushchestvaPage = lazyPage(() => import("./pages/services/phys/RastorzhenieBrakaRazdelImushchestvaPage"));
+const ZhilishchnyeSporyPage = lazyPage(() => import("./pages/services/phys/ZhilishchnyeSporyPage"));
+const NasledstvoPage = lazyPage(() => import("./pages/services/phys/NasledstvoPage"));
+const BizPage = lazyPage(() => import("./pages/services/BizPage"));
+const CriminalPage = lazyPage(() => import("./pages/services/CriminalPage"));
+const CriminalServiceDetailPage = lazyPage(() => import("./pages/services/criminal/CriminalServiceDetailPage"));
+const TeamMemberPage = lazyPage(() => import("./pages/TeamMemberPage"));
+const Novosti = lazyPage(() => import("./pages/Novosti"));
+const NewsDetail = lazyPage(() => import("./pages/NewsDetail"));
+const Tseny = lazyPage(() => import("./pages/Tseny"));
+
+const RootRedirect = () => {
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    navigate(SITE.homePath, { replace: true });
+  }, [navigate]);
+
+  return <Index />;
+};
+
+export const preloadAppPages = () => Promise.all(pageLoaders.map((loader) => loader()));
 
 const queryClient = new QueryClient();
 
-const bizServices = audienceServices.filter((service) => service.audience === "biz");
-const bizServicePaths = new Set(bizServices.map((service) => service.path));
 const legacyBizPaths = [
   "/services/biz/arbitrazhnye-spory",
   "/services/biz/dogovornaya-rabota-pretensii",
@@ -52,7 +97,7 @@ const legacyBizPaths = [
   "/services/biz/registratsiya-likvidatsiya-kompaniy",
   "/services/biz/intellektualnaya-sobstvennost",
   "/services/biz/ekonomicheskie-prestupleniya"
-].filter((path) => !bizServicePaths.has(path));
+];
 
 const AppContent = () => (
   <QueryClientProvider client={queryClient}>
@@ -64,10 +109,13 @@ const AppContent = () => (
         <ScrollReveal />
         <CalltrackingPhoneGuard />
         <QuickQuestion />
-        <Routes>
-          <Route path="/" element={<Index />} />
+        <Suspense fallback={null}>
+          <Routes>
+          <Route path="/" element={<RootRedirect />} />
+          <Route path="/main" element={<Index />} />
+          <Route path="/services" element={<Services />} />
           <Route path="/uslugi-old" element={<Uslugi />} />
-          <Route path="/uslugi" element={<Navigate to="/services/phys" replace />} />
+          <Route path="/uslugi" element={<Navigate to="/services" replace />} />
           <Route path="/uslugi/fiz-lica" element={<Navigate to="/services/phys" replace />} />
           <Route path="/uslugi/yur-lica" element={<Navigate to="/services/biz" replace />} />
           <Route path="/uslugi/ugolovnye" element={<Navigate to="/services/criminal" replace />} />
@@ -86,10 +134,10 @@ const AppContent = () => (
           <Route path="/disclaimer" element={<Disclaimer />} />
           <Route path="/otkaz-ot-otvetstvennosti" element={<Disclaimer />} />
           <Route path="/thanks" element={<Thanks />} />
-          <Route path="/team" element={<Navigate to="/#team" replace />} />
+          <Route path="/team" element={<Navigate to={`${SITE.homePath}#team`} replace />} />
           <Route path="/team/:slug" element={<TeamMemberPage />} />
           <Route path="/lawyers/:slug" element={<TeamMemberPage />} />
-          <Route path="/lawyers" element={<Navigate to="/#team" replace />} />
+          <Route path="/lawyers" element={<Navigate to={`${SITE.homePath}#team`} replace />} />
           
           {/* Audience pages */}
           <Route path="/services/phys" element={<PhysPage />} />
@@ -142,9 +190,6 @@ const AppContent = () => (
           <Route path="/services/phys/mesto-zhitelstva-poryadok-obshcheniya" element={<Navigate to="/services/phys/mesto-zhitelstva-rebenka" replace />} />
           
           {/* Business services (B2B) */}
-          {bizServices.map((service) => (
-            <Route key={service.path} path={service.path} element={<BizServicePage />} />
-          ))}
           <Route path="/services/biz/:slug" element={<BizServicePage />} />
           {legacyBizPaths.map((path) => (
             <Route key={path} path={path} element={<Navigate to="/services/biz" replace />} />
@@ -172,11 +217,12 @@ const AppContent = () => (
           <Route path="/contacts" element={<Navigate to="/kontakty" replace />} />
           <Route path="/practices" element={<Navigate to="/services/phys" replace />} />
           <Route path="/practices/:slug" element={<Navigate to="/services/phys" replace />} />
-          <Route path="/komanda" element={<Navigate to="/#team" replace />} />
+          <Route path="/komanda" element={<Navigate to={`${SITE.homePath}#team`} replace />} />
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
-        </Routes>
+          </Routes>
+        </Suspense>
       </QuickQuestionModalProvider>
     </TooltipProvider>
   </QueryClientProvider>

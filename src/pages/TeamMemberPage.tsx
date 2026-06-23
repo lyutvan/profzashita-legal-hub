@@ -27,7 +27,7 @@ const TeamMemberPage = () => {
   const { openQuickQuestionModal } = useQuickQuestionModal();
 
   if (!member) {
-    return <Navigate to="/#team" replace />;
+    return <Navigate to={`${SITE.homePath}#team`} replace />;
   }
 
   const experience = member.experienceText;
@@ -115,7 +115,7 @@ const TeamMemberPage = () => {
           <div className="container relative z-10">
             <Breadcrumbs 
               items={[
-                { label: "Главная", path: "/" },
+                { label: "Главная", path: SITE.homePath },
                 { label: "Команда", path: "/o-kollegii#team" },
                 { label: member.name }
               ]}
@@ -305,7 +305,7 @@ const TeamMemberPage = () => {
                         {sortedRelatedCases.map((caseItem) => (
                           <li key={caseItem.id} className="p-3 rounded-xl bg-muted/50 border border-border/60">
                             <Link
-                              to={`/cases#${caseItem.slug}`}
+                              to={`/keisy#${caseItem.slug}`}
                               className="font-medium text-foreground hover:text-accent transition-colors"
                             >
                               {caseItem.title}

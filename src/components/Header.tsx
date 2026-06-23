@@ -51,8 +51,8 @@ const Header = () => {
   ];
 
   const isActive = (path: string) => {
-    if (path === "/#team") {
-      return location.pathname === "/" && location.hash === "#team";
+    if (path === `${SITE.homePath}#team`) {
+      return location.pathname === SITE.homePath && location.hash === "#team";
     }
     return location.pathname === path;
   };
@@ -65,7 +65,7 @@ const Header = () => {
       <div className="container header-container header-container--full">
         <div className={`header-row flex items-center transition-all duration-200 ${isScrolled ? 'h-16' : 'h-20'}`}>
           <Link 
-            to="/" 
+            to={SITE.homePath}
             className="header-logo-link flex items-center gap-2 flex-shrink-0"
             aria-label="Профзащита — Коллегия адвокатов"
           >
@@ -75,9 +75,9 @@ const Header = () => {
           {/* Desktop Navigation */}
           <nav className="header-nav hidden xl:flex flex-1 items-center justify-center min-w-0 overflow-hidden">
             <Link
-              to="/"
+              to={SITE.homePath}
               className={`text-small font-medium transition-colors duration-150 py-2 min-h-[44px] flex items-center relative ${
-                isActive("/") 
+                isActive(SITE.homePath)
                   ? "text-accent after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent"
                   : "text-white hover:text-accent"
               }`}
@@ -87,9 +87,9 @@ const Header = () => {
 
             {SHOW_SERVICES_NAV_ITEM && (
               <Link
-                to="/uslugi"
+                to="/services"
                 className={`text-small font-medium transition-colors duration-150 py-2 min-h-[44px] flex items-center relative ${
-                  isActive("/uslugi") 
+                  isActive("/services")
                     ? "text-accent after:absolute after:bottom-0 after:left-0 after:right-0 after:h-0.5 after:bg-accent"
                     : "text-white hover:text-accent"
                 }`}
@@ -201,10 +201,10 @@ const Header = () => {
           >
             <div className="flex flex-col gap-2">
               <Link
-                to="/"
+                to={SITE.homePath}
                 onClick={() => setIsMenuOpen(false)}
                 className={`text-body-mobile font-medium transition-colors duration-150 py-2 px-2 min-h-[44px] flex items-center rounded ${
-                  isActive("/") 
+                  isActive(SITE.homePath)
                     ? "text-accent bg-accent/10" 
                     : "text-white hover:text-accent hover:bg-white/5"
                 }`}
@@ -214,10 +214,10 @@ const Header = () => {
 
               {SHOW_SERVICES_NAV_ITEM && (
                 <Link
-                  to="/uslugi"
+                  to="/services"
                   onClick={() => setIsMenuOpen(false)}
                   className={`text-body-mobile font-medium transition-colors duration-150 py-2 px-2 min-h-[44px] flex items-center rounded ${
-                    isActive("/uslugi") 
+                    isActive("/services")
                       ? "text-accent bg-accent/10" 
                       : "text-white hover:text-accent hover:bg-white/5"
                   }`}

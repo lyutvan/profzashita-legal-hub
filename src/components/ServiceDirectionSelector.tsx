@@ -42,7 +42,7 @@ const servicesByAudience: Record<AudienceKey, ServiceCard[]> = {
     {
       title: "Семейные споры",
       description: "Развод, дети, алименты, имущество",
-      path: "/services/phys/semeynye-spory",
+      path: "/services/phys/razvod-razdel-imushchestva",
       icon: Users,
     },
     {

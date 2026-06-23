@@ -134,6 +134,13 @@ const Cases = () => {
     ? sortedCases.find((caseItem) => caseItem.slug === decodeURIComponent(slug))
     : null;
   const selectedCaseTeamMembers = selectedCase ? getCaseTeamMembers(selectedCase) : [];
+  const pageTitle = selectedCase
+    ? `${selectedCase.title} — судебная практика | Профзащита`
+    : "Наши кейсы — Профзащита";
+  const pageDescription = selectedCase
+    ? `Кейс коллегии адвокатов «Профзащита»: ${shortenCaseText(selectedCase.task, 155)}`
+    : "Реальные дела и результаты коллегии адвокатов Профзащита. Примеры успешного решения уголовных, гражданских, арбитражных и семейных споров.";
+  const pageUrl = selectedCase ? `${SITE.url}cases/${selectedCase.slug}` : `${SITE.url}keisy`;
 
   useEffect(() => {
     const targetId = slug
@@ -151,15 +158,15 @@ const Cases = () => {
   return (
     <div className="top-page-mobile-compact min-h-screen flex flex-col">
       <Helmet>
-        <title>Наши кейсы — Профзащита</title>
-        <meta name="description" content="Реальные дела и результаты коллегии адвокатов Профзащита. Примеры успешного решения уголовных, гражданских, арбитражных и семейных споров." />
-        <link rel="canonical" href={`${SITE.url}keisy`} />
+        <title>{pageTitle}</title>
+        <meta name="description" content={pageDescription} />
+        <link rel="canonical" href={pageUrl} />
         
         {/* OpenGraph */}
-        <meta property="og:title" content="Наши кейсы — Коллегия адвокатов Профзащита" />
-        <meta property="og:description" content="Реальные дела, реальные результаты. Примеры успешного решения сложных юридических споров." />
+        <meta property="og:title" content={pageTitle} />
+        <meta property="og:description" content={pageDescription} />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={`${SITE.url}keisy/`} />
+        <meta property="og:url" content={pageUrl} />
         <meta property="og:image" content={SITE.ogImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -175,22 +182,21 @@ const Cases = () => {
 
       <BreadcrumbSchema items={[
         { name: "Главная", url: SITE.url },
-        { name: "Кейсы", url: `${SITE.url}keisy/` }
+        { name: "Кейсы", url: `${SITE.url}keisy` },
+        ...(selectedCase ? [{ name: selectedCase.title, url: pageUrl }] : [])
       ]} />
 
-      {/* Article schema for each case */}
-      {sortedCases.map((caseItem) => (
+      {selectedCase ? (
         <ArticleSchema
-          key={caseItem.id}
-          headline={caseItem.title}
-          description={caseItem.task}
-          datePublished={caseItem.datePublished}
-          author={caseItem.author}
-          url={`${SITE.url}keisy/#${caseItem.slug}`}
+          headline={selectedCase.title}
+          description={selectedCase.task}
+          datePublished={selectedCase.datePublished}
+          author={selectedCase.author}
+          url={pageUrl}
           image={SITE.ogImage}
-          articleBody={`${caseItem.task} ${caseItem.actions} ${caseItem.result}`}
+          articleBody={`${selectedCase.task} ${selectedCase.actions} ${selectedCase.result}`}
         />
-      ))}
+      ) : null}
 
       <Header />
       
@@ -198,7 +204,7 @@ const Cases = () => {
         <PageHero>
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 text-white">
-              Судебная практика <span className="text-accent">коллегии</span>
+              {selectedCase ? selectedCase.title : <><span>Судебная практика </span><span className="text-accent">коллегии</span></>}
             </h1>
             <p className="text-body-mobile md:text-body text-white/90 leading-relaxed">
               Публикуем фрагменты судебных актов без раскрытия персональных данных доверителей.
@@ -231,10 +237,6 @@ const Cases = () => {
                       }).format(new Date(selectedCase.datePublished))}
                     </span>
                   </div>
-
-                  <h2 className="font-serif text-h2-mobile font-bold leading-tight text-slate-950 md:text-h2">
-                    {selectedCase.title}
-                  </h2>
 
                   <div className="mt-6 rounded-[8px] border-l-4 border-[#C9A227] bg-[#fbf6e8] p-5">
                     <div className="flex items-center gap-2 text-[13px] font-semibold uppercase tracking-[0.08em] text-[#8a6a18]">

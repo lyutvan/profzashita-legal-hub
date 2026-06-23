@@ -1,9 +1,10 @@
 import { renderToString } from "react-dom/server";
 import { Helmet } from "react-helmet";
 
-import { StaticApp } from "./App";
+import { preloadAppPages, StaticApp } from "./App";
 
-export const render = (location: string) => {
+export const render = async (location: string) => {
+  await preloadAppPages();
   const appHtml = renderToString(<StaticApp location={location} />);
   const helmet = Helmet.renderStatic();
 

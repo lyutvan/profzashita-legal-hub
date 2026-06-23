@@ -299,7 +299,7 @@ const CriminalPage = () => {
 
   const breadcrumbItems = [
     { name: "Главная", url: SITE.url },
-    { name: "Услуги", url: new URL("/uslugi", SITE.url).toString() },
+    { name: "Услуги", url: new URL("/services", SITE.url).toString() },
     { name: "Уголовные дела", url: canonical }
   ];
 
@@ -377,11 +377,11 @@ const CriminalPage = () => {
           />
           <div className="container relative z-10">
             <div className="criminal-breadcrumb inline-flex flex-wrap items-center gap-2 rounded-[8px] border border-[#244166] bg-[#132e53]/80 px-4 py-2 text-sm text-white/85">
-              <Link to="/" className="hover:text-white">
+              <Link to={SITE.homePath} className="hover:text-white">
                 Главная
               </Link>
               <span className="text-white/45">›</span>
-              <Link to="/uslugi" className="hover:text-white">
+              <Link to="/services" className="hover:text-white">
                 Услуги
               </Link>
               <span className="text-white/45">›</span>

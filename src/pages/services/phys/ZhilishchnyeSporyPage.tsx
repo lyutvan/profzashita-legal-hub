@@ -1,7 +1,6 @@
 import { Helmet } from "react-helmet";
 import { Link } from "react-router-dom";
 import {
-  Star,
   Phone,
   Mail,
   MapPin,
@@ -31,6 +30,7 @@ import { teamMembers as allTeamMembers, type TeamMember } from "@/data/team";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import MaxIcon from "@/components/icons/MaxIcon";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
 
@@ -343,7 +343,7 @@ const ZhilishchnyeSporyPage = () => {
 
   const breadcrumbItems = [
     { name: "Главная", url: SITE.url },
-    { name: "Услуги", url: new URL("/uslugi", SITE.url).toString() },
+    { name: "Услуги", url: new URL("/services", SITE.url).toString() },
     { name: "Физлицам", url: new URL("/services/phys", SITE.url).toString() },
     { name: "Жилищные споры и возмещение ущерба", url: canonical }
   ];
@@ -438,7 +438,7 @@ const ZhilishchnyeSporyPage = () => {
           <div className="container relative z-10">
             <Breadcrumbs
               items={[
-                { label: "Услуги", path: "/uslugi" },
+                { label: "Услуги", path: "/services" },
                 { label: "Физическим лицам", path: "/services/phys" },
                 { label: "Жилищные споры и возмещение ущерба" }
               ]}
@@ -734,26 +734,7 @@ const ZhilishchnyeSporyPage = () => {
               </p>
             </div>
             <YandexRatingWidget />
-            <div className="section__content mt-8 grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-6 auto-rows-fr">
-              {reviewCards.map((review) => (
-                <Card key={review.name} className="h-full">
-                  <CardContent className="pt-6 h-full flex flex-col">
-                    <div className="mb-3 flex items-center justify-between gap-4">
-                      <div className="text-base font-semibold text-slate-900">{review.name}</div>
-                      <div className="flex items-center gap-1 text-accent">
-                        {Array.from({ length: 5 }).map((_, index) => (
-                          <Star key={`${review.name}-${index}`} className="h-5 w-5 fill-current" />
-                        ))}
-                      </div>
-                    </div>
-                    <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
-                    <div className="border-t border-border mt-4 pt-4">
-                      <span className="text-small font-semibold">{review.name}</span>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <ReviewsCarousel reviews={reviewCards.map((review) => ({ ...review, rating: 5 }))} />
             <div className="mt-8 text-center">
               <Button asChild size="lg" className={`${CTA_BUTTON_CLASS} w-full sm:w-auto`}>
                 <Link to={contactsHref}>Обсудить свою ситуацию</Link>

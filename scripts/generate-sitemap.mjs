@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const SITE_URL = "https://prof-zashita.ru";
+const HOME_PATH = "/main";
 const today = new Date().toISOString().slice(0, 10);
 
 const rootDir = process.cwd();
@@ -9,12 +10,16 @@ const sitemapPath = path.join(rootDir, "public", "sitemap.xml");
 const servicesDataPath = path.join(rootDir, "src", "data", "services-audiences.ts");
 const physContentPath = path.join(rootDir, "src", "data", "phys-service-content.ts");
 const newsDataPath = path.join(rootDir, "src", "data", "news.ts");
+const teamDataPath = path.join(rootDir, "src", "data", "team.ts");
+const casesDataPath = path.join(rootDir, "src", "data", "cases.ts");
 
 const nonCanonicalPaths = new Set([
+  "/",
   "/privacy",
   "/disclaimer",
   "/politika-konfidentsialnosti",
   "/otkaz-ot-otvetstvennosti",
+  "/team/yulia-lyadova",
   "/services/phys/zhilishchnye-spory",
   "/services/phys/ushcherb-imushchestvu",
   "/services/phys/nasledstvennye-dela",
@@ -130,6 +135,21 @@ const collectNewsPaths = () => {
   };
 };
 
+const collectDataSlugs = (filePath) => {
+  const content = readFileSafe(filePath);
+  return unique([...content.matchAll(/\bslug:\s*"([^"]+)"/g)].map((m) => m[1]));
+};
+
+const collectTeamPaths = () => {
+  const content = readFileSafe(teamDataPath);
+  const excludedSlugs = new Set([...content.matchAll(/member\.slug\s*!==\s*"([^"]+)"/g)].map((m) => m[1]));
+  return collectDataSlugs(teamDataPath)
+    .filter((slug) => !excludedSlugs.has(slug))
+    .map((slug) => `/team/${slug}`);
+};
+
+const collectCasePaths = () => collectDataSlugs(casesDataPath).map((slug) => `/cases/${slug}`);
+
 const readExistingSitemap = () => {
   const xml = readFileSafe(sitemapPath);
   const items = [];
@@ -150,6 +170,8 @@ const buildSitemap = () => {
   const { criminalIndex, criminalPaths } = collectCriminalPaths();
   const { bizIndex, bizPaths } = collectBizPaths();
   const { newsIndex, newsPaths } = collectNewsPaths();
+  const teamPaths = collectTeamPaths();
+  const casePaths = collectCasePaths();
   const existingItems = readExistingSitemap();
   const physBase = `${SITE_URL}${physIndex}`;
   const criminalBase = `${SITE_URL}${criminalIndex}`;
@@ -171,6 +193,16 @@ const buildSitemap = () => {
   const newsUrlSet = new Set([newsIndex, ...newsPaths]);
   const newsUrls = Array.from(newsUrlSet).sort();
   const staticItems = [
+    {
+      loc: `${SITE_URL}${HOME_PATH}`,
+      priority: "1.0",
+      changefreq: "weekly"
+    },
+    {
+      loc: `${SITE_URL}/services`,
+      priority: "0.85",
+      changefreq: "weekly"
+    },
     {
       loc: `${SITE_URL}/tseny`,
       priority: "0.75",
@@ -219,7 +251,19 @@ const buildSitemap = () => {
     };
   });
 
-  const items = [...preserved, ...staticItems, ...physItems, ...criminalItems, ...bizItems, ...newsItems];
+  const teamItems = teamPaths.map((pathItem) => ({
+    loc: `${SITE_URL}${pathItem}`,
+    priority: "0.7",
+    changefreq: "monthly"
+  }));
+
+  const caseItems = casePaths.map((pathItem) => ({
+    loc: `${SITE_URL}${pathItem}`,
+    priority: "0.65",
+    changefreq: "monthly"
+  }));
+
+  const items = [...preserved, ...staticItems, ...physItems, ...criminalItems, ...bizItems, ...newsItems, ...teamItems, ...caseItems];
   const uniqueItems = [];
   const seen = new Set();
   for (const item of items) {

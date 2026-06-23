@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { useLocation } from "react-router-dom";
+import { SITE } from "@/config/site";
 
 const REVEAL_SELECTOR = [
   "main > section",
@@ -14,6 +15,10 @@ const ScrollReveal = () => {
   const { pathname, hash } = useLocation();
 
   useEffect(() => {
+    if (pathname !== SITE.homePath) {
+      return;
+    }
+
     if (typeof window === "undefined" || typeof IntersectionObserver === "undefined") {
       return;
     }

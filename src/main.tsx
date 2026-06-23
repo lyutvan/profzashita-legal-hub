@@ -1,4 +1,4 @@
-import { createRoot } from "react-dom/client";
+import { hydrateRoot } from "react-dom/client";
 import App from "./App.tsx";
 import "./index.css";
 import { initMetrika, setupMetrikaGoals } from "./lib/metrika";
@@ -7,4 +7,4 @@ import { initMetrika, setupMetrikaGoals } from "./lib/metrika";
 initMetrika();
 setupMetrikaGoals();
 
-createRoot(document.getElementById("root")!).render(<App />);
+hydrateRoot(document.getElementById("root")!, <App />);

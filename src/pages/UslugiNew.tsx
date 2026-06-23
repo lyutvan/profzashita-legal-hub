@@ -27,6 +27,7 @@ import { getCategoriesForAudience, getServicesByAudience } from "@/data/services
 import { sharedReviews } from "@/data/shared-reviews";
 import { popularServiceItems, searchQuickChips, serviceSearchItems } from "@/data/services-search";
 import { SITE } from "@/config/site";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 const directionCards = [
   {
@@ -678,19 +679,7 @@ const UslugiNew = () => {
                 Реальные истории клиентов — о подходе, сроках и результате.
               </p>
             </div>
-            <div className="section__content grid grid-cols-4 lg:grid-cols-12 gap-4 lg:gap-6">
-              {sharedReviews.slice(0, 6).map((review) => (
-                <Card key={review.id} className="col-span-4 lg:col-span-4 border-border/80">
-                  <CardContent className="pt-5 pb-5 h-full flex flex-col">
-                    <div className="flex items-center justify-between text-small text-muted-foreground mb-2">
-                      <span className="font-semibold text-foreground">{review.name}</span>
-                      <span>{review.date}</span>
-                    </div>
-                    <p className="text-small text-muted-foreground leading-relaxed">{review.text}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <ReviewsCarousel reviews={sharedReviews.slice(0, 6)} />
             <div className="mt-6">
               <Button asChild className="h-auto min-h-12 w-full max-w-[288px] whitespace-normal bg-primary px-4 py-3 leading-tight text-white hover:bg-primary/90 sm:w-auto sm:max-w-none">
                 <a

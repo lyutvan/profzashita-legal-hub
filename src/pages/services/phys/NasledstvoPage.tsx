@@ -32,6 +32,7 @@ import { teamMembers } from "@/data/team";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import MaxIcon from "@/components/icons/MaxIcon";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 const NasledstvoPage = () => {
   const [showAllMobileSituations, setShowAllMobileSituations] = useState(false);
@@ -389,7 +390,7 @@ const NasledstvoPage = () => {
       <BreadcrumbSchema
         items={[
           { name: "Главная", url: SITE.url },
-          { name: "Услуги", url: new URL("/uslugi", SITE.url).toString() },
+          { name: "Услуги", url: new URL("/services", SITE.url).toString() },
           { name: "Физическим лицам", url: new URL("/services/phys", SITE.url).toString() },
           { name: "Наследственные дела", url: canonical }
         ]}
@@ -426,7 +427,7 @@ const NasledstvoPage = () => {
           <div className="container relative z-10">
             <Breadcrumbs
               items={[
-                { label: "Услуги", path: "/uslugi" },
+                { label: "Услуги", path: "/services" },
                 { label: "Физическим лицам", path: "/services/phys" },
                 { label: "Наследственные дела" }
               ]}
@@ -859,23 +860,7 @@ const NasledstvoPage = () => {
                 className="max-w-full"
               ></iframe>
             </div>
-            <div className="section__content grid gap-4">
-              {reviews.slice(0, 3).map((review) => (
-                <Card key={review.name} className="rounded-[14px] border border-[#D8C08B] bg-white">
-                  <CardContent className="p-5">
-                    <div className="flex items-center justify-between gap-3">
-                      <span className="font-semibold text-slate-950">{review.name}</span>
-                      <div className="flex items-center gap-1 text-accent">
-                        {Array.from({ length: review.rating }).map((_, index) => (
-                          <span key={`${review.name}-mobile-${index}`}>★</span>
-                        ))}
-                      </div>
-                    </div>
-                    <p className="mt-3 line-clamp-5 text-[14px] leading-relaxed text-slate-600">{review.text}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <ReviewsCarousel reviews={reviews} />
             <Button
               asChild
               size="lg"
@@ -984,23 +969,7 @@ const NasledstvoPage = () => {
                 className="max-w-full"
               ></iframe>
             </div>
-            <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-              {reviews.map((review) => (
-                <Card key={review.name} className="h-full">
-                  <CardContent className="pt-6 h-full flex flex-col">
-                    <div className="flex items-center justify-between gap-3 mb-4">
-                      <span className="text-[16px] font-semibold text-slate-900">{review.name}</span>
-                      <div className="flex items-center gap-1 text-accent">
-                        {Array.from({ length: review.rating }).map((_, index) => (
-                          <span key={`${review.name}-${index}`}>★</span>
-                        ))}
-                      </div>
-                    </div>
-                    <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <ReviewsCarousel reviews={reviews} />
             <div className="mt-8 text-center text-muted-foreground">
               Вы можете задать свой вопрос по телефону и понять перспективы именно по вашей ситуации
             </div>

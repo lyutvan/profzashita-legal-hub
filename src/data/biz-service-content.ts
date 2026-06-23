@@ -391,7 +391,7 @@ export const getBizServicePageData = (entry: BizServiceEntry): BizServicePageDat
   const metaDescription = buildMetaDescription(entry.title);
 
   const breadcrumbs = [
-    { label: "Услуги", path: "/uslugi" },
+    { label: "Услуги", path: "/services" },
     { label: "Юридическим лицам", path: "/services/biz" }
   ];
   if (categoryAnchor) {
@@ -401,7 +401,7 @@ export const getBizServicePageData = (entry: BizServiceEntry): BizServicePageDat
 
   const breadcrumbSchema = [
     { name: "Главная", url: SITE.url },
-    { name: "Услуги", url: new URL("/uslugi", SITE.url).toString() },
+    { name: "Услуги", url: new URL("/services", SITE.url).toString() },
     { name: "Юридическим лицам", url: new URL("/services/biz", SITE.url).toString() },
     { name: entry.title, url: canonical }
   ];

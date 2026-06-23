@@ -47,7 +47,7 @@ const BizPage = () => {
         "@type": "ListItem",
         "position": 2,
         "name": "Услуги",
-        "item": new URL("/uslugi", SITE.url).toString()
+        "item": new URL("/services", SITE.url).toString()
       },
       {
         "@type": "ListItem",
@@ -112,7 +112,7 @@ const BizPage = () => {
           <div className="container relative z-10">
             <Breadcrumbs
               items={[
-                { label: "Услуги", path: "/uslugi" },
+                { label: "Услуги", path: "/services" },
                 { label: "Юридическим лицам" }
               ]} 
             />

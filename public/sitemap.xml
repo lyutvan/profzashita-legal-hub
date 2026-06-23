@@ -1,12 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://prof-zashita.ru/</loc>
-    <lastmod>2026-06-23</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>1.0</priority>
-  </url>
-  <url>
     <loc>https://prof-zashita.ru/o-kollegii</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
@@ -71,6 +65,210 @@
     <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.6</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/services</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.85</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/main</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/team/lyutikov</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/team/ryzhenko</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/team/vaskovsky</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/team/kalabekov</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/priznanie-dejstvij-sledovatelya-nezakonnymi</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/vozvrat-dela-prokuroru-159</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/izmenenie-mery-111-domashnij-arest</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/prekrashchenie-ugolovnogo-dela-wildberries-158-uk-rf</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/prekrashhenie-ugolovnogo-dela-moshennichestvo-primirenie-159-uk-rf</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/prekrashhenie-ugolovnogo-dela-krazha-telefona-158-uk-rf</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/prekrashhenie-ugolovnogo-dela-zhomov-158-uk-rf</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/udovletvorenie-zhaloby-otkaz-vozbuzhdenie-dela-124-upk-rf</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/prekrashhenie-dela-grabezh-sudebnyj-shtraf-161-uk-rf</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/prekrashhenie-dela-ohrana-truda-143-uk-rf</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/vzyskanie-zadolzhennosti-dkp-kvartiry-vologda-apellyaciya-33-5318-2024</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/kompensaciya-moralnogo-vreda-oskorblenie-neprilichnyj-zhest-vologda-2024</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/razdel-imushchestva-nedeistv-sdelki-perovo-2-2621-2025</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/zhilishchnoe-socnaim-utrata-prava-mosgorsud-33-48847-2025</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/zpp-nikulinsky-mirovoe-tehno-lab-2-4243-2025</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/dtp-ostankinskiy-mirovoe-2-5079-2025</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/sem-mosgorsud-33-56423-2025-apellyaciya-02-12-2025</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/sem-razvod-strogino-426-2-331-2025</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/a40-76521-2017-reshenie-20171003</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/a40-76521-2017-apellyaciya-20171225</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/a40-76521-2017-kassaciya-20180522</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/zpp-mosgorsud-33-34379-2017-apellyaciya</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/zpp-tushinskiy-sk-soglasie-2-1636-2019</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/grazhdanskoe-zaliv-kvartiry-shcherbinskiy-2-15337-2023</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/zpp-taganskiy-zheldoripoteka-2-3650-2019</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/zpp-tyumen-33-816-2019-apellyaciya</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/sobinskiy-2-395-2025-otmena-zaochnogo-2026</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
+  </url>
+  <url>
+    <loc>https://prof-zashita.ru/cases/nasledstvo-horoshevskiy-2-3272-2026-pravo-sobstvennosti</loc>
+    <lastmod>2026-06-23</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.65</priority>
   </url>
   <url>
     <loc>https://prof-zashita.ru/services/phys</loc>
@@ -400,7 +598,7 @@
     <loc>https://prof-zashita.ru/services/phys/razvod-razdel-imushchestva</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://prof-zashita.ru/services/phys/snyatie-arestov-ogranicheniy-otmena-zapretov</loc>
@@ -502,7 +700,7 @@
     <loc>https://prof-zashita.ru/services/phys/vozmeshchenie-ushcherba</loc>
     <lastmod>2026-06-23</lastmod>
     <changefreq>monthly</changefreq>
-    <priority>0.7</priority>
+    <priority>0.75</priority>
   </url>
   <url>
     <loc>https://prof-zashita.ru/services/phys/vozmeshchenie-ushcherba-dtp</loc>

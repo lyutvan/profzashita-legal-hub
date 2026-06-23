@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import { ChevronRight } from "lucide-react";
+import { SITE } from "@/config/site";
 
 interface BreadcrumbItem {
   label: string;
@@ -20,7 +21,7 @@ const Breadcrumbs = ({ items }: BreadcrumbsProps) => {
         <ol className="flex flex-wrap items-center gap-2 text-small text-white/85 drop-shadow-sm">
           <li>
             <Link 
-              to="/" 
+              to={SITE.homePath}
               className="text-white/85 hover:text-white hover:underline underline-offset-2 transition-colors"
             >
               Главная

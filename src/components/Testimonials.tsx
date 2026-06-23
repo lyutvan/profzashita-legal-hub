@@ -1,7 +1,6 @@
-import { Card, CardContent } from "@/components/ui/card";
 import { testimonials } from "@/data/testimonials";
 import { Button } from "@/components/ui/button";
-import { Star } from "lucide-react";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 const Testimonials = () => {
   return (
@@ -16,34 +15,8 @@ const Testimonials = () => {
           </p>
         </div>
 
-        <div className="section__content grid grid-cols-1 gap-6 md:grid-cols-2 md:gap-7 lg:grid-cols-3 lg:gap-8 max-w-6xl mx-auto">
-          {testimonials.map((testimonial) => (
-            <Card key={testimonial.id} className="border-border hover:shadow-elegant transition-all">
-              <CardContent className="flex h-full flex-col p-6 sm:p-7">
-                <div className="mb-5 flex items-start justify-between gap-4">
-                  <div className="flex items-center gap-1 text-accent">
-                    {[...Array(testimonial.rating)].map((_, i) => (
-                      <Star key={i} className="h-4 w-4 fill-current" />
-                    ))}
-                  </div>
-                  <p className="text-small text-muted-foreground text-right leading-tight">{testimonial.date}</p>
-                </div>
-                
-                <blockquote className="mb-5 text-small italic leading-7 text-muted-foreground">
-                  “{testimonial.text}”
-                </blockquote>
-                
-                <div className="mt-auto border-t border-border pt-5">
-                  <div className="flex items-center justify-between gap-4">
-                    <p className="font-semibold text-small">{testimonial.name}</p>
-                    {testimonial.source && (
-                      <p className="text-small text-muted-foreground whitespace-nowrap">{testimonial.source}</p>
-                    )}
-                  </div>
-                </div>
-              </CardContent>
-            </Card>
-          ))}
+        <div className="max-w-6xl mx-auto">
+          <ReviewsCarousel reviews={testimonials} />
         </div>
 
         <div className="mt-10 flex justify-center">

@@ -2,7 +2,6 @@ import { useMemo, useState } from "react";
 import { Link } from "react-router-dom";
 import { Helmet } from "react-helmet";
 import {
-  Star,
   Phone,
   Mail,
   MapPin,
@@ -61,6 +60,7 @@ import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 import TelegramIcon from "@/components/icons/TelegramIcon";
 import WhatsAppIcon from "@/components/icons/WhatsAppIcon";
 import MaxIcon from "@/components/icons/MaxIcon";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 import type { PhysServicePageData } from "@/data/phys-service-content";
 
 type LeadFormProps = {
@@ -3253,26 +3253,7 @@ const PhysCategoryLandingTemplate = ({ data }: PhysCategoryLandingTemplateProps)
                   className="max-w-full"
                 ></iframe>
               </div>
-              <div className="section__content grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mt-8">
-                {reviews.map((review, reviewIndex) => (
-                  <Card key={`${review.name}-${reviewIndex}`} className="h-full">
-                    <CardContent className="pt-6 h-full flex flex-col">
-                      <div className="flex items-start justify-between gap-4 mb-3">
-                        <div className="flex items-center gap-1 text-accent">
-                          {Array.from({ length: review.rating }).map((_, index) => (
-                            <Star key={`${review.name}-${index}`} className="h-4 w-4 fill-current" />
-                          ))}
-                        </div>
-                        {review.date ? <span className="text-small text-muted-foreground">{review.date}</span> : null}
-                      </div>
-                      <p className="text-small text-muted-foreground leading-relaxed flex-1">{review.text}</p>
-                      <div className="border-t border-border mt-4 pt-4">
-                        <span className="text-small font-semibold">{review.name}</span>
-                      </div>
-                    </CardContent>
-                  </Card>
-                ))}
-              </div>
+              <ReviewsCarousel reviews={reviews} />
               <div className="mt-8 flex justify-center">
                 <Button
                   asChild={isContactsFlowCategory || isConsumerProtectionCategory || isCallOnlyCta}

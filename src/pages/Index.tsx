@@ -31,6 +31,7 @@ import MaxIcon from "@/components/icons/MaxIcon";
 import AnimatedStats from "@/components/AnimatedStats";
 import WorkTimeline from "@/components/WorkTimeline";
 import ServiceDirectionSelector from "@/components/ServiceDirectionSelector";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 const Index = () => {
   const whatsappUrl = SITE.whatsappUrl;
@@ -199,13 +200,13 @@ const Index = () => {
       <Helmet>
         <title>Коллегия адвокатов Профзащита — юридическая помощь в Москве</title>
         <meta name="description" content="Профессиональная юридическая помощь в Москве. Уголовные, гражданские, корпоративные дела. Более 500 выигранных дел. Бесплатная консультация." />
-        <link rel="canonical" href={SITE.url} />
+        <link rel="canonical" href={SITE.homeUrl} />
         
         {/* OpenGraph */}
         <meta property="og:title" content="Коллегия адвокатов Профзащита — премиум-юридические услуги" />
         <meta property="og:description" content="15+ лет опыта, 500+ выигранных дел, 98% довольных клиентов. Профессиональная защита в уголовных, гражданских и корпоративных делах." />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content={SITE.url} />
+        <meta property="og:url" content={SITE.homeUrl} />
         <meta property="og:image" content={SITE.ogImage} />
         <meta property="og:image:width" content="1200" />
         <meta property="og:image:height" content="630" />
@@ -234,10 +235,11 @@ const Index = () => {
         <LegalBackground
           imageSrc={courtColumnsImg}
           imageAlt="Классический зал суда с мраморными колоннами"
-	          overlayOpacity={0.6}
-	          className="home-hero"
-	          parallax
-	        >
+          overlayOpacity={0.6}
+          className="home-hero"
+          parallax
+          priority
+        >
           <div className="max-w-4xl mx-auto text-center">
             <h1 className="font-serif text-[42px] md:text-h1 font-bold text-accent mb-4 md:mb-6 leading-[0.95] md:leading-tight">
               Решаем сложные юридические споры
@@ -413,35 +415,14 @@ const Index = () => {
               </div>
             </div>
 
-            <div className="section__content mt-8 grid grid-cols-1 gap-5 md:mt-12 md:grid-cols-3 md:gap-8">
-              {testimonials.map((testimonial, index) => (
-                <Card
-                  key={`${testimonial.nameShort}-${index}`}
-                  className={`${index > 2 ? "hidden md:flex" : "flex"} h-full rounded-[14px] border border-[#C9A227] bg-[#F6F1E6] shadow-[0_8px_20px_rgba(60,52,31,0.08)]`}
-                >
-                  <CardContent className="pt-6 px-6 pb-6 h-full flex flex-col">
-                    <div className="flex items-center justify-between gap-4">
-                      <div className="flex items-center gap-1 text-accent">
-                        {[...Array(testimonial.rating)].map((_, starIndex) => (
-                          <Star key={starIndex} className="h-5 w-5 fill-current" />
-                        ))}
-                      </div>
-                      <p className="text-[15px] text-foreground/70 whitespace-nowrap">
-                        {testimonial.dateText}
-                      </p>
-                    </div>
-
-                    <p className="mt-4 text-[16px] leading-relaxed text-foreground/90">
-                      {testimonial.text}
-                    </p>
-
-                    <div className="border-t border-[#dccda5] pt-4 mt-auto">
-                      <p className="text-[16px] font-semibold text-foreground">{testimonial.nameShort}</p>
-                    </div>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <ReviewsCarousel
+              reviews={testimonials.map((testimonial) => ({
+                name: testimonial.nameShort,
+                date: testimonial.dateText,
+                rating: testimonial.rating,
+                text: testimonial.text
+              }))}
+            />
 
             <div className="mt-8 flex justify-center">
               <Button

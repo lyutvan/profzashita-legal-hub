@@ -24,6 +24,7 @@ import { SITE } from "@/config/site";
 import { getPriceBySlug } from "@/data/pricing";
 import { getServiceHeroImage } from "@/lib/serviceCardImages";
 import type { BizServicePageData, BizWhyUsItem } from "@/data/biz-service-content";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 interface BizServiceTemplateProps {
   data: BizServicePageData;
@@ -414,19 +415,7 @@ const BizServiceTemplate = ({ data }: BizServiceTemplateProps) => {
                 Клиенты ценят точность и прозрачность работы.
               </p>
             </div>
-            <div className="section__content grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {data.reviews.map((review, index) => (
-                <Card key={`${review.name}-${index}`} className="h-full">
-                  <CardContent className="pt-6 h-full flex flex-col">
-                    <div className="flex items-start justify-between gap-4 mb-3">
-                      <div className="text-small font-semibold">{review.name}</div>
-                      <div className="text-small text-muted-foreground">{review.date}</div>
-                    </div>
-                    <p className="text-small text-muted-foreground leading-relaxed">{review.text}</p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <ReviewsCarousel reviews={data.reviews} />
             <div className="mt-8">
               <Button asChild className="h-auto min-h-12 w-full max-w-[288px] whitespace-normal bg-primary px-4 py-3 leading-tight text-white hover:bg-primary/90 sm:w-auto sm:max-w-none">
                 <a

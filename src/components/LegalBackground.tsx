@@ -7,6 +7,7 @@ interface LegalBackgroundProps {
   overlayOpacity?: number; // 0.55 to 0.65 (55% to 65%)
   className?: string;
   parallax?: boolean;
+  priority?: boolean;
 }
 
 const shouldDisableParallax = () =>
@@ -31,7 +32,8 @@ const LegalBackground = ({
   children, 
   overlayOpacity = 0.6,
   className = "",
-  parallax = false
+  parallax = false,
+  priority = false
 }: LegalBackgroundProps) => {
   const sectionRef = useRef<HTMLElement | null>(null);
   const imageRef = useRef<HTMLImageElement | null>(null);
@@ -93,7 +95,8 @@ const LegalBackground = ({
           ref={imageRef}
           src={imageSrc}
           alt={imageAlt}
-          loading="lazy"
+          loading={priority ? "eager" : "lazy"}
+          fetchpriority={priority ? "high" : "auto"}
           className={`w-full h-full object-cover object-center ${isParallaxEnabled ? "legal-background__image--parallax" : ""}`}
           style={{
             objectPosition: 'center center'

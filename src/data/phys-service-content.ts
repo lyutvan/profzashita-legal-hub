@@ -82,7 +82,8 @@ export interface PhysServicePageData {
 }
 
 const CATEGORY_SLUG_OVERRIDES: Record<string, string> = {
-  "Семейные споры": "semeynye-spory",
+  "Семейные споры": "razvod-razdel-imushchestva",
+  "Ущерб имуществу": "vozmeshchenie-ushcherba",
   "Жилищные споры": "vyselenie",
   "Наследственные дела": "nasledstvo",
   "Защита прав потребителей": "zashchita-prav-potrebitelya",
@@ -1165,7 +1166,7 @@ export const getPhysServicePageData = (entry: PhysServiceEntry): PhysServicePage
 
   const categoryPath = getPhysCategoryPagePath(entry.category);
   const breadcrumbs = [
-    { label: "Услуги", path: "/uslugi" },
+    { label: "Услуги", path: "/services" },
     { label: "Физическим лицам", path: "/services/phys" }
   ];
   if (!entry.isCategory && categoryPath) {
@@ -1175,7 +1176,7 @@ export const getPhysServicePageData = (entry: PhysServiceEntry): PhysServicePage
 
   const breadcrumbSchema = [
     { name: "Главная", url: SITE.url },
-    { name: "Услуги", url: new URL("/uslugi", SITE.url).toString() },
+    { name: "Услуги", url: new URL("/services", SITE.url).toString() },
     { name: "Физическим лицам", url: new URL("/services/phys", SITE.url).toString() }
   ];
   if (!entry.isCategory && categoryPath) {

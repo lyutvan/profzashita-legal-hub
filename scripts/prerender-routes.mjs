@@ -72,7 +72,7 @@ try {
   const routes = getRoutes();
 
   for (const route of routes) {
-    const rendered = render(route);
+    const rendered = await render(route);
     const target = getOutputPath(route);
     fs.mkdirSync(path.dirname(target), { recursive: true });
     fs.writeFileSync(target, renderRoute(template, route, rendered, assetMap));

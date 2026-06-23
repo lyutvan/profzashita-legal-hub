@@ -16,7 +16,7 @@ const Footer = () => {
         <div className="grid grid-cols-1 gap-x-6 gap-y-6 md:grid-cols-2 lg:grid-cols-[minmax(0,1.45fr)_minmax(0,1fr)_minmax(0,1fr)] lg:gap-x-8 xl:grid-cols-[minmax(0,1.55fr)_minmax(0,0.95fr)_minmax(0,1fr)] xl:gap-x-10 xl:gap-y-8">
           <div className="min-w-0">
             <div className="flex h-full flex-col gap-4">
-              <Link to="/" className="inline-flex self-start">
+              <Link to={SITE.homePath} className="inline-flex self-start">
                 <Logo variant="footer" />
               </Link>
 

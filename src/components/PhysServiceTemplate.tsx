@@ -39,6 +39,7 @@ import { toast } from "@/hooks/use-toast";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import type { PhysServicePageData } from "@/data/phys-service-content";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
+import ReviewsCarousel from "@/components/ReviewsCarousel";
 
 const FAMILY_ISSUES = [
   {
@@ -842,21 +843,7 @@ const PhysServiceTemplate = ({ data }: PhysServiceTemplateProps) => {
                 Клиенты отмечают прозрачность и результативность работы.
               </p>
             </div>
-            <div className="section__content grid gap-6 md:grid-cols-2 lg:grid-cols-3">
-              {data.reviews.map((review, index) => (
-                <Card key={`${review.name}-${index}`} className="h-full">
-                  <CardContent className="pt-6 h-full flex flex-col">
-                    <div className="flex items-start justify-between gap-4 mb-3">
-                      <div className="text-small font-semibold">{review.name}</div>
-                      <div className="text-small text-muted-foreground">{review.date}</div>
-                    </div>
-                    <p className="text-small text-muted-foreground leading-relaxed">
-                      {review.text}
-                    </p>
-                  </CardContent>
-                </Card>
-              ))}
-            </div>
+            <ReviewsCarousel reviews={data.reviews} />
             <div className="mt-8">
               <Button asChild className="bg-primary text-white hover:bg-primary/90">
                 <a

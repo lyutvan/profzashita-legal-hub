@@ -125,7 +125,7 @@ export const servicePricing: ServicePrice[] = [
 
   // Семейные споры
   {
-    slug: '/services/phys/semeynye-spory',
+    slug: '/services/phys/razvod-razdel-imushchestva',
     priceFrom: 25000,
     priceNote: 'Точная стоимость зависит от объема спора, вопросов о детях и состава имущества'
   },
@@ -139,7 +139,7 @@ export const servicePricing: ServicePrice[] = [
   
   // Жилищные споры
   {
-    slug: '/services/phys/zhilishchnye-spory',
+    slug: '/services/phys/vyselenie',
     priceFrom: 20000,
     priceNote: 'Точная стоимость определяется после анализа ситуации'
   },

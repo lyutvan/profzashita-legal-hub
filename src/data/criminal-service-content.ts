@@ -391,7 +391,7 @@ export const getCriminalServicePageData = (entry: CriminalServiceEntry): Crimina
   const metaDescription = buildMetaDescription(serviceName, articleNumber);
 
   const breadcrumbs = [
-    { label: "Услуги", path: "/uslugi" },
+    { label: "Услуги", path: "/services" },
     { label: "Уголовные дела", path: "/services/criminal" }
   ];
   if (categoryAnchor) {
@@ -401,7 +401,7 @@ export const getCriminalServicePageData = (entry: CriminalServiceEntry): Crimina
 
   const breadcrumbSchema = [
     { name: "Главная", url: SITE.url },
-    { name: "Услуги", url: new URL("/uslugi", SITE.url).toString() },
+    { name: "Услуги", url: new URL("/services", SITE.url).toString() },
     { name: "Уголовные дела", url: new URL("/services/criminal", SITE.url).toString() },
     { name: entry.title, url: canonical }
   ];
