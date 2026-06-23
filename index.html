@@ -15,19 +15,6 @@
 </script>
 <!-- /Google tag (gtag.js) -->
 
-<!-- Yandex.Metrika counter -->
-<script type="text/javascript">
-    (function(m,e,t,r,i,k,a){
-        m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
-        m[i].l=1*new Date();
-        for (var j = 0; j < document.scripts.length; j++) {if (document.scripts[j].src === r) { return; }}
-        k=e.createElement(t),a=e.getElementsByTagName(t)[0],k.async=1,k.src=r,a.parentNode.insertBefore(k,a)
-    })(window, document,'script','https://mc.yandex.ru/metrika/tag.js?id=105178494', 'ym');
-
-    ym(105178494, 'init', {ssr:true, webvisor:true, clickmap:true, ecommerce:"dataLayer", accurateTrackBounce:true, trackLinks:true});
-</script>
-<!-- /Yandex.Metrika counter -->
-
     <!-- Mango Office calltracking -->
     <script async src="//widgets.mango-office.ru/site/38530"></script>
     <!-- /Mango Office calltracking -->
@@ -44,69 +31,16 @@
     <!-- Бренд-цвет адресной строки/системы -->
     <meta name="theme-color" content="#0C1B27" />
 
-    <!-- SEO -->
-    <title>Профзащита — Коллегия адвокатов | Юридические услуги в Москве</title>
-    <meta name="description" content="Юридическая коллегия Профзащита. Опыт. Ответственность. Результат. Защита прав в уголовном, гражданском и арбитражном праве. Бесплатная консультация." />
-    <meta name="keywords" content="адвокат, юрист, юридические услуги, защита прав, коллегия адвокатов, Москва, консультация" />
-    <link rel="canonical" href="https://prof-zashita.ru/" />
-
-    <!-- Open Graph -->
-    <meta property="og:type" content="website" />
-    <meta property="og:title" content="Профзащита — Коллегия адвокатов" />
-    <meta property="og:description" content="Профессиональная защита прав. Опыт. Ответственность. Результат. Бесплатная консультация." />
-    <meta property="og:site_name" content="Профзащита" />
-    <meta property="og:url" content="https://prof-zashita.ru/">
-<meta property="og:image" content="https://prof-zashita.ru/og-image.jpg">
-    <!-- при желании можно добавить превью-картинку: -->
-    <!-- <meta property="og:image" content="/og-image.jpg" /> -->
-
-    <!-- Twitter -->
-    <meta name="twitter:card" content="summary_large_image" />
-    <meta name="twitter:title" content="Профзащита — Коллегия адвокатов" />
-    <meta name="twitter:description" content="Профессиональная защита прав. Бесплатная консультация." />
-    <meta name="twitter:image" content="https://prof-zashita.ru/og-image.jpg">
-    <!-- <meta name="twitter:image" content="/og-image.jpg" /> -->
+    <!-- SEO tags and JSON-LD are injected during static prerendering. -->
+    <!--ssr-head-->
 
     <!-- Fonts (опционально, если используете Playfair/Inter) -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600&family=Inter:wght@400;500;600&display=swap" rel="stylesheet" />
-  <!-- Schema.org: имя сайта -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "WebSite",
-    "url": "https://prof-zashita.ru/",
-    "name": "Профзащита",
-    "alternateName": "Коллегия адвокатов «Профзащита»"
-  }
-  </script>
-
-  <!-- Schema.org: юр. организация + официальный логотип -->
-  <script type="application/ld+json">
-  {
-    "@context": "https://schema.org",
-    "@type": "LegalService",
-    "name": "Коллегия адвокатов «Профзащита»",
-    "url": "https://prof-zashita.ru/",
-    "logo": {
-      "@type": "ImageObject",
-      "url": "https://prof-zashita.ru/logo-new.png",
-      "width": 790,
-      "height": 790
-    },
-    "image": "https://prof-zashita.ru/logo-new.png",
-    "address": {
-      "@type": "PostalAddress",
-      "addressLocality": "Москва",
-      "addressCountry": "RU"
-    }
-  }
-  </script>
   </head>
   <body>
-    <noscript><div><img src="https://mc.yandex.ru/watch/105178494" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
-    <div id="root"></div>
+    <div id="root"><!--app-html--></div>
     <!-- Vite / React entry -->
     <script type="module" src="/src/main.tsx"></script>
   </body>

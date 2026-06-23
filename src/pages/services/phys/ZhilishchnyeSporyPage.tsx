@@ -926,7 +926,7 @@ const ZhilishchnyeSporyPage = () => {
                       <div>
                         <h3 className="font-semibold mb-1">Телефон</h3>
                         <div className="flex flex-col items-start">
-                          <a href={`tel:`} className="mango-phone text-accent hover:underline">
+                          <a href={`tel:${SITE.phoneRaw}`} className="mango-phone text-accent hover:underline">
                             {SITE.phone}
                           </a>
                           {hasSecondaryPhone && (

@@ -186,7 +186,7 @@ const Prices = () => {
           name="description"
           content="Стоимость консультаций, подготовки документов и судебного сопровождения по семейным, жилищным, наследственным, уголовным и другим юридическим спорам."
         />
-        <link rel="canonical" href={`${SITE.url}tseny/`} />
+        <link rel="canonical" href={`${SITE.url}tseny`} />
         <meta property="og:title" content="Цены на юридические услуги — Профзащита" />
         <meta
           property="og:description"

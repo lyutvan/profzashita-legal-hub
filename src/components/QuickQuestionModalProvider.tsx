@@ -17,6 +17,7 @@ import { Checkbox } from "@/components/ui/checkbox";
 import PhoneInput from "@/components/PhoneInput";
 import { toast } from "@/hooks/use-toast";
 import { submitToWebhook } from "@/lib/webhook";
+import { trackMetrikaGoal } from "@/lib/metrika";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { SITE } from "@/config/site";
 
@@ -169,6 +170,7 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
         title: "Заявка отправлена",
         description: "Мы свяжемся с вами в ближайшее время"
       });
+      trackMetrikaGoal("form_submit", { form_type: "quick_question", topic });
       closeQuickQuestionModal();
       resetForm();
     } catch (error) {

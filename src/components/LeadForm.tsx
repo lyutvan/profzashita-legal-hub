@@ -10,6 +10,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { toast } from "@/hooks/use-toast";
 import { isPhoneValid, normalizePhone } from "@/lib/phone";
 import { submitToWebhook } from "@/lib/webhook";
+import { trackMetrikaGoal } from "@/lib/metrika";
 
 interface LeadFormProps {
   practiceType?: string;
@@ -63,6 +64,7 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
         title: "Заявка отправлена",
         description: "Мы свяжемся с вами в ближайшее время"
       });
+      trackMetrikaGoal("form_submit", { form_type: "lead", topic });
       setFormData({ name: "", phone: "", message: "" });
       setConsent(false);
       setErrors({});

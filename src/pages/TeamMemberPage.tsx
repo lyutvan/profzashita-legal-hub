@@ -12,6 +12,7 @@ import { cases } from "@/data/cases";
 import { SITE } from "@/config/site";
 import { Phone, MapPin, Briefcase, CheckCircle2, BookOpen, FileText } from "lucide-react";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
+import { PersonSchema } from "@/components/JsonLd";
 
 const TeamMemberPage = () => {
   const { slug } = useParams();
@@ -98,6 +99,13 @@ const TeamMemberPage = () => {
         <meta name="description" content={seoDescription} />
         <link rel="canonical" href={`${SITE.url}team/${member.slug}`} />
       </Helmet>
+      <PersonSchema
+        name={member.name}
+        jobTitle={member.role}
+        image={member.photo ? new URL(member.photo, SITE.url).toString() : undefined}
+        url={`${SITE.url}team/${member.slug}`}
+        credential={member.reesterNumber ? `Регистрационный номер ${member.reesterNumber}` : member.statusText}
+      />
 
       <Header />
 

@@ -1,10 +1,18 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
+import { Helmet } from "react-helmet";
+import { SITE } from "@/config/site";
 
 const Privacy = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Политика конфиденциальности — {SITE.name}</title>
+        <meta name="description" content="Политика обработки персональных данных коллегии адвокатов «Профзащита»." />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href={`${SITE.url}politika-konfidentsialnosti`} />
+      </Helmet>
       <Header />
       
       <main className="relative flex-1 section overflow-hidden">
@@ -20,7 +28,7 @@ const Privacy = () => {
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-semibold mb-4">1. Общие положения</h2>
                   <p className="text-muted-foreground leading-relaxed">
                     Настоящая Политика конфиденциальности персональных данных (далее — Политика) действует в отношении всей информации, 
-                    размещенной на сайте в сети Интернет по адресу profzashchita.ru (далее — Сайт), которую пользователи могут получить 
+                    размещенной на сайте в сети Интернет по адресу prof-zashita.ru (далее — Сайт), которую пользователи могут получить
                     о Пользователе во время использования Сайта, его сервисов, программ и продуктов.
                   </p>
                   <p className="text-muted-foreground leading-relaxed mt-4">

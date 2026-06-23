@@ -153,7 +153,7 @@ const Cases = () => {
       <Helmet>
         <title>Наши кейсы — Профзащита</title>
         <meta name="description" content="Реальные дела и результаты коллегии адвокатов Профзащита. Примеры успешного решения уголовных, гражданских, арбитражных и семейных споров." />
-        <link rel="canonical" href={`${SITE.url}keisy/`} />
+        <link rel="canonical" href={`${SITE.url}keisy`} />
         
         {/* OpenGraph */}
         <meta property="og:title" content="Наши кейсы — Коллегия адвокатов Профзащита" />

@@ -3,6 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
+import { StaticRouter } from "react-router-dom/server";
 import ScrollToTop from "./components/ScrollToTop";
 import Index from "./pages/Index";
 import Uslugi from "./pages/Uslugi";
@@ -53,18 +54,17 @@ const legacyBizPaths = [
   "/services/biz/ekonomicheskie-prestupleniya"
 ].filter((path) => !bizServicePaths.has(path));
 
-const App = () => (
+const AppContent = () => (
   <QueryClientProvider client={queryClient}>
     <TooltipProvider>
       <Toaster />
       <Sonner />
-      <BrowserRouter>
-        <QuickQuestionModalProvider>
-          <ScrollToTop />
-          <ScrollReveal />
-          <CalltrackingPhoneGuard />
-          <QuickQuestion />
-          <Routes>
+      <QuickQuestionModalProvider>
+        <ScrollToTop />
+        <ScrollReveal />
+        <CalltrackingPhoneGuard />
+        <QuickQuestion />
+        <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/uslugi-old" element={<Uslugi />} />
           <Route path="/uslugi" element={<Navigate to="/services/phys" replace />} />
@@ -176,11 +176,22 @@ const App = () => (
           
           {/* ADD ALL CUSTOM ROUTES ABOVE THE CATCH-ALL "*" ROUTE */}
           <Route path="*" element={<NotFound />} />
-          </Routes>
-        </QuickQuestionModalProvider>
-      </BrowserRouter>
+        </Routes>
+      </QuickQuestionModalProvider>
     </TooltipProvider>
   </QueryClientProvider>
+);
+
+const App = () => (
+  <BrowserRouter>
+    <AppContent />
+  </BrowserRouter>
+);
+
+export const StaticApp = ({ location }: { location: string }) => (
+  <StaticRouter location={location}>
+    <AppContent />
+  </StaticRouter>
 );
 
 export default App;

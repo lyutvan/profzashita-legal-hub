@@ -17,7 +17,7 @@ const About = () => {
       <Helmet>
         <title>О коллегии — Профзащита</title>
         <meta name="description" content="Коллегия адвокатов Профзащита: команда профильных адвокатов, адвокатская тайна, судебная практика и внутренний стандарт подготовки правовой позиции." />
-        <link rel="canonical" href={`${SITE.url}o-kollegii/`} />
+        <link rel="canonical" href={`${SITE.url}o-kollegii`} />
         
         {/* OpenGraph */}
         <meta property="og:title" content="О коллегии адвокатов Профзащита" />

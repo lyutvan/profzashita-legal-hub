@@ -1,10 +1,18 @@
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
+import { Helmet } from "react-helmet";
+import { SITE } from "@/config/site";
 
 const Disclaimer = () => {
   return (
     <div className="min-h-screen flex flex-col">
+      <Helmet>
+        <title>Отказ от ответственности — {SITE.name}</title>
+        <meta name="description" content="Правовая информация и отказ от ответственности коллегии адвокатов «Профзащита»." />
+        <meta name="robots" content="noindex, follow" />
+        <link rel="canonical" href={`${SITE.url}otkaz-ot-otvetstvennosti`} />
+      </Helmet>
       <Header />
       
       <main className="relative flex-1 section overflow-hidden">
@@ -111,7 +119,7 @@ const Disclaimer = () => {
                   <h2 className="font-serif text-h2-mobile md:text-h2 font-semibold mb-4">9. Контактная информация</h2>
                   <p className="text-muted-foreground leading-relaxed">
                     Если у вас есть вопросы относительно данного отказа от ответственности или любой информации на сайте, пожалуйста, 
-                    свяжитесь с нами по адресу: info@prof-zashita.ru или по телефону: 8 (916) 916-23-10.
+                    свяжитесь с нами по адресу: info@prof-zashita.ru или по телефону: 8 (916) 859-76-54.
                   </p>
                 </section>
 

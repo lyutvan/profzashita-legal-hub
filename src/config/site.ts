@@ -4,8 +4,8 @@ export const SITE = {
   legalName: "КАГМ «Профзащита»",
   logo: "https://prof-zashita.ru/logo-new.png",
   ogImage: "https://prof-zashita.ru/og-cover.jpg",
-  phone: "8 (916) 916-23-10",
-  phoneRaw: "+79169162310",
+  phone: "8 (916) 859-76-54",
+  phoneRaw: "+79168597654",
   messengerPhone: "",
   messengerPhoneRaw: "",
   whatsappUrl: "https://wa.me/79168597654",
@@ -31,6 +31,6 @@ export const SITE = {
   },
   areaServed: ["Москва", "Московская область"],
   sameAs: [
-    "https://yandex.ru/maps/org/kollegiya_advokatov_profzashchita/1234567890"
+    "https://yandex.ru/maps/org/244880896695/"
   ]
 };

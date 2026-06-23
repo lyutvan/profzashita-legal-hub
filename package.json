@@ -8,8 +8,9 @@
     "sitemap": "node scripts/generate-sitemap.mjs",
     "yandex:services:images": "node scripts/import-yandex-service-images.mjs",
     "prebuild": "npm run sitemap",
-    "build": "vite build",
+    "build": "vite build && npm run prerender",
     "build:dev": "vite build --mode development",
+    "prerender": "node scripts/prerender-routes.mjs",
     "lint": "eslint .",
     "preview": "vite preview"
   },

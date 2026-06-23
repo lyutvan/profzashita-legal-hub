@@ -10,6 +10,24 @@ const servicesDataPath = path.join(rootDir, "src", "data", "services-audiences.t
 const physContentPath = path.join(rootDir, "src", "data", "phys-service-content.ts");
 const newsDataPath = path.join(rootDir, "src", "data", "news.ts");
 
+const nonCanonicalPaths = new Set([
+  "/privacy",
+  "/disclaimer",
+  "/politika-konfidentsialnosti",
+  "/otkaz-ot-otvetstvennosti",
+  "/services/phys/zhilishchnye-spory",
+  "/services/phys/ushcherb-imushchestvu",
+  "/services/phys/nasledstvennye-dela",
+  "/services/phys/bankovskie-i-kreditnye-spory",
+  "/services/phys/mesto-zhitelstva-poryadok-obshcheniya",
+  "/services/phys/semeynye-spory",
+]);
+
+const isCanonicalPath = (loc) => {
+  const pathname = new URL(loc).pathname.replace(/\/+$/, "") || "/";
+  return !pathname.startsWith("/uslugi") && !nonCanonicalPaths.has(pathname);
+};
+
 const readFileSafe = (filePath) => {
   if (!fs.existsSync(filePath)) return "";
   return fs.readFileSync(filePath, "utf8");
@@ -139,15 +157,16 @@ const buildSitemap = () => {
 
   const preserved = existingItems.filter(
     (item) =>
+      isCanonicalPath(item.loc) &&
       !item.loc.startsWith(physBase) &&
       !item.loc.startsWith(criminalBase) &&
       !item.loc.startsWith(bizBase)
   );
-  const physUrlSet = new Set([physIndex, ...categoryPaths, ...physPaths]);
+  const physUrlSet = new Set([physIndex, ...categoryPaths, ...physPaths].filter((pathItem) => isCanonicalPath(`${SITE_URL}${pathItem}`)));
   const physUrls = Array.from(physUrlSet).sort();
-  const criminalUrlSet = new Set([criminalIndex, ...criminalPaths]);
+  const criminalUrlSet = new Set([criminalIndex, ...criminalPaths].filter((pathItem) => isCanonicalPath(`${SITE_URL}${pathItem}`)));
   const criminalUrls = Array.from(criminalUrlSet).sort();
-  const bizUrlSet = new Set([bizIndex, ...bizPaths]);
+  const bizUrlSet = new Set([bizIndex, ...bizPaths].filter((pathItem) => isCanonicalPath(`${SITE_URL}${pathItem}`)));
   const bizUrls = Array.from(bizUrlSet).sort();
   const newsUrlSet = new Set([newsIndex, ...newsPaths]);
   const newsUrls = Array.from(newsUrlSet).sort();

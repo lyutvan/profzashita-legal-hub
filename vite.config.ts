@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => ({
   build: {
     target: "es2019",
     cssTarget: "safari13",
+    manifest: true,
   },
   server: {
     host: "::",

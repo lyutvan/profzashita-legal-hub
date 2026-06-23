@@ -43,7 +43,7 @@ export const OrganizationSchema = () => {
     },
     "openingHoursSpecification": [{
       "@type": "OpeningHoursSpecification",
-      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+      "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
       "opens": SITE.hours.opens,
       "closes": SITE.hours.closes
     }],

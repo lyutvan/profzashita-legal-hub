@@ -47,8 +47,11 @@ const Novosti = () => {
       <Helmet>
         <title>Новости и мероприятия - {SITE.name}</title>
         <meta name="description" content="Актуальные новости, статьи и информация о мероприятиях коллегии адвокатов Профзащита. Узнайте о последних изменениях в законодательстве и наших мероприятиях." />
+        <link rel="canonical" href={`${SITE.url}novosti`} />
         <meta property="og:title" content={`Новости и мероприятия - ${SITE.name}`} />
         <meta property="og:description" content="Актуальные новости, статьи и информация о мероприятиях коллегии адвокатов Профзащита" />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`${SITE.url}novosti`} />
       </Helmet>
       
       <div className="top-page-mobile-compact min-h-screen flex flex-col bg-background">
