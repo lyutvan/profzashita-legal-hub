@@ -24,7 +24,7 @@ const Contacts = () => {
         
         {/* OpenGraph */}
         <meta property="og:title" content="Контакты — Коллегия адвокатов Профзащита" />
-        <meta property="og:description" content="Свяжитесь с нами: 8 (916) 859-76-54. Офис в Москве. Бесплатная консультация." />
+        <meta property="og:description" content="Свяжитесь с нами: +7 (495) 004-01-96. Офис в Москве. Бесплатная консультация." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content={`${SITE.url}kontakty/`} />
         <meta property="og:image" content={SITE.ogImage} />
@@ -36,7 +36,7 @@ const Contacts = () => {
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="Контакты — Профзащита" />
-        <meta name="twitter:description" content="Свяжитесь с нами: 8 (916) 859-76-54. Бесплатная консультация." />
+        <meta name="twitter:description" content="Свяжитесь с нами: +7 (495) 004-01-96. Бесплатная консультация." />
         <meta name="twitter:image" content={SITE.ogImage} />
       </Helmet>
       
