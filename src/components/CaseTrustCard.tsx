@@ -65,7 +65,7 @@ const CaseTrustCard = ({ caseItem, className, href }: CaseTrustCardProps) => {
         </time>
       </div>
 
-      <h3 className="mt-5 text-[20px] font-semibold leading-[1.22] text-slate-950 md:text-[23px]">
+      <h3 className="mt-5 line-clamp-4 min-h-[98px] text-[20px] font-semibold leading-[1.22] text-slate-950 md:text-[23px]">
         {caseItem.title}
       </h3>
 
@@ -73,7 +73,7 @@ const CaseTrustCard = ({ caseItem, className, href }: CaseTrustCardProps) => {
         <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-full bg-[#fbf6e8] text-[#9b7518]">
           <CaseEmblem className="h-5 w-5" strokeWidth={1.8} aria-hidden="true" />
         </div>
-        <p className="line-clamp-4 text-[15px] leading-relaxed text-slate-600 md:text-[16px]">
+        <p className="line-clamp-4 min-h-[96px] text-[15px] leading-relaxed text-slate-600 md:text-[16px]">
           {shortenCaseText(caseItem.result, 190)}
         </p>
       </div>

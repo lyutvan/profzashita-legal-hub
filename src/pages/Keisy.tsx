@@ -331,9 +331,12 @@ const Cases = () => {
                 </div>
 
                 {selectedCaseLawyer ? (
-                  <aside className="rounded-[10px] border border-slate-200 bg-white p-4 shadow-[0_12px_32px_rgba(15,23,42,0.06)] lg:sticky lg:top-28">
-                    <Link to={`/team/${selectedCaseLawyer.slug}`} className="group block">
-                      <div className="aspect-[4/5] overflow-hidden rounded-[7px] bg-slate-100">
+                  <aside className="rounded-[10px] border border-slate-200 bg-white p-3 shadow-[0_12px_32px_rgba(15,23,42,0.06)] sm:p-4 lg:sticky lg:top-28">
+                    <p className="mb-2 text-[12px] font-semibold uppercase tracking-[0.08em] text-[#8a6a18] sm:mb-3">
+                      Адвокат по делу
+                    </p>
+                    <Link to={`/team/${selectedCaseLawyer.slug}`} className="group flex items-center gap-3 sm:block">
+                      <div className="h-28 w-[5.625rem] shrink-0 overflow-hidden rounded-[7px] bg-slate-100 sm:aspect-[4/5] sm:h-auto sm:w-auto">
                         {selectedCaseLawyer.photo ? (
                           <img
                             src={selectedCaseLawyer.photo}
@@ -342,13 +345,15 @@ const Cases = () => {
                           />
                         ) : null}
                       </div>
-                      <h2 className="mt-5 font-serif text-h3-mobile font-bold leading-tight text-slate-950 md:text-h3">
-                        {selectedCaseLawyer.name}
-                      </h2>
-                      <p className="mt-1 text-sm text-slate-500">{selectedCaseLawyer.role}</p>
+                      <div className="min-w-0">
+                        <h2 className="font-serif text-[19px] font-bold leading-tight text-slate-950 sm:mt-5 sm:text-h3-mobile md:text-h3">
+                          {selectedCaseLawyer.name}
+                        </h2>
+                        <p className="mt-1 text-sm text-slate-500">{selectedCaseLawyer.role}</p>
+                      </div>
                     </Link>
 
-                    <div className="mt-5 space-y-4 border-t border-[#e6d6a7] pt-5 text-sm">
+                    <div className="mt-3 space-y-3 border-t border-[#e6d6a7] pt-3 text-[13px] sm:mt-5 sm:space-y-4 sm:pt-5 sm:text-sm">
                       <div>
                         <div className="font-semibold text-slate-950">Специализация</div>
                         <p className="mt-1 leading-relaxed text-slate-600">
@@ -366,7 +371,7 @@ const Cases = () => {
                     <button
                       type="button"
                       onClick={() => openQuickQuestionModal({ topic: `Консультация по кейсу: ${selectedCase.title}` })}
-                      className="mt-6 inline-flex min-h-12 w-full items-center justify-center rounded-[8px] border border-[#c9a227] px-4 py-3 text-[15px] font-semibold text-[#8a6a18] transition-colors hover:bg-[#fbf7ed]"
+                      className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-[8px] border border-[#c9a227] px-3 py-2 text-sm font-semibold text-[#8a6a18] transition-colors hover:bg-[#fbf7ed] sm:mt-6 sm:min-h-12 sm:px-4 sm:py-3 sm:text-[15px]"
                     >
                       Получить консультацию
                     </button>

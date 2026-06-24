@@ -2319,18 +2319,35 @@ All colors MUST be HSL.
 
 /* Review carousel arrows stay fixed so the global button animation cannot move the click target. */
 .reviews-carousel__arrow,
-.reviews-carousel__arrow:hover,
 .reviews-carousel__arrow:active {
   transform: translate3d(0, -50%, 0) !important;
   background-color: #ffffff !important;
   box-shadow: 0 4px 14px rgba(60, 52, 31, 0.16) !important;
-  transition: none !important;
+  transition: background-color 160ms ease, color 160ms ease, box-shadow 160ms ease !important;
+}
+
+.reviews-carousel__arrow:hover,
+.reviews-carousel__arrow:focus-visible {
+  transform: translate3d(0, -50%, 0) !important;
+  background-color: #c9a227 !important;
+  color: #ffffff !important;
+  box-shadow: 0 0 0 4px rgba(201, 162, 39, 0.18), 0 4px 14px rgba(60, 52, 31, 0.16) !important;
 }
 
 .reviews-carousel__arrow > svg,
 .reviews-carousel__arrow:hover > svg,
-.reviews-carousel__arrow:active > svg {
+.reviews-carousel__arrow:active > svg,
+.reviews-carousel__arrow:focus-visible > svg {
   transform: none !important;
   filter: none !important;
   transition: none !important;
+}
+
+@media (max-width: 639px) {
+  .reviews-carousel__arrow,
+  .reviews-carousel__arrow:hover,
+  .reviews-carousel__arrow:active,
+  .reviews-carousel__arrow:focus-visible {
+    transform: none !important;
+  }
 }

@@ -86,7 +86,7 @@ const ReviewsCarousel = ({ reviews, ariaLabel = "Отзывы клиентов" 
 
   return (
     <div className="section__content" data-testid="reviews-carousel">
-      <div className="relative px-14 sm:px-16">
+      <div className="relative sm:px-16">
         <div
           ref={scrollerRef}
           role="region"
@@ -101,7 +101,7 @@ const ReviewsCarousel = ({ reviews, ariaLabel = "Отзывы клиентов" 
                 data-review-card=""
                 data-review-copy={copyIndex}
                 aria-hidden={shouldLoop && copyIndex !== 1}
-                className="flex min-h-[244px] w-[min(86vw,22rem)] shrink-0 snap-start rounded-[10px] border-[#d8bf72] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)] sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
+                className="flex min-h-[244px] w-full shrink-0 snap-start rounded-[10px] border-[#d8bf72] bg-white shadow-[0_8px_20px_rgba(60,52,31,0.08)] sm:w-[calc((100%-1.25rem)/2)] lg:w-[calc((100%-2.5rem)/3)]"
               >
                 <CardContent className="flex h-full w-full flex-col p-5 md:p-6">
                   <div className="flex items-start justify-between gap-4">
@@ -122,12 +122,12 @@ const ReviewsCarousel = ({ reviews, ariaLabel = "Отзывы клиентов" 
           )}
         </div>
         {shouldLoop ? (
-          <>
+          <div className="mt-3 flex justify-center gap-3 sm:mt-0 sm:block">
             <Button
               type="button"
               variant="outline"
               size="icon"
-              className="reviews-carousel__arrow absolute left-0 top-1/2 z-10 h-11 w-11 -translate-y-1/2 rounded-full border-[#d8bf72] bg-white text-primary shadow-[0_4px_14px_rgba(60,52,31,0.16)]"
+              className="reviews-carousel__arrow static z-10 h-11 w-11 rounded-full border-[#d8bf72] bg-white text-primary shadow-[0_4px_14px_rgba(60,52,31,0.16)] sm:absolute sm:left-0 sm:top-1/2"
               onClick={() => scrollReviews(-1)}
               aria-label="Предыдущие отзывы"
             >
@@ -137,13 +137,13 @@ const ReviewsCarousel = ({ reviews, ariaLabel = "Отзывы клиентов" 
               type="button"
               variant="outline"
               size="icon"
-              className="reviews-carousel__arrow absolute right-0 top-1/2 z-10 h-11 w-11 -translate-y-1/2 rounded-full border-[#d8bf72] bg-white text-primary shadow-[0_4px_14px_rgba(60,52,31,0.16)]"
+              className="reviews-carousel__arrow static z-10 h-11 w-11 rounded-full border-[#d8bf72] bg-white text-primary shadow-[0_4px_14px_rgba(60,52,31,0.16)] sm:absolute sm:right-0 sm:top-1/2"
               onClick={() => scrollReviews(1)}
               aria-label="Следующие отзывы"
             >
               <ChevronRight className="h-5 w-5" aria-hidden="true" />
             </Button>
-          </>
+          </div>
         ) : null}
       </div>
     </div>
