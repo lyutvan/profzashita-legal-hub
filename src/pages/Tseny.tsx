@@ -404,84 +404,110 @@ const Prices = () => {
         <section className="section bg-muted/10">
           <div className="container">
             <div className="grid gap-6 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:items-start">
-              <Card className="border-[#e4d4a8] bg-white lg:self-start">
-                <CardContent className="p-6 md:p-7">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10">
-                      <ClipboardCheck className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h2 className="font-serif text-h3-mobile font-semibold md:text-h3">
-                        Что входит в стоимость
-                      </h2>
-                      <p className="mt-3 text-small leading-7 text-muted-foreground">
-                        Состав работ зависит от формата поручения, но мы заранее объясняем,
-                        какие действия входят в цену.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="mt-6 grid gap-3 sm:grid-cols-2">
-                    {includedItems.map((item) => (
-                      <div key={item} className="flex items-start gap-2 rounded-lg border border-border/80 bg-muted/20 px-3 py-3 text-small leading-6 text-muted-foreground">
-                        <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
-                        <span>{item}</span>
+              <div className="space-y-6">
+                <Card className="border-[#e4d4a8] bg-white">
+                  <CardContent className="p-6 md:p-7">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10">
+                        <ClipboardCheck className="h-6 w-6 text-accent" />
                       </div>
-                    ))}
-                  </div>
-                </CardContent>
-              </Card>
-
-              <Card className="border-[#e4d4a8] bg-white lg:self-start">
-                <CardContent className="p-6 md:p-7">
-                  <div className="flex items-start gap-4">
-                    <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10">
-                      <Scale className="h-6 w-6 text-accent" />
-                    </div>
-                    <div>
-                      <h2 className="font-serif text-h3-mobile font-semibold md:text-h3">
-                        Как считаем цену
-                      </h2>
-                      <p className="mt-3 text-small leading-7 text-muted-foreground">
-                        Цена появляется не из общей категории, а из конкретного объема работы
-                        по вашему делу.
-                      </p>
-                    </div>
-                  </div>
-                  <ol className="mt-6 grid gap-3">
-                    {pricingSteps.map((step, index) => (
-                      <li
-                        key={step.title}
-                        className="grid grid-cols-[32px_1fr] gap-3 rounded-lg border border-border/80 bg-muted/20 px-3 py-3"
-                      >
-                        <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-[13px] font-semibold text-white">
-                          {index + 1}
-                        </span>
-                        <span>
-                          <span className="block text-small font-semibold text-foreground">{step.title}</span>
-                          <span className="mt-1 block text-small leading-6 text-muted-foreground">{step.description}</span>
-                        </span>
-                      </li>
-                    ))}
-                  </ol>
-                </CardContent>
-              </Card>
-            </div>
-
-            <div className="mt-8 grid gap-4 md:grid-cols-2 xl:grid-cols-4">
-              {priceFactors.map((factor, index) => {
-                const Icon = factorIcons[index] ?? Calculator;
-                return (
-                  <Card key={factor.title} className="border-border bg-white">
-                    <CardContent className="p-5 md:p-6">
-                      <div className="flex h-11 w-11 items-center justify-center rounded-xl bg-accent/10">
-                        <Icon className="h-5 w-5 text-accent" />
+                      <div>
+                        <h2 className="font-serif text-h3-mobile font-semibold md:text-h3">
+                          Что входит в стоимость
+                        </h2>
+                        <p className="mt-3 text-small leading-7 text-muted-foreground">
+                          Состав работ зависит от формата поручения, но мы заранее объясняем,
+                          какие действия входят в цену.
+                        </p>
                       </div>
-                      <h3 className="mt-4 text-body-mobile font-semibold md:text-body">{factor.title}</h3>
-                      <p className="mt-2 text-small leading-7 text-muted-foreground">{factor.description}</p>
-                    </CardContent>
-                  </Card>
-                );
-              })}
+                    </div>
+                    <div className="mt-6 grid gap-3 sm:grid-cols-2">
+                      {includedItems.map((item) => (
+                        <div key={item} className="flex items-start gap-2 rounded-lg border border-border/80 bg-muted/20 px-3 py-3 text-small leading-6 text-muted-foreground">
+                          <CheckCircle2 className="mt-0.5 h-4 w-4 shrink-0 text-accent" />
+                          <span>{item}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </CardContent>
+                </Card>
+
+                <div className="grid gap-4 md:grid-cols-2">
+                  {priceFactors.map((factor, index) => {
+                    const Icon = factorIcons[index] ?? Calculator;
+                    return (
+                      <Card key={factor.title} className="border-border bg-white">
+                        <CardContent className="flex h-full gap-4 p-5 md:p-6">
+                          <div className="flex h-11 w-11 shrink-0 items-center justify-center rounded-xl bg-accent/10">
+                            <Icon className="h-5 w-5 text-accent" />
+                          </div>
+                          <div className="min-w-0">
+                            <h3 className="text-body-mobile font-semibold leading-snug md:text-body">{factor.title}</h3>
+                            <p className="mt-2 text-small leading-7 text-muted-foreground">{factor.description}</p>
+                          </div>
+                        </CardContent>
+                      </Card>
+                    );
+                  })}
+                </div>
+              </div>
+
+              <div className="space-y-6">
+                <Card className="border-[#e4d4a8] bg-white">
+                  <CardContent className="p-6 md:p-7">
+                    <div className="flex items-start gap-4">
+                      <div className="flex h-12 w-12 shrink-0 items-center justify-center rounded-xl bg-accent/10">
+                        <Scale className="h-6 w-6 text-accent" />
+                      </div>
+                      <div>
+                        <h2 className="font-serif text-h3-mobile font-semibold md:text-h3">
+                          Как считаем цену
+                        </h2>
+                        <p className="mt-3 text-small leading-7 text-muted-foreground">
+                          Цена появляется не из общей категории, а из конкретного объема работы
+                          по вашему делу.
+                        </p>
+                      </div>
+                    </div>
+                    <ol className="mt-6 grid gap-3">
+                      {pricingSteps.map((step, index) => (
+                        <li
+                          key={step.title}
+                          className="grid grid-cols-[32px_1fr] gap-3 rounded-lg border border-border/80 bg-muted/20 px-3 py-3"
+                        >
+                          <span className="flex h-8 w-8 items-center justify-center rounded-full bg-accent text-[13px] font-semibold text-white">
+                            {index + 1}
+                          </span>
+                          <span>
+                            <span className="block text-small font-semibold text-foreground">{step.title}</span>
+                            <span className="mt-1 block text-small leading-6 text-muted-foreground">{step.description}</span>
+                          </span>
+                        </li>
+                      ))}
+                    </ol>
+                  </CardContent>
+                </Card>
+
+                <Card className="border-[#e4d4a8] bg-[#fbf7ec]">
+                  <CardContent className="p-6 md:p-7">
+                    <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
+                      Быстро уточнить стоимость
+                    </p>
+                    <p className="mt-3 text-small leading-7 text-muted-foreground">
+                      Опишите задачу или позвоните — подскажем, какой формат работы подойдет и от чего будет зависеть цена.
+                    </p>
+                    <a href={primaryPhoneHref} className="mt-4 block text-[22px] font-semibold text-foreground hover:text-accent">
+                      {SITE.phone}
+                    </a>
+                    <Button asChild className="mt-5 h-11 w-full rounded-md bg-primary text-white hover:bg-primary/90">
+                      <Link to="/kontakty">
+                        Получить консультацию
+                        <ArrowRight className="ml-2 h-4 w-4" />
+                      </Link>
+                    </Button>
+                  </CardContent>
+                </Card>
+              </div>
             </div>
 
             <Card className="mt-8 border-[#e4d4a8] bg-[#fbf7ec]">

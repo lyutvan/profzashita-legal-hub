@@ -178,7 +178,9 @@ export const QuickQuestionModalProvider = ({ children }: ProviderProps) => {
       trackMetrikaGoal("form_submit", { form_type: "quick_question", topic });
       closeQuickQuestionModal();
       resetForm();
-      navigate("/thanks", { replace: true });
+      navigate("/thanks", {
+        state: { from: `${location.pathname}${location.search}${location.hash}` }
+      });
     } catch (error) {
       console.error("Quick question submit error:", error);
       toast({

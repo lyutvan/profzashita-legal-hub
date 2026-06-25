@@ -232,9 +232,6 @@ const Cases = () => {
               <h1 className="font-serif text-h1-mobile md:text-h1 font-bold mb-6 text-white">
                 <span>Судебная практика </span><span className="text-accent">коллегии</span>
               </h1>
-              <p className="text-body-mobile md:text-body text-white/90 leading-relaxed">
-                Публикуем результаты судебной практики без раскрытия персональных данных доверителей.
-              </p>
             </div>
           </PageHero>
         ) : null}
@@ -387,9 +384,6 @@ const Cases = () => {
               <h2 className="font-serif text-h2-mobile font-bold text-slate-950 md:text-h2">
                 {selectedCase ? "Другие кейсы" : "Практика по категориям"}
               </h2>
-              <p className="mt-3 text-base leading-relaxed text-slate-600 md:text-lg">
-                Карточки показывают направление, дату, краткий результат и итог дела.
-              </p>
             </div>
 
             {!selectedCase ? (
@@ -428,14 +422,6 @@ const Cases = () => {
               </div>
             ) : null}
 
-            {!selectedCase ? (
-              <p className="mx-auto mt-6 max-w-3xl text-center text-[13px] leading-relaxed text-slate-500">
-                {shortenCaseText(
-                  "Персональные данные доверителей скрыты. Публикуемые фрагменты нужны, чтобы показать судебную практику и подтверждение результата.",
-                  180
-                )}
-              </p>
-            ) : null}
           </div>
         </section>
 

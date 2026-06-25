@@ -1,5 +1,5 @@
 import { useId, useState, type FormEvent } from "react";
-import { Link, useNavigate } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 
 import FileAttachmentsField from "@/components/FileAttachmentsField";
 import PhoneInput from "@/components/PhoneInput";
@@ -27,6 +27,7 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const formId = useId();
   const navigate = useNavigate();
+  const location = useLocation();
 
   const isCompact = variant === "compact";
   const topic = practiceType ?? "Консультация";
@@ -74,7 +75,9 @@ const LeadForm = ({ practiceType, variant = "default" }: LeadFormProps) => {
       setAttachments([]);
       setConsent(false);
       setErrors({});
-      navigate("/thanks", { replace: true });
+      navigate("/thanks", {
+        state: { from: `${location.pathname}${location.search}${location.hash}` }
+      });
     } catch (error) {
       console.error("Lead form submit error:", error);
       toast({

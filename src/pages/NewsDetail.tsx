@@ -8,6 +8,7 @@ import { Button } from "@/components/ui/button";
 import { ArticleSchema } from "@/components/JsonLd";
 import { Calendar, ArrowLeft, Clock, MapPin, Users } from "lucide-react";
 import { SITE } from "@/config/site";
+import { getEffectiveNewsCategory } from "@/lib/newsStatus";
 
 const NewsDetail = () => {
   const { id } = useParams();
@@ -16,6 +17,8 @@ const NewsDetail = () => {
   if (!newsItem) {
     return <Navigate to="/novosti" replace />;
   }
+
+  const effectiveCategory = getEffectiveNewsCategory(newsItem);
 
   const formatDate = (dateString: string) => {
     const date = new Date(dateString);
@@ -87,8 +90,8 @@ const NewsDetail = () => {
               
               <div className="max-w-4xl mx-auto">
                 <div className="flex items-center gap-3 mb-6">
-                  <Badge className={getCategoryColor(newsItem.category)}>
-                    {getCategoryLabel(newsItem.category)}
+                  <Badge className={getCategoryColor(effectiveCategory)}>
+                    {getCategoryLabel(effectiveCategory)}
                   </Badge>
                   <div className="flex items-center gap-2 text-muted-foreground">
                     <Calendar className="h-4 w-4" />

@@ -65,6 +65,7 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
   const [submitTime, setSubmitTime] = useState<number>(Date.now());
   const [attachments, setAttachments] = useState<File[]>([]);
   const navigate = useNavigate();
+  const location = useLocation();
 
   const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
     event.preventDefault();
@@ -127,7 +128,9 @@ const LeadForm = ({ formId, submitLabel, placeholder, footerNote, onSuccess }: L
       setConsent(false);
       setSubmitTime(Date.now());
       if (onSuccess) onSuccess();
-      navigate("/thanks", { replace: true });
+      navigate("/thanks", {
+        state: { from: `${location.pathname}${location.search}${location.hash}` }
+      });
     } catch (error) {
       console.error("Form submission error:", error);
       toast({

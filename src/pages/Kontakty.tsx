@@ -229,24 +229,17 @@ const Contacts = () => {
               <h2 className="section__header font-serif text-h2-mobile md:text-h2 font-bold text-center">
                 Как нас найти
               </h2>
-              <div className="rounded-xl border border-border bg-white p-6 text-center shadow-[0_14px_36px_rgba(15,23,42,0.06)] md:p-8">
-                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/10">
-                  <MapPin className="h-7 w-7 text-accent" />
-                </div>
-                <p className="mt-5 text-body-mobile font-semibold text-foreground md:text-body">
-                  Москва, ул. Дегунинская, д. 1, к. 2, офис 303
-                </p>
-                <p className="mt-3 text-small leading-7 text-muted-foreground">
-                  Карта не открывается автоматически. Если нужно построить маршрут, нажмите кнопку ниже.
-                </p>
-                <a
-                  href={SITE.yandexMapsUrl}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="mt-6 inline-flex min-h-12 items-center justify-center rounded-xl border border-[#c9a227] px-6 py-3 text-[15px] font-semibold text-[#8a6a18] transition-colors hover:bg-[#fbf7ed] hover:no-underline"
-                >
-                  Открыть адрес в Яндекс.Картах
-                </a>
+              <div className="overflow-hidden rounded-xl border border-border shadow-lg">
+                <iframe
+                  src="https://yandex.ru/map-widget/v1/?ll=37.536700%2C55.869700&mode=search&oid=244880896695&ol=biz&sll=37.536700%2C55.869700&sspn=0.010000%2C0.010000&text=%D0%9F%D1%80%D0%BE%D1%84%D0%B7%D0%B0%D1%89%D0%B8%D1%82%D0%B0&z=16"
+                  width="100%"
+                  height="400"
+                  frameBorder="0"
+                  allowFullScreen
+                  loading="lazy"
+                  title="Карта проезда к офису Профзащита"
+                  className="block"
+                />
               </div>
             </div>
           </div>

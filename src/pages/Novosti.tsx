@@ -9,13 +9,14 @@ import { Button } from "@/components/ui/button";
 import { newsItems, NewsItem } from "@/data/news";
 import { Calendar, FileText, Users, ChevronRight } from "lucide-react";
 import { SITE } from "@/config/site";
+import { getEffectiveNewsCategory } from "@/lib/newsStatus";
 
 const Novosti = () => {
   const [filter, setFilter] = useState<'all' | 'article' | 'event' | 'past-event'>('all');
 
   const filteredNews = filter === 'all' 
     ? newsItems 
-    : newsItems.filter(item => item.category === filter);
+    : newsItems.filter(item => getEffectiveNewsCategory(item) === filter);
 
   const getCategoryLabel = (category: NewsItem['category']) => {
     switch(category) {
@@ -116,47 +117,51 @@ const Novosti = () => {
           <section className="section">
             <div className="container">
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
-                {filteredNews.map((item) => (
-                  <Card 
-                    key={item.id} 
-                    className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden h-full flex flex-col"
-                  >
-                    {item.image && (
-                      <Link to={`/news/${item.id}`} className="block overflow-hidden bg-muted">
-                        <img
-                          src={item.image}
-                          alt={item.title}
-                          loading="lazy"
-                          className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
-                        />
-                      </Link>
-                    )}
-                    <CardHeader className="flex-1">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Badge className={getCategoryColor(item.category)}>
-                          {getCategoryLabel(item.category)}
-                        </Badge>
-                        <span className="text-small text-muted-foreground">
-                          {formatDate(item.date)}
-                        </span>
-                      </div>
-                      <CardTitle className="group-hover:text-primary transition-colors">
-                        {item.title}
-                      </CardTitle>
-                      <CardDescription className="line-clamp-2">
-                        {item.excerpt}
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="mt-auto">
-                      <Link to={`/news/${item.id}`}>
-                        <Button variant="ghost" className="w-full justify-between group/btn">
-                          Читать
-                          <ChevronRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
-                        </Button>
-                      </Link>
-                    </CardContent>
-                  </Card>
-                ))}
+                {filteredNews.map((item) => {
+                  const effectiveCategory = getEffectiveNewsCategory(item);
+
+                  return (
+                    <Card
+                      key={item.id}
+                      className="group hover:shadow-lg transition-shadow duration-300 overflow-hidden h-full flex flex-col"
+                    >
+                      {item.image && (
+                        <Link to={`/news/${item.id}`} className="block overflow-hidden bg-muted">
+                          <img
+                            src={item.image}
+                            alt={item.title}
+                            loading="lazy"
+                            className="h-56 w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                          />
+                        </Link>
+                      )}
+                      <CardHeader className="flex-1">
+                        <div className="flex items-center gap-2 mb-2">
+                          <Badge className={getCategoryColor(effectiveCategory)}>
+                            {getCategoryLabel(effectiveCategory)}
+                          </Badge>
+                          <span className="text-small text-muted-foreground">
+                            {formatDate(item.date)}
+                          </span>
+                        </div>
+                        <CardTitle className="group-hover:text-primary transition-colors">
+                          {item.title}
+                        </CardTitle>
+                        <CardDescription className="line-clamp-2">
+                          {item.excerpt}
+                        </CardDescription>
+                      </CardHeader>
+                      <CardContent className="mt-auto">
+                        <Link to={`/news/${item.id}`}>
+                          <Button variant="ghost" className="w-full justify-between group/btn">
+                            Читать
+                            <ChevronRight className="h-4 w-4 group-hover/btn:translate-x-1 transition-transform" />
+                          </Button>
+                        </Link>
+                      </CardContent>
+                    </Card>
+                  );
+                })}
               </div>
 
               {filteredNews.length === 0 && (
