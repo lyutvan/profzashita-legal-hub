@@ -575,7 +575,7 @@ const NasledstvoPage = () => {
                 <Phone className="mt-0.5 h-6 w-6 shrink-0 text-accent" />
                 <span className="flex min-w-0 flex-col items-center leading-tight sm:flex-row sm:items-baseline sm:gap-2">
                   <span>Обсудить ситуацию по телефону:</span>
-                  <a href={callHref} className="mango-phone whitespace-nowrap hover:text-accent">
+                  <a href={callHref} className="whitespace-nowrap hover:text-accent">
                     {SITE.phone}
                   </a>
                   {hasSecondaryPhone && (
@@ -685,7 +685,7 @@ const NasledstvoPage = () => {
                 <Phone className="mt-0.5 h-6 w-6 shrink-0 text-accent" />
                 <span className="flex min-w-0 flex-col items-center leading-tight sm:flex-row sm:items-baseline sm:gap-2">
                   <span>Обсудить ситуацию по телефону:</span>
-                  <a href={callHref} className="mango-phone whitespace-nowrap hover:text-accent">
+                  <a href={callHref} className="whitespace-nowrap hover:text-accent">
                     {SITE.phone}
                   </a>
                   {hasSecondaryPhone && (
@@ -978,7 +978,7 @@ const NasledstvoPage = () => {
                 <Phone className="mt-0.5 h-6 w-6 shrink-0 text-accent" />
                 <span className="flex min-w-0 flex-col items-center leading-tight sm:flex-row sm:items-baseline sm:gap-2">
                   <span>Обсудить ситуацию по телефону:</span>
-                  <a href={callHref} className="mango-phone whitespace-nowrap hover:text-accent">
+                  <a href={callHref} className="whitespace-nowrap hover:text-accent">
                     {SITE.phone}
                   </a>
                   {hasSecondaryPhone && (
@@ -1108,7 +1108,7 @@ const NasledstvoPage = () => {
                   <div className="flex min-w-0 flex-col items-start text-[18px] font-medium leading-snug">
                     <a
                       href={callHref}
-                      className="mango-phone whitespace-nowrap text-slate-950 hover:text-accent"
+                      className="whitespace-nowrap text-slate-950 hover:text-accent"
                     >
                       {SITE.phone}
                     </a>
@@ -1291,7 +1291,7 @@ const NasledstvoPage = () => {
                       <div>
                         <h3 className="font-semibold mb-1">Телефон</h3>
                         <div className="flex flex-col items-start">
-                          <a href={callHref} className="mango-phone text-accent hover:underline">
+                          <a href={callHref} className="text-accent hover:underline">
                             {SITE.phone}
                           </a>
                           {hasSecondaryPhone && (

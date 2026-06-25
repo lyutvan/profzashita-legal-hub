@@ -269,7 +269,7 @@ const Prices = () => {
               </ul>
               <div className="mt-5 rounded-lg border border-white/10 bg-white/8 px-4 py-3">
                 <p className="text-[13px] text-white/70">Быстрый звонок</p>
-                <a href={primaryPhoneHref} className="mango-phone mt-1 block text-[20px] font-semibold text-white hover:text-accent">
+                <a href={primaryPhoneHref} className="mt-1 block text-[20px] font-semibold text-white hover:text-accent">
                   {SITE.phone}
                 </a>
               </div>
@@ -507,7 +507,7 @@ const Prices = () => {
                   <p className="text-[11px] font-semibold uppercase tracking-[0.18em] text-muted-foreground">
                     Быстро уточнить
                   </p>
-                  <a href={primaryPhoneHref} className="mango-phone mt-3 block text-[20px] font-semibold text-foreground hover:text-accent">
+                  <a href={primaryPhoneHref} className="mt-3 block text-[20px] font-semibold text-foreground hover:text-accent">
                     {SITE.phone}
                   </a>
                   {hasSecondaryPhone && (

@@ -619,7 +619,7 @@ const CriminalPage = () => {
               <div className="mt-6 hidden items-center gap-3 text-[20px] font-bold text-slate-950 md:inline-flex">
                 <Phone className="h-7 w-7 text-[#C9A227]" />
                 <span>Позвонить адвокату сейчас:</span>
-                <a href={callHref} className="mango-phone transition-colors hover:text-[#b8911f]">
+                <a href={callHref} className="transition-colors hover:text-[#b8911f]">
                   {SITE.phone}
                 </a>
               </div>
@@ -690,7 +690,7 @@ const CriminalPage = () => {
               <div className="mt-8 inline-flex max-w-full items-center gap-2 whitespace-nowrap text-[15px] font-bold text-slate-950 sm:text-[16px] md:gap-3 md:text-[18px]">
                 <Phone className="h-5 w-5 shrink-0 text-[#C9A227] md:h-7 md:w-7" />
                 <span>Оценим по телефону:</span>
-                <a href={callHref} className="mango-phone transition-colors hover:text-[#b8911f]">
+                <a href={callHref} className="transition-colors hover:text-[#b8911f]">
                   {SITE.phone}
                 </a>
               </div>
@@ -780,7 +780,7 @@ const CriminalPage = () => {
                       <div className="flex items-start gap-4 text-foreground">
                         <Phone className="h-7 w-7 text-accent" />
                         <div className="flex flex-col items-start text-[18px] font-medium leading-snug md:text-[21px]">
-                          <a href={`tel:${SITE.phoneRaw}`} className="mango-phone transition-colors hover:text-accent">
+                          <a href={`tel:${SITE.phoneRaw}`} className="transition-colors hover:text-accent">
                             {SITE.phone}
                           </a>
                           {hasSecondaryPhone && (

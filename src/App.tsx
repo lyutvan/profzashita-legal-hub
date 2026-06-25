@@ -8,7 +8,6 @@ import { StaticRouter } from "react-router-dom/server";
 import ScrollToTop from "./components/ScrollToTop";
 import { QuickQuestionModalProvider } from "./components/QuickQuestionModalProvider";
 import QuickQuestion from "./components/QuickQuestion";
-import CalltrackingPhoneGuard from "./components/CalltrackingPhoneGuard";
 import ScrollReveal from "./components/ScrollReveal";
 import { SITE } from "@/config/site";
 
@@ -107,7 +106,6 @@ const AppContent = () => (
       <QuickQuestionModalProvider>
         <ScrollToTop />
         <ScrollReveal />
-        <CalltrackingPhoneGuard />
         <QuickQuestion />
         <Suspense fallback={null}>
           <Routes>

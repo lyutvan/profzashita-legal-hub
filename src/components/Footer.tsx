@@ -46,7 +46,7 @@ const Footer = () => {
                   <div className="flex min-w-0 flex-col items-start gap-1.5">
                     <a
                       href={`tel:${SITE.phoneRaw}`}
-                      className="mango-phone break-words text-white/88 transition-colors hover:text-accent"
+                      className="break-words text-white/88 transition-colors hover:text-accent"
                     >
                       {SITE.phone}
                     </a>

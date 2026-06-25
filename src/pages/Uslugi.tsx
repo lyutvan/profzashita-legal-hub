@@ -209,7 +209,7 @@ const Uslugi = () => {
                       <div className="inline-flex items-start gap-2 text-accent">
                         <Phone className="h-4 w-4 mt-0.5" />
                         <div className="flex flex-col items-start">
-                          <a href={`tel:${SITE.phoneRaw}`} className="mango-phone hover:underline">
+                          <a href={`tel:${SITE.phoneRaw}`} className="hover:underline">
                             {SITE.phone}
                           </a>
                           {SITE.messengerPhone && SITE.messengerPhoneRaw && (

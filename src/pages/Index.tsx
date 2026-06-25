@@ -447,7 +447,7 @@ const Index = () => {
               <div className="inline-flex items-start gap-3 text-[17px] md:text-[20px] font-semibold text-foreground">
                 <Phone className="h-7 w-7 md:h-8 md:w-8 text-accent mt-0.5" />
                 <div className="flex flex-col items-start">
-                  <a href={`tel:${SITE.phoneRaw}`} className="mango-phone hover:text-accent transition-colors">
+                  <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent transition-colors">
                     {SITE.phone}
                   </a>
                   {hasSecondaryPhone && (
@@ -559,7 +559,7 @@ const Index = () => {
                       <div className="flex items-start gap-4 text-foreground">
                         <Phone className="h-7 w-7 text-accent" />
                         <div className="flex flex-col items-start text-[18px] leading-snug font-medium md:text-[21px]">
-                          <a href={`tel:${SITE.phoneRaw}`} className="mango-phone hover:text-accent transition-colors">
+                          <a href={`tel:${SITE.phoneRaw}`} className="hover:text-accent transition-colors">
                             {SITE.phone}
                           </a>
                           {hasSecondaryPhone && (

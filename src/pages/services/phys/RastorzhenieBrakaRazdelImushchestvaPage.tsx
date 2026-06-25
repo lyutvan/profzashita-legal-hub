@@ -1253,7 +1253,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                   <div className="flex items-start gap-4">
                     <Phone className="h-7 w-7 shrink-0 text-accent" />
                     <div className="flex min-w-0 flex-col items-start text-[18px] font-medium leading-snug">
-                      <a href={callHref} className="mango-phone whitespace-nowrap text-slate-950 hover:text-accent">
+                      <a href={callHref} className="whitespace-nowrap text-slate-950 hover:text-accent">
                         {SITE.phone}
                       </a>
                       {hasSecondaryPhone && (
@@ -1354,7 +1354,7 @@ const RastorzhenieBrakaRazdelImushchestvaPage = () => {
                       <div>
                         <h3 className="font-semibold mb-1">Телефон</h3>
                         <div className="flex flex-col items-start">
-                          <a href={`tel:${SITE.phoneRaw}`} className="mango-phone text-accent hover:underline">
+                          <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
                             {SITE.phone}
                           </a>
                           {hasSecondaryPhone && (

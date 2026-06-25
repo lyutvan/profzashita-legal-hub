@@ -30,7 +30,7 @@ const ServiceCallBanner = ({ className }: ServiceCallBannerProps) => {
             <div className="mt-1 flex flex-col items-start">
               <a
                 href={telHref}
-                className="mango-phone font-semibold text-foreground underline-offset-4 hover:underline"
+                className="font-semibold text-foreground underline-offset-4 hover:underline"
               >
                 {SITE.phone}
               </a>

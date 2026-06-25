@@ -205,7 +205,7 @@ const FAQ = () => {
                     <p>
                       <strong>Телефон:</strong><br />
                       <span className="inline-flex flex-col items-start">
-                        <a href={`tel:${SITE.phoneRaw}`} className="mango-phone text-accent hover:underline">
+                        <a href={`tel:${SITE.phoneRaw}`} className="text-accent hover:underline">
                           {SITE.phone}
                         </a>
                         {SITE.messengerPhone && SITE.messengerPhoneRaw && (

@@ -375,7 +375,7 @@ const ClusterServicePage = ({
                     <div className="flex flex-wrap gap-4 justify-center">
                       <div className="flex flex-col gap-2">
                         <Button size="lg" className="h-auto bg-accent hover:bg-accent/90" asChild>
-                          <a href={`tel:${SITE.phoneRaw}`} className="mango-phone inline-flex items-center gap-2 py-2">
+                          <a href={`tel:${SITE.phoneRaw}`} className="inline-flex items-center gap-2 py-2">
                             <Phone className="h-5 w-5" />
                             <span>{SITE.phone}</span>
                           </a>
@@ -428,7 +428,7 @@ const ClusterServicePage = ({
                     <div className="mb-4 flex flex-col items-center">
                       <a 
                         href={`tel:${SITE.phoneRaw}`}
-                        className="mango-phone block text-h3 font-bold text-accent hover:text-accent/90 transition-colors"
+                        className="block text-h3 font-bold text-accent hover:text-accent/90 transition-colors"
                       >
                         {SITE.phone}
                       </a>

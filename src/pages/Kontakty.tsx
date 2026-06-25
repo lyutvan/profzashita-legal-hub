@@ -80,7 +80,7 @@ const Contacts = () => {
                       </div>
                       <div>
                         <h3 className="mb-3 font-semibold">Телефон</h3>
-                        <a href={`tel:${SITE.phoneRaw}`} className="mango-phone text-body-mobile md:text-body text-accent hover:underline">
+                        <a href={`tel:${SITE.phoneRaw}`} className="text-body-mobile md:text-body text-accent hover:underline">
                           {SITE.phone}
                         </a>
                         {SITE.messengerPhone && SITE.messengerPhoneRaw && (
