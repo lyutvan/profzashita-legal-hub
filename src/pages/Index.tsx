@@ -625,7 +625,7 @@ const Index = () => {
                     </div>
                     <div className="pt-3">
                       <a
-                        href="https://yandex.ru/maps/-/CHXU5RzE"
+                        href={SITE.yandexMapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center rounded-2xl bg-primary px-5 py-3 text-[16px] font-semibold text-white md:hidden"

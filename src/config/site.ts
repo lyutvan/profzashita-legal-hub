@@ -14,6 +14,7 @@ export const SITE = {
   telegramUrl: "tg://resolve?phone=79168597654",
   maxUrl: "https://web.max.ru/?phone=79168597654",
   email: "info@prof-zashita.ru",
+  yandexMapsUrl: "https://yandex.ru/maps/org/244880896695/",
   address: {
     country: "RU",
     city: "Москва",

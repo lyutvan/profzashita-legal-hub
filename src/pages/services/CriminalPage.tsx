@@ -849,7 +849,7 @@ const CriminalPage = () => {
                     </div>
                     <div className="pt-3">
                       <a
-                        href="https://yandex.ru/maps/-/CHXU5RzE"
+                        href={SITE.yandexMapsUrl}
                         target="_blank"
                         rel="noopener noreferrer"
                         className="flex items-center justify-center whitespace-nowrap rounded-2xl bg-primary px-4 py-3 text-[15px] font-semibold text-white md:hidden"

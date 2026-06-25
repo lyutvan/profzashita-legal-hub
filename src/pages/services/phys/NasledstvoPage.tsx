@@ -1182,7 +1182,7 @@ const NasledstvoPage = () => {
               </div>
 
               <a
-                href="https://yandex.ru/maps/-/CHXU5RzE"
+                href={SITE.yandexMapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
                 className="mt-8 flex items-center justify-center whitespace-nowrap rounded-2xl bg-primary px-4 py-3 text-[15px] font-semibold text-white"

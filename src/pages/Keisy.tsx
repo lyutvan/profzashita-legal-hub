@@ -10,7 +10,6 @@ import { SITE } from "@/config/site";
 import CaseTrustCard from "@/components/CaseTrustCard";
 import PageHero from "@/components/PageHero";
 import { getCasePreview, shortenCaseText } from "@/lib/caseTrust";
-import { Button } from "@/components/ui/button";
 import { ArrowLeft, ChevronDown, FileText } from "lucide-react";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";
 
@@ -243,12 +242,13 @@ const Cases = () => {
         {selectedCase ? (
           <section className="section bg-white">
             <div className="container">
-              <Button asChild variant="ghost" className="mb-7 px-0 text-slate-600 hover:text-[#9b7518]">
-                <Link to="/keisy">
-                  <ArrowLeft className="mr-2 h-4 w-4" />
-                  Все кейсы
-                </Link>
-              </Button>
+              <Link
+                to="/keisy"
+                className="mb-7 inline-flex min-h-11 items-center gap-2 rounded-[10px] border border-[#ead9a7] bg-white px-4 py-2 text-[15px] font-semibold text-[#8a6a18] shadow-sm transition-colors hover:border-[#d5b44a] hover:bg-[#fffaf0] hover:text-[#6f5413] hover:no-underline"
+              >
+                <ArrowLeft className="h-4 w-4" />
+                Все кейсы
+              </Link>
 
               <article id={selectedCase.slug} className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
                 <div className="min-w-0">
@@ -368,13 +368,12 @@ const Cases = () => {
                       ) : null}
                     </div>
 
-                    <button
-                      type="button"
-                      onClick={() => openQuickQuestionModal({ topic: `Консультация по кейсу: ${selectedCase.title}` })}
-                      className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-[8px] border border-[#c9a227] px-3 py-2 text-sm font-semibold text-[#8a6a18] transition-colors hover:bg-[#fbf7ed] sm:mt-6 sm:min-h-12 sm:px-4 sm:py-3 sm:text-[15px]"
+                    <Link
+                      to="/kontakty"
+                      className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-[8px] border border-[#c9a227] px-3 py-2 text-sm font-semibold text-[#8a6a18] transition-colors hover:bg-[#fbf7ed] hover:no-underline sm:mt-6 sm:min-h-12 sm:px-4 sm:py-3 sm:text-[15px]"
                     >
                       Получить консультацию
-                    </button>
+                    </Link>
                   </aside>
                 ) : null}
               </article>
