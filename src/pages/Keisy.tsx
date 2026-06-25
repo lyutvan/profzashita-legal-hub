@@ -369,7 +369,7 @@ const Cases = () => {
                     </div>
 
                     <Link
-                      to="/kontakty"
+                      to="/kontakty#consultation-form"
                       className="mt-4 inline-flex min-h-11 w-full items-center justify-center rounded-[8px] border border-[#c9a227] px-3 py-2 text-sm font-semibold text-[#8a6a18] transition-colors hover:bg-[#fbf7ed] hover:no-underline sm:mt-6 sm:min-h-12 sm:px-4 sm:py-3 sm:text-[15px]"
                     >
                       Получить консультацию

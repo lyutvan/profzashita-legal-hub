@@ -1,14 +1,35 @@
+import { useEffect } from "react";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Card, CardContent } from "@/components/ui/card";
 import { Phone, Mail, MapPin, Clock } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import { Helmet } from "react-helmet";
 import { SITE } from "@/config/site";
 import LeadForm from "@/components/LeadForm";
 import WorkScheduleNotice from "@/components/WorkScheduleNotice";
 
 const Contacts = () => {
+  useEffect(() => {
+    if (window.location.hash !== "#consultation-form") return;
+
+    const scrollToForm = () => {
+      const target = document.getElementById("consultation-form");
+      if (!target) return;
+
+      const headerOffset = 110;
+      const targetY = target.getBoundingClientRect().top + window.scrollY - headerOffset;
+      window.scrollTo({ top: Math.max(targetY, 0), left: 0, behavior: "auto" });
+    };
+
+    const frameId = window.requestAnimationFrame(scrollToForm);
+    const timeoutId = window.setTimeout(scrollToForm, 250);
+
+    return () => {
+      window.cancelAnimationFrame(frameId);
+      window.clearTimeout(timeoutId);
+    };
+  }, []);
+
   const consultationSteps = [
     "Оставьте имя и телефон, чтобы мы могли связаться с вами.",
     "Коротко опишите вопрос или подготовьте документы к разговору.",
@@ -157,7 +178,7 @@ const Contacts = () => {
         </section>
 
         {/* Lead Form Section */}
-        <section className="relative section bg-muted/30 overflow-hidden">
+        <section id="consultation-form" className="relative section bg-muted/30 overflow-hidden scroll-mt-28">
           <div className="container">
             <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(320px,420px)] lg:items-start">
               <div className="max-w-2xl lg:pr-8">
@@ -208,15 +229,24 @@ const Contacts = () => {
               <h2 className="section__header font-serif text-h2-mobile md:text-h2 font-bold text-center">
                 Как нас найти
               </h2>
-              <div className="aspect-video rounded-xl border border-border overflow-hidden">
-                <iframe 
-                  src="https://yandex.ru/map-widget/v1/?z=12&ol=biz&oid=244880896695" 
-                  width="100%" 
-                  height="100%" 
-                  frameBorder="0"
-                  title="Карта офиса Профзащита"
-                  className="w-full h-full"
-                ></iframe>
+              <div className="rounded-xl border border-border bg-white p-6 text-center shadow-[0_14px_36px_rgba(15,23,42,0.06)] md:p-8">
+                <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-2xl bg-accent/10">
+                  <MapPin className="h-7 w-7 text-accent" />
+                </div>
+                <p className="mt-5 text-body-mobile font-semibold text-foreground md:text-body">
+                  Москва, ул. Дегунинская, д. 1, к. 2, офис 303
+                </p>
+                <p className="mt-3 text-small leading-7 text-muted-foreground">
+                  Карта не открывается автоматически. Если нужно построить маршрут, нажмите кнопку ниже.
+                </p>
+                <a
+                  href={SITE.yandexMapsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-6 inline-flex min-h-12 items-center justify-center rounded-xl border border-[#c9a227] px-6 py-3 text-[15px] font-semibold text-[#8a6a18] transition-colors hover:bg-[#fbf7ed] hover:no-underline"
+                >
+                  Открыть адрес в Яндекс.Картах
+                </a>
               </div>
             </div>
           </div>
