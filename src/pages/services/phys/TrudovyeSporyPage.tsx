@@ -6,7 +6,7 @@ const TrudovyeSporyPage = () => {
     <ServiceTemplate
       title="Трудовые споры — защита прав работников в Москве"
       metaDescription="Юридическая помощь в трудовых спорах: восстановление на работе, взыскание зарплаты, компенсаций, оспаривание увольнения. Опыт 15+ лет."
-      canonical={`${SITE.url}/services/phys/trudovye-spory`}
+      canonical={`${SITE.url}services/phys/trudovye-spory`}
       breadcrumbLabel="Трудовые споры"
       h1="Трудовые споры"
       leadParagraph="Защищаем права работников: помогаем оспорить незаконное увольнение, взыскать невыплаченную зарплату, компенсации и добиться восстановления на работе."

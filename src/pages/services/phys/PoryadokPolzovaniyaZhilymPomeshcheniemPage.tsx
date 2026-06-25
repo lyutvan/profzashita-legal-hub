@@ -6,7 +6,7 @@ const PoryadokPolzovaniyaZhilymPomeshcheniemPage = () => {
     <ServiceTemplate
       title="Определение порядка пользования жилым помещением — помощь юриста"
       metaDescription="Составим соглашение или подадим иск об определении порядка пользования квартирой/комнатой. Фиксируем баланс интересов всех собственников."
-      canonical={`${SITE.url}/services/phys/poryadok-polzovaniya-zhilym-pomeshcheniem`}
+      canonical={`${SITE.url}services/phys/poryadok-polzovaniya-zhilym-pomeshcheniem`}
       breadcrumbLabel="Порядок пользования жильём"
       h1="Определение порядка пользования жилым помещением (квартира/комната)"
       leadParagraph="Помогаем собственникам и членам семьи закрепить справедливый порядок пользования квартирой или комнатой."

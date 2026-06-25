@@ -6,7 +6,7 @@ const SporySUkTszhPage = () => {
     <ServiceTemplate
       title="Споры с управляющей компанией и ТСЖ — защита интересов жильцов"
       metaDescription="Привлекаем УК/ТСЖ к ответственности за плохое обслуживание, добиваемся устранения нарушений и взыскания ущерба."
-      canonical={`${SITE.url}/services/phys/spory-s-uk-tszh`}
+      canonical={`${SITE.url}services/phys/spory-s-uk-tszh`}
       breadcrumbLabel="Споры с УК/ТСЖ"
       h1="Споры с управляющей компанией (УК/ТСЖ)"
       leadParagraph="Контролируем качество работы управляющих организаций и защищаем жильцов от неправомерных действий."

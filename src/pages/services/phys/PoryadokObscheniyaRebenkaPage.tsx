@@ -6,7 +6,7 @@ const PoryadokObscheniyaRebenkaPage = () => {
     <ServiceTemplate
       title="Определение порядка общения с ребёнком / участие в воспитании — помощь семейного адвоката"
       metaDescription="Помогаем установить порядок общения с ребёнком через суд: анализ ситуации, подготовка документов, сопровождение в органах опеки и суде."
-      canonical={`${SITE.url}/services/phys/poryadok-obshcheniya-s-rebenkom`}
+      canonical={`${SITE.url}services/phys/poryadok-obshcheniya-s-rebenkom`}
       breadcrumbLabel="Порядок общения с ребёнком"
       h1="Определение порядка общения с ребёнком / участие в воспитании"
       leadParagraph="Защищаем право родителя на общение и участие в воспитании ребёнка. Готовим доказательства, взаимодействуем с органами опеки и отстаиваем ваши интересы в суде."

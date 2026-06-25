@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 
 const SITE_URL = "https://prof-zashita.ru";
-const HOME_PATH = "/main";
+const HOME_PATH = "/";
 const today = new Date().toISOString().slice(0, 10);
 
 const rootDir = process.cwd();
@@ -14,7 +14,7 @@ const teamDataPath = path.join(rootDir, "src", "data", "team.ts");
 const casesDataPath = path.join(rootDir, "src", "data", "cases.ts");
 
 const nonCanonicalPaths = new Set([
-  "/",
+  "/main",
   "/privacy",
   "/disclaimer",
   "/politika-konfidentsialnosti",

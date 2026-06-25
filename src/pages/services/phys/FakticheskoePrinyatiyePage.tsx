@@ -6,7 +6,7 @@ const FakticheskoePrinyatiyePage = () => {
     <ServiceTemplate
       title="Фактическое принятие наследства — юридическая помощь в Москве"
       metaDescription="Установление факта принятия наследства через суд. Помощь при пропуске срока обращения к нотариусу. Консультация адвоката."
-      canonical={`${SITE.url}/services/phys/fakticheskoe-prinyatie-nasledstva`}
+      canonical={`${SITE.url}services/phys/fakticheskoe-prinyatie-nasledstva`}
       breadcrumbLabel="Фактическое принятие наследства"
       h1="Фактическое принятие наследства"
       leadParagraph="Помогаем установить факт принятия наследства через суд, когда наследник фактически принял имущество, но не обратился к нотариусу в установленный срок."

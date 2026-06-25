@@ -1,9 +1,9 @@
-import { lazy, Suspense, useEffect, type ComponentType } from "react";
+import { lazy, Suspense, type ComponentType } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route, Navigate, useNavigate } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { StaticRouter } from "react-router-dom/server";
 import ScrollToTop from "./components/ScrollToTop";
 import { QuickQuestionModalProvider } from "./components/QuickQuestionModalProvider";
@@ -71,16 +71,6 @@ const Novosti = lazyPage(() => import("./pages/Novosti"));
 const NewsDetail = lazyPage(() => import("./pages/NewsDetail"));
 const Tseny = lazyPage(() => import("./pages/Tseny"));
 
-const RootRedirect = () => {
-  const navigate = useNavigate();
-
-  useEffect(() => {
-    navigate(SITE.homePath, { replace: true });
-  }, [navigate]);
-
-  return <Index />;
-};
-
 export const preloadAppPages = () => Promise.all(pageLoaders.map((loader) => loader()));
 
 const queryClient = new QueryClient();
@@ -109,8 +99,8 @@ const AppContent = () => (
         <QuickQuestion />
         <Suspense fallback={null}>
           <Routes>
-          <Route path="/" element={<RootRedirect />} />
-          <Route path="/main" element={<Index />} />
+          <Route path="/" element={<Index />} />
+          <Route path="/main" element={<Navigate to="/" replace />} />
           <Route path="/services" element={<Services />} />
           <Route path="/uslugi-old" element={<Uslugi />} />
           <Route path="/uslugi" element={<Navigate to="/services" replace />} />

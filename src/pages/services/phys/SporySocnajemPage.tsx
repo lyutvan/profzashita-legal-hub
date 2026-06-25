@@ -6,7 +6,7 @@ const SporySocnajemPage = () => {
     <ServiceTemplate
       title="Споры по договору социального найма — юридическая защита"
       metaDescription="Помогаем сохранить или оформить право пользования жильём по соцнайму, сопровождаем выселение, вселение и обмен квартир."
-      canonical={`${SITE.url}/services/phys/spory-socnajem`}
+      canonical={`${SITE.url}services/phys/spory-socnajem`}
       breadcrumbLabel="Споры по соцнайму"
       h1="Споры по договору социального найма (соцнайм)"
       leadParagraph="Защищаем права нанимателей и членов их семей при конфликте с наймодателем или другими жильцами."

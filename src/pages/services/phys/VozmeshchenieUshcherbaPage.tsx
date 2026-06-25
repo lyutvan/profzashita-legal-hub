@@ -6,7 +6,7 @@ const VozmeshchenieUshcherbaPage = () => {
     <ServiceTemplate
       title="Возмещение ущерба от действий третьих лиц — юридическая помощь в Москве"
       metaDescription="Возмещение ущерба от повреждения имущества третьими лицами. Взыскание компенсации за порчу квартиры, автомобиля, другого имущества."
-      canonical={`${SITE.url}/services/phys/vozmeshchenie-ushcherba`}
+      canonical={`${SITE.url}services/phys/vozmeshchenie-ushcherba`}
       breadcrumbLabel="Возмещение ущерба"
       h1="Возмещение ущерба от действий третьих лиц (повреждение имущества)"
       leadParagraph="Помогаем взыскать компенсацию за повреждение вашего имущества действиями или бездействием третьих лиц — соседей, подрядчиков, организаций."

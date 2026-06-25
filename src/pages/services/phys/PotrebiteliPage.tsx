@@ -6,7 +6,7 @@ const PotrebiteliPage = () => {
     <ServiceTemplate
       title="Защита прав потребителей — юридическая помощь в Москве"
       metaDescription="Помощь в защите прав потребителей: возврат товара, взыскание неустойки, компенсация морального вреда. Претензии, суд, исполнительное производство."
-      canonical={`${SITE.url}/services/phys/zashchita-prav-potrebitelya`}
+      canonical={`${SITE.url}services/phys/zashchita-prav-potrebitelya`}
       breadcrumbLabel="Защита прав потребителей"
       h1="Защита прав потребителей"
       leadParagraph="Отстаиваем права покупателей товаров и услуг: помогаем вернуть деньги за некачественный товар, взыскать неустойку, штраф и компенсацию морального вреда."

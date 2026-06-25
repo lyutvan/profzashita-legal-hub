@@ -6,7 +6,7 @@ const OtcovstvoMaterinstvoPage = () => {
     <ServiceTemplate
       title="Установление и оспаривание отцовства/материнства — юридическая помощь"
       metaDescription="Подготовим иск об установлении или оспаривании отцовства, организуем генетическую экспертизу и представим ваши интересы в суде."
-      canonical={`${SITE.url}/services/phys/otcovstvo-materinstvo`}
+      canonical={`${SITE.url}services/phys/otcovstvo-materinstvo`}
       breadcrumbLabel="Отцовство/материнство"
       h1="Установление и оспаривание отцовства / материнства"
       leadParagraph="Помогаем закрепить юридическую связь ребёнка с родителем или, наоборот, снять необоснованные обязательства. Работаем конфиденциально и бережно."

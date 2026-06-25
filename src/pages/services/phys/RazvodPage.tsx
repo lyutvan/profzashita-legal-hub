@@ -6,7 +6,7 @@ const RazvodPage = () => {
     <ServiceTemplate
       title="Расторжение брака — юридическая помощь в Москве"
       metaDescription="Профессиональная помощь в расторжении брака. Консультация адвоката, представительство в суде. Опыт 15+ лет."
-      canonical={`${SITE.url}/services/phys/razvod`}
+      canonical={`${SITE.url}services/phys/razvod`}
       breadcrumbLabel="Расторжение брака"
       h1="Расторжение брака"
       leadParagraph="Помогаем расторгнуть брак в судебном порядке. Защищаем ваши интересы и интересы детей на всех этапах процесса расторжения брака."

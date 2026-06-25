@@ -6,7 +6,7 @@ const LishenieRoditelskihPravPage = () => {
     <ServiceTemplate
       title="Ограничение и лишение родительских прав — адвокат по семейным делам"
       metaDescription="Подготовим доказательства и представим ваши интересы в делах об ограничении или лишении родительских прав. Консультация, работа с опекой и судом."
-      canonical={`${SITE.url}/services/phys/lishenie-roditelskih-prav`}
+      canonical={`${SITE.url}services/phys/lishenie-roditelskih-prav`}
       breadcrumbLabel="Лишение родительских прав"
       h1="Ограничение и лишение родительских прав"
       leadParagraph="Ведём сложные семейные споры, когда необходимо защитить ребёнка от неблагополучного родителя или, наоборот, отстоять свои права при необоснованных обвинениях."

@@ -6,7 +6,7 @@ const UstraneniePrepyatstviyVPolzovaniiZhilymPomeshcheniemPage = () => {
     <ServiceTemplate
       title="Устранение препятствий в пользовании жилым помещением"
       metaDescription="Восстанавливаем доступ к жилью, фиксируем нарушения соседей и родственников, добиваемся соблюдения вашего права пользования."
-      canonical={`${SITE.url}/services/phys/ustranenie-prepyatstviy-v-polzovanii-zhilym-pomeshcheniem`}
+      canonical={`${SITE.url}services/phys/ustranenie-prepyatstviy-v-polzovanii-zhilym-pomeshcheniem`}
       breadcrumbLabel="Препятствия в пользовании жильём"
       h1="Устранение препятствий в пользовании жилым помещением"
       leadParagraph="Защищаем жильцов, которых незаконно ограничивают в пользовании квартирой или комнатой."

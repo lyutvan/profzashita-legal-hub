@@ -6,7 +6,7 @@ const PravoSobstvennostiVPoryadkeNasledovaniyaPage = () => {
     <ServiceTemplate
       title="Признание права собственности в порядке наследования"
       metaDescription="Помогаем признать право собственности на наследственное имущество через суд: готовим доказательства, подаём иск и сопровождаем регистрацию."
-      canonical={`${SITE.url}/services/phys/pravo-sobstvennosti-v-poryadke-nasledovaniya`}
+      canonical={`${SITE.url}services/phys/pravo-sobstvennosti-v-poryadke-nasledovaniya`}
       breadcrumbLabel="Признание права собственности"
       h1="Признание права собственности в порядке наследования"
       leadParagraph="Когда нотариус отказывает или документы утеряны, право собственности на наследство можно подтвердить через суд. Мы сопровождаем процесс от подготовки иска до регистрации."

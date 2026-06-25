@@ -6,7 +6,7 @@ const ZadolzhennostZhkuPereraschetPage = () => {
     <ServiceTemplate
       title="Взыскание задолженности по ЖКУ и перерасчёт начислений"
       metaDescription="Оспариваем завышенные счета, добиваемся перерасчёта ЖКУ и помогаем взыскать долги с неплательщиков."
-      canonical={`${SITE.url}/services/phys/zadolzhennost-zhku-pereraschet`}
+      canonical={`${SITE.url}services/phys/zadolzhennost-zhku-pereraschet`}
       breadcrumbLabel="Задолженность по ЖКУ"
       h1="Взыскание задолженности по ЖКУ, перерасчёт начислений"
       leadParagraph="Разбираем каждую строку в вашей квитанции, выявляем незаконные начисления и добиваемся справедливого перерасчёта."

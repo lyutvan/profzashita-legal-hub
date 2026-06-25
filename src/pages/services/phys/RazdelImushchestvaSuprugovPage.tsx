@@ -6,7 +6,7 @@ const RazdelImushchestvaSuprugovPage = () => {
     <ServiceTemplate
       title="Раздел совместно нажитого имущества супругов — юридическая помощь"
       metaDescription="Поможем честно разделить имущество супругов: составим соглашение, подготовим иск, обеспечим арест активов и сопровождение в суде."
-      canonical={`${SITE.url}/services/phys/razdel-imushchestva-suprugov`}
+      canonical={`${SITE.url}services/phys/razdel-imushchestva-suprugov`}
       breadcrumbLabel="Раздел имущества супругов"
       h1="Раздел совместно нажитого имущества супругов"
       leadParagraph="Добиваемся справедливого раздела имущества, учитывая вклад каждого супруга и интересы детей. Работаем как в досудебном порядке, так и в суде."

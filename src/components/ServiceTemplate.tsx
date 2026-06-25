@@ -122,9 +122,10 @@ const ServiceTemplate = ({
   const heroImageSrc =
     providedHeroImageSrc ??
     getServiceCardImageForPath(pathname, resolvedAudience);
+  const canonicalUrl = new URL(canonical, SITE.url).toString();
 
   // Get price from pricing.ts if not provided directly
-  const pricingData = getPriceBySlug(pathname) ?? getPriceBySlug(canonical);
+  const pricingData = getPriceBySlug(pathname) ?? getPriceBySlug(canonical) ?? getPriceBySlug(canonicalUrl);
   const priceFrom = providedPriceFrom ?? pricingData?.priceFrom;
   const priceNote = providedPriceNote ?? pricingData?.priceNote;
 
@@ -148,9 +149,9 @@ const ServiceTemplate = ({
   
   const breadcrumbItems = [
     { name: "Главная", url: SITE.url },
-    { name: "Услуги", url: new URL("/uslugi", SITE.url).toString() },
+    { name: "Услуги", url: new URL("/services", SITE.url).toString() },
     { name: audienceCrumb.label, url: new URL(audienceCrumb.path, SITE.url).toString() },
-    { name: breadcrumbLabel, url: canonical }
+    { name: breadcrumbLabel, url: canonicalUrl }
   ];
 
   return (
@@ -158,13 +159,13 @@ const ServiceTemplate = ({
       <Helmet>
         <title>{title}</title>
         <meta name="description" content={metaDescription} />
-        <link rel="canonical" href={canonical} />
+        <link rel="canonical" href={canonicalUrl} />
       </Helmet>
 
       <BreadcrumbSchema items={breadcrumbItems} />
       <LegalServiceSchema 
         serviceType={h1}
-        url={canonical}
+        url={canonicalUrl}
         priceFrom={priceFrom?.toString()}
       />
 
@@ -198,7 +199,7 @@ const ServiceTemplate = ({
           )}
           <div className="container relative z-10">
             <Breadcrumbs items={[
-              { label: "Услуги", path: "/uslugi" },
+              { label: "Услуги", path: "/services" },
               { label: audienceCrumb.label, path: audienceCrumb.path },
               { label: breadcrumbLabel }
             ]} />

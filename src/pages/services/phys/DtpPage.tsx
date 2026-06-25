@@ -6,7 +6,7 @@ const DtpPage = () => {
     <ServiceTemplate
       title="Помощь при ДТП — юридическая помощь в Москве"
       metaDescription="Помощь при ДТП: взыскание ущерба по ОСАГО и КАСКО, оспаривание отказов страховых, независимая экспертиза, суд. Защита от необоснованных претензий."
-      canonical={`${SITE.url}/services/phys/dtp-strahovye-spory`}
+      canonical={`${SITE.url}services/phys/dtp-strahovye-spory`}
       breadcrumbLabel="Помощь при ДТП"
       h1="Помощь при ДТП"
       leadParagraph="Защищаем права пострадавших в ДТП: помогаем получить полное возмещение ущерба по ОСАГО и КАСКО, оспариваем занижение выплат и отказы страховых компаний."

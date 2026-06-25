@@ -6,7 +6,7 @@ const RazdelNasledstvennogoImushchestvaPage = () => {
     <ServiceTemplate
       title="Раздел наследственного имущества — юридическая помощь наследникам"
       metaDescription="Поможем поделить наследство без конфликтов: готовим соглашения, защищаем доли наследников в суде, сопровождаем регистрацию прав."
-      canonical={`${SITE.url}/services/phys/razdel-nasledstvennogo-imushchestva`}
+      canonical={`${SITE.url}services/phys/razdel-nasledstvennogo-imushchestva`}
       breadcrumbLabel="Раздел наследственного имущества"
       h1="Раздел наследственного имущества"
       leadParagraph="Сопровождаем наследников на всех этапах раздела имущества: от переговоров и составления соглашений до судебного урегулирования сложных конфликтов."

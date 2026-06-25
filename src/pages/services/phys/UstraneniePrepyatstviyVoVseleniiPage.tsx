@@ -6,7 +6,7 @@ const UstraneniePrepyatstviyVoVseleniiPage = () => {
     <ServiceTemplate
       title="Устранение препятствий во вселении — защита права проживания"
       metaDescription="Помогаем добиться фактического вселения в жильё: готовим иск, обеспечиваем доступ, сопровождаем исполнение решения."
-      canonical={`${SITE.url}/services/phys/ustranenie-prepyatstviy-vo-vselenii`}
+      canonical={`${SITE.url}services/phys/ustranenie-prepyatstviy-vo-vselenii`}
       breadcrumbLabel="Устранение препятствий во вселении"
       h1="Устранение препятствий во вселении"
       leadParagraph="Защищаем право собственника или члена семьи на проживание в квартире: снимаем незаконные запреты, добиваемся фактического вселения и передачи ключей."

@@ -1,7 +1,7 @@
 export const SITE = {
   url: "https://prof-zashita.ru/",
-  homePath: "/main",
-  homeUrl: "https://prof-zashita.ru/main",
+  homePath: "/",
+  homeUrl: "https://prof-zashita.ru/",
   name: "Коллегия адвокатов «Профзащита»",
   legalName: "КАГМ «Профзащита»",
   logo: "https://prof-zashita.ru/logo-new.png",

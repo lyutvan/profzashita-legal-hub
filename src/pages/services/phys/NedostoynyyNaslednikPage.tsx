@@ -6,7 +6,7 @@ const NedostoynyyNaslednikPage = () => {
     <ServiceTemplate
       title="Признание наследника недостойным — юридическая помощь"
       metaDescription="Соберём доказательства и представим ваши интересы в деле о признании наследника недостойным. Консультации, иск, сопровождение в суде."
-      canonical={`${SITE.url}/services/phys/nedostoynyy-naslednik`}
+      canonical={`${SITE.url}services/phys/nedostoynyy-naslednik`}
       breadcrumbLabel="Недостойный наследник"
       h1="Признание недостойным наследником"
       leadParagraph="Помогаем защитить наследственную долю от лиц, которые злоупотребляют правами, скрывают имущество или совершили противоправные действия против наследодателя."

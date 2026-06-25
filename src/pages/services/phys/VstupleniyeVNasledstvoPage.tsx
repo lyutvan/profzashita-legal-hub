@@ -6,7 +6,7 @@ const VstupleniyeVNasledstvoPage = () => {
     <ServiceTemplate
       title="Вступление в наследство — юридическая помощь в Москве"
       metaDescription="Помощь в оформлении наследственных прав. Вступление в наследство по закону и по завещанию. Консультация адвоката."
-      canonical={`${SITE.url}/services/phys/vstuplenie-v-nasledstvo`}
+      canonical={`${SITE.url}services/phys/vstuplenie-v-nasledstvo`}
       breadcrumbLabel="Вступление в наследство"
       h1="Вступление в наследство, оформление наследственных прав"
       leadParagraph="Помогаем вступить в наследство и оформить наследственные права на имущество: квартиры, дома, земельные участки, автомобили, вклады и другое имущество."

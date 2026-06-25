@@ -6,7 +6,7 @@ const BrachnyjDogovorPage = () => {
     <ServiceTemplate
       title="Брачный договор — составление, изменение, оспаривание"
       metaDescription="Разработаем брачный договор под ваши цели, внесём изменения или подготовим иск о признании договора недействительным."
-      canonical={`${SITE.url}/services/phys/brachnyj-dogovor`}
+      canonical={`${SITE.url}services/phys/brachnyj-dogovor`}
       breadcrumbLabel="Брачный договор"
       h1="Брачный договор: составление, изменение, оспаривание"
       leadParagraph="Помогаем супругам и будущим супругам грамотно распределить имущество и финансовые риски с помощью брачного договора."

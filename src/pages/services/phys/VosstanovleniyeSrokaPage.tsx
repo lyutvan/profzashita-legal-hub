@@ -6,7 +6,7 @@ const VosstanovleniyeSrokaPage = () => {
     <ServiceTemplate
       title="Восстановление срока принятия наследства — юридическая помощь в Москве"
       metaDescription="Восстановление пропущенного срока принятия наследства через суд. Помощь при уважительных причинах пропуска. Консультация адвоката."
-      canonical={`${SITE.url}/services/phys/vosstanovlenie-sroka-nasledstva`}
+      canonical={`${SITE.url}services/phys/vosstanovlenie-sroka-nasledstva`}
       breadcrumbLabel="Восстановление срока наследства"
       h1="Восстановление срока принятия наследства"
       leadParagraph="Помогаем восстановить пропущенный срок принятия наследства через суд при наличии уважительных причин пропуска."

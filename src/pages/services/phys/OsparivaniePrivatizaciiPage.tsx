@@ -6,7 +6,7 @@ const OsparivaniePrivatizaciiPage = () => {
     <ServiceTemplate
       title="Оспаривание приватизации — сопровождение в суде"
       metaDescription="Защищаем права граждан при оспаривании результатов приватизации: готовим иск, собираем доказательства и представляем интересы в суде."
-      canonical={`${SITE.url}/services/phys/osparivanie-privatizacii`}
+      canonical={`${SITE.url}services/phys/osparivanie-privatizacii`}
       breadcrumbLabel="Оспаривание приватизации"
       h1="Оспаривание приватизации"
       leadParagraph="Разбираемся в сложных жилищных конфликтах, связанных с приватизацией, и восстанавливаем нарушенные права собственников и нанимателей."

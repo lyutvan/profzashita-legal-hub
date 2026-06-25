@@ -6,7 +6,7 @@ const MestoZhitelstvaRebonkaPage = () => {
     <ServiceTemplate
       title="Определение места жительства ребёнка — юридическая помощь в Москве"
       metaDescription="Юридическая помощь в определении места жительства ребенка. Защита прав родителей и интересов детей в суде."
-      canonical={`${SITE.url}/services/phys/mesto-zhitelstva-rebenka`}
+      canonical={`${SITE.url}services/phys/mesto-zhitelstva-rebenka`}
       breadcrumbLabel="Место жительства ребёнка"
       h1="Определение места жительства ребёнка"
       leadParagraph="Помогаем родителям решить споры о месте проживания детей. Защищаем права родителей и интересы детей в судебных разбирательствах."
