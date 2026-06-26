@@ -1,0 +1,42 @@
+# 301 redirects for hosts that support a _redirects file (Netlify, Cloudflare Pages).
+# GitHub Pages ignores this file; use CDN/server rules there.
+
+/main / 301
+/team /#team 301
+/lawyers /#team 301
+/komanda /#team 301
+
+/uslugi /services 301
+/uslugi/fiz-lica /services/phys 301
+/uslugi/fiz-lica/* /services/phys 301
+/uslugi/yur-lica /services/biz 301
+/uslugi/yur-lica/* /services/biz 301
+/uslugi/ugolovnye /services/criminal 301
+/uslugi/ugolovnye/* /services/criminal 301
+/uslugi/* /services 301
+
+/privacy /politika-konfidentsialnosti 301
+/disclaimer /otkaz-ot-otvetstvennosti 301
+/about /o-kollegii 301
+/prices /tseny 301
+/contacts /kontakty 301
+/cases /keisy 301
+/practices /services/phys 301
+/practices/* /services/phys 301
+/knowledge/* /services/phys 301
+/blog/* /services/phys 301
+/articles/* /services/phys 301
+
+/services/ugolovnye /services/criminal 301
+/services/phys/ugolovnye /services/criminal 301
+/services/grazhdanskie /services/phys 301
+/services/arbitrazh /services/biz 301
+/services/phys/chapter-16 /services/criminal 301
+/services/phys/moshennichestvo /services/phys 301
+/services/phys/narkotiki /services/phys 301
+/services/phys/zhilishchnye-spory /services/phys/vyselenie 301
+/services/phys/ushcherb-imushchestvu /services/phys/vyselenie 301
+/services/phys/nasledstvennye-dela /services/phys/nasledstvo 301
+/services/phys/bankovskie-i-kreditnye-spory /services/phys/bankrotstvo-fiz-lits 301
+/services/phys/mesto-zhitelstva-poryadok-obshcheniya /services/phys/mesto-zhitelstva-rebenka 301
+

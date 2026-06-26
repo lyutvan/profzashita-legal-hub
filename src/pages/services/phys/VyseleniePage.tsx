@@ -39,7 +39,7 @@ import ReviewsCarousel from "@/components/ReviewsCarousel";
 import FileAttachmentsField from "@/components/FileAttachmentsField";
 
 import lawyerConsultationBg from "@/assets/legal/lawyer-consultation-bg.webp";
-import ryzhenkoImg from "@/assets/team/ryzhenko.jpg";
+import ryzhenkoImg from "@/assets/team/ryzhenko-912.jpg";
 import vaskovskyImg from "@/assets/team/vaskovsky.jpg";
 
 type LeadFormProps = {

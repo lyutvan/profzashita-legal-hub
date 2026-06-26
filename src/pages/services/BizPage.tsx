@@ -11,7 +11,7 @@ import { Button } from "@/components/ui/button";
 import { getCategoriesForAudience, getServicesByAudience, audienceConfig } from "@/data/services-audiences";
 import { CheckCircle2 } from "lucide-react";
 import { JsonLd as JsonLdComponent } from "@/components/JsonLd";
-import businessHandshake from "@/assets/legal/business-handshake.jpg";
+import businessHandshake from "@/assets/legal/business-handshake-1280.jpg";
 import { getServiceCardImage } from "@/lib/serviceCardImages";
 import { SITE } from "@/config/site";
 import { useQuickQuestionModal } from "@/components/QuickQuestionModalProvider";

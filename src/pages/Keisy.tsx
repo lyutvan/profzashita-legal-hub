@@ -1,5 +1,5 @@
 import { useEffect, useMemo, useState } from "react";
-import { Link, useLocation, useParams } from "react-router-dom";
+import { Link, useLocation, useNavigate, useParams } from "react-router-dom";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import { Helmet } from "react-helmet";
@@ -131,6 +131,7 @@ const caseMatchesFilter = (caseItem: Case, filter: CaseFilter) => {
 
 const Cases = () => {
   const location = useLocation();
+  const navigate = useNavigate();
   const { slug } = useParams<{ slug?: string }>();
   const [activeFilter, setActiveFilter] = useState<CaseFilter>("all");
   const { openQuickQuestionModal } = useQuickQuestionModal();
@@ -239,13 +240,21 @@ const Cases = () => {
         {selectedCase ? (
           <section className="section bg-white">
             <div className="container">
-              <Link
-                to="/keisy"
+              <button
+                type="button"
+                onClick={() => {
+                  if (window.history.length > 1) {
+                    navigate(-1);
+                    return;
+                  }
+
+                  navigate("/keisy");
+                }}
                 className="mb-7 inline-flex min-h-11 items-center gap-2 rounded-[10px] border border-[#ead9a7] bg-white px-4 py-2 text-[15px] font-semibold text-[#8a6a18] shadow-sm transition-colors hover:border-[#d5b44a] hover:bg-[#fffaf0] hover:text-[#6f5413] hover:no-underline"
               >
                 <ArrowLeft className="h-4 w-4" />
-                Все кейсы
-              </Link>
+                Назад
+              </button>
 
               <article id={selectedCase.slug} className="grid gap-10 lg:grid-cols-[minmax(0,1fr)_340px] lg:items-start">
                 <div className="min-w-0">

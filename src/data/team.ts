@@ -1,4 +1,4 @@
-import ryzhenkoImg from "@/assets/team/ryzhenko.jpg";
+import ryzhenkoImg from "@/assets/team/ryzhenko-912.jpg";
 import vaskovskyImg from "@/assets/team/vaskovsky.jpg";
 import kalabekovImg from "@/assets/team/kalabekov.jpg";
 
